@@ -49,6 +49,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Abstractions\DevMessageGateway.cs" />
+    <Compile Include="Abstractions\MessageGateway.cs" />
     <Compile Include="Abstractions\UserContext.cs" />
     <Compile Include="DataInterfaces\IDao.cs" />
     <Compile Include="DataInterfaces\IDaoFactory.cs" />
