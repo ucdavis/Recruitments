@@ -84,7 +84,15 @@ namespace CAESDO.Recruitment.Data
         /// This should be extracted into its own class-file if it needs to extend the
         /// inherited DAO functionality.
         /// </summary>
-        public class PositionDao : AbstractNHibernateDao<Position, int>, IPositionDao { }
+        public class PositionDao : AbstractNHibernateDao<Position, int>, IPositionDao {
+            public List<Position> GetAllPositionsByStatus(bool Closed)
+            {
+                IQuery query = NHibernateSessionManager.Instance.GetSession().CreateQuery(NHQueries.GetAllOpenPositions)
+                            .SetBoolean("Closed", Closed);
+
+                return query.List<Position>() as List<Position>;
+            }
+        }
 
         public class ApplicationDao : AbstractNHibernateDao<Application, int>, IApplicationDao { }
 

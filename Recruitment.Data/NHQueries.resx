@@ -120,4 +120,7 @@
   <data name="GetAllByMemberType" xml:space="preserve">
     <value>from CAESDO.Recruitment.Core.Domain.CommitteeMember as CM where PositionID = :PositionID and (MemberTypeID = :MemberTypeID or MemberTypeID = :MemberTypeSecondaryID)</value>
   </data>
+  <data name="GetAllOpenPositions" xml:space="preserve">
+    <value>from Position where Closed = :Closed</value>
+  </data>
 </root>

@@ -68,5 +68,14 @@ namespace CAESDO.Recruitment.Data {
                 return ResourceManager.GetString("GetAllByMemberType", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to from Position where Closed = :Closed.
+        /// </summary>
+        internal static string GetAllOpenPositions {
+            get {
+                return ResourceManager.GetString("GetAllOpenPositions", resourceCulture);
+            }
+        }
     }
 }

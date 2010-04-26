@@ -71,36 +71,36 @@ namespace CAESDO.Recruitment.Web
 
             //Survey survey = surveyDao.GetById(1, false);
             
-            if (!Page.IsPostBack)
-            {
-                app11 = null;
+            //if (!Page.IsPostBack)
+            //{
+            //    app11 = null;
 
-                Response.Write(app11.ID.ToString() + "   " + app11.SubmitDate.Value.ToShortDateString() + "<br/>");
-            }
-            else
-            {
-                Response.Write(app11.SubmitDate);
+            //    Response.Write(app11.ID.ToString() + "   " + app11.SubmitDate.Value.ToShortDateString() + "<br/>");
+            //}
+            //else
+            //{
+            //    Response.Write(app11.SubmitDate);
 
-                app11.SubmitDate = DateTime.Now;
+            //    app11.SubmitDate = DateTime.Now;
 
-                IApplicationDao aDao = daoFactory.GetApplicationDao();
+            //    IApplicationDao aDao = daoFactory.GetApplicationDao();
 
-                using (new NHibernateTransaction())
-                {
-                    aDao.SaveOrUpdate(app11);
-                }
+            //    using (new NHibernateTransaction())
+            //    {
+            //        aDao.SaveOrUpdate(app11);
+            //    }
 
-                Response.Write(app11.Education[0].Discipline);
+            //    Response.Write(app11.Education[0].Discipline);
 
-                app11.SubmitDate = DateTime.Now.AddDays(10);
+            //    app11.SubmitDate = DateTime.Now.AddDays(10);
 
-                using (new NHibernateTransaction())
-                {
-                    aDao.SaveOrUpdate(app11);
-                }
+            //    using (new NHibernateTransaction())
+            //    {
+            //        aDao.SaveOrUpdate(app11);
+            //    }
 
-                Response.Write(app11.LastUpdated.ToShortDateString());
-            }
+            //    Response.Write(app11.LastUpdated.ToShortDateString());
+            //}
 
             //Response.Write(app.ID.ToString() + "  " + app.SubmitDate.ToShortDateString() + "<br/>");
             //Response.Write(app.References[0].City);
@@ -120,6 +120,10 @@ namespace CAESDO.Recruitment.Web
             //IUserDao uDao = daoFactory.GetUserDao();
 
             //User user = uDao.GetById(1, false);
+
+            IPositionDao pDao = daoFactory.GetPositionDao();
+
+            List<Position> pList = pDao.GetAllPositionsByStatus(true);
             
         }
     }

@@ -27,7 +27,9 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
     // But you're certainly welcome to put each declaration into its own file.
     #region Inline interface declarations
 
-    public interface IPositionDao : IDao<Position, int> { }
+    public interface IPositionDao : IDao<Position, int> {
+        List<Position> GetAllPositionsByStatus(bool Closed);
+    }
 
     public interface IApplicationDao : IDao<Application, int> { }
 
