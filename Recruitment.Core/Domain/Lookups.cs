@@ -241,6 +241,7 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _UnitID = value; }
         }
 
+        public virtual string SchoolCode { get; set; }
 
         public Unit()
         {

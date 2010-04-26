@@ -163,15 +163,29 @@ namespace CAESDO.Recruitment.Data
 
             public List<Position> GetAllPositionsByStatus(bool Closed, bool AdminAccepted, bool? AllowApplications)
             {
+                return GetAllPositionsByStatusAndDepartment(Closed, AdminAccepted, AllowApplications, null, null);
+            }
+
+            public List<Position> GetAllPositionsByStatusAndDepartment(bool Closed, bool AdminAccepted, bool? AllowApplications, string DepartmentFIS, string SchoolCode)
+            {
+                Position p = new Position();
+                //p.Departments[0].
                 User currentUser = new UserDao().GetUserByLogin(HttpContext.Current.User.Identity.Name);
 
                 ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(Position))
                     .Add(Expression.Eq("Closed", Closed))
                     .Add(Expression.Eq("AdminAccepted", AdminAccepted))
-                    .AddOrder(Order.Asc("Deadline"));
+                    .CreateAlias("Departments", "Depts")
+                    .CreateAlias("Depts.Unit", "Unit");
 
                 if (AllowApplications.HasValue)
                     criteria.Add(Expression.Eq("AllowApps", AllowApplications.Value));
+
+                if (!string.IsNullOrEmpty(DepartmentFIS))
+                    criteria.Add(Expression.Eq("Unit.FISCode", DepartmentFIS));
+
+                if (!string.IsNullOrEmpty(SchoolCode))
+                    criteria.Add(Expression.Eq("Unit.SchoolCode", SchoolCode));
 
                 if (currentUser != null) //only filter logged in users
                 {
@@ -184,12 +198,16 @@ namespace CAESDO.Recruitment.Data
                             deptFIS.Add(u.FISCode);
                         }
 
-                        criteria.CreateCriteria("Departments")
-                                .Add(Expression.In("DepartmentFIS", deptFIS.ToArray()));
+                        criteria.Add(Expression.In("Depts.DepartmentFIS", deptFIS.ToArray()));
                     }
                 }
 
-                return criteria.List<Position>() as List<Position>;
+                var projectsList = criteria.SetProjection(Projections.Id()).List();
+
+                return NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(Position))
+                    .Add(Expression.In("id", projectsList))
+                    .AddOrder(Order.Asc("Deadline"))
+                    .List<Position>() as List<Position>;
             }
 
             public List<Position> GetAllPositionsByStatusForCommittee(bool Closed, bool AdminAccepted)

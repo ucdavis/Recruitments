@@ -42,12 +42,14 @@
         </Columns>
     
     </asp:GridView>
-    <asp:ObjectDataSource ID="ObjectDataOpenPositions" runat="server" SelectMethod="GetByStatus"
+    <asp:ObjectDataSource ID="ObjectDataOpenPositions" runat="server" SelectMethod="GetByStatusAndDepartment"
         TypeName="CAESDO.Recruitment.BLL.PositionBLL" OldValuesParameterFormatString="original_{0}">
         <SelectParameters>
             <asp:Parameter DefaultValue="false" Name="Closed" Type="Boolean" />
             <asp:Parameter DefaultValue="true" Name="AdminAccepted" Type="Boolean" />
             <asp:Parameter DefaultValue="true" Name="AllowApplications" Type="Boolean" />
+            <asp:QueryStringParameter QueryStringField="DepartmentFIS" ConvertEmptyStringToNull="true" DbType="String" Name="DepartmentFIS" />
+            <asp:QueryStringParameter QueryStringField="SchoolCode" ConvertEmptyStringToNull="true" DbType="String" Name="SchoolCode" />
         </SelectParameters>
     </asp:ObjectDataSource>
 

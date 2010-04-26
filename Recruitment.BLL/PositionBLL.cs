@@ -13,6 +13,11 @@ namespace CAESDO.Recruitment.BLL
             return daoFactory.GetPositionDao().GetAllPositionsByStatus(Closed, AdminAccepted, AllowApplications);
         }
 
+        public static List<Position> GetByStatusAndDepartment(bool Closed, bool AdminAccepted, bool? AllowApplications, string DepartmentFIS, string SchoolCode)
+        {
+            return daoFactory.GetPositionDao().GetAllPositionsByStatusAndDepartment(Closed, AdminAccepted, AllowApplications, DepartmentFIS, SchoolCode);
+        }
+
         public static List<Position> GetAllPositionsByStatusForCommittee(bool Closed, bool AdminAccepted)
         {
             return daoFactory.GetPositionDao().GetAllPositionsByStatusForCommittee(Closed, AdminAccepted);
