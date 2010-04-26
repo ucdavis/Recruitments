@@ -5,6 +5,8 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using CAESDO.Recruitment.Core.Domain;
+using Microsoft.Practices.EnterpriseLibrary.Validation;
+
 namespace CAESDO.Recruitment.Test
 {
     /// <summary>
@@ -93,9 +95,16 @@ namespace CAESDO.Recruitment.Test
 
             foreach (Application app in appList)
             {
-                Assert.IsTrue(ValidateBO<Application>.isValid(app));
-            }
+                this.TestContext.WriteLine("PositionID = {0}", app.ID);
 
+                foreach (ValidationResult res in ValidateBO<Application>.GetValidationResults(app))
+                {
+                    this.TestContext.WriteLine("Key = {0}, Message = {1}", res.Key, res.Message);
+                }
+
+                Assert.IsTrue(ValidateBO<Application>.isValid(app));
+
+            }
         }
 
         /// <summary>
