@@ -130,7 +130,7 @@ public class RecruitmentService : System.Web.Services.WebService
     [WebMethod]
     public CatOps.Users LookupKerberosUser(string loginID)
     {
-        CatOps.Users[] users = CatbertManager.SearchNewUsersByLogin(loginID);
+        CatOps.Users[] users = CatbertManager.SearchCampusUser(loginID);
         Unit unit = new Unit();
 
         if (users.Length > 0)

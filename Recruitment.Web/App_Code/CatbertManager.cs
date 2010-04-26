@@ -41,6 +41,11 @@ namespace CAESDO.Recruitment
             return catops.SearchNewUser(EmployeeID, FirstName, LastName, LoginID, HASH);
         }
 
+        public static CatOps.Users[] SearchCampusUser(string loginID)
+        {
+            return catops.SearchCampusNewUser(loginID, HASH);
+        }
+
         [DataObjectMethod(DataObjectMethodType.Select)]
         public static CatOps.Users[] SearchNewUsersByLogin(string login)
         {
