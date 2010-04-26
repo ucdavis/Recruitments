@@ -201,7 +201,7 @@ namespace CAESDO.Recruitment.Web
             member.DepartmentFIS = STR_FRAC;
             member.FirstName = txtFName.Text;
             member.LastName = txtLName.Text;
-            member.OtherDepartmentName = txtDepartment.Text;
+            member.OtherDepartmentName = string.IsNullOrEmpty(txtDepartment.Text) ? "Other" : txtDepartment.Text;
             member.LoginID = txtLoginID.Text;
 
             //Create the membership object
