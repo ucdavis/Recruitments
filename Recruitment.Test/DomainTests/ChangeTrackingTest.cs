@@ -8,7 +8,8 @@ using System.Collections.Generic;
 using CAESDO.Recruitment.Core.Domain;
 using CAESDO.Recruitment.Data;
 using Microsoft.Practices.EnterpriseLibrary.Validation;
-namespace CAESDO.Recruitment.Test
+
+namespace CAESDO.Recruitment.Test.DomainTests
 {
     /// <summary>
     ///This is a test class for CAESDO.Recruitment.Core.Domain.ChangeTracking and is intended
@@ -85,7 +86,7 @@ namespace CAESDO.Recruitment.Test
         [TestMethod]
         public void CascadeSaveTest()
         {
-            ChangeTracking target = NHibernateHelper.daoFactory.GetChangeTrackingDao().GetById(StaticProperties.ExistingTrackingID, false);
+            ChangeTracking target = NHibernateHelper.DaoFactory.GetChangeTrackingDao().GetById(StaticProperties.ExistingTrackingID, false);
 
             Assert.IsFalse(target.IsTransient());
 
@@ -101,7 +102,7 @@ namespace CAESDO.Recruitment.Test
 
             using (var ts = new TransactionScope())
             {
-                target = NHibernateHelper.daoFactory.GetChangeTrackingDao().SaveOrUpdate(target);
+                target = NHibernateHelper.DaoFactory.GetChangeTrackingDao().SaveOrUpdate(target);
 
                 ts.CommitTransaction();
             }
@@ -121,7 +122,7 @@ namespace CAESDO.Recruitment.Test
             
             using (var ts = new TransactionScope())
             {
-                target = NHibernateHelper.daoFactory.GetChangeTrackingDao().SaveOrUpdate(target);
+                target = NHibernateHelper.DaoFactory.GetChangeTrackingDao().SaveOrUpdate(target);
 
                 ts.CommitTransaction();
             }
@@ -134,7 +135,7 @@ namespace CAESDO.Recruitment.Test
         {
             ChangeTracking tracking = new ChangeTracking();
 
-            ChangeType ctype = NHibernateHelper.daoFactory.GetChangeTypeDao().GetById((int)ChangeTypes.Update, false);
+            ChangeType ctype = NHibernateHelper.DaoFactory.GetChangeTypeDao().GetById((int)ChangeTypes.Update, false);
 
             tracking.ObjectChanged = StaticProperties.TestString;
             tracking.ObjectChangedID = StaticProperties.ExistingProfileID.ToString();
@@ -146,14 +147,14 @@ namespace CAESDO.Recruitment.Test
 
             using (var ts = new TransactionScope())
             {
-                tracking = NHibernateHelper.daoFactory.GetChangeTrackingDao().SaveOrUpdate(tracking);
+                tracking = NHibernateHelper.DaoFactory.GetChangeTrackingDao().SaveOrUpdate(tracking);
 
                 ts.CommitTransaction();
             }
 
             Assert.IsFalse(tracking.IsTransient());
 
-            ChangeTracking trackingDB = NHibernateHelper.daoFactory.GetChangeTrackingDao().GetById(tracking.ID, false);
+            ChangeTracking trackingDB = NHibernateHelper.DaoFactory.GetChangeTrackingDao().GetById(tracking.ID, false);
 
             Assert.AreEqual<ChangeTracking>(tracking, trackingDB);
 
@@ -161,7 +162,7 @@ namespace CAESDO.Recruitment.Test
 
             using (var ts = new TransactionScope())
             {
-                NHibernateHelper.daoFactory.GetChangeTrackingDao().Delete(tracking);
+                NHibernateHelper.DaoFactory.GetChangeTrackingDao().Delete(tracking);
 
                 ts.CommitTransaction();
             }
@@ -171,7 +172,7 @@ namespace CAESDO.Recruitment.Test
 
             try
             {
-                tracking = NHibernateHelper.daoFactory.GetChangeTrackingDao().GetById(trackingDB.ID, false);
+                tracking = NHibernateHelper.DaoFactory.GetChangeTrackingDao().GetById(trackingDB.ID, false);
                 tracking.IsTransient();
             }
             catch (NHibernate.ObjectNotFoundException)
@@ -190,13 +191,13 @@ namespace CAESDO.Recruitment.Test
             var changeType = new ChangeType { Type = StaticProperties.TestString };
 
             var changeTracking = new ChangeTracking
-                               {
-                                   ChangeDate = DateTime.Now,
-                                   ObjectChanged = StaticProperties.TestString,
-                                   ObjectChangedID = StaticProperties.TestString,
-                                   UserName = StaticProperties.TestString,
-                                   ChangeType = changeType
-                               };
+                                     {
+                                         ChangeDate = DateTime.Now,
+                                         ObjectChanged = StaticProperties.TestString,
+                                         ObjectChangedID = StaticProperties.TestString,
+                                         UserName = StaticProperties.TestString,
+                                         ChangeType = changeType
+                                     };
 
             using (var ts = new TransactionScope())
             {

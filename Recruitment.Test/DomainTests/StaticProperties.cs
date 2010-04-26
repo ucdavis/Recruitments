@@ -1,8 +1,4 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace CAESDO.Recruitment.Test
+namespace CAESDO.Recruitment.Test.DomainTests
 {
     public static class StaticProperties
     {

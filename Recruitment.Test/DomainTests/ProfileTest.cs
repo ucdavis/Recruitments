@@ -3,15 +3,11 @@
 using CAESDO.Recruitment.BLL;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Text;
 using System.Collections.Generic;
 using CAESDO.Recruitment.Core.Domain;
-using CAESDO.Recruitment.Core.Utils;
 using Microsoft.Practices.EnterpriseLibrary.Validation;
-using CAESDO.Recruitment.Data;
 
-
-namespace CAESDO.Recruitment.Test
+namespace CAESDO.Recruitment.Test.DomainTests
 {
     /// <summary>
     ///This is a test class for CAESDO.Recruitment.Core.Domain.Profile and is intended
@@ -86,7 +82,7 @@ namespace CAESDO.Recruitment.Test
         [TestMethod]
         public void ValidateAllTest()
         {
-            List<Profile> pList = NHibernateHelper.daoFactory.GetProfileDao().GetAll();
+            List<Profile> pList = NHibernateHelper.DaoFactory.GetProfileDao().GetAll();
 
             Assert.AreNotEqual<int>(0, pList.Count);
 
@@ -106,8 +102,8 @@ namespace CAESDO.Recruitment.Test
         [TestMethod()]
         public void CheckApplicant()
         {
-            Profile target = NHibernateHelper.daoFactory.GetProfileDao().GetById(StaticProperties.ExistingProfileID, false);
-            Applicant applicant = NHibernateHelper.daoFactory.GetApplicantDao().GetById(StaticProperties.ExistingApplicantID, false);
+            Profile target = NHibernateHelper.DaoFactory.GetProfileDao().GetById(StaticProperties.ExistingProfileID, false);
+            Applicant applicant = NHibernateHelper.DaoFactory.GetApplicantDao().GetById(StaticProperties.ExistingApplicantID, false);
 
             Assert.AreEqual<Applicant>(target.AssociatedApplicant, applicant);         
         }
@@ -115,7 +111,7 @@ namespace CAESDO.Recruitment.Test
         [TestMethod()]
         public void SaveDeleteProfile()
         {
-            Applicant applicant = NHibernateHelper.daoFactory.GetApplicantDao().GetById(StaticProperties.ExistingApplicantID, false);
+            Applicant applicant = NHibernateHelper.DaoFactory.GetApplicantDao().GetById(StaticProperties.ExistingApplicantID, false);
 
             Profile target = new Profile();
             target.AssociatedApplicant = applicant; //associate with the applicant
@@ -130,7 +126,7 @@ namespace CAESDO.Recruitment.Test
 
             using (var ts = new TransactionScope())
             {
-                target = NHibernateHelper.daoFactory.GetProfileDao().Save(target); //save the target
+                target = NHibernateHelper.DaoFactory.GetProfileDao().Save(target); //save the target
             
                 ts.CommitTransaction();
             }
@@ -140,7 +136,7 @@ namespace CAESDO.Recruitment.Test
             Assert.IsNotNull(target);
             Assert.IsFalse(target.IsTransient()); //make sure that target is saved to the database
 
-            Profile targetDB = NHibernateHelper.daoFactory.GetProfileDao().GetById(target.ID, false);
+            Profile targetDB = NHibernateHelper.DaoFactory.GetProfileDao().GetById(target.ID, false);
 
             Assert.IsNotNull(targetDB);
             Assert.AreEqual<Profile>(target, targetDB);
@@ -148,7 +144,7 @@ namespace CAESDO.Recruitment.Test
             //Now delete the new profile
             using (var ts = new TransactionScope())
             {
-                NHibernateHelper.daoFactory.GetProfileDao().Delete(target);
+                NHibernateHelper.DaoFactory.GetProfileDao().Delete(target);
 
                 ts.CommitTransaction();
             }
@@ -157,7 +153,7 @@ namespace CAESDO.Recruitment.Test
 
             try
             {
-                targetDB = NHibernateHelper.daoFactory.GetProfileDao().GetById(target.ID, false);
+                targetDB = NHibernateHelper.DaoFactory.GetProfileDao().GetById(target.ID, false);
                 targetDB.IsTransient(); //check to see if its in the db
             }
             catch (NHibernate.ObjectNotFoundException)
@@ -172,12 +168,12 @@ namespace CAESDO.Recruitment.Test
         [TestMethod()]
         public void GetProfileByApplicantExample()
         {
-            Applicant applicant = NHibernateHelper.daoFactory.GetApplicantDao().GetById(StaticProperties.ExistingApplicantID, false);
+            Applicant applicant = NHibernateHelper.DaoFactory.GetApplicantDao().GetById(StaticProperties.ExistingApplicantID, false);
             
             Profile profile = new Profile();
             profile.AssociatedApplicant = applicant;
 
-            List<Profile> profiles = NHibernateHelper.daoFactory.GetProfileDao().GetByExample(profile);
+            List<Profile> profiles = NHibernateHelper.DaoFactory.GetProfileDao().GetByExample(profile);
 
             Assert.AreEqual<int>(profiles.Count, 1);
 
@@ -190,7 +186,7 @@ namespace CAESDO.Recruitment.Test
         [TestMethod()]
         public void CheckApplications()
         {
-            Profile profile = NHibernateHelper.daoFactory.GetProfileDao().GetById(StaticProperties.ExistingProfileID, false);
+            Profile profile = NHibernateHelper.DaoFactory.GetProfileDao().GetById(StaticProperties.ExistingProfileID, false);
 
             Assert.IsNotNull(profile.Applications);
 
@@ -222,6 +218,4 @@ namespace CAESDO.Recruitment.Test
 
         }
     }
-
-
 }

@@ -2,13 +2,10 @@
 // The test owner should check each test for validity.
 using CAESDO.Recruitment.BLL;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Text;
-using System.Collections.Generic;
 using CAESDO.Recruitment.Core.Domain;
-using CAESDO.Recruitment.Data;
 using Microsoft.Practices.EnterpriseLibrary.Validation;
-namespace CAESDO.Recruitment.Test
+
+namespace CAESDO.Recruitment.Test.DomainTests
 {
     /// <summary>
     ///This is a test class for CAESDO.Recruitment.Core.Domain.Reference and is intended
@@ -477,7 +474,7 @@ namespace CAESDO.Recruitment.Test
             {
                 // TODO: Implement GetReferenceDao()
                 
-                // position = NHibernateHelper.daoFactory.GetReferenceDao().SaveOrUpdate(reference);
+                // position = NHibernateHelper.DaoFactory.GetReferenceDao().SaveOrUpdate(reference);
                 
             }
 
@@ -490,6 +487,4 @@ namespace CAESDO.Recruitment.Test
         #endregion
 
     }
-
-
 }

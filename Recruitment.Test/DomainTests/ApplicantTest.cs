@@ -7,7 +7,8 @@ using System.Text;
 using System.Collections.Generic;
 using CAESDO.Recruitment.Core.Domain;
 using CAESDO.Recruitment.Data;
-namespace CAESDO.Recruitment.Test
+
+namespace CAESDO.Recruitment.Test.DomainTests
 {
     /// <summary>
     ///This is a test class for CAESDO.Recruitment.Core.Domain.Applicant and is intended
@@ -83,7 +84,7 @@ namespace CAESDO.Recruitment.Test
         [TestMethod()]
         public void ValidateAllTest()
         {
-            List<Applicant> applicants = NHibernateHelper.daoFactory.GetApplicantDao().GetAll();
+            List<Applicant> applicants = NHibernateHelper.DaoFactory.GetApplicantDao().GetAll();
 
             Assert.IsFalse(applicants.Count == 0);
 
@@ -98,7 +99,7 @@ namespace CAESDO.Recruitment.Test
         [TestMethod]
         public void ProfilesTest()
         {
-            Applicant target = NHibernateHelper.daoFactory.GetApplicantDao().GetById(StaticProperties.ExistingApplicantID, false);
+            Applicant target = NHibernateHelper.DaoFactory.GetApplicantDao().GetById(StaticProperties.ExistingApplicantID, false);
 
             Assert.AreNotEqual<int>(0, target.Profiles.Count);
 
@@ -108,7 +109,7 @@ namespace CAESDO.Recruitment.Test
         [TestMethod]
         public void UpdateEmail()
         {
-            Applicant target = NHibernateHelper.daoFactory.GetApplicantDao().GetById(StaticProperties.ExistingApplicantID, false);
+            Applicant target = NHibernateHelper.DaoFactory.GetApplicantDao().GetById(StaticProperties.ExistingApplicantID, false);
 
             string originalEmail = target.Email;
 
@@ -118,13 +119,13 @@ namespace CAESDO.Recruitment.Test
 
             using (var ts = new TransactionScope())
             {
-                target = NHibernateHelper.daoFactory.GetApplicantDao().SaveOrUpdate(target);
+                target = NHibernateHelper.DaoFactory.GetApplicantDao().SaveOrUpdate(target);
 
                 ts.CommitTransaction();
             }
 
             //Get the target back out of the database
-            Applicant targetDB = NHibernateHelper.daoFactory.GetApplicantDao().GetById(StaticProperties.ExistingApplicantID, false);
+            Applicant targetDB = NHibernateHelper.DaoFactory.GetApplicantDao().GetById(StaticProperties.ExistingApplicantID, false);
 
             //Make sure the email was changed
             Assert.AreEqual<string>(targetDB.Email, StaticProperties.TestString);
@@ -136,12 +137,10 @@ namespace CAESDO.Recruitment.Test
 
             using (var ts = new TransactionScope())
             {
-                NHibernateHelper.daoFactory.GetApplicantDao().SaveOrUpdate(targetDB);
+                NHibernateHelper.DaoFactory.GetApplicantDao().SaveOrUpdate(targetDB);
 
                 ts.CommitTransaction();
             }
         }
     }
-
-
 }

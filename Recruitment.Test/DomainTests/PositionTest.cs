@@ -3,13 +3,11 @@
 using CAESDO.Recruitment.BLL;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-using System.Text;
 using System.Collections.Generic;
 using CAESDO.Recruitment.Core.Domain;
-using CAESDO.Recruitment.Data;
 using Microsoft.Practices.EnterpriseLibrary.Validation;
 
-namespace CAESDO.Recruitment.Test
+namespace CAESDO.Recruitment.Test.DomainTests
 {
     /// <summary>
     ///This is a test class for CAESDO.Recruitment.Core.Domain.Position and is intended
@@ -471,7 +469,7 @@ namespace CAESDO.Recruitment.Test
         [WorkItem(166), TestMethod()]
         public void ValidateAll()
         {
-            List<Position> pList = NHibernateHelper.daoFactory.GetPositionDao().GetAll();
+            List<Position> pList = NHibernateHelper.DaoFactory.GetPositionDao().GetAll();
 
             Assert.AreNotEqual<int>(0, pList.Count);
 
@@ -524,7 +522,7 @@ namespace CAESDO.Recruitment.Test
         [WorkItem(166), TestMethod()]
         public void ReadPosition()
         {
-            Position position = NHibernateHelper.daoFactory.GetPositionDao().GetById(StaticProperties.ExistingPositionID, false);
+            Position position = NHibernateHelper.DaoFactory.GetPositionDao().GetById(StaticProperties.ExistingPositionID, false);
 
             Assert.IsNotNull(position);
 
@@ -536,12 +534,12 @@ namespace CAESDO.Recruitment.Test
         [WorkItem(166), TestMethod()]
         public void DeletePosition()
         {
-            Position position = NHibernateHelper.daoFactory.GetPositionDao().GetById(StaticProperties.ExistingPositionID, false);
+            Position position = NHibernateHelper.DaoFactory.GetPositionDao().GetById(StaticProperties.ExistingPositionID, false);
             int positionID = position.ID;
 
             using (var ts = new TransactionScope())
             {
-                NHibernateHelper.daoFactory.GetPositionDao().Delete(position);
+                NHibernateHelper.DaoFactory.GetPositionDao().Delete(position);
 
                 ts.CommitTransaction();
             }
@@ -551,7 +549,7 @@ namespace CAESDO.Recruitment.Test
             
             try
             {
-                Position positionDB = NHibernateHelper.daoFactory.GetPositionDao().GetById(positionID, false);
+                Position positionDB = NHibernateHelper.DaoFactory.GetPositionDao().GetById(positionID, false);
                 positionDB.IsTransient(); //check to see if its in the db
             }
             catch (NHibernate.ObjectNotFoundException)
@@ -582,7 +580,7 @@ namespace CAESDO.Recruitment.Test
 
             using (var ts = new TransactionScope())
             {
-                position = NHibernateHelper.daoFactory.GetPositionDao().SaveOrUpdate(position);
+                position = NHibernateHelper.DaoFactory.GetPositionDao().SaveOrUpdate(position);
             }
 
             // Verify save happened
@@ -610,6 +608,4 @@ namespace CAESDO.Recruitment.Test
 
         #endregion
     }
-
-
 }

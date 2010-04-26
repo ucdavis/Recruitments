@@ -1,15 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Text;
-using CAESDO.Recruitment.Core;
 using CAESDO.Recruitment.Data;
 using CAESDO.Recruitment.Core.DataInterfaces;
 
-namespace CAESDO.Recruitment.Test
+namespace CAESDO.Recruitment.Test.DomainTests
 {
     public static class NHibernateHelper
     {
-        public static IDaoFactory daoFactory
+        public static IDaoFactory DaoFactory
         {
             get { return new NHibernateDaoFactory(); }
         } 

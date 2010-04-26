@@ -9,7 +9,7 @@ using CAESDO.Recruitment.Core.Domain;
 using Microsoft.Practices.EnterpriseLibrary.Validation;
 using CAESDO.Recruitment.Data;
 
-namespace CAESDO.Recruitment.Test
+namespace CAESDO.Recruitment.Test.DomainTests
 {
     /// <summary>
     ///This is a test class for CAESDO.Recruitment.Core.Domain.Application and is intended
@@ -60,7 +60,7 @@ namespace CAESDO.Recruitment.Test
         [TestInitialize()]
         public void MyTestInitialize()
         {
-            ExampleApplication = NHibernateHelper.daoFactory.GetApplicationDao().GetById(StaticProperties.ExistingApplicationID, false);
+            ExampleApplication = NHibernateHelper.DaoFactory.GetApplicationDao().GetById(StaticProperties.ExistingApplicationID, false);
         }
         //
         //Use TestCleanup to run code after each test has run
@@ -88,7 +88,7 @@ namespace CAESDO.Recruitment.Test
         [TestMethod]
         public void ValidateAllTest()
         {
-            List<Application> appList = NHibernateHelper.daoFactory.GetApplicationDao().GetAll();
+            List<Application> appList = NHibernateHelper.DaoFactory.GetApplicationDao().GetAll();
 
             Assert.AreNotEqual<int>(0, appList.Count);
 
@@ -111,9 +111,9 @@ namespace CAESDO.Recruitment.Test
         {
             Application target = new Application();
 
-            target.AppliedPosition = NHibernateHelper.daoFactory.GetPositionDao().GetById(StaticProperties.ExistingPositionID, false);
-            target.AssociatedProfile = NHibernateHelper.daoFactory.GetProfileDao().GetById(StaticProperties.ExistingProfileID, false);
-            //target.ReferSource = NHibernateHelper.daoFactory.GetReferSourceDao().GetUniqueByExample(new ReferSource("Internet"));
+            target.AppliedPosition = NHibernateHelper.DaoFactory.GetPositionDao().GetById(StaticProperties.ExistingPositionID, false);
+            target.AssociatedProfile = NHibernateHelper.DaoFactory.GetProfileDao().GetById(StaticProperties.ExistingProfileID, false);
+            //target.ReferSource = NHibernateHelper.DaoFactory.GetReferSourceDao().GetUniqueByExample(new ReferSource("Internet"));
 
             target.Email = StaticProperties.TestString;
             target.LastUpdated = DateTime.Now;
@@ -125,14 +125,14 @@ namespace CAESDO.Recruitment.Test
 
             using (var ts = new TransactionScope())
             {
-                target = NHibernateHelper.daoFactory.GetApplicationDao().SaveOrUpdate(target);
+                target = NHibernateHelper.DaoFactory.GetApplicationDao().SaveOrUpdate(target);
 
                 ts.CommitTransaction();
             }
 
             Assert.IsFalse(target.IsTransient());
 
-            Application targetDB = NHibernateHelper.daoFactory.GetApplicationDao().GetById(target.ID, false);
+            Application targetDB = NHibernateHelper.DaoFactory.GetApplicationDao().GetById(target.ID, false);
 
             Assert.AreEqual<Application>(target, targetDB);
 
@@ -140,7 +140,7 @@ namespace CAESDO.Recruitment.Test
 
             using (var ts = new TransactionScope())
             {
-                NHibernateHelper.daoFactory.GetApplicationDao().Delete(target);
+                NHibernateHelper.DaoFactory.GetApplicationDao().Delete(target);
 
                 ts.CommitTransaction();
             }
@@ -150,7 +150,7 @@ namespace CAESDO.Recruitment.Test
 
             try
             {
-                target = NHibernateHelper.daoFactory.GetApplicationDao().GetById(targetDB.ID, false);
+                target = NHibernateHelper.DaoFactory.GetApplicationDao().GetById(targetDB.ID, false);
                 target.IsTransient();
             }
             catch (NHibernate.ObjectNotFoundException)
@@ -336,6 +336,4 @@ namespace CAESDO.Recruitment.Test
             }
         }
     }
-
-
 }

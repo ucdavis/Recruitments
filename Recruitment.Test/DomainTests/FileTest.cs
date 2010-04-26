@@ -2,13 +2,10 @@
 // The test owner should check each test for validity.
 using CAESDO.Recruitment.BLL;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Text;
 using System.Collections.Generic;
 using CAESDO.Recruitment.Core.Domain;
-using System.IO;
-using CAESDO.Recruitment.Data;
-namespace CAESDO.Recruitment.Test
+
+namespace CAESDO.Recruitment.Test.DomainTests
 {
     /// <summary>
     ///This is a test class for CAESDO.Recruitment.Core.Domain.File and is intended
@@ -87,7 +84,7 @@ namespace CAESDO.Recruitment.Test
         [TestMethod()]
         public void FileTypeTest()
         {
-            List<CAESDO.Recruitment.Core.Domain.File> files = NHibernateHelper.daoFactory.GetFileDao().GetAll();
+            List<CAESDO.Recruitment.Core.Domain.File> files = NHibernateHelper.DaoFactory.GetFileDao().GetAll();
 
             Assert.AreNotEqual<int>(files.Count, 0); //Make sure we got more than one file
 
@@ -109,7 +106,7 @@ namespace CAESDO.Recruitment.Test
         [TestMethod]
         public void ValidateAllTest()
         {
-            List<CAESDO.Recruitment.Core.Domain.File> f = NHibernateHelper.daoFactory.GetFileDao().GetAll();
+            List<CAESDO.Recruitment.Core.Domain.File> f = NHibernateHelper.DaoFactory.GetFileDao().GetAll();
 
             foreach (CAESDO.Recruitment.Core.Domain.File file in f)
             {
@@ -121,10 +118,10 @@ namespace CAESDO.Recruitment.Test
         public void CascadeFileTypeSaveTest()
         {
             //Grab an existing file out of the database
-            CAESDO.Recruitment.Core.Domain.File file = NHibernateHelper.daoFactory.GetFileDao().GetById(StaticProperties.ExistingFileID, false);
+            CAESDO.Recruitment.Core.Domain.File file = NHibernateHelper.DaoFactory.GetFileDao().GetById(StaticProperties.ExistingFileID, false);
 
             //Get all possible file types (lookup table)
-            List<FileType> fileTypeList = NHibernateHelper.daoFactory.GetFileTypeDao().GetAll();
+            List<FileType> fileTypeList = NHibernateHelper.DaoFactory.GetFileTypeDao().GetAll();
 
             Assert.IsFalse(file.FileType.IsTransient()); //make sure we have a valid filetype
 
@@ -151,14 +148,14 @@ namespace CAESDO.Recruitment.Test
             using (var ts = new TransactionScope())
             {
                 file.FileType = newType;
-                NHibernateHelper.daoFactory.GetFileDao().SaveOrUpdate(file);
+                NHibernateHelper.DaoFactory.GetFileDao().SaveOrUpdate(file);
 
                 ts.CommitTransaction();
             }
 
             this.TestContext.WriteLine("New FileTypeID = {0}", newType.ID);
             //Get the original file back out of the database, and make sure the fileType changed to the new type
-            CAESDO.Recruitment.Core.Domain.File fileDB = NHibernateHelper.daoFactory.GetFileDao().GetById(StaticProperties.ExistingFileID, false);
+            CAESDO.Recruitment.Core.Domain.File fileDB = NHibernateHelper.DaoFactory.GetFileDao().GetById(StaticProperties.ExistingFileID, false);
 
             Assert.AreEqual<int>(fileDB.FileType.ID, newType.ID);
         }
@@ -168,7 +165,7 @@ namespace CAESDO.Recruitment.Test
         {
             CAESDO.Recruitment.Core.Domain.File file = new CAESDO.Recruitment.Core.Domain.File();
 
-            FileType ftype = NHibernateHelper.daoFactory.GetFileTypeDao().GetById(StaticProperties.ExistingFileTypeID, false);
+            FileType ftype = NHibernateHelper.DaoFactory.GetFileTypeDao().GetById(StaticProperties.ExistingFileTypeID, false);
 
             file.FileType = ftype;
             file.FileName = StaticProperties.TestString;
@@ -181,7 +178,7 @@ namespace CAESDO.Recruitment.Test
             
             using (var ts = new TransactionScope())
             {
-                file = NHibernateHelper.daoFactory.GetFileDao().SaveOrUpdate(file);
+                file = NHibernateHelper.DaoFactory.GetFileDao().SaveOrUpdate(file);
 
                 ts.CommitTransaction();
             }
@@ -191,7 +188,7 @@ namespace CAESDO.Recruitment.Test
             CAESDO.Recruitment.Core.Domain.File fileDB = new CAESDO.Recruitment.Core.Domain.File();
 
             //Get a new file using the saved file's ID
-            fileDB = NHibernateHelper.daoFactory.GetFileDao().GetById(file.ID, false);
+            fileDB = NHibernateHelper.DaoFactory.GetFileDao().GetById(file.ID, false);
 
             //Make sure they are the same
             Assert.AreEqual(file, fileDB);
@@ -201,7 +198,7 @@ namespace CAESDO.Recruitment.Test
             //Now delete the file
             using (var ts = new TransactionScope())
             {
-                NHibernateHelper.daoFactory.GetFileDao().Delete(file);
+                NHibernateHelper.DaoFactory.GetFileDao().Delete(file);
 
                 ts.CommitTransaction();
             }
@@ -211,7 +208,7 @@ namespace CAESDO.Recruitment.Test
 
             try
             {
-                file = NHibernateHelper.daoFactory.GetFileDao().GetById(fileDB.ID, false);
+                file = NHibernateHelper.DaoFactory.GetFileDao().GetById(fileDB.ID, false);
                 file.IsTransient();
             }
             catch (NHibernate.ObjectNotFoundException)
@@ -223,6 +220,4 @@ namespace CAESDO.Recruitment.Test
         }
 
     }
-
-
 }

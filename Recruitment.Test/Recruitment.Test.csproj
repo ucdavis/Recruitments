@@ -54,24 +54,21 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ApplicantTest.cs" />
-    <Compile Include="ApplicationTest.cs" />
-    <Compile Include="ChangeTrackingTest.cs" />
-    <Compile Include="CommitteeMemberTest.cs" />
+    <Compile Include="DomainTests\ApplicantTest.cs" />
+    <Compile Include="DomainTests\ApplicationTest.cs" />
+    <Compile Include="DomainTests\ChangeTrackingTest.cs" />
+    <Compile Include="DomainTests\CommitteeMemberTest.cs" />
     <Compile Include="DatabaseHelper.cs" />
     <Compile Include="DatabaseTestBase.cs" />
     <Compile Include="EntityIdSetter.cs" />
-    <Compile Include="FileTest.cs" />
-    <Compile Include="NHibernateHelper.cs" />
-    <Compile Include="PositionTest.cs" />
-    <Compile Include="ProfileTest.cs" />
+    <Compile Include="DomainTests\FileTest.cs" />
+    <Compile Include="DomainTests\NHibernateHelper.cs" />
+    <Compile Include="DomainTests\PositionTest.cs" />
+    <Compile Include="DomainTests\ProfileTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReferenceTest.cs" />
-    <Compile Include="StaticProperties.cs" />
-    <Compile Include="UserTest.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="AuthoringTests.txt" />
+    <Compile Include="DomainTests\ReferenceTest.cs" />
+    <Compile Include="DomainTests\StaticProperties.cs" />
+    <Compile Include="DomainTests\UserTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Recruitment.BLL\Recruitment.BLL.csproj">

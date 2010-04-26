@@ -2,13 +2,10 @@
 // The test owner should check each test for validity.
 using CAESDO.Recruitment.BLL;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Text;
 using System.Collections.Generic;
 using CAESDO.Recruitment.Core.Domain;
-using CAESDO.Recruitment.Data;
 
-namespace CAESDO.Recruitment.Test
+namespace CAESDO.Recruitment.Test.DomainTests
 {
     /// <summary>
     ///This is a test class for CAESDO.Recruitment.Core.Domain.CommitteeMember and is intended
@@ -17,8 +14,6 @@ namespace CAESDO.Recruitment.Test
     [TestClass()]
     public class CommitteeMemberTest  : DatabaseTestBase
     {
-
-
         private TestContext testContextInstance;
 
         /// <summary>
@@ -77,7 +72,7 @@ namespace CAESDO.Recruitment.Test
         [TestMethod()]
         public void AssociatedPositionTest()
         {
-            List<CommitteeMember> cList = NHibernateHelper.daoFactory.GetCommitteeMemberDao().GetAll();
+            List<CommitteeMember> cList = NHibernateHelper.DaoFactory.GetCommitteeMemberDao().GetAll();
 
             Assert.AreNotEqual<int>(0, cList.Count);
 
@@ -107,12 +102,12 @@ namespace CAESDO.Recruitment.Test
         {
             CommitteeMember member = new CommitteeMember();
 
-            MemberType mtype = NHibernateHelper.daoFactory.GetMemberTypeDao().GetById((int)MemberTypes.CommitteeMember, false);
+            MemberType mtype = NHibernateHelper.DaoFactory.GetMemberTypeDao().GetById((int)MemberTypes.CommitteeMember, false);
 
             //member.Email = StaticProperties.TestString;
             //member.UserID = StaticProperties.ExistingUserID;
-            member.AssociatedPosition = NHibernateHelper.daoFactory.GetPositionDao().GetById(StaticProperties.ExistingPositionID, false);
-            member.DepartmentMember = NHibernateHelper.daoFactory.GetDepartmentMemberDao().GetById(1, false);
+            member.AssociatedPosition = NHibernateHelper.DaoFactory.GetPositionDao().GetById(StaticProperties.ExistingPositionID, false);
+            member.DepartmentMember = NHibernateHelper.DaoFactory.GetDepartmentMemberDao().GetById(1, false);
             member.MemberType = mtype;
 
             //Make sure the file is valid
@@ -122,7 +117,7 @@ namespace CAESDO.Recruitment.Test
 
             using (var ts = new TransactionScope())
             {
-                member = NHibernateHelper.daoFactory.GetCommitteeMemberDao().SaveOrUpdate(member);
+                member = NHibernateHelper.DaoFactory.GetCommitteeMemberDao().SaveOrUpdate(member);
 
                 ts.CommitTransaction();
             }
@@ -132,7 +127,7 @@ namespace CAESDO.Recruitment.Test
             CommitteeMember memberDB = new CommitteeMember();
 
             //Get a new file using the saved file's ID
-            memberDB = NHibernateHelper.daoFactory.GetCommitteeMemberDao().GetById(member.ID, false);
+            memberDB = NHibernateHelper.DaoFactory.GetCommitteeMemberDao().GetById(member.ID, false);
 
             //Make sure they are the same
             Assert.AreEqual(member, memberDB);
@@ -142,7 +137,7 @@ namespace CAESDO.Recruitment.Test
             //Now delete the file
             using (var ts = new TransactionScope())
             {
-                NHibernateHelper.daoFactory.GetCommitteeMemberDao().Delete(member);
+                NHibernateHelper.DaoFactory.GetCommitteeMemberDao().Delete(member);
 
                 ts.CommitTransaction();
             }
@@ -152,7 +147,7 @@ namespace CAESDO.Recruitment.Test
 
             try
             {
-                member = NHibernateHelper.daoFactory.GetCommitteeMemberDao().GetById(memberDB.ID, false);
+                member = NHibernateHelper.DaoFactory.GetCommitteeMemberDao().GetById(memberDB.ID, false);
                 member.IsTransient();
             }
             catch (NHibernate.ObjectNotFoundException)
@@ -167,7 +162,7 @@ namespace CAESDO.Recruitment.Test
         public void ValidateAllTest()
         {
 
-            List<CommitteeMember> cList = NHibernateHelper.daoFactory.GetCommitteeMemberDao().GetAll();
+            List<CommitteeMember> cList = NHibernateHelper.DaoFactory.GetCommitteeMemberDao().GetAll();
 
             Assert.AreNotEqual<int>(0, cList.Count); //should be at least on committeemember
 
@@ -184,10 +179,10 @@ namespace CAESDO.Recruitment.Test
         public void CascadeMemberTypeSaveTest()
         {
             //Grab an existing member out of the database
-            CommitteeMember member = NHibernateHelper.daoFactory.GetCommitteeMemberDao().GetById(StaticProperties.ExistingCommitteeMemberID, false);
+            CommitteeMember member = NHibernateHelper.DaoFactory.GetCommitteeMemberDao().GetById(StaticProperties.ExistingCommitteeMemberID, false);
 
             //Get all possible member types (lookup table)
-            List<MemberType> memberTypeList = NHibernateHelper.daoFactory.GetMemberTypeDao().GetAll();
+            List<MemberType> memberTypeList = NHibernateHelper.DaoFactory.GetMemberTypeDao().GetAll();
 
             Assert.IsFalse(member.MemberType.IsTransient()); //make sure we have a valid memberType
 
@@ -214,7 +209,7 @@ namespace CAESDO.Recruitment.Test
             using (var ts = new TransactionScope())
             {
                 member.MemberType = newType;
-                NHibernateHelper.daoFactory.GetCommitteeMemberDao().SaveOrUpdate(member);
+                NHibernateHelper.DaoFactory.GetCommitteeMemberDao().SaveOrUpdate(member);
 
                 ts.CommitTransaction();
             }
@@ -222,7 +217,7 @@ namespace CAESDO.Recruitment.Test
             this.TestContext.WriteLine("New MemberTypeID = {0}", newType.ID);
 
             //Get the original CommitteeMember back out of the database, and make sure the memberType changed to the new type
-            CommitteeMember memberDB = NHibernateHelper.daoFactory.GetCommitteeMemberDao().GetById(StaticProperties.ExistingCommitteeMemberID, false);
+            CommitteeMember memberDB = NHibernateHelper.DaoFactory.GetCommitteeMemberDao().GetById(StaticProperties.ExistingCommitteeMemberID, false);
 
             Assert.AreEqual<int>(memberDB.MemberType.ID, newType.ID);
         }
@@ -230,9 +225,9 @@ namespace CAESDO.Recruitment.Test
         [TestMethod()]
         public void AllCommitteeMembersTest()
         {
-            Position target = NHibernateHelper.daoFactory.GetPositionDao().GetById(StaticProperties.ExistingPositionID, false);
+            Position target = NHibernateHelper.DaoFactory.GetPositionDao().GetById(StaticProperties.ExistingPositionID, false);
 
-            List<CommitteeMember> members = NHibernateHelper.daoFactory.GetCommitteeMemberDao().GetAllByMemberType(target, MemberTypes.AllCommittee);
+            List<CommitteeMember> members = NHibernateHelper.DaoFactory.GetCommitteeMemberDao().GetAllByMemberType(target, MemberTypes.AllCommittee);
             
             Assert.AreNotEqual<int>(members.Count, 0);
 
@@ -249,9 +244,9 @@ namespace CAESDO.Recruitment.Test
         [TestMethod]
         public void AllFacultyMembersTest()
         {
-            Position target = NHibernateHelper.daoFactory.GetPositionDao().GetById(StaticProperties.ExistingPositionID, false);
+            Position target = NHibernateHelper.DaoFactory.GetPositionDao().GetById(StaticProperties.ExistingPositionID, false);
 
-            List<CommitteeMember> members = NHibernateHelper.daoFactory.GetCommitteeMemberDao().GetAllByMemberType(target, MemberTypes.FacultyMember);
+            List<CommitteeMember> members = NHibernateHelper.DaoFactory.GetCommitteeMemberDao().GetAllByMemberType(target, MemberTypes.FacultyMember);
 
             Assert.AreNotEqual<int>(members.Count, 0);
 
@@ -286,12 +281,12 @@ namespace CAESDO.Recruitment.Test
                     var memberType = new MemberType {Type = StaticProperties.TestString};
                     
                     var committeeMember = new CommitteeMember
-                    {
-                        AssociatedPosition =
-                            PositionBLL.GetByID(StaticProperties.ExistingPositionID),
-                        DepartmentMember = departmentMember,
-                        MemberType = memberType
-                    };
+                                              {
+                                                  AssociatedPosition =
+                                                      PositionBLL.GetByID(StaticProperties.ExistingPositionID),
+                                                  DepartmentMember = departmentMember,
+                                                  MemberType = memberType
+                                              };
 
 
                     MemberTypeBLL.EnsurePersistent(memberType);
@@ -303,6 +298,4 @@ namespace CAESDO.Recruitment.Test
         }
 
     }
-
-
 }

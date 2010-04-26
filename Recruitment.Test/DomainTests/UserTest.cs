@@ -2,11 +2,10 @@
 // The test owner should check each test for validity.
 using CAESDO.Recruitment.BLL;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Text;
 using System.Collections.Generic;
 using CAESDO.Recruitment.Core.Domain;
-namespace CAESDO.Recruitment.Test
+
+namespace CAESDO.Recruitment.Test.DomainTests
 {
     /// <summary>
     ///This is a test class for CAESDO.Recruitment.Core.Domain.User and is intended
@@ -89,7 +88,7 @@ namespace CAESDO.Recruitment.Test
         [TestMethod]
         public void GetUserByLogin()
         {
-            User target = NHibernateHelper.daoFactory.GetUserDao().GetUserByLogin(StaticProperties.TestString);
+            User target = NHibernateHelper.DaoFactory.GetUserDao().GetUserByLogin(StaticProperties.TestString);
 
             Assert.IsNotNull(target);
 
@@ -135,6 +134,4 @@ namespace CAESDO.Recruitment.Test
         }
 
     }
-
-
 }
