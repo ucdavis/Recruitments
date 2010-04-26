@@ -101,6 +101,20 @@
                             <asp:TextBox ReadOnly="true" ID="txtEducationDiscipline" runat="server" MaxLength="50"></asp:TextBox>
                         </td>
                     </tr>
+                    <tr>
+                        <td   align="right">
+                            Research Field:</td>
+                        <td  >
+                            <asp:TextBox ReadOnly="true" ID="txtEducationResearchField" runat="server" MaxLength="50"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td   align="right">
+                            Advisor:</td>
+                        <td  >
+                            <asp:TextBox ReadOnly="true" ID="txtEducationAdvisor" runat="server" MaxLength="50"></asp:TextBox>
+                        </td>
+                    </tr>
                 </table>
                 <br />
             </asp:Panel>

@@ -318,6 +318,8 @@ namespace CAESDO.Recruitment.Web
             txtEducationPHDDate.Text = currentEducation.Date.ToShortDateString();
             txtEducationDiscipline.Text = currentEducation.Discipline;
             txtEducationInstitution.Text = currentEducation.Institution;
+            txtEducationResearchField.Text = currentEducation.ResearchField;
+            txtEducationAdvisor.Text = currentEducation.Advisor;
         }
 
         /// <summary>
