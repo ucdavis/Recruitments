@@ -225,7 +225,8 @@ namespace CAESDO.Recruitment.Data
 
                 foreach (Position p in facultyPositions.List<Position>())
                 {
-                    positions.Add(p);
+                    if (!positions.Contains(p))
+                        positions.Add(p);
                 }
 
                 foreach (Position p in committeePositions.List<Position>())

@@ -89,6 +89,7 @@ namespace CAESDO.Recruitment.Web
                     {
                         //Allow access always if the user is in the committee
                         allowedAccess = true;
+                        reviewerAccess = false;
                         break; //If the user is a committee member, break out because they have full access
                     }
                     else //user is faculty or reviewer
@@ -98,12 +99,14 @@ namespace CAESDO.Recruitment.Web
                             if (member.MemberType.ID == (int)MemberTypes.FacultyMember)
                             {
                                 allowedAccess = true; //If the user is a faculty member, break out because they have full access
+                                reviewerAccess = false;
                                 break;
                             }
                             else if (member.MemberType.ID == (int)MemberTypes.Reviewer)
                             {
                                 reviewerAccess = true;  //Don't break with reviewers, because they may be faculty or committee also
                                 allowedAccess = true;
+                                continue;
                             }
                         }
                     }
