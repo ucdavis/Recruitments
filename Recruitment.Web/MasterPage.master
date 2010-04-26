@@ -36,9 +36,9 @@
 	                                        <ul>
 		                                       <li class="subnews"><asp:LinkButton runat="server" ID="lbtnSignIn" Text="Sign In (Existing Users)" OnClick="lbtnSignIn_Click" /></li>
 		                                       <li class="subnews"><asp:LinkButton runat="server" ID="lbtnCreate" Text="Create Account (New Applicants)" OnClick="lbtnCreate_Click" /></li>
-		                                       <li class="subnews"><a href="#nogo">Admin Functions</a></li>
-		                                       <li class="subnews"><a href="#nogo">View Positions</a></li>
-		                                       <li class="subnews"><a class="drop" href="#nogo">View Applicants</a></li>
+		                                       <li class="subnews"><a href="~/viewPositions.aspx" runat="server">View Positions</a></li>
+		                                       <li class="subnews"><a href="~/Applicant/ViewApplicationsInProgress.aspx" runat="server">My Applications</a></li>
+		                                       <li class="subnews"><a class="drop" href="~/Authorized/AdminIndex.aspx" runat="server">Admin Functions</a></li>
 	                                        </ul>
 	                                    <!--[if lte IE 6]></td></tr></table></a><![endif]-->
 	                                    </li>
@@ -54,6 +54,27 @@
                                 </asp:Panel> --%>
                                 
                             </AnonymousTemplate>
+                            <RoleGroups>
+                                <asp:RoleGroup Roles="User,Admin">
+                                    <ContentTemplate>
+                                        <div class="dropdownmenu">
+                                            <ul>
+	                                            <li class="news"><a class="drop" id="welcome" href="#nogo"><asp:Panel ID="pnlUserName" runat="server" style="display:inline;">&nbsp;&nbsp;&nbsp; Welcome: <%= LoggedInUserName %> <asp:Image ID="imgDownArrow" runat="server" AlternateText="down arrow" ImageUrl="~/Images/downarrow.gif" />&nbsp;</asp:Panel><!--[if IE 7]><!--></a><!--<![endif]-->
+                                                <!--[if lte IE 6]><table><tr><td><![endif]-->
+	                                                <ul>
+		                                               <li class="subnews"><a href="~/Authorized/AdminIndex.aspx" runat="server">Administrative Index</a></li>
+		                                               <li class="subnews"><a href="~/Authorized/viewPositionsAdmin.aspx" runat="server">View Open Positions</a></li>
+		                                               <li class="subnews"><a href="~/Authorized/ViewPositionsPending.aspx" runat="server">View Pending Positions</a></li>
+		                                               <li class="subnews"><a href="~/Authorized/PositionManagement.aspx" runat="server">Create Position</a></li>
+		                                               <li class="subnews"><asp:LinkButton runat="server" ID="lbtnLogout" Text="Logout" OnClick="lbtnLogout_Click" /></li>
+	                                                </ul>
+	                                            <!--[if lte IE 6]></td></tr></table></a><![endif]-->
+	                                            </li>
+                                            </ul>
+                                        </div>
+                                    </ContentTemplate>
+                                </asp:RoleGroup>
+                            </RoleGroups>
                             <LoggedInTemplate>
                                <div class="dropdownmenu">
                                     <ul>
@@ -61,10 +82,8 @@
                                         <!--[if lte IE 6]><table><tr><td><![endif]-->
 	                                        <ul>
 		                                       <li class="subnews"><asp:LinkButton runat="server" ID="lbtnLogout" Text="Logout" OnClick="lbtnLogout_Click" /></li>
-		                                       <li class="subnews"><a href="#nogo">Create New Account</a></li>
-		                                       <li class="subnews"><a href="#nogo">Admin Functions</a></li>
-		                                       <li class="subnews"><a href="#nogo">View Positions</a></li>
-		                                       <li class="subnews"><a class="drop" href="#nogo">View Applicants</a></li>
+		                                       <li class="subnews"><a href="~/viewPositions.aspx" runat="server">View Positions</a></li>
+		                                       <li class="subnews"><a href="~/Applicant/ViewApplicationsInProgress.aspx" runat="server">My Applications</a></li>
 	                                        </ul>
 	                                    <!--[if lte IE 6]></td></tr></table></a><![endif]-->
 	                                    </li>
