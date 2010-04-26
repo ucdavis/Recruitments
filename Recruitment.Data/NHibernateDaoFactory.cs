@@ -414,6 +414,32 @@ namespace CAESDO.Recruitment.Data
 
                 return GetMembersByDepartmentAndType(depts.ToArray(), type);
             }
+
+            public bool IsUserMember(MemberTypes type)
+            {
+                ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(DepartmentMember))
+                    .Add(Expression.Eq("LoginID", HttpContext.Current.User.Identity.Name));
+
+                List<DepartmentMember> members = criteria.List<DepartmentMember>() as List<DepartmentMember>;
+
+                foreach (DepartmentMember member in members)
+                {
+                    if (member.MemberType.ID == (int)type)
+                    {
+                        return true;
+                    }
+                    else if (type == MemberTypes.AllCommittee)
+                    {
+                        if (member.MemberType.ID == (int)MemberTypes.CommitteeChair)
+                            return true;
+                        else if (member.MemberType.ID == (int)MemberTypes.CommitteeMember)
+                            return true;
+                    }
+                }
+
+                //No match found
+                return false;
+            }
         }
          
         #endregion

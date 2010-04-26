@@ -27,6 +27,10 @@
         </siteMapNode>
       </siteMapNode>
 
+      <siteMapNode url="Review/Index.aspx" title="Review">
+        <siteMapNode url="Review/ApplicationReview.aspx" title="Application Review" />
+      </siteMapNode>
+      
       <siteMapNode url="Login/CreateUser.aspx" title="Create User" />
       <siteMapNode url="Login/ResetPassword.aspx" title="Reset Password" />
       <siteMapNode url="Login/ChangePassword.aspx" title="Change Password" />

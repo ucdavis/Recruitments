@@ -11,5 +11,6 @@
     <br /><br />
     <asp:HyperLink ID="hlinkApplicationsInProgress" runat="server" NavigateUrl="~/Applicant/ViewApplicationsInProgress.aspx" >View Applications In Progress</asp:HyperLink>
     <br /><br />
+    <a href="Review/Index.aspx">Committee Review</a>
 </div>
 </asp:Content>

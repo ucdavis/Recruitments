@@ -111,6 +111,7 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
     public interface IDepartmentMemberDao : IDao<DepartmentMember, int> {
         List<DepartmentMember> GetMembersByDepartmentAndType(string[] DepartmentFIS, MemberTypes type);
         List<DepartmentMember> GetMembersByDepartmentAndType(string DepartmentFIS, MemberTypes type);
+        bool IsUserMember(MemberTypes type);
     }
     
     #endregion

@@ -29,7 +29,7 @@ namespace CAESDO
             //Grab the return URL
             string returnURL = Request.QueryString[STR_ReturnURL] ?? string.Empty;
 
-            if (returnURL.ToLower().Contains(@"/authorized/"))
+            if (returnURL.ToLower().Contains(@"/authorized/") || returnURL.ToLower().Contains(@"/review/"))
             {
                 //We know that the user needs an DistAuth login
                 DistAuthLogin();
