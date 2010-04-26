@@ -3,6 +3,12 @@
 <%@ Register Assembly="FreeTextBox" Namespace="FreeTextBoxControls" TagPrefix="FTB" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     
+     <Ajax:ScriptManagerProxy ID="scriptProxy" runat="server">
+        <Services>
+            <Ajax:ServiceReference Path="RecruitmentService.asmx" />
+        </Services>
+    </Ajax:ScriptManagerProxy>
+    
     <script src="../JS/tiny_mce/tiny_mce.js" type="text/javascript"></script>
     <script type="text/javascript">
         var refTemplateEditor = null;
@@ -14,11 +20,33 @@
             skin: "o2k7",
             plugins: "paste",
 
-            theme_advanced_buttons2: "cut,copy,pastetext,pasteword,|,bullist,numlist,|,undo,redo,|,link,unlink,anchor,image,cleanup,|,forecolor,backcolor",
+            theme_advanced_buttons1: "preview,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,formatselect,fontsizeselect",
+            theme_advanced_buttons2: "cut,copy,pastetext,pasteword,|,bullist,numlist,|,undo,redo,|,link,unlink,anchor,image,|,forecolor,backcolor",
+            theme_advanced_buttons3: "",
             theme_advanced_toolbar_location: "top",
-            
+
             setup: function(ed) {
                 refTemplateEditor = ed;
+
+                ed.addButton('preview', {
+                    title: 'Preview', image: '../Images/delete.gif',
+                    onclick: function() {
+
+                        var content = ed.getContent(); //Get the current content inside the editor
+
+                        RecruitmentService.GetTemplatePreview(content, callback);
+
+                        function callback(result) {
+                            newWin = window.open('', 'Preview', '');
+
+                            if (newWin != null) {
+                                var doc = newWin.document;
+                                doc.write(result);
+                                doc.close();
+                            }
+                        }
+                    }
+                });
             }
         });
 
