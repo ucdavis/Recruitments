@@ -167,15 +167,23 @@ namespace CAESDO.Recruitment.Web
                     while (i < n)
                     {
                         i++;
-                        document.SetPageSize(reader.GetPageSizeWithRotation(1));
+                        document.SetPageSize(reader.GetPageSizeWithRotation(i));
                         document.NewPage();
                         page = writer.GetImportedPage(reader, i);
+                        
                         rotation = reader.GetPageRotation(i);
-
+                        
                         if (rotation == 90 || rotation == 270)
                             cb.AddTemplate(page, 0, -1f, 1f, 0, 0, reader.GetPageSizeWithRotation(i).Height);
                         else
                             cb.AddTemplate(page, 1f, 0, 0, 1f, 0, 0);
+                        
+                        BaseFont bf = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+                        cb.BeginText();
+                        cb.SetFontAndSize(bf, 12f);
+                        cb.ShowTextAligned(PdfContentByte.ALIGN_CENTER,currentApplication.Files[f].FileType.FileTypeName + " -- " + currentApplication.Files[f].FileName, reader.GetPageSizeWithRotation(i).Width / 2, reader.GetPageSizeWithRotation(i).Height - 12f, 0);
+                        //cb.ShowText(currentApplication.Files[f].FileType.FileTypeName);
+                        cb.EndText();
                     }
                     f++;
 
@@ -189,7 +197,7 @@ namespace CAESDO.Recruitment.Web
 
                 document.Close();
             }
-            catch (Exception)
+            catch (Exception ex)
             {
                 lblDownloadAllStatus.Text = "Files could not be combined successfully.";
                 return;
