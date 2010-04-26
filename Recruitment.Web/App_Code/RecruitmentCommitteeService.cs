@@ -10,7 +10,7 @@ using CAESDO.Recruitment.Core.DataInterfaces;
 using CAESDO.Recruitment.Data;
 using System.Collections.Specialized;
 using System.Web.Script.Services;
-
+using System.Linq;
 
 /// <summary>
 /// Summary description for RecruitmentCommitteeService
@@ -94,10 +94,18 @@ public class RecruitmentCommitteeService : System.Web.Services.WebService
 
         List<Application> applicants = daoFactory.GetApplicationDao().GetApplicationsByPosition(daoFactory.GetPositionDao().GetById(PositionID, false));
 
+        //First sort by complete, then by name
+        applicants = applicants.OrderBy(app => !app.Submitted)
+            .ThenBy(app => string.IsNullOrEmpty(app.AssociatedProfile.FullName.Trim()) ? app.Email : app.AssociatedProfile.FullName).ToList();
+
         foreach (Application app in applicants)
         {
             string name = string.IsNullOrEmpty(app.AssociatedProfile.FullName.Trim()) ? app.Email : app.AssociatedProfile.FullName;
-            values.Add(new CascadingDropDownNameValue(name, app.ID.ToString()));
+            string submitted = app.Submitted ? "Submitted" : "Not Submitted";
+
+            string displayName = string.Format("{0} ({1})", name, submitted);
+
+            values.Add(new CascadingDropDownNameValue(displayName, app.ID.ToString()));
         }
 
         return values.ToArray();
