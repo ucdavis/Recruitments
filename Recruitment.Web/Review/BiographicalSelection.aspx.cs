@@ -41,11 +41,14 @@ namespace CAESDO.Recruitment.Web
             string strResult;
 
             WebResponse response = null;
-                     
+
             HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(URL);
             req.Headers.Set("Cookie", Request.Headers["Cookie"]);
+            req.Headers.Add("Cache-Control", "no-cache");
+            req.Headers.Add("Pragma", "no-cache");
 
             req.Timeout = 1000; //One second timeout
+            req.KeepAlive = false;
 
             try
             {
@@ -61,6 +64,7 @@ namespace CAESDO.Recruitment.Web
             {
                 strResult = reader.ReadToEnd();
                 reader.Close();
+                response.Close();
             }
 
             Response.Clear();
