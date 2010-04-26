@@ -1,4 +1,5 @@
 <%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="Reports.aspx.cs" Inherits="CAESDO.Recruitment.Web.Authorized_Reports" Title="Reports" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
     Report Type: <asp:DropDownList ID="dlistType" runat="server" AutoPostBack="True">

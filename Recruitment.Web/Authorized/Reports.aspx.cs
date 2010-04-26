@@ -12,6 +12,8 @@ using System.Collections.Generic;
 using CAESDO.Recruitment.Core.Domain;
 using System.Net;
 using System.IO;
+using System.Text;
+using System.Collections.Specialized;
 
 namespace CAESDO.Recruitment.Web
 {
@@ -60,54 +62,41 @@ namespace CAESDO.Recruitment.Web
 
         private void OutputPage(string URL, ReportOutputType output)
         {
-            string strResult;
-            
-            WebResponse response = null;
+            StringDictionary parameters = new StringDictionary();
+            parameters.Add("PositionID", dlistPositions.SelectedValue);
 
-            //HttpCookie authCookie = Request.Cookies["FormsAuthDB.AspxAuth"];
-            //HttpCookie sessionCookie = Request.Cookies["ASP.NET_SessionId"];
-            //HttpCookie userCookie = Request.Cookies["AuthUser"];
-            //HttpCookie rolesCookie = Request.Cookies[".ASPXROLES"];
-
-            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(URL);
-            req.Headers.Set("Cookie", Request.Headers["Cookie"]);
-            req.Headers.Add("Cache-Control", "no-cache");
-            req.Headers.Add("Pragma", "no-cache");
-
-            req.Timeout = 1000; //One second timeout
-            req.KeepAlive = false;
+            Control reportPleaseWork;
+            StringBuilder sb = new StringBuilder();
+            StringWriter sw = new StringWriter(sb);
+            Html32TextWriter hw = new Html32TextWriter(sw);
             
             try
             {
-                response = req.GetResponse();
+                reportPleaseWork = LoadControl("RecruitmentSources.ascx");
+                ((IReportUserControl)reportPleaseWork).LoadReport(parameters); //Load the report with parameters
+                
+                reportPleaseWork.RenderControl(hw);
             }
             catch (Exception ex)
             {
-                lblReportStatus.Text = "Report Could Not Be Generated.  Please Try Again"; //Most likely timeout -- try again                
+                lblReportStatus.Text = ex.Message;
                 return;
             }
 
-            using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-            {
-                strResult = reader.ReadToEnd();
-                reader.Close();
-            }
-
-            response.Close(); //Close the response
-            req.Abort(); //Abort the request (now that we have the response)
 
             Response.Clear();
 
-            if ( output == ReportOutputType.Word )
-            {                
+            if (output == ReportOutputType.Word)
+            {
                 //Control the name that they see
                 Response.ContentType = "application/ms-word";
                 Response.AddHeader("Content-Disposition", "attachment;filename=" + "file.doc");
-                Response.AddHeader("Content-Length", strResult.Length.ToString());
+                Response.AddHeader("Content-Length", sb.Length.ToString());
                 //Response.TransmitFile(file.FullName);
             }
 
-            Response.Write(strResult);
+            Response.Write(sb.ToString());
+
             Response.End();
         }
     }

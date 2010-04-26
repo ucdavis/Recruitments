@@ -109,7 +109,7 @@ namespace CAESDO.Recruitment.Test
             MemberType mtype = NHibernateHelper.daoFactory.GetMemberTypeDao().GetById((int)MemberTypes.CommitteeMember, false);
 
             member.Email = StaticProperties.TestString;
-            member.UserID = StaticProperties.ExistingUserID;
+            //member.UserID = StaticProperties.ExistingUserID;
             member.AssociatedPosition = NHibernateHelper.daoFactory.GetPositionDao().GetById(StaticProperties.ExistingPositionID, false);
             member.MemberType = mtype;
 
@@ -170,7 +170,7 @@ namespace CAESDO.Recruitment.Test
             {
                 Assert.IsTrue(ValidateBO<CommitteeMember>.isValid(c));
 
-                this.TestContext.WriteLine("CommitteeMemberID = {0}, UserID = {1}, MemberType = {2}", c.ID, c.UserID, c.MemberType.Type);
+                //this.TestContext.WriteLine("CommitteeMemberID = {0}, UserID = {1}, MemberType = {2}", c.ID, c.UserID, c.MemberType.Type);
             }
         }
 

@@ -1,15 +1,15 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="RecruitmentSources.aspx.cs" Inherits="CAESDO.Recruitment.Web.Authorized_RecruitmentSources" %>
+<%@ Control Language="C#" AutoEventWireup="true" CodeFile="RecruitmentSources.ascx.cs" Inherits="CAESDO.Recruitment.Web.Authorized_RecruitmentSources" %>
+
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
-<head runat="server">
+<head id="Head1" runat="server">
     <title>Recruitment Sources Survey Results</title>
 </head>
 <body>
     <form id="form1" runat="server">
     <div>
-    
         <asp:GridView ID="gviewSourcesCount" runat="server" AutoGenerateColumns="false">
             <Columns>
                 <asp:BoundField DataField="PublicationCount" HeaderText="Publication Advertisement" />

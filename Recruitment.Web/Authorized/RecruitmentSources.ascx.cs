@@ -8,29 +8,27 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
+using CAESDO.Recruitment.Core.DataInterfaces;
+using CAESDO.Recruitment.Data;
 using CAESDO.Recruitment.Core.Domain;
 using System.Collections.Generic;
+using System.Collections.Specialized;
 
 namespace CAESDO.Recruitment.Web
 {
-    public partial class Authorized_RecruitmentSources : ApplicationPage
+    public partial class Authorized_RecruitmentSources : System.Web.UI.UserControl, IReportUserControl
     {
+        public IDaoFactory daoFactory
+        {
+            get { return new NHibernateDaoFactory(); }
+        }
+
+        private int? _currentPositionID;
+
         public int? currentPositionID
         {
-            get
-            {
-                int posID = 0;
-
-                if (int.TryParse(Request.QueryString["PositionID"], out posID))
-                {
-                    //If the parse succeeded, return the integer
-                    return posID;
-                }
-                else
-                {
-                    return null;
-                }
-            }
+            get { return _currentPositionID; }
+            set { _currentPositionID = value; }
         }
 
         public Position currentPosition
@@ -51,9 +49,9 @@ namespace CAESDO.Recruitment.Web
         {
             if (currentPosition == null)
                 Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.UNKNOWN));
-            else if ( !Roles.IsUserInRole("Admin") ) //If the user isn't an admin, check department relationships
+            else if (!Roles.IsUserInRole("Admin")) //If the user isn't an admin, check department relationships
             {
-                User u = daoFactory.GetUserDao().GetUserByLogin(User.Identity.Name);
+                User u = daoFactory.GetUserDao().GetUserByLogin(HttpContext.Current.User.Identity.Name);
                 bool positionAccess = false;
 
                 foreach (Department d in currentPosition.Departments)
@@ -74,21 +72,35 @@ namespace CAESDO.Recruitment.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                SurveyResults surveys = new SurveyResults();
-                surveys.ParseSurveyResults(currentPosition);
+            SurveyResults surveys = new SurveyResults();
+            surveys.ParseSurveyResults(currentPosition);
 
-                List<SurveyResults> surveyResults = new List<SurveyResults>();
-                surveyResults.Add(surveys);
+            List<SurveyResults> surveyResults = new List<SurveyResults>();
+            surveyResults.Add(surveys);
 
-                gviewSourcesCount.DataSource = surveyResults;
-                gviewSourcesCount.DataBind();
+            gviewSourcesCount.DataSource = surveyResults;
+            gviewSourcesCount.DataBind();
 
-                gviewSourcesText.DataSource = surveyResults;
-                gviewSourcesText.DataBind();
-            }
+            gviewSourcesText.DataSource = surveyResults;
+            gviewSourcesText.DataBind();
         }
+
+        #region IReportUserControl Members
+
+        public void LoadReport(StringDictionary parameters)
+        {
+            int posID = 0;
+
+            if (int.TryParse(parameters["PositionID"], out posID))
+                currentPositionID = posID;
+            else
+                currentPositionID = null;
+
+            Page_Init(null, null);
+            Page_Load(null, null);
+        }
+
+        #endregion
     }
 
     public class SurveyResults
@@ -132,7 +144,7 @@ namespace CAESDO.Recruitment.Web
             get { return _FriendCount; }
             set { _FriendCount = value; }
         }
-        
+
         private int _OtherCount;
 
         public int OtherCount
@@ -207,20 +219,20 @@ namespace CAESDO.Recruitment.Web
                 return;
 
             switch (type)
-	        {
-		        case SourceType.Publication:
-                        this.PublicationSources += this.SafeAdd(this.PublicationSources, sourceText);
-                 break;
+            {
+                case SourceType.Publication:
+                    this.PublicationSources += this.SafeAdd(this.PublicationSources, sourceText);
+                    break;
                 case SourceType.ProfessionalOrg:
-                        this.ProfessionalOrgSources += this.SafeAdd(this.ProfessionalOrgSources, sourceText);
-                 break;
+                    this.ProfessionalOrgSources += this.SafeAdd(this.ProfessionalOrgSources, sourceText);
+                    break;
                 case SourceType.Other:
-                        this.OtherSources += this.SafeAdd(this.OtherSources, sourceText);
-                 break;
+                    this.OtherSources += this.SafeAdd(this.OtherSources, sourceText);
+                    break;
 
-	        }
+            }
         }
-        
+
         public void ParseSurveyResults(Position position)
         {
             foreach (Application app in position.AssociatedApplications)
