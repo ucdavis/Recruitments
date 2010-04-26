@@ -3,16 +3,27 @@
 <script type="text/javascript">
 
     $(document).ready(function() {
-    //help balloon added by tyler
-    $('#ApplicantViewListShowHideHeader').bt('This will expand the PhD Information field for all applicants.  To expand this field for a certain applicant click on the +/- located to the right of the date in that row.', {
-        trigger: 'hover',
-        positions: 'top'
-    });
-    //help balloon added by tyler
-    $('.ApplicantViewListDateShowHideTxt').bt('This will expand the PhD information field for this applicant.  To expand this field for all applicants click on the +/- in the column header.', {
-        trigger: 'hover',
-        positions: 'right'
-    });
+        //help balloon added by tyler
+        $('#ApplicantViewListShowHideHeader').bt('This will expand the PhD Information field for all applicants.  To expand this field for a certain applicant click on the +/- located to the right of the date in that row.', {
+            trigger: 'hover',
+            positions: 'top'
+        });
+        //help balloon added by tyler
+        $('.ApplicantViewListDateShowHideTxt').bt('This will expand the PhD information field for this applicant.  To expand this field for all applicants click on the +/- in the column header.', {
+            trigger: 'hover',
+            positions: 'right'
+        });
+
+        $.tablesorter.addParser({
+            id: 'phdInfo',
+            is: function(s) { return false; },
+            format: function(s, table, cell) {
+                var date = $(".ApplicantViewListDate", cell).html(); //Grab the text inside the applicant view list date class
+
+                return $.tablesorter.formatFloat(new Date(date).getTime());
+            },
+            type: 'numeric'
+        });
 
         //Sort table
         $("#tblApplications").tablesorter(
@@ -21,7 +32,7 @@
             cssAsc: 'headerSortUp',
             cssDesc: 'headerSortDown',
             cssHeader: 'header',
-            headers: { 0: { sorter: 'link'} },
+            headers: { 0: { sorter: 'link' }, 3: { sorter: 'phdInfo'} },
             widgets: ['zebra']
         });
 
