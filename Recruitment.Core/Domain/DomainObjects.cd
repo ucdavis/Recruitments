@@ -9,10 +9,10 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CAESDO.Recruitment.Core.Domain.User" Collapsed="true">
-    <Position X="12.75" Y="1.25" Width="1.5" />
+    <Position X="12.25" Y="3" Width="1.5" />
     <TypeIdentifier>
       <FileName>Domain\User.cs</FileName>
-      <HashCode>AAAAAIAAAAgAAAAAAAAAAAgAAAEACAAAAAAAAACBAAA=</HashCode>
+      <HashCode>AAIACECAAAEAAAAACAEAAAAAAAAAAIAAAAAAAACDAAg=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="CAESDO.Recruitment.Core.Domain.CurrentPosition" Collapsed="true" BaseTypeListCollapsed="true">
@@ -31,7 +31,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CAESDO.Recruitment.Core.Domain.Education" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="0.75" Y="3" Width="1.5" />
+    <Position X="11.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <FileName>Domain\Education.cs</FileName>
       <HashCode>AABAAAAAAAIEAAIAQAAAUAQAAAAAAAABBAAAAAEABAg=</HashCode>
@@ -39,7 +39,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="CAESDO.Recruitment.Core.Domain.FacultyReviewGroup" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="2.5" Y="4.5" Width="1.5" />
+    <Position X="2.75" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <FileName>Domain\FacultyReviewGroup.cs</FileName>
       <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAgAAEAAAAAAA=</HashCode>
@@ -47,14 +47,14 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="CAESDO.Recruitment.Core.Domain.File" Collapsed="true">
-    <Position X="9" Y="1.75" Width="1.5" />
+    <Position X="8.75" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <FileName>Domain\File.cs</FileName>
       <HashCode>ABAAAgCAEAAwAAAACAAAAAAAAAAAAAQEAAAAAABAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="CAESDO.Recruitment.Core.Domain.Position" Collapsed="true">
-    <Position X="1.25" Y="1.75" Width="1.5" />
+    <Position X="1.5" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <FileName>Domain\Position.cs</FileName>
       <HashCode>gACDAAAGAggiBAAIACAAAABhSDBAQAAACAkAEIALoIA=</HashCode>
@@ -68,7 +68,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="CAESDO.Recruitment.Core.Domain.Reference" Collapsed="true">
-    <Position X="10.75" Y="3" Width="1.5" />
+    <Position X="10" Y="3" Width="1.5" />
     <TypeIdentifier>
       <FileName>Domain\Reference.cs</FileName>
       <HashCode>ACBACMAEACkEAkIYQAEUWEQgAIMAEAAAAEiAJSEAAIg=</HashCode>
@@ -98,7 +98,7 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="CAESDO.Recruitment.Core.Domain.IGroup" Collapsed="true">
-    <Position X="10" Y="5.5" Width="1.5" />
+    <Position X="9.5" Y="4.25" Width="1.5" />
     <TypeIdentifier>
       <FileName>Domain\IGroup.cs</FileName>
       <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAgAAEAAAAAAA=</HashCode>
