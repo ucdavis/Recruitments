@@ -61,6 +61,11 @@ namespace CAESDO.Recruitment.Web
         {
             if (dlistPositions.SelectedValue != "0") //Make sure they chose a real position
                 this.bindMembers();
+
+            if (gviewMembers.Rows.Count > 0)
+                pnlAccess.Visible = true;
+            else
+                pnlAccess.Visible = false;
         }
         
         protected void dlistType_SelectedIndexChanged(object sender, EventArgs e)
@@ -94,5 +99,27 @@ namespace CAESDO.Recruitment.Web
             
         }
 
+        /// <summary>
+        /// Gets the row's department member, and checks the allow box if the member is in the current position
+        /// </summary>
+        protected void gviewMembers_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            GridView gview = (GridView)sender;
+            CheckBox cbox = e.Row.FindControl("chkAllowMember") as CheckBox;
+
+            int DepartmentMemberID;
+            DepartmentMember member;
+
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                DepartmentMemberID = (int)gview.DataKeys[e.Row.RowIndex]["id"];
+                member = daoFactory.GetDepartmentMemberDao().GetById(DepartmentMemberID, false);
+
+                if (currentPosition.PositionCommittee.Contains(member))
+                    cbox.Checked = true;
+                else
+                    cbox.Checked = false;                
+            }
+        }
 }
 }
