@@ -63,23 +63,15 @@ namespace CAESDO.Recruitment.BLL
             {
                 if (IsPostedFilePDF(fileUpload.PostedFile))
                 {
-
                     file.FileName = fileUpload.FileName;
                     file.FileType = fileType;
+                    
+                    bool saveSuccess = FileBLL.MakePersistent(file);
 
-                    using (var ts = new TransactionScope())
+                    // Save is a success if the persistence worked and all validation rules are satisfied
+                    if (!saveSuccess)
                     {
-                        bool saveSuccess = FileBLL.MakePersistent(file);
-
-                        // Save is a success if the persistence worked and all validation rules are satisfied
-                        if (saveSuccess)
-                        {
-                            ts.CommitTransaction();
-                        }
-                        else
-                        {
-                            return null;
-                        }
+                        return null;
                     }
                 }
                 else

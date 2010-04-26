@@ -174,10 +174,10 @@ namespace CAESDO.Recruitment.Web
             if (selectedFileType.FileTypeName != STR_Publication && selectedFileType.FileTypeName != STR_LetterOfRec)
                 RemoveAllFilesOfType(selectedFileType.FileTypeName);
 
+            File file = FileBLL.SavePDF(fileUpload, selectedFileType);
+
             using (var ts = new TransactionScope())
             {
-                File file = FileBLL.SavePDF(fileUpload, selectedFileType);
-
                 if (file != null)
                 {
                     Application application = selectedApplication;
@@ -202,10 +202,10 @@ namespace CAESDO.Recruitment.Web
             FileType publicationsFileType = FileTypeBLL.GetByName(STR_Publication);
             Application application = selectedApplication;
 
+            File file = FileBLL.SavePDF(fileUpload, publicationsFileType);
+
             using (var ts = new TransactionScope())
             {
-                File file = FileBLL.SavePDF(fileUpload, publicationsFileType);
-
                 if (file != null)
                 {
                     application.Files.Add(file);
