@@ -78,24 +78,20 @@ Global
 		SccProjectUniqueName7 = Recruitment.Setup\\Recruitment.Setup.vdproj
 		SccProjectName7 = Recruitment.Setup
 		SccLocalPath7 = Recruitment.Setup
-		SccProjectUniqueName8 = Recruitment.Test\\Recruitment.Test.csproj
-		SccProjectName8 = Recruitment.Test
-		SccLocalPath8 = Recruitment.Test
-		SccWebProject9 = true
-		SccProjectUniqueName9 = Recruitment.Web
-		SccProjectName9 = Recruitment.Web
-		SccLocalPath9 = .
-		SccProjectFilePathRelativizedFromConnection9 = Recruitment.Web\\
-		SccProjectEnlistmentChoice9 = 2
-		SccProjectUniqueName10 = Recruitment.BLL\\Recruitment.BLL.csproj
-		SccProjectName10 = Recruitment.BLL
-		SccLocalPath10 = Recruitment.BLL
-		SccProjectUniqueName11 = Recruitment.Deployment\\Recruitment.Deployment.wdproj
-		SccProjectName11 = Recruitment.Deployment
-		SccLocalPath11 = Recruitment.Deployment
-	EndGlobalSection
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = Recruitment.Web4.vsmdi
+		SccWebProject8 = true
+		SccProjectUniqueName8 = Recruitment.Web
+		SccLocalPath8 = .
+		SccProjectFilePathRelativizedFromConnection8 = Recruitment.Web\\
+		SccProjectEnlistmentChoice8 = 2
+		SccProjectUniqueName9 = Recruitment.BLL\\Recruitment.BLL.csproj
+		SccProjectName9 = Recruitment.BLL
+		SccLocalPath9 = Recruitment.BLL
+		SccProjectUniqueName10 = Recruitment.Deployment\\Recruitment.Deployment.wdproj
+		SccProjectName10 = Recruitment.Deployment
+		SccLocalPath10 = Recruitment.Deployment
+		SccProjectUniqueName11 = Recruitment.Test\\Recruitment.Test.csproj
+		SccProjectName11 = Recruitment.Test
+		SccLocalPath11 = Recruitment.Test
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|.NET = Debug|.NET
@@ -259,6 +255,7 @@ Global
 		{576B683A-020C-4FBB-993E-AEE545D5B3F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{576B683A-020C-4FBB-993E-AEE545D5B3F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{576B683A-020C-4FBB-993E-AEE545D5B3F1}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{576B683A-020C-4FBB-993E-AEE545D5B3F1}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
 		{576B683A-020C-4FBB-993E-AEE545D5B3F1}.DebugLocal|.NET.ActiveCfg = Debug|Any CPU
 		{576B683A-020C-4FBB-993E-AEE545D5B3F1}.DebugLocal|Any CPU.ActiveCfg = Debug|Any CPU
 		{576B683A-020C-4FBB-993E-AEE545D5B3F1}.DebugLocal|Any CPU.Build.0 = Debug|Any CPU
