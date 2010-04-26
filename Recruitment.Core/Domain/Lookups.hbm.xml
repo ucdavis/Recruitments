@@ -61,7 +61,7 @@
   <class
     name="CAESDO.Recruitment.Core.Domain.Login, CAESDO.Recruitment.Core"
     table="vLogin" >
-    <id name="id" access="field" column="LoginID" unsaved-value="">
+    <id name="id" access="field" column="LoginID" unsaved-value="empty">
       <generator class="assigned" />
     </id>
 

@@ -2,7 +2,7 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
   <class
     name="CAESDO.Recruitment.Core.Domain.User, CAESDO.Recruitment.Core"
-    table="vUser" >
+    table="vUsers" >
     <id name="id" access="field" column="UserID" unsaved-value="0">
       <generator class="identity" />
     </id>

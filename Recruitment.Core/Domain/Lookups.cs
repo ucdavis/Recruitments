@@ -96,7 +96,7 @@ namespace CAESDO.Recruitment.Core.Domain
     {
         private User _User;
 
-        public User User
+        public virtual User User
         {
             get { return _User; }
             set { _User = value; }

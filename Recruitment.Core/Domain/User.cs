@@ -6,9 +6,9 @@ namespace CAESDO.Recruitment.Core.Domain
 {
     public class User : DomainObject<int>
     {
-        private IList<string> _LoginIDs;
+        private IList<Login> _LoginIDs;
 
-        public IList<string> LoginIDs
+        public virtual IList<Login> LoginIDs
         {
             get { return _LoginIDs; }
             set { _LoginIDs = value; }
@@ -16,7 +16,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private string _FirstName;
 
-        public string FirstName
+        public virtual string FirstName
         {
             get { return _FirstName; }
             set { _FirstName = value; }
@@ -24,7 +24,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private string _LastName;
 
-        public string LastName
+        public virtual string LastName
         {
             get { return _LastName; }
             set { _LastName = value; }
@@ -32,7 +32,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private string _EmployeeID;
 
-        public string EmployeeID
+        public virtual string EmployeeID
         {
             get { return _EmployeeID; }
             set { _EmployeeID = value; }
@@ -40,7 +40,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private string _StudentID;
 
-        public string StudentID
+        public virtual string StudentID
         {
             get { return _StudentID; }
             set { _StudentID = value; }
@@ -48,7 +48,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private bool _Inactive;
 
-        public bool Inactive
+        public virtual bool Inactive
         {
             get { return _Inactive; }
             set { _Inactive = value; }
@@ -57,6 +57,11 @@ namespace CAESDO.Recruitment.Core.Domain
         public static List<string> FindUCDKerberosIDs(string NameToMatch)
         {
             throw new System.NotImplementedException();
+        }
+
+        public User()
+        {
+
         }
     }
 }
