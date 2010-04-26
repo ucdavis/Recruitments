@@ -601,8 +601,8 @@ namespace CAESDO.Recruitment.Test
 
             using (var ts = new TransactionScope())
             {
-                GenericBLL<TemplateType, int>.EnsurePersistent(ref templateType);
-                GenericBLL<Template, int>.EnsurePersistent(ref template);
+                GenericBLL<TemplateType, int>.EnsurePersistent(templateType);
+                GenericBLL<Template, int>.EnsurePersistent(template);
 
                 ts.CommitTransaction();
             }

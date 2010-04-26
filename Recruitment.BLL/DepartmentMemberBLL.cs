@@ -199,7 +199,7 @@ namespace CAESDO.Recruitment.BLL
             }
 
             //Position position = position;
-            PositionBLL.EnsurePersistent(ref position);
+            PositionBLL.EnsurePersistent(position);
         }
 
         /// <summary>

@@ -135,7 +135,7 @@ namespace CAESDO.Recruitment.Web
                     FileBLL.DeletePDF(selectedReference.ReferenceFile);
                     selectedReference.ReferenceFile = null;
 
-                    ReferenceBLL.EnsurePersistent(ref selectedReference);
+                    ReferenceBLL.EnsurePersistent(selectedReference);
 
                     ts.CommitTransaction();
                 }
@@ -152,7 +152,7 @@ namespace CAESDO.Recruitment.Web
                         selectedReference.ReferenceFile = file;
                         selectedReference.UnsolicitedReference = chkUnsolicited.Checked;
 
-                        ReferenceBLL.EnsurePersistent(ref selectedReference);
+                        ReferenceBLL.EnsurePersistent(selectedReference);
 
                         lblStatus.Text = "File Uploaded Successfully";
                     }
@@ -184,7 +184,7 @@ namespace CAESDO.Recruitment.Web
 
                     application.Files.Add(file);
 
-                    ApplicationBLL.EnsurePersistent(ref application);
+                    ApplicationBLL.EnsurePersistent(application);
 
                     lblStatus.Text = "File Uploaded Successfully";
                 }
@@ -210,7 +210,7 @@ namespace CAESDO.Recruitment.Web
                 {
                     application.Files.Add(file);
 
-                    ApplicationBLL.EnsurePersistent(ref application);
+                    ApplicationBLL.EnsurePersistent(application);
 
                     lblStatus.Text = "File Uploaded Successfully";
                 }
@@ -246,7 +246,7 @@ namespace CAESDO.Recruitment.Web
                         FileBLL.DeletePDF(existingFile);
                     }
 
-                    ApplicationBLL.EnsurePersistent(ref application);
+                    ApplicationBLL.EnsurePersistent(application);
 
                     ts.CommitTransaction();
                 }

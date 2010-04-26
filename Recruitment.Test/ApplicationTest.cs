@@ -321,8 +321,8 @@ namespace CAESDO.Recruitment.Test
 
             using (var ts = new TransactionScope())
             {
-                FileTypeBLL.EnsurePersistent(ref fileType);
-                FileBLL.EnsurePersistent(ref file);
+                FileTypeBLL.EnsurePersistent(fileType);
+                FileBLL.EnsurePersistent(file);
 
                 application.CurrentPositions = new List<CurrentPosition> {currentPosition};
                 application.Education = new List<Education> {education};
@@ -330,7 +330,7 @@ namespace CAESDO.Recruitment.Test
                 application.Surveys = new List<Survey> {survey};
                 application.Files = new List<File>{file};
 
-                ApplicationBLL.EnsurePersistent(ref application);
+                ApplicationBLL.EnsurePersistent(application);
 
                 ts.CommitTransaction();
             }

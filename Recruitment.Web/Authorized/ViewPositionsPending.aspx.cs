@@ -58,7 +58,7 @@ namespace CAESDO.Recruitment.Web
             using (var ts = new TransactionScope())
             {
                 currentPosition.AdminAccepted = true;
-                PositionBLL.EnsurePersistent(ref currentPosition);
+                PositionBLL.EnsurePersistent(currentPosition);
 
                 ts.CommitTransaction();
             }

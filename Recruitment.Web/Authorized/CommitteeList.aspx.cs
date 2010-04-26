@@ -65,7 +65,7 @@ namespace CAESDO.Recruitment.Web
 
             using (var ts = new TransactionScope())
             {
-                DepartmentMemberBLL.EnsurePersistent(ref member);
+                DepartmentMemberBLL.EnsurePersistent(member);
 
                 ts.CommitTransaction();
             }
@@ -85,7 +85,7 @@ namespace CAESDO.Recruitment.Web
             {
                 member.Inactive = true; //Mark the member as inactive
 
-                DepartmentMemberBLL.EnsurePersistent(ref member);
+                DepartmentMemberBLL.EnsurePersistent(member);
 
                 ts.CommitTransaction();
             }
@@ -103,7 +103,7 @@ namespace CAESDO.Recruitment.Web
             {
                 member.Inactive = true; //Mark the member as inactive
 
-                DepartmentMemberBLL.EnsurePersistent(ref member);
+                DepartmentMemberBLL.EnsurePersistent(member);
                 
                 ts.CommitTransaction();
             }

@@ -214,8 +214,8 @@ namespace CAESDO.Recruitment.Test
 
             using (var ts = new TransactionScope())
             {
-                ApplicationBLL.EnsurePersistent(ref application);
-                ProfileBLL.EnsurePersistent(ref profile);
+                ApplicationBLL.EnsurePersistent(application);
+                ProfileBLL.EnsurePersistent(profile);
 
                 ts.CommitTransaction();
             }

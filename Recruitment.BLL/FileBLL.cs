@@ -35,14 +35,19 @@ namespace CAESDO.Recruitment.BLL
                     file.FileName = fileUpload.FileName;
                     file.FileType = fileType;
 
-                    bool saveSuccess = FileBLL.MakePersistent(ref file);
-
-                    // Save is a success if the persistence worked and all validation rules are satisfied
-                    if (saveSuccess)
+                    using (var ts = new TransactionScope())
                     {
-                        fileUpload.SaveAs(FilePath + file.ID.ToString());
+                        bool saveSuccess = FileBLL.MakePersistent(file);
 
-                        return file;
+                        // Save is a success if the persistence worked and all validation rules are satisfied
+                        if (saveSuccess)
+                        {
+                            fileUpload.SaveAs(FilePath + file.ID.ToString());
+
+                            ts.CommitTransaction(); //On success we commit
+
+                            return file;
+                        }
                     }
                 }
             }
@@ -62,12 +67,19 @@ namespace CAESDO.Recruitment.BLL
                     file.FileName = fileUpload.FileName;
                     file.FileType = fileType;
 
-                    bool saveSuccess = FileBLL.MakePersistent(ref file);
-
-                    // Save is a success if the persistence worked and all validation rules are satisfied
-                    if (!saveSuccess)
+                    using (var ts = new TransactionScope())
                     {
-                        return null;
+                        bool saveSuccess = FileBLL.MakePersistent(file);
+
+                        // Save is a success if the persistence worked and all validation rules are satisfied
+                        if (saveSuccess)
+                        {
+                            ts.CommitTransaction();
+                        }
+                        else
+                        {
+                            return null;
+                        }
                     }
                 }
                 else

@@ -127,8 +127,8 @@ namespace CAESDO.Recruitment.Test
 
             using (var ts = new TransactionScope())
             {
-                UserBLL.EnsurePersistent(ref user);
-                GenericBLL<Login, string>.EnsurePersistent(ref login, true);
+                UserBLL.EnsurePersistent(user);
+                GenericBLL<Login, string>.EnsurePersistent(login, true);
                 
                 ts.CommitTransaction();
             }

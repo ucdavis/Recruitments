@@ -279,7 +279,7 @@ namespace CAESDO.Recruitment.Test
 
             using (var ts = new TransactionScope())
             {
-                DepartmentMemberBLL.EnsurePersistent(ref departmentMember);
+                DepartmentMemberBLL.EnsurePersistent(departmentMember);
 
                 for (int i = 0; i < 4; i++)
                 {
@@ -294,8 +294,8 @@ namespace CAESDO.Recruitment.Test
                     };
 
 
-                    MemberTypeBLL.EnsurePersistent(ref memberType);
-                    CommitteeMemberBLL.EnsurePersistent(ref committeeMember);
+                    MemberTypeBLL.EnsurePersistent(memberType);
+                    CommitteeMemberBLL.EnsurePersistent(committeeMember);
                 }
 
                 ts.CommitTransaction();

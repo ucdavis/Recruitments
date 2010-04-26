@@ -229,8 +229,8 @@ namespace CAESDO.Recruitment.Web
 
             using (var ts = new TransactionScope())
             {
-                ProfileBLL.EnsurePersistent(ref currentProfile);
-                ApplicationBLL.EnsurePersistent(ref application);
+                ProfileBLL.EnsurePersistent(currentProfile);
+                ApplicationBLL.EnsurePersistent(application);
 
                 ts.CommitTransaction();
             }
@@ -409,7 +409,7 @@ namespace CAESDO.Recruitment.Web
 
             using (var ts = new TransactionScope())
             {
-                EducationBLL.EnsurePersistent(ref currentEducation);
+                EducationBLL.EnsurePersistent(currentEducation);
                 currentApplication.Education.Add(currentEducation);
 
                 ts.CommitTransaction();
@@ -447,7 +447,7 @@ namespace CAESDO.Recruitment.Web
 
             using (var ts = new TransactionScope())
             {
-                CurrentPositionBLL.EnsurePersistent(ref currentPosition);
+                CurrentPositionBLL.EnsurePersistent(currentPosition);
                 currentApplication.CurrentPositions.Add(currentPosition);
 
                 ts.CommitTransaction();
@@ -530,7 +530,7 @@ namespace CAESDO.Recruitment.Web
                     application.Files.Add(uploadedFile);
                     application.LastUpdated = DateTime.Now;
 
-                    ApplicationBLL.EnsurePersistent(ref application);
+                    ApplicationBLL.EnsurePersistent(application);
 
                     ts.CommitTransaction();
                 }
@@ -563,7 +563,7 @@ namespace CAESDO.Recruitment.Web
                     application.Files.Remove(fileToDelete);
 
                     //Update the current application
-                    ApplicationBLL.EnsurePersistent(ref application);
+                    ApplicationBLL.EnsurePersistent(application);
 
                     ts.CommitTransaction();
                 }
@@ -695,7 +695,7 @@ namespace CAESDO.Recruitment.Web
                 currentSurvey.Complete = true;
                 currentSurvey.AssociatedApplication = application;
 
-                ApplicationBLL.EnsurePersistent(ref application);
+                ApplicationBLL.EnsurePersistent(application);
 
                 ts.CommitTransaction();
             }
@@ -747,7 +747,7 @@ namespace CAESDO.Recruitment.Web
             using (var ts = new TransactionScope())
             {
                 currentApplication.LastUpdated = DateTime.Now;
-                ReferenceBLL.EnsurePersistent(ref currentReference);
+                ReferenceBLL.EnsurePersistent(currentReference);
 
                 ts.CommitTransaction();
             }
@@ -1037,7 +1037,7 @@ namespace CAESDO.Recruitment.Web
 
                     application.Files.Add(savedFile);
 
-                    ApplicationBLL.EnsurePersistent(ref application);
+                    ApplicationBLL.EnsurePersistent(application);
 
                     ts.CommitTransaction();
 
@@ -1148,7 +1148,7 @@ namespace CAESDO.Recruitment.Web
                         FileBLL.DeletePDF(existingFile);
                     }
 
-                    ApplicationBLL.EnsurePersistent(ref application);
+                    ApplicationBLL.EnsurePersistent(application);
 
                     ts.CommitTransaction();
                 }

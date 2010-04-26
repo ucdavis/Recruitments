@@ -76,7 +76,7 @@ namespace CAESDO.Recruitment.Web
                         app.GetReferences = ((CheckBox)row.FindControl("chkReferences")).Checked;
                         app.NoConsideration = ((CheckBox)row.FindControl("chkNoConsideration")).Checked;
 
-                        ApplicationBLL.EnsurePersistent(ref app);
+                        ApplicationBLL.EnsurePersistent(app);
                 }
 
                 ts.CommitTransaction();
@@ -162,7 +162,7 @@ namespace CAESDO.Recruitment.Web
                 {
                     reference.UploadID = Guid.NewGuid().ToString();
 
-                    ReferenceBLL.EnsurePersistent(ref reference);
+                    ReferenceBLL.EnsurePersistent(reference);
 
                     ts.CommitTransaction();
                 }
@@ -218,7 +218,7 @@ namespace CAESDO.Recruitment.Web
                 reference.SentEmail = true;
                 reference.EmailDate = DateTime.Now;
 
-                ReferenceBLL.EnsurePersistent(ref reference);
+                ReferenceBLL.EnsurePersistent(reference);
 
                 ts.CommitTransaction();
             }

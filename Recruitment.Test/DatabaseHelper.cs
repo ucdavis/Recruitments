@@ -42,8 +42,8 @@ namespace CAESDO.Recruitment.Test
                 profile.AssociatedApplicant = applicant;
                 applicant.Profiles.Add(profile);
 
-                GenericBLL<Applicant, int>.EnsurePersistent(ref applicant);
-                GenericBLL<Profile, int>.EnsurePersistent(ref profile);
+                GenericBLL<Applicant, int>.EnsurePersistent(applicant);
+                GenericBLL<Profile, int>.EnsurePersistent(profile);
             }
         }
 
@@ -62,7 +62,7 @@ namespace CAESDO.Recruitment.Test
                         Submitted = i < 10 //First 10 were submitted
                     };
 
-                    GenericBLL<Application, int>.EnsurePersistent(ref application);
+                    GenericBLL<Application, int>.EnsurePersistent(application);
                 }
             }
         }
@@ -77,7 +77,7 @@ namespace CAESDO.Recruitment.Test
                 var unit = new Unit(fiscodes[i]) { FullName = "Animal Science", SchoolCode = schools[i] };
 
                 
-                GenericBLL<Unit, string>.EnsurePersistent(ref unit, true);
+                GenericBLL<Unit, string>.EnsurePersistent(unit, true);
             }
         }
 
@@ -88,8 +88,8 @@ namespace CAESDO.Recruitment.Test
                 var templateType = new TemplateType() { Type = string.Format("type{0}", i) };
                 var fileType = new FileType() { ApplicationFile = i % 2 == 0, FileTypeName = string.Format("type{0}", i) };
 
-                GenericBLL<TemplateType, int>.EnsurePersistent(ref templateType);
-                GenericBLL<FileType, int>.EnsurePersistent(ref fileType);
+                GenericBLL<TemplateType, int>.EnsurePersistent(templateType);
+                GenericBLL<FileType, int>.EnsurePersistent(fileType);
             }
         }
 
@@ -141,8 +141,8 @@ namespace CAESDO.Recruitment.Test
 
                 var descriptionFile = pos.DescriptionFile;
 
-                GenericBLL<File, int>.EnsurePersistent(ref descriptionFile);
-                GenericBLL<Position, int>.EnsurePersistent(ref pos);
+                GenericBLL<File, int>.EnsurePersistent(descriptionFile);
+                GenericBLL<Position, int>.EnsurePersistent(pos);
             }
         }
     }

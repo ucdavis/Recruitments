@@ -200,8 +200,8 @@ namespace CAESDO.Recruitment.Test
 
             using (var ts = new TransactionScope())
             {
-                GenericBLL<ChangeType,int>.EnsurePersistent(ref changeType);
-                GenericBLL<ChangeTracking,int>.EnsurePersistent(ref changeTracking);
+                GenericBLL<ChangeType,int>.EnsurePersistent(changeType);
+                GenericBLL<ChangeTracking,int>.EnsurePersistent(changeTracking);
 
                 ts.CommitTransaction();
             }

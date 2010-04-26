@@ -177,7 +177,7 @@ namespace CAESDO.Recruitment.Web
             using (var ts = new TransactionScope())
             {
                 //Now save the new application get get back the ID
-                ApplicationBLL.EnsurePersistent(ref newApplication);
+                ApplicationBLL.EnsurePersistent(newApplication);
 
                 //Redirect to the newly created application
                 Response.Redirect(string.Format("{0}?ApplicationID={1}", "Applicant/App.aspx", newApplication.ID.ToString()));

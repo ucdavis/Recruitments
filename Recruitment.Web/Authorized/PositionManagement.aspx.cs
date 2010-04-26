@@ -179,7 +179,7 @@ namespace CAESDO.Recruitment.Web
 
             using (var ts = new TransactionScope())
             {
-                PositionBLL.EnsurePersistent(ref newPosition);
+                PositionBLL.EnsurePersistent(newPosition);
 
                 ts.CommitTransaction();
             }
@@ -221,7 +221,7 @@ namespace CAESDO.Recruitment.Web
                 {
                     position.DescriptionFile = jobDescription;
 
-                    PositionBLL.EnsurePersistent(ref position);
+                    PositionBLL.EnsurePersistent(position);
 
                     ts.CommitTransaction();
                 }

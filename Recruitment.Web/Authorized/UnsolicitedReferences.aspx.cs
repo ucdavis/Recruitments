@@ -84,7 +84,7 @@ namespace CAESDO.Recruitment.Web
                         {
                             currentReference.UnsolicitedReference = cboxUnsolicited.Checked;
 
-                            ReferenceBLL.EnsurePersistent(ref currentReference);
+                            ReferenceBLL.EnsurePersistent(currentReference);
 
                             ts.CommitTransaction();
                         }
@@ -121,7 +121,7 @@ namespace CAESDO.Recruitment.Web
             {
                 currentReference.UnsolicitedEmailDate = DateTime.Now;
                 
-                ReferenceBLL.EnsurePersistent(ref currentReference);
+                ReferenceBLL.EnsurePersistent(currentReference);
 
                 ts.CommitTransaction();
             }

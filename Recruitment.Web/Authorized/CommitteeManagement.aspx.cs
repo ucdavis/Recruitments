@@ -227,7 +227,7 @@ namespace CAESDO.Recruitment.Web
             //save the department member and add to the position committee for this position
             using (var ts = new TransactionScope())
             {
-                DepartmentMemberBLL.EnsurePersistent(ref member);
+                DepartmentMemberBLL.EnsurePersistent(member);
 
                 committeeAccess.DepartmentMember = member;
 
@@ -235,7 +235,7 @@ namespace CAESDO.Recruitment.Web
 
                 Position position = currentPosition;
 
-                PositionBLL.EnsurePersistent(ref position);
+                PositionBLL.EnsurePersistent(position);
 
                 ts.CommitTransaction();
             }
