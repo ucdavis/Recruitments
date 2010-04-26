@@ -577,3 +577,34 @@ display:block; height:auto; line-height:1.5em; padding:5px 10px 4px 35px; width:
 {
     margin-right:1em;    
 }
+
+/* Applicant View List */
+
+.ApplicantViewListDate
+{
+}
+.ApplicantViewListPhDInformation
+{
+    max-width:300px;
+    line-height:1.5em;
+}
+.ApplicantViewListPhDInformation
+{
+}
+.ApplicantViewListCurrentPosition
+{
+    max-width:200px;
+}
+#ApplicantViewListShowHideHeader
+{
+    z-index:10;
+}
+.ApplicantViewListDateShowHideDiv
+{
+    width:100%
+}
+.ApplicantViewListDateShowHideTxt
+{
+    float:right;
+    margin-right:10px;
+}

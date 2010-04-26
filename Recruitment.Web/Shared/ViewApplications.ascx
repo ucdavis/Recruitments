@@ -3,6 +3,16 @@
 <script type="text/javascript">
 
     $(document).ready(function() {
+    //help balloon added by tyler
+    $('#ApplicantViewListShowHideHeader').bt('This will expand the PhD Information field for all applicants.  To expand this field for a certain applicant click on the +/- located to the right of the date in that row.', {
+        trigger: 'hover',
+        positions: 'top'
+    });
+    //help balloon added by tyler
+    $('.ApplicantViewListDateShowHideTxt').bt('This will expand the PhD information field for this applicant.  To expand this field for all applicants click on the +/- in the column header.', {
+        trigger: 'hover',
+        positions: 'right'
+    });
 
         //Sort table
         $("#tblApplications").tablesorter(
@@ -62,7 +72,7 @@
         
         allApplications.filter(":has(td.submittedHeader:contains('False'))").hide(0); //allApplications.filter("td.submittedHeader").hide(0);
     }
-        
+   
 </script>
 
 Viewing Applicants for the
@@ -83,6 +93,12 @@ position.
                     </th>
                     <th>
                         Email
+                    </th>
+                    <th>
+                        Current Position
+                    </th>
+                    <th>
+                        PhD Information <span id="ApplicantViewListShowHideHeader" class="ApplicantViewListDateShowHideTxt">+/-</span>
                     </th>
                     <th>
                         Submitted
@@ -107,6 +123,15 @@ position.
             </td>
             <td>
                 <%# Eval("Email") %>
+            </td>
+            <td class="ApplicantViewListCurrentPosition">
+                Faculty Recruitment Assistant at UC Davis
+            </td>
+            <td>
+                <div class="ApplicantViewListDateShowHideDiv"><span class="ApplicantViewListDate">6/30/1976</span><span class="ApplicantViewListDateShowHideTxt">+/-</span></div>
+                <div class="ApplicantViewListPhDInformation">UC Davis<br />
+                Mathematics<br />
+                <i>Missing: Confidential Survey, Cover Letter, Publications, Research Interests</i></div>
             </td>
             <td class="submittedHeader">
                 <%--<asp:CheckBox ID="checkbox" runat="server" Checked='<%# (bool)Eval("Submitted")  %>' onclick="javascript:return false;" />--%>
