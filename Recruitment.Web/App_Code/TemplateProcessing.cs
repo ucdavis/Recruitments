@@ -14,9 +14,7 @@ namespace CAESDO.Recruitment
 
         public TemplateProcessing()
         {
-            //
-            // TODO: Add constructor logic here
-            //
+
         }
 
         private Recruitment.Core.Domain.Reference _reference;
