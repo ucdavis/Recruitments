@@ -80,10 +80,9 @@ namespace CAESDO.Recruitment.Web
             }
             catch (Exception ex)
             {
-                lblReportStatus.Text = ex.Message;
+                lblReportStatus.Text = "Report Could Not Be Generated.  Please Try Again"; //Most likely timeout -- try again 
                 return;
             }
-
 
             Response.Clear();
 

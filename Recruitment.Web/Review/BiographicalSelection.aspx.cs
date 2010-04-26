@@ -10,16 +10,19 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Net;
 using System.IO;
+using System.Collections.Specialized;
+using System.Text;
 
 namespace CAESDO.Recruitment.Web
 {
     public partial class Review_BiographicalSelection : ApplicationPage
     {
+        private const string STR_PositionID = "PositionID";
         public string BiographicalPage
         {
             get
             {
-                return Request.Url.GetComponents(UriComponents.SchemeAndServer, UriFormat.SafeUnescaped) + HttpContext.Current.Request.ApplicationPath + "/Review/BiographicalReport.aspx?PositionID=" + dlistPositions.SelectedValue;
+                return "BiographicalReport.ascx";
             }
         }
 
@@ -38,51 +41,40 @@ namespace CAESDO.Recruitment.Web
 
         private void OutputPage(string URL, BioOutputType output)
         {
-            string strResult;
+            StringDictionary parameters = new StringDictionary();
+            parameters.Add(STR_PositionID, dlistPositions.SelectedValue);
 
-            WebResponse response = null;
-
-            HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(URL);
-            req.Headers.Set("Cookie", Request.Headers["Cookie"]);
-            req.Headers.Add("Cache-Control", "no-cache");
-            req.Headers.Add("Pragma", "no-cache");
-
-            req.Timeout = 1000; //One second timeout
-            req.KeepAlive = false;
+            Control report;
+            StringBuilder sb = new StringBuilder();
+            StringWriter sw = new StringWriter(sb);
+            Html32TextWriter hw = new Html32TextWriter(sw);
 
             try
             {
-                response = req.GetResponse();
+                report = LoadControl(URL);
+                ((IReportUserControl)report).LoadReport(parameters); //Load the report with parameters
+
+                report.RenderControl(hw);
             }
             catch (Exception ex)
             {
-                lblReportStatus.Text = "Report Could Not Be Generated.  Please Try Again"; //Most likely timeout -- try again                
+                lblReportStatus.Text = "Report Could Not Be Generated.  Please Try Again";
                 return;
             }
 
-            using (StreamReader reader = new StreamReader(response.GetResponseStream()))
-            {
-                strResult = reader.ReadToEnd();
-                reader.Close();
-            }
-
-            response.Close(); //Close the response
-            req.Abort(); //Abort the request (now that we have the response)
 
             Response.Clear();
 
             if (output == BioOutputType.Excel)
             {
-                //int tableIndex = strResult.IndexOf("<table");
-                //strResult = strResult.Substring(tableIndex, strResult.IndexOf("</table>") - tableIndex + "</table>".Length);
                 //Control the name that they see
                 Response.ContentType = "application/ms-excel";
                 Response.AddHeader("Content-Disposition", "attachment;filename=" + "Biographical.xls");
-                Response.AddHeader("Content-Length", strResult.Length.ToString());
-                //Response.TransmitFile(file.FullName);
+                Response.AddHeader("Content-Length", sb.Length.ToString());                
             }
 
-            Response.Write(strResult);
+            Response.Write(sb.ToString());
+
             Response.End();
         }
     }

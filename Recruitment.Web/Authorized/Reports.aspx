@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
-    Report Type: <asp:DropDownList ID="dlistType" runat="server" AutoPostBack="True">
+    Report Type: <asp:DropDownList ID="dlistType" runat="server">
         <asp:ListItem Selected="True" Value="Interim">Interim Recruitment</asp:ListItem>
         <asp:ListItem Value="Survey">Survey Results</asp:ListItem>
     </asp:DropDownList>
