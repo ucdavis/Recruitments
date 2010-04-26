@@ -20,7 +20,8 @@ namespace CAESDO.Recruitment.Web
         private const string STR_ApplicationID = "ApplicationID";
         private const string STR_CurrentApplication = "currentApplication";
         private const string STR_ApplicationSteps = "ApplicationSteps";
-        private const string STR_HomeStep = "Home"; 
+        private const string STR_HomeStep = "Home";
+                                                   private const string STR_Applicationpdf = "application/pdf"; 
         #endregion
 
         #region Properties
@@ -233,6 +234,214 @@ namespace CAESDO.Recruitment.Web
             ReloadStepListAndSelectHome();
         }
 
+        protected void btnCurrentPositionSave_Click(object sender, EventArgs e)
+        {
+            if (!Page.IsValid)
+                return; //Error message
+
+            //Grab the existing current position if available, else create a new one
+            CurrentPosition currentPosition = new CurrentPosition();
+
+            if (currentApplication.CurrentPositions.Count != 0) //if there is an existing result
+                currentPosition = currentApplication.CurrentPositions[0];
+
+            //Now set all of the fields
+            currentPosition.Title = txtCurrentPositionTitle.Text;
+            currentPosition.Department = txtCurrentPositionDepartment.Text;
+            currentPosition.Institution = txtCurrentPositionInstitution.Text;
+
+            currentPosition.Address1 = txtCurrentPositionAddress1.Text;
+            currentPosition.Address2 = txtCurrentPositionAddress2.Text;
+            currentPosition.City = txtCurrentPositionCity.Text;
+            currentPosition.State = txtCurrentPositionState.Text;
+            currentPosition.Zip = txtCurrentPositionZip.Text;
+            currentPosition.Country = txtCurrentPositionCountry.Text;
+
+            //Associate with the current application and set to complete
+            currentPosition.AssociatedApplication = currentApplication;
+            currentPosition.Complete = true;
+
+            //Ensure the education is valid before saving
+            if (ValidateBO<CurrentPosition>.isValid(currentPosition))
+            {
+                using (new NHibernateTransaction())
+                {
+                    daoFactory.GetCurrentPositionDao().SaveOrUpdate(currentPosition);
+                    currentApplication.CurrentPositions.Add(currentPosition);
+                }
+            }
+            else
+            {
+                Trace.Warn(ValidateBO<CurrentPosition>.GetValidationResultsAsString(currentPosition));
+            }
+
+            ReloadStepListAndSelectHome();
+        }
+
+        protected void btnResumeUpload_Click(object sender, EventArgs e)
+        {
+            FileType resumeFileType = daoFactory.GetFileTypeDao().GetFileTypeByName("Resume");
+
+            //TODO: Remove all existing resume files from this application
+
+            if (fileResume.HasFile)
+            {
+                if (fileResume.PostedFile.ContentType == STR_Applicationpdf)
+                {
+                    File resume = new File();
+
+                    resume.FileName = fileResume.FileName;
+                    resume.FileType = resumeFileType;
+
+                    using (new NHibernateTransaction())
+                    {
+                        resume = daoFactory.GetFileDao().Save(resume);
+                    }
+
+                    if (ValidateBO<File>.isValid(resume))
+                    {
+                        fileResume.SaveAs(FilePath + resume.ID.ToString());
+
+                        currentApplication.Files.Add(resume);
+
+                        using (new NHibernateTransaction())
+                        {
+                            daoFactory.GetApplicationDao().SaveOrUpdate(currentApplication);
+                        }
+                    }
+                    else
+                    {
+                        Trace.Warn(ValidateBO<File>.GetValidationResultsAsString(resume));
+                    }
+                }
+            }
+
+            ReloadStepListAndSelectHome();
+        }
+
+        protected void btnCoverLetterUpload_Click(object sender, EventArgs e)
+        {
+            FileType coverLetterFileType = daoFactory.GetFileTypeDao().GetFileTypeByName("CoverLetter");
+
+            //TODO: Remove all existing resume files from this application
+
+            if (fileCoverLetter.HasFile)
+            {
+                if (fileCoverLetter.PostedFile.ContentType == STR_Applicationpdf)
+                {
+                    File coverLetter = new File();
+
+                    coverLetter.FileName = fileCoverLetter.FileName;
+                    coverLetter.FileType = coverLetterFileType;
+
+                    using (new NHibernateTransaction())
+                    {
+                        coverLetter = daoFactory.GetFileDao().Save(coverLetter);
+                    }
+
+                    if (ValidateBO<File>.isValid(coverLetter))
+                    {
+                        fileCoverLetter.SaveAs(FilePath + coverLetter.ID.ToString());
+
+                        currentApplication.Files.Add(coverLetter);
+
+                        using (new NHibernateTransaction())
+                        {
+                            daoFactory.GetApplicationDao().SaveOrUpdate(currentApplication);
+                        }
+                    }
+                    else
+                    {
+                        Trace.Warn(ValidateBO<File>.GetValidationResultsAsString(coverLetter));
+                    }
+                }
+            }
+
+            ReloadStepListAndSelectHome();
+        }
+
+        protected void btnResearchInterestsUpload_Click(object sender, EventArgs e)
+        {
+            FileType ResearchInterestsFileType = daoFactory.GetFileTypeDao().GetFileTypeByName("ResearchInterests");
+
+            //TODO: Remove all existing resume files from this application
+
+            if (fileResearchInterests.HasFile)
+            {
+                if (fileResearchInterests.PostedFile.ContentType == STR_Applicationpdf)
+                {
+                    File researchInterests = new File();
+
+                    researchInterests.FileName = fileResearchInterests.FileName;
+                    researchInterests.FileType = ResearchInterestsFileType;
+
+                    using (new NHibernateTransaction())
+                    {
+                        researchInterests = daoFactory.GetFileDao().Save(researchInterests);
+                    }
+
+                    if (ValidateBO<File>.isValid(researchInterests))
+                    {
+                        fileResearchInterests.SaveAs(FilePath + researchInterests.ID.ToString());
+
+                        currentApplication.Files.Add(researchInterests);
+
+                        using (new NHibernateTransaction())
+                        {
+                            daoFactory.GetApplicationDao().SaveOrUpdate(currentApplication);
+                        }
+                    }
+                    else
+                    {
+                        Trace.Warn(ValidateBO<File>.GetValidationResultsAsString(researchInterests));
+                    }
+                }
+            }
+
+            ReloadStepListAndSelectHome();
+        }
+
+        protected void btnTranscriptsUpload_Click(object sender, EventArgs e)
+        {
+            FileType transcriptsFileType = daoFactory.GetFileTypeDao().GetFileTypeByName("Transcript");
+
+            //TODO: Remove all existing resume files from this application
+
+            if (fileTranscripts.HasFile)
+            {
+                if (fileTranscripts.PostedFile.ContentType == STR_Applicationpdf)
+                {
+                    File transcripts = new File();
+
+                    transcripts.FileName = fileTranscripts.FileName;
+                    transcripts.FileType = transcriptsFileType;
+
+                    using (new NHibernateTransaction())
+                    {
+                        transcripts = daoFactory.GetFileDao().Save(transcripts);
+                    }
+
+                    if (ValidateBO<File>.isValid(transcripts))
+                    {
+                        fileTranscripts.SaveAs(FilePath + transcripts.ID.ToString());
+
+                        currentApplication.Files.Add(transcripts);
+
+                        using (new NHibernateTransaction())
+                        {
+                            daoFactory.GetApplicationDao().SaveOrUpdate(currentApplication);
+                        }
+                    }
+                    else
+                    {
+                        Trace.Warn(ValidateBO<File>.GetValidationResultsAsString(transcripts));
+                    }
+                }
+            }
+
+            ReloadStepListAndSelectHome();
+        }
+
         #endregion
 
         #region PrivateFunctions
@@ -322,7 +531,7 @@ namespace CAESDO.Recruitment.Web
                     case "Transcript":
                         hasTranscript = true;
                         break;
-                    case "ResearchInterest":
+                    case "ResearchInterests":
                         hasResearchInterest = true;
                         break;
                     default:
@@ -397,6 +606,7 @@ namespace CAESDO.Recruitment.Web
                 case "References":
                     break;
                 case "Current Position":
+                    DataBindCurrentPositionInformation();
                     break;
                 case "Resume":
                     break;
@@ -452,10 +662,33 @@ namespace CAESDO.Recruitment.Web
             txtEducationInstitution.Text = currentEducation.Institution;
         }
 
+        /// <summary>
+        /// Bind the current position for the primary CP result (there should only be one allowed by the program)
+        /// </summary>
+        private void DataBindCurrentPositionInformation()
+        {
+            //Only databindd if there is a current position available
+            if (currentApplication.CurrentPositions.Count == 0)
+                return;
+
+            CurrentPosition currentPosition = currentApplication.CurrentPositions[0];
+
+            txtCurrentPositionTitle.Text = currentPosition.Title;
+            txtCurrentPositionDepartment.Text = currentPosition.Department;
+            txtCurrentPositionInstitution.Text = currentPosition.Institution;
+
+            txtCurrentPositionAddress1.Text = currentPosition.Address1;
+            txtCurrentPositionAddress2.Text = currentPosition.Address2;
+            txtCurrentPositionCity.Text = currentPosition.City;
+            txtCurrentPositionState.Text = currentPosition.State;
+            txtCurrentPositionZip.Text = currentPosition.Zip;
+            txtCurrentPositionCountry.Text = currentPosition.Country;
+        }
+
         #endregion
 
         #endregion
-      
+
 }
 
     /// <summary>

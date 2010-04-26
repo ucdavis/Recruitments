@@ -19,6 +19,7 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
         IGenderDao GetGenderDao();
         IFileDao GetFileDao();
         IEducationDao GetEducationDao();
+        ICurrentPositionDao GetCurrentPositionDao();
         ICommitteeMemberDao GetCommitteeMemberDao();
         IUserDao GetUserDao();
         IFileTypeDao GetFileTypeDao();
@@ -60,6 +61,8 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
     public interface IFileDao : IDao<File, int> { }
           
     public interface IEducationDao : IDao<Education, int> { }
+
+    public interface ICurrentPositionDao : IDao<CurrentPosition, int> { }
     
     public interface ICommitteeMemberDao : IDao<CommitteeMember, int> {
         List<CommitteeMember> GetAllByMemberType(Position associatedPosition, MemberTypes type);
@@ -69,7 +72,9 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
         User GetUserByLogin(string LoginID);
     }
 
-    public interface IFileTypeDao : IDao<FileType, int> { }
+    public interface IFileTypeDao : IDao<FileType, int> {
+        FileType GetFileTypeByName(string fileTypeName);
+    }
           
     public interface IMemberTypeDao : IDao<MemberType, int> { }
     

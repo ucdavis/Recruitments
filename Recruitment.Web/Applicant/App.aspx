@@ -233,7 +233,7 @@
                         </td>
                         <td align="right"  >
                             <br />
-                            <asp:Button ID="btnCurrentPosition" runat="server" Text="Update" /></td>
+                            <asp:Button ID="btnCurrentPositionSave" runat="server" Text="Update" OnClick="btnCurrentPositionSave_Click" /></td>
                     </tr>
                 </table>
             </asp:View>
@@ -259,7 +259,7 @@
                         </td>
                         <td align="right"  >
                             <br />
-                            <asp:Button ID="btnResume" runat="server" Text="Upload" /></td>
+                            <asp:Button ID="btnResumeUpload" runat="server" Text="Upload" OnClick="btnResumeUpload_Click" /></td>
                     </tr>
                 </table>
             </asp:View>
@@ -285,7 +285,7 @@
                         </td>
                         <td align="right"  >
                             <br />
-                            <asp:Button ID="btnCoverLetter" runat="server" Text="Upload" /></td>
+                            <asp:Button ID="btnCoverLetterUpload" runat="server" Text="Upload" OnClick="btnCoverLetterUpload_Click" /></td>
                     </tr>
                 </table>
             </asp:View>
@@ -311,7 +311,7 @@
                         </td>
                         <td align="right"  >
                             <br />
-                            <asp:Button ID="btnResearchInterests" runat="server" Text="Upload" /></td>
+                            <asp:Button ID="btnResearchInterestsUpload" runat="server" Text="Upload" OnClick="btnResearchInterestsUpload_Click" /></td>
                     </tr>
                 </table>
             </asp:View>
@@ -337,7 +337,7 @@
                         </td>
                         <td align="right"  >
                             <br />
-                            <asp:Button ID="btnTranscripts" runat="server" Text="Upload" /></td>
+                            <asp:Button ID="btnTranscriptsUpload" runat="server" Text="Upload" OnClick="btnTranscriptsUpload_Click" /></td>
                     </tr>
                 </table>
             </asp:View>

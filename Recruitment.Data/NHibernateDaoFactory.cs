@@ -68,6 +68,11 @@ namespace CAESDO.Recruitment.Data
             return new EducationDao();
         }
 
+        public ICurrentPositionDao GetCurrentPositionDao()
+        {
+            return new CurrentPositionDao();
+        }
+
         public ICommitteeMemberDao GetCommitteeMemberDao()
         {
             return new CommitteeMemberDao();
@@ -174,6 +179,8 @@ namespace CAESDO.Recruitment.Data
 
         public class EducationDao : AbstractNHibernateDao<Education, int>, IEducationDao { }
 
+        public class CurrentPositionDao : AbstractNHibernateDao<CurrentPosition, int>, ICurrentPositionDao { }
+
         public class CommitteeMemberDao : AbstractNHibernateDao<CommitteeMember, int>, ICommitteeMemberDao {
 
             public List<CommitteeMember> GetAllByMemberType(Position associatedPosition, MemberTypes type)
@@ -220,7 +227,15 @@ namespace CAESDO.Recruitment.Data
             }
         }
 
-        public class FileTypeDao : AbstractNHibernateDao<FileType, int>, IFileTypeDao { }
+        public class FileTypeDao : AbstractNHibernateDao<FileType, int>, IFileTypeDao {
+            public FileType GetFileTypeByName(string fileTypeName)
+            {
+                ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(FileType))
+                    .Add(Expression.Eq("FileTypeName", fileTypeName));
+
+                return criteria.UniqueResult<FileType>();
+            }
+        }
 
         public class MemberTypeDao : AbstractNHibernateDao<MemberType, int>, IMemberTypeDao { }
 
