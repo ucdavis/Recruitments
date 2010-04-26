@@ -160,18 +160,26 @@ namespace CAESDO.Recruitment.Web
 
                 document.Open();
 
+                Font chapterFont = FontFactory.GetFont(FontFactory.HELVETICA, 0, Font.NORMAL, new Color(255, 0, 0));
                 PdfContentByte cb = writer.DirectContent;
                 PdfImportedPage page;
                 int rotation;
 
                 while (f < currentApplication.Files.Count)
                 {
+                    Paragraph cTitle = new Paragraph(currentApplication.Files[f].FileType.FileTypeName, chapterFont);
+                    Chapter chapter = new Chapter(cTitle, f + 1);
+                                        
                     int i = 0;
                     while (i < n)
                     {
-                        i++;
+                        i++;                        
                         document.SetPageSize(reader.GetPageSizeWithRotation(i));
                         document.NewPage();
+                        
+                        if (i == 1)
+                            document.Add(chapter);
+
                         page = writer.GetImportedPage(reader, i);
                         
                         rotation = reader.GetPageRotation(i);
