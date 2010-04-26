@@ -163,6 +163,27 @@
             </td>
         </tr>
         <tr>
+            <td align="right">Required File Types:</td>
+            <td>
+                <asp:GridView ID="gviewFileTypes" runat="server" DataKeyNames="id" AutoGenerateColumns="False" DataSourceID="ObjectDataFileTypes">
+                    <Columns>
+                        <asp:TemplateField HeaderText="File Types">
+                            <ItemTemplate>
+                                <asp:CheckBox ID="chkFileType" runat="server" Text='<%# BreakCamelCase((string)Eval("FileTypeName")) %>' Checked='<%# doesFileTypeExistInPosition((string)Eval("FileTypeName")) %>' />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                </asp:GridView>                
+                <asp:ObjectDataSource ID="ObjectDataFileTypes" runat="server" SelectMethod="GetAll"
+                    TypeName="CAESDO.Recruitment.Data.NHibernateDaoFactory+FileTypeDao">
+                    <SelectParameters>
+                        <asp:Parameter DefaultValue="FileTypeName" Name="propertyName" Type="String" />
+                        <asp:Parameter DefaultValue="true" Name="ascending" Type="Boolean" />
+                    </SelectParameters>
+                </asp:ObjectDataSource>
+            </td>
+        </tr>
+        <tr>
             <td align="right">
                 Allow Applications:</td>
             <td  >

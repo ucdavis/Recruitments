@@ -116,7 +116,6 @@ namespace CAESDO.Recruitment.Web
             newPosition.HRPhone = string.IsNullOrEmpty(txtHRPhone.Text) ? null : txtHRPhone.Text;
             newPosition.HREmail = string.IsNullOrEmpty(txtHREmail.Text) ? null : txtHREmail.Text;
 
-            //newPosition.Departments = DepartmentList;
             if (!updatePrimaryDepartmentStatus())
             {
                 lblPrimaryDeptErrorMessage.Text = "You must select exactly one primary department for this position";
@@ -124,6 +123,8 @@ namespace CAESDO.Recruitment.Web
             }            
                 
             addDepartmentsToPosition(newPosition);
+
+            addFileTypesToPosition(newPosition);
 
             newPosition.ShortDescription = txtShortDescription.Text;
 
@@ -242,14 +243,11 @@ namespace CAESDO.Recruitment.Web
             foreach (Department d in currentPosition.Departments)
             {
                 DepartmentList.Add(d);
-                //CAESDO.Recruitment.Core.Domain.Unit u = daoFactory.GetUnitDao().GetById(d.DepartmentFIS, false);
-
-                //DepartmentList.Add(u);
             }
 
             gviewDepartments.DataSource = DepartmentList;
             gviewDepartments.DataBind();
-            
+
             filePositionDescription.Visible = false;
             reqValPositionDescription.Visible = false;
 
@@ -342,6 +340,80 @@ namespace CAESDO.Recruitment.Web
 
                 p.Departments.Add(dept);
             }
+        }
+
+        /// <summary>
+        /// Loops through the gviewFileTypes grid and adds any checked fileTypes to the fileType list
+        /// </summary>
+        private void addFileTypesToPosition(Position p)
+        {
+            if (p.FileTypes == null)
+                p.FileTypes = new List<FileType>();
+            else
+                p.FileTypes.Clear();
+
+            foreach (GridViewRow row in gviewFileTypes.Rows)
+            {
+                if (row.RowType == DataControlRowType.DataRow)
+                {
+                    //If this datarow is checked, add it to the position's fileTypes
+                    CheckBox cbox = (CheckBox)row.FindControl("chkFileType");
+
+                    if (cbox.Checked)
+                    {
+                        p.FileTypes.Add(daoFactory.GetFileTypeDao().GetById((int)gviewFileTypes.DataKeys[row.RowIndex]["id"], false));
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Determines if the given FileTypeName is already in the current position.
+        /// If this is a new position, always return false
+        /// </summary>
+        /// <param name="FileTypeName">The file type</param>
+        protected bool doesFileTypeExistInPosition(string FileTypeName)
+        {
+            if (currentPositionID.HasValue == false)
+                return false;
+
+            FileType type = new FileType();
+            type.FileTypeName = FileTypeName;
+
+            return currentPosition.FileTypes.Contains(type);
+        }
+
+        /// <summary>
+        /// helper method to convert CamelCaseString to Camel Case String
+        /// by inserting spaces
+        /// </summary>
+        /// <see cref="http://www.developer.com/net/asp/article.php/3609991"/>
+        protected string BreakCamelCase(string CamelString)
+        {
+            string output = string.Empty;
+            bool SpaceAdded = true;
+
+            for (int i = 0; i < CamelString.Length; i++)
+            {
+                if (CamelString.Substring(i, 1) ==
+                    CamelString.Substring(i, 1).ToLower())
+                {
+                    output += CamelString.Substring(i, 1);
+                    SpaceAdded = false;
+                }
+                else
+                {
+                    if (!SpaceAdded)
+                    {
+                        output += " ";
+                        output += CamelString.Substring(i, 1);
+                        SpaceAdded = true;
+                    }
+                    else
+                        output += CamelString.Substring(i, 1);
+                }
+            }
+            return output;
         }
 }
 }

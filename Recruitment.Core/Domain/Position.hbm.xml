@@ -46,6 +46,11 @@
       <one-to-many class="CAESDO.Recruitment.Core.Domain.Department, CAESDO.Recruitment.Core" />
     </bag>
 
+    <bag name="FileTypes" table="PosXFileTypes">
+      <key column="PositionID" />
+      <many-to-many column="FileTypeID" class="CAESDO.Recruitment.Core.Domain.FileType, CAESDO.Recruitment.Core" />    
+    </bag>
+    
     <bag name="CommitteeMembers" table="CommitteeMembers" inverse="true">
       <key column="PositionID" />
       <one-to-many class="CAESDO.Recruitment.Core.Domain.CommitteeMember, CAESDO.Recruitment.Core" />

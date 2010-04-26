@@ -185,6 +185,14 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _PrimaryDepartment = value; }
         }
 
+        private IList<FileType> _FileTypes;
+
+        public virtual IList<FileType> FileTypes
+        {
+            get { return _FileTypes; }
+            set { _FileTypes = value; }
+        }
+
         private IList<Department> _Departments;
 
         public virtual IList<Department> Departments

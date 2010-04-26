@@ -124,6 +124,16 @@ namespace CAESDO.Recruitment.Core.Domain
         {
 
         }
+
+        public override bool Equals(object obj)
+        {
+            return (this.FileTypeName == ((FileType)obj).FileTypeName);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 
     public class Login : DomainObject<string>
