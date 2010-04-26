@@ -59,10 +59,11 @@ namespace CAESDO.Recruitment.Web
           
             //List<Position> posList = posDao.GetAll();
 
-            //IApplicantDao applicantDao = daoFactory.GetApplicantDao();
+            IApplicantDao applicantDao = daoFactory.GetApplicantDao();
 
-            //Applicant app = applicantDao.GetById(4, false);
-                        
+            Applicant app = applicantDao.GetById(4, false);
+            
+
             //IProfileDao proDao = daoFactory.GetProfileDao();
 
             //List<Profile> profiles = proDao.GetAll();
@@ -70,6 +71,9 @@ namespace CAESDO.Recruitment.Web
             //ISurveyDao surveyDao = daoFactory.GetSurveyDao();
 
             //Survey survey = surveyDao.GetById(1, false);
+            
+            
+            
             if (!Page.IsPostBack)
             {
                 app11 = null;
@@ -84,7 +88,7 @@ namespace CAESDO.Recruitment.Web
                 edu.Discipline = "CSENG";
                 edu.Institution = "UCD";
 
-                using (NHibernateTransaction tran = new NHibernateTransaction())
+                using (new NHibernateTransaction())
                 {
                     daoFactory.GetEducationDao().Save(edu);
                     app11.Education.Add(edu);

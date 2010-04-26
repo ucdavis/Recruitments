@@ -105,9 +105,10 @@ namespace CAESDO.Recruitment.Data
 
             public List<CommitteeMember> GetAllByMemberType(Position associatedPosition, MemberTypes type)
             {
+
                 //string queryString = "from CAESDO.Recruitment.Core.Domain.CommitteeMember as CM where PositionID = :PositionID "
                 //               + " and (MemberTypeID = :MemberTypeID or MemberTypeID = :MemberTypeSecondaryID)";
-
+                
                 int MemberTypeID, MemberTypeSecondaryID;
 
                 //If we want all committee members, we must get the chair an members

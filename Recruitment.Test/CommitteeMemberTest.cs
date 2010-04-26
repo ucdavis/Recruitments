@@ -139,10 +139,8 @@ namespace CAESDO.Recruitment.Test
         {
             Position target = NHibernateHelper.daoFactory.GetPositionDao().GetById(StaticProperties.ExistingPositionID, false);
 
-            this.TestContext.BeginTimer(StaticProperties.TestString);
             List<CommitteeMember> members = NHibernateHelper.daoFactory.GetCommitteeMemberDao().GetAllByMemberType(target, MemberTypes.AllCommittee);
-            this.TestContext.EndTimer(StaticProperties.TestString);
-
+            
             Assert.AreNotEqual<int>(members.Count, 0);
 
             this.TestContext.WriteLine("There are {0} members for this position", members.Count);
