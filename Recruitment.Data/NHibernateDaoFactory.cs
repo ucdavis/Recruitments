@@ -192,15 +192,41 @@ namespace CAESDO.Recruitment.Data
 
             public List<Position> GetAllPositionsByStatusForCommittee(bool Closed, bool AdminAccepted)
             {
-                User currentUser = new UserDao().GetUserByLogin(HttpContext.Current.User.Identity.Name);
+                //User currentUser = new UserDao().GetUserByLogin(HttpContext.Current.User.Identity.Name);
+                
+                //Get positions where faculty view is true, and the current user is a faculty member in the committee
+                ICriteria facultyPositions = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(Position))
+                    .Add(Expression.Eq("Closed", Closed))
+                    .Add(Expression.Eq("AdminAccepted", AdminAccepted))
+                    .Add(Expression.Eq("FacultyView", true)) //Faculty Allowed
+                    .CreateCriteria("PositionCommittee")
+                    .Add(Expression.Eq("LoginID", HttpContext.Current.User.Identity.Name))
+                    .CreateCriteria("MemberType")
+                    .Add(Expression.Eq("id", (int)MemberTypes.FacultyMember));
 
-                ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(Position))
+                //Get all positions where the user is in the committee 
+                ICriteria committeePositions = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(Position))
                     .Add(Expression.Eq("Closed", Closed))
                     .Add(Expression.Eq("AdminAccepted", AdminAccepted))
                     .CreateCriteria("PositionCommittee")
-                    .Add(Expression.Eq("LoginID", HttpContext.Current.User.Identity.Name));
+                    .Add(Expression.Eq("LoginID", HttpContext.Current.User.Identity.Name))
+                    .CreateCriteria("MemberType")
+                    .Add(Expression.Or(Expression.Eq("id", (int)MemberTypes.CommitteeChair), Expression.Eq("id", (int)MemberTypes.CommitteeMember)));
 
-                return criteria.List<Position>() as List<Position>;
+                List<Position> positions = new List<Position>();
+
+                foreach (Position p in facultyPositions.List<Position>())
+                {
+                    positions.Add(p);
+                }
+
+                foreach (Position p in committeePositions.List<Position>())
+                {
+                    if ( !positions.Contains(p) )
+                        positions.Add(p);
+                }
+
+                return positions;
             }
 
             public bool VerifyPositionAccess(Position position)

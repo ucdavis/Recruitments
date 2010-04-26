@@ -83,7 +83,14 @@ namespace CAESDO.Recruitment.Web
             foreach (DepartmentMember member in currentPosition.PositionCommittee)
             {
                 if (member.LoginID == User.Identity.Name)
-                    allowedAccess = true;
+                {
+                    //Only committee members should have access
+                    if ( member.MemberType.ID == (int)MemberTypes.CommitteeChair || member.MemberType.ID == (int)MemberTypes.CommitteeMember )
+                    {
+                        allowedAccess = true;
+                        break;
+                    }
+                }
             }
 
             if (!allowedAccess)
