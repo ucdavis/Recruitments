@@ -16,10 +16,14 @@ namespace CAESDO.Recruitment.Web
 {
     public partial class App : ApplicationPage
     {
+        #region ConstVariables
         private const string STR_ApplicationID = "ApplicationID";
         private const string STR_CurrentApplication = "currentApplication";
         private const string STR_ApplicationSteps = "ApplicationSteps";
+        private const string STR_HomeStep = "Home"; 
+        #endregion
 
+        #region Properties
         public int currentApplicationID
         {
             get
@@ -56,11 +60,6 @@ namespace CAESDO.Recruitment.Web
 
                 return daoFactory.GetApplicationDao().GetById(currentApplicationID, false);
             }
-
-            set
-            {
-                Session[STR_CurrentApplication] = value;
-            }
         }
 
         public List<Step> ApplicationSteps
@@ -68,7 +67,7 @@ namespace CAESDO.Recruitment.Web
             get
             {
                 if (Session[STR_ApplicationSteps] == null)
-                    Session[STR_ApplicationSteps] = new List<Step>();
+                    return null;  //Session[STR_ApplicationSteps] = new List<Step>();
 
                 return (List<Step>)Session[STR_ApplicationSteps];
             }
@@ -77,7 +76,10 @@ namespace CAESDO.Recruitment.Web
             {
                 Session[STR_ApplicationSteps] = value;
             }
-        }
+        } 
+        #endregion
+
+        #region Page Methods
 
         /// <summary>
         /// Page_Init checks to ensure that the query string is valid, the logged in user is an applicant, the given application is valid
@@ -114,15 +116,19 @@ namespace CAESDO.Recruitment.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!Page.IsPostBack)
-            {
-                //Load the application steps in first page visit
-                LoadSteps();
-            }
-            
+            if (!IsPostBack)
+                ApplicationSteps = null; //Clear the steps list on first visit
+
+            //Load the application steps
+            LoadSteps();
+
             rptSteps.DataSource = ApplicationSteps;
             rptSteps.DataBind();
         }
+
+        #endregion
+
+        #region Object Event Handlers
 
         /// <summary>
         /// Called whenever a tab is clicked -- it will take the user to that tab's content, and change the tab's style to
@@ -136,25 +142,100 @@ namespace CAESDO.Recruitment.Web
             //Grab the link button's command argument (the step name)
             string stepName = ((LinkButton)sender).CommandArgument;
 
-            foreach (Step step in ApplicationSteps)
-            {
-                if (step.StepName == stepName)
-                {
-                    step.setSelectionStatus(true);
+            MakeStepActive(stepName);
 
-                    SetCorrespondingView(stepName);
-                }
-                else
-                {
-                    step.setSelectionStatus(false);
-                }
-            }
-
-            rptSteps.DataSource = ApplicationSteps;
-            rptSteps.DataBind();
+            DataBindStep(stepName);
 
             Trace.Write("-- lbtnStep_Click End --");
         }
+
+        /// <summary>
+        /// Saves the contact information entered into the form and then changes back to the home screen
+        /// </summary>
+        protected void btnContactSave_Click(object sender, EventArgs e)
+        {
+            if (!Page.IsValid)
+                return; //Error message
+
+            //Grab the user's profile and update the fields
+            Profile currentProfile = currentApplication.AssociatedProfile;
+
+            currentProfile.FirstName = txtContactFirstName.Text;
+            currentProfile.MiddleName = txtContactMiddleName.Text;
+            currentProfile.LastName = txtContactLastName.Text;
+
+            currentProfile.Address1 = txtContactAddress1.Text;
+            currentProfile.Address2 = txtContactAddress2.Text;
+            currentProfile.City = txtContactCity.Text;
+            currentProfile.State = txtContactState.Text;
+            currentProfile.Phone = txtContactPhone.Text;
+
+            //currentProfile.Country = null;
+            //currentProfile.CountryCode = null;
+
+            //Update the LastUpdated property (this is how we know a profile has been updated/completed)
+            currentProfile.LastUpdated = DateTime.Now;
+
+            //Ensure the unsaved profile is valid before saving
+            if (ValidateBO<Profile>.isValid(currentProfile))
+            {
+                using (new NHibernateTransaction())
+                {
+                    daoFactory.GetProfileDao().SaveOrUpdate(currentProfile);
+                }
+            }
+            else
+            {
+                Trace.Warn("Profile Not Valid");
+                Trace.Warn(ValidateBO<Profile>.GetValidationResultsAsString(currentProfile));
+                //Error message
+            }
+
+            ReloadStepListAndSelectHome();
+
+        }
+
+        protected void btnEducationSave_Click(object sender, EventArgs e)
+        {
+            if (!Page.IsValid)
+                return; //Error message
+
+            //Grab the existing education if available, else create a new one
+            Education currentEducation = new Education();
+
+            if (currentApplication.Education.Count != 0) //if there is an existing education result
+                currentEducation = currentApplication.Education[0];
+
+            //Now set the fields
+            currentEducation.Date = DateTime.Parse(txtEducationPHDDate.Text);
+            currentEducation.Institution = txtEducationInstitution.Text;
+            currentEducation.Discipline = txtEducationDiscipline.Text;
+
+            //Associate this with the current application
+            currentEducation.AssociatedApplication = currentApplication;
+
+            currentEducation.Complete = true; //Make sure to complete on save
+
+            //Ensure the education is valid before saving
+            if (ValidateBO<Education>.isValid(currentEducation))
+            {
+                using (new NHibernateTransaction())
+                {
+                    daoFactory.GetEducationDao().SaveOrUpdate(currentEducation);
+                    currentApplication.Education.Add(currentEducation);
+                }
+            }
+            else
+            {
+                Trace.Warn(ValidateBO<Education>.GetValidationResultsAsString(currentEducation));
+            }
+
+            ReloadStepListAndSelectHome();
+        }
+
+        #endregion
+
+        #region PrivateFunctions
 
         /// <summary>
         /// Find the View that corresponds to this step 
@@ -173,6 +254,19 @@ namespace CAESDO.Recruitment.Web
         }
 
         /// <summary>
+        /// Reloads the step list and then makes the home step active
+        /// </summary>
+        private void ReloadStepListAndSelectHome()
+        {
+            //Reload the steps list
+            ApplicationSteps = null;
+            LoadSteps();
+
+            //Once you save the profile, set the active view back to the Home screen
+            MakeStepActive(STR_HomeStep);
+        }
+
+        /// <summary>
         /// Loads up all application steps, along with state, into a List for the sidebar
         /// </summary>
         /// <remarks>
@@ -182,13 +276,17 @@ namespace CAESDO.Recruitment.Web
         {
             Trace.Write("Begin Step Load");
 
+            //No need to load the steps if there are already steps available
+            if (ApplicationSteps != null)
+                return;
+
             ApplicationSteps = new List<Step>();
 
             //First add the home step
-            ApplicationSteps.Add(new Step("Home", true, true, true));
+            ApplicationSteps.Add(new Step(STR_HomeStep, true, true, true));
 
-            //Now add the contact information (so far no way to tell if complete)
-            ApplicationSteps.Add(new Step("Contact Information", false, false, true));
+            //Now add the contact information (information is 'complete' if the LastUpdated field is not null)
+            ApplicationSteps.Add(new Step("Contact Information", currentApplication.AssociatedProfile.LastUpdated != null, false, true));
 
             //Add education
             ApplicationSteps.Add(new Step("Education Information", currentApplication.isComplete(ApplicationStepType.Education), false, true));
@@ -203,7 +301,7 @@ namespace CAESDO.Recruitment.Web
             bool hasResume = false;
             bool hasCoverLetter = false;
             bool hasCV = false;
-            bool hasTranscript = false; 
+            bool hasTranscript = false;
             bool hasResearchInterest = false;
 
 
@@ -237,7 +335,7 @@ namespace CAESDO.Recruitment.Web
             ApplicationSteps.Add(new Step("Cover Letter", hasCoverLetter, false, true));
             ApplicationSteps.Add(new Step("Research Interests", hasResearchInterest, false, true));
             ApplicationSteps.Add(new Step("Transcripts", hasTranscript, false, true));
-            
+
             //Add the confidential survey
             ApplicationSteps.Add(new Step("Confidential Survey", currentApplication.isComplete(ApplicationStepType.Survey), false, true));
 
@@ -254,7 +352,111 @@ namespace CAESDO.Recruitment.Web
             if (string.IsNullOrEmpty(Request.QueryString[STR_ApplicationID]))
                 Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.UNKNOWN));
         }
-    }
+
+        /// <summary>
+        /// Sets a step to be the active step (in style and active view)
+        /// </summary>
+        /// <param name="stepName">The name of the step to make active</param>
+        private void MakeStepActive(string stepName)
+        {
+            foreach (Step step in ApplicationSteps)
+            {
+                if (step.StepName == stepName)
+                {
+                    step.setSelectionStatus(true);
+
+                    SetCorrespondingView(stepName);
+                }
+                else
+                {
+                    step.setSelectionStatus(false);
+                }
+            }
+
+            rptSteps.DataSource = ApplicationSteps;
+            rptSteps.DataBind();
+        }
+
+        /// <summary>
+        /// Handles DataBinding (filling in fields/datagrids/etc) for the given step
+        /// </summary>
+        /// <param name="stepName">The name of the step to databind</param>
+        /// <remarks>This allows for on-demand binding of data, but will reset the data in the given tab (back to the DB values)</remarks>
+        private void DataBindStep(string stepName)
+        {
+            switch (stepName)
+            {
+                case "Home":
+                    break;
+                case "Contact Information":
+                    DataBindContactInformation();
+                    break;
+                case "Education Information":
+                    DataBindEducationInformation();
+                    break;
+                case "References":
+                    break;
+                case "Current Position":
+                    break;
+                case "Resume":
+                    break;
+                case "Cover Letter":
+                    break;
+                case "Research Interests":
+                    break;
+                case "Transcripts":
+                    break;
+                case "Confidential Survey":
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        #region Step DataBinding Methods
+
+        /// <summary>
+        /// Bind the profile (contact info) fields to the appropriate text boxes
+        /// </summary>
+        private void DataBindContactInformation()
+        {
+            //Grab the Profile
+            Profile currentProfile = currentApplication.AssociatedProfile;
+
+            //Set the corresponding fields
+            txtContactFirstName.Text = currentProfile.FirstName;
+            txtContactMiddleName.Text = currentProfile.MiddleName;
+            txtContactLastName.Text = currentProfile.LastName;
+
+            txtContactAddress1.Text = currentProfile.Address1;
+            txtContactAddress2.Text = currentProfile.Address2;
+            txtContactCity.Text = currentProfile.City;
+            txtContactState.Text = currentProfile.State;
+
+            txtContactPhone.Text = currentProfile.Phone;
+        }
+
+        /// <summary>
+        /// Bind the education fields for the primary education result (there should only be one allowed by the program)
+        /// </summary>
+        private void DataBindEducationInformation()
+        {
+            //Only databind if there is an education available
+            if (currentApplication.Education.Count == 0)
+                return;
+
+            Education currentEducation = currentApplication.Education[0];
+
+            txtEducationPHDDate.Text = currentEducation.Date.ToShortDateString();
+            txtEducationDiscipline.Text = currentEducation.Discipline;
+            txtEducationInstitution.Text = currentEducation.Institution;
+        }
+
+        #endregion
+
+        #endregion
+      
+}
 
     /// <summary>
     /// Represents a Step object (including Home) to be used for tabbed browsing

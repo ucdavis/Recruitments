@@ -16,5 +16,17 @@ namespace CAESDO.Recruitment.Core.Domain
         {
             return Validation.Validate<T>(obj);
         }
+
+        public static string GetValidationResultsAsString(T obj)
+        {
+            StringBuilder ErrorString = new StringBuilder();
+
+            foreach (ValidationResult r in GetValidationResults(obj))
+            {
+                ErrorString.AppendLine(string.Format("{0}, {1}", r.Key, r.Message));
+            }
+
+            return ErrorString.ToString();
+        }
     }
 }

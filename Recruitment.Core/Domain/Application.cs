@@ -182,6 +182,9 @@ namespace CAESDO.Recruitment.Core.Domain
                         if (p.isComplete() == false)
                             return false;
                     }
+                    if (CurrentPositions.Count == 0)
+                        return false;
+
                     break;
                 case ApplicationStepType.Education:
                     foreach (Education edu in Education)
@@ -189,6 +192,9 @@ namespace CAESDO.Recruitment.Core.Domain
                         if (edu.isComplete() == false)
                             return false;
                     }
+                    if (Education.Count == 0)
+                        return false;
+
                     break;
                 case ApplicationStepType.Survey:
                     foreach (Survey s in Surveys)
@@ -196,6 +202,9 @@ namespace CAESDO.Recruitment.Core.Domain
                         if (s.isComplete() == false)
                             return false;
                     }
+                    if (Surveys.Count == 0)
+                        return false;
+
                     break;
                 case ApplicationStepType.References:
                     foreach (Reference r in References)
@@ -203,6 +212,9 @@ namespace CAESDO.Recruitment.Core.Domain
                         if (r.isComplete() == false)
                             return false;
                     }
+                    if (References.Count == 0)
+                        return false;
+
                     break;
                 default:
                     return false;

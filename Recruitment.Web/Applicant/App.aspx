@@ -105,7 +105,7 @@
                         </td>
                         <td align="right"  >
                             <br />
-                            <asp:Button ID="btnContactSave" runat="server" Text="Update" /></td>
+                            <asp:Button ID="btnContactSave" runat="server" Text="Update" OnClick="btnContactSave_Click" /></td>
                     </tr>
                 </table>
             </asp:View>
@@ -150,7 +150,7 @@
                         </td>
                         <td align="right"  >
                             <br />
-                            <asp:Button ID="btnEducation" runat="server" Text="Update" /></td>
+                            <asp:Button ID="btnEducationSave" runat="server" Text="Update" OnClick="btnEducationSave_Click" /></td>
                     </tr>
                 </table>
             </asp:View>
@@ -239,19 +239,107 @@
             </asp:View>
             
             <asp:View ID="viewResume" runat="server">
-                Resume
+                 <span class="boxTitle"><asp:Image ID="imgResume" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />Resume</span><br />
+                <table class="box" style="width:500px; height: 350px;" cellpadding="5">
+                    <tr>
+                        <td colspan="2"><br /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            Please upload your file as a PDF Document. Maximum file size allowed is 10 MB. 
+                        </td>                       
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <asp:FileUpload ID="fileResume" runat="server" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td   align="right">
+                        </td>
+                        <td align="right"  >
+                            <br />
+                            <asp:Button ID="btnResume" runat="server" Text="Upload" /></td>
+                    </tr>
+                </table>
             </asp:View>
         
             <asp:View ID="viewCoverLetter" runat="server">
-                Cover Letter
+                <span class="boxTitle"><asp:Image ID="imgCoverLetter" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />Cover Letter</span><br />
+                <table class="box" style="width:500px; height: 350px;" cellpadding="5">
+                    <tr>
+                        <td colspan="2"><br /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            Please upload your file as a PDF Document. Maximum file size allowed is 10 MB. 
+                        </td>                       
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <asp:FileUpload ID="fileCoverLetter" runat="server" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td   align="right">
+                        </td>
+                        <td align="right"  >
+                            <br />
+                            <asp:Button ID="btnCoverLetter" runat="server" Text="Upload" /></td>
+                    </tr>
+                </table>
             </asp:View>
         
             <asp:View ID="viewResearchInterests" runat="server">
-                Research Interests
+                <span class="boxTitle"><asp:Image ID="imgResearchInterests" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />Research Interests</span><br />
+                <table class="box" style="width:500px; height: 350px;" cellpadding="5">
+                    <tr>
+                        <td colspan="2"><br /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            Please upload your file as a PDF Document. Maximum file size allowed is 10 MB. 
+                        </td>                       
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <asp:FileUpload ID="fileResearchInterests" runat="server" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td   align="right">
+                        </td>
+                        <td align="right"  >
+                            <br />
+                            <asp:Button ID="btnResearchInterests" runat="server" Text="Upload" /></td>
+                    </tr>
+                </table>
             </asp:View>
             
             <asp:View ID="viewTranscripts" runat="server">
-                Transcripts
+                <span class="boxTitle"><asp:Image ID="imgTranscripts" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />Transcripts</span><br />
+                <table class="box" style="width:500px; height: 350px;" cellpadding="5">
+                    <tr>
+                        <td colspan="2"><br /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            Please upload your file as a PDF Document. Maximum file size allowed is 10 MB. 
+                        </td>                       
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <asp:FileUpload ID="fileTranscripts" runat="server" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td   align="right">
+                        </td>
+                        <td align="right"  >
+                            <br />
+                            <asp:Button ID="btnTranscripts" runat="server" Text="Upload" /></td>
+                    </tr>
+                </table>
             </asp:View>
             
             <asp:View ID="viewConfidentialSurvey" runat="server">
@@ -272,25 +360,39 @@
                         </td>
                     </tr>
                     <tr>
-                        <td   align="right">
+                        <td   align="right" valign="top">
                             Ethnicity:</td>
                         <td  >
-                            <asp:Repeater ID="reptConfidentialSurveyEthnicity" runat="server" DataSourceID="ObjectDataEthnicity">
-                                <ItemTemplate>    
-                                    <asp:RadioButton ID="rbtnConfidentialSurveyEthnicity" runat="server" Text='<%# Eval("EthnicityValue") %>' />
-                                </ItemTemplate>
-                                <SeparatorTemplate>
-                                    <br />
-                                </SeparatorTemplate>
-                            </asp:Repeater>
-                            <asp:ObjectDataSource ID="ObjectDataEthnicity" runat="server"
-                                SelectMethod="GetAll" TypeName="CAESDO.Recruitment.Data.NHibernateDaoFactory+EthnicityDao">
-                            </asp:ObjectDataSource>
+                            American Indian
+                            <br />
+                                <asp:RadioButton ID="rbtnAmericanIndian" runat="server" GroupName="Ethnicity" Text="American Indian/Alaskan Native" />
+                                (specify tribal affiliation: <asp:TextBox ID="txtAmericanIndian" runat="server" ></asp:TextBox>)
+                            <br />
+                            Asian/Pacific Islander
+                            <br />
+                                <asp:RadioButton ID="rbtnChinese" runat="server" GroupName="Ethnicity" Text="Chinese/Chinese-American" /><br />
+                                <asp:RadioButton ID="rbtnPakistani" runat="server" GroupName="Ethnicity" Text="East Indian/Pakistani" /><br />
+                                <asp:RadioButton ID="rbtnJapanese" runat="server" GroupName="Ethnicity" Text="Japanese/Japanese-American" /><br />
+                                <asp:RadioButton ID="rbtnAsian" runat="server" GroupName="Ethnicity" Text="Other Asian (including the Far East, Korea, Southeast Asian or Pacific Islands, Samoa)" />
+                            <br />
+                            Black
+                            <br />
+                                <asp:RadioButton ID="rbtnBlack" runat="server" GroupName="Ethnicity" Text="Black/African-American" />
+                            <br />
+                            Hispanic (including Black individuals whose origins are Hispanic)
+                            <br />
+                                <asp:RadioButton ID="rbtnLatino" runat="server" GroupName="Ethnicity" Text="Latin-American/Latino (including Cuban and Puerto Rican)" /><br />
+                                <asp:RadioButton ID="rbtnMexican" runat="server" GroupName="Ethnicity" Text="Mexican/Mexican-American/Chicano" /><br />
+                                <asp:RadioButton ID="rbtnSpanish" runat="server" GroupName="Ethnicity" Text="Other Spanish/Spanish-American" />
+                            <br />
+                            White
+                            <br />
+                                <asp:RadioButton ID="rbtnWhite" runat="server" GroupName="Ethnicity" Text="White/Caucasian (including the Middle East)" />
                         </td>
                     </tr>
                     <tr>
                         <td   align="right">
-                            Institution:</td>
+                            Recruitment Source:</td>
                         <td  >
                             <asp:TextBox ID="TextBox3" runat="server" MaxLength="100"></asp:TextBox>
                         </td>

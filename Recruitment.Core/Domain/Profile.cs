@@ -111,7 +111,6 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private DateTime? _LastUpdated;
 
-        [TypeConversionValidator(typeof(DateTime))]
         [IgnoreNulls]
         public virtual DateTime? LastUpdated
         {
