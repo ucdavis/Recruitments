@@ -123,7 +123,7 @@
 
         function loader(o) {
             if (options.loaderId) {
-                var l = $('input[@rel="' + options.randomElement + '"]').parent().find('.loader');
+                var l = $('input[rel="' + options.randomElement + '"]').parent().find('.loader');
                 if (o == 'hide') {
                     l.hide();
                 }
