@@ -130,8 +130,6 @@
         OldValuesParameterFormatString="original_{0}" SelectMethod="GetEmailTemplates" 
         TypeName="CAESDO.Recruitment.BLL.TemplateTypeBLL"></asp:ObjectDataSource>
     
-    <div style="width:818px; height:389px; background:url(../Images/envelope.jpg) no-repeat; padding:50px;">
-    
     <script src="../JS/tiny_mce/tiny_mce.js" type="text/javascript"></script>
     <script type="text/javascript" language="javascript">
         var EmailTemplateEditor = null;
@@ -161,6 +159,11 @@
         //Setup the events around template creation
         $(document).ready(function() {
             $("select[id$=dlistEmailTemplates]").change(TemplateSectionChanged);
+
+            $('#ReferenceTemplateHelp').bt('When creating a form letter you can click the fields bellow and the information will auto populate the reference template', {
+                trigger: 'click',
+                positions: 'top'
+            });
         });
 
         function TemplateSectionChanged() {
@@ -181,12 +184,30 @@
         }
         
     </script>
-    
-    <div class="blueletter">
-       <asp:TextBox ID="txtEmailTemplate" runat="server" CssClass="richTextEditor" TextMode="MultiLine" Width="100%"></asp:TextBox>
-       <br />
-    </div>
-    </div>
+
+        <div>
+            <strong>Template Fields:</strong><img alt="Reference Template Help" id="ReferenceTemplateHelp"
+                src="../Images/question_blue.png" /><br class="bottom_space" />
+            <a href="javascript:InsertTemplateText('<%= GetGlobalResourceObject("RecruitmentResources", "ApplicantNameValue") %>');">
+                <%= GetGlobalResourceObject("RecruitmentResources", "ApplicantNameText")%><br />
+            </a><a href="javascript:InsertTemplateText('<%= GetGlobalResourceObject("RecruitmentResources", "DeadlineValue") %>');">
+                <%= GetGlobalResourceObject("RecruitmentResources", "DeadlineText")%><br />
+            </a><a href="javascript:InsertTemplateText('<%= GetGlobalResourceObject("RecruitmentResources", "PositionTitleValue") %>');">
+                <%= GetGlobalResourceObject("RecruitmentResources", "PositionTitleText")%><br />
+            </a><a href="javascript:InsertTemplateText('<%= GetGlobalResourceObject("RecruitmentResources", "PrimaryDepartmentValue") %>');">
+                <%= GetGlobalResourceObject("RecruitmentResources", "PrimaryDepartmentText")%><br />
+            </a><a href="javascript:InsertTemplateText('<%= GetGlobalResourceObject("RecruitmentResources", "RecruitmentAdminNameValue") %>');">
+                <%= GetGlobalResourceObject("RecruitmentResources", "RecruitmentAdminNameText")%><br />
+            </a>
+        </div>
+        <div style="width: 818px; height: 389px; background: url(../Images/envelope.jpg) no-repeat;
+            padding: 50px;">
+            <div class="blueletter">
+                <asp:TextBox ID="txtEmailTemplate" runat="server" CssClass="richTextEditor" TextMode="MultiLine"
+                    Width="100%"></asp:TextBox>
+                <br />
+            </div>
+        </div>
     <br />
     </asp:Panel>
 
