@@ -15,7 +15,7 @@ namespace CAESDO.Recruitment.Test
     ///to contain all CAESDO.Recruitment.Core.Domain.ChangeTracking Unit Tests
     ///</summary>
     [TestClass()]
-    public class ChangeTrackingTest
+    public class ChangeTrackingTest : DatabaseTestBase
     {
 
 
@@ -83,31 +83,13 @@ namespace CAESDO.Recruitment.Test
         }
 
         [TestMethod]
-        public void ValidateAllTest()
-        {
-            List<ChangeTracking> cList = NHibernateHelper.daoFactory.GetChangeTrackingDao().GetAll();
-
-            Assert.AreNotEqual<int>(0, cList.Count);
-
-            foreach (ChangeTracking c in cList)
-            {
-                this.TestContext.WriteLine("TrackingID = {0}", c.ID);
-
-                foreach (ValidationResult res in ValidateBO<ChangeTracking>.GetValidationResults(c))
-                {
-                    this.TestContext.WriteLine("Key = {0}, Message = {1}", res.Key, res.Message);
-                }
-
-                Assert.IsTrue(ValidateBO<ChangeTracking>.isValid(c));
-            }
-        }
-
-        [TestMethod]
         public void CascadeSaveTest()
         {
             ChangeTracking target = NHibernateHelper.daoFactory.GetChangeTrackingDao().GetById(StaticProperties.ExistingTrackingID, false);
 
             Assert.IsFalse(target.IsTransient());
+
+            if ( target.ChangedProperties == null ) target.ChangedProperties = new List<ChangedProperty>();
 
             int numProperties = target.ChangedProperties.Count;
 
@@ -200,24 +182,29 @@ namespace CAESDO.Recruitment.Test
             Assert.IsTrue(isDeleted);
         }
 
-        /// <summary>
-        ///A test for ChangeType
-        ///</summary>
-        [TestMethod()]
-        public void ChangeTypeTest()
+        public override void LoadData()
         {
-            //ChangeTracking target = new ChangeTracking();
+            base.LoadData();
 
-            //ChangeType val = null; // TODO: Assign to an appropriate value for the property
+            //Create a default change tracking insance
+            var changeType = new ChangeType { Type = StaticProperties.TestString };
 
-            //target.ChangeType = val;
+            var changeTracking = new ChangeTracking
+                               {
+                                   ChangeDate = DateTime.Now,
+                                   ObjectChanged = StaticProperties.TestString,
+                                   ObjectChangedID = StaticProperties.TestString,
+                                   UserName = StaticProperties.TestString,
+                                   ChangeType = changeType
+                               };
 
+            using (var ts = new TransactionScope())
+            {
+                GenericBLL<ChangeType,int>.EnsurePersistent(ref changeType);
+                GenericBLL<ChangeTracking,int>.EnsurePersistent(ref changeTracking);
 
-            //Assert.AreEqual(val, target.ChangeType, "CAESDO.Recruitment.Core.Domain.ChangeTracking.ChangeType was not set correctly.");
-            Assert.Inconclusive("Verify the correctness of this test method.");
+                ts.CommitTransaction();
+            }
         }
-
     }
-
-
 }
