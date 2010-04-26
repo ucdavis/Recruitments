@@ -14,8 +14,15 @@ Default skin template. The following skins are provided as examples only.
 <asp:Image runat="server" ImageUrl="~/images/image1.jpg" />
 --%>
 
-<asp:GridView runat="server" SkinId="gridViewPositions" BackColor="White">
-        <RowStyle BackColor="#EEEEEE" CssClass="dottedBotBorder" Height="60px" Wrap="True" />
+<asp:GridView runat="server" SkinId="gridViewPositions" BackColor="White" Width="100%">
+        <RowStyle BackColor="#EEEEEE" CssClass="dottedBotBorder" Wrap="True" />
         <HeaderStyle CssClass="dottedBotBorder" Font-Size="1.2em" ForeColor="#0B65C5" Height="3em" />
         <AlternatingRowStyle BackColor="White" />
+</asp:GridView>
+
+
+<asp:GridView runat="server" SkinId="gridViewUM" BackColor="White" Width="100%">
+        <RowStyle BackColor="White" CssClass="dottedBotBorder" Wrap="True" />
+        <HeaderStyle CssClass="solidHeader" Font-Size="1.2em" ForeColor="#133659" Height="3em" />
+        <AlternatingRowStyle BackColor="#EEEEEE" />
 </asp:GridView>

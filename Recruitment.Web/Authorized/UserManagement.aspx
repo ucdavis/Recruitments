@@ -1,11 +1,10 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="UserManagement.aspx.cs" Inherits="CAESDO.Recruitment.Web.UserManagement" MasterPageFile="~/MasterPage.master" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="UserManagement.aspx.cs" Inherits="CAESDO.Recruitment.Web.UserManagement" MasterPageFile="~/MasterPage.master" Theme="MainTheme" %>
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
 <Ajax:UpdatePanel ID="updateAddUser" runat="server" UpdateMode="Conditional">
 <ContentTemplate>
- <asp:Button ID="btnAddUser" runat="server" Text="Add A User" />
- 
+  <asp:ImageButton ID="btnAddUser" runat="server" ImageUrl="~/Images/ibAddUser.gif" />
  <asp:Panel ID="pnlAddUser" runat="server" CssClass="modalPopup" style="display:none;">
     Add A User Here
     <br />
@@ -77,27 +76,27 @@
 
  
         <br />
-        <br />
         User List:
         
         <Ajax:UpdatePanel ID="updateUserGrid" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
         
-            <asp:GridView ID="GViewUsers" runat="server" DataKeyNames="Login" CellPadding="4" ForeColor="#333333" GridLines="None" DataSourceID="ObjectDataSource1" AutoGenerateColumns="False" OnSelectedIndexChanged="GViewUsers_SelectedIndexChanged">
+            <asp:GridView ID="GViewUsers" skinID="gridViewUM" runat="server" DataKeyNames="Login" CellPadding="4" ForeColor="#333333" GridLines="None" DataSourceID="ObjectDataSource1" AutoGenerateColumns="False" OnSelectedIndexChanged="GViewUsers_SelectedIndexChanged">
                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                 <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                 <EditRowStyle BackColor="#999999" />
                 <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
                 <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-                <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
-                    <asp:CommandField ShowSelectButton="True" />
-                    <asp:BoundField DataField="Login" HeaderText="UserName" />
-                    <asp:BoundField DataField="Role" HeaderText="Role" />
-                    <asp:BoundField DataField="LastName" HeaderText="LastName" />
-                    <asp:BoundField DataField="FirstName" HeaderText="FirstName" />
-                    <asp:BoundField DataField="EmployeeID" HeaderText="EmployeeID" />
+                    <asp:CommandField ShowSelectButton="True" ButtonType="Image" SelectImageUrl="~/Images/select.gif" >
+                        <ItemStyle CssClass="paddingLeft" />
+                    </asp:CommandField>
+                    <asp:BoundField DataField="Login" HeaderText="UserName"><HeaderStyle HorizontalAlign="Left"/></asp:BoundField>
+                    <asp:BoundField DataField="Role" HeaderText="Role"><HeaderStyle HorizontalAlign="Left" Width="100px" /></asp:BoundField>
+                    <asp:BoundField DataField="LastName" HeaderText="LastName"><HeaderStyle HorizontalAlign="Left" Width="150px" /></asp:BoundField>
+                    <asp:BoundField DataField="FirstName" HeaderText="FirstName"><HeaderStyle HorizontalAlign="Left" Width="150px" /></asp:BoundField>
+                    <asp:BoundField DataField="EmployeeID" HeaderText="EmployeeID"><HeaderStyle HorizontalAlign="Left"/></asp:BoundField>
                 </Columns>
             </asp:GridView>
             <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetUsersInApplication" TypeName="CAESDO.Recruitment.CatbertManager"></asp:ObjectDataSource>

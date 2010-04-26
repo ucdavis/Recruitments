@@ -51,6 +51,11 @@ html, #aspnetForm
 	padding:20px;
 }
 
+.solidHeader
+{
+	background-image: url(Images/gridViewBg.gif);
+	background-repeat: repeat-x;
+}
 .headingBlue
 {
 	color:#0b65c5;
@@ -59,6 +64,12 @@ html, #aspnetForm
 }
 
 /* Adds dotted border to seperate rows in gridview */
+#ctl00_ContentPlaceHolder1_GViewUsers td, #ctl00_ContentPlaceHolder1_gViewPositions td
+{
+	border-bottom: dotted 1px #333333;
+	height: 60px;
+}
+
 .dottedBotBorder
 {
 	border-bottom: dotted 1px #333333;
@@ -67,7 +78,7 @@ html, #aspnetForm
 /* Rows turn to light blue on hover */
 .dottedBotBorder:hover td
 {
-	background-color: #e3edf7;
+	background-color: #e8f2fb
 }
 
 /* Link colors */

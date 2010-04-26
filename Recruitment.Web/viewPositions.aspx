@@ -5,7 +5,7 @@
     <asp:ImageButton ID="ibtnCreatePosition" runat="server" ImageUrl="~/Images/ibCreatePosition.gif" PostBackUrl="~/Authorized/addPosition.aspx" /><br />
     <br />
 
-    <asp:GridView ID="gViewPositions" skinID="gridViewPositions" runat="server" GridLines="None" CellPadding="0" DataKeyNames="ID" AutoGenerateColumns="False" DataSourceID="ObjectDataOpenPositions" Width="100%">
+    <asp:GridView ID="gViewPositions" skinID="gridViewUM" runat="server" GridLines="None" CellPadding="0" DataKeyNames="ID" AutoGenerateColumns="False" DataSourceID="ObjectDataOpenPositions" Width="100%">
         <Columns>
             <asp:TemplateField HeaderText="Position/Department" SortExpression="PositionTitle">
                 <ItemTemplate>
@@ -14,10 +14,10 @@
                     <asp:Label ID="lblDepartmentList" runat="server" Text='<%# Bind("DepartmentList") %>'></asp:Label>
                 </ItemTemplate>
                 <ItemStyle CssClass="paddingLeft" />
-                <HeaderStyle HorizontalAlign="Left" />
+                <HeaderStyle HorizontalAlign="Left" CssClass="paddingLeft" />
             </asp:TemplateField>
             <asp:BoundField DataField="Deadline" DataFormatString="{0:d}" HeaderText="Deadline"
-                HtmlEncode="False" SortExpression="Deadline" >
+                HtmlEncode="False" SortExpression="Deadline"  >
                 <HeaderStyle HorizontalAlign="Left" Width="100px" />
             </asp:BoundField>
             
