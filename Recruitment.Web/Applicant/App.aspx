@@ -200,8 +200,8 @@
                         </td>
                         <td>
                             <asp:TextBox ID="txtContactEmail" runat="server" MaxLength="50"></asp:TextBox>
-                            <asp:RequiredFieldValidator id="reqValContactEmail" runat="server" ControlToValidate="txtContactEmail" ErrorMessage="* Email Required"></asp:RequiredFieldValidator>
-                            <asp:RegularExpressionValidator ID="regValContactEmail" runat="server" ControlToValidate="txtContactEmail" ErrorMessage="* Email Format Not Recognized" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                            <asp:RequiredFieldValidator id="reqValContactEmail" runat="server" ControlToValidate="txtContactEmail" ErrorMessage="* Email Required" Display="dynamic"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="regValContactEmail" runat="server" ControlToValidate="txtContactEmail" ErrorMessage="* Email Format Not Recognized" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" Display="dynamic"></asp:RegularExpressionValidator>
                         </td>
                     </tr>
                     <tr>
@@ -227,8 +227,8 @@
                             <asp:TextBox ID="txtEducationPHDDate" runat="server"></asp:TextBox> <asp:Image ID="imgEducationPHDDateCalendar" runat="server" ImageUrl="~/Images/icon.calendar.png" AlternateText="Click to show calendar" />
                             <AjaxControlToolkit:CalendarExtender ID="calEducationPHDDate" runat="server" TargetControlID="txtEducationPHDDate" PopupButtonID="imgEducationPHDDateCalendar"></AjaxControlToolkit:CalendarExtender>
                             
-                            <asp:RequiredFieldValidator ID="reqValEducationPHDDate" runat="server" ControlToValidate="txtEducationPHDDate" ErrorMessage="* PH.D. Date Required"></asp:RequiredFieldValidator>
-                            <asp:CompareValidator ID="comValEducationPHDDate" Type="Date" runat="server" Operator="DataTypeCheck" ControlToValidate="txtEducationPHDDate" ErrorMessage="* PH.D. Date Must Be In mm/dd/yyyy Format"></asp:CompareValidator>
+                            <asp:RequiredFieldValidator ID="reqValEducationPHDDate" runat="server" ControlToValidate="txtEducationPHDDate" ErrorMessage="* PH.D. Date Required" Display="dynamic"></asp:RequiredFieldValidator>
+                            <asp:CompareValidator ID="comValEducationPHDDate" Type="Date" runat="server" Operator="DataTypeCheck" ControlToValidate="txtEducationPHDDate" ErrorMessage="* PH.D. Date Must Be In mm/dd/yyyy Format" Display="dynamic"></asp:CompareValidator>
                             
                         </td>
                     </tr>
@@ -439,8 +439,8 @@
                                 Phone Number:</td>
                             <td  >
                                 <asp:TextBox ID="txtReferencesPhone" runat="server" MaxLength="20" EnableViewState="false"></asp:TextBox>
-                                <asp:RequiredFieldValidator id="reqValReferencesPhone" ControlToValidate="txtReferencesPhone" ValidationGroup="References" ErrorMessage="* Phone Required" runat="server"/>
-                                <asp:RegularExpressionValidator ID="regValReferencesPhone" runat="server" ControlToValidate="txtReferencesPhone" ValidationGroup="References" ErrorMessage="* Phone Format Not Valid" ValidationExpression="((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}"></asp:RegularExpressionValidator>
+                                <asp:RequiredFieldValidator id="reqValReferencesPhone" ControlToValidate="txtReferencesPhone" ValidationGroup="References" ErrorMessage="* Phone Required" runat="server" Display="dynamic"/>
+                                <asp:RegularExpressionValidator ID="regValReferencesPhone" runat="server" ControlToValidate="txtReferencesPhone" ValidationGroup="References" ErrorMessage="* Phone Format Not Valid" ValidationExpression="((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}" Display="dynamic"></asp:RegularExpressionValidator>
                             </td>
                         </tr>
                         <tr>
@@ -448,8 +448,8 @@
                                 Email:</td>
                             <td  >
                                 <asp:TextBox ID="txtReferencesEmail" runat="server" MaxLength="100" EnableViewState="false"></asp:TextBox>
-                                <asp:RequiredFieldValidator id="reqValReferencesEmail" ControlToValidate="txtReferencesEmail" ValidationGroup="References" ErrorMessage="* Email Required" runat="server"/>
-                                <asp:RegularExpressionValidator ID="regValReferencesEmail" runat="server" ValidationGroup="References" ErrorMessage="* Email Format Not Required" ControlToValidate="txtReferencesEmail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                                <asp:RequiredFieldValidator id="reqValReferencesEmail" ControlToValidate="txtReferencesEmail" ValidationGroup="References" ErrorMessage="* Email Required" runat="server" Display="dynamic"/>
+                                <asp:RegularExpressionValidator ID="regValReferencesEmail" runat="server" ValidationGroup="References" ErrorMessage="* Email Format Not Required" ControlToValidate="txtReferencesEmail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" Display="dynamic"></asp:RegularExpressionValidator>
                             </td>
                         </tr>
                         <tr>

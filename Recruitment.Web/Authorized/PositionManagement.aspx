@@ -36,8 +36,8 @@
                 <asp:TextBox ID="txtDeadline" runat="server"></asp:TextBox> <asp:Image ID="imgDeadlineCalendar" runat="server" ImageUrl="~/Images/icon.calendar.png" AlternateText="Click to show calendar" />
                 <AjaxControlToolkit:CalendarExtender ID="calDeadline" runat="server" TargetControlID="txtDeadline" PopupButtonID="imgDeadlineCalendar"></AjaxControlToolkit:CalendarExtender>
                 
-                <asp:RequiredFieldValidator ID="reqValDeadline" runat="server" ControlToValidate="txtDeadline" ErrorMessage="* Review Date Required"></asp:RequiredFieldValidator>
-                <asp:CompareValidator ID="comValDeadline" Type="Date" runat="server" Operator="DataTypeCheck" ControlToValidate="txtDeadline" ErrorMessage="* Review Date Format Not Valid"></asp:CompareValidator>
+                <asp:RequiredFieldValidator ID="reqValDeadline" runat="server" ControlToValidate="txtDeadline" ErrorMessage="* Review Date Required" Display="dynamic"></asp:RequiredFieldValidator>
+                <asp:CompareValidator ID="comValDeadline" Type="Date" runat="server" Operator="DataTypeCheck" ControlToValidate="txtDeadline" ErrorMessage="* Review Date Format Not Valid" Display="dynamic"></asp:CompareValidator>
                 
             </td>
         </tr>
@@ -107,8 +107,8 @@
             <td>
                 <asp:TextBox ID="txtHREmail" runat="server" MaxLength="100"></asp:TextBox>
                 
-                <asp:RequiredFieldValidator id="reqValHREmail" ControlToValidate="txtHREmail" ErrorMessage="* Email Required" runat="server"/>                
-                <asp:RegularExpressionValidator ID="regValHREmail" runat="server" ErrorMessage="* Email Format Not Valid" ControlToValidate="txtHREmail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                <asp:RequiredFieldValidator id="reqValHREmail" ControlToValidate="txtHREmail" ErrorMessage="* Email Required" runat="server" Display="dynamic"/>                
+                <asp:RegularExpressionValidator ID="regValHREmail" runat="server" ErrorMessage="* Email Format Not Valid" ControlToValidate="txtHREmail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" Display="dynamic"></asp:RegularExpressionValidator>
             </td>
         </tr>
         <tr>
@@ -166,8 +166,8 @@
                 <AjaxControlToolkit:NumericUpDownExtender ID="numPublications" runat="server" Width="146" TargetControlID="txtPublications"></AjaxControlToolkit:NumericUpDownExtender>
                 
                 
-                <asp:CompareValidator ID="comValPublications" runat="server" ErrorMessage="* Number of Publications Can Not Be Negative" ControlToValidate="txtPublications" ValueToCompare="0" Type="Integer" Operator="greaterThanEqual"></asp:CompareValidator>
-                <asp:RequiredFieldValidator ID="reqValPublications" runat="server" ErrorMessage="* Publications Required" ControlToValidate="txtPublications"></asp:RequiredFieldValidator>    
+                <asp:CompareValidator ID="comValPublications" runat="server" ErrorMessage="* Number of Publications Can Not Be Negative" ControlToValidate="txtPublications" ValueToCompare="0" Type="Integer" Operator="greaterThanEqual" Display="dynamic"></asp:CompareValidator>
+                <asp:RequiredFieldValidator ID="reqValPublications" runat="server" ErrorMessage="* Publications Required" ControlToValidate="txtPublications" Display="dynamic"></asp:RequiredFieldValidator>    
             </td>
         </tr>
         <tr>
@@ -177,8 +177,8 @@
                 <asp:TextBox ID="txtReferences" runat="server"></asp:TextBox>   
                 <AjaxControlToolkit:NumericUpDownExtender ID="numReferences" runat="server" Width="146" TargetControlID="txtReferences"></AjaxControlToolkit:NumericUpDownExtender>
                 
-                <asp:CompareValidator ID="comValReferences" runat="server" ErrorMessage="* Number of References Can Not Be Negative" ControlToValidate="txtReferences" ValueToCompare="0" Type="Integer" Operator="GreaterThanEqual"></asp:CompareValidator>
-                <asp:RequiredFieldValidator ID="reqValReferences" runat="server" ErrorMessage="* Reference Required" ControlToValidate="txtReferences"></asp:RequiredFieldValidator>                    
+                <asp:CompareValidator ID="comValReferences" runat="server" ErrorMessage="* Number of References Can Not Be Negative" ControlToValidate="txtReferences" ValueToCompare="0" Type="Integer" Operator="GreaterThanEqual" Display="dynamic"></asp:CompareValidator>
+                <asp:RequiredFieldValidator ID="reqValReferences" runat="server" ErrorMessage="* Reference Required" ControlToValidate="txtReferences" Display="dynamic"></asp:RequiredFieldValidator>                    
             </td>
         </tr>
         <tr>
