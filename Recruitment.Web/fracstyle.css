@@ -1,0 +1,55 @@
+/* 
+FRAC 1.0
+CSS by Viet Tran
+May 2007
+ */
+
+body 
+{
+	background:url(Images/background.jpg) repeat-x #e8e3d0;
+	height:100%;
+	font-size:0.8em;
+	font-family: Trebuchet MS, Arial, Georgia;
+}
+
+html, body, #wrapper, #form1
+{
+	height:100%;
+	margin:0;
+}
+
+#wrapper 
+{
+	width: 80%;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+#content
+{
+	clear: both;
+	background-color: #fff;
+	border-left: solid 1px #ccc8b5;
+	border-right: solid 1px #ccc8b5;
+	height:100%;
+	margin-top:7px;
+}
+
+#breadcrumbs
+{
+	background-color:#e3edf7;
+	margin: 1px;
+}
+
+#bodytext
+{
+	clear:both;
+	padding:20px;
+}
+
+.headingBlue
+{
+	color:#0b65c5;
+	font-size: 1.2em;
+	font-weight: bold;
+}
