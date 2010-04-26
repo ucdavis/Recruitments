@@ -181,7 +181,7 @@ namespace CAESDO.Recruitment.Web
             //Try to send the email -- if there are errors, return the email of the offending reference
             try
             {
-                System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage(currentPosition.HREmail, reference.Email, "Reference Request for Application" + position.PositionTitle, bodyText);
+                System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage(currentPosition.HREmail, reference.Email, "Reference Request for " + application.AssociatedProfile.FullName, bodyText);
                 message.Bcc.Add(WebConfigurationManager.AppSettings["emailFromEmail"]); //BCC the automated email account
                 message.IsBodyHtml = true;
                 

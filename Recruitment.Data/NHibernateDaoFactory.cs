@@ -320,7 +320,15 @@ namespace CAESDO.Recruitment.Data
 
         public class UnitDao : AbstractNHibernateDao<Unit, string>, IUnitDao { }
 
-        public class ReferenceDao : AbstractNHibernateDao<Reference, int>, IReferenceDao { }
+        public class ReferenceDao : AbstractNHibernateDao<Reference, int>, IReferenceDao {
+            public Reference GetReferenceByUploadID(string UploadID)
+            {
+                ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(Reference))
+                    .Add(Expression.Eq("UploadID", UploadID));
+
+                return criteria.UniqueResult<Reference>();
+            }
+        }
 
         public class TemplateTypeDao : AbstractNHibernateDao<TemplateType, int>, ITemplateTypeDao { }
 

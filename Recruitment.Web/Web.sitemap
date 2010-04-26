@@ -8,6 +8,8 @@
         <siteMapNode url="Applicant/ViewApplicationsInProgress.aspx" title="View Applications In Progress" />
       </siteMapNode>
 
+      <siteMapNode url="UploadReference.aspx" title="Upload Reference" />
+
       <siteMapNode url="Authorized/AdminIndex.aspx" title="Administration">
         <siteMapNode url="Authorized/viewPositionsPending.aspx" title="View Pending Positions" />
         <siteMapNode url="Authorized/PositionManagement.aspx" title="Add/Modify Position" />

@@ -97,7 +97,9 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
 
     public interface IUnitDao : IDao<Unit, string> { }
 
-    public interface IReferenceDao : IDao<Reference, int> { }
+    public interface IReferenceDao : IDao<Reference, int> {
+        Reference GetReferenceByUploadID(string UniqueID);
+    }
 
     public interface ITemplateTypeDao : IDao<TemplateType, int> { }
 

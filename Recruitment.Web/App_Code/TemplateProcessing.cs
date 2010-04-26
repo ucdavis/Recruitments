@@ -17,7 +17,7 @@ namespace CAESDO.Recruitment
     /// </summary>
     public class TemplateProcessing
     {
-        private const string STR_UploadReferenceURL = "/Authorized/UploadReference.aspx";
+        private const string STR_UploadReferenceURL = "/UploadReference.aspx";
 
         public TemplateProcessing()
         {
