@@ -37,7 +37,7 @@
                                 </asp:Panel>
                             </AnonymousTemplate>
                             <LoggedInTemplate>
-                                <asp:Panel ID="pnlUserName" runat="server" style="display:inline;">&nbsp;&nbsp;&nbsp; Welcome Iglasias, Enrique! 
+                                <asp:Panel ID="pnlUserName" runat="server" style="display:inline;">&nbsp;&nbsp;&nbsp; Welcome: <%= p.LastName + ", " + p.FirstName %> 
                                     <asp:Image ID="imgDownArrow" runat="server" AlternateText="down arrow" ImageUrl="~/Images/downarrow.gif" />
                                 </asp:Panel> 
                                 <AjaxControlToolkit:DropDownExtender ID="ddUserName" TargetControlID="pnlUserName" DropDownControlID="pnlUserNameDropOptions" runat="server" HighlightBackColor="#eeeeee">

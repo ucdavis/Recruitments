@@ -14,9 +14,46 @@ namespace CAESDO
 {
     public partial class login : System.Web.UI.Page
     {
-        protected void Page_Load(object sender, EventArgs e)
+        private const string STR_ReturnURL = "ReturnURL";
+        private const string STR_CAS_URL = "https://cas.ucdavis.edu:8443/cas/";
+        private const string STR_KERBEROS_URL = "https://secureweb.ucdavis.edu/form-auth/sendback?";
+
+        private static bool GetUseKerberos()
         {
             bool useKerberos = true;
+            return useKerberos;
+        }
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            //Grab the return URL
+            string returnURL = Request.QueryString[STR_ReturnURL] ?? string.Empty;
+
+            if (returnURL.Contains(@"/Authorized/"))
+            {
+                //We know that the user needs an DistAuth login
+                DistAuthLogin();
+            }
+            else if (returnURL.Contains("/Applicant/"))
+            {
+                //We know the user needs a Membership login, so hide the DistAuth option
+                pnlKerberosLogin.Visible = false;
+            }
+        }
+
+        /// <summary>
+        /// Performs a distAuth login
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        protected void lbtnKerberosLogin_Click(object sender, EventArgs e)
+        {
+            DistAuthLogin();
+        }
+
+        private void DistAuthLogin()
+        {
+            bool useKerberos = GetUseKerberos();
 
             if (useKerberos)
             {
@@ -34,7 +71,7 @@ namespace CAESDO
         /// </summary>
         private void CASLogin()
         {
-            string loginUrl = "https://cas.ucdavis.edu:8443/cas/";
+            string loginUrl = STR_CAS_URL;
 
             // get the context from the source
             HttpContext context = HttpContext.Current;
@@ -96,7 +133,7 @@ namespace CAESDO
                         FormsAuthentication.SetAuthCookie(kerberos, false);
 
                         // redirect to original url
-                        string returnURL = context.Request.QueryString["ReturnURL"];
+                        string returnURL = context.Request.QueryString[STR_ReturnURL];
 
                         if (returnURL == null)
                             returnURL = FormsAuthentication.DefaultUrl;
@@ -119,12 +156,12 @@ namespace CAESDO
             HttpCookie authCookie = System.Web.HttpContext.Current.Request.Cookies["AuthUser"];
 
             if (authCookie == null)
-                Response.Redirect("https://secureweb.ucdavis.edu/form-auth/sendback?" + Request.Url, true);
+                Response.Redirect(STR_KERBEROS_URL + Request.Url, true);
 
             //Check to see if the user is already authenticated.  
             //If so, then if there is a return url they are not authorized
             if (User.Identity.IsAuthenticated)
-                if (Request.QueryString["ReturnURL"] != null)
+                if (Request.QueryString[STR_ReturnURL] != null)
                 {
                     Response.Write("Not Authorized!");
                     return;
@@ -162,7 +199,7 @@ namespace CAESDO
                     //Now add the auth cookie
                     Response.Cookies.Add(cookie);
 
-                    string returnURL = Request.QueryString["ReturnURL"];
+                    string returnURL = Request.QueryString[STR_ReturnURL];
 
                     if (returnURL == null)
                         returnURL = FormsAuthentication.DefaultUrl;
