@@ -148,6 +148,9 @@ namespace CAESDO.Recruitment
                     if ( this._application.AppliedPosition.PrimaryDepartment.Unit != null )
                         return this._application.AppliedPosition.PrimaryDepartment.Unit.FullName;
                     break;
+                case "UploadLink":
+                    this._includeUploadPortion = false; //Don't include the default upload portion since we are including it manually here
+                    return getUploadIDPortion(); //now return the uploadID portion
                 case "Date":
                     StringBuilder date = new StringBuilder();
                     DateTime dateTime = DateTime.Now;

@@ -543,4 +543,10 @@
   <data name="txtShortDescriptionResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="UploadLink.Text" xml:space="preserve">
+    <value>Upload Link</value>
+  </data>
+  <data name="UploadLink.Value" xml:space="preserve">
+    <value>{UploadLink}</value>
+  </data>
 </root>
