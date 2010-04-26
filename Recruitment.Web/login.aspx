@@ -18,9 +18,9 @@
         PasswordRecoveryText="Forgot Password?" PasswordRecoveryUrl="~/Login/ResetPassword.aspx" UserNameLabelText="User Name/Email:">
         <TitleTextStyle Font-Bold="True" Font-Size="0em" ForeColor="White" Height="20px" />
         <InstructionTextStyle Font-Italic="True" ForeColor="Black" />
-        <TextBoxStyle Font-Size="0.8em" />
+        <TextBoxStyle  />
         <LoginButtonStyle BackColor="#FFFBFF" BorderColor="#CCCCCC" BorderStyle="Solid" BorderWidth="1px"
-            Font-Names="Verdana" Font-Size="0.8em" ForeColor="#284775" />
+            Font-Names="Verdana" ForeColor="#284775" />
     </asp:Login>
     
 </asp:Content>    
