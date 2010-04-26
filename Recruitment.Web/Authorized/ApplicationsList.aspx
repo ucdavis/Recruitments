@@ -1,6 +1,12 @@
 <%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ApplicationsList.aspx.cs" Inherits="CAESDO.Recruitment.Web.Authorized_ApplicationsList" Title="Applications List" Theme="MainTheme" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-  
+
+    <Ajax:ScriptManagerProxy ID="scriptProxy" runat="server">
+        <Services>
+            <Ajax:ServiceReference Path="RecruitmentService.asmx" />
+        </Services>
+    </Ajax:ScriptManagerProxy>
+      
     <script type="text/javascript">
 
         $(document).ready(function() {
@@ -131,26 +137,37 @@
             TargetControlID="btnEmailReferences">
         </AjaxControlToolkit:ConfirmButtonExtender>
         
-        <asp:Panel ID="pnlRefernceTemplateHolder" runat="server">
-        <br /><br />
-            <span style="font-weight: bold;">View Sample Email Notification</span>
-            <br />
-            <asp:ImageButton ID="CSNImage" runat="server" ImageUrl="~/Images/show_details.jpg"
-                AlternateText="Show Details" meta:resourcekey="CSNImageResource1" />
-        </asp:Panel>
-        <asp:Panel ID="pnlReferenceTemplate" runat="server" Height="0px">
-            <div id="referenceEmail">
-                <asp:Literal ID="litReferenceTemplate" runat="server"></asp:Literal>
-                <br />
-            </div>
-        </asp:Panel>
         
-        <AjaxControlToolkit:CollapsiblePanelExtender ID="collapseEmailReference"
-            runat="server" TargetControlID="pnlReferenceTemplate" Collapsed="True"
-            CollapseControlID="pnlRefernceTemplateHolder" ExpandControlID="pnlRefernceTemplateHolder"
-            ImageControlID="CSNImage" ExpandedImage="../Images/hidedetails.jpg" CollapsedImage="../Images/show_details.jpg"
-            SuppressPostBack="True" Enabled="True">
-        </AjaxControlToolkit:CollapsiblePanelExtender>
+        <script type="text/javascript">
+
+            function GetReferenceSample() {
+                var templateText = $("#referenceEmail").html();
+
+                RecruitmentService.GetTemplatePreview(templateText, DisplayReferenceSample);
+            }
+
+            function DisplayReferenceSample(result) {
+                var newWin = window.open('', 'Preview', '');
+
+                if (newWin != null) {
+                    var doc = newWin.document;
+                    doc.write(result);
+                    doc.close();
+                }
+            }
+        
+        </script>
+
+        <br /><br />
+        <p onclick="GetReferenceSample();">
+            <img alt="PreviewIcon" id="previewSampleReferenceEmail" src="../Images/previewIcon.gif" />
+            Preview Reference Email
+        </p>
+         
+        <div id="referenceEmail" style="display:none;">
+            <asp:Literal ID="litReferenceTemplate" runat="server"></asp:Literal>
+            <br />
+        </div>
         
     </asp:Panel>
 </asp:Content>
