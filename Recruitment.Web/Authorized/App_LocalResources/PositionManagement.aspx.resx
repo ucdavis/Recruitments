@@ -326,7 +326,7 @@
     <value>Create Position</value>
   </data>
   <data name="litReferenceTemplateHelp.Text" xml:space="preserve">
-    <value>“Refer to APM Section UCD-220, Exhibit B [http://manuals.ucdavis.edu/apm/220_ExhB.htm] for model language to use in soliciting extramural evaluations for appointments in the Professorial series. See APM Section UCD-220AF, Exhibit A [http://manuals.ucdavis.edu/apm/220AF_ExhA.htm] for the evaluation criteria to be included when modifying the solicitation letter for extramural references for appointments in the Academic Federation series.”</value>
+    <value>“Refer to &lt;a href="http://manuals.ucdavis.edu/apm/220_ExhB.htm" target="_blank"&gt;APM Section UCD-220, Exhibit B&lt;/a&gt; for model language to use in soliciting extramural evaluations for appointments in the Professorial series. See &lt;a href="http://manuals.ucdavis.edu/apm/220AF_ExhA.htm" target="_blank"&gt;APM Section UCD-220AF, Exhibit A&lt;/a&gt; for the evaluation criteria to be included when modifying the solicitation letter for extramural references for appointments in the Academic Federation series.”</value>
     <comment>From Chris diMuro email</comment>
   </data>
   <data name="PageResource1.Title" xml:space="preserve">
