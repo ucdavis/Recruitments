@@ -36,6 +36,6 @@
 
     <br /><br />
     <asp:Panel ID="pnlAccess" runat="server" Visible="false">
-        <asp:Button ID="btnUpdateAccess" runat="server" Text="Update Access" />
+        <asp:Button ID="btnUpdateAccess" runat="server" Text="Update Access" OnClick="btnUpdateAccess_Click" />
     </asp:Panel>
 </asp:Content>

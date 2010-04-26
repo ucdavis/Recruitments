@@ -20,6 +20,7 @@ namespace CAESDO.Recruitment.Web
         private const string STR_CommitteeManagement = "CommitteeManagement.aspx?type=";
         private const string STR_Committee = "committee";
         private const string STR_Faculty = "faculty";
+        private const string STR_CBOXALLOW = "chkAllowMember";
 
         public string committeeType
         {
@@ -105,7 +106,7 @@ namespace CAESDO.Recruitment.Web
         protected void gviewMembers_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             GridView gview = (GridView)sender;
-            CheckBox cbox = e.Row.FindControl("chkAllowMember") as CheckBox;
+            CheckBox cbox = e.Row.FindControl(STR_CBOXALLOW) as CheckBox;
 
             int DepartmentMemberID;
             DepartmentMember member;
@@ -119,6 +120,40 @@ namespace CAESDO.Recruitment.Web
                     cbox.Checked = true;
                 else
                     cbox.Checked = false;                
+            }
+        }
+
+        protected void btnUpdateAccess_Click(object sender, EventArgs e)
+        {
+            foreach (GridViewRow row in gviewMembers.Rows)
+            {
+                if (row.RowType == DataControlRowType.DataRow)
+                {
+                    CheckBox cboxAllow = (CheckBox)row.FindControl(STR_CBOXALLOW);
+                    DepartmentMember member = daoFactory.GetDepartmentMemberDao().GetById((int)gviewMembers.DataKeys[row.RowIndex]["id"], false);
+
+                    using (new NHibernateTransaction())
+                    {
+                        if (currentPosition.PositionCommittee.Contains(member))
+                        {
+                            //If the member is already in the committee, then delete only if the box is unchecked
+                            if (cboxAllow.Checked == false)
+                            {
+                                currentPosition.PositionCommittee.Remove(member);
+                            }
+                        }
+                        else
+                        {
+                            //The member is not already in the committee, so add only if the box is checked
+                            if (cboxAllow.Checked == true)
+                            {
+                                currentPosition.PositionCommittee.Add(member);
+                            }
+                        }
+
+                        daoFactory.GetPositionDao().SaveOrUpdate(currentPosition);
+                    }
+                }
             }
         }
 }
