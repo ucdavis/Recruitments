@@ -138,7 +138,15 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _AssociatedApplication; }
             set { _AssociatedApplication = value; }
         }
-                
+
+        private File _ReferenceFile;
+
+        public virtual File ReferenceFile
+        {
+            get { return _ReferenceFile; }
+            set { _ReferenceFile = value; }
+        }
+                        
         private IList<File> _Files;
 
         public virtual IList<File> Files

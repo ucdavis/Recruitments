@@ -55,7 +55,61 @@ namespace CAESDO.Recruitment.Web
 
         private void UploadReferences()
         {
-            throw new Exception("The method or operation is not implemented.");
+            FileType referenceFileType = daoFactory.GetFileTypeDao().GetFileTypeByName(STR_LetterOfRec);
+            Reference selectedReference = daoFactory.GetReferenceDao().GetById(int.Parse(dlistReferences.SelectedValue), false);
+
+            //If there is already a reference file, we need to delete it
+            if (selectedReference.ReferenceFile != null)
+            {
+                using (new NHibernateTransaction())
+                {
+                    int fileID = selectedReference.ReferenceFile.ID;
+
+                    daoFactory.GetFileDao().Delete(selectedReference.ReferenceFile);
+                    selectedReference.ReferenceFile = null;
+
+                    //Delete the file from the file system
+                    System.IO.FileInfo file = new System.IO.FileInfo(FilePath + fileID.ToString());
+                    file.Delete();
+
+                    daoFactory.GetReferenceDao().SaveOrUpdate(selectedReference);
+                }
+
+            }
+            
+            if (fileUpload.HasFile)
+            {
+                if (fileUpload.PostedFile.ContentType == STR_Applicationpdf)
+                {
+                    File file = new File();
+
+                    file.FileName = fileUpload.FileName;
+                    file.FileType = referenceFileType;
+
+                    using (new NHibernateTransaction())
+                    {
+                        file = daoFactory.GetFileDao().Save(file);
+                    }
+
+                    if (ValidateBO<File>.isValid(file))
+                    {
+                        fileUpload.SaveAs(FilePath + file.ID.ToString());
+
+                        selectedReference.ReferenceFile = file;
+                        
+                        using (new NHibernateTransaction())
+                        {
+                            daoFactory.GetReferenceDao().SaveOrUpdate(selectedReference);
+                        }
+
+                        lblStatus.Text = "File Uploaded Successfully";
+                    }
+                    else
+                    {
+                        //TODO: Handle non-validating file
+                    }
+                }//TODO: Handle if content not PDF
+            }
         }
 
         private void UploadFiles()
@@ -100,6 +154,7 @@ namespace CAESDO.Recruitment.Web
                 }//TODO: Handle if content not PDF
             }
         }
+
         /// <summary>
         /// Removes all files of the given type from the current applicaiton.  This removes the files themselves,
         /// the file info entry and the application files link

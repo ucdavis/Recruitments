@@ -31,6 +31,8 @@
 
     <many-to-one name="AssociatedApplication" class="CAESDO.Recruitment.Core.Domain.Application, CAESDO.Recruitment.Core" column="ApplicationID" not-null="true" />
 
+    <many-to-one name="ReferenceFile" class="CAESDO.Recruitment.Core.Domain.File, CAESDO.Recruitment.Core" column="ReferenceFileID" not-null="false" />
+    
     <bag name="Files" table="RefFiles" >
       <key column="ReferenceID" />
       <many-to-many column="FileID"  class="CAESDO.Recruitment.Core.Domain.File, CAESDO.Recruitment.Core" />
