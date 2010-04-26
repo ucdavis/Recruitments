@@ -8,7 +8,8 @@
     </id>
 
     <property name="DepartmentFIS" column="DepartmentFIS" />
-
+    <property name="PrimaryDept" column="PrimaryDept" />
+    
     <many-to-one name="AssociatedPosition" column="PositionID"
       class="CAESDO.Recruitment.Core.Domain.Position, CAESDO.Recruitment.Core" not-null="true" />
     
