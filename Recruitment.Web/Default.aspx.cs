@@ -54,7 +54,6 @@ namespace CAESDO.Recruitment.Web
             IApplicationDao aDao = daoFactory.GetApplicationDao();
 
             Application app = aDao.GetById(11, false);
-            
 
             //IApplicantDao appDao = daoFactory.GetApplicantDao();
 
