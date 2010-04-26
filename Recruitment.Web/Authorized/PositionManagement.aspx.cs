@@ -194,7 +194,7 @@ namespace CAESDO.Recruitment.Web
 
             Department associatedDepartment = new Department();
             associatedDepartment.AssociatedPosition = currentPosition;
-            associatedDepartment.DepartmentFIS = selectedUnit.FISCode;
+            associatedDepartment.DepartmentFIS = selectedUnit.ID;
             associatedDepartment.Unit = selectedUnit;
             associatedDepartment.PrimaryDept = DepartmentList.Count == 0;
 

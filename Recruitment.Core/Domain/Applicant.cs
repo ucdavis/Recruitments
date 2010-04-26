@@ -57,6 +57,7 @@ namespace CAESDO.Recruitment.Core.Domain
         
         public Applicant()
         {
+            Profiles = new List<Profile>();
         }
     }
 }

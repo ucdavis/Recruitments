@@ -98,7 +98,7 @@
     <property name="FullName" column="FullName" />
     <property name="ShortName" column="ShortName" />
     <property name="PPSCode" column="PPS_Code" />
-    <property name="FISCode" column="FIS_Code" />
+    <!--<property name="FISCode" column="FIS_Code" />-->
     <property name="UnitID" column="UnitID" />
     <property name="SchoolCode" column="SchoolCode" />
 

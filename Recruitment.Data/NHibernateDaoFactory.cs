@@ -195,7 +195,7 @@ namespace CAESDO.Recruitment.Data
 
                         foreach (Unit u in currentUser.Units)
                         {
-                            deptFIS.Add(u.FISCode);
+                            deptFIS.Add(u.ID);
                         }
 
                         criteria.Add(Expression.In("Depts.DepartmentFIS", deptFIS.ToArray()));
@@ -270,7 +270,7 @@ namespace CAESDO.Recruitment.Data
 
                     foreach (Unit u in currentUser.Units)
                     {
-                        deptFIS.Add(u.FISCode);
+                        deptFIS.Add(u.ID);
                     }
 
                     ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(Position))

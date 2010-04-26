@@ -102,22 +102,27 @@ namespace CAESDO.Recruitment.BLL
         /// </summary>
         public static void EnsurePersistent(ref T entity)
         {
-            bool success = MakePersistent(ref entity);
+            EnsurePersistent(ref entity, false);
+        }
+
+        public static void EnsurePersistent(ref T entity, bool forceSave)
+        {
+            bool success = MakePersistent(ref entity, forceSave);
 
             if (!success)
             {
                 string validationErrors = null;
-                
+
                 //If the entity is of type domainObject, get validation errors
                 if (entity is DomainObject<T, IdT>)
                 {
-                    DomainObject<T, IdT> obj = entity as DomainObject<T, IdT>;
+                    var obj = entity as DomainObject<T, IdT>;
 
                     validationErrors = obj.getValidationResultsAsString(entity);
                 }
 
-                StringBuilder errorMessage = new StringBuilder();
-                
+                var errorMessage = new StringBuilder();
+
                 errorMessage.AppendLine(string.Format("Object of type {0} could not be persisted\n\n", typeof(T)));
 
                 if (!string.IsNullOrEmpty(validationErrors))

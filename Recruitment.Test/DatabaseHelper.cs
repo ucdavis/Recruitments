@@ -12,7 +12,6 @@ namespace CAESDO.Recruitment.Test
 
         public static void LoadData()
         {
-            /*
             using (var ts = new TransactionScope())
             {
                 LoadLookupTypes();
@@ -23,10 +22,8 @@ namespace CAESDO.Recruitment.Test
 
                 ts.CommitTransaction();
             }
-             */
         }
 
-        /*
         private static void LoadApplicants()
         {
             for (int i = 0; i < 10; i++)
@@ -40,7 +37,7 @@ namespace CAESDO.Recruitment.Test
                     State = shortRandString
                 };
 
-                var applicant = new Applicant { Email = string.Format("email{0}@fake.com", i), IsActive = true };
+                var applicant = new Applicant() { Email = string.Format("email{0}@fake.com", i), IsActive = true };
 
                 profile.AssociatedApplicant = applicant;
                 applicant.Profiles.Add(profile);
@@ -56,7 +53,7 @@ namespace CAESDO.Recruitment.Test
             {
                 for (int j = 0; j < 5; j++) //5 applications per position
                 {
-                    var application = new Application
+                    var application = new Application()
                     {
                         AppliedPosition = GenericBLL<Position, int>.GetByID(i + 1),
                         AssociatedProfile = GenericBLL<Profile, int>.GetByID(j),
@@ -91,8 +88,8 @@ namespace CAESDO.Recruitment.Test
                 var templateType = new TemplateType() { Type = string.Format("type{0}", i) };
                 var fileType = new FileType() { ApplicationFile = i % 2 == 0, FileTypeName = string.Format("type{0}", i) };
 
-                GenericBLL<TemplateType, int>.EnsurePersistent(templateType);
-                GenericBLL<FileType, int>.EnsurePersistent(fileType);
+                GenericBLL<TemplateType, int>.EnsurePersistent(ref templateType);
+                GenericBLL<FileType, int>.EnsurePersistent(ref fileType);
             }
         }
 
@@ -100,7 +97,7 @@ namespace CAESDO.Recruitment.Test
         {
             for (int i = 0; i < 20; i++) //Add 10 positions
             {
-                var pos = new Position
+                var pos = new Position()
                 {
                     AdminAccepted = i < 15,
                     Closed = i % 5 == 0,
@@ -142,11 +139,11 @@ namespace CAESDO.Recruitment.Test
                         new Department() { AssociatedPosition = pos, DepartmentFIS = "APLS", PrimaryDept = false });
                 }
 
+                var descriptionFile = pos.DescriptionFile;
 
-                GenericBLL<File, int>.EnsurePersistent(pos.DescriptionFile);
-                GenericBLL<Position, int>.EnsurePersistent(pos);
+                GenericBLL<File, int>.EnsurePersistent(ref descriptionFile);
+                GenericBLL<Position, int>.EnsurePersistent(ref pos);
             }
         }
-         */
     }
 }

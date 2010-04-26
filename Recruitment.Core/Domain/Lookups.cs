@@ -225,14 +225,6 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _PPSCode = value; }
         }
 
-        private string _FISCode;
-
-        public virtual string FISCode
-        {
-            get { return _FISCode; }
-            set { _FISCode = value; }
-        }
-
         private int _UnitID;
 
         public virtual int UnitID
@@ -242,6 +234,11 @@ namespace CAESDO.Recruitment.Core.Domain
         }
 
         public virtual string SchoolCode { get; set; }
+
+        public Unit(string fisCode)
+        {
+            this.id = fisCode;
+        }
 
         public Unit()
         {
