@@ -62,6 +62,14 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _RecruitmentSource = value; }
         }
 
+        private bool _AllowSpecify;
+
+        public virtual bool AllowSpecify
+        {
+            get { return _AllowSpecify; }
+            set { _AllowSpecify = value; }
+        }
+        
         public RecruitmentSrc()
         {
 

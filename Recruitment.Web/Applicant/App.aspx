@@ -394,7 +394,21 @@
                         <td   align="right">
                             Recruitment Source:</td>
                         <td  >
-                            <asp:TextBox ID="TextBox3" runat="server" MaxLength="100"></asp:TextBox>
+                            <asp:Repeater ID="rptRecruitmentSource" runat="server" DataSourceID="ObjectDataRecruitmentSrc">
+                                <ItemTemplate>
+                                    <asp:CheckBox ID="chkRecruitmentSource" runat="server" Checked="false" />
+                                    <asp:Label ID="lblRecruitmentSource" runat="server" Text='<%# Eval("RecruitmentSource") %>'></asp:Label>&nbsp;&nbsp;
+                                    <asp:Literal ID="litBeginSpecify" runat="server" Text="(Specify:" Visible='<%# Eval("AllowSpecify") %>'></asp:Literal>
+                                    <asp:TextBox ID="txtSpecify" runat="server" MaxLength="50" Visible='<%# Eval("AllowSpecify") %>'></asp:TextBox>
+                                    <asp:Literal ID="litEndSpecify" runat="server" Text=")" Visible='<%# Eval("AllowSpecify") %>'></asp:Literal>
+                                </ItemTemplate>
+                                <SeparatorTemplate>
+                                    <br />
+                                </SeparatorTemplate>
+                            </asp:Repeater>
+                            <asp:ObjectDataSource ID="ObjectDataRecruitmentSrc" runat="server"
+                                 SelectMethod="GetAll" TypeName="CAESDO.Recruitment.Data.NHibernateDaoFactory+RecruitmentSrcDao">
+                            </asp:ObjectDataSource>
                         </td>
                     </tr>
                     <tr>
