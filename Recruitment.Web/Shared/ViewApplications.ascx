@@ -7,7 +7,7 @@
         //Sort table
         $("#tblApplications").tablesorter(
         {
-            sortList: [[0, 0], [2, 0]],
+            sortList: [[2, 1], [0, 0]],
             cssAsc: 'headerSortUp',
             cssDesc: 'headerSortDown',
             cssHeader: 'header',
@@ -60,7 +60,7 @@
     function HideUnsubmitted() {
         var allApplications = $("#tblApplications tbody tr");
         
-        allApplications.filter(":has(td.submittedHeader:contains('No'))").hide(0); //allApplications.filter("td.submittedHeader").hide(0);
+        allApplications.filter(":has(td.submittedHeader:contains('False'))").hide(0); //allApplications.filter("td.submittedHeader").hide(0);
     }
         
 </script>
@@ -87,6 +87,9 @@ position.
                     <th>
                         Submitted
                     </th>
+                    <th>
+                        Submit Date
+                    </th>
                 </tr>
             </thead>
             <tbody>
@@ -107,7 +110,10 @@ position.
             </td>
             <td class="submittedHeader">
                 <%--<asp:CheckBox ID="checkbox" runat="server" Checked='<%# (bool)Eval("Submitted")  %>' onclick="javascript:return false;" />--%>
-                <%# (bool)Eval("Submitted") ? ((DateTime)Eval("SubmitDate")).ToShortDateString() : "No" %>
+                <%# Eval("Submitted") %>
+            </td>
+            <td>
+                <%# (bool)Eval("Submitted") ? ((DateTime)Eval("SubmitDate")).ToShortDateString() : "N/A" %>
             </td>
         </tr>
     </ItemTemplate>
