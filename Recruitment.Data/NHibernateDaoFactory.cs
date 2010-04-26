@@ -1,3 +1,4 @@
+using System.Security.Principal;
 using CAESDO.Recruitment.Core.Abstractions;
 using CAESDO.Recruitment.Core.DataInterfaces;
 using CAESDO.Recruitment.Core.Domain;
@@ -158,17 +159,17 @@ namespace CAESDO.Recruitment.Data
         public class PositionDao : AbstractNHibernateDao<Position, int>, IPositionDao {          
             
             [DataObjectMethod(DataObjectMethodType.Select, true)]
-            public List<Position> GetAllPositionsByStatus(bool Closed, bool AdminAccepted, IUserContext userContext)
+            public List<Position> GetAllPositionsByStatus(bool Closed, bool AdminAccepted, IPrincipal userContext)
             {
                 return GetAllPositionsByStatus(Closed, AdminAccepted, null, userContext);
             }
 
-            public List<Position> GetAllPositionsByStatus(bool Closed, bool AdminAccepted, bool? AllowApplications, IUserContext userContext)
+            public List<Position> GetAllPositionsByStatus(bool Closed, bool AdminAccepted, bool? AllowApplications, IPrincipal userContext)
             {
                 return GetAllPositionsByStatusAndDepartment(Closed, AdminAccepted, AllowApplications, null, null, userContext);
             }
 
-            public List<Position> GetAllPositionsByStatusAndDepartment(bool Closed, bool AdminAccepted, bool? AllowApplications, string DepartmentFIS, string SchoolCode, IUserContext userContext)
+            public List<Position> GetAllPositionsByStatusAndDepartment(bool Closed, bool AdminAccepted, bool? AllowApplications, string DepartmentFIS, string SchoolCode, IPrincipal userContext)
             {
                 DetachedCriteria criteria = DetachedCriteria.For(typeof(Position))
                 .Add(Restrictions.Eq("Closed", Closed))
@@ -196,12 +197,12 @@ namespace CAESDO.Recruitment.Data
 
                 if (userContext != null) //only filter logged in users
                 {
-                    string username = userContext.Name();
+                    string username = userContext.Identity.Name;
 
-                    if (userContext.IsUserInRole("Admin") == false) //Don't filter if the user is an admin
+                    if (userContext.IsInRole("Admin") == false) //Don't filter if the user is an admin
                     {
                         //RecruitmentManagers can only see positions associated with their departments
-                        if (userContext.IsUserInRole("RecruitmentManager"))
+                        if (userContext.IsInRole("RecruitmentManager"))
                         {
                             criteria.Add(Subqueries.PropertyIn("Depts.DepartmentFIS", GetUnitsForUser(username)));
                         }

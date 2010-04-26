@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security.Principal;
 using CAESDO.Recruitment.BLL;
 using CAESDO.Recruitment.Core.Abstractions;
 using CAESDO.Recruitment.Core.Domain;
@@ -18,19 +19,19 @@ namespace CAESDO.Recruitment.Test.BusinessTests
         private const bool AdminAccepted = true;
         private const bool AllowApplications = true;
         
-        private static Mock<IUserContext> GetMockContext(string username, bool? isAdmin, bool? isRecruitmentManager)
+        private static Mock<IPrincipal> GetMockContext(string username, bool? isAdmin, bool? isRecruitmentManager)
         {
-            var cc = new Mock<IUserContext>();
-            cc.Setup(d => d.Name()).Returns(username);
+            var cc = new Mock<IPrincipal>();
+            cc.Setup(d => d.Identity.Name).Returns(username);
 
-            if (isAdmin.HasValue) cc.Setup(d => d.IsUserInRole("Admin")).Returns(isAdmin.Value);
+            if (isAdmin.HasValue) cc.Setup(d => d.IsInRole("Admin")).Returns(isAdmin.Value);
 
-            if (isAdmin.HasValue) cc.Setup(d => d.IsUserInRole("RecruitmentManager")).Returns(isRecruitmentManager.Value);
+            if (isAdmin.HasValue) cc.Setup(d => d.IsInRole("RecruitmentManager")).Returns(isRecruitmentManager.Value);
 
             return cc;
         }
 
-        private static Mock<IUserContext> GetMockContext(string username)
+        private static Mock<IPrincipal> GetMockContext(string username)
         {
             return GetMockContext(username, null, null);
         }

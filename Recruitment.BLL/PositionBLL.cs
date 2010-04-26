@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Security.Principal;
 using System.Text;
 using CAESDO.Recruitment.Core.Domain;
 using System.Web.Configuration;
@@ -25,7 +26,7 @@ namespace CAESDO.Recruitment.BLL
         /// <summary>
         /// Get by school and/or department, and optionally filter by the user given in the usercontext
         /// </summary>
-        public static List<Position> GetByStatusAndDepartment(bool Closed, bool AdminAccepted, bool? AllowApplications, string DepartmentFIS, string SchoolCode, IUserContext userContext)
+        public static List<Position> GetByStatusAndDepartment(bool Closed, bool AdminAccepted, bool? AllowApplications, string DepartmentFIS, string SchoolCode, IPrincipal userContext)
         {
             return daoFactory.GetPositionDao().GetAllPositionsByStatusAndDepartment(Closed, AdminAccepted, AllowApplications, DepartmentFIS, SchoolCode, userContext);
         }

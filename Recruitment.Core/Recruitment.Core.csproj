@@ -48,7 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Abstractions\IUserContext.cs" />
     <Compile Include="Abstractions\UserContext.cs" />
     <Compile Include="DataInterfaces\IDao.cs" />
     <Compile Include="DataInterfaces\IDaoFactory.cs" />
