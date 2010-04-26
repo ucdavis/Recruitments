@@ -22,4 +22,22 @@ namespace CAESDO.Recruitment.Core.Abstractions
             client.Send(message);
         }
     }
+
+    public class DevMessageGateway : IMessageGateway
+    {
+        /// <summary>
+        /// Use email to send out the message
+        /// </summary>
+        public void SendMessage(string from, string to, string subject, string body)
+        {
+            const string devUser = "srkirkland@ucdavis.edu";
+
+            SmtpClient client = new SmtpClient();
+            MailMessage message = new MailMessage(devUser, devUser, subject, body);
+
+            message.IsBodyHtml = true;
+
+            client.Send(message);
+        }
+    }    
 }
