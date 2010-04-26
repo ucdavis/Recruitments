@@ -25,6 +25,7 @@
         <siteMapNode url="Authorized/UnsolicitedReferences.aspx" title="Unsolicited References" />
         <siteMapNode url="Authorized/CommitteeList.aspx" title="Committee List" />
         <siteMapNode url="Authorized/Reports.aspx" title="Reports" />
+        <siteMapNode url="Authorized/PositionModified.aspx" title="Position Modified" />
         
         <siteMapNode url="Authorized/viewPositionsAdmin.aspx" title="View Positions">
           <siteMapNode url="Authorized/viewApplications.aspx" title="View Applications" />
