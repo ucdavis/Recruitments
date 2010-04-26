@@ -59,6 +59,11 @@ namespace CAESDO.Recruitment.Web
             {
                 if (currentPosition != null)
                 {
+                    lblDeadline.Text = currentPosition.Deadline.ToLongDateString();
+                    lblDepartment.Text = currentPosition.DepartmentList;
+                    lblPosition.Text = currentPosition.PositionTitle;
+                    lblPosNum.Text = currentPosition.PositionNumber;
+
                     //Get the SexEthnicityCount for the current position
                     SexEthnicityCount SexEthnicityList = new SexEthnicityCount();
 
