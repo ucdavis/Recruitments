@@ -24,6 +24,9 @@ namespace CAESDO.Recruitment.Web
         private const string STR_FileType_CoverLetter = "CoverLetter";
         private const string STR_FileType_ResearchInterests = "ResearchInterests";
         private const string STR_FileType_Publication = "Publication";
+        private const int INT_REFERENCE_FILE_COLUMN = 7;
+
+        public bool AdministrativeAccess { get; set; }
 
         public int currentApplicationID
         {
@@ -63,14 +66,32 @@ namespace CAESDO.Recruitment.Web
                 Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.UNKNOWN));
             }
 
-            //Check User Permissions if the user isn't an admin
-            if (!Roles.IsUserInRole("Admin"))
+            if (AdministrativeAccess) //Only allow in administrative access
             {
-                if (PositionBLL.VerifyPositionAccess(currentApplication.AppliedPosition) == false)
+                //Check User Permissions if the user isn't an admin
+                if (!Roles.IsUserInRole("Admin"))
                 {
-                    //If the user does not have position access, redirect to the not authorized page
+                    if (PositionBLL.VerifyPositionAccess(currentApplication.AppliedPosition) == false)
+                    {
+                        //If the user does not have position access, redirect to the not authorized page
+                        Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.AUTH));
+                    }
+                }
+            }
+            else //Use committee rules
+            {
+                bool allowedAccess = false;
+                bool reviewerAccess = false;
+
+                CommitteeMemberBLL.CheckAccess(currentApplication.AppliedPosition, out allowedAccess, out reviewerAccess);
+
+                if (!allowedAccess)
+                {
                     Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.AUTH));
                 }
+
+                if (reviewerAccess)
+                    gviewReferences.Columns[INT_REFERENCE_FILE_COLUMN].Visible = false;
             }
 
             //Trace.Write("Valid user and application " + currentApplication.ID.ToString() + Environment.NewLine);
