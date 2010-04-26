@@ -12,16 +12,19 @@ using CAESDO.Recruitment.Data;
 using CAESDO.Recruitment.Core.Domain;
 using System.Collections.Generic;
 
-public partial class _Default : System.Web.UI.Page 
+namespace CAESDO.Recruitment.Web
 {
-    protected void Page_Load(object sender, EventArgs e)
+    public partial class _Default : ApplicationPage
     {
-        //Response.Write(Roles.IsUserInRole("Admin"));
-        IDaoFactory daoFactory = new NHibernateDaoFactory();
+        protected void Page_Load(object sender, EventArgs e)
+        {
+            //Response.Write(Roles.IsUserInRole("Admin"));
+            
+            //IPositionsDao posDao = daoFactory.GetPositionsDao();
+            IPositionsDao posDao = daoFactory.GetPositionsDao();
 
-        IPositionsDao posDao = daoFactory.GetPositionsDao();
+            List<Positions> posList = posDao.GetAll();
 
-        List<Positions> posList = posDao.GetAll();
-
-    }
+        }
+    }  
 }
