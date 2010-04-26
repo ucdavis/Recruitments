@@ -52,9 +52,10 @@
 <hr />
     <br />
     <br />
-    <div style="background-color:#d8e6f0; width: 700px; padding:30px;">
+    <div style="width:818px; height:389px; background:url(../Images/envelope.jpg) no-repeat; padding:50px;">
+    <div class="blueletter">
        <asp:Literal ID="litEmailBody" runat="server"></asp:Literal><br />
     </div>
-
+    </div>
 </asp:Content>
 
