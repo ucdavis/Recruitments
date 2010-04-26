@@ -9,7 +9,7 @@ namespace CAESDO.Recruitment.Core.Domain
     {
         private string _FirstName;
 
-        [StringLengthValidator(1,50)]
+        [StringLengthValidator(50)]
         public virtual string FirstName
         {
             get { return _FirstName; }
@@ -17,7 +17,7 @@ namespace CAESDO.Recruitment.Core.Domain
         }
         private string _MiddleName;
 
-        [StringLengthValidator(1,50)]
+        [StringLengthValidator(50)]
         public virtual string MiddleName
         {
             get { return _MiddleName; }
@@ -25,6 +25,7 @@ namespace CAESDO.Recruitment.Core.Domain
         }
         private string _LastName;
 
+        [StringLengthValidator(50)]
         public virtual string LastName
         {
             get { return _LastName; }
@@ -32,6 +33,7 @@ namespace CAESDO.Recruitment.Core.Domain
         }
         private string _Address1;
 
+        [StringLengthValidator(100)]
         public virtual string Address1
         {
             get { return _Address1; }
@@ -39,6 +41,7 @@ namespace CAESDO.Recruitment.Core.Domain
         }
         private string _Address2;
 
+        [StringLengthValidator(100)]
         public virtual string Address2
         {
             get { return _Address2; }
@@ -46,6 +49,7 @@ namespace CAESDO.Recruitment.Core.Domain
         }
         private string _City;
 
+        [StringLengthValidator(50)]
         public virtual string City
         {
             get { return _City; }
@@ -53,6 +57,7 @@ namespace CAESDO.Recruitment.Core.Domain
         }
         private string _State;
 
+        [StringLengthValidator(50)]
         public virtual string State
         {
             get { return _State; }
@@ -60,6 +65,7 @@ namespace CAESDO.Recruitment.Core.Domain
         }
         private string _Zip;
 
+        [StringLengthValidator(20)]
         public virtual string Zip
         {
             get { return _Zip; }
@@ -67,13 +73,25 @@ namespace CAESDO.Recruitment.Core.Domain
         }
         private string _Country;
 
+        [StringLengthValidator(50)]
         public virtual string Country
         {
             get { return _Country; }
             set { _Country = value; }
         }
+
+        private string _CountryCode;
+
+        [StringLengthValidator(5)]
+        public virtual string CountryCode
+        {
+            get { return _CountryCode; }
+            set { _CountryCode = value; }
+        }
+        
         private string _Phone;
 
+        [StringLengthValidator(20)]
         public virtual string Phone
         {
             get { return _Phone; }
@@ -90,6 +108,7 @@ namespace CAESDO.Recruitment.Core.Domain
         
         private Applicant _AssociatedApplicant;
 
+        [NotNullValidator]
         public virtual Applicant AssociatedApplicant
         {
             get { return _AssociatedApplicant; }

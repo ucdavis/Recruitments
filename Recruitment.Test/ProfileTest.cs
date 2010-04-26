@@ -81,6 +81,26 @@ namespace CAESDO.Recruitment.Test
             Assert.IsNotNull(target);
         }
 
+        [TestMethod]
+        public void ValidateAllTest()
+        {
+            List<Profile> pList = NHibernateHelper.daoFactory.GetProfileDao().GetAll();
+
+            Assert.AreNotEqual<int>(0, pList.Count);
+
+            foreach (Profile p in pList)
+            {
+                this.TestContext.WriteLine("Profile ID = {0}, Associated with Applicant ID = {1}", p.ID, p.AssociatedApplicant.ID);
+
+                foreach (ValidationResult res in ValidateBO<Profile>.GetValidationResults(p))
+                {
+                    this.TestContext.WriteLine("Key = {0}, Message = {1}", res.Key, res.Message);
+                }
+
+                Assert.IsTrue(ValidateBO<Profile>.isValid(p)); //profile is valid
+            }
+        }
+
         [TestMethod()]
         public void FillProfile()
         {

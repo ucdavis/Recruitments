@@ -16,6 +16,7 @@
     <property name="State" column="State" />
     <property name="Zip" column="Zip" />
     <property name="Country" column="Country" />
+    <property name="CountryCode" column="CountryCode" />
     <property name="Phone" column="Phone" />
     <property name="LastUpdated" column="LastUpdated" />
 
