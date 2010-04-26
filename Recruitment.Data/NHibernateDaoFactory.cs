@@ -190,6 +190,9 @@ namespace CAESDO.Recruitment.Data
 
                 Login login = criteria.UniqueResult<Login>();
 
+                if (login == null)
+                    return null;
+
                 return login.User;
             }
         }

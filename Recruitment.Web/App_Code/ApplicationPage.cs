@@ -19,6 +19,7 @@ using System.Text;
 using CAESDO.Recruitment.Core.DataInterfaces;
 using CAESDO.Recruitment.Data;
 using System.Web.Configuration;
+using CAESDO.Recruitment.Core.Domain;
 
 
 namespace CAESDO.Recruitment.Web
@@ -33,6 +34,19 @@ namespace CAESDO.Recruitment.Web
         //protected CAESDOMembershipProvider CAESDOMembership = (CAESDOMembershipProvider)Membership.Provider;
         //protected CAESDOUser CAESDOCurrentUser = new CAESDOUser(HttpContext.Current.User);
         //protected CAESDOPrincipal CAESDOPrincipalUser = new CAESDOPrincipal(HttpContext.Current.User.Identity);
+        private User _p;
+
+        public User p
+        {
+            get {
+                if (_p == null)
+                    _p = daoFactory.GetUserDao().GetUserByLogin(HttpContext.Current.User.Identity.Name);
+
+                return _p; 
+            }
+            set { _p = value; }
+        }
+        
         public IDaoFactory daoFactory
         {
             get { return new NHibernateDaoFactory(); }
@@ -74,6 +88,11 @@ namespace CAESDO.Recruitment.Web
             //}
 
             base.OnError(e); //won't get called
+        }
+
+        protected override void OnPreInit(EventArgs e)
+        {
+            base.OnPreInit(e);
         }
 
         //#region Events
