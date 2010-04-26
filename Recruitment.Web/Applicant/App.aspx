@@ -2,7 +2,7 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
      
     <div style="height:22px; background-image:url(../Images/appmenuTop.gif);"><img src="../Images/appmenuTopLeft.gif" alt="" style="float:left;" /><img src="../Images/appmenuTopRight.gif" alt="" style="float:right;" /></div>
-    <div style="width:203px; float:left; background: url(../Images/appmenuLeft.gif) repeat-y; height:500px;">
+    <div style="width:203px; float:left; background: url(../Images/appmenuLeft.gif) repeat-y;">
     
     <ul class="applicationMenu">
         <asp:Repeater ID="rptSteps" runat="server">
@@ -21,7 +21,7 @@
         </asp:Repeater>
     </ul>
     </div>
-    <div style="background:url(../Images/appmenuRight.gif) repeat-y right; height:500px;">
+    <div style="background:url(../Images/appmenuRight.gif) repeat-y right;">
         <asp:Panel ID="pnlMainWindow" runat="server">
         
         <asp:MultiView ID="mviewSteps" runat="server" ActiveViewIndex="0">
@@ -103,7 +103,7 @@
                     <tr>
                         <td   align="right">
                         </td>
-                        <td align="right"  >
+                        <td align="right">
                             <br />
                             <asp:Button ID="btnContactSave" runat="server" Text="Update" OnClick="btnContactSave_Click" /></td>
                     </tr>
@@ -407,7 +407,15 @@
                 </table>
             </asp:View>
             
-        </asp:MultiView>
+            <asp:View ID="viewPublications" runat="server">
+                Pubs
+            </asp:View>
+            
+            <asp:View ID="viewDissertation" runat="server">
+                Dissertations
+            </asp:View>
+            
+            </asp:MultiView>
         
         </asp:Panel>
     </div>

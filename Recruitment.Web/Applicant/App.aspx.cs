@@ -512,7 +512,8 @@ namespace CAESDO.Recruitment.Web
             bool hasCV = false;
             bool hasTranscript = false;
             bool hasResearchInterest = false;
-
+            bool hasPublication = false;
+            bool hasDissertation = false;
 
             //Go through each file in the currentApplication and find out if each filetype is available
             foreach (File file in currentApplication.Files)
@@ -534,6 +535,12 @@ namespace CAESDO.Recruitment.Web
                     case "ResearchInterests":
                         hasResearchInterest = true;
                         break;
+                    case "Publication":
+                        hasPublication = true;
+                        break;
+                    case "Dissertation":
+                        hasDissertation = true;
+                        break;
                     default:
                         break;
                 }
@@ -544,6 +551,8 @@ namespace CAESDO.Recruitment.Web
             ApplicationSteps.Add(new Step("Cover Letter", hasCoverLetter, false, true));
             ApplicationSteps.Add(new Step("Research Interests", hasResearchInterest, false, true));
             ApplicationSteps.Add(new Step("Transcripts", hasTranscript, false, true));
+            ApplicationSteps.Add(new Step("Publications", hasPublication, false, true));
+            ApplicationSteps.Add(new Step("Dissertation", hasDissertation, false, true));
 
             //Add the confidential survey
             ApplicationSteps.Add(new Step("Confidential Survey", currentApplication.isComplete(ApplicationStepType.Survey), false, true));
