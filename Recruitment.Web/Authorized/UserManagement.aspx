@@ -5,6 +5,10 @@
     <script type="text/javascript">
 
         $(document).ready(function() {
+            SortTable();
+        });
+
+        function SortTable() {
             //Sort table
             $("#tblUsers").tablesorter(
             {
@@ -15,7 +19,7 @@
                 headers: { 0: { sorter: false} },
                 widgets: ['zebra']
             });
-        });
+        }
         
     </script>
     
@@ -235,8 +239,9 @@
                 <asp:Button ID="btnUserInfoAddRole" runat="server" OnClick="btnUserInfoAddRole_Click" Text="Add Role"></asp:Button>
                 
                 <br /><br />
-            <div style="text-align:right"><asp:Button ID="btnSaveUserInfo" runat="server" Text="Save" />
-            <asp:Button ID="btnCancelUserInfo" runat="server" Text="Close" /></div>
+            <div style="text-align:right">
+            <%--<asp:Button ID="btnSaveUserInfo" runat="server" Text="Save" />--%>
+            <asp:Button ID="btnCancelUserInfo" runat="server" Text="Close" OnClientClick="SortTable();" /></div>
             </div>
             </asp:Panel>
             
