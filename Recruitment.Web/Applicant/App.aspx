@@ -266,6 +266,20 @@
                     </tr>
                     <tr>
                         <td   align="right">
+                            Research Field:</td>
+                        <td  >
+                            <asp:TextBox ID="txtEducationResearch" runat="server" MaxLength="50"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td   align="right">
+                            Advisor:</td>
+                        <td  >
+                            <asp:TextBox ID="txtEducationAdvisor" runat="server" MaxLength="50"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td   align="right">
                         </td>
                         <td align="right"  >
                             <br />

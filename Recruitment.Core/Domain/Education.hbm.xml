@@ -10,6 +10,9 @@
     <property name="Date" column="Date" />
     <property name="Institution" column="Institution" />
     <property name="Discipline" column="Discipline" />
+    <property name="ResearchField" column="ResearchField" />
+    <property name="Advisor" column="Advisor" />
+    
     <property name="Complete" column="Complete" />
       
     <many-to-one name="AssociatedApplication" class="CAESDO.Recruitment.Core.Domain.Application, CAESDO.Recruitment.Core" column="ApplicationID" not-null="true" />

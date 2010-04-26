@@ -401,6 +401,8 @@ namespace CAESDO.Recruitment.Web
 
             currentEducation.Institution = txtEducationInstitution.Text;
             currentEducation.Discipline = txtEducationDiscipline.Text;
+            currentEducation.ResearchField = txtEducationResearch.Text;
+            currentEducation.Advisor = txtEducationAdvisor.Text;
 
             //Associate this with the current application
             currentEducation.AssociatedApplication = currentApplication;
@@ -1279,6 +1281,8 @@ namespace CAESDO.Recruitment.Web
             txtEducationPHDDate.Text = string.Format(englishCulture, "{0:d}", currentEducation.Date);
             txtEducationDiscipline.Text = currentEducation.Discipline;
             txtEducationInstitution.Text = currentEducation.Institution;
+            txtEducationResearch.Text = currentEducation.ResearchField;
+            txtEducationAdvisor.Text = currentEducation.Advisor;
         }
 
         /// <summary>

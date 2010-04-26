@@ -37,6 +37,10 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _Discipline = value; }
         }
 
+        public virtual string ResearchField { get; set; }
+
+        public virtual string Advisor { get; set; }
+
         private bool _Complete;
 
         public virtual bool Complete
