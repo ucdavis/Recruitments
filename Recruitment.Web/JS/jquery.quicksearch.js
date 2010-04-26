@@ -12,7 +12,7 @@
             inputClass: 'qs_input',
             loaderId: 'loader',
             loaderClass: 'loader',
-            loaderImg: null,
+            loaderImg: '../Images/loading.gif',
             loaderText: 'Loading...',
             stripeRowClass: null,
             hideElement: null,
@@ -158,6 +158,7 @@
             if (!is_empty(options.labelText)) {
                 return '<label for="' + options.randomElement + '" ' +
 							'class="' + options.labelClass + '">'
+							+ '<img src="' + '../Images/search.gif' + '" />' + ' '
 							+ options.labelText
 							+ '</label> ';
             }
