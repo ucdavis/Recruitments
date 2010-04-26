@@ -11,6 +11,11 @@ namespace CAESDO.Recruitment.Data
             NHibernateSessionManager.Instance.BeginTransaction();
         }
 
+        public void RollBackTransaction()
+        {
+            NHibernateSessionManager.Instance.RollbackTransaction();
+        }
+
         #region IDisposable Members
 
         public void Dispose()
