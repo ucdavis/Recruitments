@@ -187,7 +187,6 @@ Global
 		{E414181C-D129-4380-99E4-AA58C1A04697}.Debug|Any CPU.ActiveCfg = DebugLocal
 		{E414181C-D129-4380-99E4-AA58C1A04697}.Debug|Any CPU.Build.0 = DebugLocal
 		{E414181C-D129-4380-99E4-AA58C1A04697}.Debug|Mixed Platforms.ActiveCfg = DebugLocal
-		{E414181C-D129-4380-99E4-AA58C1A04697}.Debug|Mixed Platforms.Build.0 = DebugLocal
 		{E414181C-D129-4380-99E4-AA58C1A04697}.DebugLocal|.NET.ActiveCfg = DebugLocal
 		{E414181C-D129-4380-99E4-AA58C1A04697}.DebugLocal|.NET.Build.0 = DebugLocal
 		{E414181C-D129-4380-99E4-AA58C1A04697}.DebugLocal|Any CPU.ActiveCfg = DebugLocal
