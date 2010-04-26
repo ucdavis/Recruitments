@@ -25,13 +25,13 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _AppliedPosition = value; }
         }
 
-        private ReferSource _ReferSource;
+        private IList<ReferSource> _ReferSources;
 
         [IgnoreNulls]
-        public virtual ReferSource ReferSource
+        public virtual IList<ReferSource> ReferSources
         {
-            get { return _ReferSource; }
-            set { _ReferSource = value; }
+            get { return _ReferSources; }
+            set { _ReferSources = value; }
         }
 
         private string _ReferSourceOther;

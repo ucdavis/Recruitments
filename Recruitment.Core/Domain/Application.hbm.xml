@@ -12,9 +12,6 @@
     <property name="LastUpdated" column="LastUpdated" />
     <property name="Email" column="Email" />
     <property name="ReferSourceOther" column="ReferSourceOther" />
-
-    <many-to-one name="ReferSource" column="ReferSourceID"
-      class="CAESDO.Recruitment.Core.Domain.ReferSource, CAESDO.Recruitment.Core" not-null="false" />
     
     <many-to-one name="AppliedPosition" column="PositionID"
       class="CAESDO.Recruitment.Core.Domain.Position, CAESDO.Recruitment.Core" not-null="true" />
@@ -22,6 +19,11 @@
     <many-to-one name="AssociatedProfile" column="ProfileID"
       class="CAESDO.Recruitment.Core.Domain.Profile, CAESDO.Recruitment.Core" not-null="true" />
 
+    <bag name="ReferSources" table="ApplicationReferSources">
+      <key column="ApplicationID" />
+      <many-to-many column="ReferSourceID" class="CAESDO.Recruitment.Core.Domain.ReferSource, CAESDO.Recruitment.Core" />
+    </bag>
+    
     <bag name="Surveys" table="Survey" inverse="true">
       <key column="ApplicationID" />
       <one-to-many class="CAESDO.Recruitment.Core.Domain.Survey, CAESDO.Recruitment.Core" />
