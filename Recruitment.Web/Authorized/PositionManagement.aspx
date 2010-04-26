@@ -139,6 +139,7 @@
             </td>
             <td>
                 Template Fields: 
+                    <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '<%= GetLocalResourceObject("ReferenceTitle.Value") %>');" ><%= GetLocalResourceObject("ReferenceTitle.Text")%></a>,
                     <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '<%= GetLocalResourceObject("ReferenceLastName.Value") %>');" ><%= GetLocalResourceObject("ReferenceLastName.Text") %></a>,
                     <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '<%= GetLocalResourceObject("ApplicantName.Value") %>');" ><%= GetLocalResourceObject("ApplicantName.Text") %></a>,
                     <a style="display:none;" href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '<%= GetLocalResourceObject("Deadline.Value") %>');" ><%= GetLocalResourceObject("Deadline.Text") %>,</a>

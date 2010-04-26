@@ -555,4 +555,10 @@
   <data name="PositionLink.Value" xml:space="preserve">
     <value>{PositionLink}</value>
   </data>
+  <data name="ReferenceTitle.Text" xml:space="preserve">
+    <value>Reference Title</value>
+  </data>
+  <data name="ReferenceTitle.Value" xml:space="preserve">
+    <value>{ReferenceTitle}</value>
+  </data>
 </root>
