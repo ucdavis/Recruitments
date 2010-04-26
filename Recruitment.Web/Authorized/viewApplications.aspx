@@ -62,9 +62,7 @@
         </EmptyDataTemplate>
     </asp:ListView>
     
-    <br /><br /><br />
-    
-    <asp:GridView ID="gviewApplications" runat="server" Visible="false" AllowPaging="True" skinID="gridViewUM" GridLines="None" CellPadding="0" AutoGenerateColumns="False" 
+    <%--<asp:GridView ID="gviewApplications" runat="server" Visible="false" AllowPaging="True" skinID="gridViewUM" GridLines="None" CellPadding="0" AutoGenerateColumns="False" 
     DataSourceID="ObjectDataApplications" EmptyDataText="No Applications Found For This Position">
         <Columns>
             <asp:TemplateField HeaderText="Applicant Name">
@@ -83,7 +81,7 @@
             </asp:CheckBoxField>
         </Columns>
     
-    </asp:GridView>
+    </asp:GridView>--%>
     <asp:ObjectDataSource ID="ObjectDataApplications" runat="server" SelectMethod="GetByPosition"
         TypeName="CAESDO.Recruitment.BLL.ApplicationBLL" OnSelecting="ObjectDataApplications_Selecting" OldValuesParameterFormatString="original_{0}">
         <SelectParameters>

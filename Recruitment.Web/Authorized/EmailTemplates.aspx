@@ -1,6 +1,24 @@
 <%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="EmailTemplates.aspx.cs" Inherits="CAESDO.Recruitment.Web.Authorized_EmailTemplates" Title="Send Templated Emails" Theme="MainTheme" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
+
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            //Sort table
+            $("#tblApplications").tablesorter(
+            {
+                sortList: [[3, 1], [1, 0]],
+                cssAsc: 'headerSortUp',
+                cssDesc: 'headerSortDown',
+                cssHeader: 'header',
+                headers: { 0: { sorter: false} },
+                widgets: ['zebra']
+            });
+        });
+        
+    </script>
+
     <asp:DropDownList ID="dlistApplicants" runat="server" AutoPostBack="True" DataSourceID="ObjectDataPositions" DataTextField="TitleAndApplicationCount" DataTextFormatString="{0}" DataValueField="ID" AppendDataBoundItems="True">
         <asp:ListItem Selected="True" Value="0">Select a Position</asp:ListItem>
     </asp:DropDownList>
@@ -15,7 +33,53 @@
     
     <br /><br />
     
-    <asp:GridView ID="gViewApplications" SkinID="gridViewUserManagement" runat="server" DataKeyNames="id" AutoGenerateColumns="False" DataSourceID="ObjectDataApplications" BorderStyle="None" CellPadding="0" GridLines="None">
+    <asp:ListView ID="lviewApplications" runat="server" DataSourceID="ObjectDataApplications" DataKeyNames="id">
+        <LayoutTemplate>
+        <table id="tblApplications" class="tablesorter">
+            <thead>
+                <tr>
+                    <th>
+                        Email?
+                    </th>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Submitted
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="itemPlaceholder" runat="server"></tr>
+            </tbody>
+        </table>
+        </LayoutTemplate>
+        <ItemTemplate>
+                <tr>
+                    <td>
+                        <asp:CheckBox ID="chkEmailApplicant" runat="server" />
+                    </td>
+                    <td>
+                        <%# GetNullSafeFullName((string)Eval("AssociatedProfile.FullName")) %>
+                    </td>
+                    <td>
+                        <%# Eval("Email") %>
+                    </td>
+                    <td>
+                        <%# Eval("Submitted") %>
+                    </td>
+                </tr>
+        </ItemTemplate>
+        <EmptyDataTemplate>
+            No Applications Found For This Position
+        </EmptyDataTemplate>
+    </asp:ListView>
+    
+    <%--<asp:GridView ID="gViewApplications" SkinID="gridViewUserManagement" runat="server" 
+            DataKeyNames="id" AutoGenerateColumns="False" DataSourceID="ObjectDataApplications" BorderStyle="None" CellPadding="0" GridLines="None">
         <Columns>
             <asp:TemplateField HeaderText="Email">
                 <ItemTemplate>
@@ -38,7 +102,7 @@
         </Columns>
         <HeaderStyle HorizontalAlign="Left" />
     
-    </asp:GridView>
+    </asp:GridView>--%>
     <asp:ObjectDataSource ID="ObjectDataApplications" runat="server" SelectMethod="GetByPositionID"
         TypeName="CAESDO.Recruitment.BLL.ApplicationBLL" OldValuesParameterFormatString="original_{0}">
          <SelectParameters>

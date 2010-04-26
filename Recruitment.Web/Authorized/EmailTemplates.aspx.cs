@@ -48,33 +48,30 @@ namespace CAESDO.Recruitment.Web
         {
             StringBuilder errorEmails = new StringBuilder();
 
-            foreach (GridViewRow row in gViewApplications.Rows)
+            foreach (var row in lviewApplications.Items)
             {
-                if (row.RowType == DataControlRowType.DataRow)
+                CheckBox cEmail = (CheckBox)row.FindControl("chkEmailApplicant");
+
+                if (cEmail.Checked)
                 {
-                    CheckBox cEmail = (CheckBox)row.FindControl("chkEmailApplicant");
+                    //Get the user and email them
+                    int userID = (int)lviewApplications.DataKeys[row.DataItemIndex]["id"];
+                    Application selectedApplication = ApplicationBLL.GetByID(userID);
 
-                    if (cEmail.Checked)
+                    try
                     {
-                        //Get the user and email them
-                        int userID = (int)gViewApplications.DataKeys[row.RowIndex]["id"];
-                        Application selectedApplication = ApplicationBLL.GetByID(userID);
-
-                        try
-                        {
-                            SmtpClient client = new SmtpClient();
-                            MailMessage message = new MailMessage(WebConfigurationManager.AppSettings["emailFromEmail"],
-                                                                    selectedApplication.Email,
-                                                                    "UC Davis Recruitment Reminder",
-                                                                    new TemplateProcessing().ProcessTemplate(null, selectedApplication, ReferenceTemplate.TemplateText, false)
-                                                                );
-                            message.IsBodyHtml = true;
-                            client.Send(message);
-                        }
-                        catch
-                        {
-                            errorEmails.AppendFormat("{0}, ", selectedApplication.Email);
-                        }
+                        SmtpClient client = new SmtpClient();
+                        MailMessage message = new MailMessage(WebConfigurationManager.AppSettings["emailFromEmail"],
+                                                                selectedApplication.Email,
+                                                                "UC Davis Recruitment Reminder",
+                                                                new TemplateProcessing().ProcessTemplate(null, selectedApplication, ReferenceTemplate.TemplateText, false)
+                                                            );
+                        message.IsBodyHtml = true;
+                        client.Send(message);
+                    }
+                    catch
+                    {
+                        errorEmails.AppendFormat("{0}, ", selectedApplication.Email);
                     }
                 }
             }
