@@ -25,7 +25,15 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _DepartmentFIS; }
             set { _DepartmentFIS = value; }
         }
-        
+
+        private Unit _Unit;
+
+        public virtual Unit Unit
+        {
+            get { return _Unit; }
+            set { _Unit = value; }
+        }
+                
         private string _LoginID;
 
         [NotNullValidator]

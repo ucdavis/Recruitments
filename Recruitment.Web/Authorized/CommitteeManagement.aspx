@@ -33,6 +33,11 @@
             <asp:BoundField DataField="LoginID" HeaderText="LoginID" SortExpression="LoginID" />            
             <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
             <asp:BoundField DataField="LastName" HeaderText="LastName" SortExpression="LastName" />
+            <asp:TemplateField HeaderText="Department">
+                <ItemTemplate>
+                    <%# Eval("Unit") == null ? Eval("DepartmentFIS") : Eval("Unit.ShortName")%>
+                </ItemTemplate>
+            </asp:TemplateField>
         </Columns>
         <HeaderStyle HorizontalAlign="Left" />
     </asp:GridView>

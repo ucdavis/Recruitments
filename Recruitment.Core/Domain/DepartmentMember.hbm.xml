@@ -12,6 +12,8 @@
     <property name="FirstName" column="FirstName" />
     <property name="LastName" column="LastName" />
 
+    <many-to-one name="Unit" insert="false" update="false" column="DepartmentFIS" class="CAESDO.Recruitment.Core.Domain.Unit, CAESDO.Recruitment.Core" cascade="none" not-null="false"></many-to-one>
+
     <many-to-one name="MemberType" class="CAESDO.Recruitment.Core.Domain.MemberType, CAESDO.Recruitment.Core" column="MemberTypeID" not-null="true" />
 
   </class>
