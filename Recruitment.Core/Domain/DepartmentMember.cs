@@ -28,7 +28,7 @@ namespace CAESDO.Recruitment.Core.Domain
         private string _OtherDepartmentName;
 
         [IgnoreNulls]
-        [StringLengthValidator(50)]
+        [StringLengthValidator(100)]
         public virtual string OtherDepartmentName
         {
             get { return _OtherDepartmentName; }

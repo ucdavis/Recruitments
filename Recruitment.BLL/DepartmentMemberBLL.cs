@@ -56,7 +56,9 @@ namespace CAESDO.Recruitment.BLL
                             member.LastName = attr[0].ToString();
                             break;
                         case "ou":
-                            member.OtherDepartmentName = attr[0].ToString();
+                            string otherDepartmentName = attr[0].ToString();
+                            member.OtherDepartmentName = otherDepartmentName.Substring(0, Math.Min(otherDepartmentName.Length - 1, 99));
+                            //member.OtherDepartmentName = attr[0].ToString().Substring(0, Math.Min(; //.Substring(0, 100);
                             break;
                         default:
                             break;
