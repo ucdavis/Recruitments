@@ -180,6 +180,19 @@ namespace CAESDO.Recruitment.Data
                 return criteria.List<Position>() as List<Position>;
             }
 
+            public List<Position> GetAllPositionsByStatusForCommittee(bool Closed, bool AdminAccepted)
+            {
+                User currentUser = new UserDao().GetUserByLogin(HttpContext.Current.User.Identity.Name);
+
+                ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(Position))
+                    .Add(Expression.Eq("Closed", Closed))
+                    .Add(Expression.Eq("AdminAccepted", AdminAccepted))
+                    .CreateCriteria("PositionCommittee")
+                    .Add(Expression.Eq("LoginID", HttpContext.Current.User.Identity.Name));
+
+                return criteria.List<Position>() as List<Position>;
+            }
+
             public bool VerifyPositionAccess(Position position)
             {
                 User currentUser = new UserDao().GetUserByLogin(HttpContext.Current.User.Identity.Name);

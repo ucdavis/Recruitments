@@ -51,6 +51,21 @@ public class RecruitmentService : System.Web.Services.WebService
     }
 
     [WebMethod]
+    public CascadingDropDownNameValue[] GetPositionsForCommittee(string knownCategoryValues, string category)
+    {
+        List<Position> positions = daoFactory.GetPositionDao().GetAllPositionsByStatusForCommittee(false, true);
+
+        List<CascadingDropDownNameValue> values = new List<CascadingDropDownNameValue>();
+
+        foreach (Position p in positions)
+        {
+            values.Add(new CascadingDropDownNameValue(p.TitleAndApplicationCount, p.ID.ToString()));
+        }
+
+        return values.ToArray();
+    }
+
+    [WebMethod]
     public CascadingDropDownNameValue[] GetApplications(string knownCategoryValues, string category)
     {
         StringDictionary kv = CascadingDropDown.ParseKnownCategoryValuesString(knownCategoryValues);
