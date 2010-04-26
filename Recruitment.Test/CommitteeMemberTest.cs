@@ -131,7 +131,6 @@ namespace CAESDO.Recruitment.Test
             {
                 this.TestContext.WriteLine("PositionID = {0}, CommitteeMemberID = {1}, Type = {2}", m.AssociatedPosition.ID, m.ID, m.MemberType.Type);
             }
-
         }
 
         /// <summary>
