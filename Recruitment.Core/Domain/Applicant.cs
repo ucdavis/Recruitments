@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
 
 namespace CAESDO.Recruitment.Core.Domain
 {
@@ -8,13 +9,18 @@ namespace CAESDO.Recruitment.Core.Domain
     {
         private string _Email;
 
+        [NotNullValidator]
+        [StringLengthValidator(50)]
         public virtual string Email
         {
             get { return _Email; }
             set { _Email = value; }
         }
+
+        //Maybe this should be a User type instead of an int
         private int _CreatedBy;
 
+        [NotNullValidator]
         public virtual int CreatedBy
         {
             get { return _CreatedBy; }
@@ -23,6 +29,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private bool _IsActive;
 
+        [NotNullValidator]
         public virtual bool IsActive
         {
             get { return _IsActive; }
