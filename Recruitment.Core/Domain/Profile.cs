@@ -80,6 +80,14 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _Phone = value; }
         }
 
+        private DateTime? _LastUpdated;
+
+        public DateTime? LastUpdated
+        {
+            get { return _LastUpdated; }
+            set { _LastUpdated = value; }
+        }
+        
         private Applicant _AssociatedApplicant;
 
         public virtual Applicant AssociatedApplicant

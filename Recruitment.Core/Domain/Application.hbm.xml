@@ -9,6 +9,8 @@
     <!--<property name="ProfileID" column="ProfileID" />-->
     <property name="Submitted" column="Submitted" />
     <property name="SubmitDate" column="SubmitDate" />
+    <property name="LastUpdated" column="LastUpdated" />
+    <property name="Email" column="Email" />
 
     <many-to-one name="AppliedPosition" column="PositionID"
       class="CAESDO.Recruitment.Core.Domain.Position, CAESDO.Recruitment.Core" not-null="true" />

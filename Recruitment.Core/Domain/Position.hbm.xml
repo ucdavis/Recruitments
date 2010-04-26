@@ -23,6 +23,7 @@
     <property name="FacultyView" column="FacultyView" />
     <property name="Vote" column="Vote" />
     <property name="FinalVote" column="FinalVote" />
+    <property name="Closed" column="Closed" />
 
     <!--<property name="DescriptionFile" column="DescriptionFile" />-->
     

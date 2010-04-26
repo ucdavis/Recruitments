@@ -17,6 +17,7 @@
     <property name="Zip" column="Zip" />
     <property name="Country" column="Country" />
     <property name="Phone" column="Phone" />
+    <property name="LastUpdated" column="LastUpdated" />
 
     <many-to-one name="AssociatedApplicant" column="AccountID"
       class="CAESDO.Recruitment.Core.Domain.Applicant, CAESDO.Recruitment.Core" not-null="true" />

@@ -128,6 +128,14 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _HREmail = value; }
         }
 
+        private bool _Closed;
+
+        public bool Closed
+        {
+            get { return _Closed; }
+            set { _Closed = value; }
+        }
+        
         private IList<Department> _Departments;
 
         public virtual IList<Department> Departments

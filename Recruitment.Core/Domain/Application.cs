@@ -29,14 +29,30 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _Submitted; }
             set { _Submitted = value; }
         }
-        private DateTime _SubmitDate;
+        private DateTime? _SubmitDate;
 
-        public virtual DateTime SubmitDate
+        public virtual DateTime? SubmitDate
         {
             get { return _SubmitDate; }
             set { _SubmitDate = value; }
         }
 
+        private DateTime _LastUpdated;
+
+        public DateTime LastUpdated
+        {
+            get { return _LastUpdated; }
+            set { _LastUpdated = value; }
+        }
+
+        private string _Email;
+
+        public string Email
+        {
+            get { return _Email; }
+            set { _Email = value; }
+        }
+        
         private IList<File> _Files;
 
         public virtual IList<File> Files
