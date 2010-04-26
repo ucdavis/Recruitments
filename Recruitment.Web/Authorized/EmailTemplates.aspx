@@ -114,6 +114,7 @@
     </asp:ObjectDataSource>
     
     <br />
+    <asp:Panel ID="pnlApplicationsExist" runat="server" Visible="false">
     <asp:Button ID="btnSendEmail" runat="server" Text="Send Reminder Emails" OnClick="btnSendEmail_Click" /><br />
     <asp:Label ID="lblSentEmail" runat="server" ForeColor="green" EnableViewState="false"></asp:Label>
         <AjaxControlToolkit:AnimationExtender ID="animationApplicationStatus" runat="server" TargetControlID="lblSentEmail">
@@ -130,9 +131,9 @@
                 </OnLoad>
             </Animations>                            
         </AjaxControlToolkit:AnimationExtender>
-                            
+                                
     <br />
-<hr />
+    <hr />
     <br />
     <br />
     <div style="width:818px; height:389px; background:url(../Images/envelope.jpg) no-repeat; padding:50px;">
@@ -140,5 +141,7 @@
        <asp:Literal ID="litEmailBody" runat="server"></asp:Literal><br />
     </div>
     </div>
+    </asp:Panel>
+
 </asp:Content>
 

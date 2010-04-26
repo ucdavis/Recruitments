@@ -88,10 +88,7 @@ namespace CAESDO.Recruitment.Web
         /// </summary>
         protected void lviewApplications_DataBound(object sender, EventArgs e)
         {
-            if (lviewApplications.Items.Count > 0)
-                btnSendEmail.Visible = true;
-            else
-                btnSendEmail.Visible = false;
+            pnlApplicationsExist.Visible = lviewApplications.Items.Count > 0;
         }
 
         public string GetNullSafeFullName(string fullName)
