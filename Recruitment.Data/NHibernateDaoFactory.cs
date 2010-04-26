@@ -381,7 +381,7 @@ namespace CAESDO.Recruitment.Data
         }
 
         public class DepartmentMemberDao : AbstractNHibernateDao<DepartmentMember, int>, IDepartmentMemberDao {
-            public List<DepartmentMember> GetMembersByDepartmentAndType(string DepartmentFIS, MemberTypes type)
+            public List<DepartmentMember> GetMembersByDepartmentAndType(string[] DepartmentFIS, MemberTypes type)
             {
                 int MemberTypeID, MemberTypeSecondaryID;
 
@@ -400,11 +400,20 @@ namespace CAESDO.Recruitment.Data
                 MemberTypeDao mdao = new MemberTypeDao();
 
                 ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(DepartmentMember))
-                    .Add(Expression.Eq("DepartmentFIS", DepartmentFIS))
+                    .Add(Expression.In("DepartmentFIS", DepartmentFIS))
                     .Add(Expression.Or(Expression.Eq("MemberType", mdao.GetById(MemberTypeID,false)), Expression.Eq("MemberType", mdao.GetById(MemberTypeSecondaryID, false))));
 
                 return criteria.List<DepartmentMember>() as List<DepartmentMember>;
-            }            
+            }
+
+            [DataObjectMethod(DataObjectMethodType.Select, true)]
+            public List<DepartmentMember> GetMembersByDepartmentAndType(string DepartmentFIS, MemberTypes type)
+            {
+                List<string> depts = new List<string>();
+                depts.Add(DepartmentFIS);
+
+                return GetMembersByDepartmentAndType(depts.ToArray(), type);
+            }
         }
          
         #endregion
