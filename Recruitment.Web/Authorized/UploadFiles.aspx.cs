@@ -140,8 +140,6 @@ namespace CAESDO.Recruitment.Web
                     System.IO.FileInfo file = new System.IO.FileInfo(FilePath + fileID.ToString());
                     file.Delete();
 
-                    selectedReference.UnsolicitedReference = chkUnsolicited.Checked;
-
                     daoFactory.GetReferenceDao().SaveOrUpdate(selectedReference);
                 }
 
@@ -168,6 +166,7 @@ namespace CAESDO.Recruitment.Web
                         //fileUpload.SaveAs(FilePath + file.ID.ToString());
 
                         selectedReference.ReferenceFile = file;
+                        selectedReference.UnsolicitedReference = chkUnsolicited.Checked;
 
                         using (new NHibernateTransaction())
                         {
