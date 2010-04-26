@@ -1,6 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ViewApplications.ascx.cs" Inherits="CAESDO.Recruitment.Web.Shared_ViewApplications" %>
 
 <script type="text/javascript">
+    var phdInfoExpanded = true;
 
     $(document).ready(function() {
         //help balloon added by tyler
@@ -76,6 +77,33 @@
             //$("input.qs_input").keydown();
             $("#tblApplications").trigger("applyWidgets"); //Apply the zebra stripes
         });
+
+        $("#ApplicantViewListShowHideHeader").click(function() {
+            var additionalInfo = $(".ApplicantViewListPhDInformation");
+
+            if (phdInfoExpanded) {
+                //collapse the phdinfo
+                additionalInfo.hide();
+            }
+            else {
+                //expand the phdinfo
+                additionalInfo.show();
+            }
+
+            phdInfoExpanded = !phdInfoExpanded;
+
+            return false; //Don't bubble the event
+        });
+
+        //Expand the phd info for just this applicant
+        $(".ApplicantViewListDateShowHideTxt").click(function() {
+
+            var phdInfoCell = $(this).parents(".ApplicantViewListPhdCell");
+
+            var phdInfoDiv = $(".ApplicantViewListPhDInformation", phdInfoCell); //Find the div to expand within this cell
+
+            phdInfoDiv.toggle();
+        });
     });
 
     function HideUnsubmitted() {
@@ -138,7 +166,7 @@ position.
             <td class="ApplicantViewListCurrentPosition">
                 <%# (int)Eval("CurrentPositions.Count") > 0 ? Eval("CurrentPositions[0].Institution") + " -- " + Eval("CurrentPositions[0].Title") : string.Empty%>
             </td>
-            <td>
+            <td class="ApplicantViewListPhdCell">
                 <div class="ApplicantViewListDateShowHideDiv">
                     <span class="ApplicantViewListDate"><%# (int)Eval("Education.Count") > 0 ? ((DateTime)Eval("Education[0].Date")).ToShortDateString() : string.Empty%></span>
                     <span class="ApplicantViewListDateShowHideTxt">+/-</span>
