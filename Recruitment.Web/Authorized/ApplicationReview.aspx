@@ -64,6 +64,7 @@
                         </td>
                     </tr>
                 </table>
+                <br />
             </asp:Panel>
             
             <asp:Panel ID="pnlEducationInformation" runat="server">
@@ -94,6 +95,7 @@
                         </td>
                     </tr>
                 </table>
+                <br />
             </asp:Panel>
             
              <asp:Panel ID="pnlCurrentPosition" runat="server">
@@ -166,6 +168,7 @@
                         </td>
                     </tr>
                 </table>
+                 <br />
             </asp:Panel>
         
             <asp:Panel ID="pnlReferences" runat="server">
@@ -175,8 +178,8 @@
                         <td colspan="2"><asp:Button ID="btnReferencesShow" runat="server" style="display:none; visibility:hidden;" /><br /></td>
                     </tr>
                     <tr>
-                        <td colspan="2">
-                        <span style="color:Red">Confidential References:</span>
+                        <td colspan="2" style="height: 154px">
+                        <span style="color:Red">Confidential References:</span><br />
                             <asp:GridView ID="gviewReferences" skinID="gridViewReferences" runat="server" DataKeyNames="ID" OnSelectedIndexChanged="gviewReferences_SelectedIndexChanged" AutoGenerateColumns="False" EmptyDataText="No References Added" BorderStyle="None" CellPadding="0" GridLines="None">
                             <Columns>
                                 <asp:CommandField ShowSelectButton="True" SelectText="View" EditText="" >
@@ -217,7 +220,7 @@
                         </td>
                     </tr>
                 </table>
-                
+                <br />
                 <asp:Panel ID="pnlReferencesEntry" runat="server" CssClass="modalPopup" style="display:none;">
                     <span class="modalTitle">View Reference</span>
                     <div style="height:450px; overflow:auto;">
@@ -374,6 +377,7 @@
                         </td>
                     </tr>
                 </table>
+                <br />
             </asp:Panel>
             
             <asp:Panel ID="pnlPublications" runat="server" Visible="false">
@@ -394,6 +398,7 @@
                         </td>
                     </tr>
                 </table>
+                <br />
             </asp:Panel>
             
 </asp:Content>

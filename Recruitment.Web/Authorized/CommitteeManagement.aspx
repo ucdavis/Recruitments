@@ -23,6 +23,7 @@
             </asp:BoundField>
             <asp:CommandField HeaderText="Remove" ShowDeleteButton="True" />
         </Columns>    
+        <HeaderStyle HorizontalAlign="Left" />
     </asp:GridView>
         
     <br /><br />

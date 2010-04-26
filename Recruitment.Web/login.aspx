@@ -12,7 +12,7 @@
     OR<br />
     <br />
     </asp:Panel>
-    <span class="boxTitle"><img src="Images/profile_sm.gif" style="vertical-align:middle;" alt="" /> Log In</span>
+    <span class="loginboxTitle"><img src="Images/profile_sm.gif" style="vertical-align:middle;" alt="" /> Log In</span>
     <asp:Login ID="loginMembership" runat="server" BackColor="#EFEFEF" BorderColor="#7f7f7f" BorderPadding="4" BorderStyle="Dotted" BorderWidth="1px" Font-Names="Verdana" Font-Size="1em" ForeColor="#333333" Height="124px" Width="293px" 
         CreateUserText="New User?" CreateUserUrl="~/Login/CreateUser.aspx" 
         PasswordRecoveryText="Forgot Password?" PasswordRecoveryUrl="~/Login/ResetPassword.aspx" UserNameLabelText="User Name/Email:">

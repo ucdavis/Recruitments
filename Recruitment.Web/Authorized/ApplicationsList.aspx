@@ -14,14 +14,14 @@
         </SelectParameters>
     </asp:ObjectDataSource>
     <br /><br />
-    <asp:GridView ID="gviewApplications" runat="server" AllowPaging="true" skinID="gridViewUM" DataKeyNames="id" GridLines="None" CellPadding="0" AutoGenerateColumns="False" DataSourceID="ObjectDataApplications" EmptyDataText="No Applications Found For This Position">
+    <asp:GridView ID="gviewApplications" runat="server" AllowPaging="True" skinID="gridViewShortList" DataKeyNames="id" GridLines="None" CellPadding="0" AutoGenerateColumns="False" DataSourceID="ObjectDataApplications" EmptyDataText="No Applications Found For This Position">
         <Columns>
             <asp:TemplateField HeaderText="Interview">
                 <ItemTemplate>
                     <asp:CheckBox ID="chkShortList" runat="server" Checked='<%# Eval("ShortList") %>' />
                 </ItemTemplate>
-                <ItemStyle CssClass="paddingLeft" />
-                <HeaderStyle HorizontalAlign="Left" CssClass="paddingLeft" />
+                <ItemStyle CssClass="paddingLeft2" HorizontalAlign="Left" />
+                <HeaderStyle HorizontalAlign="Left" CssClass="paddingLeft" Width="15%" />
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Get References">
                 <ItemTemplate>
@@ -38,16 +38,17 @@
                     <asp:LinkButton ID="lbtnViewApplication" runat="server" CommandArgument='<%# Eval("id") %>' Text='<%# GetNullSafeFullName((string)Eval("AssociatedProfile.FullName")) %>' OnClick="lbtnViewApplication_Click"></asp:LinkButton>
                 </ItemTemplate>
                 <ItemStyle CssClass="paddingLeft" />
-                <HeaderStyle HorizontalAlign="Left" CssClass="paddingLeft" />
+                <HeaderStyle HorizontalAlign="Left" CssClass="paddingLeft" Width="30%" />
             </asp:TemplateField>
             <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" >
-                <HeaderStyle Width="100px" />
+                <HeaderStyle Width="40%" />
             </asp:BoundField>
             <asp:CheckBoxField DataField="Submitted" HeaderText="Submitted" SortExpression="Submitted">
                 <ItemStyle HorizontalAlign="Center" />
-                <HeaderStyle Width="100px" />
+                <HeaderStyle Width="15%" HorizontalAlign="Center" />
             </asp:CheckBoxField>
         </Columns>    
+        <HeaderStyle HorizontalAlign="Left" />
     </asp:GridView>
     
     <asp:ObjectDataSource ID="ObjectDataApplications" runat="server" SelectMethod="GetApplicationsByPosition"
