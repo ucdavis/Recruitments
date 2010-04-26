@@ -6,7 +6,7 @@
     Closing <%= CurrentPosition.PositionTitle %>
 </h2>
 <p>
-    To close this position, please complete the <a href="http://manuals.ucdavis.edu/APM/500f.pdf">Final Recruitment Report (PDF)</a>.
+    To close this position, please complete the <a href="http://manuals.ucdavis.edu/APM/500f.pdf" target="_blank">Final Recruitment Report (PDF)</a>.
 </p>
 <p>
     When you are finished filling out this form, save it and upload below to close the position.

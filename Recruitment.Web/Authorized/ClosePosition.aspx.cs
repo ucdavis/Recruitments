@@ -75,7 +75,7 @@ public partial class Authorized_ClosePosition : System.Web.UI.Page
                 ts.CommitTransaction();
             }
 
-            ///TODO: Rediret to confirmation page
+            Response.Redirect("ClosePositionSuccess.aspx");
         }
         else
         {
