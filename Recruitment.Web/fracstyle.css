@@ -493,3 +493,33 @@ background: url(Images/dropdownbg.gif) no-repeat;
 display:block; height:auto; line-height:1.5em; padding:5px 10px 4px 35px; width:210px; w\idth:180px;
 }
 * html .dropdownmenu ul li a:hover ul li a:hover ul li a {padding:4px 10px 4px 35px;}
+
+/** added by tyler **/
+#create_pos_word_bank 
+{
+    float:right;
+    position:absolute;
+    margin-left:590px;
+    border:dotted 1px #7F7F7F;
+    width:130px;
+    padding:5px;
+    background-color:#EFEFEF
+}
+.bottom_space 
+{
+    margin-bottom:10px;
+}
+#create_pos_word_bank li
+{
+    list-style-type:square;    
+}
+#create_pos_word_bank ul
+{
+    padding:0;
+    margin:0 0 0 16px;    
+}
+#FreeTextBox_help 
+{
+    margin-left:10px;
+    margin-bottom:-2px;
+}
