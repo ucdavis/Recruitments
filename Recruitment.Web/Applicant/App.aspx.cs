@@ -18,10 +18,28 @@ namespace CAESDO.Recruitment.Web
     {
         #region ConstVariables
         private const string STR_ApplicationID = "ApplicationID";
+        private const string _Transcript = "Transcript";
+        private const string STR_ConfidentialSurvey = "Confidential Survey";
+        private const string STR_EducationInformation = "Education Information";
         private const string STR_CurrentApplication = "currentApplication";
         private const string STR_ApplicationSteps = "ApplicationSteps";
         private const string STR_HomeStep = "Home";
-                                                   private const string STR_Applicationpdf = "application/pdf"; 
+
+        private const string STR_Applicationpdf = "application/pdf";
+        
+        private const string STR_ContactInformation = "Contact Information";
+        private const string STR_References = "References";
+        private const string STR_CurrentPosition = "Current Position";
+        private const string STR_Resume = "Resume";
+        private const string STR_CoverLetter = "Cover Letter";
+        private const string STR_ResearchInterests = "Research Interests";
+        private const string STR_Transcripts = "Transcripts";
+        private const string STR_Publications = "Publications";
+        private const string STR_Dissertation = "Dissertation";
+        private const string STR_FileType_Transcript = "Transcript";
+        private const string STR_FileType_CoverLetter = "CoverLetter";
+        private const string STR_FileType_ResearchInterests = "ResearchInterests";
+        private const string STR_FileType_Publication = "Publication"; 
         #endregion
 
         #region Properties
@@ -211,7 +229,7 @@ namespace CAESDO.Recruitment.Web
                 //Error message
             }
 
-            ReloadStepListAndSelectHome("References", true);
+            ReloadStepListAndSelectHome(STR_ContactInformation, true);
 
         }
 
@@ -250,7 +268,7 @@ namespace CAESDO.Recruitment.Web
                 Trace.Warn(ValidateBO<Education>.GetValidationResultsAsString(currentEducation));
             }
 
-            ReloadStepListAndSelectHome("References", true);
+            ReloadStepListAndSelectHome(STR_EducationInformation, true);
         }
 
         protected void btnCurrentPositionSave_Click(object sender, EventArgs e)
@@ -294,14 +312,14 @@ namespace CAESDO.Recruitment.Web
                 Trace.Warn(ValidateBO<CurrentPosition>.GetValidationResultsAsString(currentPosition));
             }
 
-            ReloadStepListAndSelectHome("References", true);
+            ReloadStepListAndSelectHome(STR_CurrentPosition, true);
         }
 
         protected void btnResumeUpload_Click(object sender, EventArgs e)
         {
-            FileType resumeFileType = daoFactory.GetFileTypeDao().GetFileTypeByName("Resume");
+            FileType resumeFileType = daoFactory.GetFileTypeDao().GetFileTypeByName(STR_Resume);
 
-            RemoveAllFilesOfType("Resume");
+            RemoveAllFilesOfType(STR_Resume);
 
             if (fileResume.HasFile)
             {
@@ -335,14 +353,14 @@ namespace CAESDO.Recruitment.Web
                 }
             }
 
-            ReloadStepListAndSelectHome("References", true);
+            ReloadStepListAndSelectHome(STR_Resume, true);
         }
 
         protected void btnCoverLetterUpload_Click(object sender, EventArgs e)
         {
-            FileType coverLetterFileType = daoFactory.GetFileTypeDao().GetFileTypeByName("CoverLetter");
+            FileType coverLetterFileType = daoFactory.GetFileTypeDao().GetFileTypeByName(STR_FileType_CoverLetter);
 
-            RemoveAllFilesOfType("CoverLetter");
+            RemoveAllFilesOfType(STR_FileType_CoverLetter);
 
             if (fileCoverLetter.HasFile)
             {
@@ -376,14 +394,14 @@ namespace CAESDO.Recruitment.Web
                 }
             }
 
-            ReloadStepListAndSelectHome("References", true);
+            ReloadStepListAndSelectHome(STR_CoverLetter, true);
         }
 
         protected void btnResearchInterestsUpload_Click(object sender, EventArgs e)
         {
-            FileType ResearchInterestsFileType = daoFactory.GetFileTypeDao().GetFileTypeByName("ResearchInterests");
+            FileType ResearchInterestsFileType = daoFactory.GetFileTypeDao().GetFileTypeByName(STR_FileType_ResearchInterests);
 
-            RemoveAllFilesOfType("ResearchInterests");
+            RemoveAllFilesOfType(STR_FileType_ResearchInterests);
 
             if (fileResearchInterests.HasFile)
             {
@@ -415,16 +433,20 @@ namespace CAESDO.Recruitment.Web
                         Trace.Warn(ValidateBO<File>.GetValidationResultsAsString(researchInterests));
                     }
                 }
-            }
 
-            ReloadStepListAndSelectHome("References", true);
+                ReloadStepListAndSelectHome(STR_ResearchInterests, true);
+            }
+            else
+            {
+                ReloadStepListAndSelectHome(STR_ResearchInterests, false);
+            }
         }
 
         protected void btnTranscriptsUpload_Click(object sender, EventArgs e)
         {
-            FileType transcriptsFileType = daoFactory.GetFileTypeDao().GetFileTypeByName("Transcript");
+            FileType transcriptsFileType = daoFactory.GetFileTypeDao().GetFileTypeByName(_Transcript);
 
-            RemoveAllFilesOfType("Transcript");
+            RemoveAllFilesOfType(_Transcript);
 
             if (fileTranscripts.HasFile)
             {
@@ -458,14 +480,14 @@ namespace CAESDO.Recruitment.Web
                 }
             }
 
-            ReloadStepListAndSelectHome("References", true);
+            ReloadStepListAndSelectHome(STR_Transcripts, true);
         }
         
         protected void btnDissertationUpload_Click(object sender, EventArgs e)
         {
-            FileType dissertationFileType = daoFactory.GetFileTypeDao().GetFileTypeByName("Dissertation");
+            FileType dissertationFileType = daoFactory.GetFileTypeDao().GetFileTypeByName(STR_Dissertation);
 
-            RemoveAllFilesOfType("Dissertation");
+            RemoveAllFilesOfType(STR_Dissertation);
 
             if (fileDissertation.HasFile)
             {
@@ -499,12 +521,12 @@ namespace CAESDO.Recruitment.Web
                 }
             }
 
-            ReloadStepListAndSelectHome("References", true);
+            ReloadStepListAndSelectHome(STR_Dissertation, true);
         }
 
         protected void btnPublicationsUpload_Click(object sender, EventArgs e)
         {
-            FileType publicationsFileType = daoFactory.GetFileTypeDao().GetFileTypeByName("Publication");
+            FileType publicationsFileType = daoFactory.GetFileTypeDao().GetFileTypeByName(STR_FileType_Publication);
 
             if (filePublications.HasFile)
             {
@@ -576,7 +598,7 @@ namespace CAESDO.Recruitment.Web
                 currentApplication.PublicationsComplete = chkPublicationsFinalize.Checked;
             }
 
-            ReloadStepListAndSelectHome("References", true);
+            ReloadStepListAndSelectHome(STR_Publications, true);
         }
 
         protected void btnConfidentialSurveyAccept_Click(object sender, EventArgs e)
@@ -687,7 +709,7 @@ namespace CAESDO.Recruitment.Web
                 daoFactory.GetApplicationDao().SaveOrUpdate(currentApplication);
             }
 
-            ReloadStepListAndSelectHome("References", true);
+            ReloadStepListAndSelectHome(STR_ConfidentialSurvey, true);
         }
 
         protected void btnReferencesAddUpdate_Click(object sender, EventArgs e)
@@ -816,7 +838,7 @@ namespace CAESDO.Recruitment.Web
                 currentApplication.ReferencesComplete = chkReferencesComplete.Checked;
             }
 
-            ReloadStepListAndSelectHome("References", true);
+            ReloadStepListAndSelectHome(STR_References, true);
         }
 
         #endregion
@@ -846,9 +868,15 @@ namespace CAESDO.Recruitment.Web
         {
             //Set the home status for user feedback
             if (success)
+            {
+                lblApplicationStepStatus.ForeColor = System.Drawing.Color.Green;
                 lblApplicationStepStatus.Text = string.Format("{0} successfully completed", fromStepName);
+            }
             else
-            { }
+            {
+                lblApplicationStepStatus.ForeColor = System.Drawing.Color.Red;
+                lblApplicationStepStatus.Text = string.Format("Error occurred saving {0}.  Please return to the {0} tab and try again. If the problem persists, please contact applicaion support", fromStepName);
+            }
 
             //Reload the steps list
             ApplicationSteps = null;
@@ -878,16 +906,16 @@ namespace CAESDO.Recruitment.Web
             ApplicationSteps.Add(new Step(STR_HomeStep, true, true, true));
 
             //Now add the contact information (information is 'complete' if the LastUpdated field is not null)
-            ApplicationSteps.Add(new Step("Contact Information", currentApplication.AssociatedProfile.LastUpdated != null, false, true));
+            ApplicationSteps.Add(new Step(STR_ContactInformation, currentApplication.AssociatedProfile.LastUpdated != null, false, true));
 
             //Add education
-            ApplicationSteps.Add(new Step("Education Information", currentApplication.isComplete(ApplicationStepType.Education), false, true));
+            ApplicationSteps.Add(new Step(STR_EducationInformation, currentApplication.isComplete(ApplicationStepType.Education), false, true));
 
             //Add references
-            ApplicationSteps.Add(new Step("References", currentApplication.ReferencesComplete, false, true));
+            ApplicationSteps.Add(new Step(STR_References, currentApplication.ReferencesComplete, false, true));
 
             //Add current position
-            ApplicationSteps.Add(new Step("Current Position", currentApplication.isComplete(ApplicationStepType.CurrentPosition), false, true));
+            ApplicationSteps.Add(new Step(STR_CurrentPosition, currentApplication.isComplete(ApplicationStepType.CurrentPosition), false, true));
 
             //Add files 
             bool hasResume = false;
@@ -903,25 +931,25 @@ namespace CAESDO.Recruitment.Web
             {
                 switch (file.FileType.FileTypeName)
                 {
-                    case "Resume":
+                    case STR_Resume:
                         hasResume = true;
                         break;
-                    case "CoverLetter":
+                    case STR_FileType_CoverLetter:
                         hasCoverLetter = true;
                         break;
                     case "CV":
                         hasCV = true;
                         break;
-                    case "Transcript":
+                    case STR_FileType_Transcript:
                         hasTranscript = true;
                         break;
-                    case "ResearchInterests":
+                    case STR_FileType_ResearchInterests:
                         hasResearchInterest = true;
                         break;
-                    case "Publication":
+                    case STR_FileType_Publication:
                         hasPublication = true;
                         break;
-                    case "Dissertation":
+                    case STR_Dissertation:
                         hasDissertation = true;
                         break;
                     default:
@@ -930,15 +958,15 @@ namespace CAESDO.Recruitment.Web
             }
 
             //Now add each type of file, hiding if necessary
-            ApplicationSteps.Add(new Step("Resume", hasResume, false, true));
-            ApplicationSteps.Add(new Step("Cover Letter", hasCoverLetter, false, true));
-            ApplicationSteps.Add(new Step("Research Interests", hasResearchInterest, false, true));
-            ApplicationSteps.Add(new Step("Transcripts", hasTranscript, false, true));
-            ApplicationSteps.Add(new Step("Publications", currentApplication.PublicationsComplete, false, true));
-            ApplicationSteps.Add(new Step("Dissertation", hasDissertation, false, true));
+            ApplicationSteps.Add(new Step(STR_Resume, hasResume, false, true));
+            ApplicationSteps.Add(new Step(STR_CoverLetter, hasCoverLetter, false, true));
+            ApplicationSteps.Add(new Step(STR_ResearchInterests, hasResearchInterest, false, true));
+            ApplicationSteps.Add(new Step(STR_Transcripts, hasTranscript, false, true));
+            ApplicationSteps.Add(new Step(STR_Publications, currentApplication.PublicationsComplete, false, true));
+            ApplicationSteps.Add(new Step(STR_Dissertation, hasDissertation, false, true));
 
             //Add the confidential survey
-            ApplicationSteps.Add(new Step("Confidential Survey", currentApplication.isComplete(ApplicationStepType.Survey), false, true));
+            ApplicationSteps.Add(new Step(STR_ConfidentialSurvey, currentApplication.isComplete(ApplicationStepType.Survey), false, true));
 
             //ApplicationSteps.Add(new Step("Education Information", true, false, true));
 
@@ -1003,7 +1031,7 @@ namespace CAESDO.Recruitment.Web
         public string NumPublicationsRemainingText()
         {
             //Warn the user if they don't have enough publications
-            int numPublicationsRemaining = currentApplication.AppliedPosition.NumPublications - GetFilesOfType("Publication").Count;
+            int numPublicationsRemaining = currentApplication.AppliedPosition.NumPublications - GetFilesOfType(STR_FileType_Publication).Count;
 
             if (numPublicationsRemaining > 0)
                 return string.Format("[{0} More Publication{1} Requested]", numPublicationsRemaining, numPublicationsRemaining == 1 ? string.Empty : "s");
@@ -1116,32 +1144,32 @@ namespace CAESDO.Recruitment.Web
         {
             switch (stepName)
             {
-                case "Home":
+                case STR_HomeStep:
                     DataBindHome();
                     break;
-                case "Contact Information":
+                case STR_ContactInformation:
                     DataBindContactInformation();
                     break;
-                case "Education Information":
+                case STR_EducationInformation:
                     DataBindEducationInformation();
                     break;
-                case "References":
+                case STR_References:
                     DataBindReferences();
                     break;
-                case "Current Position":
+                case STR_CurrentPosition:
                     DataBindCurrentPositionInformation();
                     break;
-                case "Resume":
+                case STR_Resume:
                     break;
-                case "Cover Letter":
+                case STR_CoverLetter:
                     break;
-                case "Research Interests":
+                case STR_ResearchInterests:
                     break;
-                case "Transcripts":
+                case STR_Transcripts:
                     break;
-                case "Confidential Survey":
+                case STR_ConfidentialSurvey:
                     break;
-                case "Publications":
+                case STR_Publications:
                     DataBindPublications();
                     break;
                 default:
@@ -1223,7 +1251,7 @@ namespace CAESDO.Recruitment.Web
             chkPublicationsFinalize.Checked = currentApplication.PublicationsComplete;
 
             //Bind the publications grid with existing files
-            rptPublications.DataSource = GetFilesOfType("Publication");
+            rptPublications.DataSource = GetFilesOfType(STR_FileType_Publication);
             rptPublications.DataBind();
         }
 
