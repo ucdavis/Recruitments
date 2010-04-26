@@ -46,6 +46,11 @@ namespace CAESDO.Recruitment.Web
             if (!IsPostBack)
             {
                 litPositionTitle.Text = currentPosition.PositionTitle;
+
+                if (currentPosition.SearchPlanFile != null)
+                {
+                    lbtnDownloadSearchPlan.Visible = true;
+                }
             }
         }
 
@@ -77,6 +82,11 @@ namespace CAESDO.Recruitment.Web
             string applicationID = ((LinkButton)sender).CommandArgument;
 
             Response.Redirect(string.Format("{0}?ApplicationID={1}", STR_ApplicationReviewaspx, applicationID));
+        }
+
+        protected void lbtnDownloadSearchPlan_Click(object sender, EventArgs e)
+        {
+            FileBLL.Transmit(currentPosition.SearchPlanFile.ID, currentPosition.SearchPlanFile.FileName);
         }
     } 
 }

@@ -62,6 +62,8 @@
 Viewing Applicants for the
 <asp:Literal ID="litPositionTitle" runat="server" />
 position.
+<asp:LinkButton ID="lbtnDownloadSearchPlan" runat="server" Text="[View Search Plan (PDF)]" Visible="False" OnClick="lbtnDownloadSearchPlan_Click"></asp:LinkButton>
+
 <br />
 <br />
 <span style="float:right;"><input id="chkShowUnsubmitted" checked="checked" type="checkbox" /><label for="chkShowUnsubmitted">Show Submitted Only</label></span>
