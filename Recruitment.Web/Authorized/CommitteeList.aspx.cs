@@ -85,7 +85,8 @@ namespace CAESDO.Recruitment.Web
 
             using (new NHibernateTransaction())
             {
-                daoFactory.GetDepartmentMemberDao().Delete(member);
+                member.Inactive = true; //Mark the member as inactive
+                daoFactory.GetDepartmentMemberDao().SaveOrUpdate(member);
             }
 
             e.Cancel = true;

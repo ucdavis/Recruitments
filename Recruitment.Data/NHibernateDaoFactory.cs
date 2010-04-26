@@ -505,6 +505,7 @@ namespace CAESDO.Recruitment.Data
                 MemberTypeDao mdao = new MemberTypeDao();
 
                 ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(DepartmentMember))
+                    .Add(Expression.Eq("Inactive", false))
                     .Add(Expression.In("DepartmentFIS", DepartmentFIS))
                     .Add(Expression.Or(Expression.Eq("MemberType", mdao.GetById(MemberTypeID,false)), Expression.Eq("MemberType", mdao.GetById(MemberTypeSecondaryID, false))));
 
@@ -532,6 +533,7 @@ namespace CAESDO.Recruitment.Data
             public List<DepartmentMember> GetMembersByDepartment(string[] DepartmentFIS)
             {
                 ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(DepartmentMember))
+                    .Add(Expression.Eq("Inactive", false))
                     .Add(Expression.In("DepartmentFIS", DepartmentFIS));
                 
                 return criteria.List<DepartmentMember>() as List<DepartmentMember>;

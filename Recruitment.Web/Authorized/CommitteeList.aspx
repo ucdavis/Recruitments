@@ -64,7 +64,7 @@
             </asp:BoundField>            
             <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
             <asp:BoundField DataField="LastName" HeaderText="LastName" SortExpression="LastName" />
-            <asp:CommandField DeleteText="Remove" ShowDeleteButton="True" Visible="false" />
+            <asp:CommandField DeleteText="Remove" ShowDeleteButton="True" />
         </Columns>    
         <HeaderStyle HorizontalAlign="Left" />
     </asp:GridView>

@@ -65,6 +65,15 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _LastName = value; }
         }
 
+        private bool _Inactive;
+
+        [NotNullValidator]
+        public virtual bool Inactive
+        {
+            get { return _Inactive; }
+            set { _Inactive = value; }
+        }
+
         public DepartmentMember()
         {
 

@@ -12,6 +12,7 @@
     <property name="LoginID" column="LoginID" />
     <property name="FirstName" column="FirstName" />
     <property name="LastName" column="LastName" />
+    <property name="Inactive" column="Inactive" />
 
     <many-to-one name="Unit" insert="false" update="false" column="DepartmentFIS" class="CAESDO.Recruitment.Core.Domain.Unit, CAESDO.Recruitment.Core" cascade="none" not-null="false"></many-to-one>
     
