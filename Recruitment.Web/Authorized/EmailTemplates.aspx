@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="EmailTemplates.aspx.cs" Inherits="CAESDO.Recruitment.Web.Authorized_EmailTemplates" Title="Send Templated Emails" %>
+<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="EmailTemplates.aspx.cs" Inherits="CAESDO.Recruitment.Web.Authorized_EmailTemplates" Title="Send Templated Emails" Theme="MainTheme" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
     <asp:DropDownList ID="dlistApplicants" runat="server" AutoPostBack="True" DataSourceID="ObjectDataPositions" DataTextField="TitleAndApplicationCount" DataTextFormatString="{0}" DataValueField="ID" AppendDataBoundItems="True">
@@ -14,12 +14,14 @@
     
     <br /><br />
     
-    <asp:GridView ID="gViewApplications" runat="server" DataKeyNames="ID" AutoGenerateColumns="False" DataSourceID="ObjectDataApplications">
+    <asp:GridView ID="gViewApplications" SkinID="gridViewUserManagement" runat="server" DataKeyNames="ID" AutoGenerateColumns="False" DataSourceID="ObjectDataApplications" BorderStyle="None" CellPadding="0" GridLines="None">
         <Columns>
             <asp:TemplateField HeaderText="Email">
                 <ItemTemplate>
                     <asp:CheckBox ID="chkEmailApplicant" runat="server" />
                 </ItemTemplate>
+                <ItemStyle CssClass="paddingLeft" />
+                <HeaderStyle CssClass="paddingLeft" />
             </asp:TemplateField>
         
             <asp:TemplateField HeaderText="Name">
@@ -30,6 +32,7 @@
             
             <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
         </Columns>
+        <HeaderStyle HorizontalAlign="Left" />
     
     </asp:GridView>
     <asp:ObjectDataSource ID="ObjectDataApplications" runat="server" SelectMethod="GetApplicationsByPosition"
@@ -42,9 +45,13 @@
     
     <br />
     <asp:Button ID="btnSendEmail" runat="server" Text="Send Reminder Emails" /><br />
+    <br />
 <hr />
-    <asp:Literal ID="litEmailBody" runat="server"></asp:Literal><br />
-
+    <br />
+    <br />
+    <div style="background-color:#d8e6f0; width: 700px; padding:30px;">
+       <asp:Literal ID="litEmailBody" runat="server"></asp:Literal><br />
+    </div>
 
 </asp:Content>
 

@@ -74,10 +74,10 @@ html, #aspnetForm
 #ctl00_ContentPlaceHolder1_gviewReferences td, #ctl00_ContentPlaceHolder1_GViewUsers td, #ctl00_ContentPlaceHolder1_gViewPositions td
 {
 	border-bottom: dotted 1px #333333;
-	height: 60px;
+	height: 50px;
 }
 
-#ctl00_ContentPlaceHolder1_gviewApplications td
+#ctl00_ContentPlaceHolder1_gviewApplications td, #ctl00_ContentPlaceHolder1_gViewApplications td
 {
 	border-bottom: dotted 1px #333333;
 	height: 40px;
