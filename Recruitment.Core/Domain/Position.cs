@@ -202,6 +202,14 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _CommitteeMembers = value; }
         }
 
+        public virtual string TitleAndApplicationCount
+        {
+            get
+            {
+                return string.Format("{0} ({1} {2})", PositionTitle, ApplicationCount, ApplicationCount == 1 ? "Application" : "Applications");
+            }
+        }
+
         public virtual int ApplicationCount
         {
             get { return AssociatedApplications.Count; }

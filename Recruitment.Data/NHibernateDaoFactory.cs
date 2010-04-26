@@ -123,6 +123,11 @@ namespace CAESDO.Recruitment.Data
             return new TemplateTypeDao();
         }
 
+        public ITemplateDao GetTemplateDao()
+        {
+            return new TemplateDao();
+        }
+
         #endregion
 
         #region Inline DAO implementations
@@ -174,6 +179,13 @@ namespace CAESDO.Recruitment.Data
                     .AddOrder(Order.Desc("LastName"));
 
                 return criteria.List<Application>() as List<Application>;
+            }
+
+            public List<Application> GetApplicationsByPosition(int positionID)
+            {
+                Position position = new PositionDao().GetById(positionID, false);
+
+                return GetApplicationsByPosition(position);
             }
         }
 
@@ -274,6 +286,17 @@ namespace CAESDO.Recruitment.Data
         public class ReferenceDao : AbstractNHibernateDao<Reference, int>, IReferenceDao { }
 
         public class TemplateTypeDao : AbstractNHibernateDao<TemplateType, int>, ITemplateTypeDao { }
+
+        public class TemplateDao : AbstractNHibernateDao<Template, int>, ITemplateDao {
+            public List<Template> GetTemplatesByType(TemplateType type)
+            {
+                ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(Template))
+                    .Add(Expression.Eq("TemplateType", type));
+
+                return criteria.List<Template>() as List<Template>;
+            }
+        }
+         
         #endregion
           
     }
