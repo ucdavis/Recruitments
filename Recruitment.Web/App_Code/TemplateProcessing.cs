@@ -143,7 +143,7 @@ namespace CAESDO.Recruitment
 
         private string getUploadIDPortion()
         {
-            return "<a href='" + HttpContext.Current.Request.Url.Host + HttpContext.Current.Request.ApplicationPath + STR_UploadReferenceURL + "?ID=" + this._reference.UploadID + "'>Click here to upload reference letter</a>";
+            return "<a href='" + HttpContext.Current.Request.Url.GetComponents(UriComponents.SchemeAndServer, UriFormat.SafeUnescaped) + HttpContext.Current.Request.ApplicationPath + STR_UploadReferenceURL + "?ID=" + this._reference.UploadID + "'>Click here to upload reference letter</a>";
         }        
 
         // Takes an int representation of Month and returns the string name

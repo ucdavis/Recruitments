@@ -24,7 +24,7 @@ namespace CAESDO.Recruitment.Web
         {
             get
             {
-                return "http://" + HttpContext.Current.Request.Url.Host + HttpContext.Current.Request.ApplicationPath + "/Authorized/InterimReport.aspx?PositionID=" + dlistPositions.SelectedValue;
+                return Request.Url.GetComponents(UriComponents.SchemeAndServer, UriFormat.SafeUnescaped) + HttpContext.Current.Request.ApplicationPath + "/Authorized/InterimReport.aspx?PositionID=" + dlistPositions.SelectedValue;
             }
         }
 
@@ -32,13 +32,12 @@ namespace CAESDO.Recruitment.Web
         {
             get
             {
-                return "http://" + HttpContext.Current.Request.Url.Host + HttpContext.Current.Request.ApplicationPath + "/Authorized/RecruitmentSources.aspx?PositionID=" + dlistPositions.SelectedValue;
+                return Request.Url.GetComponents(UriComponents.SchemeAndServer, UriFormat.SafeUnescaped) + HttpContext.Current.Request.ApplicationPath + "/Authorized/RecruitmentSources.aspx?PositionID=" + dlistPositions.SelectedValue;
             }
         }
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
         }
 
         protected void btnGenerateReport_Click(object sender, EventArgs e)
@@ -63,7 +62,7 @@ namespace CAESDO.Recruitment.Web
         {
             string strResult;
             
-            WebResponse response;
+            WebResponse response = null;
 
             //HttpCookie authCookie = Request.Cookies["FormsAuthDB.AspxAuth"];
             //HttpCookie sessionCookie = Request.Cookies["ASP.NET_SessionId"];
@@ -72,8 +71,16 @@ namespace CAESDO.Recruitment.Web
 
             HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(URL);
             req.Headers.Set("Cookie", Request.Headers["Cookie"]);
-                        
-            response = req.GetResponse();
+
+            try
+            {
+                response = req.GetResponse();
+            }
+            catch (Exception ex)
+            {
+                eReport.ReportError(ex, "OutputPage");
+                Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.UNKNOWN));
+            }
 
             using (StreamReader reader = new StreamReader(response.GetResponseStream()))
             {

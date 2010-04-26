@@ -19,7 +19,7 @@ namespace CAESDO.Recruitment.Web
         {
             get
             {
-                return "http://" + HttpContext.Current.Request.Url.Host + HttpContext.Current.Request.ApplicationPath + "/Review/BiographicalReport.aspx?PositionID=" + dlistPositions.SelectedValue;
+                return Request.Url.GetComponents(UriComponents.SchemeAndServer, UriFormat.SafeUnescaped) + HttpContext.Current.Request.ApplicationPath + "/Review/BiographicalReport.aspx?PositionID=" + dlistPositions.SelectedValue;
             }
         }
 
@@ -40,12 +40,20 @@ namespace CAESDO.Recruitment.Web
         {
             string strResult;
 
-            WebResponse response;
+            WebResponse response = null;
                      
             HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(URL);
             req.Headers.Set("Cookie", Request.Headers["Cookie"]);
 
-            response = req.GetResponse();
+            try
+            {
+                response = req.GetResponse();
+            }
+            catch (Exception ex)
+            {
+                eReport.ReportError(ex, "OutputPage");
+                Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.UNKNOWN));
+            }
 
             using (StreamReader reader = new StreamReader(response.GetResponseStream()))
             {
