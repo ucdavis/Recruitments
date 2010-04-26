@@ -62,12 +62,13 @@ public partial class Authorized_ClosePosition : System.Web.UI.Page
         if (finalRecruitmentReport != null)
         {
             //Delete the old file
-            FileBLL.DeletePDF(position.FinalRecruitmentReportFile);
+            if (position.FinalRecruitmentReportFile != null) FileBLL.DeletePDF(position.FinalRecruitmentReportFile);
 
             //Save the new reference
             using (var ts = new TransactionScope())
             {
-                position.SearchPlanFile = finalRecruitmentReport;
+                position.FinalRecruitmentReportFile = finalRecruitmentReport;
+                position.Closed = true;
 
                 PositionBLL.EnsurePersistent(position);
 
