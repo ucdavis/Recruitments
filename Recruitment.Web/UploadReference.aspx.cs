@@ -13,6 +13,8 @@ using CAESDO.Recruitment.Data;
 using iTextSharp.text.pdf;
 using iTextSharp.text;
 using CAESDO.Recruitment.BLL;
+using System.Text;
+using System.Net.Mail;
 
 namespace CAESDO.Recruitment.Web
 {
@@ -75,6 +77,24 @@ namespace CAESDO.Recruitment.Web
                         {
                             daoFactory.GetReferenceDao().SaveOrUpdate(currentReference);
                         }
+
+                        //Send confirmation email after success -- if there are errors, ignore
+                        try
+                        {
+                            System.Net.Mail.SmtpClient mail = new System.Net.Mail.SmtpClient();
+
+                            string subject = "Reference Upload Confirmation";
+                            
+                            StringBuilder bodyText = new StringBuilder();
+                            bodyText.AppendFormat("Your reference letter for {0} has been successfully received.", currentReference.AssociatedApplication.AssociatedProfile.FullName);
+                            
+                            MailMessage message = new MailMessage(currentReference.AssociatedApplication.AppliedPosition.HREmail, currentReference.Email, subject, bodyText.ToString());
+                            message.IsBodyHtml = true;
+
+                            mail.Send(message); //Send the message
+
+                        }
+                        catch (Exception) { } //Continue on failure
 
                         Response.Redirect(FormsAuthentication.DefaultUrl);
                     }
