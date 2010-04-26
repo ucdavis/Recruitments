@@ -6,6 +6,7 @@ using System.Text;
 using System.Collections.Generic;
 using CAESDO.Recruitment.Core.Domain;
 using CAESDO.Recruitment.Data;
+using Microsoft.Practices.EnterpriseLibrary.Validation;
 
 namespace CAESDO.Recruitment.Test
 {
@@ -471,10 +472,39 @@ namespace CAESDO.Recruitment.Test
         public void ValidateAll()
         {
             List<Position> pList = NHibernateHelper.daoFactory.GetPositionDao().GetAll();
+
+            Assert.AreNotEqual<int>(0, pList.Count);
+
             foreach (Position p in pList)
             {
+                this.TestContext.WriteLine("PositionID = {0}", p.ID);
+
+                foreach (ValidationResult res in ValidateBO<Position>.GetValidationResults(p))
+                {
+                    this.TestContext.WriteLine("Key = {0}, Message = {1}", res.Key, res.Message);
+                }
+
                 Assert.IsTrue(ValidateBO<Position>.isValid(p));
             }
+        }
+
+        [TestMethod()]
+        public void ReadPosition()
+        {
+            Position position = NHibernateHelper.daoFactory.GetPositionDao().GetById(/*StaticProperties.ExistingPositionID*/ 11, false);
+
+            Assert.IsNotNull(position);
+
+            Assert.AreEqual<int>(StaticProperties.ExistingPositionID, position.ID);
+
+            this.TestContext.WriteLine("PositionID = {0}", position.ID);
+
+            foreach (ValidationResult res in ValidateBO<Position>.GetValidationResults(position))
+            {
+                this.TestContext.WriteLine("Key = {0}, Message = {1}", res.Key, res.Message);
+            }
+
+            Assert.IsTrue(ValidateBO<Position>.isValid(position));
         }
 
     }

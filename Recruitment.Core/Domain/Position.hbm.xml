@@ -16,7 +16,6 @@
     <property name="NumReferences" column="NumReferences" />
     <property name="NumPublications" column="NumPublications" />
     <property name="HRRep" column="HR_Rep" />
-    <property name="HRAreaCode" column="HR_AreaCode" />
     <property name="HRPhone" column="HR_Phone" />
     <property name="HREmail" column="HR_Email" />
     <property name="CommitteeView" column="CommitteeView" />
