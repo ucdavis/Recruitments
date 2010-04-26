@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="PositionDetails.aspx.cs" Inherits="CAESDO.Recruitment.Web.PositionDetails" Title="Untitled Page" %>
+<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="PositionDetails.aspx.cs" Inherits="CAESDO.Recruitment.Web.PositionDetails" Title="Untitled Page" Trace="true" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <asp:HyperLink ID="hlinkPositionList" runat="server" NavigateUrl="~/viewPositions.aspx">Go To Position List</asp:HyperLink><br />
     <br />
@@ -80,10 +80,25 @@
                 Position Description:</td>
             <td>
                 <asp:ImageButton ID="ibtnDownloadPD" runat="server" ImageUrl="~/Images/icon.pdf.gif" />
-                <asp:LinkButton ID="lbtnDownloadPD" runat="server" Text="Download"></asp:LinkButton>
+                <asp:LinkButton ID="lbtnDownloadPD" runat="server" Text="Download" OnClick="lbtnDownloadPD_Click"></asp:LinkButton>
             </td>
         </tr>
-        
+        <tr>
+            <td   align="right">
+            </td>
+            <td align="right">
+                <br />
+                <asp:LoginView ID="lviewPositionApply" runat="server">
+                    <AnonymousTemplate>
+                        You must login to apply to this position. <br />
+                        <asp:LinkButton ID="lbtnLogin" runat="server" Text="Click here to login or create a new account"></asp:LinkButton>
+                    </AnonymousTemplate>
+                    <LoggedInTemplate>
+                        <asp:Button ID="btnPositionApply" runat="server" Text="Apply For This Position" OnClick="btnPositionApply_Click" />
+                    </LoggedInTemplate>
+                </asp:LoginView>
+            </td>
+        </tr>
     </table>
     <br />
     
