@@ -39,7 +39,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private DateTime _LastUpdated;
 
-        public DateTime LastUpdated
+        public virtual DateTime LastUpdated
         {
             get { return _LastUpdated; }
             set { _LastUpdated = value; }
@@ -47,7 +47,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private string _Email;
 
-        public string Email
+        public virtual string Email
         {
             get { return _Email; }
             set { _Email = value; }

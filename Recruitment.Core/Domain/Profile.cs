@@ -82,7 +82,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private DateTime? _LastUpdated;
 
-        public DateTime? LastUpdated
+        public virtual DateTime? LastUpdated
         {
             get { return _LastUpdated; }
             set { _LastUpdated = value; }

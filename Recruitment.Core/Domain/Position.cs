@@ -130,7 +130,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private bool _Closed;
 
-        public bool Closed
+        public virtual bool Closed
         {
             get { return _Closed; }
             set { _Closed = value; }
