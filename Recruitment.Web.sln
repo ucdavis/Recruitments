@@ -48,11 +48,6 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Debug.AspNetCompiler.Debug = "True"
 		Release.AspNetCompiler.Debug = "False"
 	EndProjectSection
-	ProjectSection(SolutionItems) = preProject
-		localtestrun.testrunconfig = localtestrun.testrunconfig
-		Recruitment.Web.vsmdi = Recruitment.Web.vsmdi
-		Recruitment.Web4.vsmdi = Recruitment.Web4.vsmdi
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recruitment.Test", "Z:\Recruitment\Recruitment.Test\Recruitment.Test.csproj", "{576B683A-020C-4FBB-993E-AEE545D5B3F1}"
 	ProjectSection(WebsiteProperties) = preProject
@@ -92,9 +87,6 @@ Global
 		SccProjectName6 = Recruitment.Web
 		SccLocalPath6 = Recruitment.Web
 		SccProjectEnlistmentChoice6 = 2
-	EndGlobalSection
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = Recruitment.Web.vsmdi
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|.NET = Debug|.NET
@@ -172,5 +164,8 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Recruitment.Web.vsmdi
 	EndGlobalSection
 EndGlobal

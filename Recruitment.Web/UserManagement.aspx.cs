@@ -37,6 +37,9 @@ namespace CAESDO.Recruitment.Web
             gViewUserUnits.DataSource = selectedUser.Units;
             gViewUserUnits.DataBind();
 
+            //gViewUserRoles.DataSource = CatbertManager.GetRolesByUser(selectedLoginID);
+            //gViewUserRoles.DataBind();
+
             //Update the panel with the newest information and show the modal popup
             updateUserInfo.Update();
             mpopupUserInfo.Show();
@@ -76,8 +79,49 @@ namespace CAESDO.Recruitment.Web
 
         protected void btnAddUserSearch_Click(object sender, EventArgs e)
         {
+            //Show the gridview results
             gViewAddUserSearch.Visible = true;
             mpopupAddUser.Show();
+        }
+        
+        protected void gViewAddUserSearch_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GridView gview = (GridView)sender;
+            
+            //insert the new user
+            string loginID = gview.SelectedDataKey["Login"] as string;
+
+            int userID = CatbertManager.InsertNewUser(loginID);
+
+            txtAddUserLoginID.Text = userID.ToString();
+            //Add the user to the given role and unit
+            DropDownList unit = gview.SelectedRow.FindControl("dlistAddUserUnits") as DropDownList;
+            DropDownList role = gview.SelectedRow.FindControl("dlistAddUserRoles") as DropDownList;
+
+            if (userID == -1 || unit == null || role == null) //make sure we found the dlists and the user was created.
+            {
+                lblAddUserStatus.ForeColor = System.Drawing.Color.Red;
+                lblAddUserStatus.Text = "User " + loginID + " not added: Check your role and unit selection and try again";
+            }
+            else
+            {
+                //get the unit and role ID's, and add the user to those roles
+                CatbertManager.AddUserToRole(loginID, int.Parse(role.SelectedValue));
+                CatbertManager.AddUserToUnit(loginID, int.Parse(unit.SelectedValue));
+
+                lblAddUserStatus.ForeColor = System.Drawing.Color.Green;
+                lblAddUserStatus.Text = "User " + loginID + " successfully added";
+            }
+
+            gViewAddUserSearch.SelectedIndex = -1;
+            gViewAddUserSearch.Visible = false; //hide the search grid
+
+            GViewUsers.DataBind(); //rebind the user grid and update
+            updateUserGrid.Update();
+
+            updateAddUser.Update(); // update the add user panel
+
+            mpopupAddUser.Show(); //keep up the popup
         }
 }
 }

@@ -12,12 +12,12 @@
      <br />
      Search For New User:<br />
      <br />
-     EmployeeID:
+     <%--EmployeeID:
      <asp:TextBox ID="txtAddUserEmployeeID" runat="server"></asp:TextBox><br />
      First Name:
      <asp:TextBox ID="txtAddUserFirstName" runat="server"></asp:TextBox><br />
      Last Name:
-     <asp:TextBox ID="txtAddUserLastName" runat="server"></asp:TextBox><br />
+     <asp:TextBox ID="txtAddUserLastName" runat="server"></asp:TextBox><br />--%>
      Login ID:
      <asp:TextBox ID="txtAddUserLoginID" runat="server"></asp:TextBox><br />
      <br />
@@ -26,8 +26,8 @@
      <%--<asp:Button ID="btnAddUserOK" runat="server" Text="Add User" />--%> 
      <asp:Button ID="btnAddUserCancel" runat="server" Text="Cancel" />
      <br />
-     <br />
-     <asp:GridView ID="gViewAddUserSearch" runat="server" CellPadding="4" DataSourceID="ObjectDataUserSearch" EmptyDataText="No Matching Users Found" ForeColor="#333333" GridLines="None" Visible="False" AutoGenerateColumns="False">
+     <asp:Label ID="lblAddUserStatus" runat="server" ForeColor="Green" EnableViewState="False"></asp:Label><br />
+     <asp:GridView ID="gViewAddUserSearch" runat="server" DataKeyNames="Login" CellPadding="4" DataSourceID="ObjectDataUserSearch" EmptyDataText="No Matching Users Found" ForeColor="#333333" GridLines="None" Visible="False" AutoGenerateColumns="False" OnSelectedIndexChanged="gViewAddUserSearch_SelectedIndexChanged">
          <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
          <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
          <Columns>
@@ -37,6 +37,20 @@
              <asp:BoundField DataField="FirstName" HeaderText="FirstName" />
              <asp:BoundField DataField="EmployeeID" HeaderText="EmployeeID" />
              <asp:BoundField DataField="Email" HeaderText="Email" />
+             <asp:TemplateField HeaderText="Role">
+                <ItemTemplate>
+                    <asp:DropDownList ID="dlistAddUserRoles" runat="server" DataSourceID="ObjectDataRoles" DataTextField="Role" DataValueField="RoleID"></asp:DropDownList>
+                    <asp:ObjectDataSource ID="ObjectDataRoles" runat="server" EnableCaching="true" OldValuesParameterFormatString="original_{0}"
+                        SelectMethod="GetRoles" TypeName="CAESDO.Recruitment.CatbertManager"></asp:ObjectDataSource>
+                </ItemTemplate>
+             </asp:TemplateField>
+             <asp:TemplateField HeaderText="Unit">
+                <ItemTemplate>
+                    <asp:DropDownList ID="dlistAddUserUnits" runat="server" DataSourceID="ObjectDataUnits" DataTextField="Unit" DataValueField="UnitID"></asp:DropDownList>
+                    <asp:ObjectDataSource ID="ObjectDataUnits" runat="server" EnableCaching="true" OldValuesParameterFormatString="original_{0}"
+                        SelectMethod="GetUnits" TypeName="CAESDO.Recruitment.CatbertManager"></asp:ObjectDataSource>
+                </ItemTemplate>
+             </asp:TemplateField>
          </Columns>
          <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
          <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
@@ -47,13 +61,7 @@
      <asp:ObjectDataSource ID="ObjectDataUserSearch" runat="server" OldValuesParameterFormatString="original_{0}"
          SelectMethod="SearchNewUsersByLogin" TypeName="CAESDO.Recruitment.CatbertManager">
          <SelectParameters>
-             <asp:ControlParameter ControlID="txtAddUserEmployeeID" Name="EmployeeID" PropertyName="Text"
-                 Type="String" />
-             <asp:ControlParameter ControlID="txtAddUserFirstName" Name="FirstName" PropertyName="Text"
-                 Type="String" />
-             <asp:ControlParameter ControlID="txtAddUserLastName" Name="LastName" PropertyName="Text"
-                 Type="String" />
-             <asp:ControlParameter ControlID="txtAddUserLoginID" Name="LoginID" PropertyName="Text"
+             <asp:ControlParameter ControlID="txtAddUserLoginID" Name="login" PropertyName="Text"
                  Type="String" />
          </SelectParameters>
      </asp:ObjectDataSource>
@@ -107,7 +115,8 @@
             LoginID: <asp:Label ID="lblUserInfoLoginID" runat="server" Text=""></asp:Label>
             <br />
             EmployeeID: <asp:Label ID="lblUserInfoEmployeeID" runat="server" Text=""></asp:Label>
-            <br /><br />
+            <br />
+                Units:<br />
                 <asp:GridView ID="gViewUserUnits" runat="server" DataKeyNames="ID" CellPadding="4" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" OnRowDeleting="gViewUserUnits_RowDeleting">
                     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                     <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
@@ -126,6 +135,28 @@
                 <asp:LinkButton ID="btnUserInfoAddUnit" runat="server" OnClick="btnUserInfoAddUnit_Click">Add Unit: </asp:LinkButton>
                 <asp:DropDownList ID="dlistUnits" runat="server" DataTextField="Unit" DataValueField="UnitID" DataSourceID="ObjectDataUnits"></asp:DropDownList><asp:ObjectDataSource ID="ObjectDataUnits" runat="server" OldValuesParameterFormatString="original_{0}"
                     SelectMethod="GetUnits" TypeName="CAESDO.Recruitment.CatbertManager"></asp:ObjectDataSource>
+                <br />
+                Roles:
+                <br />
+                <asp:GridView ID="gViewUserRoles" runat="server" AutoGenerateColumns="False" CellPadding="4"
+                    DataKeyNames="RoleID" ForeColor="#333333" GridLines="None">
+                    <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                    <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+                    <Columns>
+                        <asp:BoundField DataField="Role" HeaderText="Role" />
+                    </Columns>
+                    <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+                    <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                    <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                    <EditRowStyle BackColor="#999999" />
+                    <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+                </asp:GridView>
+                <br />
+                <asp:LinkButton ID="btnUserInfoAddRole" runat="server">Add Role</asp:LinkButton>
+                <asp:DropDownList ID="dlistRoles" runat="server" DataSourceID="ObjectDataRoles" DataTextField="Role"
+                    DataValueField="RoleID">
+                </asp:DropDownList><asp:ObjectDataSource ID="ObjectDataRoles" runat="server" OldValuesParameterFormatString="original_{0}"
+                    SelectMethod="GetRoles" TypeName="CAESDO.Recruitment.CatbertManager"></asp:ObjectDataSource>
                 
                 <br /><br />
             <asp:Button ID="btnSaveUserInfo" runat="server" Text="Save" />

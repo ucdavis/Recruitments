@@ -30,11 +30,18 @@ namespace CAESDO.Recruitment
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
+        public static CatOps.Roles[] GetRoles()
+        {
+            return catops.GetRoles(AppName, HASH);
+        }
+
+        [DataObjectMethod(DataObjectMethodType.Select)]
         public static CatOps.Users[] SearchNewUsersByLogin(string EmployeeID, string FirstName, string LastName, string LoginID)
         {
             return catops.SearchNewUser(EmployeeID, FirstName, LastName, LoginID, HASH);
         }
 
+        [DataObjectMethod(DataObjectMethodType.Select)]
         public static CatOps.Users[] SearchNewUsersByLogin(string login)
         {
             return catops.SearchNewUser(null, null, null, login, HASH);
@@ -65,16 +72,27 @@ namespace CAESDO.Recruitment
             return catops.DeleteUnit(login, UnitID, HASH);
         }
 
+        public static CatOps.Roles[] GetRolesByUser(string login)
+        {
+            return catops.GetRolesByUser(AppName, login, HASH);
+        }
+
         [DataObjectMethod(DataObjectMethodType.Select)]
         public static CatOps.CatbertUsers[] GetUsersInApplication()
         {
             return catops.GetUsersByApplications(AppName, HASH);
         }
 
+        public static int InsertNewUser(string login)
+        {
+            return catops.InsertNewUser(login, HASH);
+        }
+
         public CatbertManager()
         {
             CatOps.Users u = new CatOps.Users();
             CatOps.CatbertUsers cu = new CatOps.CatbertUsers();
+            CatOps.Roles r = new CatOps.Roles();
             //cu.EmployeeID;
             //cu.FirstName;
             //cu.LastName;
