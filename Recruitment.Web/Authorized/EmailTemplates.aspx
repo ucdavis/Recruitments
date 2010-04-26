@@ -1,6 +1,11 @@
 <%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="EmailTemplates.aspx.cs" Inherits="CAESDO.Recruitment.Web.Authorized_EmailTemplates" Title="Send Templated Emails" Theme="MainTheme" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
+    <Ajax:ScriptManagerProxy ID="scriptProxy" runat="server">
+        <Services>
+            <Ajax:ServiceReference Path="RecruitmentService.asmx" />
+        </Services>
+    </Ajax:ScriptManagerProxy>
 
     <script type="text/javascript">
 
@@ -150,7 +155,7 @@
     
     <script src="../JS/tiny_mce/tiny_mce.js" type="text/javascript"></script>
     <script type="text/javascript" language="javascript">
-        var refTemplateEditor = null;
+        var EmailTemplateEditor = null;
 
         tinyMCE.init({
             mode: "specific_textareas",
@@ -163,14 +168,37 @@
             theme_advanced_toolbar_location: "top",
 
             setup: function(ed) {
-                refTemplateEditor = ed;
+            EmailTemplateEditor = ed;
             }
         });
 
         function InsertTemplateText(text) {
-            refTemplateEditor.focus();
-            refTemplateEditor.selection.setContent(text);
+            EmailTemplateEditor.focus();
+            EmailTemplateEditor.selection.setContent(text);
         }
+
+        //Setup the events around template creation
+        $(document).ready(function() {
+            $("select[id$=dlistEmailTemplates]").change(TemplateSectionChanged);
+        });
+
+        function TemplateSectionChanged() {
+            EmailTemplateEditor.setProgressState(1); //Set the progress image
+
+            alert(this); //should be dlist
+            
+            //Now get the template text
+            RecruitmentService.GetTemplateText("Position Cancelled", TemplateSectionChangedSuccess, TemplateSectionChangedFailure);
+        }
+
+        function TemplateSectionChangedSuccess(result) {
+            alert(result);
+        }
+
+        function TemplateSectionChangedFailure() {
+            alert("failed");
+        }
+        
 
         //////// Letter Templates
 /*

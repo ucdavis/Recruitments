@@ -129,6 +129,14 @@ public class RecruitmentService : System.Web.Services.WebService
     }
 
     [WebMethod]
+    public string GetTemplateText(string templateTypeName)
+    {
+        var template = TemplateBLL.GetFirstByTypeName(templateTypeName);
+
+        return template == null ? string.Empty : template.TemplateText;
+    }
+
+    [WebMethod]
     public DepartmentMember LookupKerberosUser(string loginID)
     {
         return DepartmentMemberBLL.Search(loginID);
