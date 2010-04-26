@@ -35,26 +35,6 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _ObjectChangedID = value; }
         }
 
-        private string _PropertyChanged;
-
-        [StringLengthValidator(50)]
-        [NotNullValidator]
-        public virtual string PropertyChanged
-        {
-            get { return _PropertyChanged; }
-            set { _PropertyChanged = value; }
-        }
-
-        private string _PropertyChangedValue;
-
-        [StringLengthValidator(50)]
-        [NotNullValidator]
-        public virtual string PropertyChangedValue
-        {
-            get { return _PropertyChangedValue; }
-            set { _PropertyChangedValue = value; }
-        }
-
         private int _UserID;
 
         [IgnoreNulls]

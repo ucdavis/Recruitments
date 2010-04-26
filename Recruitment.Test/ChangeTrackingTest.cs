@@ -151,8 +151,6 @@ namespace CAESDO.Recruitment.Test
 
             tracking.ObjectChanged = StaticProperties.TestString;
             tracking.ObjectChangedID = StaticProperties.ExistingProfileID;
-            tracking.PropertyChanged = StaticProperties.TestString;
-            tracking.PropertyChangedValue = StaticProperties.TestString;
             tracking.ChangeType = ctype;
 
             Assert.IsTrue(ValidateBO<ChangeTracking>.isValid(tracking), "Tracking Object Not Valid");

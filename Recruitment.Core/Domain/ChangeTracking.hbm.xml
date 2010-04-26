@@ -10,8 +10,6 @@
     <property name="TrackingGroupID" column="TrackingGroupID" />
     <property name="ObjectChanged" column="ObjectChanged" />
     <property name="ObjectChangedID" column="ObjectChangedID" />
-    <property name="PropertyChanged" column="PropertyChanged" />
-    <property name="PropertyChangedValue" column="PropertyChangedValue" />
     <property name="UserID" column="UserID" />
     <property name="ChangeDate" column="ChangeDate" />
 
