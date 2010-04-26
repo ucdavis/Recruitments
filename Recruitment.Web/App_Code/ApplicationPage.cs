@@ -39,7 +39,7 @@ namespace CAESDO.Recruitment.Web
         public User p
         {
             get {
-                if (_p == null)
+                if (_p == null && HttpContext.Current.User.Identity.IsAuthenticated)
                     _p = daoFactory.GetUserDao().GetUserByLogin(HttpContext.Current.User.Identity.Name);
 
                 return _p; 

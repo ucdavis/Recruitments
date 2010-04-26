@@ -79,7 +79,7 @@ namespace CAESDO.Recruitment.Web
 
                 Response.Write(app11.ID.ToString() + "   " + app11.SubmitDate.Value.ToShortDateString() + "<br/>");
 
-                Response.Write(p.LastName);
+                //Response.Write(p.LastName);
 
             }
             else

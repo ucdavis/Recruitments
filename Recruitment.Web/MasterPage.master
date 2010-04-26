@@ -14,7 +14,8 @@
     <asp:scriptmanager ID="Scriptmanager1" runat="server"></asp:scriptmanager>
     <div id="wrapper">
     <div id="header" style="height:62px;">
-        <img src="Images/logo.gif" alt="Recruitments" style="float:left" /><img src="Images/logo_ucdavis.gif" alt="UC Davis, College of Agricultural and Environmental Sciences" style="float:right" />
+        <asp:Image ID="imgRecruitmentLogo" runat="server" ImageUrl="~/Images/logo.gif" style="float:left;" /><asp:Image ID="imgRecruitmentDavisLogo" runat="server" ImageUrl="~/Images/logo_ucdavis.gif" AlternateText="UC Davis, College of Agricultural and Environmental Sciences" style="float:right" />
+        <%--<img src="/Images/logo.gif" alt="Recruitments" style="float:left" />--%><%--<img src="~/Images/logo_ucdavis.gif" alt="UC Davis, College of Agricultural and Environmental Sciences" style="float:right" />--%>
     </div>
     <div id="content">
         <div id="breadcrumbs">
@@ -22,7 +23,7 @@
                 <tr>
                     <td style="padding-left:20px;">Home</td>
                     <td style="width:250px; text-align: right;">
-                    | <asp:Panel ID="pnlUserName" runat="server" style="display:inline;">&nbsp;&nbsp;&nbsp; Welcome Iglasias, Enrique! <img src="Images/downarrow.gif" alt="down arrow" /></asp:Panel> 
+                    | <asp:Panel ID="pnlUserName" runat="server" style="display:inline;">&nbsp;&nbsp;&nbsp; Welcome Iglasias, Enrique! <asp:Image ID="imgDownArrow" runat="server" AlternateText="down arrow" ImageUrl="~/Images/downarrow.gif" /></asp:Panel> 
                         <AjaxControlToolkit:DropDownExtender ID="ddUserName" TargetControlID="pnlUserName" DropDownControlID="pnlUserNameDropOptions" runat="server" HighlightBackColor="#eeeeee">
                         </AjaxControlToolkit:DropDownExtender>
                         <asp:Panel ID="pnlUserNameDropOptions" runat="server" CssClass="ContextMenuPanel" Style="display:none;visibility:hidden;">
