@@ -204,7 +204,7 @@ namespace CAESDO.Recruitment.Web
             member.FirstName = txtFName.Text;
             member.LastName = txtLName.Text;
             member.OtherDepartmentName = string.IsNullOrEmpty(txtDepartment.Text) ? "Other" : txtDepartment.Text;
-            member.LoginID = txtLoginID.Text;
+            member.LoginID = txtLoginID.Text.ToLower();
 
             //Create the membership object
             CommitteeMember committeeAccess = new CommitteeMember();
