@@ -1,4 +1,4 @@
-<%@ Page AutoEventWireup="true" CodeFile="addPosition.aspx.cs" Inherits="CAESDO.Recruitment.Web.addPosition" ValidateRequest="false" Language="C#" MasterPageFile="~/MasterPage.master" Title="Untitled Page" %>
+<%@ Page AutoEventWireup="true" CodeFile="PositionManagement.aspx.cs" Inherits="CAESDO.Recruitment.Web.PositionManagement" ValidateRequest="false" Language="C#" MasterPageFile="~/MasterPage.master" Title="Position Management" %>
 
 <%@ Register Assembly="FreeTextBox" Namespace="FreeTextBoxControls" TagPrefix="FTB" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -12,7 +12,7 @@
         
     </script>
 
-    <span class="boxTitle"><asp:Image ID="imgProfile" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" /> Create Position</span><br />
+    <span class="boxTitle"><asp:Image ID="imgProfile" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" /><asp:Literal ID="litPositionState" runat="server" Text="Create Position" EnableViewState="false"></asp:Literal></span><br />
     <table class="box" style="width:550px; height: 350px;" cellpadding="5">
         <tr>
             <td colspan="2"><br /></td>
@@ -125,9 +125,10 @@
             <td align="right">
                 Full job description (PDF):</td>
             <td  >
-                <asp:FileUpload ID="filePositionDescription" runat="server" />
-                
-                <asp:RequiredFieldValidator ID="reqValPositionDescription" runat="server" ControlToValidate="filePositionDescription" ErrorMessage="*"></asp:RequiredFieldValidator>
+                <asp:LinkButton ID="lbtnDownloadPositionDescription" runat="server" Text="Download Existing File" Visible="false"></asp:LinkButton>
+                <asp:Literal ID="litDownloadPositionDescription" runat="server" Visible="false"><br /><br /></asp:Literal>
+                <asp:FileUpload ID="filePositionDescription" runat="server" Visible="true" />                
+                <asp:RequiredFieldValidator ID="reqValPositionDescription" runat="server" ControlToValidate="filePositionDescription" ErrorMessage="*" Visible="true"></asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>
@@ -164,7 +165,7 @@
             </td>
             <td align="right"  >
                 <br />
-                <asp:Button ID="btnCreatePosition" runat="server" Text="Create!" OnClick="btnCreatePosition_Click" /></td>
+                <asp:Button ID="btnModifyPosition" runat="server" Text="Create!" OnClick="btnModifyPosition_Click" /></td>
         </tr>
     </table>
  

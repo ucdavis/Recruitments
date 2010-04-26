@@ -38,7 +38,7 @@
       <one-to-many class="CAESDO.Recruitment.Core.Domain.Application, CAESDO.Recruitment.Core" />
     </bag>
 
-    <bag name="Departments" table="PosXDepts" cascade="all"  inverse="true">
+    <bag name="Departments" table="PosXDepts" cascade="all-delete-orphan" inverse="true">
       <key column="PositionID" />
       <one-to-many class="CAESDO.Recruitment.Core.Domain.Department, CAESDO.Recruitment.Core" />
     </bag>

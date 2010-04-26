@@ -13,8 +13,8 @@ namespace CAESDO.Recruitment.Web
 {
     public partial class ViewPositionsPending : ApplicationPage
     {
-        private const string STR_PositionDetailsURL = "addPosition.aspx";
-        private const string STR_ViewApplicationsURL = "authorized/viewApplications.aspx";
+        private const string STR_PositionDetailsURL = "positionmanagement.aspx";
+        private const string STR_ViewApplicationsURL = "viewApplications.aspx";
 
         protected void Page_Load(object sender, EventArgs e)
         {

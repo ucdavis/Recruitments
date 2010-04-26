@@ -10,12 +10,31 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using CAESDO.Recruitment.Core.Domain;
 using System.Collections.Generic;
+using CAESDO.Recruitment.Data;
 
 namespace CAESDO.Recruitment.Web
 {
-    public partial class addPosition : ApplicationPage
+    public partial class PositionManagement : ApplicationPage
     {
         private const string STR_DepartmentList = "DepartmentList";
+
+        public int? currentPositionID
+        {
+            get
+            {
+                int posID = 0;
+
+                if (int.TryParse(Request.QueryString["PositionID"], out posID))
+                {
+                    //If the parse succeeded, return the integer
+                    return posID;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+        }
 
         public IList<CAESDO.Recruitment.Core.Domain.Unit> DepartmentList
         {
@@ -43,18 +62,37 @@ namespace CAESDO.Recruitment.Web
             }
         }
 
+        public Position currentPosition
+        {
+            get
+            {
+                if (currentPositionID.HasValue)
+                    return daoFactory.GetPositionDao().GetById(currentPositionID.Value, false);
+                else
+                    return null;
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
+            {
                 DepartmentList = new List<CAESDO.Recruitment.Core.Domain.Unit>();
+            }
+
+            if (currentPositionID.HasValue)
+                DataBindExistingPosition();
         }
 
-        protected void btnCreatePosition_Click(object sender, EventArgs e)
+        protected void btnModifyPosition_Click(object sender, EventArgs e)
         {
             if (!Page.IsValid)
                 return;
 
             Position newPosition = new Position();
+
+            if (currentPositionID.HasValue)
+                newPosition = currentPosition;
             
             //Set the posted date to now
             newPosition.DatePosted = DateTime.Now;
@@ -91,7 +129,7 @@ namespace CAESDO.Recruitment.Web
                     jobDescription.FileName = filePositionDescription.FileName;
                     jobDescription.FileType = JobDescriptionFileType;
 
-                    jobDescription = daoFactory.GetFileDao().Save(jobDescription);
+                    jobDescription = daoFactory.GetFileDao().SaveOrUpdate(jobDescription);
 
                     if (ValidateBO<File>.isValid(jobDescription))
                     {
@@ -105,9 +143,14 @@ namespace CAESDO.Recruitment.Web
                     //Error message: Job Description Must Be a PDF File
                 }
             }
-            
+
             if (ValidateBO<Position>.isValid(newPosition))
-                daoFactory.GetPositionDao().Save(newPosition);
+            {
+                using (new NHibernateTransaction())
+                {
+                    daoFactory.GetPositionDao().SaveOrUpdate(newPosition);
+                }
+            }
             else
             {
                 //Error message
@@ -124,10 +167,74 @@ namespace CAESDO.Recruitment.Web
             repDepartments.DataBind();
         }
 
+        private void DataBindExistingPosition()
+        {
+            //Make sure that we have a valid object
+            try
+            {
+                currentPosition.IsTransient();
+            }
+            catch (NHibernate.ObjectNotFoundException)
+            {
+                Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.UNKNOWN));
+            }
+
+            //If we do, databind all of the fields on the form
+            //Set the posted date to now
+            txtDeadline.Text = currentPosition.Deadline.ToShortDateString();
+
+            txtPositionTitle.Text = currentPosition.PositionTitle;
+            txtPositionNumber.Text = currentPosition.PositionNumber;
+
+            txtHRRep.Text = currentPosition.HRRep;
+            txtHRPhone.Text = currentPosition.HRPhone;
+            txtHREmail.Text = currentPosition.HREmail;
+
+            DepartmentList = new List<CAESDO.Recruitment.Core.Domain.Unit>();
+            
+            foreach (Department d in currentPosition.Departments)
+            {
+                CAESDO.Recruitment.Core.Domain.Unit u = daoFactory.GetUnitDao().GetById(d.DepartmentFIS, false);
+
+                DepartmentList.Add(u);
+            }
+
+            repDepartments.DataSource = DepartmentList;
+            repDepartments.DataBind();
+            filePositionDescription.Visible = false;
+            reqValPositionDescription.Visible = false;
+
+            txtShortDescription.Text = currentPosition.ShortDescription;
+
+            if (currentPosition.ReferenceTemplate != null)
+                ftxtReferenceTemplate.Text = currentPosition.ReferenceTemplate.TemplateText;
+
+            txtPublications.Text = currentPosition.NumPublications.ToString();
+            txtReferences.Text = currentPosition.NumReferences.ToString();
+
+            chkAllowApplications.Checked = currentPosition.AllowApps;
+
+            //TODO: All logic for download of job description and replacement
+            lbtnDownloadPositionDescription.Visible = true;
+            litDownloadPositionDescription.Visible = true;
+
+            //Change the text of the position status literal and then submit button to represent an edit
+            litPositionState.Text = "Edit Position";
+            btnModifyPosition.Text = "Update!";
+
+        }
+
+        /// <summary>
+        /// First removed all existing departments from 
+        /// </summary>
+        /// <param name="p"></param>
         private void addDepartmentsToPosition(Position p)
         {
-            p.Departments = new List<Department>(); //Create a fresh list of departments
-
+            if (p.Departments == null)
+                p.Departments = new List<Department>();
+            else
+                p.Departments.Clear();
+                        
             foreach (CAESDO.Recruitment.Core.Domain.Unit u in DepartmentList)
             {
                 //Foreach unit, add it to the department list
@@ -139,5 +246,5 @@ namespace CAESDO.Recruitment.Web
                 p.Departments.Add(dept);
             }
         }
-}
+    }
 }

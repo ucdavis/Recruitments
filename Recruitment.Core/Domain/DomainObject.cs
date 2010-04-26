@@ -27,7 +27,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         #region ITrackable Members
 
-        private bool _Tracked = true;
+        private bool _Tracked = false;
 
         public virtual bool Tracked
         {
