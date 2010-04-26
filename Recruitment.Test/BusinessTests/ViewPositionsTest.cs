@@ -15,6 +15,71 @@ namespace CAESDO.Recruitment.Test.BusinessTests
         private const bool AllowApplications = true;
 
         [TestMethod]
+        public void ViewPositionsForRecruitmentManager()
+        {
+            //Let's mock up the user and permissions so this user is seen as a recruitment manager
+            var controller = new AdminController();
+
+            var cc = GetMockContext("tester");
+            cc.Setup(d => d.HttpContext.User.IsInRole("Admin")).Returns(false);//this user isn't an admin
+            cc.Setup(d => d.HttpContext.User.IsInRole("RecruitmentManager")).Returns(true); //mock this person as a recruitment manager
+
+            controller.ControllerContext = cc.Object;
+
+            ViewResult result = controller.ViewPositions() as ViewResult;
+
+            var positions = result.ViewData.Model as List<Position>;
+
+            Assert.IsNotNull(positions);
+            Assert.AreEqual(8, positions.Count);
+
+            foreach (var position in positions)
+            {
+                //Make sure each position contains either the AANS unit or CHEM unit
+                var hasProperUnit = false;
+
+                foreach (var department in position.Departments)
+                {
+                    if (department.DepartmentFIS == "APLS" || department.DepartmentFIS == "CHEM")
+                    {
+                        hasProperUnit = true;
+                    }
+                }
+
+                Assert.IsTrue(hasProperUnit, string.Format("Position {0} doesn't have APLS or CHEM", position.ID));
+            }
+        }
+
+        [TestMethod]
+        public void ViewPositionsForAdmin()
+        {
+            var controller = new AdminController();
+
+            var cc = GetMockContext("tester");
+            cc.Setup(d => d.HttpContext.User.IsInRole("Admin")).Returns(true);//this user is an admin
+
+            controller.ControllerContext = cc.Object;
+
+            ViewResult result = controller.ViewPositions() as ViewResult;
+
+            Assert.IsNotNull(result);
+
+            var positions = result.ViewData.Model as List<Position>;
+
+            Assert.IsNotNull(positions);
+            Assert.AreEqual(10, positions.Count);//there should be 10 positions that meet the criteria
+
+            //Make sure those four positions do meet the criteria
+            foreach (var position in positions)
+            {
+                Assert.IsTrue(position.AdminAccepted);
+                Assert.IsTrue(position.AllowApps);
+                Assert.IsFalse(position.Closed);
+            }
+        } 
+        #endregion
+
+        [TestMethod]
         public void ViewPositions()
         {
             var result = PositionBLL.GetByStatusAndDepartment(Closed, AdminAccepted, AllowApplications, null, null);
