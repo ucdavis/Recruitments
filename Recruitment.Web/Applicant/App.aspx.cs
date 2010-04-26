@@ -550,8 +550,10 @@ namespace CAESDO.Recruitment.Web
                     }
                 }
             }
+            else
+                ReloadStepListAndSelectHome(STR_CV, false);
 
-            ReloadStepListAndSelectHome(STR_Resume, true);
+            ReloadStepListAndSelectHome(STR_CV, true);
         }
 
         protected void btnCoverLetterUpload_Click(object sender, EventArgs e)
@@ -611,13 +613,13 @@ namespace CAESDO.Recruitment.Web
 
             RemoveAllFilesOfType(STR_FileType_ResearchInterests);
 
-            if (fileTeachingInterests.HasFile)
+            if (fileResearchInterests.HasFile)
             {
-                if (fileTeachingInterests.PostedFile.ContentType == STR_Applicationpdf)
+                if (fileResearchInterests.PostedFile.ContentType == STR_Applicationpdf)
                 {
                     File researchInterests = new File();
 
-                    researchInterests.FileName = fileTeachingInterests.FileName;
+                    researchInterests.FileName = fileResearchInterests.FileName;
                     researchInterests.FileType = ResearchInterestsFileType;
 
                     using (new NHibernateTransaction())
@@ -627,7 +629,7 @@ namespace CAESDO.Recruitment.Web
 
                     if (ValidateBO<File>.isValid(researchInterests))
                     {
-                        fileTeachingInterests.SaveAs(FilePath + researchInterests.ID.ToString());
+                        fileResearchInterests.SaveAs(FilePath + researchInterests.ID.ToString());
 
                         currentApplication.Files.Add(researchInterests);
 
