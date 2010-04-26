@@ -8,7 +8,7 @@ namespace CAESDO.Recruitment.Core.Domain
     {
         private string _DepartmentFIS;
 
-        public string DepartmentFIS
+        public virtual string DepartmentFIS
         {
             get { return _DepartmentFIS; }
             set { _DepartmentFIS = value; }
@@ -16,7 +16,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private Position _AssociatedPosition;
 
-        public Position AssociatedPosition
+        public virtual Position AssociatedPosition
         {
             get { return _AssociatedPosition; }
             set { _AssociatedPosition = value; }
@@ -32,7 +32,7 @@ namespace CAESDO.Recruitment.Core.Domain
     {
         private string _GenderType;
 
-        public string GenderType
+        public virtual string GenderType
         {
             get { return _GenderType; }
             set { _GenderType = value; }
@@ -48,7 +48,7 @@ namespace CAESDO.Recruitment.Core.Domain
     {
         private string _RecruitmentSource;
 
-        public string RecruitmentSource
+        public virtual string RecruitmentSource
         {
             get { return _RecruitmentSource; }
             set { _RecruitmentSource = value; }
@@ -64,7 +64,7 @@ namespace CAESDO.Recruitment.Core.Domain
     {
         private string _EthnicityValue;
 
-        public string EthnicityValue
+        public virtual string EthnicityValue
         {
             get { return _EthnicityValue; }
             set { _EthnicityValue = value; }
@@ -80,7 +80,7 @@ namespace CAESDO.Recruitment.Core.Domain
     {
         private string _FileTypeName;
 
-        public string FileTypeName
+        public virtual string FileTypeName
         {
             get { return _FileTypeName; }
             set { _FileTypeName = value; }
@@ -96,7 +96,7 @@ namespace CAESDO.Recruitment.Core.Domain
     {
         private string _Type;
 
-        public string Type
+        public virtual string Type
         {
             get { return _Type; }
             set { _Type = value; }

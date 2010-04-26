@@ -8,7 +8,7 @@ namespace CAESDO.Recruitment.Core.Domain
     {
         private FileType _FileType;
 
-        public FileType FileType
+        public virtual FileType FileType
         {
             get { return _FileType; }
             set { _FileType = value; }
@@ -16,14 +16,14 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private string _Label;
 
-        public string Label
+        public virtual string Label
         {
             get { return _Label; }
             set { _Label = value; }
         }
         private string _Description;
 
-        public string Description
+        public virtual string Description
         {
             get { return _Description; }
             set { _Description = value; }
@@ -31,7 +31,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private string _FileName;
 
-        public string FileName
+        public virtual string FileName
         {
             get { return _FileName; }
             set { _FileName = value; }
@@ -41,22 +41,22 @@ namespace CAESDO.Recruitment.Core.Domain
         {
         }
 
-        public void Fill()
+        public virtual void Fill()
         {
             throw new System.NotImplementedException();
         }
 
-        public void Save()
+        public virtual void Save()
         {
             throw new System.NotImplementedException();
         }
 
-        public byte[] GetFileData()
+        public virtual byte[] GetFileData()
         {
             throw new System.NotImplementedException();
         }
 
-        public byte[] ConvertFile(byte[] FileToConvert)
+        public virtual byte[] ConvertFile(byte[] FileToConvert)
         {
             throw new System.NotImplementedException();
         }

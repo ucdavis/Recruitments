@@ -8,7 +8,7 @@ namespace CAESDO.Recruitment.Core.Domain
     {
         private int _UserID;
 
-        public int UserID
+        public virtual int UserID
         {
             get { return _UserID; }
             set { _UserID = value; }
@@ -16,7 +16,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private string _Email;
 
-        public string Email
+        public virtual string Email
         {
             get { return _Email; }
             set { _Email = value; }
@@ -24,7 +24,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private MemberType _MemberType;
 
-        public MemberType MemberType
+        public virtual MemberType MemberType
         {
             get { return _MemberType; }
             set { _MemberType = value; }
@@ -32,7 +32,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private Position _AssociatedPosition;
 
-        public Position AssociatedPosition
+        public virtual Position AssociatedPosition
         {
             get { return _AssociatedPosition; }
             set { _AssociatedPosition = value; }

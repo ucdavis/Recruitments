@@ -8,14 +8,14 @@ namespace CAESDO.Recruitment.Core.Domain
     {
         private string _Email;
 
-        public string Email
+        public virtual string Email
         {
             get { return _Email; }
             set { _Email = value; }
         }
         private string _CreatedBy;
 
-        public string CreatedBy
+        public virtual string CreatedBy
         {
             get { return _CreatedBy; }
             set { _CreatedBy = value; }
@@ -23,7 +23,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private bool _IsActive;
 
-        public bool IsActive
+        public virtual bool IsActive
         {
             get { return _IsActive; }
             set { _IsActive = value; }
@@ -31,13 +31,13 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private IList<Profile> _Profiles;
 
-        public IList<Profile> Profiles
+        public virtual IList<Profile> Profiles
         {
             get { return _Profiles; }
             set { _Profiles = value; }
         }
 
-        public Profile MainProfile
+        public virtual Profile MainProfile
         {
             get
             {
@@ -53,7 +53,7 @@ namespace CAESDO.Recruitment.Core.Domain
             //throw new System.NotImplementedException();
         }
 
-        public void Fill(int AccountID, bool LoadProfile)
+        public virtual void Fill(int AccountID, bool LoadProfile)
         {
             throw new System.NotImplementedException();
         }

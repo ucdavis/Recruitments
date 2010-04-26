@@ -9,7 +9,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private Application _AssociatedApplication;
 
-        public Application AssociatedApplication
+        public virtual Application AssociatedApplication
         {
             get { return _AssociatedApplication; }
             set { _AssociatedApplication = value; }
@@ -17,21 +17,21 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private DateTime _Date;
 
-        public DateTime Date
+        public virtual DateTime Date
         {
             get { return _Date; }
             set { _Date = value; }
         }
         private string _Institution;
 
-        public string Institution
+        public virtual string Institution
         {
             get { return _Institution; }
             set { _Institution = value; }
         }
         private string _Discipline;
 
-        public string Discipline
+        public virtual string Discipline
         {
             get { return _Discipline; }
             set { _Discipline = value; }
@@ -39,7 +39,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private bool _Complete;
 
-        public bool Complete
+        public virtual bool Complete
         {
             get { return _Complete; }
             set { _Complete = value; }
@@ -53,17 +53,17 @@ namespace CAESDO.Recruitment.Core.Domain
         #region IApplicationStep Members
 
 
-        public bool isComplete()
+        public virtual bool isComplete()
         {
             return Complete;
         }
 
-        public void Fill()
+        public virtual void Fill()
         {
             throw new Exception("The method or operation is not implemented.");
         }
 
-        public void Save()
+        public virtual void Save()
         {
             throw new Exception("The method or operation is not implemented.");
         }
@@ -72,7 +72,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private ApplicationStepType _ApplicationStepType;
 
-        public ApplicationStepType ApplicationStepType
+        public virtual ApplicationStepType ApplicationStepType
         {
             get { return _ApplicationStepType; }
             set { _ApplicationStepType = value; }

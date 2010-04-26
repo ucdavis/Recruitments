@@ -5,7 +5,8 @@ namespace CAESDO.Recruitment.Core.Domain
         /// <summary>
         /// ID may be of type string, int, custom type, etc.
         /// </summary>
-        public IdT ID {
+        public virtual IdT ID
+        {
             get { return id; }
         }
 
@@ -13,7 +14,8 @@ namespace CAESDO.Recruitment.Core.Domain
         /// Transient objects are not associated with an item already in storage.  For instance,
         /// a <see cref="Customer" /> is transient if its ID is 0.
         /// </summary>
-        public bool IsTransient() {
+        public virtual bool IsTransient()
+        {
             return ID == null || ID.Equals(default(IdT));
         }
 

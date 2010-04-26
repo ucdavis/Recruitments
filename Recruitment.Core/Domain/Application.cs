@@ -16,7 +16,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private Profile _AssociatedProfile;
 
-        public Profile AssociatedProfile
+        public virtual Profile AssociatedProfile
         {
             get { return _AssociatedProfile; }
             set { _AssociatedProfile = value; }
@@ -24,7 +24,7 @@ namespace CAESDO.Recruitment.Core.Domain
         
         private Position _AppliedPosition;
 
-        public Position AppliedPosition
+        public virtual Position AppliedPosition
         {
             get { return _AppliedPosition; }
             set { _AppliedPosition = value; }
@@ -32,14 +32,14 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private bool _Submitted;
 
-        public bool Submitted
+        public virtual bool Submitted
         {
             get { return _Submitted; }
             set { _Submitted = value; }
         }
         private DateTime _SubmitDate;
 
-        public DateTime SubmitDate
+        public virtual DateTime SubmitDate
         {
             get { return _SubmitDate; }
             set { _SubmitDate = value; }
@@ -47,7 +47,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private IList<File> _Files;
 
-        public IList<File> Files
+        public virtual IList<File> Files
         {
             get { return _Files; }
             set { _Files = value; }
@@ -55,7 +55,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private IList<Survey> _Surveys;
 
-        public IList<Survey> Surveys
+        public virtual IList<Survey> Surveys
         {
             get { return _Surveys; }
             set { _Surveys = value; }
@@ -63,7 +63,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private IList<CurrentPosition> _CurrentPositions;
 
-        public IList<CurrentPosition> CurrentPositions
+        public virtual IList<CurrentPosition> CurrentPositions
         {
             get { return _CurrentPositions; }
             set { _CurrentPositions = value; }
@@ -71,7 +71,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private IList<Education> _Education;
 
-        public IList<Education> Education
+        public virtual IList<Education> Education
         {
             get { return _Education; }
             set { _Education = value; }
@@ -79,7 +79,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private IList<Reference> _References;
 
-        public IList<Reference> References
+        public virtual IList<Reference> References
         {
             get { return _References; }
             set { _References = value; }
@@ -90,21 +90,20 @@ namespace CAESDO.Recruitment.Core.Domain
 
         }
 
-        public bool isComplete()
+        public virtual bool isComplete()
         {
             throw new System.NotImplementedException();
         }
 
-        public void Save()
+        public virtual void Save()
         {
             throw new System.NotImplementedException();
         }
 
-        public void Fill(int ApplicationID, bool GetFiles, bool GetSteps)
+        public virtual void Fill(int ApplicationID, bool GetFiles, bool GetSteps)
         {
             throw new System.NotImplementedException();
         }
 
-        private int _ApplicationID;
     }
 }

@@ -2,7 +2,7 @@
 <hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
   <class
     name="CAESDO.Recruitment.Core.Domain.Survey, CAESDO.Recruitment.Core"
-    table="Survey" lazy="false">
+    table="Survey" >
     <id name="id" access="field" column="SurveyID" unsaved-value="0">
       <generator class="identity" />
     </id>
@@ -23,17 +23,6 @@
       class="CAESDO.Recruitment.Core.Domain.Application, CAESDO.Recruitment.Core" not-null="true" />
     
     <!--<property name="DescriptionFile" column="DescriptionFile" />-->
-
-    <!--<bag name="_AssociatedApplications" access="field" table="Applications" inverse="true">
-      <key column="PositionID" />
-      <one-to-many class="CAESDO.Recruitment.Core.Domain.Application, CAESDO.Recruitment.Core" />
-    </bag>
-
-    <bag name="_Departments" access="field" table="PosXDepts" inverse="true">
-      <key column="PositionID" />
-      <one-to-many class="CAESDO.Recruitment.Core.Domain.Department, CAESDO.Recruitment.Core" />
-    </bag>-->
-
 
   </class>
 </hibernate-mapping>

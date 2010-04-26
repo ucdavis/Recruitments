@@ -8,28 +8,28 @@ namespace CAESDO.Recruitment.Core.Domain
     {
         private string _PositionTitle;
 
-        public string PositionTitle
+        public virtual string PositionTitle
         {
             get { return _PositionTitle; }
             set { _PositionTitle = value; }
         }
         private string _PositionNumber;
 
-        public string PositionNumber
+        public virtual string PositionNumber
         {
             get { return _PositionNumber; }
             set { _PositionNumber = value; }
         }
         private string _ShortDescription;
 
-        public string ShortDescription
+        public virtual string ShortDescription
         {
             get { return _ShortDescription; }
             set { _ShortDescription = value; }
         }
         private int _DescriptionFileID;
 
-        public int DescriptionFileID
+        public virtual int DescriptionFileID
         {
             get { return _DescriptionFileID; }
             set { _DescriptionFileID = value; }
@@ -37,21 +37,21 @@ namespace CAESDO.Recruitment.Core.Domain
         
         private DateTime _DatePosted;
 
-        public DateTime DatePosted
+        public virtual DateTime DatePosted
         {
             get { return _DatePosted; }
             set { _DatePosted = value; }
         }
         private DateTime _Deadline;
 
-        public DateTime Deadline
+        public virtual DateTime Deadline
         {
             get { return _Deadline; }
             set { _Deadline = value; }
         }
         private bool _AllowApps;
 
-        public bool AllowApps
+        public virtual bool AllowApps
         {
             get { return _AllowApps; }
             set { _AllowApps = value; }
@@ -59,70 +59,70 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private int _NumReferences;
 
-        public int NumReferences
+        public virtual int NumReferences
         {
             get { return _NumReferences; }
             set { _NumReferences = value; }
         }
         private int _NumPublications;
 
-        public int NumPublications
+        public virtual int NumPublications
         {
             get { return _NumPublications; }
             set { _NumPublications = value; }
         }
         private bool _CommitteeView;
 
-        public bool CommitteeView
+        public virtual bool CommitteeView
         {
             get { return _CommitteeView; }
             set { _CommitteeView = value; }
         }
         private bool _FacultyView;
 
-        public bool FacultyView
+        public virtual bool FacultyView
         {
             get { return _FacultyView; }
             set { _FacultyView = value; }
         }
         private bool _Vote;
 
-        public bool Vote
+        public virtual bool Vote
         {
             get { return _Vote; }
             set { _Vote = value; }
         }
         private bool _FinalVote;
 
-        public bool FinalVote
+        public virtual bool FinalVote
         {
             get { return _FinalVote; }
             set { _FinalVote = value; }
         }
         private string _HRRep;
 
-        public string HRRep
+        public virtual string HRRep
         {
             get { return _HRRep; }
             set { _HRRep = value; }
         }
         private string _HRAreaCode;
 
-        public string HRAreaCode
+        public virtual string HRAreaCode
         {
             get { return _HRAreaCode; }
             set { _HRAreaCode = value; }
         }
         private string _HRPhone;
 
-        public string HRPhone
+        public virtual string HRPhone
         {
             get { return _HRPhone; }
             set { _HRPhone = value; }
         }
         private string _HREmail;
 
-        public string HREmail
+        public virtual string HREmail
         {
             get { return _HREmail; }
             set { _HREmail = value; }
@@ -130,7 +130,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private IList<Department> _Departments;
 
-        public IList<Department> Departments
+        public virtual IList<Department> Departments
         {
             get { return _Departments; }
             set { _Departments = value; }
@@ -138,7 +138,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private IList<Application> _AssociatedApplications;
 
-        public IList<Application> AssociatedApplications
+        public virtual IList<Application> AssociatedApplications
         {
             get { return _AssociatedApplications; }
             set { _AssociatedApplications = value; }
@@ -146,7 +146,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private IList<CommitteeMember> _CommitteeMembers;
 
-        public IList<CommitteeMember> CommitteeMembers
+        public virtual IList<CommitteeMember> CommitteeMembers
         {
             get { return _CommitteeMembers; }
             set { _CommitteeMembers = value; }
@@ -157,12 +157,12 @@ namespace CAESDO.Recruitment.Core.Domain
             //throw new System.NotImplementedException();
         }
 
-        public void Fill(int PositionID)
+        public virtual void Fill(int PositionID)
         {
             throw new System.NotImplementedException();
         }
 
-        public void Save()
+        public virtual void Save()
         {
             throw new System.NotImplementedException();
         }

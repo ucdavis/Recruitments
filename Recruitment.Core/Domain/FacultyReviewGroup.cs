@@ -8,7 +8,7 @@ namespace CAESDO.Recruitment.Core.Domain
     {
         #region IGroup Members
 
-        public int PositionID
+        public virtual int PositionID
         {
             get
             {
@@ -20,7 +20,7 @@ namespace CAESDO.Recruitment.Core.Domain
             }
         }
 
-        public List<User> Members
+        public virtual List<User> Members
         {
             get
             {
@@ -32,7 +32,7 @@ namespace CAESDO.Recruitment.Core.Domain
             }
         }
 
-        public bool isUserInGroup(System.Security.Principal.IPrincipal user)
+        public virtual bool isUserInGroup(System.Security.Principal.IPrincipal user)
         {
             throw new Exception("The method or operation is not implemented.");
         }

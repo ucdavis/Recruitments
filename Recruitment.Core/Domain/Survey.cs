@@ -8,7 +8,7 @@ namespace CAESDO.Recruitment.Core.Domain
     {
         private Gender _Gender;
 
-        public Gender Gender
+        public virtual Gender Gender
         {
             get { return _Gender; }
             set { _Gender = value; }
@@ -16,7 +16,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private RecruitmentSrc _RecruitmentSrc;
 
-        public RecruitmentSrc RecruitmentSrc
+        public virtual RecruitmentSrc RecruitmentSrc
         {
             get { return _RecruitmentSrc; }
             set { _RecruitmentSrc = value; }
@@ -24,7 +24,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private Ethnicity _Ethnicity;
 
-        public Ethnicity Ethnicity
+        public virtual Ethnicity Ethnicity
         {
             get { return _Ethnicity; }
             set { _Ethnicity = value; }
@@ -32,7 +32,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private Application _AssociatedApplication;
 
-        public Application AssociatedApplication
+        public virtual Application AssociatedApplication
         {
             get { return _AssociatedApplication; }
             set { _AssociatedApplication = value; }
@@ -40,7 +40,7 @@ namespace CAESDO.Recruitment.Core.Domain
         
         private string _TribalAffiliation;
 
-        public string TribalAffiliation
+        public virtual string TribalAffiliation
         {
             get { return _TribalAffiliation; }
             set { _TribalAffiliation = value; }
@@ -48,7 +48,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private string _Pub_Advertisement;
 
-        public string Pub_Advertisement
+        public virtual string Pub_Advertisement
         {
             get { return _Pub_Advertisement; }
             set { _Pub_Advertisement = value; }
@@ -56,7 +56,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private string _Prof_Organization;
 
-        public string Prof_Organization
+        public virtual string Prof_Organization
         {
             get { return _Prof_Organization; }
             set { _Prof_Organization = value; }
@@ -64,7 +64,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private string _Other;
 
-        public string Other
+        public virtual string Other
         {
             get { return _Other; }
             set { _Other = value; }
@@ -72,7 +72,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private bool _Complete;
 
-        public bool Complete
+        public virtual bool Complete
         {
             get { return _Complete; }
             set { _Complete = value; }
@@ -81,17 +81,17 @@ namespace CAESDO.Recruitment.Core.Domain
         #region IApplicationStep Members
 
 
-        public bool isComplete()
+        public virtual bool isComplete()
         {
             throw new Exception("The method or operation is not implemented.");
         }
 
-        public void Fill()
+        public virtual void Fill()
         {
             throw new Exception("The method or operation is not implemented.");
         }
 
-        public void Save()
+        public virtual void Save()
         {
             throw new Exception("The method or operation is not implemented.");
         }
@@ -103,24 +103,9 @@ namespace CAESDO.Recruitment.Core.Domain
             ApplicationStepType = ApplicationStepType.Survey;
         }
 
-        public static Dictionary<int, string> GetEthnicityChoices()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public static System.Collections.Generic.Dictionary<int, string> GetGenderChoices()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public static System.Collections.Generic.Dictionary<int, string> GetRecruitmentSrcChoices()
-        {
-            throw new System.NotImplementedException();
-        }
-
         private ApplicationStepType _ApplicationStepType;
 
-        public ApplicationStepType ApplicationStepType
+        public virtual ApplicationStepType ApplicationStepType
         {
             get { return _ApplicationStepType; }
             set { _ApplicationStepType = value; }

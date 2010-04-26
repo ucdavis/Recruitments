@@ -55,6 +55,8 @@ namespace CAESDO.Recruitment.Web
 
             Application app = aDao.GetById(11, false);
 
+            Response.Write(app.ID.ToString() + "  " + app.SubmitDate.ToShortDateString() + "<br/>");
+            Response.Write(app.References[0].City);
             //IApplicantDao appDao = daoFactory.GetApplicantDao();
 
             //Applicant applicant = appDao.GetById(1, false);
