@@ -120,6 +120,15 @@ a:active { color:#a50000; }
 	background-image: url(Images/appmenuHilight.gif);
 }
 
+/* Changes link size to cover background image */
+.applicationMenu li .appLink a 
+{
+	float:left;
+	width: 151px;
+	padding-top:12px;
+	padding-bottom:10px;
+
+}
 /* Formatting for X, Check, and Link Buttons */
 .X
 {
@@ -128,12 +137,12 @@ a:active { color:#a50000; }
 
 .appButton
 {
-	width:15px; float:left; margin-left:15px; padding-top:12px; height:19px;
+	width:15px; float:left; margin-left:15px; padding-top:12px; 
 }
 
 .appLink 
 {
-  padding-top:12px;
+
 }
 
 
