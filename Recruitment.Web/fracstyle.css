@@ -64,7 +64,7 @@ html, #aspnetForm
 }
 
 /* Adds dotted border to seperate rows in gridview */
-#ctl00_ContentPlaceHolder1_GViewUsers td, #ctl00_ContentPlaceHolder1_gViewPositions td
+#ctl00_ContentPlaceHolder1_gviewReferences td, #ctl00_ContentPlaceHolder1_GViewUsers td, #ctl00_ContentPlaceHolder1_gViewPositions td
 {
 	border-bottom: dotted 1px #333333;
 	height: 60px;
@@ -170,7 +170,7 @@ a:active { color:#a50000; }
 {
 	border : 1px solid #CCCCCC;
 	position : relative;
-	top : 15px;
+	top : 12px;
 	left : 30px;
 	background-color : #FFF;
 	padding : 5px 10px;
@@ -239,16 +239,25 @@ a.ContextMenuItem:hover
 /*  -------------------- */
 /*Modal Popup*/
 .modalBackground {
-	background-color:Gray;
-	filter:alpha(opacity=70);
-	opacity:0.7;
+	background-color:#343434;
+	filter:alpha(opacity=90);
+	opacity:0.9;
 }
 
 .modalPopup {
-	background-color:#ffffdd;
-	border-width:3px;
-	border-style:solid;
-	border-color:Gray;
-	padding:3px;
-	width:75%;
+	background-color:#EFEFEF;
+	border : 1px dotted #7f7f7f;
+}
+
+.modalTitle 
+{
+	border : 1px solid #CCCCCC;
+	position : relative;
+	top : -10px;
+	left : 15px;
+	background-color : #FFF;
+	padding : 5px 10px;
+	color:#0b65c5;
+	font-size: 1.2em;
+	font-weight: bold;
 }

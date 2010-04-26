@@ -26,3 +26,8 @@ Default skin template. The following skins are provided as examples only.
         <HeaderStyle CssClass="solidHeader" Font-Size="1.2em" ForeColor="#252a2f" Height="3em" />
         <AlternatingRowStyle BackColor="#EEEEEE" />
 </asp:GridView>
+
+<asp:GridView runat="server" SkinId="gridViewReferences" BackColor="White" Width="100%">
+        <RowStyle BackColor="White" CssClass="dottedBotBorder" Wrap="True" />
+        <HeaderStyle CssClass="solidHeader" Font-Size="1.2em" ForeColor="#252a2f" Height="3em" />
+</asp:GridView>

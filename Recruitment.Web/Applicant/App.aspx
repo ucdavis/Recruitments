@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="App.aspx.cs" Inherits="CAESDO.Recruitment.Web.App" Title="Untitled Page" Trace="true" %>
+<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="App.aspx.cs" Inherits="CAESDO.Recruitment.Web.App" Title="Untitled Page" Trace="true" Theme="MainTheme" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
      
     <table summary="This table is for layout. The left-hand column contains the navigation bar and the right hand column contains the main text for the page." cellpadding="0" cellspacing="0" border="0" style="font-size:1.0em; width:100%;">
@@ -36,7 +36,7 @@
             </asp:View>
             
             <asp:View ID="viewContactInformation" runat="server" >
-                <span class="boxTitle"><asp:Image ID="imgContactProfile" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />Contact Information</span><br />
+                <span class="boxTitle">Contact Information</span><br />
                 <table class="box" style="width:500px;" cellpadding="5">
                     <tr>
                         <td colspan="2"><br /></td>
@@ -116,7 +116,7 @@
             </asp:View>
             
             <asp:View ID="viewEducationInformation" runat="server">
-                <span class="boxTitle"><asp:Image ID="imgEducation" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />Ph.D. Award Information</span><br />
+                <span class="boxTitle">Ph.D. Award Information</span><br />
                 <table class="box" style="width:500px; " cellpadding="5">
                     <tr>
                         <td colspan="2"><br /></td>
@@ -161,49 +161,54 @@
             </asp:View>
         
             <asp:View ID="viewReferences" runat="server">
-                <span class="boxTitle"><asp:Image ID="imgReferences" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />References</span><br />
-                <table class="box" style="height: 350px; margin-right:30px;" cellpadding="5">
+                <span class="boxTitle">References</span><br />
+                <table class="box" style="height: 350px; width:500px;" cellpadding="5">
                     <tr>
                         <td colspan="2"><br /></td>
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <asp:LinkButton ID="lbtnReferencesAdd" runat="server" Text="Add Reference" ></asp:LinkButton>
+                            <asp:ImageButton ID="lbtnReferencesAdd" runat="server" ImageURL="~/Images/addReference.gif" ImageAlign="Middle"></asp:ImageButton>
                             &nbsp;<asp:Label ID="lblReferencesRemaining" runat="server" ForeColor="Brown" EnableViewState="false"><%= NumReferencesRemainingText() %></asp:Label>
-                            <br />
+                            <br /><br />
                         </td>                       
                     </tr>
                     <tr>
                         <td colspan="2">
                         Existing References:
-                            <asp:GridView ID="gviewReferences" runat="server" DataKeyNames="ID" AutoGenerateColumns="False" EmptyDataText="No References Added" OnRowDeleting="gviewReferences_RowDeleting" OnSelectedIndexChanged="gviewReferences_SelectedIndexChanged">
+                            <asp:GridView ID="gviewReferences" skinID="gridViewReferences" runat="server" DataKeyNames="ID" AutoGenerateColumns="False" EmptyDataText="No References Added" OnRowDeleting="gviewReferences_RowDeleting" OnSelectedIndexChanged="gviewReferences_SelectedIndexChanged" BorderStyle="None" CellPadding="0" GridLines="None">
                             <Columns>
-                                <asp:CommandField ShowSelectButton="True" SelectText="Edit" />
-                                <asp:TemplateField HeaderText="Name">
+                                <asp:CommandField ShowSelectButton="True" SelectText="Edit" EditText="" >
+                                    <ItemStyle CssClass="paddingLeft" />
+                                </asp:CommandField>
+                                <asp:TemplateField HeaderText="Name:">
                                     <ItemTemplate>
                                         <%# Eval("Title") %> <%# Eval("FirstName") %> <%# Eval("LastName") %>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Title Expertise">
+                                <asp:TemplateField HeaderText="Title Expertise" Visible="False">
                                     <ItemTemplate>
                                         <%# Eval("AcadTitle") %> <%# Eval("Expertise") %>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Department Institution">
+                                <asp:TemplateField HeaderText="Department Institution" Visible="False">
                                     <ItemTemplate>
                                         <%# Eval("Dept") %> <%# Eval("Institution") %>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:TemplateField HeaderText="Address">
+                                <asp:TemplateField HeaderText="Address" Visible="False">
                                     <ItemTemplate>
                                         <%# Eval("Address1") %> <%# Eval("Address2") %> <br />
                                         <%# Eval("City") %> <%# Eval("State") %> <%# Eval("Zip") %> <%# Eval("Country") %>
                                     </ItemTemplate>
                                 </asp:TemplateField>
-                                <asp:BoundField HeaderText="Phone" DataField="Phone" />
-                                <asp:BoundField HeaderText="Email" DataField="Email" />
-                                <asp:CommandField DeleteText="Remove" ShowDeleteButton="True" />
+                                <asp:BoundField HeaderText="Phone" DataField="Phone" Visible="False" />
+                                <asp:BoundField HeaderText="Email:" DataField="Email" />
+                                <asp:CommandField DeleteText="Remove" ShowDeleteButton="True" >
+                                    <ItemStyle HorizontalAlign="Center" />
+                                </asp:CommandField>
                             </Columns>
+                                <HeaderStyle HorizontalAlign="Left" />
                             </asp:GridView>                           
                         </td>
                     </tr>
@@ -220,12 +225,10 @@
                     </tr>
                 </table>       
                                 
-                <asp:Panel ID="pnlReferencesEntry" runat="server" CssClass="modalPopup" style="display:none">
-                    <span class="boxTitle"><asp:Image ID="imgReferencesAddUpdate" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />Add/Update Reference</span><br />
-                    <table class="box" style="width:500px; height: 350px;" cellpadding="5">
-                        <tr>
-                            <td colspan="2"><br /></td>
-                        </tr>
+                <asp:Panel ID="pnlReferencesEntry" runat="server" CssClass="modalPopup" style="display:none;">
+                    <span class="modalTitle">Add/Update Reference</span>
+                    <div style="height:450px; overflow:auto;">
+                    <table cellpadding="5" style="width:500px;">
                         <tr>
                             <td align="right">
                                 Title:</td>
@@ -342,7 +345,7 @@
                                 <asp:Button ID="btnReferencesCancel" runat="server" Text="Cancel" OnClick="btnReferencesCancel_Click" />
                             </td>
                         </tr>
-                    </table>
+                    </table></div>
                 </asp:Panel>
                 
                 <AjaxControlToolkit:ModalPopupExtender ID="mpopupReferencesEntry" runat="server" BackgroundCssClass="modalBackground" PopupControlID="pnlReferencesEntry" TargetControlID="lbtnReferencesAdd"></AjaxControlToolkit:ModalPopupExtender>
@@ -350,7 +353,7 @@
             </asp:View>
         
             <asp:View ID="viewCurrentPosition" runat="server">
-                <span class="boxTitle"><asp:Image ID="imgCurrentPosition" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />Current Position</span><br />
+                <span class="boxTitle">Current Position</span><br />
                 <table class="box" style="width:500px; " cellpadding="5">
                     <tr>
                         <td colspan="2"><br /></td>
@@ -429,7 +432,7 @@
             </asp:View>
             
             <asp:View ID="viewResume" runat="server">
-                 <span class="boxTitle"><asp:Image ID="imgResume" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />Resume</span><br />
+                 <span class="boxTitle">Resume</span><br />
                 <table class="box" style="width:500px;" cellpadding="5">
                     <tr>
                         <td colspan="2"><br /></td>
@@ -455,7 +458,7 @@
             </asp:View>
         
             <asp:View ID="viewCoverLetter" runat="server">
-                <span class="boxTitle"><asp:Image ID="imgCoverLetter" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />Cover Letter</span><br />
+                <span class="boxTitle">Cover Letter</span><br />
                 <table class="box" style="width:500px; height:" cellpadding="5">
                     <tr>
                         <td colspan="2"><br /></td>
@@ -481,7 +484,7 @@
             </asp:View>
         
             <asp:View ID="viewResearchInterests" runat="server">
-                <span class="boxTitle"><asp:Image ID="imgResearchInterests" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />Research Interests</span><br />
+                <span class="boxTitle">Research Interests</span><br />
                 <table class="box" style="width:500px; " cellpadding="5">
                     <tr>
                         <td colspan="2"><br /></td>
@@ -507,7 +510,7 @@
             </asp:View>
             
             <asp:View ID="viewTranscripts" runat="server">
-                <span class="boxTitle"><asp:Image ID="imgTranscripts" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />Transcripts</span><br />
+                <span class="boxTitle">Transcripts</span><br />
                 <table class="box" style="width:500px;" cellpadding="5">
                     <tr>
                         <td colspan="2"><br /></td>
@@ -533,7 +536,7 @@
             </asp:View>
             
             <asp:View ID="viewConfidentialSurvey" runat="server">
-                <span class="boxTitle"><asp:Image ID="imgConfidentialSurvey" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />Confidential Survey</span><br />
+                <span class="boxTitle">Confidential Survey</span><br />
                 <table class="box" style="margin-right:30px;" cellpadding="5">
                     <tr>
                         <td colspan="2"><br /></td>
@@ -627,7 +630,7 @@
             </asp:View>
             
             <asp:View ID="viewPublications" runat="server">
-                <span class="boxTitle"><asp:Image ID="imgPublications" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />Publications</span><br />
+                <span class="boxTitle">Publications</span><br />
                 <table class="box" style="width:500px; height: 350px;" cellpadding="5">
                     
                     <tr>
@@ -661,7 +664,7 @@
                                 </HeaderTemplate>
                                 <ItemTemplate>
                                     &nbsp;&nbsp;<asp:LinkButton ID="lbtnPublicationFile" runat="server" Text='<%# Eval("FileName") %>' CommandArgument='<%# Eval("ID") %>' OnClick="lbtnPublicationFile_Click"></asp:LinkButton>
-                                    <asp:ImageButton ID="ibtnPublicationsRemoveFile" runat="server" CommandArgument='<%# Eval("ID") %>' OnClick="ibtnPublicationsRemoveFile_Click" AlternateText="Remove File" ImageUrl="~/Images/appmenuX.gif" />
+                                    <asp:ImageButton ID="ibtnPublicationsRemoveFile" runat="server" CommandArgument='<%# Eval("ID") %>' OnClick="ibtnPublicationsRemoveFile_Click" AlternateText="Remove File" ImageUrl="~/Images/delete.gif" ToolTip="Remove File" />
                                 </ItemTemplate>
                                 <SeparatorTemplate>
                                     <br />
@@ -682,7 +685,7 @@
             </asp:View>
             
             <asp:View ID="viewDissertation" runat="server">
-                <span class="boxTitle"><asp:Image ID="imgDissertation" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />Dissertations</span><br />
+                <span class="boxTitle">Dissertations</span><br />
                 <table class="box" style="width:500px;" cellpadding="5">
                     <tr>
                         <td colspan="2"><br /></td>
