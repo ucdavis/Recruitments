@@ -459,7 +459,7 @@ namespace CAESDO.Recruitment.Test
         //}
         #endregion
 
-        [TestMethod()]
+        [WorkItem(166), TestMethod()]
         public void ConstructorTest()
         {
             Position p = new Position();
@@ -468,7 +468,7 @@ namespace CAESDO.Recruitment.Test
             Assert.IsTrue(p.IsTransient());
         }
 
-        [TestMethod()]
+        [WorkItem(166), TestMethod()]
         public void ValidateAll()
         {
             List<Position> pList = NHibernateHelper.daoFactory.GetPositionDao().GetAll();
@@ -488,25 +488,120 @@ namespace CAESDO.Recruitment.Test
             }
         }
 
-        [TestMethod()]
+        [WorkItem(166), TestMethod()]
+        public void CreatePosition()
+        {
+            Position position = new Position();
+
+            DateTime today = DateTime.Now;
+
+            // Fill in all non-nullable values
+            position.PositionTitle = "Test Wrangler";
+            position.DatePosted = today;
+            position.Deadline = today.AddDays(7);
+            position.AllowApps = true;
+            position.NumReferences = 0;
+            position.NumPublications = 0;
+            position.FacultyView = false;
+            position.Vote = false;
+            position.FinalVote = false;
+            position.Closed = false;
+            position.AdminAccepted = false;
+
+            position = Save(position);
+            
+            // Save PositionID for later retrieval
+            StaticProperties.CreatedPositionID = position.ID;
+            Assert.IsNotNull(StaticProperties.CreatedPositionID, "Position ID not saved! Warning, other tests will fail!");
+
+            ValidateResults(position);
+        }
+        
+        [WorkItem(166), TestMethod()]
         public void ReadPosition()
         {
-            Position position = NHibernateHelper.daoFactory.GetPositionDao().GetById(/*StaticProperties.ExistingPositionID*/ 11, false);
+            Position position = NHibernateHelper.daoFactory.GetPositionDao().GetById(StaticProperties.ExistingPositionID, false);
 
             Assert.IsNotNull(position);
 
-            Assert.AreEqual<int>(StaticProperties.ExistingPositionID, position.ID);
+            Assert.AreEqual<int>(StaticProperties.ExistingPositionID, position.ID); 
 
+            ValidateResults(position);
+        }
+
+        [WorkItem(166), TestMethod()]
+        public void UpdatePosition()
+        {
+            Position position = NHibernateHelper.daoFactory.GetPositionDao().GetById(StaticProperties.CreatedPositionID, false);
+
+            Assert.IsNotNull(position);
+
+            position.PositionTitle = "Test Wrangler II";
+
+            position = Save(position);
+
+            Assert.AreEqual("Test Wrangler II", position.PositionTitle);
+        }
+
+        [WorkItem(166), TestMethod()]
+        public void DeletePosition()
+        {
+            Position position = NHibernateHelper.daoFactory.GetPositionDao().GetById(StaticProperties.CreatedPositionID, false);
+            int positionID = position.ID;
+            // positionDB = NHibernateHelper.daoFactory.GetPositionDao().GetById(position.ID, false);
+            using (new NHibernateTransaction())
+            {
+                NHibernateHelper.daoFactory.GetPositionDao().Delete(position);
+            }
+
+            // Verify deletion
+            bool isDeleted = false;
+            
+
+            try
+            {
+                
+                Position positionDB = NHibernateHelper.daoFactory.GetPositionDao().GetById(positionID, false);
+                positionDB.IsTransient(); //check to see if its in the db
+            }
+            catch (NHibernate.ObjectNotFoundException)
+            {
+                isDeleted = true;
+            }
+
+            Assert.IsTrue(isDeleted);
+        }
+
+        #region Helper Methods
+
+        private void ValidateResults(Position position)
+        {
             this.TestContext.WriteLine("PositionID = {0}", position.ID);
-
+            
             foreach (ValidationResult res in ValidateBO<Position>.GetValidationResults(position))
             {
                 this.TestContext.WriteLine("Key = {0}, Message = {1}", res.Key, res.Message);
             }
-
             Assert.IsTrue(ValidateBO<Position>.isValid(position));
         }
 
+        private static Position Save(Position position)
+        {
+            // Validate before saving
+            Assert.IsTrue(ValidateBO<Position>.isValid(position), "Test Wrangler not valid");
+
+            using (new NHibernateTransaction())
+            {
+                position = NHibernateHelper.daoFactory.GetPositionDao().SaveOrUpdate(position);
+            }
+
+            // Verify save happened
+            Assert.IsNotNull(position);
+            Assert.IsFalse(position.IsTransient(), "Position not persisted by NHibernate to database");
+            return position;
+        }
+
+        #endregion
     }
 
 

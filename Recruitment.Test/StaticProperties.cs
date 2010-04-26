@@ -6,6 +6,7 @@ namespace CAESDO.Recruitment.Test
 {
     public static class StaticProperties
     {
+        public static int CreatedPositionID;
         public static int ExistingApplicantID = 4;
         public static int ExistingProfileID = 11;
         public static int ExistingApplicationID = 11;
