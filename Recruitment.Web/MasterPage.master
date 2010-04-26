@@ -120,9 +120,9 @@
                                                     <li class="subnews">
                                                         <asp:LinkButton runat="server" ID="lbtnCreate" Text="Create Account (New Applicants)"
                                                             OnClick="lbtnCreate_Click" /></li>
+                                                    <li class="subnews"><a id="A1" href="~/Applicant/ViewApplicationsInProgress.aspx"
+                                                        runat="server">In Progress Applications</a></li>
                                                     <li class="subnews"><a href="~/viewPositions.aspx" runat="server">View Positions</a></li>
-                                                    <li class="subnews"><a href="~/Applicant/ViewApplicationsInProgress.aspx" runat="server">
-                                                        My Applications</a></li>
                                                     <li class="subnews"><a class="drop" href="~/Authorized/AdminIndex.aspx" runat="server">
                                                         Admin Functions</a></li>
                                                 </ul>
@@ -189,7 +189,7 @@
                                                         <asp:LinkButton runat="server" ID="lbtnLogout" Text="Logout" OnClick="lbtnLogout_Click" /></li>
                                                     <li class="subnews"><a href="~/viewPositions.aspx" runat="server">View Positions</a></li>
                                                     <li class="subnews"><a href="~/Applicant/ViewApplicationsInProgress.aspx" runat="server">
-                                                        My Applications</a></li>
+                                                        In Progress Applications</a></li>
                                                 </ul>
                                                 <!--[if lte IE 6]></td></tr></table></a><![endif]-->
                                             </li>
