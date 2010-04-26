@@ -55,7 +55,7 @@
             refTemplateEditor.selection.setContent(text);
         }
 
-        var HEARTBEAT_PERIOD = 60000; //60 seconds
+        var HEARTBEAT_PERIOD = 600000; //600 seconds = 10 minutes
 
         //Help balloons
         $(document).ready(function() {
