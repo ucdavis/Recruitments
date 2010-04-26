@@ -50,6 +50,37 @@ public class RecruitmentCommitteeService : System.Web.Services.WebService
         return values.ToArray();
     }
 
+    /// <summary>
+    /// Return only positions where the current user is in the committee (not faculty)
+    /// </summary>
+    [WebMethod]
+    public CascadingDropDownNameValue[] GetPositionsForCommitteeOnly(string knownCategoryValues, string category)
+    {
+        List<Position> positions = daoFactory.GetPositionDao().GetAllPositionsByStatusForCommittee(false, true);
+
+        List<CascadingDropDownNameValue> values = new List<CascadingDropDownNameValue>();
+
+        foreach (Position p in positions)
+        {
+            foreach (DepartmentMember dm in p.PositionCommittee)
+            {
+                if (dm.LoginID == User.Identity.Name)
+                {
+                    if (dm.MemberType.ID == (int)MemberTypes.CommitteeChair || dm.MemberType.ID == (int)MemberTypes.CommitteeMember)
+                    {
+                        //If the user is in the position committee as a committee member, add the position to the values array
+                        values.Add(new CascadingDropDownNameValue(p.TitleAndApplicationCount, p.ID.ToString()));
+
+                        break;
+                    }
+                }
+            }
+        }
+
+        return values.ToArray();
+
+    }
+
     [WebMethod]
     public CascadingDropDownNameValue[] GetApplications(string knownCategoryValues, string category)
     {

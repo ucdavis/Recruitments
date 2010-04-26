@@ -13,7 +13,7 @@ Position:
     <asp:Button ID="btnDisplayReport" runat="server" Text="Open Spreadsheet" OnClick="btnDisplayReport_Click" />    
 
     <AjaxControlToolkit:CascadingDropDown ID="cascadePositions" runat="server" Category="Positions"
-        PromptText="Select a Position" ServiceMethod="GetPositionsForCommittee" ServicePath="RecruitmentCommitteeService.asmx"
+        PromptText="Select a Position" ServiceMethod="GetPositionsForCommitteeOnly" ServicePath="RecruitmentCommitteeService.asmx"
         TargetControlID="dlistPositions">
     </AjaxControlToolkit:CascadingDropDown>
 

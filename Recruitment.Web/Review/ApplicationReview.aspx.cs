@@ -87,8 +87,8 @@ namespace CAESDO.Recruitment.Web
             //TODO: Check User Permissions
             if (!allowedAccess)
             {
-                Response.Write("Not Allowed Access");
-                //Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.AUTH));
+                //Response.Write("Not Allowed Access");
+                Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.AUTH));
             }
 
             //Trace.Write("Valid user and application " + currentApplication.ID.ToString() + Environment.NewLine);
