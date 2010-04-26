@@ -549,4 +549,10 @@
   <data name="UploadLink.Value" xml:space="preserve">
     <value>{UploadLink}</value>
   </data>
+  <data name="PositionLink.Text" xml:space="preserve">
+    <value>Position Link</value>
+  </data>
+  <data name="PositionLink.Value" xml:space="preserve">
+    <value>{PositionLink}</value>
+  </data>
 </root>

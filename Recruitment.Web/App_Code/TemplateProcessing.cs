@@ -1,13 +1,5 @@
-using System;
-using System.Data;
-using System.Configuration;
 using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
-
+using System;
 using System.Text;
 
 namespace CAESDO.Recruitment
@@ -18,6 +10,7 @@ namespace CAESDO.Recruitment
     public class TemplateProcessing
     {
         private const string STR_UploadReferenceURL = "/UploadReference.aspx";
+        private const string STR_PositionDetailsURL = "/PositionDetails.aspx";
 
         public TemplateProcessing()
         {
@@ -104,13 +97,10 @@ namespace CAESDO.Recruitment
                     //    return this._reference.FirstName + " " + this._reference.MiddleName + " " + this._reference.LastName;
                     //else
                     //    return this._reference.FirstName + " " + this._reference.LastName;
-                    break;
                 case "ReferenceLastName":
                     return this._reference.LastName;
-                    break;
                 case "ReferenceTitle" :
                     return this._reference.Title;
-                    break;
                 case "ApplicantName" :
                     if (string.IsNullOrEmpty(this._application.AssociatedProfile.FullName.Trim()))
                         return "Name Not Given";
@@ -120,30 +110,25 @@ namespace CAESDO.Recruitment
                     //if (this._application.AssociatedProfile.MiddleName.ToString() != "") // If the field is null, the ToString() will make it a blank string.
                         //return this._application.AssociatedProfile.FirstName + " " + this._application.AssociatedProfile.MiddleName + " " + this._application.AssociatedProfile.LastName;
                     //else
-                      //  return this._application.AssociatedProfile.FirstName + " " + this._application.AssociatedProfile.LastName;
-                    break;
+                      //  return this._application.AssociatedProfile.FirstName + " " + this._application.AssociatedProfile.LastName
                 case "RecruitmentAdminName":
                     return this._application.AppliedPosition.HRRep;
-                    break;
                 case "RecruitmentAdminEmail":
                     return this._application.AppliedPosition.HREmail;
-                    break;
                 case "PositionContact" :
                     return this._application.AppliedPosition.HRRep;
-                    break;
                 case "PositionContactEmail" :
                     return this._application.AppliedPosition.HREmail;
-                    break;
                 case "PositionContactPhone" :
                     return this._application.AppliedPosition.HRPhone;
-                    break;
                 case "Deadline": //deadline and reviewDate are the same token
                 case "ReviewDate":
                     return this._application.AppliedPosition.Deadline.ToLongDateString();
-                    break;
-                case "PositionTitle":
-                    return this._application.AppliedPosition.PositionTitle;
-                    break;
+                case "PositionTitle": 
+                    //return this._application.AppliedPosition.PositionTitle;
+                    return this.getPositionLink();
+                case "PositionLink":
+                    return this.getPositionLink();
                 case "PrimaryDepartment":
                     if ( this._application.AppliedPosition.PrimaryDepartment.Unit != null )
                         return this._application.AppliedPosition.PrimaryDepartment.Unit.FullName;
@@ -162,7 +147,6 @@ namespace CAESDO.Recruitment
                     date.Append(", " + dateTime.Year);
 
                     return date.ToString();
-                    break;
                 default:
                     //return string.Empty;
                     break;
@@ -170,7 +154,7 @@ namespace CAESDO.Recruitment
 #if DEBUG
             return "Error";
 #else
-            return "";
+            return string.Empty;
 #endif
         }
 
@@ -178,6 +162,14 @@ namespace CAESDO.Recruitment
         {
             return "<a href='" + HttpContext.Current.Request.Url.GetComponents(UriComponents.SchemeAndServer, UriFormat.SafeUnescaped) + HttpContext.Current.Request.ApplicationPath + STR_UploadReferenceURL + "?ID=" + this._reference.UploadID + "'>Click here to upload reference letter</a>";
         }        
+
+        private string getPositionLink()
+        {
+            return string.Format("<a href='{0}?PositionID={1}'>{2}</a>", 
+                HttpContext.Current.Request.Url.GetComponents(UriComponents.SchemeAndServer, UriFormat.SafeUnescaped) + HttpContext.Current.Request.ApplicationPath + STR_PositionDetailsURL, 
+                this._application.AppliedPosition.ID,
+                this._application.AppliedPosition.PositionTitle);
+        }
 
         // Takes an int representation of Month and returns the string name
         private string GetMonth(int month)
