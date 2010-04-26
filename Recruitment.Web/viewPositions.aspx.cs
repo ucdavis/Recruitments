@@ -9,10 +9,18 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 
-public partial class viewPositions : System.Web.UI.Page
+namespace CAESDO.Recruitment.Web
 {
-    protected void Page_Load(object sender, EventArgs e)
+    public partial class viewPositions : System.Web.UI.Page
     {
+        protected void Page_Load(object sender, EventArgs e)
+        {
 
+        }
+
+        protected void Page_PreRender(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -191,7 +191,33 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _CommitteeMembers; }
             set { _CommitteeMembers = value; }
         }
-        
+
+        public virtual int ApplicationCount
+        {
+            get { return AssociatedApplications.Count; }
+        }
+
+        public virtual string DepartmentList
+        {
+            get
+            {
+                StringBuilder deptList = new StringBuilder();
+
+                for (int i = 0; i < Departments.Count; i++)
+                {
+                    if (i == 0)
+                        deptList.Append(Departments[i].DepartmentFIS);
+                    else
+                    {
+                        deptList.Append(", ");
+                        deptList.Append(Departments[i].DepartmentFIS);
+                    }
+                }
+
+                return deptList.ToString();
+            }
+        }
+
         public Position()
         {
             Closed = false;
