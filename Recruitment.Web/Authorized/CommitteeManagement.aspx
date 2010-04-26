@@ -7,7 +7,12 @@
     
     <asp:RequiredFieldValidator id="reqValPositions" ControlToValidate="dlistPositions" ErrorMessage="*" runat="server"/>
     
-    <asp:ObjectDataSource ID="ObjectDataPositions" runat="server" SelectMethod="GetAll" TypeName="CAESDO.Recruitment.Data.NHibernateDaoFactory+PositionDao"></asp:ObjectDataSource>
+    <asp:ObjectDataSource ID="ObjectDataPositions" runat="server" SelectMethod="GetAllPositionsByStatus" TypeName="CAESDO.Recruitment.Data.NHibernateDaoFactory+PositionDao" OldValuesParameterFormatString="original_{0}">
+        <SelectParameters>
+            <asp:Parameter DefaultValue="false" Name="Closed" Type="Boolean" />
+            <asp:Parameter DefaultValue="true" Name="AdminAccepted" Type="Boolean" />
+        </SelectParameters>
+    </asp:ObjectDataSource>
     <br /><br />
 
     <asp:GridView ID="gviewMembers" runat="server" AllowPaging="True" skinID="gridViewUM" DataKeyNames="id" GridLines="None" CellPadding="0" AutoGenerateColumns="False" EmptyDataText="No Members Found For This Committee" OnRowDeleting="gviewMembers_RowDeleting">

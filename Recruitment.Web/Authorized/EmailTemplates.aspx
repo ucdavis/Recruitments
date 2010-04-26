@@ -5,10 +5,10 @@
         <asp:ListItem Selected="True" Value="0">Select a Position</asp:ListItem>
     </asp:DropDownList>
     <asp:ObjectDataSource ID="ObjectDataPositions" runat="server"
-        SelectMethod="GetAll" TypeName="CAESDO.Recruitment.Data.NHibernateDaoFactory+PositionDao">
+        SelectMethod="GetAllPositionsByStatus" TypeName="CAESDO.Recruitment.Data.NHibernateDaoFactory+PositionDao" OldValuesParameterFormatString="original_{0}">
         <SelectParameters>
-            <asp:Parameter DefaultValue="PositionTitle" Name="propertyName" Type="String" />
-            <asp:Parameter DefaultValue="true" Name="ascending" Type="Boolean" />
+            <asp:Parameter DefaultValue="false" Name="Closed" Type="Boolean" />
+            <asp:Parameter DefaultValue="true" Name="AdminAccepted" Type="Boolean" />
         </SelectParameters>
     </asp:ObjectDataSource>
     

@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using NHibernate;
 using NHibernate.Expression;
 using System.ComponentModel;
+using System.Web;
+using System.Web.Security;
 
 namespace CAESDO.Recruitment.Data
 {
@@ -146,26 +148,30 @@ namespace CAESDO.Recruitment.Data
         /// This should be extracted into its own class-file if it needs to extend the
         /// inherited DAO functionality.
         /// </summary>
-        public class PositionDao : AbstractNHibernateDao<Position, int>, IPositionDao {
-            public List<Position> GetAllPositionsByStatus(bool Closed)
-            {
-                IQuery query = NHibernateSessionManager.Instance.GetSession().CreateQuery(NHQueries.GetAllPositionsByStatus)
-                            .SetBoolean("Closed", Closed);
-
-                return query.List<Position>() as List<Position>;
-
-                //ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(Position))
-                //    .Add(Expression.Eq("Closed", Closed));
-
-                //return criteria.List<Position>() as List<Position>;
-            }
-
+        public class PositionDao : AbstractNHibernateDao<Position, int>, IPositionDao {          
             public List<Position> GetAllPositionsByStatus(bool Closed, bool AdminAccepted)
             {
+                User currentUser = new UserDao().GetUserByLogin(HttpContext.Current.User.Identity.Name);
+                                                
                 ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(Position))
                     .Add(Expression.Eq("Closed", Closed))
                     .Add(Expression.Eq("AdminAccepted", AdminAccepted));
 
+                if (currentUser != null) //only filter logged in users
+                {
+                    if (!Roles.IsUserInRole("Admin"))
+                    {
+                        List<string> deptFIS = new List<string>();
+
+                        foreach (Unit u in currentUser.Units)
+                        {
+                            deptFIS.Add(u.FISCode);
+                        }
+
+                        criteria.CreateCriteria("Departments")
+                                .Add(Expression.In("DepartmentFIS", deptFIS.ToArray()));
+                    }
+                }
                 return criteria.List<Position>() as List<Position>;
             }
         }

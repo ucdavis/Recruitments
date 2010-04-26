@@ -38,7 +38,7 @@ public class RecruitmentService : System.Web.Services.WebService
     [WebMethod]
     public CascadingDropDownNameValue[] GetPositions(string knownCategoryValues, string category)
     {
-        List<Position> positions = daoFactory.GetPositionDao().GetAllPositionsByStatus(false);
+        List<Position> positions = daoFactory.GetPositionDao().GetAllPositionsByStatus(false, true);
 
         List<CascadingDropDownNameValue> values = new List<CascadingDropDownNameValue>();
 
