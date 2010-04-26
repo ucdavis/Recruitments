@@ -80,6 +80,14 @@ namespace CAESDO.Recruitment.Web
             }
         }
 
+        public FileType SearchPlanFileType
+        {
+            get
+            {
+                return FileTypeBLL.GetByName("SearchPlan");
+            }
+        }
+
         public TemplateType ReferenceTemplateType
         {
             get
@@ -172,6 +180,30 @@ namespace CAESDO.Recruitment.Web
                 }
             }
 
+            // Only try modifying the search plans if an upload file exists (new or legacy positions).
+            if (fileSearchPlan.HasFile)
+            {
+                File searchPlanFile;
+
+                using (var ts = new TransactionScope())
+                {
+                    searchPlanFile = FileBLL.SavePDF(fileSearchPlan, SearchPlanFileType);
+
+                    ts.CommitTransaction();
+                }
+
+                if (searchPlanFile == null)
+                {
+                    //Error: Job description must be a PDF file
+                    lblInvalidSearchPlanFileType.Text = "*Search Plan Must Be A PDF File";
+                    return;
+                }
+                else
+                {
+                    newPosition.SearchPlanFile = searchPlanFile;
+                }
+            }
+
             if (newPosition.IsTransient())
             {
                 //Since the position is new, send an email to the AppMailTo about the new pending position
@@ -236,6 +268,38 @@ namespace CAESDO.Recruitment.Web
         protected void lbtnDownloadPositionDescription_Click(object sender, EventArgs e)
         {
             FileBLL.Transmit(currentPosition.DescriptionFile.ID, currentPosition.DescriptionFile.FileName);
+        }
+
+        protected void btnSearchPlanReplace_Click(object sender, EventArgs e)
+        {
+            Position position = currentPosition;
+
+            File searchPlan = FileBLL.SavePDF(fileSearchPlanReplace, SearchPlanFileType);
+
+            if (searchPlan != null)
+            {
+                //Delete the old file
+                FileBLL.DeletePDF(position.SearchPlanFile);
+
+                //Save the new reference
+                using (var ts = new TransactionScope())
+                {
+                    position.SearchPlanFile = searchPlan;
+
+                    PositionBLL.EnsurePersistent(position);
+
+                    ts.CommitTransaction();
+                }
+            }
+            else
+            {
+                ///TODO: Error Message
+            }
+        }
+
+        protected void lbtnDownloadSearchPlan_Click(object sender, EventArgs e)
+        {
+            FileBLL.Transmit(currentPosition.SearchPlanFile.ID, currentPosition.SearchPlanFile.FileName);
         }
 
         protected void cboxPrimary_CheckedChanged(object sender, EventArgs e)
@@ -315,6 +379,16 @@ namespace CAESDO.Recruitment.Web
             lbtnDownloadPositionDescription.Visible = true;
             litDownloadPositionDescription.Visible = true;
             ibtnReplacePositionDescription.Visible = true;
+
+            if (currentPosition.SearchPlanFile != null) //legacy positions may have a null search plan
+            {
+                fileSearchPlan.Visible = false;
+                reqValSearchPlan.Visible = false;
+
+                lbtnDownloadSearchPlan.Visible = true;
+                litDownloadSearchPlan.Visible = true;
+                ibtnReplaceSearchPlan.Visible = true;
+            }
 
             //Change the text of the position status literal and then submit button to represent an edit
             litPositionState.Text = "Edit Position";

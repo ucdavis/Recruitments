@@ -146,6 +146,31 @@
             </td>
         </tr>
         <tr>
+            <td align="right" style="width:240">
+                Search Plan (PDF):
+            </td>
+            <td  >
+                <asp:LinkButton ID="lbtnDownloadSearchPlan" runat="server" Text="Download Existing Search Plan" Visible="False" OnClick="lbtnDownloadSearchPlan_Click"></asp:LinkButton>
+                <asp:ImageButton ID="ibtnReplaceSearchPlan" runat="server" ImageUrl="~/Images/delete.gif" AlternateText="[Replace]" Visible="False" />
+                <asp:Literal ID="litDownloadSearchPlan" runat="server" Visible="False" Text="<br /><br />"></asp:Literal>
+                <asp:FileUpload ID="fileSearchPlan" runat="server" />
+                <asp:RequiredFieldValidator ID="reqValSearchPlan" runat="server" Display="Dynamic" ControlToValidate="fileSearchPlan" ErrorMessage="* Search Plan Required" ></asp:RequiredFieldValidator>
+                <asp:Label ID="lblInvalidSearchPlanFileType" runat="server" ForeColor="Red" EnableViewState="False"></asp:Label>
+                                                                     
+                <asp:Panel ID="pnlSearchPlan" runat="server" CssClass="modalPopup" style="display:none;">
+                    Replace Existing Search Plan: <br /><br />
+                    <asp:FileUpload ID="fileSearchPlanReplace" runat="server" />
+                    <asp:RequiredFieldValidator ID="reqValSearchPlanReplace" runat="server" ControlToValidate="fileSearchPlanReplace" ErrorMessage="* Search Plan Required" ValidationGroup="ReplaceSearchPlan"></asp:RequiredFieldValidator>
+                    <br /><br />
+                    <asp:Button ID="btnSearchPlanReplace" runat="server" Text="Upload" ValidationGroup="ReplaceSearchPlan" OnClick="btnSearchPlanReplace_Click" />
+                    <asp:Button ID="btnSearchPlanReplaceCancel" runat="server" CausesValidation="False" Text="Cancel" />
+                </asp:Panel>
+                                
+                <AjaxControlToolkit:ModalPopupExtender ID="mpopupSearchPlanReplacement" runat="server" TargetControlID="ibtnReplaceSearchPlan"
+                                                     PopupControlID="pnlSearchPlan" BackgroundCssClass="modalBackground" CancelControlID="btnSearchPlanReplaceCancel" DynamicServicePath="" Enabled="True" />
+            </td>
+        </tr>
+        <tr>
             <td align="right" valign="top" style="width: 240">
                 <span id="spanSummaryInfo">Summary<%--<img src="../Images/modify.gif" alt="SummaryInfo" /></span>--%>:</td>
             <td  >
