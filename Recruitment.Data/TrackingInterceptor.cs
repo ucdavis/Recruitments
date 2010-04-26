@@ -118,9 +118,14 @@ namespace CAESDO.Recruitment.Data
 
         private void TrackChanges(List<ChangedProperty> changeList, object target, object id, ChangeTypes changeType)
         {
-            if (HttpContext.Current == null)
+            ITrackable trackableObject = target as ITrackable;
+
+            if (trackableObject == null || trackableObject.isTracked() == false)
                 return;
 
+            if (HttpContext.Current == null)
+                return;
+            
             ChangeTracking trackChange = new ChangeTracking();
 
             trackChange.AppendProperties(changeList, trackChange);

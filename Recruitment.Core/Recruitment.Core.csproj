@@ -53,6 +53,7 @@
     <Compile Include="Domain\IApplicationStep.cs" />
     <Compile Include="Domain\IGroup.cs" />
     <Compile Include="Domain\IHasAssignedId.cs" />
+    <Compile Include="Domain\ITrackable.cs" />
     <Compile Include="Domain\Position.cs" />
     <Compile Include="Domain\Profile.cs" />
     <Compile Include="Domain\Reference.cs" />

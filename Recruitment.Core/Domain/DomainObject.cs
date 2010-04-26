@@ -1,6 +1,6 @@
 namespace CAESDO.Recruitment.Core.Domain
 {
-    public abstract class DomainObject<IdT>
+    public abstract class DomainObject<IdT> : ITrackable
     {
         /// <summary>
         /// ID may be of type string, int, custom type, etc.
@@ -24,5 +24,22 @@ namespace CAESDO.Recruitment.Core.Domain
         /// domain objects more flexibility in setting this for those objects with assigned IDs.
         /// </summary>
         protected IdT id = default(IdT);
+
+        #region ITrackable Members
+
+        private bool _Tracked = true;
+
+        public virtual bool Tracked
+        {
+            get { return _Tracked; }
+            set { _Tracked = value; }
+        }
+
+        public virtual bool isTracked()
+        {
+            return Tracked;
+        }
+
+        #endregion
     }
 }
