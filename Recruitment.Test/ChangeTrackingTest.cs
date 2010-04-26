@@ -150,7 +150,7 @@ namespace CAESDO.Recruitment.Test
             ChangeType ctype = NHibernateHelper.daoFactory.GetChangeTypeDao().GetById((int)ChangeTypes.Update, false);
 
             tracking.ObjectChanged = StaticProperties.TestString;
-            tracking.ObjectChangedID = StaticProperties.ExistingProfileID;
+            tracking.ObjectChangedID = StaticProperties.ExistingProfileID.ToString();
             tracking.ChangeType = ctype;
 
             Assert.IsTrue(ValidateBO<ChangeTracking>.isValid(tracking), "Tracking Object Not Valid");

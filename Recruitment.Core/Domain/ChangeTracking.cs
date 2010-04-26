@@ -26,10 +26,10 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _ObjectChanged = value; }
         }
 
-        private int _ObjectChangedID;
+        private string _ObjectChangedID;
 
         [NotNullValidator]
-        public virtual int ObjectChangedID
+        public virtual string ObjectChangedID
         {
             get { return _ObjectChangedID; }
             set { _ObjectChangedID = value; }
@@ -74,6 +74,18 @@ namespace CAESDO.Recruitment.Core.Domain
         {
             TrackingGroupID = Guid.NewGuid();
             ChangeDate = DateTime.Now;
+        }
+
+        public virtual void AppendProperties(List<ChangedProperty> propList, ChangeTracking assocaitedTracker)
+        {
+            if (this.ChangedProperties == null)
+                this.ChangedProperties = new List<ChangedProperty>();
+
+            foreach (ChangedProperty prop in propList)
+            {
+                prop.AssociatedTracker = assocaitedTracker;
+                this.ChangedProperties.Add(prop);
+            }
         }
     }
 

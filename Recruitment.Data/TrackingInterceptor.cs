@@ -107,25 +107,36 @@ namespace CAESDO.Recruitment.Data
             if (HttpContext.Current == null)
                 return;
 
-            //ChangeTracking trackChange = new ChangeTracking();
-            
+            ChangeTracking trackChange = new ChangeTracking();
 
+            trackChange.AppendProperties(changeList, trackChange);
 
-            System.IO.StreamWriter writer = new System.IO.StreamWriter(HttpContext.Current.Server.MapPath("RecruitmentTracking.txt"),true);
+            trackChange.ChangeType = new NHibernateDaoFactory().GetChangeTypeDao().GetById((int)changeType, false);
 
-            //trackChange.ObjectChanged = target.GetType().Name;
-            //trackChange.ObjectChangedID = id.ToString();
-            writer.WriteLine("ChangeID {0} => Object type {1} with ID {2} was modified as follows", Guid.NewGuid(), target.GetType().Name, id.ToString());
+            trackChange.ObjectChanged = target.GetType().Name;
+            trackChange.ObjectChangedID = id.ToString();
 
-            foreach (ChangedProperty change in changeList)
+            //Now we have a tracking object with the changed properties added to its change list
+            //Make sure it is valid
+            if (ValidateBO<ChangeTracking>.isValid(trackChange))
             {
-                //trackChange.PropertyChanged = change.type.Name;
-                //trackChange.PropertyChangedValue = change.NewValue;
-
-                writer.WriteLine("--- Property {0} was changed to {1}", change.PropertyChanged, change.PropertyChangedValue);
+                //Don't put this in a transaction becuase we are already in a transaction from the save/update/delete
+                new NHibernateDaoFactory().GetChangeTrackingDao().SaveOrUpdate(trackChange);
             }
+            
+            //System.IO.StreamWriter writer = new System.IO.StreamWriter(HttpContext.Current.Server.MapPath("RecruitmentTracking.txt"),true);
 
-            writer.Close();
+            //writer.WriteLine("ChangeID {0} => Object type {1} with ID {2} was modified as follows", Guid.NewGuid(), target.GetType().Name, id.ToString());
+
+            //foreach (ChangedProperty change in changeList)
+            //{
+            //    //trackChange.PropertyChanged = change.type.Name;
+            //    //trackChange.PropertyChangedValue = change.NewValue;
+
+            //    writer.WriteLine("--- Property {0} was changed to {1}", change.PropertyChanged, change.PropertyChangedValue);
+            //}
+
+            //writer.Close();
         }
 
         #endregion
