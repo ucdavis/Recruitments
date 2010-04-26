@@ -218,15 +218,18 @@ namespace CAESDO.Recruitment.BLL
 
                 document.Open();
 
-                Font chapterFont = FontFactory.GetFont(FontFactory.HELVETICA, 0, Font.NORMAL, new Color(255, 0, 0));
                 PdfContentByte cb = writer.DirectContent;
                 PdfImportedPage page;
                 int rotation;
 
                 while (f < filesToDownload.Count)
                 {
-                    Paragraph cTitle = new Paragraph(filesToDownload[f].FileType.FileTypeName, chapterFont);
-                    Chapter chapter = new Chapter(cTitle, f + 1);
+                    Chapter chapter = new Chapter(string.Empty, f + 1)
+                                          {
+                                              BookmarkTitle = filesToDownload[f].FileType.FileTypeName,
+                                              NumberDepth = 0
+                                          };
+
 
                     int i = 0;
                     while (i < n)
