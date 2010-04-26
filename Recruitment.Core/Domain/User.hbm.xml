@@ -12,6 +12,7 @@
     <property name="EmployeeID" column="EmployeeID" />
     <property name="StudentID" column="StudentID" />
     <property name="Inactive" column="Inactive" />
+    <property name="SID" column="SID" />
 
     <bag name="LoginIDs" table="vLogin" inverse="true">
       <key column="UserID" />

@@ -281,6 +281,14 @@ namespace CAESDO.Recruitment.Data
 
                 return login.User;
             }
+
+            public User GetUserBySID(string SID)
+            {
+                ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(User))
+                    .Add(Expression.Eq("SID", SID));
+
+                return criteria.UniqueResult<User>();
+            }
         }
 
         public class FileTypeDao : AbstractNHibernateDao<FileType, int>, IFileTypeDao {

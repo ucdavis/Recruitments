@@ -79,6 +79,7 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
      
     public interface IUserDao : IDao<User, int> {
         User GetUserByLogin(string LoginID);
+        User GetUserBySID(string SID);
     }
 
     public interface IFileTypeDao : IDao<FileType, int> {

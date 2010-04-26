@@ -54,6 +54,14 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _StudentID = value; }
         }
 
+        private string _SID;
+
+        public virtual string SID
+        {
+            get { return _SID; }
+            set { _SID = value; }
+        }
+        
         private bool _Inactive;
 
         public virtual bool Inactive
