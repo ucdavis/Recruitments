@@ -70,7 +70,7 @@ namespace CAESDO.Recruitment.Core.Domain
             
             bool LoginMatch = this.LoginID == member.LoginID;
             bool DepartmentMatch = this.DepartmentFIS == member.DepartmentFIS;
-            bool MemberTypeMatch = this.MemberType.Type == this.MemberType.Type;
+            bool MemberTypeMatch = this.MemberType.Type == member.MemberType.Type;
 
             return LoginMatch && DepartmentMatch && MemberTypeMatch;
         }
