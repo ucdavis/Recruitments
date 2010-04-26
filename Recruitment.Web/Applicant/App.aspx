@@ -32,7 +32,37 @@
         <asp:MultiView ID="mviewSteps" runat="server" ActiveViewIndex="0">
         
             <asp:View ID="viewHome" runat="server">
-                Home
+                <span class="boxTitle">Home</span><br />
+                <table class="box" style="width:500px;" cellpadding="5">
+                    <tr>
+                        <td colspan="2">
+                            <br />
+                            <asp:Label ID="lblApplicationStepStatus" runat="server" ForeColor="green" EnableViewState="false"></asp:Label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            You are applying to the <asp:Label ID="lblApplicationPositionTitle" runat="server"></asp:Label> position.
+                            For full consideration, please have your application finalized by <asp:Label ID="lblApplicationDeadline" runat="server"></asp:Label>.
+                            <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2"><br />
+                            Please complete all tabs on the left hand side of this page. <br /><br />
+                
+                            When you are done with all sections, click on the finalize button to complete your application.
+                            You will not be able to motify your application after you finalize.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td   align="right">
+                        </td>
+                        <td align="right">
+                            <br />
+                            <asp:Button ID="btnApplicationFinalize" runat="server" Text="Finalize Application" /></td>
+                    </tr>
+                </table>
             </asp:View>
             
             <asp:View ID="viewContactInformation" runat="server" >

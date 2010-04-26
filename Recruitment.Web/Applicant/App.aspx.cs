@@ -123,6 +123,9 @@ namespace CAESDO.Recruitment.Web
             //Load the application steps
             LoadSteps();
 
+            //Bind the home step
+            DataBindHome();
+
             rptSteps.DataSource = ApplicationSteps;
             rptSteps.DataBind();
         }
@@ -208,7 +211,7 @@ namespace CAESDO.Recruitment.Web
                 //Error message
             }
 
-            ReloadStepListAndSelectHome();
+            ReloadStepListAndSelectHome("References", true);
 
         }
 
@@ -247,7 +250,7 @@ namespace CAESDO.Recruitment.Web
                 Trace.Warn(ValidateBO<Education>.GetValidationResultsAsString(currentEducation));
             }
 
-            ReloadStepListAndSelectHome();
+            ReloadStepListAndSelectHome("References", true);
         }
 
         protected void btnCurrentPositionSave_Click(object sender, EventArgs e)
@@ -291,7 +294,7 @@ namespace CAESDO.Recruitment.Web
                 Trace.Warn(ValidateBO<CurrentPosition>.GetValidationResultsAsString(currentPosition));
             }
 
-            ReloadStepListAndSelectHome();
+            ReloadStepListAndSelectHome("References", true);
         }
 
         protected void btnResumeUpload_Click(object sender, EventArgs e)
@@ -332,7 +335,7 @@ namespace CAESDO.Recruitment.Web
                 }
             }
 
-            ReloadStepListAndSelectHome();
+            ReloadStepListAndSelectHome("References", true);
         }
 
         protected void btnCoverLetterUpload_Click(object sender, EventArgs e)
@@ -373,7 +376,7 @@ namespace CAESDO.Recruitment.Web
                 }
             }
 
-            ReloadStepListAndSelectHome();
+            ReloadStepListAndSelectHome("References", true);
         }
 
         protected void btnResearchInterestsUpload_Click(object sender, EventArgs e)
@@ -414,7 +417,7 @@ namespace CAESDO.Recruitment.Web
                 }
             }
 
-            ReloadStepListAndSelectHome();
+            ReloadStepListAndSelectHome("References", true);
         }
 
         protected void btnTranscriptsUpload_Click(object sender, EventArgs e)
@@ -455,7 +458,7 @@ namespace CAESDO.Recruitment.Web
                 }
             }
 
-            ReloadStepListAndSelectHome();
+            ReloadStepListAndSelectHome("References", true);
         }
         
         protected void btnDissertationUpload_Click(object sender, EventArgs e)
@@ -496,7 +499,7 @@ namespace CAESDO.Recruitment.Web
                 }
             }
 
-            ReloadStepListAndSelectHome();
+            ReloadStepListAndSelectHome("References", true);
         }
 
         protected void btnPublicationsUpload_Click(object sender, EventArgs e)
@@ -573,7 +576,7 @@ namespace CAESDO.Recruitment.Web
                 currentApplication.PublicationsComplete = chkPublicationsFinalize.Checked;
             }
 
-            ReloadStepListAndSelectHome();
+            ReloadStepListAndSelectHome("References", true);
         }
 
         protected void btnConfidentialSurveyAccept_Click(object sender, EventArgs e)
@@ -684,7 +687,7 @@ namespace CAESDO.Recruitment.Web
                 daoFactory.GetApplicationDao().SaveOrUpdate(currentApplication);
             }
 
-            ReloadStepListAndSelectHome();
+            ReloadStepListAndSelectHome("References", true);
         }
 
         protected void btnReferencesAddUpdate_Click(object sender, EventArgs e)
@@ -813,7 +816,7 @@ namespace CAESDO.Recruitment.Web
                 currentApplication.ReferencesComplete = chkReferencesComplete.Checked;
             }
 
-            ReloadStepListAndSelectHome();
+            ReloadStepListAndSelectHome("References", true);
         }
 
         #endregion
@@ -839,8 +842,14 @@ namespace CAESDO.Recruitment.Web
         /// <summary>
         /// Reloads the step list and then makes the home step active
         /// </summary>
-        private void ReloadStepListAndSelectHome()
+        private void ReloadStepListAndSelectHome(string fromStepName, bool success)
         {
+            //Set the home status for user feedback
+            if (success)
+                lblApplicationStepStatus.Text = string.Format("{0} successfully completed", fromStepName);
+            else
+            { }
+
             //Reload the steps list
             ApplicationSteps = null;
             LoadSteps();
@@ -1108,6 +1117,7 @@ namespace CAESDO.Recruitment.Web
             switch (stepName)
             {
                 case "Home":
+                    DataBindHome();
                     break;
                 case "Contact Information":
                     DataBindContactInformation();
@@ -1228,6 +1238,15 @@ namespace CAESDO.Recruitment.Web
 
             //Show the complete status
             chkReferencesComplete.Checked = currentApplication.ReferencesComplete;
+        }
+
+        /// <summary>
+        /// Populate current position information
+        /// </summary>
+        private void DataBindHome()
+        {
+            lblApplicationPositionTitle.Text = currentApplication.AppliedPosition.PositionTitle;
+            lblApplicationDeadline.Text = currentApplication.AppliedPosition.Deadline.ToShortDateString();
         }
 
         #endregion
