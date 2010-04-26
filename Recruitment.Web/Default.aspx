@@ -9,5 +9,7 @@
     <br />
     <asp:HyperLink ID="hlinkadmin" runat="server" NavigateUrl="~/Authorized/AdminIndex.aspx">Admin Functions</asp:HyperLink>
     <br /><br />
+    <asp:HyperLink ID="hlinkApplicationsInProgress" runat="server" NavigateUrl="~/Applicant/ViewApplicationsInProgress.aspx" >View Applications In Progress</asp:HyperLink>
+    <br /><br />
 </div>
 </asp:Content>

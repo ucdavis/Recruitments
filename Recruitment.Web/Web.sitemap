@@ -9,13 +9,16 @@
       </siteMapNode>
 
       <siteMapNode url="Authorized/AdminIndex.aspx" title="Administration">
-        <siteMapNode url="Authorized/viewPositionsAdmin.aspx" title="View Positions" />
         <siteMapNode url="Authorized/viewPositionsPending.aspx" title="View Pending Positions" />
         <siteMapNode url="Authorized/PositionManagement.aspx" title="Add/Modify Position" />
         <siteMapNode url="Authorized/UserManagement.aspx" title="User Management" />
         <siteMapNode url="Authorized/EmailTemplates.aspx" title="Email Templates" />
         <siteMapNode url="Authorized/ApplicationReview.aspx" title="Application Review" />
         <siteMapNode url="Authorized/UploadFiles.aspx" title="Upload Files" />
+
+        <siteMapNode url="Authorized/viewPositionsAdmin.aspx" title="View Positions">
+          <siteMapNode url="Authorized/viewApplications.aspx" title="View Applications" />
+        </siteMapNode>
       </siteMapNode>
 
       <siteMapNode url="Login/CreateUser.aspx" title="Create User" />
