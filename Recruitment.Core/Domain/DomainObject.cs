@@ -64,6 +64,7 @@ namespace CAESDO.Recruitment.Core.Domain
         public virtual IdT ID
         {
             get { return id; }
+            protected set { id = value; }
         }
 
         /// <summary>
