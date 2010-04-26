@@ -37,7 +37,7 @@ namespace CAESDO.Recruitment.Core.Domain
         private string _FileName;
 
         [NotNullValidator]
-        [StringLengthValidator(1, 50)]
+        [StringLengthValidator(1, 100)]
         public virtual string FileName
         {
             get { return _FileName; }

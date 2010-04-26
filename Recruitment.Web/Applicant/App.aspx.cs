@@ -555,6 +555,7 @@ namespace CAESDO.Recruitment.Web
 
                         using (new NHibernateTransaction())
                         {
+                            currentApplication.LastUpdated = DateTime.Now;
                             daoFactory.GetApplicationDao().SaveOrUpdate(currentApplication);
                         }
                     }
@@ -581,6 +582,7 @@ namespace CAESDO.Recruitment.Web
 
                 using (new NHibernateTransaction())
                 {
+                    currentApplication.LastUpdated = DateTime.Now;
                     currentApplication.Files.Remove(fileToDelete);
                     daoFactory.GetFileDao().Delete(fileToDelete);
 
@@ -764,6 +766,7 @@ namespace CAESDO.Recruitment.Web
 
             using (new NHibernateTransaction())
             {
+                currentApplication.LastUpdated = DateTime.Now;
                 daoFactory.GetReferenceDao().SaveOrUpdate(currentReference);
             }
 
@@ -833,6 +836,7 @@ namespace CAESDO.Recruitment.Web
             //Remove the reference from the currentApplication
             using (new NHibernateTransaction())
             {
+                currentApplication.LastUpdated = DateTime.Now;
                 daoFactory.GetReferenceDao().Delete(currentReference);
             }
 
@@ -880,6 +884,12 @@ namespace CAESDO.Recruitment.Web
             {
                 lblApplicationStepStatus.ForeColor = System.Drawing.Color.Green;
                 lblApplicationStepStatus.Text = string.Format("{0} successfully completed", fromStepName);
+
+                //Update the lastupdated timestamp
+                using (new NHibernateTransaction())
+                {
+                    currentApplication.LastUpdated = DateTime.Now;
+                }
             }
             else
             {
