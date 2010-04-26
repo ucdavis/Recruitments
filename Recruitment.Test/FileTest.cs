@@ -107,6 +107,17 @@ namespace CAESDO.Recruitment.Test
         }
 
         [TestMethod]
+        public void ValidateAllTest()
+        {
+            List<CAESDO.Recruitment.Core.Domain.File> f = NHibernateHelper.daoFactory.GetFileDao().GetAll();
+
+            foreach (CAESDO.Recruitment.Core.Domain.File file in f)
+            {
+                Assert.IsTrue(ValidateBO<CAESDO.Recruitment.Core.Domain.File>.isValid(file));
+            }
+        }
+
+        [TestMethod]
         public void CascadeFileTypeSaveTest()
         {
             //Grab an existing file out of the database
