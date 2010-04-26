@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using CAESDO.Recruitment.Core.Domain;
 
@@ -9,21 +10,11 @@ namespace CAESDO.Recruitment.BLL
     {
         public static Template GetFirstByTypeName(string typeName)
         {
-            TemplateType reminderTemplateType = new TemplateType();
-            reminderTemplateType.Type = typeName;
+            var template = from t in EntitySet
+                               where t.TemplateType.Type == typeName
+                               select t;
 
-            reminderTemplateType = daoFactory.GetTemplateTypeDao().GetUniqueByExample(reminderTemplateType);
-
-            List<Template> templates = daoFactory.GetTemplateDao().GetTemplatesByType(reminderTemplateType);
-
-            if (templates.Count > 0)
-            {
-                return templates[0];
-            }
-            else
-            {
-                return null;
-            }
+            return template.FirstOrDefault();
         }
     }
 }

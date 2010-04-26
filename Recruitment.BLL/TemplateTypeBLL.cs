@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.Text;
+using System.Linq;
 using CAESDO.Recruitment.Core.Domain;
 
 namespace CAESDO.Recruitment.BLL
@@ -13,6 +13,15 @@ namespace CAESDO.Recruitment.BLL
             templateType.Type = typeName;
 
             return TemplateTypeBLL.GetUniqueByExample(templateType);
+        }
+
+        public static List<TemplateType> GetEmailTemplates()
+        {
+            var emailTemplates = from t in EntitySet
+                                 where t.IsEmailTemplate
+                                 select t;
+
+            return emailTemplates.ToList();
         }
     }
 }

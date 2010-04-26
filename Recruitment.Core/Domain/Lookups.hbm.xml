@@ -164,7 +164,7 @@
     </id>
 
     <property name="Type" column="TemplateType" />
-    <property name="IsEmailTemplate" columns="IsEmailTemplate" />
+    <property name="IsEmailTemplate" column="IsEmailTemplate" />
     
   </class>
 

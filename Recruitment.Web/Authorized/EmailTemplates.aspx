@@ -116,6 +116,7 @@
     <br />
     <asp:Panel ID="pnlApplicationsExist" runat="server" Visible="false">
     <asp:Button ID="btnSendEmail" runat="server" Text="Send Reminder Emails" OnClick="btnSendEmail_Click" /><br />
+    <asp:Button ID="btnSendTemplate" runat="server" Text="Send Template Emails" /><br />
     <asp:Label ID="lblSentEmail" runat="server" ForeColor="green" EnableViewState="false"></asp:Label>
         <AjaxControlToolkit:AnimationExtender ID="animationApplicationStatus" runat="server" TargetControlID="lblSentEmail">
             <Animations>
@@ -135,6 +136,49 @@
     <br />
     <hr />
     <br />
+    
+    Template Type: 
+    <asp:DropDownList ID="dlistEmailTemplates" runat="server" 
+            DataSourceID="odsTemplateTypes" DataTextField="Type" DataValueField="ID">
+    </asp:DropDownList>
+    
+    <asp:ObjectDataSource ID="odsTemplateTypes" runat="server" 
+        OldValuesParameterFormatString="original_{0}" SelectMethod="GetEmailTemplates" 
+        TypeName="CAESDO.Recruitment.BLL.TemplateTypeBLL"></asp:ObjectDataSource>
+    
+    <div style="width:818px; height:389px; background:url(../Images/envelope.jpg) no-repeat; padding:50px;">
+    
+    <script src="../JS/tiny_mce/tiny_mce.js" type="text/javascript"></script>
+    <script type="text/javascript" language="javascript">
+        var refTemplateEditor = null;
+
+        tinyMCE.init({
+            mode: "specific_textareas",
+            editor_selector: "richTextEditor", //Just use textareas with the richTextEditor class applied
+            theme: "advanced",
+            skin: "o2k7",
+            plugins: "paste",
+
+            theme_advanced_buttons2: "cut,copy,pastetext,pasteword,|,bullist,numlist,|,undo,redo,|,link,unlink,anchor,image,cleanup,|,forecolor,backcolor",
+            theme_advanced_toolbar_location: "top",
+
+            setup: function(ed) {
+                refTemplateEditor = ed;
+            }
+        });
+
+        function InsertTemplateText(text) {
+            refTemplateEditor.focus();
+            refTemplateEditor.selection.setContent(text);
+        }
+
+    </script>
+    
+    <div class="blueletter">
+       <asp:TextBox ID="txtEmailTemplate" runat="server" CssClass="richTextEditor" TextMode="MultiLine" Width="100%"></asp:TextBox>
+       <br />
+    </div>
+    </div>
     <br />
     <div style="width:818px; height:389px; background:url(../Images/envelope.jpg) no-repeat; padding:50px;">
     <div class="blueletter">
