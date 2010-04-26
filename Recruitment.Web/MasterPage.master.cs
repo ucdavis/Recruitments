@@ -11,6 +11,7 @@ using System.Web.UI.HtmlControls;
 using CAESDO.Recruitment.Core.Domain;
 using CAESDO.Recruitment.Data;
 using CAESDO.Recruitment.Core.DataInterfaces;
+using System.Web.Configuration;
 
 namespace CAESDO.Recruitment.Web
 {
@@ -63,10 +64,20 @@ namespace CAESDO.Recruitment.Web
             }
         }
 
+        public string AssemblyVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();        
+
         #endregion
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (!IsPostBack)
+            {
+                //Populate the questions email and assembly version
+
+                litAssemblyVersion.Text = AssemblyVersion;
+
+                hlinkEmail.NavigateUrl = "mailto:" + WebConfigurationManager.AppSettings["AppMailTo"] + "?subject=[" + WebConfigurationManager.AppSettings["AppName"] + "] " + AssemblyVersion + " <your question or comment>";
+            }
         }
 
         protected void lbtnLogout_Click(object sender, EventArgs e)

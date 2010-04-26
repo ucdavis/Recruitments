@@ -113,7 +113,17 @@
         <br /><br />
     </div>
 </div>
-<div id="shadowBottom"></div><br /><br />
+<div id="shadowBottom"></div>
+<div id="footer" style="text-align:center">
+		    <div>
+			    <p>
+				    CAESDO Recruitments Version: <asp:Literal ID="litAssemblyVersion" runat="server"></asp:Literal> | 
+                    <asp:HyperLink ID="hlinkEmail" runat="server">Questions or Comments?</asp:HyperLink>
+			    </p>
+    			
+		    </div>
+    </div>
+<br /><br />
 </form>
 
 </body>

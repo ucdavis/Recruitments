@@ -73,8 +73,8 @@
             <td align="right">
                 Description:</td>
             <td>
-                <asp:TextBox ID="txtPositionDescription" runat="server" ReadOnly="True" Height="90px" Rows="4" TextMode="MultiLine"
-                    Width="233px"></asp:TextBox></td>
+                <asp:TextBox ID="txtPositionDescription" runat="server" ReadOnly="True" Height="150px" Rows="4" TextMode="MultiLine"
+                    Width="375px"></asp:TextBox></td>
         </tr>
         <tr>
             <td align="right">
