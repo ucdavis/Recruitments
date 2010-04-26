@@ -25,6 +25,28 @@
                 },
                 widgets: ['zebra']
             });
+
+            $("input.qs_input").keydown(function() {
+                //When searching, automatically clear out the submitted application filter
+                $("#chkShowUnsubmitted").removeAttr("checked");
+            });
+
+            $("#chkShowUnsubmitted").click(function() {
+                var allApplications = $("#tblApplications tbody tr");
+
+                if ($(this).is(":checked")) {
+                    //Hide the unsubmitted rows
+                    var justSome = allApplications.filter(":has(td.submittedHeader:contains('False'))").hide(0); //allApplications.filter("td.submittedHeader").hide(0);
+                    //debugger;
+                }
+                else {
+                    //Show all rows
+                    allApplications.show(0);
+                }
+
+                //$("input.qs_input").keydown();
+                $("#tblApplications").trigger("applyWidgets"); //Apply the zebra stripes
+            });
         });
         
     </script>
@@ -46,6 +68,7 @@
     
     <asp:ListView ID="lviewApplications" runat="server" DataSourceID="ObjectDataApplications" DataKeyNames="id">
         <LayoutTemplate>
+            <span style="float:right;"><input id="chkShowUnsubmitted" type="checkbox" /><label for="chkShowUnsubmitted">Show Submitted Only</label></span>
             <table id="tblApplications" class="tablesorter tablesearch">
                 <thead>
                     <tr>
@@ -94,8 +117,8 @@
                 <td>
                     <%# Eval("Email") %>
                 </td>
-                <td>
-                    <asp:CheckBox ID="checkbox" runat="server" Enabled="false" Checked='<%# (bool)Eval("Submitted")  %>' />
+                <td class="submittedHeader">
+                    <%# Eval("Submitted") %>
                 </td>
             </tr>
         </ItemTemplate>
