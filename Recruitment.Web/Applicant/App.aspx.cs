@@ -154,6 +154,11 @@ namespace CAESDO.Recruitment.Web
             rptSteps.DataBind();
         }
 
+        protected string GetAssemblyVersion()
+        {
+            return System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString();
+        }
+
         #endregion
 
         #region Object Event Handlers

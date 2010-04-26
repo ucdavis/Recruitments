@@ -987,7 +987,7 @@
 <div id="footer" style="text-align: center">
     <div>
             <p>
-                CAESDO Recruitments Version: <%= System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString() %>
+                CAESDO Recruitments Version: <%= GetAssemblyVersion() %>
                 <br />
                 Developed By The College Of Agricultural And Environmental Science Dean's Office
             </p>
