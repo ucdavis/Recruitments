@@ -114,6 +114,7 @@ namespace CAESDO.Recruitment.Test
 
             target.AppliedPosition = NHibernateHelper.daoFactory.GetPositionDao().GetById(StaticProperties.ExistingPositionID, false);
             target.AssociatedProfile = NHibernateHelper.daoFactory.GetProfileDao().GetById(StaticProperties.ExistingProfileID, false);
+            target.ReferSource = NHibernateHelper.daoFactory.GetReferSourceDao().GetUniqueByExample(new ReferSource("Internet"));
 
             target.Email = StaticProperties.TestString;
             target.LastUpdated = DateTime.Now;

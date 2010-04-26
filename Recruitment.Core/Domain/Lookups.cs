@@ -189,4 +189,24 @@ namespace CAESDO.Recruitment.Core.Domain
         CommitteeChair              = 2,
         FacultyMember               = 3
     }
+
+    public class ReferSource : DomainObject<int>
+    {
+        private string _Source;
+
+        public virtual string Source
+        {
+            get { return _Source; }
+            set { _Source = value; }
+        }
+	
+        public ReferSource()
+        {
+        }
+
+        public ReferSource(string source)
+        {
+            this.Source = source;
+        }
+    }
 }

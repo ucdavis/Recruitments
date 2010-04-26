@@ -11,7 +11,11 @@
     <property name="SubmitDate" column="SubmitDate" />
     <property name="LastUpdated" column="LastUpdated" />
     <property name="Email" column="Email" />
+    <property name="ReferSourceOther" column="ReferSourceOther" />
 
+    <many-to-one name="ReferSource" column="ReferSourceID"
+      class="CAESDO.Recruitment.Core.Domain.ReferSource, CAESDO.Recruitment.Core" not-null="true" />
+    
     <many-to-one name="AppliedPosition" column="PositionID"
       class="CAESDO.Recruitment.Core.Domain.Position, CAESDO.Recruitment.Core" not-null="true" />
 

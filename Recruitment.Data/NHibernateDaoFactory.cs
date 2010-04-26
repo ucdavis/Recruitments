@@ -97,7 +97,12 @@ namespace CAESDO.Recruitment.Data
         {
             return new ChangeTypeDao();
         }
-                
+
+        public IReferSourceDao GetReferSourceDao()
+        {
+            return new ReferSourceDao();
+        }
+
         #endregion
 
         #region Inline DAO implementations
@@ -204,7 +209,9 @@ namespace CAESDO.Recruitment.Data
         public class ChangeTrackingDao : AbstractNHibernateDao<ChangeTracking, int>, IChangeTrackingDao { }
 
         public class ChangeTypeDao : AbstractNHibernateDao<ChangeType, int>, IChangeTypeDao { }
-          
+
+        public class ReferSourceDao : AbstractNHibernateDao<ReferSource, int>, IReferSourceDao { }
+     
         #endregion
           
     }

@@ -106,4 +106,15 @@
 
   </class>
 
+  <class
+    name="CAESDO.Recruitment.Core.Domain.ReferSource, CAESDO.Recruitment.Core"
+    table="ReferSources" >
+    <id name="id" access="field" column="ReferSourceID" unsaved-value="0">
+      <generator class="identity" />
+    </id>
+
+    <property name="Source" column="ReferSource" />
+
+  </class>
+
 </hibernate-mapping>

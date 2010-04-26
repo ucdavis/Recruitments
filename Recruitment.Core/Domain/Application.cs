@@ -25,6 +25,25 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _AppliedPosition = value; }
         }
 
+        private ReferSource _ReferSource;
+
+        [NotNullValidator]
+        public virtual ReferSource ReferSource
+        {
+            get { return _ReferSource; }
+            set { _ReferSource = value; }
+        }
+
+        private string _ReferSourceOther;
+
+        [IgnoreNulls]
+        [StringLengthValidator(50)]
+        public virtual string ReferSourceOther
+        {
+            get { return _ReferSourceOther; }
+            set { _ReferSourceOther = value; }
+        }
+                
         private bool _Submitted;
 
         [NotNullValidator]
