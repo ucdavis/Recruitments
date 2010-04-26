@@ -92,6 +92,22 @@ namespace CAESDO.Recruitment.Core.Domain
         }
     }
 
+    public class Login : DomainObject<string>
+    {
+        private User _User;
+
+        public User User
+        {
+            get { return _User; }
+            set { _User = value; }
+        }
+
+        public Login()
+        {
+
+        }
+    }
+
     public class MemberType : DomainObject<int>
     {
         private string _Type;

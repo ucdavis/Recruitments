@@ -59,6 +59,17 @@
   </class>
 
   <class
+    name="CAESDO.Recruitment.Core.Domain.Login, CAESDO.Recruitment.Core"
+    table="vLogin" >
+    <id name="id" access="field" column="LoginID" unsaved-value="">
+      <generator class="assigned" />
+    </id>
+
+    <many-to-one name="User" class="CAESDO.Recruitment.Core.Domain.User, CAESDO.Recruitment.Core" column="UserID" not-null="true" />
+
+  </class>
+
+  <class
     name="CAESDO.Recruitment.Core.Domain.MemberType, CAESDO.Recruitment.Core"
     table="MemberTypes" >
     <id name="id" access="field" column="MemberTypeID" unsaved-value="0">

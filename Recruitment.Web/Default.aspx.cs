@@ -59,9 +59,9 @@ namespace CAESDO.Recruitment.Web
           
             //List<Position> posList = posDao.GetAll();
 
-            IApplicantDao applicantDao = daoFactory.GetApplicantDao();
+            //IApplicantDao applicantDao = daoFactory.GetApplicantDao();
 
-            Applicant app = applicantDao.GetById(4, false);
+            //Applicant app = applicantDao.GetById(4, false);
 
             //IProfileDao proDao = daoFactory.GetProfileDao();
 
@@ -71,36 +71,36 @@ namespace CAESDO.Recruitment.Web
 
             //Survey survey = surveyDao.GetById(1, false);
 
-            if (!Page.IsPostBack)
-            {
-                app11 = null;
+            //if (!Page.IsPostBack)
+            //{
+            //    app11 = null;
             
-                Response.Write(app11.ID.ToString() + "   " + app11.SubmitDate.ToShortDateString() + "<br/>");
-            }
-            else
-            {
-                Education edu = new Education();
-                edu.AssociatedApplication = app11;
-                edu.Date = DateTime.Now;
-                edu.Discipline = "CSENG";
-                edu.Institution = "UCD";
+            //    Response.Write(app11.ID.ToString() + "   " + app11.SubmitDate.ToShortDateString() + "<br/>");
+            //}
+            //else
+            //{
+            //    Education edu = new Education();
+            //    edu.AssociatedApplication = app11;
+            //    edu.Date = DateTime.Now;
+            //    edu.Discipline = "CSENG";
+            //    edu.Institution = "UCD";
 
-                using (new NHibernateTransaction())
-                {
-                    daoFactory.GetEducationDao().Save(edu);
-                    app11.Education.Add(edu);
-                }
+            //    using (new NHibernateTransaction())
+            //    {
+            //        daoFactory.GetEducationDao().Save(edu);
+            //        app11.Education.Add(edu);
+            //    }
 
-                Response.Write(app11.Files[0].FileName);
-                Response.Write(app11.Education.Count);
-                foreach (Education ed in app11.Education)
-                {
-                    Response.Write("<br/>" + ed.Institution + "  " + ed.Discipline);
-                }
+            //    Response.Write(app11.Files[0].FileName);
+            //    Response.Write(app11.Education.Count);
+            //    foreach (Education ed in app11.Education)
+            //    {
+            //        Response.Write("<br/>" + ed.Institution + "  " + ed.Discipline);
+            //    }
 
-                Response.Write(app11.Education.Count);
-                Response.Write(app11.CurrentPositions.Count);
-            }
+            //    Response.Write(app11.Education.Count);
+            //    Response.Write(app11.CurrentPositions.Count);
+            //}
 
             //Response.Write(app.ID.ToString() + "  " + app.SubmitDate.ToShortDateString() + "<br/>");
             //Response.Write(app.References[0].City);
@@ -116,6 +116,11 @@ namespace CAESDO.Recruitment.Web
             //IFileDao fDao = daoFactory.GetFileDao();
 
             //List<File> files = fDao.GetAll();
+
+            IUserDao uDao = daoFactory.GetUserDao();
+
+            User user = uDao.GetById(1, false);
+            
         }
     }  
 }

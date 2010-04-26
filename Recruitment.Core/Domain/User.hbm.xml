@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <class
+    name="CAESDO.Recruitment.Core.Domain.User, CAESDO.Recruitment.Core"
+    table="vUser" >
+    <id name="id" access="field" column="UserID" unsaved-value="0">
+      <generator class="identity" />
+    </id>
+
+    <property name="FirstName" column="FirstName" />
+    <property name="LastName" column="LastName" />
+    <property name="EmployeeID" column="EmployeeID" />
+    <property name="StudentID" column="StudentID" />
+    <property name="Inactive" column="Inactive" />
+
+    <bag name="LoginIDs" table="vLogin" inverse="true">
+      <key column="UserID" />
+      <one-to-many class="CAESDO.Recruitment.Core.Domain.Login, CAESDO.Recruitment.Core" />
+    </bag>
+    
+  </class>
+</hibernate-mapping>

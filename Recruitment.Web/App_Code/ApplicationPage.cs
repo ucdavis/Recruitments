@@ -50,28 +50,28 @@ namespace CAESDO.Recruitment.Web
             //NHibernateSessionManager.Instance.RollbackTransaction();
 
             //Grab the page context
-            HttpContext ctx = HttpContext.Current;
+            //HttpContext ctx = HttpContext.Current;
 
-            //Grab the exception that raised this error
-            Exception ex = ctx.Server.GetLastError();
+            ////Grab the exception that raised this error
+            //Exception ex = ctx.Server.GetLastError();
 
-            //Only handle HttpException Errors
-            if (ex.GetType().Name == "HttpException")
-            {
-                //Clear the error and redirect to the page the raised this error (getting a fresh copy)
-                ctx.Server.ClearError();
-                ctx.Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.SESSION));
-            }
-            else
-            {
-                if (ex.InnerException != null)
-                    eReport.ReportError(ex.InnerException, "OnError");
-                else
-                    eReport.ReportError(ex, "OnError");
+            ////Only handle HttpException Errors
+            //if (ex.GetType().Name == "HttpException")
+            //{
+            //    //Clear the error and redirect to the page the raised this error (getting a fresh copy)
+            //    ctx.Server.ClearError();
+            //    ctx.Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.SESSION));
+            //}
+            //else
+            //{
+            //    if (ex.InnerException != null)
+            //        eReport.ReportError(ex.InnerException, "OnError");
+            //    else
+            //        eReport.ReportError(ex, "OnError");
 
-                ctx.Server.ClearError();
-                ctx.Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.UNKNOWN));
-            }
+            //    ctx.Server.ClearError();
+            //    ctx.Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.UNKNOWN));
+            //}
 
             base.OnError(e); //won't get called
         }

@@ -72,6 +72,11 @@ namespace CAESDO.Recruitment.Data
             return new CommitteeMemberDao();
         }
 
+        public IUserDao GetUserDao()
+        {
+            return new UserDao();
+        }
+
         #region Inline DAO implementations
 
         /// <summary>
@@ -131,6 +136,8 @@ namespace CAESDO.Recruitment.Data
                 return query.List<CommitteeMember>() as List<CommitteeMember>;
             }
         }
+
+        public class UserDao : AbstractNHibernateDao<User, int>, IUserDao { }
 
         #endregion
           
