@@ -22,7 +22,7 @@
                 Position Title:</td>
             <td  >
                 <asp:TextBox ID="txtPositionTitle" runat="server" MaxLength="100"></asp:TextBox>
-                <asp:RequiredFieldValidator ID="reqValPositionTitle" runat="server" ControlToValidate="txtPositionTitle" ErrorMessage="*"></asp:RequiredFieldValidator></td>
+                <asp:RequiredFieldValidator ID="reqValPositionTitle" runat="server" ControlToValidate="txtPositionTitle" ErrorMessage="* Position Title Required"></asp:RequiredFieldValidator></td>
         </tr>
         <tr>
             <td   align="right" style="width: 240">
@@ -37,8 +37,8 @@
                 <asp:TextBox ID="txtDeadline" runat="server"></asp:TextBox> <asp:Image ID="imgDeadlineCalendar" runat="server" ImageUrl="~/Images/icon.calendar.png" AlternateText="Click to show calendar" />
                 <AjaxControlToolkit:CalendarExtender ID="calDeadline" runat="server" TargetControlID="txtDeadline" PopupButtonID="imgDeadlineCalendar"></AjaxControlToolkit:CalendarExtender>
                 
-                <asp:RequiredFieldValidator ID="reqValDeadline" runat="server" ControlToValidate="txtDeadline" ErrorMessage="*"></asp:RequiredFieldValidator>
-                <asp:CompareValidator ID="comValDeadline" Type="Date" runat="server" Operator="DataTypeCheck" ControlToValidate="txtDeadline" ErrorMessage="*"></asp:CompareValidator>
+                <asp:RequiredFieldValidator ID="reqValDeadline" runat="server" ControlToValidate="txtDeadline" ErrorMessage="* Review Date Required"></asp:RequiredFieldValidator>
+                <asp:CompareValidator ID="comValDeadline" Type="Date" runat="server" Operator="DataTypeCheck" ControlToValidate="txtDeadline" ErrorMessage="* Review Date Format Not Valid"></asp:CompareValidator>
                 
             </td>
         </tr>
@@ -90,7 +90,7 @@
                 Recruitment Representative:</td>
             <td  >
                 <asp:TextBox ID="txtHRRep" runat="server" MaxLength="100"></asp:TextBox>
-                <asp:RequiredFieldValidator id="reqValHRRep" ControlToValidate="txtHRRep" ErrorMessage="*" runat="server"/>
+                <asp:RequiredFieldValidator id="reqValHRRep" ControlToValidate="txtHRRep" ErrorMessage="* Recruitment Reprenentative Required" runat="server"/>
             </td>
         </tr>
         <tr>
@@ -98,7 +98,7 @@
                 Recruitment Rep Phone Number:</td>
             <td  >
                 <asp:TextBox ID="txtHRPhone" runat="server" MaxLength="13"></asp:TextBox>                
-                <asp:RegularExpressionValidator ID="regValHRPhone" runat="server" ControlToValidate="txtHRPhone" ErrorMessage="*" ValidationExpression="((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}"></asp:RegularExpressionValidator>
+                <asp:RegularExpressionValidator ID="regValHRPhone" runat="server" ControlToValidate="txtHRPhone" ErrorMessage="* Phone Number Required" ValidationExpression="((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}"></asp:RegularExpressionValidator>
             </td>
         </tr>
         <tr>
@@ -108,8 +108,8 @@
             <td>
                 <asp:TextBox ID="txtHREmail" runat="server" MaxLength="100"></asp:TextBox>
                 
-                <asp:RequiredFieldValidator id="reqValHREmail" ControlToValidate="txtHREmail" ErrorMessage="*" runat="server"/>                
-                <asp:RegularExpressionValidator ID="regValHREmail" runat="server" ErrorMessage="*" ControlToValidate="txtHREmail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                <asp:RequiredFieldValidator id="reqValHREmail" ControlToValidate="txtHREmail" ErrorMessage="* Email Required" runat="server"/>                
+                <asp:RegularExpressionValidator ID="regValHREmail" runat="server" ErrorMessage="* Email Format Not Valid" ControlToValidate="txtHREmail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
             </td>
         </tr>
         <tr>
@@ -129,10 +129,11 @@
                     <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '{ApplicantName}');" >Applicant Name</a>,
                     <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '{Deadline}');" >Deadline</a>,
                     <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '{PositionTitle}');" >Position Title</a>
+                    <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '<%= ConfidentialityStatement() %>');" >Confidentiality Statement</a>
                 
-                <FTB:FreeTextBox ID="ftxtReferenceTemplate" runat="server" Width="500px" Height="300px">
+                <FTB:FreeTextBox ID="ftxtReferenceTemplate" runat="server" Width="500px" Height="300px" EnableHtmlMode="false">
                 </FTB:FreeTextBox>
-                <asp:RequiredFieldValidator id="reqValReferenceTemplate" ControlToValidate="ftxtReferenceTemplate" ErrorMessage="*" runat="server"/>
+                <asp:RequiredFieldValidator id="reqValReferenceTemplate" ControlToValidate="ftxtReferenceTemplate" ErrorMessage="* Reference Template Required" runat="server"/>
             </td>
         </tr>
         <tr>
@@ -143,12 +144,12 @@
                 <asp:ImageButton ID="ibtnReplacePositionDescription" runat="server" ImageUrl="~/Images/delete.gif" AlternateText="[Replace]" Visible="false" />
                 <asp:Literal ID="litDownloadPositionDescription" runat="server" Visible="false"><br /><br /></asp:Literal>
                 <asp:FileUpload ID="filePositionDescription" runat="server" Visible="true" />                
-                <asp:RequiredFieldValidator ID="reqValPositionDescription" runat="server" ControlToValidate="filePositionDescription" ErrorMessage="*" Visible="true"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="reqValPositionDescription" runat="server" ControlToValidate="filePositionDescription" ErrorMessage="* Job Description Required" Visible="true"></asp:RequiredFieldValidator>
                                                                      
                 <asp:Panel ID="pnlPositionDescription" runat="server" CssClass="modalPopup" style="display:none;">
                     Replace Existing Position Description: <br /><br />
                     <asp:FileUpload ID="filePositionDescriptionReplace" runat="server" Visible="true" />
-                    <asp:RequiredFieldValidator ID="reqValPositionDescriptionReplace" runat="server" ControlToValidate="filePositionDescriptionReplace" ErrorMessage="*" ValidationGroup="Replace" Visible="true"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="reqValPositionDescriptionReplace" runat="server" ControlToValidate="filePositionDescriptionReplace" ErrorMessage="* Position Description Required" ValidationGroup="Replace" Visible="true"></asp:RequiredFieldValidator>
                     <br /><br />
                     <asp:Button ID="btnPositionDescriptionReplace" runat="server" Text="Upload" ValidationGroup="Replace" OnClick="btnPositionDescriptionReplace_Click" />
                     <asp:Button ID="btnPositionDescriptionReplaceCancel" runat="server" CausesValidation="false" Text="Cancel" />
@@ -165,8 +166,9 @@
                 <asp:TextBox ID="txtPublications" runat="server"></asp:TextBox>
                 <AjaxControlToolkit:NumericUpDownExtender ID="numPublications" runat="server" Width="146" TargetControlID="txtPublications"></AjaxControlToolkit:NumericUpDownExtender>
                 
-                <asp:RequiredFieldValidator ID="reqValPublications" runat="server" ErrorMessage="*" ControlToValidate="txtPublications"></asp:RequiredFieldValidator>    
-                <asp:CompareValidator ID="comValPublications" runat="server" ErrorMessage="*" ControlToValidate="txtPublications" ValueToCompare="0" Type="Integer" Operator="greaterThanEqual"></asp:CompareValidator>
+                
+                <asp:CompareValidator ID="comValPublications" runat="server" ErrorMessage="* Number of Publications Can Not Be Negative" ControlToValidate="txtPublications" ValueToCompare="0" Type="Integer" Operator="greaterThanEqual"></asp:CompareValidator>
+                <asp:RequiredFieldValidator ID="reqValPublications" runat="server" ErrorMessage="* Publications Required" ControlToValidate="txtPublications"></asp:RequiredFieldValidator>    
             </td>
         </tr>
         <tr>
@@ -176,8 +178,8 @@
                 <asp:TextBox ID="txtReferences" runat="server"></asp:TextBox>   
                 <AjaxControlToolkit:NumericUpDownExtender ID="numReferences" runat="server" Width="146" TargetControlID="txtReferences"></AjaxControlToolkit:NumericUpDownExtender>
                 
-                <asp:RequiredFieldValidator ID="reqValReferences" runat="server" ErrorMessage="*" ControlToValidate="txtReferences"></asp:RequiredFieldValidator>    
-                <asp:CompareValidator ID="comValReferences" runat="server" ErrorMessage="*" ControlToValidate="txtReferences" ValueToCompare="0" Type="Integer" Operator="GreaterThanEqual"></asp:CompareValidator>
+                <asp:CompareValidator ID="comValReferences" runat="server" ErrorMessage="* Number of References Can Not Be Negative" ControlToValidate="txtReferences" ValueToCompare="0" Type="Integer" Operator="GreaterThanEqual"></asp:CompareValidator>
+                <asp:RequiredFieldValidator ID="reqValReferences" runat="server" ErrorMessage="* Reference Required" ControlToValidate="txtReferences"></asp:RequiredFieldValidator>                    
             </td>
         </tr>
         <tr>

@@ -533,5 +533,12 @@ namespace CAESDO.Recruitment.Web
             return output;
         }
 
+        /// <summary>
+        /// Returns the confidentiality statement
+        /// </summary>
+        public string ConfidentialityStatement()
+        {
+            return "Confidentiality Statement";
+        }
 }
 }
