@@ -53,7 +53,7 @@
       <element column="StepID" type="CAESDO.Recruitment.Core.Domain.ApplicationStepType, CAESDO.Recruitment.Core" />
     </bag>
     
-    <bag name="CommitteeMembers" table="CommitteeMembers" inverse="true">
+    <bag name="CommitteeMembers" table="CommitteeMembers" cascade="all-delete-orphan" inverse="true">
       <key column="PositionID" />
       <one-to-many class="CAESDO.Recruitment.Core.Domain.CommitteeMember, CAESDO.Recruitment.Core" />
     </bag>

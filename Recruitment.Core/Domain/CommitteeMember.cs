@@ -48,6 +48,15 @@ namespace CAESDO.Recruitment.Core.Domain
         {
 
         }
-	
+
+        public override bool Equals(object obj)
+        {
+            return this.LoginID == ((CommitteeMember)obj).LoginID;
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 }
