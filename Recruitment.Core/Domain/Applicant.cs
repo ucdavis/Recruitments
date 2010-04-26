@@ -13,9 +13,9 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _Email; }
             set { _Email = value; }
         }
-        private string _CreatedBy;
+        private int _CreatedBy;
 
-        public virtual string CreatedBy
+        public virtual int CreatedBy
         {
             get { return _CreatedBy; }
             set { _CreatedBy = value; }
@@ -50,12 +50,6 @@ namespace CAESDO.Recruitment.Core.Domain
         
         public Applicant()
         {
-            //throw new System.NotImplementedException();
-        }
-
-        public virtual void Fill(int AccountID, bool LoadProfile)
-        {
-            throw new System.NotImplementedException();
         }
     }
 }

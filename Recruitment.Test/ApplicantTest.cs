@@ -34,9 +34,6 @@ namespace CAESDO.Recruitment.Test
             }
         }
 
-        static int ExistingApplicantID = 4;
-        static string ExistingApplicantEmail = "srkirkland@ucdavis.edu";
-
         #region Additional test attributes
         // 
         //You can use the following additional attributes as you write your tests:
@@ -80,37 +77,51 @@ namespace CAESDO.Recruitment.Test
         {
             Applicant target = new Applicant();
 
-            // TODO: Implement code to verify target
-            //Assert.Inconclusive("TODO: Implement code to verify target");
             Assert.IsNotNull(target);
         }
 
         [TestMethod()]
         public void FillApplicant()
         {
-            Applicant target = NHibernateHelper.daoFactory.GetApplicantDao().GetById(ExistingApplicantID, false);
+            Applicant target = NHibernateHelper.daoFactory.GetApplicantDao().GetById(StaticProperties.ExistingApplicantID, false);
 
             Assert.IsNotNull(target);
 
-            Assert.AreEqual<int>(target.ID, ExistingApplicantID);
-            Assert.AreEqual<string>(target.Email, ExistingApplicantEmail);
+            Assert.AreEqual<int>(target.ID, StaticProperties.ExistingApplicantID);
+            Assert.AreEqual<string>(target.Email, StaticProperties.ExistingApplicantEmail);
         }
 
-        /// <summary>
-        ///A test for Fill (int, bool)
-        ///</summary>
         [TestMethod()]
-        public void FillTest()
+        public void FillAllApplicants()
         {
-            Applicant target = new Applicant();
+            List<Applicant> applicants = NHibernateHelper.daoFactory.GetApplicantDao().GetAll();
 
-            int AccountID = 0; // TODO: Initialize to an appropriate value
+            Assert.IsFalse(applicants.Count == 0);
+        }
 
-            bool LoadProfile = false; // TODO: Initialize to an appropriate value
+        [TestMethod()]
+        public void SaveDeleteApplicant()
+        {
+            // --- Saving an applicant is not done through NHibernate ---
+            //Applicant applicant = new Applicant();
 
-            target.Fill(AccountID, LoadProfile);
+            //applicant.CreatedBy = 1;
+            //applicant.Email = StaticProperties.TestString;
+            //applicant.IsActive = true;
 
-            Assert.Inconclusive("A method that does not return a value cannot be verified.");
+            //Applicant savedApplicant = NHibernateHelper.daoFactory.GetApplicantDao().Save(applicant);
+
+            //Assert.IsNotNull(savedApplicant); //Make sure an applicant comes back
+            //Assert.AreNotEqual<int>(savedApplicant.ID, 0); //Make sure it has a real ID
+            //Assert.IsNull(savedApplicant.MainProfile); //Shouldn't have a profile
+            //Assert.AreEqual<int>(applicant.CreatedBy, 1);
+            //Assert.AreEqual<string>(applicant.Email, StaticProperties.TestString);
+            //Assert.AreEqual<bool>(applicant.IsActive, true);
+
+            ////Now we know we have a saved applicant, so delete it
+            //NHibernateHelper.daoFactory.GetApplicantDao().Delete(savedApplicant);
+
+            //Applicant deletedApplicant = NHibernateHelper.daoFactory.GetApplicantDao().GetById(savedApplicant.ID, false);
         }
 
     }
