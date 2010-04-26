@@ -45,7 +45,7 @@
         
         $(document).ready(function() {
             //Search any table that has the tablesorter class
-            $("table.tablesorter tbody tr").quicksearch({
+            $("table.tablesorter tbody tr:visible").quicksearch({
                 labelText: 'Search: ',
                 attached: null,
                 attachType: 'table',

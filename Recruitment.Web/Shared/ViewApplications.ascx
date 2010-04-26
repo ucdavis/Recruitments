@@ -14,19 +14,19 @@
                 widgets: ['zebra']
             });
 
-        //The show unsubmitted applicants checkbox should be in an initial unchecked state 
-        $("#chkShowUnsubmitted").removeAttr("checked");
+        //The show unsubmitted applicants checkbox should be in an initial checked state 
+        $("#chkShowUnsubmitted").attr("checked", "checked");
 
         $("#chkShowUnsubmitted").click(function() {
             var allApplications = $("#tblApplications tbody tr");
 
             if ($(this).is(":checked")) {
-                //Checkbox is checked, show all rows
-                allApplications.show(0);
-            }
-            else {
                 //Hide the unsubmitted rows
                 allApplications.not(":has(:checked)").hide(0);
+            }
+            else {
+                //Show all rows
+                allApplications.show(0);
             }
 
             $("#tblApplications").trigger("applyWidgets"); //Apply the zebra stripes
@@ -40,7 +40,7 @@ Viewing Applicants for the
 position.
 <br />
 <br />
-<span style="float:right;"><input id="chkShowUnsubmitted" type="checkbox" /> Show All Applicants</span>
+<span style="float:right;"><input id="chkShowUnsubmitted" checked="checked" type="checkbox" /><label for="chkShowUnsubmitted">Show Submitted Only</label></span>
 <asp:ListView ID="lviewApplications" runat="server" DataSourceID="ObjectDataApplications">
     <LayoutTemplate>
         <table id="tblApplications" class="tablesorter">
