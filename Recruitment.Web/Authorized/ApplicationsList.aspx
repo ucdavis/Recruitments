@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ShortList.aspx.cs" Inherits="CAESDO.Recruitment.Web.Authorized_ShortList" Title="Short List" Theme="MainTheme" %>
+<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ApplicationsList.aspx.cs" Inherits="CAESDO.Recruitment.Web.Authorized_ApplicationsList" Title="Applications List" Theme="MainTheme" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
     <asp:DropDownList ID="dlistPositions" runat="server" AutoPostBack="True" DataSourceID="ObjectDataPositions" DataTextField="TitleAndApplicationCount" DataValueField="ID" OnSelectedIndexChanged="dlistPositions_SelectedIndexChanged" AppendDataBoundItems="true">
@@ -16,12 +16,22 @@
     <br /><br />
     <asp:GridView ID="gviewApplications" runat="server" AllowPaging="true" skinID="gridViewUM" DataKeyNames="id" GridLines="None" CellPadding="0" AutoGenerateColumns="False" DataSourceID="ObjectDataApplications" EmptyDataText="No Applications Found For This Position">
         <Columns>
-            <asp:TemplateField HeaderText="Short List">
+            <asp:TemplateField HeaderText="Interview">
                 <ItemTemplate>
                     <asp:CheckBox ID="chkShortList" runat="server" Checked='<%# Eval("ShortList") %>' />
                 </ItemTemplate>
                 <ItemStyle CssClass="paddingLeft" />
                 <HeaderStyle HorizontalAlign="Left" CssClass="paddingLeft" />
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Get References">
+                <ItemTemplate>
+                    <asp:CheckBox ID="chkReferences" runat="server" Checked='<%# Eval("GetReferences") %>' />
+                </ItemTemplate>
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="No Consideration">
+                <ItemTemplate>
+                    <asp:CheckBox ID="chkNoConsideration" runat="server" Checked='<%# Eval("NoConsideration") %>' />
+                </ItemTemplate>
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Applicant Name">
                 <ItemTemplate>
@@ -50,7 +60,7 @@
     <br /><br />
     <asp:Label ID="lblResult" runat="server" EnableViewState="false"></asp:Label><br /><br />
     
-    <asp:Button ID="btnUpdateShortList" runat="server" Text="Update Short List" Visible="false" OnClick="btnUpdateShortList_Click" />
+    <asp:Button ID="btnUpdateList" runat="server" Text="Update Applications List" Visible="false" OnClick="btnUpdateList_Click" />
     <asp:Button ID="btnEmailReferences" runat="server" Text="Email References" Visible="false" OnClick="btnEmailReferences_Click" />
     
     <AjaxControlToolkit:ConfirmButtonExtender ID="confirmEmailReferences" runat="server" 

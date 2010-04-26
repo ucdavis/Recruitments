@@ -33,7 +33,25 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _ShortList; }
             set { _ShortList = value; }
         }
-                
+
+        private bool _NoConsideration;
+
+        [NotNullValidator]
+        public virtual bool NoConsideration
+        {
+            get { return _NoConsideration; }
+            set { _NoConsideration = value; }
+        }
+
+        private bool _GetReferences;
+
+        [NotNullValidator]
+        public virtual bool GetReferences
+        {
+            get { return _GetReferences; }
+            set { _GetReferences = value; }
+        }
+                        
         private bool _Submitted;
 
         [NotNullValidator]

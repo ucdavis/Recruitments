@@ -16,7 +16,7 @@ using System.Text;
 
 namespace CAESDO.Recruitment.Web
 {
-    public partial class Authorized_ShortList : ApplicationPage
+    public partial class Authorized_ApplicationsList : ApplicationPage
     {
         private const string STR_ApplicationReview = "ApplicationReview.aspx";
 
@@ -52,17 +52,17 @@ namespace CAESDO.Recruitment.Web
 
             if (gviewApplications.Rows.Count > 0)
             {
-                btnUpdateShortList.Visible = true;
+                btnUpdateList.Visible = true;
                 btnEmailReferences.Visible = true;
             }
             else
             {
-                btnUpdateShortList.Visible = false;
-                btnUpdateShortList.Visible = false;
+                btnUpdateList.Visible = false;
+                btnUpdateList.Visible = false;
             }
         }
 
-        protected void btnUpdateShortList_Click(object sender, EventArgs e)
+        protected void btnUpdateList_Click(object sender, EventArgs e)
         {
             using (new NHibernateTransaction())
             {
@@ -73,6 +73,8 @@ namespace CAESDO.Recruitment.Web
                         Application app = daoFactory.GetApplicationDao().GetById((int)gviewApplications.DataKeys[row.RowIndex]["id"], false);
 
                         app.ShortList = ((CheckBox)row.FindControl("chkShortList")).Checked;
+                        app.GetReferences = ((CheckBox)row.FindControl("chkReferences")).Checked;
+                        app.NoConsideration = ((CheckBox)row.FindControl("chkNoConsideration")).Checked;
 
                         daoFactory.GetApplicationDao().SaveOrUpdate(app);
                     }
@@ -88,7 +90,7 @@ namespace CAESDO.Recruitment.Web
         }
 
         /// <summary>
-        /// For each short-listed application, all references are emailed (unless they have been emailed previously)
+        /// For each application with GetReferences = true, all references are emailed (unless they have been emailed previously)
         /// </summary>
         protected void btnEmailReferences_Click(object sender, EventArgs e)
         {
@@ -100,7 +102,7 @@ namespace CAESDO.Recruitment.Web
             //Get each application listed
             foreach (Application app in currentPosition.AssociatedApplications)
             {
-                if (app.ShortList == true) //We only want to email the short listed applicants
+                if (app.GetReferences == true) //We only want to email the short listed applicants
                 {
                     foreach (Reference reference in app.References)
                     {
