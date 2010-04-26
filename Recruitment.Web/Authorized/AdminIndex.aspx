@@ -9,6 +9,10 @@
     <a href="PositionManagement.aspx">Create Position</a><br /><br />
         
     <a href="UserManagement.aspx">User Management</a><br /><br />
+    
+    <a href="EmailTemplates.aspx">Email Templates</a><br /><br />
+    
+    <a href="ApplicationReview.aspx?ApplicationID=11">Review Application 11</a><br /><br />
         
 </asp:Content>
 
