@@ -37,10 +37,12 @@
                 positions: ['right']
             });
 
+            /*
             $("#spanSummaryInfo").bt('Some summary info', {
                 trigger: ['click'],
                 positions: ['right']
             });
+            */
         });
         
     </script>
@@ -146,7 +148,7 @@
         </tr>
         <tr>
             <td align="right" valign="top" style="width: 240">
-                <span id="spanSummaryInfo">Summary<img src="../Images/modify.gif" alt="SummaryInfo" /></span>:</td>
+                <span id="spanSummaryInfo">Summary<%--<img src="../Images/modify.gif" alt="SummaryInfo" /></span>--%>:</td>
             <td  >
                 <asp:TextBox ID="txtShortDescription" runat="server" Height="255px" Rows="4" TextMode="MultiLine"
                     Width="502px" meta:resourcekey="txtShortDescriptionResource1"></asp:TextBox></td>
