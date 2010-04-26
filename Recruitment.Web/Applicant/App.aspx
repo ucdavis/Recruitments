@@ -410,22 +410,7 @@
             <asp:View ID="viewPublications" runat="server">
                 <span class="boxTitle"><asp:Image ID="imgPublications" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />Publications</span><br />
                 <table class="box" style="width:500px; height: 350px;" cellpadding="5">
-                    <tr>
-                        <td colspan="2">
-                        <br />
-                            <asp:Repeater ID="rptPublications" runat="server">
-                                <HeaderTemplate>
-                                    Existing Publication Files: <br />
-                                </HeaderTemplate>
-                                <ItemTemplate>
-                                    &nbsp;&nbsp;<asp:LinkButton ID="lbtnPublicationFile" runat="server" Text='<%# Eval("FileName") %>' CommandArgument='<%# Eval("ID") %>' OnClick="lbtnPublicationFile_Click"></asp:LinkButton>
-                                </ItemTemplate>
-                                <SeparatorTemplate>
-                                    <br />
-                                </SeparatorTemplate>
-                            </asp:Repeater>
-                        </td>
-                    </tr>
+                    
                     <tr>
                         <td colspan="2">
                             <br />
@@ -446,8 +431,33 @@
                         <td align="right">
                         </td>
                         <td align="right"  >
-                            <br />
                             <asp:Button ID="btnPublicationsUpload" runat="server" Text="Upload" OnClick="btnPublicationsUpload_Click" /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                        <br />
+                            <asp:Repeater ID="rptPublications" runat="server">
+                                <HeaderTemplate>
+                                    Existing Publication Files <asp:Label ID="lblPublicationsRemaining" runat="server" Text='<%# NumPublicationsRemainingText() %>' ForeColor="Brown" EnableViewState="false"></asp:Label>: <br />
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    &nbsp;&nbsp;<asp:LinkButton ID="lbtnPublicationFile" runat="server" Text='<%# Eval("FileName") %>' CommandArgument='<%# Eval("ID") %>' OnClick="lbtnPublicationFile_Click"></asp:LinkButton>
+                                    <asp:ImageButton ID="ibtnPublicationsRemoveFile" runat="server" CommandArgument='<%# Eval("ID") %>' OnClick="ibtnPublicationsRemoveFile_Click" AlternateText="Remove File" ImageUrl="~/Images/appmenuX.gif" />
+                                </ItemTemplate>
+                                <SeparatorTemplate>
+                                    <br />
+                                </SeparatorTemplate>
+                            </asp:Repeater>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                        </td>
+                        <td align="right"  >
+                            <br />
+                            <asp:CheckBox ID="chkPublicationsFinalize" runat="server" EnableViewState="false" TextAlign="Left" Text="Done Uploading Publications" />
+                            <%--<asp:Button ID="btnPublicationsUpdateStatus" runat="server" Text="Update" />--%>
+                        </td>
                     </tr>
                 </table>
             </asp:View>

@@ -298,7 +298,7 @@ namespace CAESDO.Recruitment.Web
         {
             FileType resumeFileType = daoFactory.GetFileTypeDao().GetFileTypeByName("Resume");
 
-            //TODO: Remove all existing resume files from this application
+            RemoveAllFilesOfType("Resume");
 
             if (fileResume.HasFile)
             {
@@ -339,7 +339,7 @@ namespace CAESDO.Recruitment.Web
         {
             FileType coverLetterFileType = daoFactory.GetFileTypeDao().GetFileTypeByName("CoverLetter");
 
-            //TODO: Remove all existing resume files from this application
+            RemoveAllFilesOfType("CoverLetter");
 
             if (fileCoverLetter.HasFile)
             {
@@ -380,7 +380,7 @@ namespace CAESDO.Recruitment.Web
         {
             FileType ResearchInterestsFileType = daoFactory.GetFileTypeDao().GetFileTypeByName("ResearchInterests");
 
-            //TODO: Remove all existing resume files from this application
+            RemoveAllFilesOfType("ResearchInterests");
 
             if (fileResearchInterests.HasFile)
             {
@@ -421,7 +421,7 @@ namespace CAESDO.Recruitment.Web
         {
             FileType transcriptsFileType = daoFactory.GetFileTypeDao().GetFileTypeByName("Transcript");
 
-            //TODO: Remove all existing resume files from this application
+            RemoveAllFilesOfType("Transcript");
 
             if (fileTranscripts.HasFile)
             {
@@ -462,7 +462,7 @@ namespace CAESDO.Recruitment.Web
         {
             FileType dissertationFileType = daoFactory.GetFileTypeDao().GetFileTypeByName("Dissertation");
 
-            //TODO: Remove all existing resume files from this application
+            RemoveAllFilesOfType("Dissertation");
 
             if (fileDissertation.HasFile)
             {
@@ -503,8 +503,6 @@ namespace CAESDO.Recruitment.Web
         {
             FileType publicationsFileType = daoFactory.GetFileTypeDao().GetFileTypeByName("Publication");
 
-            //TODO: Remove all existing resume files from this application
-
             if (filePublications.HasFile)
             {
                 if (filePublications.PostedFile.ContentType == STR_Applicationpdf)
@@ -537,7 +535,35 @@ namespace CAESDO.Recruitment.Web
                 }
             }
 
-            ReloadStepListAndSelectHome();
+            DataBindPublications();
+        }
+
+        protected void ibtnPublicationsRemoveFile_Click(object sender, EventArgs e)
+        {
+            int FileID = 0;
+            bool success = false;
+
+            success = int.TryParse(((ImageButton)sender).CommandArgument, out FileID);
+
+            if (success)
+            {
+                File fileToDelete = daoFactory.GetFileDao().GetById(FileID, false);
+
+                using (new NHibernateTransaction())
+                {
+                    currentApplication.Files.Remove(fileToDelete);
+                    daoFactory.GetFileDao().Delete(fileToDelete);
+
+                    //Delete the file from the file system
+                    System.IO.FileInfo file = new System.IO.FileInfo(FilePath + fileToDelete.ID.ToString());
+                    file.Delete();
+
+                    //Update the current application
+                    daoFactory.GetApplicationDao().SaveOrUpdate(currentApplication);
+                }
+            }
+
+            DataBindPublications();
         }
 
         #endregion
@@ -712,6 +738,21 @@ namespace CAESDO.Recruitment.Web
         }
 
         /// <summary>
+        /// Returns a string that specifies the number of publications requested remaining
+        /// </summary>
+        /// <returns></returns>
+        public string NumPublicationsRemainingText()
+        {
+            //Warn the user if they don't have enough publications
+            int numPublicationsRemaining = currentApplication.AppliedPosition.NumPublications - GetFilesOfType("Publication").Count;
+
+            if (numPublicationsRemaining > 0)
+                return string.Format("[{0} More Publication{1} Requested]", numPublicationsRemaining, numPublicationsRemaining == 1 ? string.Empty : "s");
+            else
+                return string.Empty;
+        }
+
+        /// <summary>
         /// Parses down the currentApplication files list to just contain files of the correct type
         /// </summary>
         /// <param name="fileTypeName">The name of the file type desired</param>
@@ -727,6 +768,33 @@ namespace CAESDO.Recruitment.Web
             }
 
             return correctTypeFiles;
+        }
+
+        /// <summary>
+        /// Removes all files of the given type from the current applicaiton.  This removes the files themselves,
+        /// the file info entry and the application files link
+        /// </summary>
+        private void RemoveAllFilesOfType(string fileTypeName)
+        {
+            List<File> existingFiles = GetFilesOfType(fileTypeName);
+
+            if (existingFiles.Count != 0)
+            {
+                using (new NHibernateTransaction())
+                {
+                    foreach (File existingFile in existingFiles)
+                    {
+                        currentApplication.Files.Remove(existingFile);
+                        daoFactory.GetFileDao().Delete(existingFile);
+
+                        //Delete the file from the file system
+                        System.IO.FileInfo file = new System.IO.FileInfo(FilePath + existingFile.ID.ToString());
+                        file.Delete();
+                    }
+
+                    daoFactory.GetApplicationDao().SaveOrUpdate(currentApplication);
+                }
+            }
         }
 
         /// <summary>
@@ -862,7 +930,7 @@ namespace CAESDO.Recruitment.Web
         {
             //Set the number of required publications
             litPublicationsNum.Text = currentApplication.AppliedPosition.NumPublications.ToString();
-
+                        
             //Bind the publications grid with existing files
             rptPublications.DataSource = GetFilesOfType("Publication");
             rptPublications.DataBind();
