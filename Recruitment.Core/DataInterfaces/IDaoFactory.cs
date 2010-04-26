@@ -40,7 +40,10 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
         List<Position> GetAllPositionsByStatus(bool Closed);
     }
 
-    public interface IApplicationDao : IDao<Application, int> { }
+    public interface IApplicationDao : IDao<Application, int> {
+        List<Application> GetApplicationsByApplicant(Profile applicantProfile);
+        List<Application> GetApplicationsByPosition(Position position);
+    }
 
     public interface IApplicantDao : IDao<Applicant, int> {
         Applicant GetApplicantByEmail(string email);

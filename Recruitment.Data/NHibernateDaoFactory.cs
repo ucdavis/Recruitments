@@ -151,7 +151,26 @@ namespace CAESDO.Recruitment.Data
             }
         }
 
-        public class ApplicationDao : AbstractNHibernateDao<Application, int>, IApplicationDao { }
+        public class ApplicationDao : AbstractNHibernateDao<Application, int>, IApplicationDao {
+            public List<Application> GetApplicationsByApplicant(Profile applicantProfile)
+            {
+                ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(Application))
+                    .Add(Expression.Eq("AssociatedProfile", applicantProfile))
+                    .AddOrder(Order.Desc("AssociatedProfile.LastName"));
+
+                return criteria.List<Application>() as List<Application>;                
+            }
+
+            public List<Application> GetApplicationsByPosition(Position position)
+            {
+                ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(Application))
+                    .Add(Expression.Eq("AppliedPosition", position))
+                    .CreateCriteria("AssociatedProfile")
+                    .AddOrder(Order.Desc("LastName"));
+
+                return criteria.List<Application>() as List<Application>;
+            }
+        }
 
         public class ApplicantDao : AbstractNHibernateDao<Applicant, int>, IApplicantDao {
             public Applicant GetApplicantByEmail(string email)
