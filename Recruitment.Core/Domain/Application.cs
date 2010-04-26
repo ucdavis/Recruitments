@@ -42,10 +42,10 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _SubmitDate = value; }
         }
 
-        private DateTime _LastUpdated;
+        private DateTime? _LastUpdated;
 
         [NotNullValidator]
-        public virtual DateTime LastUpdated
+        public virtual DateTime? LastUpdated
         {
             get { return _LastUpdated; }
             set { _LastUpdated = value; }

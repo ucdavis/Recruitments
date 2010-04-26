@@ -6,6 +6,7 @@ using System.Text;
 using System.Collections.Generic;
 using CAESDO.Recruitment.Core.Domain;
 using Microsoft.Practices.EnterpriseLibrary.Validation;
+using CAESDO.Recruitment.Data;
 
 namespace CAESDO.Recruitment.Test
 {
@@ -104,6 +105,57 @@ namespace CAESDO.Recruitment.Test
                 Assert.IsTrue(ValidateBO<Application>.isValid(app));
 
             }
+        }
+
+        [TestMethod]
+        public void SaveDeleteApplication()
+        {
+            Application target = new Application();
+
+            target.AppliedPosition = NHibernateHelper.daoFactory.GetPositionDao().GetById(StaticProperties.ExistingPositionID, false);
+            target.AssociatedProfile = NHibernateHelper.daoFactory.GetProfileDao().GetById(StaticProperties.ExistingProfileID, false);
+
+            target.Email = StaticProperties.TestString;
+            target.LastUpdated = DateTime.Now;
+            target.Submitted = false;
+
+            Assert.IsTrue(ValidateBO<Application>.isValid(target));
+
+            Assert.IsTrue(target.IsTransient());
+
+            using (new NHibernateTransaction())
+            {
+                target = NHibernateHelper.daoFactory.GetApplicationDao().SaveOrUpdate(target);
+            }
+
+            Assert.IsFalse(target.IsTransient());
+
+            Application targetDB = NHibernateHelper.daoFactory.GetApplicationDao().GetById(target.ID, false);
+
+            Assert.AreEqual<Application>(target, targetDB);
+
+            this.TestContext.WriteLine("Application Created had ID = {0}", target.ID);
+
+            using (new NHibernateTransaction())
+            {
+                NHibernateHelper.daoFactory.GetApplicationDao().Delete(target);
+            }
+
+            //Make sure it is deleted
+            bool isDeleted = false;
+
+            try
+            {
+                target = NHibernateHelper.daoFactory.GetApplicationDao().GetById(targetDB.ID, false);
+                target.IsTransient();
+            }
+            catch (NHibernate.ObjectNotFoundException)
+            {
+                isDeleted = true;
+            }
+
+            Assert.IsTrue(isDeleted);
+
         }
 
         /// <summary>
