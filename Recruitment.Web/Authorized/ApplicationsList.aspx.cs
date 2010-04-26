@@ -187,7 +187,7 @@ namespace CAESDO.Recruitment.Web
             try
             {
                 System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage(currentPosition.HREmail, reference.Email, "Reference Request for " + application.AssociatedProfile.FullName, bodyText);
-                message.Bcc.Add(WebConfigurationManager.AppSettings["emailFromEmail"]); //BCC the automated email account
+                message.Bcc.Add(WebConfigurationManager.AppSettings["AppMailTo"]); //BCC the recruitments email account
                 message.IsBodyHtml = true;
 
                 //System.IO.FileStream descriptionStream = new System.IO.FileStream(FilePath + position.DescriptionFile.ID, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.Read);
