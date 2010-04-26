@@ -12,10 +12,9 @@
         PostBackUrl="~/Authorized/UploadFiles.aspx" /><br />
     <a href="ApplicationReview.aspx?ApplicationID=11">Review Application 11</a><br /><br />
     <a href="ShortList.aspx">Short List</a><br /><br />
+    <a href="committeeManagement.aspx?type=committee">Committee Management</a><br /><br />
     
 </div>
-   
-    
-        
+           
 </asp:Content>
 

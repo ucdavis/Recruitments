@@ -7,13 +7,14 @@ namespace CAESDO.Recruitment.Core.Domain
 {
     public class CommitteeMember : DomainObject<int>
     {
-        private int _UserID;
+        private string _LoginID;
 
         [NotNullValidator()]
-        public virtual int UserID
+        [StringLengthValidator(50)]
+        public virtual string LoginID
         {
-            get { return _UserID; }
-            set { _UserID = value; }
+            get { return _LoginID; }
+            set { _LoginID = value; }
         }
 
         private string _Email;

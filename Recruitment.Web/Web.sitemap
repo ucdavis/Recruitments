@@ -14,6 +14,7 @@
         <siteMapNode url="Authorized/viewPositionsPending.aspx" title="View Pending Positions" />
         <siteMapNode url="Authorized/PositionManagement.aspx" title="Add/Modify Position" />
         <siteMapNode url="Authorized/UserManagement.aspx" title="User Management" />
+        <siteMapNode url="Authorized/CommitteeManagement.aspx" title="Committee Management" />
         <siteMapNode url="Authorized/EmailTemplates.aspx" title="Email Templates" />
         <siteMapNode url="Authorized/ApplicationReview.aspx" title="Application Review" />
         <siteMapNode url="Authorized/UploadFiles.aspx" title="Upload Files" />
