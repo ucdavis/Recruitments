@@ -38,24 +38,6 @@ namespace CAESDO.Recruitment.Web
             }
         }
 
-        public SortDirection membersSortDirection
-        {
-            get
-            {
-                if (ViewState[STR_MembersSortDirection] == null)
-                {
-                    ViewState[STR_MembersSortDirection] = SortDirection.Ascending;
-                }
-
-                return (SortDirection)ViewState[STR_MembersSortDirection];
-            }
-
-            set
-            {
-                ViewState[STR_MembersSortDirection] = value;
-            }
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -77,8 +59,8 @@ namespace CAESDO.Recruitment.Web
             {
                 //If the change to the select a position 0 entry, hide the access panel and rebind to the empty set
                 pnlAccess.Visible = false;
-                gviewMembers.DataSource = null;
-                gviewMembers.DataBind();
+                lviewMembers.DataSource = null;
+                lviewMembers.DataBind();
             }
         }
         
@@ -87,19 +69,13 @@ namespace CAESDO.Recruitment.Web
         /// </summary>
         private void bindMembers()
         {
-            this.bindMembers("LastName", SortDirection.Ascending);
-        }
-
-        private void bindMembers(string sortExpression, SortDirection sortDirection)
-        {
             List<DepartmentMember> uniqueMembers = DepartmentMemberBLL.GetUniqueByPosition(currentPosition);
-            
-            //uniqueMembers.Sort(new DepartmentMemberComparer(sortExpression, sortDirection));
 
-            gviewMembers.DataSource = DepartmentMemberBLL.Sort(uniqueMembers, sortExpression, sortDirection);
-            gviewMembers.DataBind();
+            lviewMembers.DataSource = uniqueMembers;
+            lviewMembers.DataBind();
         }
 
+        /*
         /// <summary>
         /// Gets the row's department member, and checks all of the appropriate boxes regarding the roles that the member
         /// has in the current position
@@ -143,19 +119,63 @@ namespace CAESDO.Recruitment.Web
                 }
             }
         }
+         */
+
+        /// <summary>
+        /// Gets the row's department member, and checks all of the appropriate boxes regarding the roles that the member
+        /// has in the current position
+        /// </summary>
+        protected void lviewMembers_ItemDataBound(object sender, ListViewItemEventArgs e)
+        {
+            ListView lview = (ListView)sender;
+            ListViewDataItem currentItem = (ListViewDataItem)e.Item;
+
+            CheckBox cboxCommittee = currentItem.FindControl(STR_ChkAllowCommittee) as CheckBox;
+            CheckBox cboxFaculty = currentItem.FindControl(STR_ChkAllowFaculty) as CheckBox;
+            CheckBox cboxReview = currentItem.FindControl(STR_ChkAllowReview) as CheckBox;
+
+            int DepartmentMemberID;
+            DepartmentMember member;
+            
+            DepartmentMemberID = (int)lviewMembers.DataKeys[currentItem.DataItemIndex]["id"];
+            member = DepartmentMemberBLL.GetByID(DepartmentMemberID);
+
+            //Now we have the departmental member, check the committee records for this position
+            List<CommitteeMember> committeAccessList = CommitteeMemberBLL.GetByAssociationsPosition(currentPosition, member);
+
+            //Now we have a list of all access types for this department member, so go through and check the correct boxes
+
+            foreach (CommitteeMember cAccess in committeAccessList)
+            {
+                switch (cAccess.MemberType.ID)
+                {
+                    case (int)MemberTypes.CommitteeMember:
+                        cboxCommittee.Checked = true;
+                        break;
+                    case (int)MemberTypes.FacultyMember:
+                        cboxFaculty.Checked = true;
+                        break;
+                    case (int)MemberTypes.Reviewer:
+                        cboxReview.Checked = true;
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
 
         protected void btnUpdateAccess_Click(object sender, EventArgs e)
         {
-            foreach (GridViewRow row in gviewMembers.Rows)
+            foreach (var row in lviewMembers.Items)
             {
-                if (row.RowType == DataControlRowType.DataRow)
+                if (row.ItemType == ListViewItemType.DataItem)
                 {
                     CheckBox cboxCommittee = row.FindControl(STR_ChkAllowCommittee) as CheckBox;
                     CheckBox cboxFaculty = row.FindControl(STR_ChkAllowFaculty) as CheckBox;
                     CheckBox cboxReview = row.FindControl(STR_ChkAllowReview) as CheckBox;
 
                     //Get the departmental member associated with this row
-                    int departmentMemberID = (int)gviewMembers.DataKeys[row.RowIndex]["id"];
+                    int departmentMemberID = (int)lviewMembers.DataKeys[row.DataItemIndex]["id"];
                     DepartmentMember member = DepartmentMemberBLL.GetByID(departmentMemberID);
 
                     using (new TransactionScope())
@@ -225,6 +245,7 @@ namespace CAESDO.Recruitment.Web
             this.ShowUpdateAcessRegion();
         }
 
+        /*
         protected void gviewMembers_Sorting(object sender, GridViewSortEventArgs e)
         {            
             this.bindMembers(e.SortExpression, membersSortDirection); //Sort by the current sort direction
@@ -232,11 +253,12 @@ namespace CAESDO.Recruitment.Web
             //Now flip the current sort direction
             membersSortDirection = (membersSortDirection == SortDirection.Ascending) ? SortDirection.Descending : SortDirection.Ascending;
         }
+         */
 
         private void ShowUpdateAcessRegion()
         {
             //Show the access panel if there are any results
-            if (gviewMembers.Rows.Count > 0)
+            if (lviewMembers.Items.Count > 0)
                 pnlUpdateAccess.Visible = true;
             else
                 pnlUpdateAccess.Visible = false;

@@ -49,7 +49,22 @@
     function FailedCallback(error)
     {
     }
-    
+
+    $(document).ready(function() {
+        //Sort table
+        $("#tblMembers").tablesorter(
+        {
+            sortList: [[5, 0]],
+            cssAsc: 'headerSortUp',
+            cssDesc: 'headerSortDown',
+            cssHeader: 'header',
+            headers: { 0: { sorter: 'checkbox' }
+                        , 1: { sorter: 'checkbox' }
+                        , 2: { sorter: 'checkbox' } 
+                },
+            widgets: ['zebra']
+        });
+    });
     </script>
 
     <asp:DropDownList ID="dlistPositions" runat="server" AutoPostBack="True" DataSourceID="ObjectDataPositions" DataTextField="TitleAndApplicationCount" DataValueField="ID" AppendDataBoundItems="true" OnSelectedIndexChanged="dlistPositions_SelectedIndexChanged">
@@ -67,8 +82,71 @@
     </asp:ObjectDataSource>
     <br />
     <br /><br />
+    <asp:ListView ID="lviewMembers" runat="server" DataKeyNames="id" OnItemDataBound="lviewMembers_ItemDataBound">
+        <LayoutTemplate>
+            <table id="tblMembers" class="tablesorter">
+                <thead>
+                    <tr>
+                        <th>
+                            Committee
+                        </th>
+                        <th>
+                            Faculty
+                        </th>
+                        <th>
+                            Reviewer
+                        </th>
+                        <th>
+                            LoginID
+                        </th>
+                        <th>
+                            First Name
+                        </th>
+                        <th>
+                            Last Name
+                        </th>
+                        <th>
+                            Department
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr id="itemPlaceholder" runat="server">
+                    </tr>
+                </tbody>
+            </table>
+        </LayoutTemplate>
+        <ItemTemplate>
+            <tr>
+                <td>
+                    <asp:CheckBox ID="chkAllowMember" runat="server" />
+                </td>
+                <td>
+                    <asp:CheckBox ID="chkAllowFaculty" runat="server" />
+                </td>
+                <td>
+                    <asp:CheckBox ID="chkAllowReview" runat="server" />
+                </td>
+                <td>
+                    <%# Eval("LoginID") %>
+                </td>
+                <td>
+                    <%# Eval("FirstName") %>
+                </td>
+                <td>
+                    <%# Eval("LastName") %>
+                </td>
+                <td>
+                    <%# string.IsNullOrEmpty(Eval("OtherDepartmentName") as string) ? Eval("Unit.ShortName") : Eval("OtherDepartmentName")%>
+                </td>
+            </tr>
+        </ItemTemplate>
+        <EmptyDataTemplate>
+            No Committee Members Found For This Position
+        </EmptyDataTemplate>
+    </asp:ListView>
 
-    <asp:GridView ID="gviewMembers" runat="server" AutoGenerateColumns="False" SkinID="gridViewUM" AllowSorting="true" DataKeyNames="id" OnRowDataBound="gviewMembers_RowDataBound" CellPadding="0" GridLines="None" OnSorting="gviewMembers_Sorting">
+<%--    <asp:GridView ID="gviewMembers" runat="server" AutoGenerateColumns="False" SkinID="gridViewUM" AllowSorting="true" DataKeyNames="id" OnRowDataBound="gviewMembers_RowDataBound" CellPadding="0" GridLines="None" OnSorting="gviewMembers_Sorting">
         <Columns>
             <asp:TemplateField HeaderText="Committee">
                 <ItemTemplate>
@@ -113,9 +191,9 @@
             </asp:TemplateField>
         </Columns>
         <HeaderStyle HorizontalAlign="Left" />
-    </asp:GridView>
+    </asp:GridView>--%>
 
-    <br /><br />
+    <br />
     <asp:Panel ID="pnlAccess" runat="server" Visible="false">
         <asp:Panel ID="pnlUpdateAccess" runat="server">
         
