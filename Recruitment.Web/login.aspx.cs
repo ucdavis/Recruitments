@@ -17,6 +17,7 @@ namespace CAESDO
         private const string STR_ReturnURL = "ReturnURL";
         private const string STR_CAS_URL = "https://cas.ucdavis.edu:8443/cas/";
         private const string STR_KERBEROS_URL = "https://secureweb.ucdavis.edu/form-auth/sendback?";
+        private const string STR_Ticket = "ticket";
 
         private static bool GetUseKerberos()
         {
@@ -28,6 +29,10 @@ namespace CAESDO
         {
             //Grab the return URL
             string returnURL = Request.QueryString[STR_ReturnURL] ?? string.Empty;
+            string CASticket = Request.QueryString[STR_Ticket] ?? string.Empty;
+
+            if (!string.IsNullOrEmpty(CASticket))
+                CASLogin();
 
             if (returnURL.ToLower().Contains(@"/authorized/") || returnURL.ToLower().Contains(@"/review/"))
             {
@@ -101,7 +106,7 @@ namespace CAESDO
                 string query = "";
                 foreach (string key in context.Request.QueryString.AllKeys)
                 {
-                    if (String.Compare(key, "ticket", true) != 0)
+                    if (String.Compare(key, STR_Ticket, true) != 0)
                     {
                         query += "&" + key + "=" + context.Request.QueryString[key];
                     }
@@ -114,7 +119,7 @@ namespace CAESDO
                 }
 
                 // get ticket & service
-                string ticket = context.Request.QueryString["ticket"];
+                string ticket = context.Request.QueryString[STR_Ticket];
                 string service = context.Server.UrlEncode(context.Request.Url.GetLeftPart(UriPartial.Path) + query);
 
                 // if ticket is defined then we assume they are coming from CAS
@@ -209,7 +214,7 @@ namespace CAESDO
                 }
             }
 
-            Response.Write(userID);
+            Response.Redirect(Recruitment.Web.RecruitmentConfiguration.ErrorPage(CAESDO.Recruitment.Web.RecruitmentConfiguration.ErrorType.AUTH));
         }
 
         /// <summary>
