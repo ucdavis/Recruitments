@@ -44,33 +44,33 @@
  <p align="left">As stated in the search plan, is there an affirmative action hiring goal for this position? Yes ____ No _____ </p>
  <p>A. Indicate the composition of the applicant pool at the close of the search.</p>
  <p align="center"><u>Composition of the Applicant Pool</u></p>
- <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" HorizontalAlign="Left" EnableViewState="False">
+ <asp:GridView ID="gviewSexEthnicity" runat="server" AutoGenerateColumns="False" HorizontalAlign="Left" EnableViewState="False">
             <Columns>
-                <asp:BoundField DataField="Sex" ReadOnly="True" SortExpression="Sex" />
-                <asp:BoundField DataField="American Indian" HeaderText="American Indian" ReadOnly="True"
-                    SortExpression="American Indian">
+                <asp:BoundField DataField="Gender" ReadOnly="True" SortExpression="Gender" />
+                <asp:BoundField DataField="AmericanIndianCount" HeaderText="American Indian" ReadOnly="True"
+                    SortExpression="AmericanIndianCount">
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="Asian/ Asian American" HeaderText="Asian/ Asian American"
-                    ReadOnly="True" SortExpression="Asian/ Asian American">
+                <asp:BoundField DataField="AsianCount" HeaderText="Asian/ Asian American"
+                    ReadOnly="True" SortExpression="AsianCount">
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="Black/ African American" HeaderText="Black/ African American"
-                    ReadOnly="True" SortExpression="Black/ African American">
+                <asp:BoundField DataField="BlackCount" HeaderText="Black/ African American"
+                    ReadOnly="True" SortExpression="BlackCount">
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="Chicano/ Latino/ Hispanic" HeaderText="Chicano/ Latino/ Hispanic"
-                    ReadOnly="True" SortExpression="Chicano/ Latino/ Hispanic">
+                <asp:BoundField DataField="ChicanoCount" HeaderText="Chicano/ Latino/ Hispanic"
+                    ReadOnly="True" SortExpression="ChicanoCount">
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="White" HeaderText="White" ReadOnly="True" SortExpression="White">
+                <asp:BoundField DataField="WhiteCount" HeaderText="White" ReadOnly="True" SortExpression="WhiteCount">
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="Unidentified" HeaderText="Unidentified" ReadOnly="True"
-                    SortExpression="Unidentified">
+                <asp:BoundField DataField="UnidentifiedCount" HeaderText="Unidentified" ReadOnly="True"
+                    SortExpression="UnidentifiedCount">
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
-                <asp:BoundField DataField="Total" HeaderText="Total" ReadOnly="True" SortExpression="Total">
+                <asp:BoundField DataField="TotalCount" HeaderText="Total" ReadOnly="True" SortExpression="TotalCount">
                     <ItemStyle HorizontalAlign="Center" />
                 </asp:BoundField>
             </Columns>

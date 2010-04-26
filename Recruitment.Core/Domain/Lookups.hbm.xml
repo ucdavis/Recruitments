@@ -61,6 +61,7 @@
     </id>
 
     <property name="EthnicityValue" column="Ethnicity" />
+    <property name="EthnicityCategory" column="Category" />
 
   </class>
 

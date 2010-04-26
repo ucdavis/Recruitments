@@ -128,6 +128,14 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _EthnicityValue = value; }
         }
 
+        private string _EthnicityCategory;
+
+        public virtual string EthnicityCategory
+        {
+            get { return _EthnicityCategory; }
+            set { _EthnicityCategory = value; }
+        }
+
         public Ethnicity()
         {
 
