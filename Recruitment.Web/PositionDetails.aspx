@@ -24,7 +24,7 @@
         </tr>
         <tr>
             <td align="right">
-                Deadline:</td>
+                Review Date:</td>
             <td>
                 <asp:Label ID="lblDeadline" runat="server" Text=""></asp:Label></td>
         </tr>
