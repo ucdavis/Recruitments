@@ -5,6 +5,7 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using CAESDO.Recruitment.Core.Domain;
+using Microsoft.Practices.EnterpriseLibrary.Validation;
 namespace CAESDO.Recruitment.Test
 {
     /// <summary>
@@ -77,6 +78,8 @@ namespace CAESDO.Recruitment.Test
 
             // TODO: Implement code to verify target
             Assert.IsNotNull(target);
+
+
         }
 
         [TestMethod()]
