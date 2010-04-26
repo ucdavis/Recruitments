@@ -75,10 +75,7 @@ namespace CAESDO.Recruitment.Web
             {
                 app11 = null;
 
-                //using (new NHibernateTransaction())
-                //{
-                    Response.Write(app11.ID.ToString() + "   " + app11.SubmitDate.ToShortDateString() + "<br/>");
-                //}
+                Response.Write(app11.ID.ToString() + "   " + app11.SubmitDate.ToShortDateString() + "<br/>");
             }
             else
             {
@@ -86,8 +83,6 @@ namespace CAESDO.Recruitment.Web
 
                 app11.SubmitDate = DateTime.Now;
 
-                //using (NHibernateTransaction tx = new NHibernateTransaction())
-                //{
                 IApplicationDao aDao = daoFactory.GetApplicationDao();
 
                 using (new NHibernateTransaction())
@@ -103,8 +98,6 @@ namespace CAESDO.Recruitment.Web
                 {
                     aDao.SaveOrUpdate(app11);
                 }
-
-                //}
             }
 
             //Response.Write(app.ID.ToString() + "  " + app.SubmitDate.ToShortDateString() + "<br/>");
