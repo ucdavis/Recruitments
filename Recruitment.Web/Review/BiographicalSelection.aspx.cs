@@ -31,12 +31,12 @@ namespace CAESDO.Recruitment.Web
         protected void btnDisplayReport_Click(object sender, EventArgs e)
         {
             if (chkOutputToFile.Checked)
-                this.OutputPage(BiographicalPage, OutputType.Excel);
+                this.OutputPage(BiographicalPage, BioOutputType.Excel);
             else
-                this.OutputPage(BiographicalPage, OutputType.Screen);
+                this.OutputPage(BiographicalPage, BioOutputType.Screen);
         }
 
-        private void OutputPage(string URL, OutputType output)
+        private void OutputPage(string URL, BioOutputType output)
         {
             string strResult;
 
@@ -55,7 +55,7 @@ namespace CAESDO.Recruitment.Web
 
             Response.Clear();
 
-            if (output == OutputType.Excel)
+            if (output == BioOutputType.Excel)
             {
                 //int tableIndex = strResult.IndexOf("<table");
                 //strResult = strResult.Substring(tableIndex, strResult.IndexOf("</table>") - tableIndex + "</table>".Length);
@@ -71,7 +71,7 @@ namespace CAESDO.Recruitment.Web
         }
     }
 
-    public enum OutputType
+    public enum BioOutputType
     {
         Excel,
         Screen

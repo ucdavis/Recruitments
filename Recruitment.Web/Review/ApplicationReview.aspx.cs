@@ -496,7 +496,7 @@ namespace CAESDO.Recruitment.Web
         private void DataBindFiles()
         {
             List<File> fileList = new List<File>(currentApplication.Files);
-            fileList.Sort(new FileTypeComparer(SortDirection.Ascending));
+            fileList.Sort(new ReviewFileTypeComparer(SortDirection.Ascending));
 
             gviewFiles.DataSource = fileList;
             gviewFiles.DataBind();
@@ -509,7 +509,7 @@ namespace CAESDO.Recruitment.Web
     /// <summary>
     /// Comparer that uses the FileTypeName of a file for comparison
     /// </summary>
-    public class FileTypeComparer : IComparer<File>
+    public class ReviewFileTypeComparer : IComparer<File>
     {
         private SortDirection sortDirection;
 
@@ -519,7 +519,7 @@ namespace CAESDO.Recruitment.Web
             set { this.sortDirection = value; } 
         }
 
-        public FileTypeComparer(SortDirection sortDirection)
+        public ReviewFileTypeComparer(SortDirection sortDirection)
         {
             this.SortDirection = sortDirection;
         }

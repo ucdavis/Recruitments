@@ -46,20 +46,20 @@ namespace CAESDO.Recruitment.Web
             if (dlistType.SelectedValue == STR_Interim)
             {
                 if ( chkOutputFile.Checked )
-                    this.OutputPage(InterimPage, OutputType.Word);
+                    this.OutputPage(InterimPage, ReportOutputType.Word);
                 else
-                    this.OutputPage(InterimPage, OutputType.Screen);
+                    this.OutputPage(InterimPage, ReportOutputType.Screen);
             }
             else if (dlistType.SelectedValue == STR_Survey)
             {
                 if ( chkOutputFile.Checked )
-                    this.OutputPage(SurveyPage, OutputType.Word);
+                    this.OutputPage(SurveyPage, ReportOutputType.Word);
                 else
-                    this.OutputPage(SurveyPage, OutputType.Screen);
+                    this.OutputPage(SurveyPage, ReportOutputType.Screen);
             }
         }
 
-        private void OutputPage(string URL, OutputType output)
+        private void OutputPage(string URL, ReportOutputType output)
         {
             string strResult;
             
@@ -83,7 +83,7 @@ namespace CAESDO.Recruitment.Web
 
             Response.Clear();
 
-            if ( output == OutputType.Word )
+            if ( output == ReportOutputType.Word )
             {                
                 //Control the name that they see
                 Response.ContentType = "application/ms-word";
@@ -97,7 +97,7 @@ namespace CAESDO.Recruitment.Web
         }
     }
 
-    public enum OutputType
+    public enum ReportOutputType
     {
         Word, 
         Screen
