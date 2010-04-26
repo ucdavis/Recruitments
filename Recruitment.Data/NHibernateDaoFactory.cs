@@ -103,6 +103,10 @@ namespace CAESDO.Recruitment.Data
             return new ReferSourceDao();
         }
 
+        public IThemeDao GetThemeDao()
+        {
+            return new ThemeDao();
+        }
         #endregion
 
         #region Inline DAO implementations
@@ -211,7 +215,9 @@ namespace CAESDO.Recruitment.Data
         public class ChangeTypeDao : AbstractNHibernateDao<ChangeType, int>, IChangeTypeDao { }
 
         public class ReferSourceDao : AbstractNHibernateDao<ReferSource, int>, IReferSourceDao { }
-     
+
+        public class ThemeDao : AbstractNHibernateDao<Theme, int>, IThemeDao { }
+
         #endregion
           
     }
