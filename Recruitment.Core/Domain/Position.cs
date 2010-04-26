@@ -52,10 +52,10 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _Deadline = value; }
         }
 
-        private ReferenceTemplate _ReferenceTemplate;
+        private Template _ReferenceTemplate;
 
-        [IgnoreNulls()]
-        public virtual ReferenceTemplate ReferenceTemplate
+        [NotNullValidator]
+        public virtual Template ReferenceTemplate
         {
             get { return _ReferenceTemplate; }
             set { _ReferenceTemplate = value; }

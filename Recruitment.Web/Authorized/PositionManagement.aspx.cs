@@ -62,6 +62,17 @@ namespace CAESDO.Recruitment.Web
             }
         }
 
+        public TemplateType ReferenceTemplateType
+        {
+            get
+            {
+                TemplateType _ReferenceTemplateType = new TemplateType();
+                _ReferenceTemplateType.Type = "Reference";
+
+                return daoFactory.GetTemplateTypeDao().GetUniqueByExample(_ReferenceTemplateType);
+            }
+        }
+
         public Position currentPosition
         {
             get
@@ -111,8 +122,9 @@ namespace CAESDO.Recruitment.Web
             newPosition.ShortDescription = txtShortDescription.Text;
 
             if (newPosition.ReferenceTemplate == null)
-                newPosition.ReferenceTemplate = new ReferenceTemplate();
+                newPosition.ReferenceTemplate = new Template();
 
+            newPosition.ReferenceTemplate.TemplateType = ReferenceTemplateType;
             newPosition.ReferenceTemplate.TemplateText = ftxtReferenceTemplate.Text;
 
             newPosition.NumPublications = int.Parse(txtPublications.Text);

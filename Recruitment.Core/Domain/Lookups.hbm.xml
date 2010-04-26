@@ -138,4 +138,28 @@
 
   </class>
 
+  <class
+  name="CAESDO.Recruitment.Core.Domain.Template, CAESDO.Recruitment.Core"
+  table="Templates" >
+    <id name="id" access="field" column="TemplateID" unsaved-value="0">
+      <generator class="identity" />
+    </id>
+
+    <property name="TemplateText" column="TemplateText" />
+
+    <many-to-one name="TemplateType" class="CAESDO.Recruitment.Core.Domain.TemplateType, CAESDO.Recruitment.Core" column="TemplateTypeID" not-null="true" />
+
+  </class>
+
+  <class
+    name="CAESDO.Recruitment.Core.Domain.TemplateType, CAESDO.Recruitment.Core"
+    table="TemplateTypes" >
+    <id name="id" access="field" column="TemplateTypeID" unsaved-value="0">
+      <generator class="identity" />
+    </id>
+
+    <property name="Type" column="TemplateType" />
+
+  </class>
+
 </hibernate-mapping>

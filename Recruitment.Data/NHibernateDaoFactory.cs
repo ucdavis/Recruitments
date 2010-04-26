@@ -118,6 +118,11 @@ namespace CAESDO.Recruitment.Data
             return new ReferenceDao();
         }
 
+        public ITemplateTypeDao GetTemplateTypeDao()
+        {
+            return new TemplateTypeDao();
+        }
+
         #endregion
 
         #region Inline DAO implementations
@@ -268,6 +273,7 @@ namespace CAESDO.Recruitment.Data
 
         public class ReferenceDao : AbstractNHibernateDao<Reference, int>, IReferenceDao { }
 
+        public class TemplateTypeDao : AbstractNHibernateDao<TemplateType, int>, ITemplateTypeDao { }
         #endregion
           
     }

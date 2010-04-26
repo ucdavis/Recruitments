@@ -30,8 +30,8 @@
     <many-to-one name="DescriptionFile" column="DescriptionFile"
      class="CAESDO.Recruitment.Core.Domain.File, CAESDO.Recruitment.Core" not-null="true" />
 
-    <many-to-one name="ReferenceTemplate" column="ReferenceTemplateID"
-     class="CAESDO.Recruitment.Core.Domain.ReferenceTemplate, CAESDO.Recruitment.Core" cascade="all-delete-orphan" not-null="false" />
+    <many-to-one name="ReferenceTemplate" column="TemplateID"
+     class="CAESDO.Recruitment.Core.Domain.Template, CAESDO.Recruitment.Core" cascade="all-delete-orphan" not-null="true" />
     
     <bag name="AssociatedApplications" table="Applications" inverse="true">
       <key column="PositionID" />

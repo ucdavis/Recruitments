@@ -278,4 +278,44 @@ namespace CAESDO.Recruitment.Core.Domain
 
         }
     }
+
+    public class TemplateType : DomainObject<int>
+    {
+        private string _Type;
+
+        public virtual string Type
+        {
+            get { return _Type; }
+            set { _Type = value; }
+        }
+
+        public TemplateType()
+        {
+
+        }
+    }
+
+    public class Template : DomainObject<int>
+    {
+        private string _TemplateText;
+
+        public virtual string TemplateText
+        {
+            get { return _TemplateText; }
+            set { _TemplateText = value; }
+        }
+
+        private TemplateType _TemplateType;
+
+        public virtual TemplateType TemplateType
+        {
+            get { return _TemplateType; }
+            set { _TemplateType = value; }
+        }
+
+        public Template()
+        {
+
+        }
+    }
 }
