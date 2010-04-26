@@ -10,7 +10,7 @@
         <Columns>
             <asp:TemplateField HeaderText="Applicant Name">
                 <ItemTemplate>
-                    <asp:LinkButton ID="lbtnViewApplication" runat="server" CommandArgument='<%# Eval("id") %>' Text='<%# Eval("AssociatedProfile.FullName")%>' OnClick="lbtnViewApplication_Click"></asp:LinkButton>
+                    <asp:LinkButton ID="lbtnViewApplication" runat="server" CommandArgument='<%# Eval("id") %>' Text='<%# GetNullSafeFullName((string)Eval("AssociatedProfile.FullName")) %>' OnClick="lbtnViewApplication_Click"></asp:LinkButton>
                 </ItemTemplate>
                 <ItemStyle CssClass="paddingLeft" />
                 <HeaderStyle HorizontalAlign="Left" CssClass="paddingLeft" />

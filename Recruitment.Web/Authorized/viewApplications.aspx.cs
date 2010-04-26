@@ -42,7 +42,6 @@ namespace CAESDO.Recruitment.Web
 
         protected void Page_Init(object sender, EventArgs e)
         {
-
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -51,6 +50,11 @@ namespace CAESDO.Recruitment.Web
             {
                 litPositionTitle.Text = currentPosition.PositionTitle;
             }
+        }
+
+        public string GetNullSafeFullName(string FullName)
+        {
+            return string.IsNullOrEmpty(FullName.Trim()) ? "Name Not Yet Given" : FullName;
         }
 
         /// <summary>
