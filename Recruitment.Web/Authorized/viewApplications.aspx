@@ -3,16 +3,32 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
    
     <script type="text/javascript">
-                    
+
         $(document).ready(function() {
+            //Sort table
             $("#tblApplications").tablesorter(
             {
-                sortList: [[2,1],[0, 0]],
+                sortList: [[2, 1], [0, 0]],
                 cssAsc: 'headerSortUp',
                 cssDesc: 'headerSortDown',
                 cssHeader: 'header',
-                headers: { 2: { sorter: 'checkbox'}, 0: { sorter: 'link' } },
+                headers: { 2: { sorter: 'checkbox' }, 0: { sorter: 'link'} },
                 widgets: ['zebra']
+            });
+
+            //Search table
+            $("#tblApplications tbody tr").quicksearch({
+                labelText: 'Search: ',
+                attached: '#tblApplications',
+                position: 'before',
+                delay: 100,
+                loaderText: 'Loading...',
+                onAfter: function() {
+                    if ($("#tblApplications tbody tr:visible").length != 0) {
+                        $("#tblApplications").trigger("update");
+                        $("#tblApplications").trigger("appendCache");
+                    } 
+                }
             });
         });
         
