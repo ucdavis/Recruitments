@@ -117,24 +117,6 @@ namespace CAESDO.Recruitment.Test
         }
 
         [TestMethod()]
-        public void Fast()
-        {
-            for (int i = 0; i < 100000; i++)
-            {
-                AllCommitteeMembersTest();   
-            }
-        }
-
-        [TestMethod()]
-        public void Slow()
-        {
-            for (int i = 0; i < 100000; i++)
-            {
-                AllCommitteeMembersSlow();
-            }
-        }
-
-        [TestMethod()]
         public void AllCommitteeMembersTest()
         {
             Position target = NHibernateHelper.daoFactory.GetPositionDao().GetById(StaticProperties.ExistingPositionID, false);
