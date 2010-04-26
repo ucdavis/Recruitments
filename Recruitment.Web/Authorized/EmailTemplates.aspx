@@ -21,13 +21,14 @@
                     <asp:CheckBox ID="chkEmailApplicant" runat="server" />
                 </ItemTemplate>
                 <ItemStyle CssClass="paddingLeft" />
-                <HeaderStyle CssClass="paddingLeft" />
+                <HeaderStyle CssClass="paddingLeft" Width="75px" />
             </asp:TemplateField>
         
             <asp:TemplateField HeaderText="Name">
                 <ItemTemplate>
                     <%# Eval("AssociatedProfile.FullName") %>
                 </ItemTemplate>
+                <HeaderStyle Width="450px" />
             </asp:TemplateField>
             
             <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />

@@ -77,11 +77,18 @@ html, #aspnetForm
 	height: 50px;
 }
 
-#ctl00_ContentPlaceHolder1_gviewApplications td, #ctl00_ContentPlaceHolder1_gViewApplications td
+#ctl00_ContentPlaceHolder1_gviewApplications td, #ctl00_ContentPlaceHolder1_gviewFiles td, #ctl00_ContentPlaceHolder1_gviewFiles td, #ctl00_ContentPlaceHolder1_gViewApplications td
 {
 	border-bottom: dotted 1px #333333;
 	height: 40px;
 }
+
+#ctl00_ContentPlaceHolder1_gViewApplications td
+{
+	border-bottom: dotted 1px #333333;
+	height: 32px;
+}
+
 .dottedBotBorder
 {
 	border-bottom: dotted 1px #333333;
@@ -202,6 +209,11 @@ a:active { color:#a50000; }
 	padding-left:10px;
 }
 
+.paddingRight
+{
+	padding-right:10px;
+}
+
 /* Adds shadow to bottom of content page*/
 #shadowBottom 
 {
@@ -272,3 +284,93 @@ a.ContextMenuItem:hover
 	font-size: 1.2em;
 	font-weight: bold;
 }
+
+/*                               */
+/*      DROPDOWN MENU CSS        */
+/*                               */
+
+.dropdownmenu {
+float:right; text-align:right; position:relative; background:transparent; width:240px;  margin:0;
+}
+.dropdownmenu ul {
+padding:0; margin:0; list-style-type: none;
+}
+.dropdownmenu ul li {
+float:right; position:relative;
+}
+
+.dropdownmenu ul li.news {background:transparent;}
+.dropdownmenu ul li.subnews {background:transparent url(Images/ddmenusubnews.gif) no-repeat;}
+.dropdownmenu ul li.subnews2 {background:transparent url(Images/ddmenusubnews2.gif) no-repeat;}
+.dropdownmenu ul li.subnews3 {background:transparent url(Images/ddmenusubnews3.gif) no-repeat;}
+.dropdownmenu ul li.subsubr {background:#eee url(previous.gif) no-repeat 145px 0;}
+
+.dropdownmenu ul li a#welcome, .dropdownmenu ul li a#welcome:visited {
+display:block; text-decoration:none; height: 20px; width: 270px; color: #000; font-weight: normal;
+}
+
+.dropdownmenu ul li:hover ul li {padding: 2px;}
+
+.dropdownmenu ul li:hover a#welcome {
+text-decoration:none; color:#a50000; 
+}
+
+.dropdownmenu ul li a, .dropdownmenu ul li a:visited {
+display:block; text-decoration:none; width: 230px; float: right;
+}
+* html .dropdownmenu ul li a, .dropdownmenu ul li a:visited {
+width:230px; w\idth:210px;
+}
+
+.dropdownmenu ul li ul {
+visibility:hidden; position:absolute; top:0; left:0; height:0; overflow:hidden;
+}
+.dropdownmenu table {
+margin:-1px; border-collapse:collapse;
+}
+
+/* first line style for IE7 and non-IE browsers and the second line for IE5.5 and IE6 */
+.dropdownmenu ul li:hover a,
+.dropdownmenu ul li a:hover 
+{ border:0; }
+
+.dropdownmenu ul li:hover ul {
+visibility:visible; width:230px; height:auto; position:absolute; top:20px; left:38px; background:#fff; border:1px solid #868686; overflow:visible;
+}
+
+.dropdownmenu ul li a:hover ul {
+visibility:visible; width:230px; height:auto; position:absolute; top:20px; left:38px; background:#fff; border:1px solid #868686; overflow:visible;
+}
+
+.dropdownmenu ul li:hover ul li a,
+.dropdownmenu ul li a:hover ul li a {
+display:block; background:transparent; text-decoration:none; height:auto; line-height:1.5em; padding:5px 10px 5px 35px; width:230px; w\idth:180px;
+}
+.dropdownmenu ul li:hover ul li a.drop,
+.dropdownmenu ul li a:hover ul li a.drop {
+display:block; height:auto; line-height:1.5em; padding:5px 10px 5px 35px; width:230px; w\idth:180px;
+}
+.dropdownmenu ul li:hover ul li ul,
+.dropdownmenu ul li a:hover ul li a ul {
+visibility:hidden; position:absolute; top:0; left:0; height:0; overflow:hidden;
+}
+
+.dropdownmenu ul li:hover ul li:hover ul,
+.dropdownmenu ul li a:hover ul li a:hover ul {
+visibility:visible; position:absolute; top:0; left:166px; height:auto; border:1px solid #868686;
+}
+.dropdownmenu ul li:hover ul li:hover ul.left,
+.dropdownmenu ul li a:hover ul li a:hover ul.left {
+left:-230px;
+}
+
+.dropdownmenu ul li:hover ul li a:hover,
+.dropdownmenu ul li a:hover ul li a:hover {
+background: url(Images/dropdownbg.gif) no-repeat;
+}
+
+.dropdownmenu ul li:hover ul li:hover ul li a,
+.dropdownmenu ul li a:hover ul li a:hover ul li a {
+display:block; height:auto; line-height:1.5em; padding:5px 10px 4px 35px; width:170px; w\idth:140px;
+}
+* html .dropdownmenu ul li a:hover ul li a:hover ul li a {padding:4px 10px 4px 35px;}
