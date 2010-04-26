@@ -15,6 +15,7 @@ namespace CAESDO.Recruitment.Web
     public partial class Applicant_ViewApplicationsInProgress : ApplicationPage
     {
         private const string STR_AppURL = "app.aspx";
+
         public Applicant currentApplicant
         {
             get
@@ -23,14 +24,27 @@ namespace CAESDO.Recruitment.Web
             }
         }
 
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            Applicant loggedInUser = daoFactory.GetApplicantDao().GetApplicantByEmail(HttpContext.Current.User.Identity.Name);
+
+            //Make sure the loggedInUser has an Applicant account
+            if (loggedInUser == null)
+            {
+                FormsAuthentication.SignOut(); //Causes the user to sign out and redirect
+                FormsAuthentication.RedirectToLoginPage(); //Make the user log in
+                return;
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
-            Application a = new Application();
         }
 
         protected void ObjectDataApplications_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
         {
-            e.InputParameters["applicantProfile"] = currentApplicant.MainProfile;
+            if ( currentApplicant != null )
+                e.InputParameters["applicantProfile"] = currentApplicant.MainProfile;
         }
 
         protected void lbtnViewApplication_Click(object sender, EventArgs e)
