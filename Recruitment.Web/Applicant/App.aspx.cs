@@ -764,10 +764,19 @@ namespace CAESDO.Recruitment.Web
             //Now save this reference by adding it to the current application if it is new, or by replacing the old copy if it exists
             currentReference.AssociatedApplication = currentApplication;
 
-            using (new NHibernateTransaction())
+            if (ValidateBO<Reference>.isValid(currentReference))
             {
-                currentApplication.LastUpdated = DateTime.Now;
-                daoFactory.GetReferenceDao().SaveOrUpdate(currentReference);
+                Trace.Write("Valid");
+                using (new NHibernateTransaction())
+                {
+                    currentApplication.LastUpdated = DateTime.Now;
+                    daoFactory.GetReferenceDao().SaveOrUpdate(currentReference);
+                }
+            }
+            else
+            {
+                Trace.Warn(ValidateBO<Reference>.GetValidationResultsAsString(currentReference));
+                //TODO: Error Message
             }
 
             //Set the button text back to 'Add Reference' and the Command Argument to 0

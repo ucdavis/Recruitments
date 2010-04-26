@@ -75,7 +75,6 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            </span>
                             <asp:Literal ID="litApplicationFinalizeStatus" runat="server" EnableViewState="false" />
                         </td>
                     </tr>
@@ -295,6 +294,7 @@
                                 First Name:</td>
                             <td  >
                                 <asp:TextBox ID="txtReferencesFirstName" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
+                                <asp:RequiredFieldValidator id="reqValReferencesFirstName" ControlToValidate="txtReferencesFirstName" ErrorMessage="*" runat="server"/>
                             </td>
                         </tr>
                         <tr>
@@ -302,6 +302,7 @@
                                 Last Name:</td>
                             <td  >
                                 <asp:TextBox ID="txtReferencesLastName" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
+                                <asp:RequiredFieldValidator id="reqValReferencesLastName" ControlToValidate="txtReferencesLastName" ErrorMessage="*" runat="server"/>
                             </td>
                         </tr>
                         <tr>
@@ -309,6 +310,7 @@
                                 Academic Title:</td>
                             <td  >
                                 <asp:TextBox ID="txtReferencesAcadTitle" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
+                                <asp:RequiredFieldValidator id="reqValReferencesAcadTitle" ControlToValidate="txtReferencesAcadTitle" ErrorMessage="*" runat="server"/>                                
                             </td>
                         </tr>
                         <tr>
@@ -316,6 +318,7 @@
                                 Area of Expertise:</td>
                             <td  >
                                 <asp:TextBox ID="txtReferencesExpertise" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
+                                <asp:RequiredFieldValidator id="reqValReferencesExpertise" ControlToValidate="txtReferencesExpertise" ErrorMessage="*" runat="server"/>
                             </td>
                         </tr>
                          <tr>
@@ -323,6 +326,7 @@
                                 Department:</td>
                             <td  >
                                 <asp:TextBox ID="txtReferencesDepartment" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
+                                <asp:RequiredFieldValidator id="reqValReferencesDepartment" ControlToValidate="txtReferencesDepartment" ErrorMessage="*" runat="server"/>
                             </td>
                         </tr>
                          <tr>
@@ -330,6 +334,7 @@
                                 Institute:</td>
                             <td  >
                                 <asp:TextBox ID="txtReferencesInstitute" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
+                                <asp:RequiredFieldValidator id="reqValReferencesInstitute" ControlToValidate="txtReferencesInstitute" ErrorMessage="*" runat="server"/>
                             </td>
                         </tr>
                         <tr>
@@ -337,6 +342,7 @@
                                 Address 1:</td>
                             <td  >
                                 <asp:TextBox ID="txtReferencesAddress1" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
+                                <asp:RequiredFieldValidator id="reqValReferencesAddress1" ControlToValidate="txtReferencesAddress1" ErrorMessage="*" runat="server"/>
                             </td>
                         </tr>
                         <tr>
@@ -351,6 +357,7 @@
                                 City:</td>
                             <td  >
                                 <asp:TextBox ID="txtReferencesCity" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
+                                <asp:RequiredFieldValidator id="reqValReferencesCity" ControlToValidate="txtReferencesCity" ErrorMessage="*" runat="server"/>
                             </td>
                         </tr>
                         <tr>
@@ -358,6 +365,7 @@
                                 State:</td>
                             <td  >
                                 <asp:TextBox ID="txtReferencesState" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
+                                <asp:RequiredFieldValidator id="reqValReferencesState" ControlToValidate="txtReferencesState" ErrorMessage="*" runat="server"/>
                             </td>
                         </tr>
                         <tr>
@@ -365,6 +373,7 @@
                                 Zip:</td>
                             <td  >
                                 <asp:TextBox ID="txtReferencesZip" runat="server" MaxLength="20" EnableViewState="false"></asp:TextBox>
+                                <asp:RequiredFieldValidator id="reqValReferencesZip" ControlToValidate="txtReferencesZip" ErrorMessage="*" runat="server"/>
                             </td>
                         </tr>
                         <tr>
@@ -379,6 +388,7 @@
                                 Phone Number:</td>
                             <td  >
                                 <asp:TextBox ID="txtReferencesPhone" runat="server" MaxLength="20" EnableViewState="false"></asp:TextBox>
+                                <asp:RequiredFieldValidator id="reqValReferencesPhone" ControlToValidate="txtReferencesPhone" ErrorMessage="*" runat="server"/>
                                 <asp:RegularExpressionValidator ID="regValReferencesPhone" runat="server" ControlToValidate="txtReferencesPhone" ErrorMessage="*" ValidationExpression="((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}"></asp:RegularExpressionValidator>
                             </td>
                         </tr>
@@ -387,6 +397,7 @@
                                 Email:</td>
                             <td  >
                                 <asp:TextBox ID="txtReferencesEmail" runat="server" MaxLength="100" EnableViewState="false"></asp:TextBox>
+                                <asp:RequiredFieldValidator id="reqValReferencesEmail" ControlToValidate="txtReferencesEmail" ErrorMessage="*" runat="server"/>
                                 <asp:RegularExpressionValidator ID="regValReferencesEmail" runat="server" ErrorMessage="*" ControlToValidate="txtReferencesEmail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                             </td>
                         </tr>
