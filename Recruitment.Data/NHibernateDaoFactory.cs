@@ -12,6 +12,7 @@ namespace CAESDO.Recruitment.Data
     /// </summary>
     public class NHibernateDaoFactory : IDaoFactory
     {
+        #region Dao Retrieval Operations
         public IApplicationDao GetApplicationDao()
         {
             return new ApplicationDao();
@@ -41,7 +42,7 @@ namespace CAESDO.Recruitment.Data
         {
             return new SurveyDao();
         }
-        
+
         public IRecruitmentSrcDao GetRecruitmentSrcDao()
         {
             return new RecruitmentSrcDao();
@@ -81,6 +82,12 @@ namespace CAESDO.Recruitment.Data
         {
             return new FileTypeDao();
         }
+
+        public IMemberTypeDao GetMemberTypeDao()
+        {
+            return new MemberTypeDao();
+        }         
+        #endregion
 
         #region Inline DAO implementations
 
@@ -167,6 +174,9 @@ namespace CAESDO.Recruitment.Data
         public class UserDao : AbstractNHibernateDao<User, int>, IUserDao { }
 
         public class FileTypeDao : AbstractNHibernateDao<FileType, int>, IFileTypeDao { }
+
+        public class MemberTypeDao : AbstractNHibernateDao<MemberType, int>, IMemberTypeDao { }
+
           
         #endregion
           

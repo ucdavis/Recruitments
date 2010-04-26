@@ -109,7 +109,7 @@ namespace CAESDO.Recruitment.Test
         [TestMethod]
         public void CascadeFileTypeSaveTest()
         {
-            //Grab and existing file out of the database
+            //Grab an existing file out of the database
             CAESDO.Recruitment.Core.Domain.File file = NHibernateHelper.daoFactory.GetFileDao().GetById(StaticProperties.ExistingFileID, false);
 
             //Get all possible file types (lookup table)

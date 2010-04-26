@@ -5,6 +5,7 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using CAESDO.Recruitment.Core.Domain;
+using CAESDO.Recruitment.Data;
 
 namespace CAESDO.Recruitment.Test
 {
@@ -75,16 +76,17 @@ namespace CAESDO.Recruitment.Test
         [TestMethod()]
         public void AssociatedPositionTest()
         {
-            Position target = NHibernateHelper.daoFactory.GetPositionDao().GetById(StaticProperties.ExistingPositionID, false);
-            CommitteeMember member = new CommitteeMember();
+            List<CommitteeMember> cList = NHibernateHelper.daoFactory.GetCommitteeMemberDao().GetAll();
 
-            member.AssociatedPosition = target;
+            Assert.AreNotEqual<int>(0, cList.Count);
 
-            List<CommitteeMember> members = NHibernateHelper.daoFactory.GetCommitteeMemberDao().GetByExample(member, "Email", "UserID", "MemberType");
+            foreach (CommitteeMember c in cList)
+            {
+                //Make sure each has a valid associated position
+                Assert.IsFalse(c.AssociatedPosition.IsTransient());
 
-            Assert.AreNotEqual<int>(members.Count, 0);
-            
-            this.TestContext.WriteLine("There are {0} members for this position", members.Count);
+                this.TestContext.WriteLine(c.AssociatedPosition.ToString());
+            }
         }
 
         /// <summary>
@@ -99,21 +101,122 @@ namespace CAESDO.Recruitment.Test
             Assert.IsNotNull(target);
         }
 
-        /// <summary>
-        ///A test for MemberType
-        ///</summary>
-        [TestMethod()]
-        public void MemberTypeTest()
+        [TestMethod]
+        public void SaveDeleteTest()
         {
-            CommitteeMember target = new CommitteeMember();
+            CommitteeMember member = new CommitteeMember();
 
-            MemberType val = null; // TODO: Assign to an appropriate value for the property
+            MemberType mtype = NHibernateHelper.daoFactory.GetMemberTypeDao().GetById((int)MemberTypes.CommitteeMember, false);
 
-            target.MemberType = val;
+            member.Email = StaticProperties.TestString;
+            member.UserID = StaticProperties.ExistingUserID;
+            member.AssociatedPosition = NHibernateHelper.daoFactory.GetPositionDao().GetById(StaticProperties.ExistingPositionID, false);
+            member.MemberType = mtype;
 
+            //Make sure the file is valid
+            Assert.IsTrue(ValidateBO<CommitteeMember>.isValid(member), "CommitteeMember not valid");
 
-            Assert.AreEqual(val, target.MemberType, "CAESDO.Recruitment.Core.Domain.CommitteeMember.MemberType was not set correctly.");
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            Assert.IsTrue(member.IsTransient()); //file is not saved
+
+            using (new NHibernateTransaction())
+            {
+                member = NHibernateHelper.daoFactory.GetCommitteeMemberDao().SaveOrUpdate(member);
+            }
+
+            Assert.IsFalse(member.IsTransient());
+
+            CommitteeMember memberDB = new CommitteeMember();
+
+            //Get a new file using the saved file's ID
+            memberDB = NHibernateHelper.daoFactory.GetCommitteeMemberDao().GetById(member.ID, false);
+
+            //Make sure they are the same
+            Assert.AreEqual(member, memberDB);
+
+            this.TestContext.WriteLine("Member Created had ID = {0}", memberDB.ID);
+
+            //Now delete the file
+            using (new NHibernateTransaction())
+            {
+                NHibernateHelper.daoFactory.GetCommitteeMemberDao().Delete(member);
+            }
+
+            //Make sure it is deleted
+            bool isDeleted = false;
+
+            try
+            {
+                member = NHibernateHelper.daoFactory.GetCommitteeMemberDao().GetById(memberDB.ID, false);
+                member.IsTransient();
+            }
+            catch (NHibernate.ObjectNotFoundException)
+            {
+                isDeleted = true;
+            }
+
+            Assert.IsTrue(isDeleted);
+        }
+
+        [TestMethod]
+        public void ValidateAllTest()
+        {
+
+            List<CommitteeMember> cList = NHibernateHelper.daoFactory.GetCommitteeMemberDao().GetAll();
+
+            Assert.AreNotEqual<int>(0, cList.Count); //should be at least on committeemember
+
+            //Make sure every committeeMember in the database is valid
+            foreach (CommitteeMember c in cList)
+            {
+                Assert.IsTrue(ValidateBO<CommitteeMember>.isValid(c));
+
+                this.TestContext.WriteLine("CommitteeMemberID = {0}, UserID = {1}, MemberType = {2}", c.ID, c.UserID, c.MemberType.Type);
+            }
+        }
+
+        [TestMethod]
+        public void CascadeMemberTypeSaveTest()
+        {
+            //Grab an existing member out of the database
+            CommitteeMember member = NHibernateHelper.daoFactory.GetCommitteeMemberDao().GetById(StaticProperties.ExistingCommitteeMemberID, false);
+
+            //Get all possible member types (lookup table)
+            List<MemberType> memberTypeList = NHibernateHelper.daoFactory.GetMemberTypeDao().GetAll();
+
+            Assert.IsFalse(member.MemberType.IsTransient()); //make sure we have a valid memberType
+
+            int originalMemberTypeID = member.MemberType.ID;
+
+            this.TestContext.WriteLine("Original MemberType = {0}", originalMemberTypeID);
+
+            //Now find a memberType that doesn't equal the current one
+            MemberType newType = new MemberType();
+
+            foreach (MemberType mType in memberTypeList)
+            {
+                if (mType.ID != originalMemberTypeID)
+                {
+                    newType = mType;
+                    break;
+                }
+            }
+
+            //Make sure we got a different memberType
+            Assert.AreNotEqual<int>(member.MemberType.ID, newType.ID);
+
+            //Now update the committeeMember with the new memberType
+            using (new NHibernateTransaction())
+            {
+                member.MemberType = newType;
+                NHibernateHelper.daoFactory.GetCommitteeMemberDao().SaveOrUpdate(member);
+            }
+
+            this.TestContext.WriteLine("New MemberTypeID = {0}", newType.ID);
+
+            //Get the original CommitteeMember back out of the database, and make sure the memberType changed to the new type
+            CommitteeMember memberDB = NHibernateHelper.daoFactory.GetCommitteeMemberDao().GetById(StaticProperties.ExistingCommitteeMemberID, false);
+
+            Assert.AreEqual<int>(memberDB.MemberType.ID, newType.ID);
         }
 
         [TestMethod()]
@@ -129,25 +232,18 @@ namespace CAESDO.Recruitment.Test
 
             foreach (CommitteeMember m in members)
             {
+                Assert.AreNotEqual<int>((int)MemberTypes.FacultyMember, m.ID); //Don't want a faculty member in this list
+
                 this.TestContext.WriteLine("PositionID = {0}, CommitteeMemberID = {1}, Type = {2}", m.AssociatedPosition.ID, m.ID, m.MemberType.Type);
             }
         }
 
-        [TestMethod()]
-        public void AllCommitteeMembersSlow()
+        [TestMethod]
+        public void AllFacultyMembersTest()
         {
             Position target = NHibernateHelper.daoFactory.GetPositionDao().GetById(StaticProperties.ExistingPositionID, false);
 
-            this.TestContext.BeginTimer(StaticProperties.TestString);
-            List<CommitteeMember> members = new List<CommitteeMember>();
-
-            foreach (CommitteeMember m in target.CommitteeMembers)
-            {
-                if (m.MemberType.ID == (int)MemberTypes.CommitteeChair || m.MemberType.ID == (int)MemberTypes.CommitteeMember)
-                    members.Add(m);
-            }
-
-            this.TestContext.EndTimer(StaticProperties.TestString);
+            List<CommitteeMember> members = NHibernateHelper.daoFactory.GetCommitteeMemberDao().GetAllByMemberType(target, MemberTypes.FacultyMember);
 
             Assert.AreNotEqual<int>(members.Count, 0);
 
@@ -155,25 +251,9 @@ namespace CAESDO.Recruitment.Test
 
             foreach (CommitteeMember m in members)
             {
+                Assert.AreEqual<int>((int)MemberTypes.FacultyMember, m.ID); //only want faculty members
                 this.TestContext.WriteLine("PositionID = {0}, CommitteeMemberID = {1}, Type = {2}", m.AssociatedPosition.ID, m.ID, m.MemberType.Type);
             }
-        }
-
-        /// <summary>
-        ///A test for UserID
-        ///</summary>
-        [TestMethod()]
-        public void UserIDTest()
-        {
-            CommitteeMember target = new CommitteeMember();
-
-            int val = 0; // TODO: Assign to an appropriate value for the property
-
-            target.UserID = val;
-
-
-            Assert.AreEqual(val, target.UserID, "CAESDO.Recruitment.Core.Domain.CommitteeMember.UserID was not set correctly.");
-            Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
     }

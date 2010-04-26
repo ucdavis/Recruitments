@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
 
 namespace CAESDO.Recruitment.Core.Domain
 {
@@ -8,6 +9,7 @@ namespace CAESDO.Recruitment.Core.Domain
     {
         private int _UserID;
 
+        [NotNullValidator()]
         public virtual int UserID
         {
             get { return _UserID; }
@@ -16,6 +18,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private string _Email;
 
+        [StringLengthValidator(100)]
         public virtual string Email
         {
             get { return _Email; }
@@ -24,6 +27,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private MemberType _MemberType;
 
+        [NotNullValidator]
         public virtual MemberType MemberType
         {
             get { return _MemberType; }
@@ -32,6 +36,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private Position _AssociatedPosition;
 
+        [NotNullValidator]
         public virtual Position AssociatedPosition
         {
             get { return _AssociatedPosition; }
