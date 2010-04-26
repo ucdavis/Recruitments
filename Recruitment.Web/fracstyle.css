@@ -72,7 +72,7 @@ html, #aspnetForm
 }
 
 /* Adds dotted border to seperate rows in gridview */
-#ctl00_ContentPlaceHolder1_gviewReferences td, #ctl00_ContentPlaceHolder1_GViewUsers td, #ctl00_ContentPlaceHolder1_gViewPositions td
+#ctl00_ContentPlaceHolder1_gViewPositionsClosed td, #ctl00_ContentPlaceHolder1_gviewReferences td, #ctl00_ContentPlaceHolder1_GViewUsers td, #ctl00_ContentPlaceHolder1_gViewPositions td
 {
 	border-bottom: dotted 1px #333333;
 	height: 50px;

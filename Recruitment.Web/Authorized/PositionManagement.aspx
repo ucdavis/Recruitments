@@ -11,7 +11,6 @@
         }
         
     </script>
-
     <span class="boxTitle"><asp:Image ID="imgProfile" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" /><asp:Literal ID="litPositionState" runat="server" Text="Create Position" EnableViewState="false"></asp:Literal></span><br />
     <table class="box" style="width:690px;" cellpadding="5">
         <tr>
