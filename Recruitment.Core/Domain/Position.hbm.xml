@@ -33,6 +33,9 @@
     <many-to-one name="SearchPlanFile" column="SearchPlanFile"
      class="CAESDO.Recruitment.Core.Domain.File, CAESDO.Recruitment.Core" />
 
+    <many-to-one name="FinalRecruitmentReportFile" column="FinalRecruitmentReportFile"
+     class="CAESDO.Recruitment.Core.Domain.File, CAESDO.Recruitment.Core" />
+    
     <many-to-one name="ReferenceTemplate" column="TemplateID"
      class="CAESDO.Recruitment.Core.Domain.Template, CAESDO.Recruitment.Core" cascade="all-delete-orphan" not-null="true" />
     

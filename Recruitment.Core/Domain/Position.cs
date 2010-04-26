@@ -181,6 +181,8 @@ namespace CAESDO.Recruitment.Core.Domain
         //[NotNullValidator]
         public virtual File SearchPlanFile { get; set; }
 
+        public virtual File FinalRecruitmentReportFile { get; set; }
+
         public virtual Department PrimaryDepartment
         {
             get {

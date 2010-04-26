@@ -90,7 +90,7 @@
       <Project>{5F40A7DB-8142-4564-BB05-0F9C2DD3EF75}</Project>
       <Name>Recruitment.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Projects\Recruitment\Recruitment.Data\Recruitment.Data.csproj">
+    <ProjectReference Include="..\Recruitment.Data\Recruitment.Data.csproj">
       <Project>{BFA5EBED-0F4D-481F-9C91-EBE45B481F83}</Project>
       <Name>Recruitment.Data</Name>
     </ProjectReference>
