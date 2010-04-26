@@ -72,7 +72,7 @@
     <Position X="6.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <FileName>Domain\Profile.cs</FileName>
-      <HashCode>ACAECMAAAAEACgAYAAEUCEAAAAIACAAAAEAAJCAAAAg=</HashCode>
+      <HashCode>ACAACMAAAAEAAgAYAAFUCEAAAAIACAAAAkAAJCAAAAg=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="CAESDO.Recruitment.Core.Domain.Reference" Collapsed="true">
@@ -91,7 +91,7 @@
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="CAESDO.Recruitment.Core.Domain.Survey" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="7.25" Y="2.5" Width="1.5" />
+    <Position X="5.25" Y="3" Width="1.5" />
     <TypeIdentifier>
       <FileName>Domain\Survey.cs</FileName>
       <HashCode>AAAAAIAAIACVAAqAAAAAAAABAAAACAAgAgAAAAkAAAg=</HashCode>
@@ -102,7 +102,7 @@
     <Position X="2.5" Y="2.75" Width="1.5" />
     <TypeIdentifier>
       <FileName>Domain\Applicant.cs</FileName>
-      <HashCode>AIAAAgBAACAAAAAAEAAAAAAAAAEACAAAABAAAAAAAAE=</HashCode>
+      <HashCode>AIAAAgBAACAAAgAAEAAAAAAAAAEACAAAABAAAAAAAAE=</HashCode>
     </TypeIdentifier>
   </Class>
   <Interface Name="CAESDO.Recruitment.Core.Domain.IApplicationStep" Collapsed="true">

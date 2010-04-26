@@ -23,7 +23,9 @@ namespace CAESDO.Recruitment.Web
             //IPositionsDao posDao = daoFactory.GetPositionsDao();
             //IPositionsDao posDao = daoFactory.GetPositionsDao();
 
-            //IPositionDao posDao = daoFactory.GetPositionDao();
+            IPositionDao posDao = daoFactory.GetPositionDao();
+
+            Position pos = posDao.GetById(15, false);
 
             //List<Position> posList = posDao.GetAll();
 
@@ -31,10 +33,10 @@ namespace CAESDO.Recruitment.Web
 
             //Applicant app = applicantDao.GetById(4, false);
 
-            IProfileDao proDao = daoFactory.GetProfileDao();
+            //IProfileDao proDao = daoFactory.GetProfileDao();
 
-            List<Profile> profiles = proDao.GetAll();
-            
+            //List<Profile> profiles = proDao.GetAll();
+
         }
     }  
 }

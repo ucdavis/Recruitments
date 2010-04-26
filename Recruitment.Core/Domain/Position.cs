@@ -35,13 +35,6 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _DescriptionFileID = value; }
         }
         
-        private List<string> _DepartmentsFIS;
-
-        public List<string> DepartmentsFIS
-        {
-            get { return _DepartmentsFIS; }
-            set { _DepartmentsFIS = value; }
-        }
         private DateTime _DatePosted;
 
         public DateTime DatePosted
@@ -133,6 +126,14 @@ namespace CAESDO.Recruitment.Core.Domain
         {
             get { return _HREmail; }
             set { _HREmail = value; }
+        }
+
+        private IList<Department> _Departments;
+
+        public IList<Department> Departments
+        {
+            get { return _Departments; }
+            set { _Departments = value; }
         }
 
         private IList<Application> _AssociatedApplications;
