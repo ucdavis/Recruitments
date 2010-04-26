@@ -25,7 +25,10 @@ namespace CAESDO.Recruitment.Web
 
         protected void Page_PreRender(object sender, EventArgs e)
         {
-
+            if (!Roles.IsUserInRole("Admin"))
+            {
+                Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.AUTH));
+            }
         }
 
         protected void lbtnPositionTitle_Click(object sender, EventArgs e)
