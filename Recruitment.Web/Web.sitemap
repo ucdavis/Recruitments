@@ -18,7 +18,8 @@
         <siteMapNode url="Authorized/EmailTemplates.aspx" title="Email Templates" />
         <siteMapNode url="Authorized/ApplicationReview.aspx" title="Application Review" />
         <siteMapNode url="Authorized/UploadFiles.aspx" title="Upload Files" />
-        <siteMapNode url="Authorized/ShortList.aspx" title="Short List" />
+        <siteMapNode url="Authorized/ApplicationsList.aspx" title="Applications List" />
+        <siteMapNode url="Authorized/CommitteeList.aspx" title="Committee List" />
         
         <siteMapNode url="Authorized/viewPositionsAdmin.aspx" title="View Positions">
           <siteMapNode url="Authorized/viewApplications.aspx" title="View Applications" />

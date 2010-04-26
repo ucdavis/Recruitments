@@ -46,6 +46,7 @@
     <Compile Include="Domain\ChangeTracking.cs" />
     <Compile Include="Domain\CommitteeMember.cs" />
     <Compile Include="Domain\CurrentPosition.cs" />
+    <Compile Include="Domain\DepartmentMember.cs" />
     <Compile Include="Domain\DomainObject.cs" />
     <Compile Include="Domain\Education.cs" />
     <Compile Include="Domain\FacultyReviewGroup.cs" />
@@ -105,6 +106,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Domain\ChangeTracking.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Domain\DepartmentMember.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

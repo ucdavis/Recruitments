@@ -12,6 +12,7 @@
         PostBackUrl="~/Authorized/UploadFiles.aspx" /><br />
     <a href="ApplicationReview.aspx?ApplicationID=11">Review Application 11</a><br /><br />
     <a href="ApplicationsList.aspx">Applications List</a><br /><br />
+    <a href="committeeList.aspx">Committee List</a><br /><br />
     <a href="committeeManagement.aspx?type=committee">Committee Management</a><br /><br />
     
 </div>

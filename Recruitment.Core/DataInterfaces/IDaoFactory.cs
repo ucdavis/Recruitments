@@ -32,6 +32,7 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
         IReferenceDao GetReferenceDao();
         ITemplateTypeDao GetTemplateTypeDao();
         ITemplateDao GetTemplateDao();
+        IDepartmentMemberDao GetDepartmentMemberDao();
     }
 
     // There's no need to declare each of the DAO interfaces in its own file, so just add them inline here.
@@ -107,5 +108,9 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
         List<Template> GetTemplatesByType(TemplateType type);
     }
 
+    public interface IDepartmentMemberDao : IDao<DepartmentMember, int> {
+        List<DepartmentMember> GetMembersByDepartmentAndType(string DepartmentFIS, MemberTypes type);
+    }
+    
     #endregion
 }

@@ -137,6 +137,11 @@ namespace CAESDO.Recruitment.Data
             return new TemplateDao();
         }
 
+        public IDepartmentMemberDao GetDepartmentMemberDao()
+        {
+            return new DepartmentMemberDao();
+        }    
+
         #endregion
 
         #region Inline DAO implementations
@@ -373,6 +378,33 @@ namespace CAESDO.Recruitment.Data
 
                 return criteria.List<Template>() as List<Template>;
             }
+        }
+
+        public class DepartmentMemberDao : AbstractNHibernateDao<DepartmentMember, int>, IDepartmentMemberDao {
+            public List<DepartmentMember> GetMembersByDepartmentAndType(string DepartmentFIS, MemberTypes type)
+            {
+                int MemberTypeID, MemberTypeSecondaryID;
+
+                //If we want all committee members, we must get the chair an members
+                if (type == MemberTypes.AllCommittee)
+                {
+                    MemberTypeID = (int)MemberTypes.CommitteeChair;
+                    MemberTypeSecondaryID = (int)MemberTypes.CommitteeMember;
+                }
+                else
+                {
+                    MemberTypeID = (int)type;
+                    MemberTypeSecondaryID = (int)type;
+                }
+
+                MemberTypeDao mdao = new MemberTypeDao();
+
+                ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(DepartmentMember))
+                    .Add(Expression.Eq("DepartmentFIS", DepartmentFIS))
+                    .Add(Expression.Or(Expression.Eq("MemberType", mdao.GetById(MemberTypeID,false)), Expression.Eq("MemberType", mdao.GetById(MemberTypeSecondaryID, false))));
+
+                return criteria.List<DepartmentMember>() as List<DepartmentMember>;
+            }            
         }
          
         #endregion
