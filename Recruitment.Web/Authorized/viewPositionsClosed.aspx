@@ -2,7 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
-    <asp:GridView ID="gViewPositionsClosed" skinID="gridViewUM" runat="server" GridLines="None" CellPadding="0" DataKeyNames="ID" AutoGenerateColumns="False" DataSourceID="ObjectDataOpenPositions" Width="100%">
+    <asp:GridView ID="gViewPositionsClosed" skinID="gridViewUM" runat="server" GridLines="None" EmptyDataText="No Closed Positions Found" CellPadding="0" DataKeyNames="ID" AutoGenerateColumns="False" DataSourceID="ObjectDataOpenPositions" Width="100%">
         <Columns>
             <asp:TemplateField HeaderText="Position/Department" SortExpression="PositionTitle">
                 <ItemTemplate>
@@ -26,8 +26,7 @@
                 <ItemStyle HorizontalAlign="Center" />
                 <HeaderStyle Width="100px" />
             </asp:TemplateField>
-        </Columns>
-    
+        </Columns>    
     </asp:GridView>
     <asp:ObjectDataSource ID="ObjectDataOpenPositions" runat="server" SelectMethod="GetAllPositionsByStatus"
         TypeName="CAESDO.Recruitment.Data.NHibernateDaoFactory+PositionDao">

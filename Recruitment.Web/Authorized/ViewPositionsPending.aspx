@@ -5,7 +5,7 @@
     <asp:ImageButton ID="ibtnCreatePosition" runat="server" ImageUrl="~/Images/ibCreatePosition.gif" PostBackUrl="~/Authorized/PositionManagement.aspx" /><br />
     <br />
 
-    <asp:GridView ID="gViewPositions" skinID="gridViewUM" runat="server" GridLines="None" CellPadding="0" DataKeyNames="ID" AutoGenerateColumns="False" DataSourceID="ObjectDataOpenPositions" Width="100%">
+    <asp:GridView ID="gViewPositions" skinID="gridViewUM" runat="server" GridLines="None" EmptyDataText="No Pending Positions Found" CellPadding="0" DataKeyNames="ID" AutoGenerateColumns="False" DataSourceID="ObjectDataOpenPositions" Width="100%">
         <Columns>
             <asp:TemplateField HeaderText="Position/Department" SortExpression="PositionTitle">
                 <ItemTemplate>
