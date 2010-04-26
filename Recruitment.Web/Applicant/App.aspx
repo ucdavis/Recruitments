@@ -163,13 +163,15 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <asp:LinkButton ID="lbtnReferencesAdd" runat="server" Text="Add Reference" ></asp:LinkButton><br />
+                            <asp:LinkButton ID="lbtnReferencesAdd" runat="server" Text="Add Reference" ></asp:LinkButton>
+                            &nbsp;<asp:Label ID="lblReferencesRemaining" runat="server" ForeColor="Brown" EnableViewState="false"><%= NumReferencesRemainingText() %></asp:Label>
+                            <br />
                         </td>                       
                     </tr>
                     <tr>
                         <td colspan="2">
                         Existing References:
-                            <asp:GridView ID="gviewReferences" runat="server" DataKeyNames="ID" AutoGenerateColumns="False" EmptyDataText="No References Added" OnSelectedIndexChanged="gviewReferences_SelectedIndexChanged">
+                            <asp:GridView ID="gviewReferences" runat="server" DataKeyNames="ID" AutoGenerateColumns="False" EmptyDataText="No References Added" OnRowDeleting="gviewReferences_RowDeleting" OnSelectedIndexChanged="gviewReferences_SelectedIndexChanged">
                             <Columns>
                                 <asp:CommandField ShowSelectButton="True" SelectText="Edit" />
                                 <asp:TemplateField HeaderText="Name">

@@ -762,6 +762,22 @@ namespace CAESDO.Recruitment.Web
             mpopupReferencesEntry.Show();
         }
 
+        protected void gviewReferences_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            GridView referenceGrid = sender as GridView;
+
+            //Grab the reference from the dataKey ID
+            Reference currentReference = daoFactory.GetReferenceDao().GetById((int)referenceGrid.DataKeys[e.RowIndex]["ID"], false);
+
+            //Remove the reference from the currentApplication
+            using (new NHibernateTransaction())
+            {
+                daoFactory.GetReferenceDao().Delete(currentReference);
+            }
+
+            DataBindReferences();
+        }
+
         #endregion
 
         #region PrivateFunctions
@@ -944,6 +960,20 @@ namespace CAESDO.Recruitment.Web
 
             if (numPublicationsRemaining > 0)
                 return string.Format("[{0} More Publication{1} Requested]", numPublicationsRemaining, numPublicationsRemaining == 1 ? string.Empty : "s");
+            else
+                return string.Empty;
+        }
+
+        /// <summary>
+        /// Returns a string that specifies the number of references requested remaining
+        /// </summary>
+        public string NumReferencesRemainingText()
+        {
+            //Warn the user if they don't have enough references
+            int numReferencesRemaining = currentApplication.AppliedPosition.NumReferences - currentApplication.References.Count;
+
+            if (numReferencesRemaining > 0)
+                return string.Format("[{0} More Reference{1} Requested]", numReferencesRemaining, numReferencesRemaining == 1 ? string.Empty : "s");
             else
                 return string.Empty;
         }
@@ -1151,7 +1181,7 @@ namespace CAESDO.Recruitment.Web
 
 
         #endregion
-
+                
 }
 
     /// <summary>
