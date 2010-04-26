@@ -1,5 +1,17 @@
-<%@ Page AutoEventWireup="true" CodeFile="addPosition.aspx.cs" Inherits="CAESDO.Recruitment.Web.addPosition" Language="C#" MasterPageFile="~/MasterPage.master" Title="Untitled Page" %>
+<%@ Page AutoEventWireup="true" CodeFile="addPosition.aspx.cs" Inherits="CAESDO.Recruitment.Web.addPosition" ValidateRequest="false" Language="C#" MasterPageFile="~/MasterPage.master" Title="Untitled Page" %>
+
+<%@ Register Assembly="FreeTextBox" Namespace="FreeTextBoxControls" TagPrefix="FTB" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    
+    <script type="text/javascript" language="javascript">
+        
+        function InsertText(txtID, text)
+        {
+            FTB_API[txtID].InsertHtml(text);
+        }
+        
+    </script>
+
     <span class="boxTitle"><asp:Image ID="imgProfile" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" /> Create Position</span><br />
     <table class="box" style="width:550px; height: 350px;" cellpadding="5">
         <tr>
@@ -92,6 +104,22 @@
             <td  >
                 <asp:TextBox ID="txtShortDescription" runat="server" Height="90px" Rows="4" TextMode="MultiLine"
                     Width="233px"></asp:TextBox></td>
+        </tr>
+        <tr>
+            <td align="right" valign="top">
+                Reference Template:
+            </td>
+            <td>
+                Template Fields: 
+                    <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '{ReferenceName}');" >Reference Name</a>,
+                    <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '{ApplicantName}');" >Applicant Name</a>,
+                    <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '{Deadline}');" >Deadline</a>,
+                    <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '{Position Title}');" >Position Title</a>
+                
+                <FTB:FreeTextBox ID="ftxtReferenceTemplate" runat="server" Width="500px" Height="300px">
+                </FTB:FreeTextBox>
+                <asp:RequiredFieldValidator id="reqValReferenceTemplate" ControlToValidate="ftxtReferenceTemplate" ErrorMessage="*" runat="server"/>
+            </td>
         </tr>
         <tr>
             <td align="right">

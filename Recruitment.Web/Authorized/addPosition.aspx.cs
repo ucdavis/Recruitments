@@ -72,6 +72,11 @@ namespace CAESDO.Recruitment.Web
 
             newPosition.ShortDescription = txtShortDescription.Text;
 
+            if (newPosition.ReferenceTemplate == null)
+                newPosition.ReferenceTemplate = new ReferenceTemplate();
+
+            newPosition.ReferenceTemplate.TemplateText = ftxtReferenceTemplate.Text;
+
             newPosition.NumPublications = int.Parse(txtPublications.Text);
             newPosition.NumReferences = int.Parse(txtReferences.Text);
 
@@ -107,11 +112,6 @@ namespace CAESDO.Recruitment.Web
             {
                 //Error message
             }
-
-            //foreach (Microsoft.Practices.EnterpriseLibrary.Validation.ValidationResult r in ValidateBO<Position>.GetValidationResults(newPosition))
-            //{
-            //    txtShortDescription.Text += r.Key + " " + r.Message + Environment.NewLine;
-            //}
         }
 
         protected void lbtnAddDepartment_Click(object sender, EventArgs e)
