@@ -72,7 +72,7 @@ namespace CAESDO.Recruitment.Web
                     {
                         Application app = daoFactory.GetApplicationDao().GetById((int)gviewApplications.DataKeys[row.RowIndex]["id"], false);
 
-                        app.ShortList = ((CheckBox)row.FindControl("chkShortList")).Checked;
+                        app.InterviewList = ((CheckBox)row.FindControl("chkShortList")).Checked;
                         app.GetReferences = ((CheckBox)row.FindControl("chkReferences")).Checked;
                         app.NoConsideration = ((CheckBox)row.FindControl("chkNoConsideration")).Checked;
 

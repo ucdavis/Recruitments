@@ -18,7 +18,7 @@
         <Columns>
             <asp:TemplateField HeaderText="Interview">
                 <ItemTemplate>
-                    <asp:CheckBox ID="chkShortList" runat="server" Checked='<%# Eval("ShortList") %>' />
+                    <asp:CheckBox ID="chkShortList" runat="server" Checked='<%# Eval("InterviewList") %>' />
                 </ItemTemplate>
                 <ItemStyle CssClass="paddingLeft2" HorizontalAlign="Left" />
                 <HeaderStyle HorizontalAlign="Left" CssClass="paddingLeft" Width="15%" />

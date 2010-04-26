@@ -25,13 +25,13 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _AppliedPosition = value; }
         }
 
-        private bool _ShortList;
+        private bool _InterviewList;
 
         [NotNullValidator]
-        public virtual bool ShortList
+        public virtual bool InterviewList
         {
-            get { return _ShortList; }
-            set { _ShortList = value; }
+            get { return _InterviewList; }
+            set { _InterviewList = value; }
         }
 
         private bool _NoConsideration;

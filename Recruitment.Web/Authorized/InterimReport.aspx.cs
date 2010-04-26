@@ -62,10 +62,34 @@ namespace CAESDO.Recruitment.Web
                     //Get the SexEthnicityCount for the current position
                     SexEthnicityCount SexEthnicityList = new SexEthnicityCount();
 
-                    gviewSexEthnicity.DataSource = SexEthnicityList.GetSexEthnicityList(currentPosition);
+                    gviewSexEthnicity.DataSource = SexEthnicityList.GetSexEthnicityList(currentPosition, null);
                     gviewSexEthnicity.DataBind();
+
+                    gviewApplicants.DataSource = this.GetApplicants(false); //Get the applicants who are not selected for interview
+                    gviewApplicants.DataBind();
+
+                    blistInterviewApplicants.DataSource = this.GetApplicants(true); //List the applicants selected for interview
+                    blistInterviewApplicants.DataBind();
+
+                    gviewInterviewSexEthnicity.DataSource = SexEthnicityList.GetSexEthnicityList(currentPosition, true);
+                    gviewInterviewSexEthnicity.DataBind();
                 }
             }
+        }
+
+        private List<Profile> GetApplicants(bool selectedForInterview)
+        {
+            List<Profile> profileList = new List<Profile>();
+
+            foreach (Application app in currentPosition.AssociatedApplications)
+            {
+                if (app.InterviewList == selectedForInterview)
+                {
+                    profileList.Add(app.AssociatedProfile);
+                }
+            }
+
+            return profileList;
         }
     }
 
@@ -179,7 +203,9 @@ namespace CAESDO.Recruitment.Web
         /// <summary>
         /// For each sex and ethnicity category (uncluding unidentifed), add up the application pool composition
         /// </summary>
-        public List<SexEthnicityCount> GetSexEthnicityList(Position position)
+        /// <param name="selectedForInterview">Indicate if the list should contain people selected for interview or only applicants
+        /// not selected for interview. A null parameter means select all applicants</param>
+        public List<SexEthnicityCount> GetSexEthnicityList(Position position, bool? selectedForInterview)
         {
             SexEthnicityCount men = new SexEthnicityCount();
             SexEthnicityCount woman = new SexEthnicityCount();
@@ -193,6 +219,14 @@ namespace CAESDO.Recruitment.Web
 
             foreach (Application app in position.AssociatedApplications)
             {
+                
+                if (selectedForInterview.HasValue == true)
+                {
+                    //If we specify a interview designation, make sure the application fits that designation
+                    if (app.InterviewList != selectedForInterview)
+                        continue;
+                }
+
                 //Make sure this application has a survey filled out
                 if (app.Surveys != null && app.Surveys.Count > 0)
                 {
@@ -214,6 +248,12 @@ namespace CAESDO.Recruitment.Web
 
                     //Always update the total as well
                     this.AddEthnicity(currentSurvey.Ethnicity, total);
+                }
+                else
+                {
+                    //If the survey is not filled out, place in the unidentified categories
+                    this.AddEthnicity(null, unidentified);
+                    this.AddEthnicity(null, total);
                 }
             }
 

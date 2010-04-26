@@ -89,12 +89,14 @@
         <table width="80%">
             <tr>
             <td>&nbsp;&nbsp;</td>
-            <td><asp:GridView ID="GridView2" runat="server" Width="90%" AutoGenerateColumns="False" EnableViewState="False">
+            <td><asp:GridView ID="gviewApplicants" runat="server" Width="90%" AutoGenerateColumns="False" EnableViewState="False">
             <Columns>
-                <asp:BoundField DataField="name" HeaderText="Name" ReadOnly="True" SortExpression="name" />
-                <asp:BoundField DataField="rank_comments" HeaderText="Comments" SortExpression="rank_comments" >
-                    <HeaderStyle Width="70%" />
-                </asp:BoundField>
+                <asp:BoundField DataField="FullName" HeaderText="Name" ReadOnly="True" SortExpression="FullName" />
+                <asp:TemplateField HeaderText="Comments">
+                    <ItemTemplate>
+                        <asp:TextBox ID="txtComments" runat="server" Width="100%" TextMode="MultiLine"></asp:TextBox>
+                    </ItemTemplate>
+                </asp:TemplateField>
             </Columns>
         </asp:GridView></td>
             </tr>
@@ -102,37 +104,40 @@
         
         <br />
         C. Indicate the composition of the pool of applicants you plant to interview.<p align="center">
-            <u>Composition of the Pool Selected for Interview</u></p><asp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" HorizontalAlign="Left" EnableViewState="False">
-                <Columns>
-                    <asp:BoundField DataField="Sex" ReadOnly="True" SortExpression="Sex" />
-                    <asp:BoundField DataField="American Indian" HeaderText="American Indian" ReadOnly="True"
-                    SortExpression="American Indian">
-                        <ItemStyle HorizontalAlign="Center" />
-                    </asp:BoundField>
-                    <asp:BoundField DataField="Asian/ Asian American" HeaderText="Asian/ Asian American"
-                    ReadOnly="True" SortExpression="Asian/ Asian American">
-                        <ItemStyle HorizontalAlign="Center" />
-                    </asp:BoundField>
-                    <asp:BoundField DataField="Black/ African American" HeaderText="Black/ African American"
-                    ReadOnly="True" SortExpression="Black/ African American">
-                        <ItemStyle HorizontalAlign="Center" />
-                    </asp:BoundField>
-                    <asp:BoundField DataField="Chicano/ Latino/ Hispanic" HeaderText="Chicano/ Latino/ Hispanic"
-                    ReadOnly="True" SortExpression="Chicano/ Latino/ Hispanic">
-                        <ItemStyle HorizontalAlign="Center" />
-                    </asp:BoundField>
-                    <asp:BoundField DataField="White" HeaderText="White" ReadOnly="True" SortExpression="White">
-                        <ItemStyle HorizontalAlign="Center" />
-                    </asp:BoundField>
-                    <asp:BoundField DataField="Unidentified" HeaderText="Unidentified" ReadOnly="True"
-                    SortExpression="Unidentified">
-                        <ItemStyle HorizontalAlign="Center" />
-                    </asp:BoundField>
-                    <asp:BoundField DataField="Total" HeaderText="Total" ReadOnly="True" SortExpression="Total">
-                        <ItemStyle HorizontalAlign="Center" />
-                    </asp:BoundField>
-                </Columns>
-            </asp:GridView>
+            <u>Composition of the Pool Selected for Interview</u></p>
+            
+            <asp:GridView ID="gviewInterviewSexEthnicity" runat="server" AutoGenerateColumns="False" HorizontalAlign="Left" EnableViewState="False">
+            <Columns>
+                <asp:BoundField DataField="Gender" ReadOnly="True" SortExpression="Gender" />
+                <asp:BoundField DataField="AmericanIndianCount" HeaderText="American Indian" ReadOnly="True"
+                    SortExpression="AmericanIndianCount">
+                    <ItemStyle HorizontalAlign="Center" />
+                </asp:BoundField>
+                <asp:BoundField DataField="AsianCount" HeaderText="Asian/ Asian American"
+                    ReadOnly="True" SortExpression="AsianCount">
+                    <ItemStyle HorizontalAlign="Center" />
+                </asp:BoundField>
+                <asp:BoundField DataField="BlackCount" HeaderText="Black/ African American"
+                    ReadOnly="True" SortExpression="BlackCount">
+                    <ItemStyle HorizontalAlign="Center" />
+                </asp:BoundField>
+                <asp:BoundField DataField="ChicanoCount" HeaderText="Chicano/ Latino/ Hispanic"
+                    ReadOnly="True" SortExpression="ChicanoCount">
+                    <ItemStyle HorizontalAlign="Center" />
+                </asp:BoundField>
+                <asp:BoundField DataField="WhiteCount" HeaderText="White" ReadOnly="True" SortExpression="WhiteCount">
+                    <ItemStyle HorizontalAlign="Center" />
+                </asp:BoundField>
+                <asp:BoundField DataField="UnidentifiedCount" HeaderText="Unidentified" ReadOnly="True"
+                    SortExpression="UnidentifiedCount">
+                    <ItemStyle HorizontalAlign="Center" />
+                </asp:BoundField>
+                <asp:BoundField DataField="TotalCount" HeaderText="Total" ReadOnly="True" SortExpression="TotalCount">
+                    <ItemStyle HorizontalAlign="Center" />
+                </asp:BoundField>
+            </Columns>
+        </asp:GridView>
+        
         <br />
         <br />
         <br />
@@ -143,8 +148,8 @@
         <br />
         D. List the names of the persons selected for interview and attach a copy of their
         curriculum vitae.<br />
-        <asp:BulletedList ID="BulletedList1" runat="server" DataTextField="name"
-            DataValueField="name" EnableViewState="False">
+        <asp:BulletedList ID="blistInterviewApplicants" runat="server" DataTextField="FullName"
+            DataValueField="FullName" EnableViewState="False">
         </asp:BulletedList>
         <br />
         <br />
