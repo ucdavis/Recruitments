@@ -167,7 +167,8 @@ namespace CAESDO.Recruitment.Data
 
                 ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(Position))
                     .Add(Expression.Eq("Closed", Closed))
-                    .Add(Expression.Eq("AdminAccepted", AdminAccepted));
+                    .Add(Expression.Eq("AdminAccepted", AdminAccepted))
+                    .AddOrder(Order.Asc("Deadline"));
 
                 if (AllowApplications.HasValue)
                     criteria.Add(Expression.Eq("AllowApps", AllowApplications.Value));
@@ -187,6 +188,7 @@ namespace CAESDO.Recruitment.Data
                                 .Add(Expression.In("DepartmentFIS", deptFIS.ToArray()));
                     }
                 }
+
                 return criteria.List<Position>() as List<Position>;
             }
 
