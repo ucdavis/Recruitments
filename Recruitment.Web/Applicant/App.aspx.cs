@@ -13,6 +13,7 @@ using CAESDO.Recruitment.Core.Domain;
 using CAESDO.Recruitment.Data;
 using System.Text;
 using CAESDO.Recruitment.BLL;
+using System.Net.Mail;
 
 namespace CAESDO.Recruitment.Web
 {
@@ -354,6 +355,26 @@ namespace CAESDO.Recruitment.Web
                     currentApplication.SubmitDate = DateTime.Now;
                     currentApplication.Submitted = true;
                 }
+
+                //Application was successfully submitted, so send a confirmation email
+                System.Net.Mail.SmtpClient mail = new System.Net.Mail.SmtpClient();
+
+                //Try to send the email -- if there are errors, ignore (we'd rather have the application completed then fail on the emailing)
+                try
+                {
+                    string subject = "Application submission confirmation";
+                    
+                    StringBuilder bodyText = new StringBuilder();
+                    bodyText.AppendFormat("Your application for the {0} position at the University of California, Davis, has been successfully received.", currentApplication.AppliedPosition.PositionTitle);
+                    bodyText.Append("  We appreciate your interest in our position.");
+
+                    MailMessage message = new MailMessage(currentApplication.AppliedPosition.HREmail, currentApplication.Email, subject, bodyText.ToString());
+                    message.IsBodyHtml = true;
+
+                    mail.Send(message); //Send the message
+
+                }
+                catch (Exception) { } //Continue on failure
 
                 Response.Redirect(STR_URL_ApplicationSubmitted);
             }

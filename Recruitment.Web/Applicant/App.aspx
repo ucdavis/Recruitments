@@ -89,6 +89,8 @@
                             
                             <asp:Literal ID="litFinalize" runat="server" Text="When you are done with all sections, click on the finalize button to complete your application.
                             You will not be able to modify your application after you finalize." meta:resourcekey="litFinalizeResource1"></asp:Literal>
+                            <br /><br />
+                            <asp:Literal ID="litFinalizedEmail" runat="server" Text="After finalizing your application, you will receive an email confirming that your application has been completed and received."></asp:Literal>
                         </td>
                     </tr>
                     <tr>
