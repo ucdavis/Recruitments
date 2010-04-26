@@ -22,11 +22,8 @@ namespace CAESDO.Recruitment.Web
             {
                 if (Session["APP"] == null)
                 {
-                    using (new NHibernateTransaction())
-                    {
-                        IApplicationDao appDao = daoFactory.GetApplicationDao();
-                        Session["APP"] = appDao.GetById(11, false);
-                    }
+                    IApplicationDao appDao = daoFactory.GetApplicationDao();
+                    Session["APP"] = appDao.GetById(11, false);
                 }
 
                 return (Application)Session["APP"];
@@ -78,7 +75,10 @@ namespace CAESDO.Recruitment.Web
             {
                 //app11 = null;
 
-                Response.Write(app11.ID.ToString() + "   " + app11.SubmitDate.ToShortDateString() + "<br/>");
+                using (new NHibernateTransaction())
+                {
+                    Response.Write(app11.ID.ToString() + "   " + app11.SubmitDate.ToShortDateString() + "<br/>");
+                }
             }
             else
             {
@@ -86,11 +86,13 @@ namespace CAESDO.Recruitment.Web
 
                 app11.SubmitDate = DateTime.Now;
 
-                using (new NHibernateTransaction())
+                using (NHibernateTransaction tx = new NHibernateTransaction())
                 {
                     IApplicationDao aDao = daoFactory.GetApplicationDao();
 
                     aDao.SaveOrUpdate(app11);
+
+                    Response.Write(tx.HasOpenTransaction);
                 }
             }
 
