@@ -52,6 +52,14 @@ namespace CAESDO.Recruitment.Web
             get { return new NHibernateDaoFactory(); }
         }
 
+        public string FilePath
+        {
+            get
+            {
+                return WebConfigurationManager.AppSettings["RecruitmentFilePath"];
+            }
+        }
+
         //ErrorReporting eReport = new ErrorReporting(WebConfigurationManager.AppSettings["AppName"]);
 
         public ApplicationPage()

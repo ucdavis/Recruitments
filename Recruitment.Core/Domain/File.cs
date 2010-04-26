@@ -18,6 +18,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private string _Label;
 
+        [IgnoreNulls]
         [StringLengthValidator(0, 100)]
         public virtual string Label
         {
@@ -26,6 +27,7 @@ namespace CAESDO.Recruitment.Core.Domain
         }
         private string _Description;
 
+        [IgnoreNulls]
         public virtual string Description
         {
             get { return _Description; }

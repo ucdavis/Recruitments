@@ -20,7 +20,7 @@
 
     <bag name="Units" table="vUserUnit" inverse="true">
       <key column="UserID" />
-      <many-to-many column="UnitID" class="CAESDO.Recruitment.Core.Domain.Unit, CAESDO.Recruitment.Core" />
+      <many-to-many column="FIS_Code" class="CAESDO.Recruitment.Core.Domain.Unit, CAESDO.Recruitment.Core" />
       <!--<one-to-many class="CAESDO.Recruitment.Core.Domain.Unit, CAESDO.Recruitment.Core" />-->
     </bag>
     
