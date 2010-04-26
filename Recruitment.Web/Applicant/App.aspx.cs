@@ -171,6 +171,12 @@ namespace CAESDO.Recruitment.Web
                 Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.UNKNOWN));
             }
 
+            //Make sure the application has not been submitted
+            if (currentApplication.Submitted)
+            {
+                Response.Redirect(STR_URL_ApplicationSubmitted);
+            }
+
             Trace.Write("Valid user and application " + currentApplication.ID.ToString() + Environment.NewLine);
 
             if (currentApplication.AssociatedProfile.AssociatedApplicant.Email != loggedInUser.Email)

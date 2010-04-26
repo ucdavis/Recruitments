@@ -74,5 +74,10 @@ namespace CAESDO.Recruitment.Web
             //Notify the user that the emails were sent properly
             lblSentEmail.Text = "Email(s) sent successfully";
         }
+
+        public string GetNullSafeFullName(string FullName)
+        {
+            return string.IsNullOrEmpty(FullName.Trim()) ? "Name Not Yet Given" : FullName;
+        }
 }
 }

@@ -833,7 +833,7 @@
                         </td>
                         <td align="right"  >
                             <br />
-                            <asp:Button ID="btnConfidentialSurveyAccept" runat="server" Text="I Accept" OnClick="btnConfidentialSurveyAccept_Click" />
+                            <asp:Button ID="btnConfidentialSurveyAccept" runat="server" Text="I Agree" OnClick="btnConfidentialSurveyAccept_Click" />
                             <button type="reset" value="Reset">Reset</button>
                             </td>
                     </tr>

@@ -26,7 +26,7 @@
         
             <asp:TemplateField HeaderText="Name">
                 <ItemTemplate>
-                    <%# Eval("AssociatedProfile.FullName") %>
+                    <%# GetNullSafeFullName((string)Eval("AssociatedProfile.FullName")) %>
                 </ItemTemplate>
                 <HeaderStyle Width="450px" />
             </asp:TemplateField>
