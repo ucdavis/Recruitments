@@ -8,12 +8,14 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Web.Configuration;
+using System.ComponentModel;
 
 namespace CAESDO.Recruitment
 {
     /// <summary>
     /// Summary description for CatbertManager
     /// </summary>
+    [DataObject]
     public class CatbertManager
     {
         static readonly string HASH = WebConfigurationManager.AppSettings["CatbertHash"];
@@ -46,15 +48,21 @@ namespace CAESDO.Recruitment
             return catops.DeletePermissions(login, AppName, roleID, HASH);
         }
 
-        //public static CatOps.Users[] GetUsersInApplication()
-        //{
-        //    return catops.GetUsersByApplications(AppName, HASH);
-        //}
+        [DataObjectMethod(DataObjectMethodType.Select)]
+        public static CatOps.CatbertUsers[] GetUsersInApplication()
+        {
+            return catops.GetUsersByApplications(AppName, HASH);
+        }
 
         public CatbertManager()
         {
             CatOps.Users u = new CatOps.Users();
-            
+            CatOps.CatbertUsers cu = new CatOps.CatbertUsers();
+            //cu.EmployeeID;
+            //cu.FirstName;
+            //cu.LastName;
+            //cu.Role;
+
             //
             // TODO: Add constructor logic here
             //

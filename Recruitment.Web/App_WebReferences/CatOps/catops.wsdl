@@ -246,14 +246,70 @@
       <s:element name="GetUsersByApplicationsResponse">
         <s:complexType>
           <s:sequence>
-            <s:element minOccurs="0" maxOccurs="1" name="GetUsersByApplicationsResult">
-              <s:complexType>
-                <s:sequence>
-                  <s:element ref="s:schema" />
-                  <s:any />
-                </s:sequence>
-              </s:complexType>
-            </s:element>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUsersByApplicationsResult" type="tns:ArrayOfCatbertUsers" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfCatbertUsers">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="CatbertUsers" nillable="true" type="tns:CatbertUsers" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="CatbertUsers">
+        <s:complexContent mixed="false">
+          <s:extension base="tns:Users">
+            <s:sequence>
+              <s:element minOccurs="1" maxOccurs="1" name="RoleID" type="s:int" />
+              <s:element minOccurs="1" maxOccurs="1" name="UserID" type="s:int" />
+              <s:element minOccurs="0" maxOccurs="1" name="SID" type="s:string" />
+              <s:element minOccurs="0" maxOccurs="1" name="Role" type="s:string" />
+            </s:sequence>
+          </s:extension>
+        </s:complexContent>
+      </s:complexType>
+      <s:element name="GetUsersByApplicationRole">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="application" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="roleID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="hashKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUsersByApplicationRoleResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUsersByApplicationRoleResult" type="tns:ArrayOfCatbertUsers" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUnitsByUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="loginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="hashKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetUnitsByUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetUnitsByUserResult" type="tns:ArrayOfUnits" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerifyUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="loginID" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="hashKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="VerifyUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="VerifyUserResult" type="s:boolean" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -331,6 +387,24 @@
   <wsdl:message name="GetUsersByApplicationsSoapOut">
     <wsdl:part name="parameters" element="tns:GetUsersByApplicationsResponse" />
   </wsdl:message>
+  <wsdl:message name="GetUsersByApplicationRoleSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUsersByApplicationRole" />
+  </wsdl:message>
+  <wsdl:message name="GetUsersByApplicationRoleSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUsersByApplicationRoleResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetUnitsByUserSoapIn">
+    <wsdl:part name="parameters" element="tns:GetUnitsByUser" />
+  </wsdl:message>
+  <wsdl:message name="GetUnitsByUserSoapOut">
+    <wsdl:part name="parameters" element="tns:GetUnitsByUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="VerifyUserSoapIn">
+    <wsdl:part name="parameters" element="tns:VerifyUser" />
+  </wsdl:message>
+  <wsdl:message name="VerifyUserSoapOut">
+    <wsdl:part name="parameters" element="tns:VerifyUserResponse" />
+  </wsdl:message>
   <wsdl:portType name="CatOpsSoap">
     <wsdl:operation name="SearchNewUser">
       <wsdl:input message="tns:SearchNewUserSoapIn" />
@@ -379,6 +453,18 @@
     <wsdl:operation name="GetUsersByApplications">
       <wsdl:input message="tns:GetUsersByApplicationsSoapIn" />
       <wsdl:output message="tns:GetUsersByApplicationsSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersByApplicationRole">
+      <wsdl:input message="tns:GetUsersByApplicationRoleSoapIn" />
+      <wsdl:output message="tns:GetUsersByApplicationRoleSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUnitsByUser">
+      <wsdl:input message="tns:GetUnitsByUserSoapIn" />
+      <wsdl:output message="tns:GetUnitsByUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="VerifyUser">
+      <wsdl:input message="tns:VerifyUserSoapIn" />
+      <wsdl:output message="tns:VerifyUserSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="CatOpsSoap" type="tns:CatOpsSoap">
@@ -491,6 +577,33 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="GetUsersByApplicationRole">
+      <soap:operation soapAction="CAESDO.WebServices/GetUsersByApplicationRole" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnitsByUser">
+      <soap:operation soapAction="CAESDO.WebServices/GetUnitsByUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyUser">
+      <soap:operation soapAction="CAESDO.WebServices/VerifyUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="CatOpsSoap12" type="tns:CatOpsSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -595,6 +708,33 @@
     </wsdl:operation>
     <wsdl:operation name="GetUsersByApplications">
       <soap12:operation soapAction="CAESDO.WebServices/GetUsersByApplications" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersByApplicationRole">
+      <soap12:operation soapAction="CAESDO.WebServices/GetUsersByApplicationRole" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetUnitsByUser">
+      <soap12:operation soapAction="CAESDO.WebServices/GetUnitsByUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="VerifyUser">
+      <soap12:operation soapAction="CAESDO.WebServices/VerifyUser" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
