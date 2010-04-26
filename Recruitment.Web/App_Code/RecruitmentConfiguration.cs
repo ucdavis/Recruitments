@@ -57,7 +57,7 @@ namespace CAESDO.Recruitment.Web
         /// </summary>
         public enum ErrorType
         {
-            DATA, AUTH, MAIL, SESSION, UNKNOWN
+            DATA, AUTH, MAIL, SESSION, FILE, QUERY, UNKNOWN
         }
 
         /// <summary>
@@ -96,6 +96,10 @@ namespace CAESDO.Recruitment.Web
                 return ErrorPageName + "?reason=auth";
             else if (error == ErrorType.SESSION)
                 return ErrorPageName + "?reason=session";
+            else if (error == ErrorType.FILE)
+                return ErrorPageName + "?reason=file";
+            else if (error == ErrorType.QUERY)
+                return ErrorPageName + "?reason=query";
             else
                 return ErrorPageName + "?reason=unknown";
         }
@@ -113,6 +117,10 @@ namespace CAESDO.Recruitment.Web
                 return "Data Access Error";
             else if (error == ErrorType.SESSION)
                 return "Session Expiration Error";
+            else if (error == ErrorType.FILE)
+                return "File Not Found Error";
+            else if (error == ErrorType.QUERY)
+                return "Query String Error";
             else
                 return "Unknown Error";
         }
@@ -134,6 +142,10 @@ namespace CAESDO.Recruitment.Web
                 return "Invalid Selection";
             else if (reason == "session")
                 return "Session Expiration";
+            else if (reason == "file")
+                return "File Not Found Exception";
+            else if (reason == "query")
+                return "Query String Not Valid";
             else if (reason == "mail")
                 return "Email Send Error-- Could Not Reach All Recipients";
             else

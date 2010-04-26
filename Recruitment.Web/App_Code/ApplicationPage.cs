@@ -60,12 +60,17 @@ namespace CAESDO.Recruitment.Web
             }
         }
 
+        public ErrorReporting eReport = new ErrorReporting(WebConfigurationManager.AppSettings["AppName"],
+                                                        WebConfigurationManager.AppSettings["ErrorFromEmail"],
+                                                        WebConfigurationManager.AppSettings["ErrorAdminEmail"]);
+
         public ApplicationPage()
         {
         }
 
         protected override void OnError(EventArgs e)
         {
+
             //Might want to rollback the transaction whenever an error gets this far up the stack
             NHibernateSessionManager.Instance.RollbackTransaction();
 
@@ -85,9 +90,9 @@ namespace CAESDO.Recruitment.Web
             else
             {
                 if (ex.InnerException != null)
-                    RecruitmentErrorReporting.ReportError(ex.InnerException, "OnError");
+                    eReport.ReportError(ex.InnerException, "OnError");
                 else
-                    RecruitmentErrorReporting.ReportError(ex, "OnError");
+                    eReport.ReportError(ex, "OnError");
 
                 ctx.Server.ClearError();
                 ctx.Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.UNKNOWN));
