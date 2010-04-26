@@ -7,5 +7,7 @@ namespace CAESDO.Recruitment.Core.Domain
     public interface ITrackable
     {
         bool isTracked();
+
+        bool arePropertiesTracked();
     }
 }

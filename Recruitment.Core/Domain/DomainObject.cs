@@ -35,9 +35,22 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _Tracked = value; }
         }
 
+        private bool _TrackProperties = true;
+
+        public virtual bool TrackProperties
+        {
+            get { return _TrackProperties; }
+            set { _TrackProperties = value; }
+        }
+        
         public virtual bool isTracked()
         {
             return Tracked;
+        }
+
+        public virtual bool arePropertiesTracked()
+        {
+            return TrackProperties;
         }
 
         #endregion

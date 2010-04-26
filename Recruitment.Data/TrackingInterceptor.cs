@@ -64,7 +64,7 @@ namespace CAESDO.Recruitment.Data
             {
                 if (types[i].IsCollectionType == false)
                 {
-                    if (currentState[i].Equals(previousState[i]) == false)
+                    if ( Equals(currentState[i], previousState[i]) == false )
                     {
                         dirtyProperties.Add(new ChangedProperty(currentState[i] == null ? null : currentState[i].ToString(), propertyNames[i], null));
                         //dirtyProperties.Add(propertyNames[i], previousState[i].ToString());
@@ -128,7 +128,8 @@ namespace CAESDO.Recruitment.Data
             
             ChangeTracking trackChange = new ChangeTracking();
 
-            trackChange.AppendProperties(changeList, trackChange);
+            if ( trackableObject.arePropertiesTracked() )
+                trackChange.AppendProperties(changeList, trackChange);
 
             trackChange.ChangeType = new NHibernateDaoFactory().GetChangeTypeDao().GetById((int)changeType, false);
 
