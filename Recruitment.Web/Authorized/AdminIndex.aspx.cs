@@ -17,5 +17,13 @@ public partial class Authorized_AdminIndex : System.Web.UI.Page
 {
     protected void Page_Load(object sender, EventArgs e)
     {
+        if (!Roles.IsUserInRole("Admin"))
+        {
+            //If the user isn't an admin, hide admin only pages
+            
+            ibPendingpos.Visible = false; //View Pending Positions
+            ibManageusers.Visible = false; //Manage Users
+            ibClosedPos.Visible = false; //View closed positions
+        }
     }
 }
