@@ -42,6 +42,16 @@ namespace CAESDO.Recruitment.Core.Domain
         {
 
         }
+
+        public override bool Equals(object obj)
+        {
+            return (this.DepartmentFIS == ((Department)obj).DepartmentFIS);
+        }
+
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
     }
 
     public class Gender : DomainObject<int>

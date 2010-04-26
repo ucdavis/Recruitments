@@ -27,6 +27,9 @@
 
     <!--<property name="DescriptionFile" column="DescriptionFile" />-->
 
+    <many-to-one name="PrimaryDepartment" column="PrimaryDepartmentFIS" 
+          class="CAESDO.Recruitment.Core.Domain.Department, CAESDO.Recruitment.Core" not-null="false"></many-to-one>
+
     <many-to-one name="DescriptionFile" column="DescriptionFile"
      class="CAESDO.Recruitment.Core.Domain.File, CAESDO.Recruitment.Core" not-null="true" />
 

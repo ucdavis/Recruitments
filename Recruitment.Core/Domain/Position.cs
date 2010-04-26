@@ -177,6 +177,14 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _DescriptionFile = value; }
         }
 
+        private Department _PrimaryDepartment;
+
+        public virtual Department PrimaryDepartment
+        {
+            get { return _PrimaryDepartment; }
+            set { _PrimaryDepartment = value; }
+        }
+
         private IList<Department> _Departments;
 
         public virtual IList<Department> Departments

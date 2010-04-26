@@ -52,14 +52,22 @@
                     <asp:LinkButton ID="lbtnAddDepartment" runat="server" Text="Add Department" CausesValidation="False" OnClick="lbtnAddDepartment_Click"></asp:LinkButton>
                     <br />
                     
-                    <asp:Repeater ID="repDepartments" runat="server">
-                    <ItemTemplate>
-                        <%# Eval("ShortName") %>
-                    </ItemTemplate>
-                    <SeparatorTemplate>
-                        <br />
-                    </SeparatorTemplate>
-                    </asp:Repeater>
+                    <asp:GridView ID="gviewDepartments" runat="server" DataKeyNames="DepartmentFIS" AutoGenerateColumns="False" OnRowDeleting="gviewDepartments_RowDeleting">
+                    <Columns>
+                        <asp:TemplateField HeaderText="Primary">
+                            <ItemTemplate>
+                                <asp:CheckBox ID="cboxPrimary" runat="server" Checked='<%# Eval("PrimaryDept") %>' />
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:TemplateField HeaderText="Department Name">
+                            <ItemTemplate>
+                                <asp:Literal ID="litDepartmentName" runat="server" Text='<%# Eval("Unit.ShortName") %>'></asp:Literal>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                        <asp:CommandField DeleteText="Remove" ShowDeleteButton="True" />
+                    </Columns>                    
+                    </asp:GridView>
+                    <asp:Label ID="lblPrimaryDeptErrorMessage" runat="server" EnableViewState="false" ForeColor="red" Text=""></asp:Label>
                 </ContentTemplate>
                 </Ajax:UpdatePanel>
                 

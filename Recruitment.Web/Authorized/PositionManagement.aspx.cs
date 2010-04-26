@@ -36,14 +36,14 @@ namespace CAESDO.Recruitment.Web
             }
         }
 
-        public IList<CAESDO.Recruitment.Core.Domain.Unit> DepartmentList
+        public IList<Department> DepartmentList
         {
             get
             {
                 if (Session[STR_DepartmentList] == null)
-                    return new List<CAESDO.Recruitment.Core.Domain.Unit>();
+                    return new List<Department>();
                 else
-                    return Session[STR_DepartmentList] as IList<CAESDO.Recruitment.Core.Domain.Unit>;
+                    return Session[STR_DepartmentList] as IList<Department>;
             }
             set
             {
@@ -88,7 +88,7 @@ namespace CAESDO.Recruitment.Web
         {
             if (!IsPostBack)
             {
-                DepartmentList = new List<CAESDO.Recruitment.Core.Domain.Unit>();
+                DepartmentList = new List<Department>();
                 
                 if (currentPositionID.HasValue)
                     DataBindExistingPosition();
@@ -117,6 +117,12 @@ namespace CAESDO.Recruitment.Web
             newPosition.HREmail = string.IsNullOrEmpty(txtHREmail.Text) ? null : txtHREmail.Text;
 
             //newPosition.Departments = DepartmentList;
+            if (!updatePrimaryDepartmentStatus())
+            {
+                lblPrimaryDeptErrorMessage.Text = "You must select exactly one primary department for this position";
+                return;
+            }            
+                
             addDepartmentsToPosition(newPosition);
 
             newPosition.ShortDescription = txtShortDescription.Text;
@@ -173,10 +179,31 @@ namespace CAESDO.Recruitment.Web
         {
             CAESDO.Recruitment.Core.Domain.Unit selectedUnit = daoFactory.GetUnitDao().GetById(dlistDepartment.SelectedValue, false);
 
-            DepartmentList.Add(selectedUnit);
+            Department associatedDepartment = new Department();
+            associatedDepartment.AssociatedPosition = currentPosition;
+            associatedDepartment.DepartmentFIS = selectedUnit.FISCode;
+            associatedDepartment.Unit = selectedUnit;
 
-            repDepartments.DataSource = DepartmentList;
-            repDepartments.DataBind();
+            if ( DepartmentList.Contains(associatedDepartment) == false )
+                DepartmentList.Add(associatedDepartment);
+
+            gviewDepartments.DataSource = DepartmentList;
+            gviewDepartments.DataBind();
+        }
+
+        protected void gviewDepartments_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            //Grab the department FIS code from the datakey
+            Department dept = new Department();
+            dept.DepartmentFIS = (string)gviewDepartments.DataKeys[e.RowIndex]["DepartmentFIS"];
+            
+            //Remove the corresponding department from the DepartmentList
+            DepartmentList.Remove(dept);
+
+            gviewDepartments.DataSource = DepartmentList;
+            gviewDepartments.DataBind();
+
+            e.Cancel = true;
         }
 
         private void DataBindExistingPosition()
@@ -202,17 +229,19 @@ namespace CAESDO.Recruitment.Web
             txtHRPhone.Text = currentPosition.HRPhone;
             txtHREmail.Text = currentPosition.HREmail;
 
-            DepartmentList = new List<CAESDO.Recruitment.Core.Domain.Unit>();
+            DepartmentList = new List<Department>();
             
             foreach (Department d in currentPosition.Departments)
             {
-                CAESDO.Recruitment.Core.Domain.Unit u = daoFactory.GetUnitDao().GetById(d.DepartmentFIS, false);
+                DepartmentList.Add(d);
+                //CAESDO.Recruitment.Core.Domain.Unit u = daoFactory.GetUnitDao().GetById(d.DepartmentFIS, false);
 
-                DepartmentList.Add(u);
+                //DepartmentList.Add(u);
             }
 
-            repDepartments.DataSource = DepartmentList;
-            repDepartments.DataBind();
+            gviewDepartments.DataSource = DepartmentList;
+            gviewDepartments.DataBind();
+            
             filePositionDescription.Visible = false;
             reqValPositionDescription.Visible = false;
 
@@ -237,6 +266,54 @@ namespace CAESDO.Recruitment.Web
         }
 
         /// <summary>
+        /// Updates the DepartmentList to have the proper Primary department status
+        /// </summary>
+        /// <returns>False if the number of primary departments checks does not exactly equal 1</returns>
+        /// <remarks>Acts on gviewDepartments</remarks>
+        private bool updatePrimaryDepartmentStatus()
+        {
+            int numPrimaryDepartmentsChecked = 0;
+            string primaryDepartmentFIS = string.Empty;
+
+            foreach (GridViewRow row in gviewDepartments.Rows)
+            {
+                //For each datarow, find the checkbox
+                if (row.RowType == DataControlRowType.DataRow)
+                {
+                    CheckBox cbox = row.FindControl("cboxPrimary") as CheckBox;
+
+                    if (cbox.Checked)
+                    {
+                        //If the checkbox is checked, increment the numPrimaryDepartmentsChecked variable and record the FIS code
+                        numPrimaryDepartmentsChecked++;
+
+                        primaryDepartmentFIS = gviewDepartments.DataKeys[row.RowIndex]["DepartmentFIS"] as string;
+                    }
+                }
+            }
+
+            //Now if numPrimaryDepartmentsChecked != 1, return false, else update the DepartmentList
+            if (numPrimaryDepartmentsChecked != 1)
+                return false;
+            else
+            {
+                //Update the department list with the chosen department
+                Department chosenDepartment = new Department();
+                chosenDepartment.DepartmentFIS = primaryDepartmentFIS;
+
+                foreach (Department d in DepartmentList)
+                {
+                    if (d.DepartmentFIS == chosenDepartment.DepartmentFIS)
+                        d.PrimaryDept = true;
+                    else
+                        d.PrimaryDept = false;
+                }
+
+                return true;
+            }
+        }
+
+        /// <summary>
         /// First removed all existing departments from 
         /// </summary>
         /// <param name="p"></param>
@@ -247,16 +324,16 @@ namespace CAESDO.Recruitment.Web
             else
                 p.Departments.Clear();
                         
-            foreach (CAESDO.Recruitment.Core.Domain.Unit u in DepartmentList)
+            foreach (Department d in DepartmentList)
             {
-                //Foreach unit, add it to the department list
-
+                //Foreach unit, add it to the department list                
                 Department dept = new Department();
                 dept.AssociatedPosition = p;    //Associate the departments with the given positiopns
-                dept.DepartmentFIS = u.FISCode;
+                dept.DepartmentFIS = d.DepartmentFIS;
+                dept.PrimaryDept = d.PrimaryDept;
 
                 p.Departments.Add(dept);
             }
         }
-    }
+}
 }
