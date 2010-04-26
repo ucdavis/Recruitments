@@ -34,6 +34,18 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _LastName; }
             set { _LastName = value; }
         }
+
+        public virtual string FullName
+        {
+            get
+            {
+                if (string.IsNullOrEmpty(MiddleName))
+                    return FirstName + " " + LastName;
+                else
+                    return FirstName + " " + MiddleName + " " + LastName;
+            }
+        }
+
         private string _AcadTitle;
 
         public virtual string AcadTitle

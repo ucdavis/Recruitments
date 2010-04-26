@@ -21,6 +21,7 @@ using System.Collections.Specialized;
 public class RecruitmentService : System.Web.Services.WebService
 {
     private const string STR_Positions = "Positions";
+    private const string STR_Applications = "Applications";
 
     public IDaoFactory daoFactory
     {
@@ -85,6 +86,28 @@ public class RecruitmentService : System.Web.Services.WebService
                 values.Add(new CascadingDropDownNameValue(BreakCamelCase(t.FileTypeName), t.ID.ToString()));
         }
 
+        return values.ToArray();
+    }
+
+    [WebMethod]
+    public CascadingDropDownNameValue[] GetReferences(string knownCategoryValues, string category)
+    {
+        StringDictionary kv = CascadingDropDown.ParseKnownCategoryValuesString(knownCategoryValues);
+        List<CascadingDropDownNameValue> values = new List<CascadingDropDownNameValue>();
+
+        int ApplicationID;
+
+        //Verify that we have a parent position and parse it to the positionID variable
+        if (!kv.ContainsKey(STR_Applications) || !int.TryParse(kv[STR_Applications], out ApplicationID))
+            return null;
+
+        Application selectedApplication = daoFactory.GetApplicationDao().GetById(ApplicationID, false);
+
+        foreach (Reference r in selectedApplication.References)
+        {
+            values.Add(new CascadingDropDownNameValue(r.FullName, r.ID.ToString()));
+        }
+        
         return values.ToArray();
     }
 
