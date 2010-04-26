@@ -31,7 +31,8 @@
             
             <asp:TemplateField HeaderText="Accept">
                 <ItemTemplate>
-                    <asp:LinkButton ID="lbtnAccept" runat="server" Text="Accept Position" CommandArgument='<%# Eval("ID") %>'></asp:LinkButton>
+                    <asp:LinkButton ID="lbtnAccept" runat="server" Text="Accept Position" CommandArgument='<%# Eval("ID") %>' OnClick="lbtnAccept_Click"></asp:LinkButton>
+                    <AjaxControlToolkit:ConfirmButtonExtender ID="confirmAccept" runat="server" ConfirmText='<%# "You are about to accept the " + Eval("PositionTitle") + " position" %>' TargetControlID="lbtnAccept"></AjaxControlToolkit:ConfirmButtonExtender>
                 </ItemTemplate>
                 <ItemStyle HorizontalAlign="Center" />
                 <HeaderStyle Width="100px" />
