@@ -87,7 +87,7 @@
         </tr>
         <tr>
             <td   align="right" style="width: 240">
-                HR Representative:</td>
+                Recruitment Representative:</td>
             <td  >
                 <asp:TextBox ID="txtHRRep" runat="server" MaxLength="100"></asp:TextBox>
                 <asp:RequiredFieldValidator id="reqValHRRep" ControlToValidate="txtHRRep" ErrorMessage="*" runat="server"/>
@@ -95,7 +95,7 @@
         </tr>
         <tr>
             <td   align="right" style="width: 240">
-                HR Phone Number:</td>
+                Recruitment Rep Phone Number:</td>
             <td  >
                 <asp:TextBox ID="txtHRPhone" runat="server" MaxLength="13"></asp:TextBox>                
                 <asp:RegularExpressionValidator ID="regValHRPhone" runat="server" ControlToValidate="txtHRPhone" ErrorMessage="*" ValidationExpression="((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}"></asp:RegularExpressionValidator>
@@ -103,7 +103,7 @@
         </tr>
         <tr>
             <td align="right" style="width: 240">
-                HR Email:
+                Recruitment Rep Email:
             </td>
             <td>
                 <asp:TextBox ID="txtHREmail" runat="server" MaxLength="100"></asp:TextBox>
