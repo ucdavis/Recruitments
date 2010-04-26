@@ -189,10 +189,10 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _UnsolicitedReference = value; }
         }
 
-        private DateTime _UnsolicitedEmailDate;
+        private DateTime? _UnsolicitedEmailDate;
 
         [IgnoreNulls]
-        public virtual DateTime UnsolicitedEmailDate
+        public virtual DateTime? UnsolicitedEmailDate
         {
             get { return _UnsolicitedEmailDate; }
             set { _UnsolicitedEmailDate = value; }
