@@ -4,7 +4,7 @@
 
     $(document).ready(function() {
         var allApplications = $("#tblApplications tbody tr");
-        
+
         //Sort table
         $("#tblApplications").tablesorter(
         {
@@ -30,7 +30,7 @@
                     $(table).trigger("update");
                     $(table).trigger("appendCache");
 
-                    if ($("#chkShowUnsubmitted").is(":checked")) { 
+                    if ($("#chkShowUnsubmitted").is(":checked")) {
                         //If the show submitted only box is checked, hide the non submitted rows
                         allApplications.not(":has(:checked)").hide(0);
                     }
@@ -52,8 +52,8 @@
                 allApplications.show(0);
             }
 
+            $("input.qs_input").keydown();
             $("#tblApplications").trigger("applyWidgets"); //Apply the zebra stripes
-            SearchTables(); //
         });
     });
         
