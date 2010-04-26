@@ -73,59 +73,59 @@ namespace CAESDO.Recruitment.Web
 
             //Survey survey = surveyDao.GetById(1, false);
 
-            if (!Page.IsPostBack)
-            {
-                app11 = null;
+            //if (!Page.IsPostBack)
+            //{
+            //    app11 = null;
 
-                Response.Write(app11.ID.ToString() + "   " + app11.SubmitDate.Value.ToShortDateString() + "<br/>");
+            //    Response.Write(app11.ID.ToString() + "   " + app11.SubmitDate.Value.ToShortDateString() + "<br/>");
 
-                //Response.Write(p.LastName);
+            //    //Response.Write(p.LastName);
 
-            }
-            else
-            {
-                Response.Write(app11.SubmitDate);
+            //}
+            //else
+            //{
+            //    Response.Write(app11.SubmitDate);
 
-                IApplicationDao aDao = daoFactory.GetApplicationDao();
+            //    IApplicationDao aDao = daoFactory.GetApplicationDao();
 
-                app11.SubmitDate = DateTime.Now.AddDays(2);
-                app11.LastUpdated = DateTime.Now;
+            //    app11.SubmitDate = DateTime.Now.AddDays(2);
+            //    app11.LastUpdated = DateTime.Now;
 
-                using (new NHibernateTransaction())
-                {
-                    aDao.SaveOrUpdate(app11);
-                }
+            //    using (new NHibernateTransaction())
+            //    {
+            //        aDao.SaveOrUpdate(app11);
+            //    }
 
-                Response.Write(app11.Education[0].Discipline);
+            //    Response.Write(app11.Education[0].Discipline);
 
-                app11.SubmitDate = DateTime.Now.AddDays(10);
+            //    app11.SubmitDate = DateTime.Now.AddDays(10);
 
-                using (new NHibernateTransaction())
-                {
-                    aDao.SaveOrUpdate(app11);
-                }
+            //    using (new NHibernateTransaction())
+            //    {
+            //        aDao.SaveOrUpdate(app11);
+            //    }
 
-                Response.Write(app11.LastUpdated.ToString());
+            //    Response.Write(app11.LastUpdated.ToString());
 
                 
-                Education edu = new Education();
-                edu.Complete = true;
-                edu.Date = DateTime.Now;
-                edu.Discipline = "TESTER";
-                edu.Institution = "TESTER";
-                edu.AssociatedApplication = app11;
+            //    Education edu = new Education();
+            //    edu.Complete = true;
+            //    edu.Date = DateTime.Now;
+            //    edu.Discipline = "TESTER";
+            //    edu.Institution = "TESTER";
+            //    edu.AssociatedApplication = app11;
 
-                using (new NHibernateTransaction())
-                {
-                    edu = daoFactory.GetEducationDao().SaveOrUpdate(edu);
-                }
+            //    using (new NHibernateTransaction())
+            //    {
+            //        edu = daoFactory.GetEducationDao().SaveOrUpdate(edu);
+            //    }
 
-                using (new NHibernateTransaction())
-                {
-                    daoFactory.GetEducationDao().Delete(edu);
-                }
+            //    using (new NHibernateTransaction())
+            //    {
+            //        daoFactory.GetEducationDao().Delete(edu);
+            //    }
 
-            }
+            //}
 
             //Response.Write(app.ID.ToString() + "  " + app.SubmitDate.ToShortDateString() + "<br/>");
             //Response.Write(app.References[0].City);

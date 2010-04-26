@@ -22,15 +22,33 @@
             <table cellpadding="5" cellspacing="0" style="width:100%;">
                 <tr>
                     <td style="padding-left:20px;">Home</td>
-                    <td style="width:250px; text-align: right;">
-                    | <asp:Panel ID="pnlUserName" runat="server" style="display:inline;">&nbsp;&nbsp;&nbsp; Welcome Iglasias, Enrique! <asp:Image ID="imgDownArrow" runat="server" AlternateText="down arrow" ImageUrl="~/Images/downarrow.gif" /></asp:Panel> 
-                        <AjaxControlToolkit:DropDownExtender ID="ddUserName" TargetControlID="pnlUserName" DropDownControlID="pnlUserNameDropOptions" runat="server" HighlightBackColor="#eeeeee">
-                        </AjaxControlToolkit:DropDownExtender>
-                        <asp:Panel ID="pnlUserNameDropOptions" runat="server" CssClass="ContextMenuPanel" Style="display:none;visibility:hidden;">
-                            <asp:LinkButton runat="server" ID="Option1" Text="Option 1" CssClass="ContextMenuItem" />
-                            <asp:LinkButton runat="server" ID="Option2" Text="Option 2" CssClass="ContextMenuItem" />
-                            <asp:LinkButton runat="server" ID="Option3" Text="Option 3 (Click Me!)" CssClass="ContextMenuItem" />
-                        </asp:Panel>
+                    <td style="text-align: right;">
+                        |<asp:LoginView ID="LoginView1" runat="server">
+                            <AnonymousTemplate>
+                                <asp:Panel ID="pnlUserName" runat="server" style="display:inline;">&nbsp;&nbsp;&nbsp; Welcome: Click To View Login Options
+                                    <asp:Image ID="imgDownArrow" runat="server" AlternateText="down arrow" ImageUrl="~/Images/downarrow.gif" />
+                                </asp:Panel> 
+                                <AjaxControlToolkit:DropDownExtender ID="ddUserName" TargetControlID="pnlUserName" DropDownControlID="pnlUserNameDropOptions" runat="server" HighlightBackColor="#eeeeee">
+                                </AjaxControlToolkit:DropDownExtender>
+                                <asp:Panel ID="pnlUserNameDropOptions" runat="server" CssClass="ContextMenuPanel" Style="display:none;visibility:hidden;">
+                                    <asp:LinkButton runat="server" ID="Option1" Text="Option 1" CssClass="ContextMenuItem" />
+                                    <asp:LinkButton runat="server" ID="Option2" Text="Option 2" CssClass="ContextMenuItem" />
+                                    <asp:LinkButton runat="server" ID="Option3" Text="Option 3 (Click Me!)" CssClass="ContextMenuItem" />
+                                </asp:Panel>
+                            </AnonymousTemplate>
+                            <LoggedInTemplate>
+                                <asp:Panel ID="pnlUserName" runat="server" style="display:inline;">&nbsp;&nbsp;&nbsp; Welcome Iglasias, Enrique! 
+                                    <asp:Image ID="imgDownArrow" runat="server" AlternateText="down arrow" ImageUrl="~/Images/downarrow.gif" />
+                                </asp:Panel> 
+                                <AjaxControlToolkit:DropDownExtender ID="ddUserName" TargetControlID="pnlUserName" DropDownControlID="pnlUserNameDropOptions" runat="server" HighlightBackColor="#eeeeee">
+                                </AjaxControlToolkit:DropDownExtender>
+                                <asp:Panel ID="pnlUserNameDropOptions" runat="server" CssClass="ContextMenuPanel" Style="display:none;visibility:hidden;">
+                                    <asp:LinkButton runat="server" ID="lbtnLogout" Text="Logout" CssClass="ContextMenuItem" OnClick="lbtnLogout_Click" />
+                                    <asp:LinkButton runat="server" ID="Option2" Text="Option 2" CssClass="ContextMenuItem" />
+                                    <asp:LinkButton runat="server" ID="Option3" Text="Option 3 (Click Me!)" CssClass="ContextMenuItem" />
+                                </asp:Panel>
+                            </LoggedInTemplate>
+                         </asp:LoginView>
                     </td>
                 </tr>
             </table>

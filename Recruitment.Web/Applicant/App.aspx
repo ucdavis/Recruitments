@@ -4,7 +4,7 @@
     <br />
     <br />
 
-<asp:MultiView ID="mvApplicationSteps" runat="server">
+<asp:MultiView ID="mvApplicationSteps" runat="server" ActiveViewIndex="0">
     <asp:View ID="vView1" runat="server">
         <asp:GridView ID="GViewUsers" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" DataSourceID="ObjectDataSource1" AutoGenerateColumns="False">
             <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />

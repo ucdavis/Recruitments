@@ -1,18 +1,12 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true"  CodeFile="Default.aspx.cs" Inherits="CAESDO.Recruitment.Web._Default" Trace="true" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true"  CodeFile="Default.aspx.cs" Inherits="CAESDO.Recruitment.Web._Default" Trace="true" MasterPageFile="~/MasterPage.master" Title="Recruitments" %>
 
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<asp:Content ContentPlaceHolderID="contentPlaceHolder1" runat="server">
 
-<html xmlns="http://www.w3.org/1999/xhtml" >
-<head runat="server">
-    <title>Recruitments</title>
-     <link rel="stylesheet" href="fracstyle.css" type="text/css" />
-</head>
-<body>
-    <form id="form1" runat="server">
-    <div>
-        <br /><br />
-        <asp:Button ID="Button1" runat="server" Text="Refresh" />        
-    </div>
-    </form>
-</body>
-</html>
+    <asp:HyperLink ID="HyperLink1" runat="server" NavigateUrl="~/viewPositions.aspx">viewPositions</asp:HyperLink>
+    <br /><br />
+    <asp:HyperLink ID="HyperLink2" runat="server" NavigateUrl="~/Authorized/UserManagement.aspx">UserManagement</asp:HyperLink>
+    <br /><br />
+    <asp:HyperLink ID="HyperLink3" runat="server" NavigateUrl="~/Applicant/App.aspx">App (Applicant Tester)</asp:HyperLink>
+    <br /><br />
+
+</asp:Content>

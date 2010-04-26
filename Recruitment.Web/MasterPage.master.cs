@@ -15,4 +15,11 @@ public partial class MasterPage : System.Web.UI.MasterPage
     {
 
     }
+
+    protected void lbtnLogout_Click(object sender, EventArgs e)
+    {
+        FormsAuthentication.SignOut();
+
+        Response.Redirect(Request.Url.AbsolutePath);
+    }
 }
