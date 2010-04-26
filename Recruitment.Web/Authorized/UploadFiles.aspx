@@ -45,7 +45,7 @@
     
     <AjaxControlToolkit:CascadingDropDown ID="cascadeFileTypes" runat="server" TargetControlID="dlistFileTypes"
                                              Category="FileTypes" PromptText="Select a File Type" ServicePath="RecruitmentService.asmx"
-                                             ParentControlID="dlistApplications" ServiceMethod="GetFileTypes">
+                                             ParentControlID="dlistApplications" ServiceMethod="GetFileTypesNoLettersOfRec">
     </AjaxControlToolkit:CascadingDropDown>
     
 </asp:Content>

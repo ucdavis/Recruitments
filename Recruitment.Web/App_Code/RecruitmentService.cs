@@ -73,7 +73,7 @@ public class RecruitmentService : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public CascadingDropDownNameValue[] GetFileTypes(string knownCategoryValues, string category)
+    public CascadingDropDownNameValue[] GetFileTypesNoLettersOfRec(string knownCategoryValues, string category)
     {
         List<CascadingDropDownNameValue> values = new List<CascadingDropDownNameValue>();
 
@@ -81,7 +81,8 @@ public class RecruitmentService : System.Web.Services.WebService
 
         foreach (FileType t in fileTypes)
         {
-            values.Add(new CascadingDropDownNameValue(BreakCamelCase(t.FileTypeName), t.ID.ToString()));
+            if (t.FileTypeName != "LetterOfRec")
+                values.Add(new CascadingDropDownNameValue(BreakCamelCase(t.FileTypeName), t.ID.ToString()));
         }
 
         return values.ToArray();
