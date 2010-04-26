@@ -85,7 +85,7 @@
                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                 <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                 <EditRowStyle BackColor="#999999" />
-                <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+                <SelectedRowStyle Font-Bold="True" ForeColor="#333333" />
                 <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
                 <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 <Columns>
@@ -106,63 +106,67 @@
 
         <Ajax:UpdatePanel ID="updateUserInfo" runat="server" UpdateMode="conditional">
         <ContentTemplate>
-            <asp:Button ID="btnHiddenSelectUser" runat="server" style="display:none; visibility:hidden;" />
+            <asp:Button ID="btnHiddenSelectUser" runat="server" style="display:none; visibility:hidden;" />       
             <asp:Panel ID="pnlUserInfo" runat="server" style="display:none" CssClass="modalPopup">
-            
-            User Information For <asp:Label ID="lblUserInfoName" runat="server" Text=""></asp:Label>
+            <span class="modalTitle">User Information for <asp:Label ID="lblUserInfoName" runat="server" Text="" ></asp:Label></span>
+            <div style="height:410px; width: 500px; overflow:auto; padding: 20px;">  
+            <span style="font-weight:bold;">LoginID:</span> <asp:Label ID="lblUserInfoLoginID" runat="server" Text=""></asp:Label>
+            <br />
+            <span style="font-weight:bold;">EmployeeID:</span> <asp:Label ID="lblUserInfoEmployeeID" runat="server" Text=""></asp:Label>
             <br /><br />
-            LoginID: <asp:Label ID="lblUserInfoLoginID" runat="server" Text=""></asp:Label>
-            <br />
-            EmployeeID: <asp:Label ID="lblUserInfoEmployeeID" runat="server" Text=""></asp:Label>
-            <br />
-                Units:<br />
-                <asp:GridView ID="gViewUserUnits" runat="server" DataKeyNames="UnitID" CellPadding="4" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" OnRowDeleting="gViewUserUnits_RowDeleting">
+                <asp:GridView ID="gViewUserUnits" SkinID="gridViewUserManagement" runat="server" DataKeyNames="UnitID" CellPadding="4" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" OnRowDeleting="gViewUserUnits_RowDeleting">
                     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                     <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                     <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
                     <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-                    <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
                     <EditRowStyle BackColor="#999999" />
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
-                        <asp:BoundField DataField="FullName" HeaderText="Name"  />
-                        <asp:BoundField DataField="FISCode" HeaderText="FISCode" />
-                        <asp:CommandField DeleteText="Remove" ShowDeleteButton="True" />
+                        <asp:BoundField DataField="FullName" HeaderText="Name:"  />
+                        <asp:BoundField DataField="FISCode" HeaderText="FISCode:" />
+                        <asp:CommandField DeleteText="" ShowDeleteButton="True" ButtonType="Image" DeleteImageUrl="~/Images/delete.gif" HeaderText="Remove:" >
+                            <HeaderStyle HorizontalAlign="Center" Width="80px" />
+                            <ItemStyle HorizontalAlign="Center" />
+                        </asp:CommandField>
                     </Columns>  
                 </asp:GridView>
                 <br />
-                <asp:LinkButton ID="btnUserInfoAddUnit" runat="server" OnClick="btnUserInfoAddUnit_Click">Add Unit: </asp:LinkButton>
                 <asp:DropDownList ID="dlistUnits" runat="server" DataTextField="Unit" DataValueField="UnitID" DataSourceID="ObjectDataUnits"></asp:DropDownList><asp:ObjectDataSource ID="ObjectDataUnits" runat="server" OldValuesParameterFormatString="original_{0}"
                     SelectMethod="GetUnits" TypeName="CAESDO.Recruitment.CatbertManager"></asp:ObjectDataSource>
+                <asp:Button ID="btnUserInfoAddUnit" runat="server" OnClick="btnUserInfoAddUnit_Click" Text="Add Unit"></asp:Button>
+                <br /><br />
                 <br />
-                Roles:
-                <br />
-                <asp:GridView ID="gViewUserRoles" runat="server" AutoGenerateColumns="False" CellPadding="4"
+                <asp:GridView ID="gViewUserRoles" SkinID="gridViewUserManagement" runat="server" AutoGenerateColumns="False" CellPadding="4"
                     DataKeyNames="RoleID" ForeColor="#333333" GridLines="None" OnRowDeleting="gViewUserRoles_RowDeleting">
                     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                     <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                     <Columns>
-                        <asp:BoundField DataField="Role" HeaderText="Role" />
-                        <asp:CommandField DeleteText="Remove" ShowDeleteButton="True" />
+                        <asp:BoundField DataField="Role" HeaderText="Role:" />
+                        <asp:CommandField DeleteText="Remove" ShowDeleteButton="True" ButtonType="Image" DeleteImageUrl="~/Images/delete.gif" HeaderText="Remove:" >
+                            <HeaderStyle HorizontalAlign="Center" Width="80px" />
+                            <ItemStyle HorizontalAlign="Center" />
+                        </asp:CommandField>
                     </Columns>
                     <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
                     <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-                    <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+                    <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" HorizontalAlign="Left" />
                     <EditRowStyle BackColor="#999999" />
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 </asp:GridView>
                 <br />
-                <asp:LinkButton ID="btnUserInfoAddRole" runat="server" OnClick="btnUserInfoAddRole_Click">Add Role</asp:LinkButton>
                 <asp:DropDownList ID="dlistRoles" runat="server" DataSourceID="ObjectDataRoles" DataTextField="Role"
                     DataValueField="RoleID">
                 </asp:DropDownList><asp:ObjectDataSource ID="ObjectDataRoles" runat="server" OldValuesParameterFormatString="original_{0}"
                     SelectMethod="GetRoles" TypeName="CAESDO.Recruitment.CatbertManager"></asp:ObjectDataSource>
+                <asp:Button ID="btnUserInfoAddRole" runat="server" OnClick="btnUserInfoAddRole_Click" Text="Add Role"></asp:Button>
                 
                 <br /><br />
-            <asp:Button ID="btnSaveUserInfo" runat="server" Text="Save" />
-            <asp:Button ID="btnCancelUserInfo" runat="server" Text="Cancel" />
-            
+            <div style="text-align:right"><asp:Button ID="btnSaveUserInfo" runat="server" Text="Save" />
+            <asp:Button ID="btnCancelUserInfo" runat="server" Text="Cancel" /></div>
+            </div>
             </asp:Panel>
+            
             <AjaxControlToolkit:ModalPopupExtender ID="mpopupUserInfo" runat="server" BackgroundCssClass="modalBackground" 
                     PopupControlID="pnlUserInfo" TargetControlID="btnHiddenSelectUser" CancelControlID="btnCancelUserInfo">
             </AjaxControlToolkit:ModalPopupExtender>

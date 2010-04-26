@@ -56,6 +56,13 @@ html, #aspnetForm
 	background-image: url(Images/gridViewBg.gif);
 	background-repeat: repeat-x;
 }
+
+.solidHeaderSmall
+{
+	background-image: url(Images/gridViewBgSmall.gif);
+	background-repeat: repeat-x;
+}
+
 .headingBlue
 {
 	color:#0b65c5;
@@ -189,7 +196,6 @@ a:active { color:#a50000; }
 {
 	padding-left:10px;
 }
-
 
 /* Adds shadow to bottom of content page*/
 #shadowBottom 
