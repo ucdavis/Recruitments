@@ -13,6 +13,12 @@ namespace CAESDO.Recruitment.Data
     public class NHibernateDaoFactory : IDaoFactory
     {
         #region Dao Retrieval Operations
+
+        public IGenericDao<T, IdT> GetGenericDao<T, IdT>()
+        {
+            return new GenericDao<T, IdT>();
+        }
+
         public IApplicationDao GetApplicationDao()
         {
             return new ApplicationDao();
@@ -131,6 +137,8 @@ namespace CAESDO.Recruitment.Data
         #endregion
 
         #region Inline DAO implementations
+
+        public class GenericDao<T, IdT> : AbstractNHibernateDao<T, IdT>, IGenericDao<T, IdT> { }
 
         /// <summary>
         /// Concrete DAO for accessing instances of <see cref="Customer" /> from DB.

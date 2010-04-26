@@ -8,6 +8,7 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
     /// </summary>
     public interface IDaoFactory 
     {
+        IGenericDao<T, IdT> GetGenericDao<T, IdT>();
         IApplicationDao GetApplicationDao();
         IPositionDao GetPositionDao();
         IApplicantDao GetApplicantDao();
@@ -36,6 +37,8 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
     // There's no need to declare each of the DAO interfaces in its own file, so just add them inline here.
     // But you're certainly welcome to put each declaration into its own file.
     #region Inline interface declarations
+
+    public interface IGenericDao<T, IdT> : IDao<T, IdT> { }
 
     public interface IPositionDao : IDao<Position, int> {
         List<Position> GetAllPositionsByStatus(bool Closed, bool AdminAccepted);
