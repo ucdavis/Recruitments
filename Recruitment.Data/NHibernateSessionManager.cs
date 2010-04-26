@@ -148,6 +148,16 @@ namespace CAESDO.Recruitment.Data
         }
 
         /// <summary>
+        /// Make sure the object given is connected to the current session
+        /// </summary>
+        /// <param name="o">Mapped Object</param>
+        public void EnsureFreshness(object o)
+        {
+            if (GetSession().Contains(o) == false) //check is the current session contains the desired object
+                GetSession().Refresh(o);
+        }
+
+        /// <summary>
         /// If within a web context, this uses <see cref="HttpContext" /> instead of the WinForms 
         /// specific <see cref="CallContext" />.  Discussion concerning this found at 
         /// http://forum.springframework.net/showthread.php?t=572.

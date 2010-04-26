@@ -38,7 +38,7 @@ namespace CAESDO.Recruitment.Web
             get { return new NHibernateDaoFactory(); }
         }
 
-        ErrorReporting eReport = new ErrorReporting(WebConfigurationManager.AppSettings["AppName"]);
+        //ErrorReporting eReport = new ErrorReporting(WebConfigurationManager.AppSettings["AppName"]);
 
         public ApplicationPage()
         {

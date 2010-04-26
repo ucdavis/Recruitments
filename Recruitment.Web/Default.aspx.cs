@@ -26,6 +26,8 @@ namespace CAESDO.Recruitment.Web
                     Session["APP"] = appDao.GetById(11, false);
                 }
 
+                NHibernateSessionManager.Instance.EnsureFreshness((Application)Session["APP"]);
+
                 return (Application)Session["APP"];
             }
 
@@ -70,37 +72,38 @@ namespace CAESDO.Recruitment.Web
             //ISurveyDao surveyDao = daoFactory.GetSurveyDao();
 
             //Survey survey = surveyDao.GetById(1, false);
-            
-            //if (!Page.IsPostBack)
-            //{
-            //    app11 = null;
 
-            //    Response.Write(app11.ID.ToString() + "   " + app11.SubmitDate.Value.ToShortDateString() + "<br/>");
-            //}
-            //else
-            //{
-            //    Response.Write(app11.SubmitDate);
+            if (!Page.IsPostBack)
+            {
+                app11 = null;
 
-            //    app11.SubmitDate = DateTime.Now;
+                Response.Write(app11.ID.ToString() + "   " + app11.SubmitDate.Value.ToShortDateString() + "<br/>");
+            }
+            else
+            {
+                Response.Write(app11.SubmitDate);
 
-            //    IApplicationDao aDao = daoFactory.GetApplicationDao();
+                IApplicationDao aDao = daoFactory.GetApplicationDao();
 
-            //    using (new NHibernateTransaction())
-            //    {
-            //        aDao.SaveOrUpdate(app11);
-            //    }
+                app11.SubmitDate = DateTime.Now.AddDays(2);
+                app11.LastUpdated = DateTime.Now;
 
-            //    Response.Write(app11.Education[0].Discipline);
+                using (new NHibernateTransaction())
+                {
+                    aDao.SaveOrUpdate(app11);
+                }
 
-            //    app11.SubmitDate = DateTime.Now.AddDays(10);
+                Response.Write(app11.Education[0].Discipline);
 
-            //    using (new NHibernateTransaction())
-            //    {
-            //        aDao.SaveOrUpdate(app11);
-            //    }
+                app11.SubmitDate = DateTime.Now.AddDays(10);
 
-            //    Response.Write(app11.LastUpdated.ToShortDateString());
-            //}
+                using (new NHibernateTransaction())
+                {
+                    aDao.SaveOrUpdate(app11);
+                }
+
+                Response.Write(app11.LastUpdated.ToShortDateString());
+            }
 
             //Response.Write(app.ID.ToString() + "  " + app.SubmitDate.ToShortDateString() + "<br/>");
             //Response.Write(app.References[0].City);
@@ -121,9 +124,9 @@ namespace CAESDO.Recruitment.Web
 
             //User user = uDao.GetById(1, false);
 
-            IPositionDao pDao = daoFactory.GetPositionDao();
+            //IPositionDao pDao = daoFactory.GetPositionDao();
 
-            List<Position> pList = pDao.GetAllPositionsByStatus(true, true);
+            //List<Position> pList = pDao.GetAllPositionsByStatus(true, true);
             
         }
     }
