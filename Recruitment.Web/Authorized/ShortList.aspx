@@ -1,10 +1,6 @@
 <%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ShortList.aspx.cs" Inherits="CAESDO.Recruitment.Web.Authorized_ShortList" Title="Short List" Theme="MainTheme" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
-<%--//TODO: Add drop down list that contains all positions with applications
-
-//TODO: Add GridView with all applicants for the chosen position.  Make the applicant's name link back to their application
-//      by using the ApplicationReview.aspx page (use datakeys to keep the applicationID around).--%>
     <asp:DropDownList ID="dlistPositions" runat="server" AutoPostBack="True" DataSourceID="ObjectDataPositions" DataTextField="TitleAndApplicationCount" DataValueField="ID" OnSelectedIndexChanged="dlistPositions_SelectedIndexChanged" AppendDataBoundItems="true">
         <asp:ListItem Selected="True" Value="0">Select a Position</asp:ListItem>
     </asp:DropDownList>
@@ -45,9 +41,16 @@
             <asp:Parameter Name="position" Type="Object" />
         </SelectParameters>
     </asp:ObjectDataSource>
-
+    
     <br /><br />
+    <asp:Label ID="lblResult" runat="server" EnableViewState="false"></asp:Label><br /><br />
+    
     <asp:Button ID="btnUpdateShortList" runat="server" Text="Update Short List" Visible="false" OnClick="btnUpdateShortList_Click" />
-
+    <asp:Button ID="btnEmailReferences" runat="server" Text="Email References" Visible="false" OnClick="btnEmailReferences_Click" />
+    
+    <AjaxControlToolkit:ConfirmButtonExtender ID="confirmEmailReferences" runat="server" 
+            ConfirmText="You are about to email all references for the Short Listed applicants" 
+            TargetControlID="btnEmailReferences">
+    </AjaxControlToolkit:ConfirmButtonExtender>
 </asp:Content>
 

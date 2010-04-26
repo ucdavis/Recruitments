@@ -27,6 +27,7 @@
     <property name="Phone" column="Phone" />
     <property name="Email" column="Email" />
 
+    <property name="SentEmail" column="SentEmail" />
     <property name="Complete" column="Complete" />
 
     <many-to-one name="AssociatedApplication" class="CAESDO.Recruitment.Core.Domain.Application, CAESDO.Recruitment.Core" column="ApplicationID" not-null="true" />

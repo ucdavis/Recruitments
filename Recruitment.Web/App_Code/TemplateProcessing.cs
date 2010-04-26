@@ -44,6 +44,9 @@ namespace CAESDO.Recruitment
         private string HandleBody(string body)
         {
             StringBuilder sb = new StringBuilder();
+
+            sb.Append("<html><body>");
+            
             string parameter;
 
             int begindex = body.IndexOf("{"); // Find the beginning of a replacement string
@@ -64,6 +67,7 @@ namespace CAESDO.Recruitment
             }
 
             sb.Append(body);
+            sb.Append("</body></html>");
 
             return sb.ToString();
         }
@@ -81,23 +85,36 @@ namespace CAESDO.Recruitment
             switch (parameter)
             {
                 case "ReferenceName" :
-                    if (this._reference.MiddleName.ToString() != "") // If the field is null, the ToString() will make it a blank string.
-                        return this._reference.FirstName + " " + this._reference.MiddleName + " " + this._reference.LastName;
-                    else
-                        return this._reference.FirstName + " " + this._reference.LastName;
+                    return this._reference.FullName;
+                    //if (this._reference.MiddleName.ToString() != "") // If the field is null, the ToString() will make it a blank string.
+                    //    return this._reference.FirstName + " " + this._reference.MiddleName + " " + this._reference.LastName;
+                    //else
+                    //    return this._reference.FirstName + " " + this._reference.LastName;
+                    break;
                 case "ReferenceTitle" :
                     return this._reference.Title;
+                    break;
                 case "ApplicantName" :
                     if (this._application.AssociatedProfile.MiddleName.ToString() != "") // If the field is null, the ToString() will make it a blank string.
                         return this._application.AssociatedProfile.FirstName + " " + this._application.AssociatedProfile.MiddleName + " " + this._application.AssociatedProfile.LastName;
                     else
                         return this._application.AssociatedProfile.FirstName + " " + this._application.AssociatedProfile.LastName;
+                    break;
                 case "PositionContact" :
                     return this._application.AppliedPosition.HRRep;
+                    break;
                 case "PositionContactEmail" :
                     return this._application.AppliedPosition.HREmail;
+                    break;
                 case "PositionContactPhone" :
                     return this._application.AppliedPosition.HRPhone;
+                    break;
+                case "Deadline":
+                    return this._application.AppliedPosition.Deadline.ToLongDateString();
+                    break;
+                case "PositionTitle":
+                    return this._application.AppliedPosition.PositionTitle;
+                    break;
                 case "Date":
                     StringBuilder date = new StringBuilder();
                     DateTime dateTime = DateTime.Now;
@@ -109,7 +126,10 @@ namespace CAESDO.Recruitment
                     date.Append(", " + dateTime.Year);
 
                     return date.ToString();
-                default: break;
+                    break;
+                default:
+                    //return string.Empty;
+                    break;
             }
 #if DEBUG
             return "Error";

@@ -11,7 +11,8 @@
     <asp:ImageButton ID="ibUploadFiles" runat="server" ImageUrl="~/Images/def_upload.jpg"
         PostBackUrl="~/Authorized/UploadFiles.aspx" /><br />
     <a href="ApplicationReview.aspx?ApplicationID=11">Review Application 11</a><br /><br />
-
+    <a href="ShortList.aspx">Short List</a><br /><br />
+    
 </div>
    
     

@@ -164,6 +164,15 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _Email = value; }
         }
 
+        private bool _SentEmail;
+
+        [NotNullValidator]
+        public virtual bool SentEmail
+        {
+            get { return _SentEmail; }
+            set { _SentEmail = value; }
+        }
+
         private Application _AssociatedApplication;
 
         public virtual Application AssociatedApplication
