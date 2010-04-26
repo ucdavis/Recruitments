@@ -148,7 +148,15 @@ namespace CAESDO.Recruitment.Data
 
         public class ApplicationDao : AbstractNHibernateDao<Application, int>, IApplicationDao { }
 
-        public class ApplicantDao : AbstractNHibernateDao<Applicant, int>, IApplicantDao { }
+        public class ApplicantDao : AbstractNHibernateDao<Applicant, int>, IApplicantDao {
+            public Applicant GetApplicantByEmail(string email)
+            {
+                ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(Applicant))
+                    .Add(Expression.Eq("Email", email));
+
+                return criteria.UniqueResult<Applicant>();
+            }
+        }
 
         public class ProfileDao : AbstractNHibernateDao<Profile, int>, IProfileDao { }
 

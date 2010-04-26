@@ -172,5 +172,43 @@ namespace CAESDO.Recruitment.Core.Domain
             return true;
         }
 
+        public virtual bool isComplete(ApplicationStepType step)
+        {
+            switch (step)
+            {
+                case ApplicationStepType.CurrentPosition:
+                    foreach (CurrentPosition p in CurrentPositions)
+                    {
+                        if (p.isComplete() == false)
+                            return false;
+                    }
+                    break;
+                case ApplicationStepType.Education:
+                    foreach (Education edu in Education)
+                    {
+                        if (edu.isComplete() == false)
+                            return false;
+                    }
+                    break;
+                case ApplicationStepType.Survey:
+                    foreach (Survey s in Surveys)
+                    {
+                        if (s.isComplete() == false)
+                            return false;
+                    }
+                    break;
+                case ApplicationStepType.References:
+                    foreach (Reference r in References)
+                    {
+                        if (r.isComplete() == false)
+                            return false;
+                    }
+                    break;
+                default:
+                    return false;
+            }
+
+            return true;
+        }
     }
 }

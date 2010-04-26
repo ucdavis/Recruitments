@@ -9,10 +9,11 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Data.SqlClient;
+using CAESDO.Recruitment.Core.Domain;
 
 namespace CAESDO.Recruitment.Web
 {
-    public partial class CreateUser : System.Web.UI.Page
+    public partial class CreateUser : ApplicationPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -40,6 +41,9 @@ namespace CAESDO.Recruitment.Web
                         e.Cancel = true;
                         break;
                     case MembershipCreateStatus.Success:
+                        createProfileForUser(Email.Text);
+                        FormsAuthentication.RedirectFromLoginPage(Email.Text, false);
+                        Response.Redirect(FormsAuthentication.DefaultUrl);
                         break;
                     default:
                         ErrorMessage.Text = "Your account was not created. Please try again.";
@@ -47,6 +51,31 @@ namespace CAESDO.Recruitment.Web
                         break;
                 }
             }
+        }
+
+        private void createProfileForUser(string email)
+        {
+            Applicant newUser = daoFactory.GetApplicantDao().GetApplicantByEmail(email);
+
+            if (newUser == null)
+            {
+                Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.AUTH));
+                return;
+            }
+
+            //Create a blank profile for the logged in user
+            Profile blankProfile = new Profile();
+            blankProfile.AssociatedApplicant = newUser;
+
+            blankProfile.FirstName = string.Empty;
+            blankProfile.LastName = string.Empty;
+            blankProfile.Address1 = string.Empty;
+            blankProfile.City = string.Empty;
+            blankProfile.State = string.Empty;
+            
+            blankProfile.LastUpdated = null;
+
+            daoFactory.GetProfileDao().Save(blankProfile);
         }
 }
 

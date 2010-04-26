@@ -41,7 +41,9 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
 
     public interface IApplicationDao : IDao<Application, int> { }
 
-    public interface IApplicantDao : IDao<Applicant, int> { }
+    public interface IApplicantDao : IDao<Applicant, int> {
+        Applicant GetApplicantByEmail(string email);
+    }
 
     public interface IProfileDao : IDao<Profile, int> { }
 
