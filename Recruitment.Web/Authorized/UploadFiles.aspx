@@ -1,13 +1,15 @@
 <%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" EnableEventValidation="false" CodeFile="UploadFiles.aspx.cs" Inherits="CAESDO.Recruitment.Web.Authorized_UploadFiles" Title="Upload Files" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
-    Upload:
+    <span class="boxTitle" >Upload:</span>
+    <div class="box" style="width: 600px;"><br />
     <asp:RadioButtonList ID="rlistUploadType" runat="server" AutoPostBack="True" OnSelectedIndexChanged="rlistUploadType_SelectedIndexChanged">
         <asp:ListItem Selected="True" Value="0">References</asp:ListItem>
         <asp:ListItem Value="1">Other Files</asp:ListItem>
     </asp:RadioButtonList><br />
 
     Position: <asp:DropDownList ID="dlistPositions" runat="server"></asp:DropDownList>
+        <br />
     <br />
     Application: <asp:DropDownList ID="dlistApplications" runat="server"></asp:DropDownList>
     <br />
@@ -21,6 +23,7 @@
                                             Category="Applications" PromptText="Select an Application" ServicePath="RecruitmentService.asmx" 
                                             ParentControlID="dlistPositions" ServiceMethod="GetApplications">
     </AjaxControlToolkit:CascadingDropDown>
+        <br />
                     
     <asp:MultiView ID="mViewFileType" runat="server" ActiveViewIndex="0">
         
@@ -52,7 +55,7 @@
         </asp:View>
     </asp:MultiView>
 
-    <table class="box" style="width:500px;" cellpadding="5">
+    <table style="width:540px; background-color:#fff; border: 1px solid #a7a7a7; margin-left: 10px; padding-left: 20px; padding-right: 20px;" cellpadding="5">
                 <tr>
                     <td colspan="2"><br />
                         <asp:Label ID="lblStatus" runat="server" EnableViewState="False" ForeColor="Green"></asp:Label></td>
@@ -72,9 +75,10 @@
                     </td>
                     <td align="right"  >
                         <br />
-                        <asp:Button ID="btnfileUpload" runat="server" Text="Upload" OnClick="btnfileUpload_Click" /></td>
+                        <asp:Button ID="btnfileUpload" runat="server" Text="Upload" OnClick="btnfileUpload_Click" /><br /><br /></td>
                 </tr>
-    </table>    
-        
+    </table>
+    <br /><br />    
+     </div>
 </asp:Content>
 
