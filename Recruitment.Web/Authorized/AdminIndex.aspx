@@ -12,6 +12,8 @@
     <asp:ImageButton ID="ibCommitteeManagement" runat="server" ImageUrl="~/Images/def_commanage.jpg" PostBackUrl="~/Authorized/committeeManagement.aspx?type=committee" />
     <asp:ImageButton ID="ibReports" runat="server" ImageUrl="~/Images/def_reports.jpg" PostBackUrl="~/Authorized/reports.aspx" />
     <asp:ImageButton ID="ibUploadFiles" runat="server" ImageUrl="~/Images/def_upload.jpg" PostBackUrl="~/Authorized/UploadFiles.aspx" /><br />
+    <br />
+    <a href="viewPositionsClosed.aspx">View Closed Positions</a>     <br /><br />
    
     <a href="ApplicationReview.aspx?ApplicationID=11">Review Application 11</a><br /><br />
 

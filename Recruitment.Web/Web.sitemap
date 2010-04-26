@@ -12,6 +12,7 @@
 
       <siteMapNode url="Authorized/AdminIndex.aspx" title="Administration">
         <siteMapNode url="Authorized/viewPositionsPending.aspx" title="View Pending Positions" />
+        <siteMapNode url="Authorized/viewPositionsClosed.aspx" title="View Closed Positions" />
         <siteMapNode url="Authorized/PositionManagement.aspx" title="Add/Modify Position" />
         <siteMapNode url="Authorized/UserManagement.aspx" title="User Management" />
         <siteMapNode url="Authorized/CommitteeManagement.aspx" title="Committee Management" />
