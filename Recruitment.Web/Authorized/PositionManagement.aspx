@@ -78,7 +78,7 @@
             <td  >
                 <Ajax:UpdatePanel ID="updateDepartments" runat="server" UpdateMode="Conditional">
                 <ContentTemplate>
-                    <asp:DropDownList ID="dlistDepartment" runat="server" DataSourceID="ObjectDataUnits" DataTextField="ShortName" DataValueField="FISCode" meta:resourcekey="dlistDepartmentResource1"></asp:DropDownList>
+                    <asp:DropDownList ID="dlistDepartment" runat="server" DataSourceID="ObjectDataUnits" DataTextField="ShortName" DataValueField="id" meta:resourcekey="dlistDepartmentResource1"></asp:DropDownList>
                     <asp:LinkButton ID="lbtnAddDepartment" runat="server" Text="Add Department" CausesValidation="False" OnClick="lbtnAddDepartment_Click" meta:resourcekey="lbtnAddDepartmentResource1"></asp:LinkButton>
                     <br />
                     <br />

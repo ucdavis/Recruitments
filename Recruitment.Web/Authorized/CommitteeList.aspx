@@ -66,7 +66,7 @@
     </script>
    
     Department: <asp:DropDownList ID="dlistDepartment" runat="server" AppendDataBoundItems="true" AutoPostBack="true" 
-            DataTextField="ShortName" DataValueField="FISCode" OnSelectedIndexChanged="dlistDepartment_SelectedIndexChanged">
+            DataTextField="ShortName" DataValueField="id" OnSelectedIndexChanged="dlistDepartment_SelectedIndexChanged">
         <asp:ListItem Value="0">Select A Department</asp:ListItem>
     </asp:DropDownList><br /><br />
     

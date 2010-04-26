@@ -182,7 +182,7 @@ namespace CAESDO.Recruitment.Data
                     criteria.Add(Expression.Eq("AllowApps", AllowApplications.Value));
 
                 if (!string.IsNullOrEmpty(DepartmentFIS))
-                    criteria.Add(Expression.Eq("Unit.FISCode", DepartmentFIS));
+                    criteria.Add(Expression.Eq("Unit.id", DepartmentFIS));
 
                 if (!string.IsNullOrEmpty(SchoolCode))
                     criteria.Add(Expression.Eq("Unit.SchoolCode", SchoolCode));

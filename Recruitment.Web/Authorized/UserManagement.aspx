@@ -201,7 +201,7 @@
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
                         <asp:BoundField DataField="FullName" HeaderText="Unit:"  />
-                        <asp:BoundField DataField="FISCode" HeaderText="FISCode:" />
+                        <asp:BoundField DataField="id" HeaderText="FISCode:" />
                         <asp:CommandField DeleteText="" ShowDeleteButton="True" ButtonType="Image" DeleteImageUrl="~/Images/delete.gif" HeaderText="Remove:" >
                             <HeaderStyle HorizontalAlign="Center" Width="80px" />
                             <ItemStyle HorizontalAlign="Center" />
