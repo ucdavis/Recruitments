@@ -9,7 +9,7 @@
     <ProductVersion>8.0.60403</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{D16592C4-BD7E-4D4F-94CD-6AF212F54D83}</ProjectGuid>
-    <SourceWebPhysicalPath>..\Recruitment.Web</SourceWebPhysicalPath>
+    <SourceWebPhysicalPath>Z:\Recruitment\Recruitment.Web</SourceWebPhysicalPath>
     <SourceWebProject>{8CF52396-CADF-4923-B5F4-103D1FF6B320}|Z:\Recruitment\Recruitment.Web</SourceWebProject>
     <SourceWebVirtualPath>/Recruitment.Web</SourceWebVirtualPath>
     <SccProjectName>SAK</SccProjectName>
@@ -23,7 +23,7 @@
     <EnableUpdateable>true</EnableUpdateable>
     <UseMerge>true</UseMerge>
     <SingleAssemblyName>Recruitment.Web_deploy</SingleAssemblyName>
-    <UseWebConfigReplacement>true</UseWebConfigReplacement>
+    <UseWebConfigReplacement>false</UseWebConfigReplacement>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>false</DebugSymbols>

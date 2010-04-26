@@ -37,7 +37,7 @@
     </Reference>
     <Reference Include="NHibernate, Version=1.2.0.3001, Culture=neutral, PublicKeyToken=aa95f207798dfdb4, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\Solution Items\NHibernate.dll</HintPath>
+      <HintPath>..\Recruitment.Web\Bin\NHibernate.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -61,11 +61,11 @@
     <Content Include="AuthoringTests.txt" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Recruitment.Core\Recruitment.Core.csproj">
+    <ProjectReference Include="C:\Projects\Recruitment\Recruitment.Core\Recruitment.Core.csproj">
       <Project>{5F40A7DB-8142-4564-BB05-0F9C2DD3EF75}</Project>
       <Name>Recruitment.Core</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Recruitment.Data\Recruitment.Data.csproj">
+    <ProjectReference Include="C:\Projects\Recruitment\Recruitment.Data\Recruitment.Data.csproj">
       <Project>{BFA5EBED-0F4D-481F-9C91-EBE45B481F83}</Project>
       <Name>Recruitment.Data</Name>
     </ProjectReference>
