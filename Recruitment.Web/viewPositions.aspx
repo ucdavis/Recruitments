@@ -1,14 +1,18 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeFile="viewPositions.aspx.cs" Inherits="viewPositions" %>
 
+<%@ Register Assembly="System.Web.Extensions" Namespace="System.Web.UI" TagPrefix="asp" %>
+
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
 <html xmlns="http://www.w3.org/1999/xhtml" >
 <head id="Head1" runat="server">
     <title>Recruitments</title>
-     <link rel="stylesheet" href="fracstyle.css" type="text/css" />
+    <link rel="stylesheet" href="fracstyle.css" type="text/css" />
 </head>
 <body>
 <form id="form1" runat="server">
+<asp:scriptmanager ID="Scriptmanager1" runat="server"></asp:scriptmanager>
+
 <div id="wrapper">
     <div id="header" style="height:62px;">
         <img src="Images/logo.gif" alt="Recruitments" style="float:left" /><img src="Images/logo_ucdavis.gif" alt="UC Davis, College of Agricultural and Environmental Sciences" style="float:right" />
@@ -18,7 +22,16 @@
             <table cellpadding="5" cellspacing="0" style="width:100%;">
                 <tr>
                     <td>Home</td>
-                    <td style="width:250px; text-align: right;">|&nbsp;&nbsp;&nbsp; Welcome Iglasias, Enrique! <img src="Images/downarrow.gif" alt="down arrow" /></td>
+                    <td style="width:250px; text-align: right;">
+                    | <asp:Panel ID="pnlUserName" runat="server" style="display:inline;">&nbsp;&nbsp;&nbsp; Welcome Iglasias, Enrique! <img src="Images/downarrow.gif" alt="down arrow" /></asp:Panel> 
+                        <AjaxControlToolkit:DropDownExtender ID="ddUserName" TargetControlID="pnlUserName" DropDownControlID="pnlUserNameDropOptions" runat="server" HighlightBackColor="#eeeeee">
+                        </AjaxControlToolkit:DropDownExtender>
+                        <asp:Panel ID="pnlUserNameDropOptions" runat="server" CssClass="ContextMenuPanel" Style="display:none;visibility:hidden;">
+                            <asp:LinkButton runat="server" ID="Option1" Text="Option 1" CssClass="ContextMenuItem" />
+                            <asp:LinkButton runat="server" ID="Option2" Text="Option 2" CssClass="ContextMenuItem" />
+                            <asp:LinkButton runat="server" ID="Option3" Text="Option 3 (Click Me!)" CssClass="ContextMenuItem" />
+                        </asp:Panel>
+                    </td>
                 </tr>
             </table>
         </div>
