@@ -6,9 +6,8 @@
 <ContentTemplate>
   <asp:ImageButton ID="btnAddUser" runat="server" ImageUrl="~/Images/ibAddUser.gif" />
  <asp:Panel ID="pnlAddUser" runat="server" CssClass="modalPopup" style="display:none;">
-    Add A User Here
-    <br />
-     <br />
+                <span class="modalTitle">Add A User</span>
+    <div style="padding-left: 15px; padding-right: 15px; padding-bottom: 30px; max-width: 860px;">
      Search For New User:<br />
      <br />
      <%--EmployeeID:
@@ -26,7 +25,7 @@
      <asp:Button ID="btnAddUserCancel" runat="server" Text="Cancel" />
      <br />
      <asp:Label ID="lblAddUserStatus" runat="server" ForeColor="Green" EnableViewState="False"></asp:Label><br />
-     <asp:GridView ID="gViewAddUserSearch" runat="server" DataKeyNames="Login" CellPadding="4" DataSourceID="ObjectDataUserSearch" EmptyDataText="No Matching Users Found" ForeColor="#333333" GridLines="None" Visible="False" AutoGenerateColumns="False" OnSelectedIndexChanged="gViewAddUserSearch_SelectedIndexChanged">
+     <asp:GridView ID="gViewAddUserSearch" skinID="gridViewUserManagement" runat="server" DataKeyNames="Login" CellPadding="4" DataSourceID="ObjectDataUserSearch" EmptyDataText="No Matching Users Found" ForeColor="#333333" GridLines="None" Visible="False" AutoGenerateColumns="False" OnSelectedIndexChanged="gViewAddUserSearch_SelectedIndexChanged">
          <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
          <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
          <Columns>
@@ -64,8 +63,7 @@
                  Type="String" />
          </SelectParameters>
      </asp:ObjectDataSource>
-     
-     <br /><br />
+     </div>
  </asp:Panel>
  
  <AjaxControlToolkit:ModalPopupExtender ID="mpopupAddUser" runat="server" BackgroundCssClass="modalBackground" 
@@ -123,7 +121,7 @@
                     <EditRowStyle BackColor="#999999" />
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                     <Columns>
-                        <asp:BoundField DataField="FullName" HeaderText="Name:"  />
+                        <asp:BoundField DataField="FullName" HeaderText="Unit:"  />
                         <asp:BoundField DataField="FISCode" HeaderText="FISCode:" />
                         <asp:CommandField DeleteText="" ShowDeleteButton="True" ButtonType="Image" DeleteImageUrl="~/Images/delete.gif" HeaderText="Remove:" >
                             <HeaderStyle HorizontalAlign="Center" Width="80px" />
