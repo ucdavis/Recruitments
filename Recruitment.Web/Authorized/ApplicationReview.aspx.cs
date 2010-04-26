@@ -152,7 +152,7 @@ namespace CAESDO.Recruitment.Web
 
                 int n = reader.NumberOfPages;
 
-                Response.Write(string.Format("There are {0} pages in the original docuemnt", n));
+                //Response.Write(string.Format("There are {0} pages in the original docuemnt", n));
 
                 Document document = new Document(reader.GetPageSizeWithRotation(1));
 

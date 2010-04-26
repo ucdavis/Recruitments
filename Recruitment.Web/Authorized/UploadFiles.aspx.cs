@@ -266,9 +266,7 @@ namespace CAESDO.Recruitment.Web
             PdfReader reader = new PdfReader(uploadedFile.FileContent);
 
             int n = reader.NumberOfPages;
-
-            Response.Write(string.Format("There are {0} pages", n));
-
+                        
             Document document = new Document(reader.GetPageSizeWithRotation(1));
 
             PdfWriter writer = PdfWriter.GetInstance(document, new System.IO.FileStream(FilePath + fileName, System.IO.FileMode.Create));
