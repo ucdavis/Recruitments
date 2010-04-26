@@ -24,6 +24,7 @@
     <property name="Vote" column="Vote" />
     <property name="FinalVote" column="FinalVote" />
     <property name="Closed" column="Closed" />
+    <property name="AdminAccepted" column="AdminAccepted" />
 
     <!--<property name="DescriptionFile" column="DescriptionFile" />-->
     

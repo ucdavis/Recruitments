@@ -28,6 +28,7 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
     #region Inline interface declarations
 
     public interface IPositionDao : IDao<Position, int> {
+        List<Position> GetAllPositionsByStatus(bool Closed, bool AdminAccepted);
         List<Position> GetAllPositionsByStatus(bool Closed);
     }
 

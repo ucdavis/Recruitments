@@ -135,7 +135,15 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _Closed; }
             set { _Closed = value; }
         }
-        
+
+        private bool _AdminAccepted;
+
+        public virtual bool AdminAccepted
+        {
+            get { return _AdminAccepted; }
+            set { _AdminAccepted = value; }
+        }
+
         private IList<Department> _Departments;
 
         public virtual IList<Department> Departments
@@ -162,7 +170,8 @@ namespace CAESDO.Recruitment.Core.Domain
         
         public Position()
         {
-            //throw new System.NotImplementedException();
+            Closed = false;
+            AdminAccepted = false;
         }
     }
 }

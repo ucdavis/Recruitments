@@ -87,7 +87,7 @@ namespace CAESDO.Recruitment.Data
         public class PositionDao : AbstractNHibernateDao<Position, int>, IPositionDao {
             public List<Position> GetAllPositionsByStatus(bool Closed)
             {
-                IQuery query = NHibernateSessionManager.Instance.GetSession().CreateQuery(NHQueries.GetAllOpenPositions)
+                IQuery query = NHibernateSessionManager.Instance.GetSession().CreateQuery(NHQueries.GetAllPositionsByStatus)
                             .SetBoolean("Closed", Closed);
 
                 return query.List<Position>() as List<Position>;
@@ -96,6 +96,15 @@ namespace CAESDO.Recruitment.Data
                 //    .Add(Expression.Eq("Closed", Closed));
 
                 //return criteria.List<Position>() as List<Position>;
+            }
+
+            public List<Position> GetAllPositionsByStatus(bool Closed, bool AdminAccepted)
+            {
+                ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(Position))
+                    .Add(Expression.Eq("Closed", Closed))
+                    .Add(Expression.Eq("AdminAccepted", AdminAccepted));
+
+                return criteria.List<Position>() as List<Position>;
             }
         }
 
