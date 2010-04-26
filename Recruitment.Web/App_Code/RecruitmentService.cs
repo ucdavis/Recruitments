@@ -174,6 +174,12 @@ public class RecruitmentService : System.Web.Services.WebService
         return DepartmentMemberBLL.Search(loginID);
     }
 
+    [WebMethod]
+    public bool Heartbeat()
+    {
+        return true;
+    }
+
     /// <summary>
     /// helper method to convert CamelCaseString to Camel Case String
     /// by inserting spaces

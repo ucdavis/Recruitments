@@ -55,8 +55,13 @@
             refTemplateEditor.selection.setContent(text);
         }
 
+        var HEARTBEAT_PERIOD = 60000; //60 seconds
+
         //Help balloons
         $(document).ready(function() {
+
+            setInterval(SendHeartbeat, HEARTBEAT_PERIOD); //Send a heartbeat to the server regularly
+
             $("input[id$=txtPositionTitle]").bt('Examples: <br/>*Asst. Prof of Climate Control, LAWR<br/>*Professor of Brewing', {
                 trigger: ['focus', 'blur'],
                 positions: ['right']
@@ -71,6 +76,11 @@
                 positions: 'top'
             });
         });
+
+        //Send heartbeat code
+        function SendHeartbeat() {
+            RecruitmentService.Heartbeat();
+        }
         
     </script>
     <span class="boxTitle"><asp:Image ID="imgProfile" runat="server" EnableViewState="False" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" meta:resourcekey="imgProfileResource1" /><asp:Literal ID="litPositionState" runat="server" Text="Create Position" EnableViewState="False" meta:resourcekey="litPositionStateResource1"></asp:Literal></span><br />
