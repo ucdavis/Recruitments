@@ -63,6 +63,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BusinessTests\MessagingTests.cs" />
+    <Compile Include="BusinessTests\TemplateProcessingTests.cs" />
     <Compile Include="BusinessTests\ViewPositionsTest.cs" />
     <Compile Include="DomainTests\ApplicantTest.cs" />
     <Compile Include="DomainTests\ApplicationTest.cs" />
