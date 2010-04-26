@@ -46,6 +46,7 @@
     <Compile Include="ListToGenericListConverter.cs" />
     <Compile Include="NHibernateDaoFactory.cs" />
     <Compile Include="NHibernateSessionManager.cs" />
+    <Compile Include="NHibernateTransaction.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

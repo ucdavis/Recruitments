@@ -84,10 +84,11 @@ namespace CAESDO.Recruitment.Web
                 edu.Discipline = "CSENG";
                 edu.Institution = "UCD";
 
-                NHibernateSessionManager.Instance.BeginTransaction();
-                daoFactory.GetEducationDao().Save(edu);
-                app11.Education.Add(edu);
-                NHibernateSessionManager.Instance.CommitTransaction();
+                using (NHibernateTransaction tran = new NHibernateTransaction())
+                {
+                    daoFactory.GetEducationDao().Save(edu);
+                    app11.Education.Add(edu);
+                }
 
                 Response.Write(app11.Files[0].FileName);
                 Response.Write(app11.Education.Count);
