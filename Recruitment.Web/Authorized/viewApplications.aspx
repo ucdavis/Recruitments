@@ -15,7 +15,8 @@
                 cssAsc: 'headerSortUp',
                 cssDesc: 'headerSortDown',
                 cssHeader: 'header',
-                headers: { 2: { sorter: false} }
+                headers: { 2: { sorter: false} },
+                widgets: ['zebra']
             });
         });
         
@@ -47,7 +48,7 @@
         </table>
         </LayoutTemplate>
         <ItemTemplate>
-                <tr class='<%# Container.DisplayIndex % 2 == 0 ? "" : "odd" %>'>
+                <tr>
                     <td>
                         <asp:LinkButton ID="lbtnViewApplication" runat="server" CommandArgument='<%# Eval("id") %>' Text='<%# GetNullSafeFullName((string)Eval("AssociatedProfile.FullName")) %>' OnClick="lbtnViewApplication_Click"></asp:LinkButton>
                     </td>
