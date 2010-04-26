@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 9.00
 # Visual Studio 2005
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Z:\Recruitments\Recruitment.Web\", "Z:\Recruitment\Recruitment.Web", "{8CF52396-CADF-4923-B5F4-103D1FF6B320}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Z:\Recruitment\Recruitment.Web\", "Z:\Recruitment\Recruitment.Web", "{8CF52396-CADF-4923-B5F4-103D1FF6B320}"
 	ProjectSection(WebsiteProperties) = preProject
 		SccProjectName = "SAK"
 		SccAuxPath = "SAK"
@@ -22,7 +22,6 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Z:\Recruitments\Recruitment
 		Release.AspNetCompiler.ForceOverwrite = "true"
 		Release.AspNetCompiler.FixedNames = "false"
 		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "49455"
 		DefaultWebSiteLanguage = "Visual C#"
 	EndProjectSection
 EndProject
@@ -58,7 +57,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recruitment.Test", "Z:\Recr
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 5
+		SccNumberOfProjects = 6
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://cubert:8080/
 		SccLocalPath0 = .
@@ -69,13 +68,19 @@ Global
 		SccProjectName2 = Recruitment.Data
 		SccLocalPath2 = Recruitment.Data
 		SccWebProject3 = true
-		SccProjectUniqueName3 = ..\\Recruitment\\Recruitment.Web
+		SccProjectUniqueName3 = Recruitment.Web
 		SccProjectName3 = Recruitment.Web
-		SccLocalPath3 = Z:\\Recruitment\\Recruitment.Web\\
+		SccLocalPath3 = Recruitment.Web
 		SccProjectEnlistmentChoice3 = 2
 		SccProjectUniqueName4 = Recruitment.Providers\\Recruitment.Providers.csproj
 		SccProjectName4 = Recruitment.Providers
 		SccLocalPath4 = Recruitment.Providers
+		SccProjectUniqueName5 = Recruitment.Test\\Recruitment.Test.csproj
+		SccProjectName5 = Recruitment.Test
+		SccLocalPath5 = Recruitment.Test
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Recruitment.Web4.vsmdi
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|.NET = Debug|.NET
@@ -139,8 +144,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = Recruitment.Web4.vsmdi
 	EndGlobalSection
 EndGlobal
