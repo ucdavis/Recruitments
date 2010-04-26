@@ -659,7 +659,11 @@ namespace CAESDO.Recruitment.Web
             {
                 //First make sure we have a survey 
                 if (currentApplication.Surveys.Count == 0)
-                    currentApplication.Surveys.Add(new Survey());
+                {
+                    Survey newSurvey = new Survey();
+                    newSurvey.AssociatedApplication = currentApplication;
+                    currentApplication.Surveys.Add(newSurvey);
+                }
 
                 Survey currentSurvey = currentApplication.Surveys[0];
 
