@@ -90,19 +90,19 @@ namespace CAESDO.Recruitment.Web
                 //{
                 IApplicationDao aDao = daoFactory.GetApplicationDao();
 
-                aDao.SaveOrUpdate(app11);
+                using (new NHibernateTransaction())
+                {
+                    aDao.SaveOrUpdate(app11);
+                }
 
                 Response.Write(app11.Education[0].Discipline);
 
-                NHibernateSessionManager.Instance.RollbackTransaction();
+                app11.SubmitDate = DateTime.Now.AddDays(10);
 
-                NHibernateSessionManager.Instance.BeginTransaction();
-
-                app11.SubmitDate = DateTime.Now.AddDays(12);
-
-                aDao.SaveOrUpdate(app11);
-
-                NHibernateSessionManager.Instance.CommitTransaction();
+                using (new NHibernateTransaction())
+                {
+                    aDao.SaveOrUpdate(app11);
+                }
 
                 //}
             }

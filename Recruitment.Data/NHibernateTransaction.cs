@@ -33,7 +33,7 @@ namespace CAESDO.Recruitment.Data
             }
             finally
             {
-                NHibernateSessionManager.Instance.CloseSession();
+                //NHibernateSessionManager.Instance.CloseSession();
             }
         }
 

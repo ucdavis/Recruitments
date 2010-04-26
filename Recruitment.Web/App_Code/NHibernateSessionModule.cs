@@ -13,8 +13,11 @@ namespace CAESDO.Recruitment.Web
     public class NHibernateSessionModule : IHttpModule
     {
         public void Init(HttpApplication context) {
-            context.BeginRequest += new EventHandler(BeginTransaction);
-            context.EndRequest += new EventHandler(CommitAndCloseSession);
+            //context.BeginRequest += new EventHandler(BeginTransaction);
+            //context.EndRequest += new EventHandler(CommitAndCloseSession);
+
+            context.BeginRequest += new EventHandler(OpenSession);
+            context.EndRequest += new EventHandler(CloseSession);
         }
 
         /// <summary>
@@ -38,6 +41,24 @@ namespace CAESDO.Recruitment.Web
                 NHibernateSessionManager.Instance.CloseSession();
             }
         }
+
+        /// <summary>
+        /// Makes sure that there is an open session by either grabbing and discarding an existing session, or
+        /// creating a new one if there isn't one already
+        /// </summary>
+        private void OpenSession(object sender, EventArgs e)
+        {
+            NHibernateSessionManager.Instance.GetSession();
+        }
+
+        /// <summary>
+        /// Closes a session without commiting the transaction
+        /// </summary>
+        private void CloseSession(object sender, EventArgs e)
+        {
+            NHibernateSessionManager.Instance.CloseSession();
+        }
+
 
         public void Dispose() { }
     }
