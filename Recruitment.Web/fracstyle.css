@@ -544,3 +544,23 @@ display:block; height:auto; line-height:1.5em; padding:5px 10px 4px 35px; width:
     border:solid 1px #000000;
     padding:2px 4px;
 }
+#square_li li
+{
+    list-style-type: square;
+}
+#help_main_li li
+{
+    list-style-type:none;
+}
+#help_main_li li li
+{
+    list-style-type:square;
+}
+#help_main_li h3
+{
+    display:inline;
+}
+#help_main_li br
+{
+    margin-bottom:.5em;
+}
