@@ -16,9 +16,8 @@ namespace CAESDO.Recruitment.Test
     ///to contain all CAESDO.Recruitment.Core.Domain.Position Unit Tests
     ///</summary>
     [TestClass()]
-    public class PositionTest
+    public class PositionTest : DatabaseTestBase
     {
-
 
         private TestContext testContextInstance;
 
@@ -508,7 +507,11 @@ namespace CAESDO.Recruitment.Test
             position.FinalVote = false;
             position.Closed = false;
             position.AdminAccepted = false;
-
+            position.HRRep = StaticProperties.TestString;
+            position.HREmail = StaticProperties.ExistingApplicantEmail;
+            position.ReferenceTemplate = TemplateBLL.GetByID(1);
+            position.DescriptionFile = FileBLL.GetByID(StaticProperties.ExistingFileID);
+            
             position = Save(position);
             
             // Save PositionID for later retrieval
@@ -531,25 +534,11 @@ namespace CAESDO.Recruitment.Test
         }
 
         [WorkItem(166), TestMethod()]
-        public void UpdatePosition()
-        {
-            Position position = NHibernateHelper.daoFactory.GetPositionDao().GetById(StaticProperties.CreatedPositionID, false);
-
-            //Assert.IsNotNull(position);
-
-            position.PositionTitle = "Test Wrangler II";
-
-            position = Save(position);
-
-            Assert.AreEqual("Test Wrangler II", position.PositionTitle);
-        }
-
-        [WorkItem(166), TestMethod()]
         public void DeletePosition()
         {
-            Position position = NHibernateHelper.daoFactory.GetPositionDao().GetById(StaticProperties.CreatedPositionID, false);
+            Position position = NHibernateHelper.daoFactory.GetPositionDao().GetById(StaticProperties.ExistingPositionID, false);
             int positionID = position.ID;
-            // positionDB = NHibernateHelper.daoFactory.GetPositionDao().GetById(position.ID, false);
+
             using (var ts = new TransactionScope())
             {
                 NHibernateHelper.daoFactory.GetPositionDao().Delete(position);
@@ -560,10 +549,8 @@ namespace CAESDO.Recruitment.Test
             // Verify deletion
             bool isDeleted = false;
             
-
             try
             {
-                
                 Position positionDB = NHibernateHelper.daoFactory.GetPositionDao().GetById(positionID, false);
                 positionDB.IsTransient(); //check to see if its in the db
             }
@@ -585,13 +572,13 @@ namespace CAESDO.Recruitment.Test
             {
                 this.TestContext.WriteLine("Key = {0}, Message = {1}", res.Key, res.Message);
             }
-            Assert.IsTrue(ValidateBO<Position>.isValid(position));
+            Assert.IsTrue(ValidateBO<Position>.isValid(position), position.getValidationResultsAsString(position));
         }
 
         private static Position Save(Position position)
         {
             // Validate before saving
-            Assert.IsTrue(ValidateBO<Position>.isValid(position), "Test Wrangler not valid");
+            Assert.IsTrue(ValidateBO<Position>.isValid(position), "Test Wrangler not valid: " + position.getValidationResultsAsString(position));
 
             using (var ts = new TransactionScope())
             {
@@ -602,6 +589,23 @@ namespace CAESDO.Recruitment.Test
             Assert.IsNotNull(position);
             Assert.IsFalse(position.IsTransient(), "Position not persisted by NHibernate to database");
             return position;
+        }
+
+        public override void LoadData()
+        {
+            base.LoadData();
+
+            var templateType = new TemplateType {Type = StaticProperties.TestString};
+
+            var template = new Template {TemplateText = StaticProperties.TestString, TemplateType = templateType};
+
+            using (var ts = new TransactionScope())
+            {
+                GenericBLL<TemplateType, int>.EnsurePersistent(ref templateType);
+                GenericBLL<Template, int>.EnsurePersistent(ref template);
+
+                ts.CommitTransaction();
+            }
         }
 
         #endregion
