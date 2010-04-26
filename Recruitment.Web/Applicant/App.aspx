@@ -1,8 +1,12 @@
 <%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="App.aspx.cs" Inherits="CAESDO.Recruitment.Web.App" Title="Untitled Page" Trace="true" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
      
-    <div style="height:22px; background-image:url(../Images/appmenuTop.gif);"><img src="../Images/appmenuTopLeft.gif" alt="" style="float:left;" /><img src="../Images/appmenuTopRight.gif" alt="" style="float:right;" /></div>
-    <div style="width:203px; float:left; background: url(../Images/appmenuLeft.gif) repeat-y;">
+    <table summary="This table is for layout. The left-hand column contains the navigation bar and the right hand column contains the main text for the page." cellpadding="0" cellspacing="0" border="0" style="font-size:1.0em; width:100%;">
+    <tr>
+        <td colspan="2" style="height:22px; background-image:url(../Images/appmenuTop.gif);"><img src="../Images/appmenuTopLeft.gif" alt="" style="float:left;" /><img src="../Images/appmenuTopRight.gif" alt="" style="float:right;" /></td>
+    </tr>
+    <tr>
+       <td style="background: url(../Images/appmenuLeft.gif) repeat-y; vertical-align:top; width: 203px;">
     
     <ul class="applicationMenu">
         <asp:Repeater ID="rptSteps" runat="server">
@@ -20,8 +24,9 @@
             </ItemTemplate>
         </asp:Repeater>
     </ul>
-    </div>
-    <div style="background:url(../Images/appmenuRight.gif) repeat-y right;">
+    </td>
+    <td style="background:url(../Images/appmenuRight.gif) repeat-y right; vertical-align:top;">
+       
         <asp:Panel ID="pnlMainWindow" runat="server">
         
         <asp:MultiView ID="mviewSteps" runat="server" ActiveViewIndex="0">
@@ -30,9 +35,9 @@
                 Home
             </asp:View>
             
-            <asp:View ID="viewContactInformation" runat="server">
+            <asp:View ID="viewContactInformation" runat="server" >
                 <span class="boxTitle"><asp:Image ID="imgContactProfile" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />Contact Information</span><br />
-                <table class="box" style="width:500px; height: 350px;" cellpadding="5">
+                <table class="box" style="width:500px;" cellpadding="5">
                     <tr>
                         <td colspan="2"><br /></td>
                     </tr>
@@ -83,9 +88,9 @@
                         </td>
                     </tr>
                     <tr>
-                        <td   align="right" style="height: 34px">
+                        <td   align="right">
                             State:</td>
-                        <td style="height: 34px"  >
+                        <td   >
                             <asp:TextBox ID="txtContactState" runat="server" MaxLength="50"></asp:TextBox>
                             <asp:RequiredFieldValidator id="reqValContactState" ControlToValidate="txtContactState" ErrorMessage="*" runat="server"/>
                         </td>
@@ -112,7 +117,7 @@
             
             <asp:View ID="viewEducationInformation" runat="server">
                 <span class="boxTitle"><asp:Image ID="imgEducation" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />Ph.D. Award Information</span><br />
-                <table class="box" style="width:500px; height: 350px;" cellpadding="5">
+                <table class="box" style="width:500px; " cellpadding="5">
                     <tr>
                         <td colspan="2"><br /></td>
                     </tr>
@@ -157,7 +162,7 @@
         
             <asp:View ID="viewReferences" runat="server">
                 <span class="boxTitle"><asp:Image ID="imgReferences" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />References</span><br />
-                <table class="box" style="width:500px; height: 350px;" cellpadding="5">
+                <table class="box" style="height: 350px; margin-right:30px;" cellpadding="5">
                     <tr>
                         <td colspan="2"><br /></td>
                     </tr>
@@ -346,7 +351,7 @@
         
             <asp:View ID="viewCurrentPosition" runat="server">
                 <span class="boxTitle"><asp:Image ID="imgCurrentPosition" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />Current Position</span><br />
-                <table class="box" style="width:500px; height: 350px;" cellpadding="5">
+                <table class="box" style="width:500px; " cellpadding="5">
                     <tr>
                         <td colspan="2"><br /></td>
                     </tr>
@@ -425,7 +430,7 @@
             
             <asp:View ID="viewResume" runat="server">
                  <span class="boxTitle"><asp:Image ID="imgResume" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />Resume</span><br />
-                <table class="box" style="width:500px; height: 350px;" cellpadding="5">
+                <table class="box" style="width:500px;" cellpadding="5">
                     <tr>
                         <td colspan="2"><br /></td>
                     </tr>
@@ -451,7 +456,7 @@
         
             <asp:View ID="viewCoverLetter" runat="server">
                 <span class="boxTitle"><asp:Image ID="imgCoverLetter" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />Cover Letter</span><br />
-                <table class="box" style="width:500px; height: 350px;" cellpadding="5">
+                <table class="box" style="width:500px; height:" cellpadding="5">
                     <tr>
                         <td colspan="2"><br /></td>
                     </tr>
@@ -477,7 +482,7 @@
         
             <asp:View ID="viewResearchInterests" runat="server">
                 <span class="boxTitle"><asp:Image ID="imgResearchInterests" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />Research Interests</span><br />
-                <table class="box" style="width:500px; height: 350px;" cellpadding="5">
+                <table class="box" style="width:500px; " cellpadding="5">
                     <tr>
                         <td colspan="2"><br /></td>
                     </tr>
@@ -503,7 +508,7 @@
             
             <asp:View ID="viewTranscripts" runat="server">
                 <span class="boxTitle"><asp:Image ID="imgTranscripts" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />Transcripts</span><br />
-                <table class="box" style="width:500px; height: 350px;" cellpadding="5">
+                <table class="box" style="width:500px;" cellpadding="5">
                     <tr>
                         <td colspan="2"><br /></td>
                     </tr>
@@ -529,14 +534,15 @@
             
             <asp:View ID="viewConfidentialSurvey" runat="server">
                 <span class="boxTitle"><asp:Image ID="imgConfidentialSurvey" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />Confidential Survey</span><br />
-                <table class="box" style="width:500px; height: 350px;" cellpadding="5">
+                <table class="box" style="margin-right:30px;" cellpadding="5">
                     <tr>
                         <td colspan="2"><br /></td>
                     </tr>
                     <tr>
-                        <td align="right">
-                            Sex:</td>
-                        <td  >
+                        <td align="right" valign="top">
+                            <span style="color:#0b65c5; font-weight: bold;">
+                            Sex:</span></td>
+                        <td valign="top"  >
                             <asp:RadioButtonList ID="rbtnConfidentialSurveySex" runat="server" DataSourceID="ObjectDataGender" DataTextField="GenderType" DataValueField="ID">
                             </asp:RadioButtonList>
                             <asp:ObjectDataSource ID="ObjectDataGender" runat="server"
@@ -546,14 +552,18 @@
                     </tr>
                     <tr>
                         <td   align="right" valign="top">
-                            Ethnicity:</td>
-                        <td  >
-                            American Indian
+                            <span style="color:#0b65c5; font-weight: bold;">
+                            Ethnicity:</span></td>
+                        <td valign="top"  >
+                            <strong>
+                            American Indian</strong>
                             <br />
                                 <asp:RadioButton ID="rbtnAmericanIndian" runat="server" GroupName="Ethnicity" Text="American Indian / Alaskin Native" />
                                 (specify tribal affiliation: <asp:TextBox ID="txtAmericanIndian" runat="server" ></asp:TextBox>)
                             <br />
-                            Asian/Pacific Islander
+                            <br />
+                            <strong>
+                            Asian/Pacific Islander </strong>
                             <br />
                                 <asp:RadioButton ID="rbtnChinese" runat="server" GroupName="Ethnicity" Text="Chinese/Chinese-American" /><br />
                                 <asp:RadioButton ID="rbtnPakistani" runat="server" GroupName="Ethnicity" Text="East Indian/Pakistani" /><br />
@@ -561,25 +571,32 @@
                                 <asp:RadioButton ID="rbtnJapanese" runat="server" GroupName="Ethnicity" Text="Japanese/Japanese-American" /><br />
                                 <asp:RadioButton ID="rbtnAsian" runat="server" GroupName="Ethnicity" Text="Other Asian ( including Far East Korea, Southeast Asian or Pacific Islands, Samoa)" />
                             <br />
-                            Black
+                            <br />
+                            <strong>Black</strong>
                             <br />
                                 <asp:RadioButton ID="rbtnBlack" runat="server" GroupName="Ethnicity" Text="Black/African-American" />
                             <br />
+                            <br />
+                            <strong>
                             Hispanic (including Black individuals whose origins are Hispanic)
                             <br />
+                            </strong>
                                 <asp:RadioButton ID="rbtnLatino" runat="server" GroupName="Ethnicity" Text="Latin-American/Latino (including Cuban and Puerto Rican)" /><br />
                                 <asp:RadioButton ID="rbtnMexican" runat="server" GroupName="Ethnicity" Text="Mexican/Mexican-American/Chicano" /><br />
                                 <asp:RadioButton ID="rbtnSpanish" runat="server" GroupName="Ethnicity" Text="Other Spanish/Spanish-American" />
                             <br />
-                            White
+                            <br />
+                            <strong>
+                            White</strong>
                             <br />
                                 <asp:RadioButton ID="rbtnWhite" runat="server" GroupName="Ethnicity" Text="White/Caucasian (including the Middle East)" />
                         </td>
                     </tr>
                     <tr>
-                        <td   align="right">
-                            Recruitment Source:</td>
-                        <td  >
+                        <td   align="right" valign="top">
+                            <span style="color:#0b65c5; font-weight: bold;">
+                            Recruitment Source:</span></td>
+                        <td valign="top"  >
                             <asp:Repeater ID="rptRecruitmentSource" runat="server" DataSourceID="ObjectDataRecruitmentSrc">
                                 <ItemTemplate>
                                     <asp:CheckBox ID="chkRecruitmentSource" runat="server" Checked="false" />
@@ -666,7 +683,7 @@
             
             <asp:View ID="viewDissertation" runat="server">
                 <span class="boxTitle"><asp:Image ID="imgDissertation" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />Dissertations</span><br />
-                <table class="box" style="width:500px; height: 350px;" cellpadding="5">
+                <table class="box" style="width:500px;" cellpadding="5">
                     <tr>
                         <td colspan="2"><br /></td>
                     </tr>
@@ -693,8 +710,13 @@
             </asp:MultiView>
         
         </asp:Panel>
-    </div>
+        </td>
+    </tr>
+    <tr><td colspan="2"><div style=" height:22px; background-image:url(../Images/appmenuBot.gif);"><img src="../Images/appmenuBotLeft.gif" alt="" style="float:left;" /><img src="../Images/appmenuBotRight.gif" alt="" style="float:right;" /></div>
+</td></tr>
+    </table>
+
+
     
-    <div style="clear:both; height:22px; background-image:url(../Images/appmenuBot.gif);"><img src="../Images/appmenuBotLeft.gif" alt="" style="float:left;" /><img src="../Images/appmenuBotRight.gif" alt="" style="float:right;" /></div>
-</asp:Content>
+  </asp:Content>
 
