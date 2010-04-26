@@ -23,9 +23,19 @@ namespace CAESDO.Recruitment.Web
             //IPositionsDao posDao = daoFactory.GetPositionsDao();
             //IPositionsDao posDao = daoFactory.GetPositionsDao();
 
-            IPositionDao posDao = daoFactory.GetPositionDao();
+            //IPositionDao posDao = daoFactory.GetPositionDao();
 
-            Position pos = posDao.GetById(15, false);
+            //Position pos = posDao.GetById(15, false);
+
+            //Department dept = new Department();
+
+            //dept.AssociatedPosition = pos;
+            //dept.DepartmentFIS = "ADNO";
+
+            //IDepartmentDao deptDao = daoFactory.GetDepartmentDao();
+
+            //if ( deptDao.GetByExample(dept).Count == 0 )
+            //    deptDao.SaveOrUpdate(dept);            
           
             //List<Position> posList = posDao.GetAll();
 
