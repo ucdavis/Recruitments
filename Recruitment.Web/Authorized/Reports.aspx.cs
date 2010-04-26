@@ -24,7 +24,7 @@ namespace CAESDO.Recruitment.Web
         {
             get
             {
-                return "http://" + HttpContext.Current.Request.Url.Host + HttpContext.Current.Request.ApplicationPath + "/Authorized/InterimReport.aspx?PositionID=43";
+                return "http://" + HttpContext.Current.Request.Url.Host + HttpContext.Current.Request.ApplicationPath + "/Authorized/InterimReport.aspx?PositionID=" + dlistPositions.SelectedValue;
             }
         }
 
@@ -32,7 +32,7 @@ namespace CAESDO.Recruitment.Web
         {
             get
             {
-                return "http://" + HttpContext.Current.Request.Url.Host + HttpContext.Current.Request.ApplicationPath + "/Authorized/InterimReport.aspx?PositionID=43";
+                return "http://" + HttpContext.Current.Request.Url.Host + HttpContext.Current.Request.ApplicationPath + "/Authorized/RecruitmentSources.aspx?PositionID=" + dlistPositions.SelectedValue;
             }
         }
 

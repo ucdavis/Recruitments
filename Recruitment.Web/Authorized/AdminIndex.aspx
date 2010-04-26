@@ -14,7 +14,7 @@
     <a href="ApplicationsList.aspx">Applications List</a><br /><br />
     <a href="committeeList.aspx">Committee List</a><br /><br />
     <a href="committeeManagement.aspx?type=committee">Committee Management</a><br /><br />
-    <asp:Button ID="btnDownloadPage" runat="server" Text="Get Word" OnClick="btnDownloadPage_Click" />
+    <a href="reports.aspx">Reports</a><br /><br />
 </div>
            
 </asp:Content>
