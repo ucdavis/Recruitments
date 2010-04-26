@@ -295,6 +295,9 @@
                         <td colspan="2"><br /></td>
                     </tr>
                     <tr>
+                        <td colspan="2">Please note all extramural references must be from outside UC Davis.</td>
+                    </tr>
+                    <tr>
                         <td colspan="2">
                             <asp:ImageButton ID="lbtnReferencesAdd" runat="server" ImageURL="~/Images/addReference.gif" ImageAlign="Middle" meta:resourcekey="lbtnReferencesAddResource1"></asp:ImageButton>
                             &nbsp;<asp:Label ID="lblReferencesRemaining" runat="server" ForeColor="Brown" EnableViewState="true" meta:resourcekey="lblReferencesRemainingResource1"></asp:Label>
