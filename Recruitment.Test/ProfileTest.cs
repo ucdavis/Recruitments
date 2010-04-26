@@ -93,7 +93,6 @@ namespace CAESDO.Recruitment.Test
             Assert.AreEqual<int>(profile.ID, StaticProperties.ExistingProfileID);
 
             Assert.IsTrue(ValidateBO<Profile>.isValid(profile));
-
         }
 
         [TestMethod()]

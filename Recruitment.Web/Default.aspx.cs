@@ -62,7 +62,6 @@ namespace CAESDO.Recruitment.Web
             IApplicantDao applicantDao = daoFactory.GetApplicantDao();
 
             Applicant app = applicantDao.GetById(4, false);
-            
 
             //IProfileDao proDao = daoFactory.GetProfileDao();
 
@@ -71,9 +70,7 @@ namespace CAESDO.Recruitment.Web
             //ISurveyDao surveyDao = daoFactory.GetSurveyDao();
 
             //Survey survey = surveyDao.GetById(1, false);
-            
-            
-            
+
             if (!Page.IsPostBack)
             {
                 app11 = null;
