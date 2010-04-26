@@ -43,12 +43,18 @@ namespace CAESDO.Recruitment.Web
         
         protected void rlistUploadType_SelectedIndexChanged(object sender, EventArgs e)
         {
+            chkUnsolicited.Visible = false;
             mViewFileType.ActiveViewIndex = int.Parse(rlistUploadType.SelectedValue);
 
             if (rlistUploadType.SelectedItem.Text == STR_Publications)
             {
                 rptPublications.DataSource = GetFilesOfType(STR_Publication);
                 rptPublications.DataBind();
+            }
+            else if (rlistUploadType.SelectedItem.Text == STR_References)
+            {
+                chkUnsolicited.Visible = true;
+                rptPublications.Visible = false;
             }
             else
             {
@@ -133,6 +139,8 @@ namespace CAESDO.Recruitment.Web
                     //Delete the file from the file system
                     System.IO.FileInfo file = new System.IO.FileInfo(FilePath + fileID.ToString());
                     file.Delete();
+
+                    selectedReference.UnsolicitedReference = chkUnsolicited.Checked;
 
                     daoFactory.GetReferenceDao().SaveOrUpdate(selectedReference);
                 }

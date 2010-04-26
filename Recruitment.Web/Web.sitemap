@@ -20,6 +20,7 @@
         <siteMapNode url="Authorized/ApplicationReview.aspx" title="Application Review" />
         <siteMapNode url="Authorized/UploadFiles.aspx" title="Upload Files" />
         <siteMapNode url="Authorized/ApplicationsList.aspx" title="Applications List" />
+        <siteMapNode url="Authorized/UnsolicitedReferences.aspx" title="Unsolicited References" />
         <siteMapNode url="Authorized/CommitteeList.aspx" title="Committee List" />
         <siteMapNode url="Authorized/Reports.aspx" title="Reports" />
         

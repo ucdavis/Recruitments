@@ -84,6 +84,11 @@
                 </tr>
                 <tr>
                     <td colspan="2">
+                        <asp:CheckBox ID="chkUnsolicited" runat="server" Text="This Reference Letter Was Unsolicited" />
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
                         Please upload your file as a PDF Document. Maximum file size allowed is 10 MB. 
                     </td>                       
                 </tr>

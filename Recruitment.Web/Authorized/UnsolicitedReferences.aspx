@@ -3,7 +3,8 @@
 
 Position: <asp:DropDownList ID="dlistPositions" runat="server"></asp:DropDownList> <br /><br />
 
-Application: <asp:DropDownList ID="dlistApplications" runat="server" AutoPostBack="true" OnSelectedIndexChanged="dlistApplications_SelectedIndexChanged"></asp:DropDownList> <br /><br />
+Application: <asp:DropDownList ID="dlistApplications" runat="server" AutoPostBack="true" OnSelectedIndexChanged="dlistApplications_SelectedIndexChanged"></asp:DropDownList>
+<asp:RequiredFieldValidator id="reqValApplications" ControlToValidate="dlistApplications" ErrorMessage="* Select An Application" runat="server"/> <br /><br />
 
 <AjaxControlToolkit:CascadingDropDown ID="cascadePositions" runat="server" TargetControlID="dlistPositions" 
                                         Category="Positions" PromptText="Select a Position" ServicePath="RecruitmentService.asmx" 
@@ -16,8 +17,14 @@ Application: <asp:DropDownList ID="dlistApplications" runat="server" AutoPostBac
 </AjaxControlToolkit:CascadingDropDown>
 
 
-<asp:GridView ID="gViewReferences" runat="server" SkinID="gridViewUserManagement" DataKeyNames="id" AutoGenerateColumns="false">
+<asp:GridView ID="gViewReferences" runat="server" SkinID="gridViewUserManagement" DataKeyNames="id" AutoGenerateColumns="false"
+            EmptyDataText="No References Found" Visible="false">
     <Columns>
+        <asp:TemplateField HeaderText="Unsolicited">
+            <ItemTemplate>
+                <asp:CheckBox ID="chkUnsolicited" runat="server" Checked='<%# Eval("UnsolicitedReference") %>' />
+            </ItemTemplate>
+        </asp:TemplateField>
         <asp:BoundField HeaderText="Reference Name" DataField="FullName" />
         <asp:BoundField HeaderText="Email" DataField="Email" />
         <asp:TemplateField HeaderText="Notified">
@@ -32,6 +39,27 @@ Application: <asp:DropDownList ID="dlistApplications" runat="server" AutoPostBac
         </asp:TemplateField>
     </Columns>    
 </asp:GridView>
+
+<br />
+    <asp:Label ID="lblResult" runat="server" EnableViewState="false"></asp:Label>
+        <AjaxControlToolkit:AnimationExtender ID="animationApplicationStatus" runat="server" TargetControlID="lblResult">
+            <Animations>
+                <OnLoad>
+                    <Sequence>
+                        <Color Duration="2"
+                        StartValue="#ffff99"
+                        EndValue="#FFFFFF"
+                        Property="style"
+                        PropertyKey="backgroundColor" />
+                        <StyleAction Attribute="backgroundColor" value="" />
+                    </Sequence>
+                </OnLoad>
+            </Animations>                            
+        </AjaxControlToolkit:AnimationExtender>
+    
+    <br />
+    
+    <asp:Button ID="btnUpdateList" runat="server" Text="Update Unsolicited List" Visible="false" OnClick="btnUpdateList_Click" />
 
 </asp:Content>
 

@@ -188,8 +188,15 @@ namespace CAESDO.Recruitment.Web
                 System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage(currentPosition.HREmail, reference.Email, "Reference Request for " + application.AssociatedProfile.FullName, bodyText);
                 message.Bcc.Add(WebConfigurationManager.AppSettings["emailFromEmail"]); //BCC the automated email account
                 message.IsBodyHtml = true;
+
+                //System.IO.FileStream descriptionStream = new System.IO.FileStream(FilePath + position.DescriptionFile.ID, System.IO.FileMode.Open, System.IO.FileAccess.Read, System.IO.FileShare.Read);
                 
+                //message.Attachments.Add(new System.Net.Mail.Attachment(descriptionStream, position.DescriptionFile.FileName));
+
                 mail.Send(message);
+
+                //After the message is sent, close the stream.
+                //descriptionStream.Close();
 
                 //exops.SendEmail(reference.Email, "Reference Request for Application" + position.PositionTitle, bodyText, WebConfigurationManager.AppSettings["emailFromEmail"]);
             }

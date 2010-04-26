@@ -180,7 +180,15 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _EmailDate; }
             set { _EmailDate = value; }
         }
-        
+
+        private bool _UnsolicitedReference;
+
+        public virtual bool UnsolicitedReference
+        {
+            get { return _UnsolicitedReference; }
+            set { _UnsolicitedReference = value; }
+        }
+                
         private string _UploadID;
 
         [StringLengthValidator(50)]
