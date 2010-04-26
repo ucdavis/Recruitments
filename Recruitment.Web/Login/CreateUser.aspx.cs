@@ -43,7 +43,7 @@ namespace CAESDO.Recruitment.Web
                     case MembershipCreateStatus.Success:
                         createProfileForUser(Email.Text);
                         FormsAuthentication.RedirectFromLoginPage(Email.Text, false);
-                        Response.Redirect(FormsAuthentication.DefaultUrl);
+                        //Response.Redirect(FormsAuthentication.DefaultUrl);
                         break;
                     default:
                         ErrorMessage.Text = "Your account was not created. Please try again.";

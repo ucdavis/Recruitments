@@ -119,7 +119,7 @@ namespace CAESDO.Recruitment.Web
         /// </summary>
         /// <remarks>Checks to make sure the logged in user has an applicant account</remarks>
         protected void btnPositionApply_Click(object sender, EventArgs e)
-        {
+        {            
             Applicant loggedInUser = daoFactory.GetApplicantDao().GetApplicantByEmail(HttpContext.Current.User.Identity.Name);
 
             //Make sure the loggedInUser has an Applicant account
@@ -127,6 +127,15 @@ namespace CAESDO.Recruitment.Web
             {
                 //TODO: Throw error
                 Trace.Warn("Not Logged Is As Member");
+            }
+
+            //If the applicant already has an application for this position, redirect to the app page
+            foreach (Application app in loggedInUser.MainProfile.Applications)
+            {
+                if (app.AppliedPosition == currentPosition)
+                {
+                    Response.Redirect(string.Format("{0}?ApplicationID={1}", "Applicant/App.aspx", app.ID));
+                }
             }
 
             //Now we have a valid applicant, so create the application

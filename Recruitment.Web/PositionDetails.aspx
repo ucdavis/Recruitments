@@ -90,8 +90,9 @@
                 <br />
                 <asp:LoginView ID="lviewPositionApply" runat="server">
                     <AnonymousTemplate>
-                        You must login to apply to this position. <br />
-                        <asp:LinkButton ID="lbtnLogin" runat="server" Text="Click here to login or create a new account"></asp:LinkButton>
+                        You must log in to apply to this position. <br /><br />
+                        Existing Users: <a href="<%= FormsAuthentication.LoginUrl %>?ReturnURL=<%= HttpUtility.UrlEncode(Request.Url.PathAndQuery) %>" >Click here to log in</a><br /><br />
+                        New Users: <a href="Login/CreateUser.aspx?ReturnURL=<%= HttpUtility.UrlEncode(Request.Url.PathAndQuery) %>">Click here to create a new account</a>
                     </AnonymousTemplate>
                     <LoggedInTemplate>
                         <asp:Button ID="btnPositionApply" runat="server" Text="Apply For This Position" OnClick="btnPositionApply_Click" />
