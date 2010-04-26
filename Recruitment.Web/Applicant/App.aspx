@@ -177,7 +177,7 @@
                             <asp:TextBox ID="txtContactPhone" runat="server" MaxLength="20"></asp:TextBox>
                             <%--<AjaxControlToolkit:MaskedEditExtender ID="maskHRPhone" runat="server" TargetControlID="txtHRPhone" MaskType="Number" Mask="(999) 999-9999" ClearMaskOnLostFocus="false" Filtered="" AutoComplete="false"></AjaxControlToolkit:MaskedEditExtender>
                             --%>
-                            <asp:RegularExpressionValidator ID="regValContacPhone" runat="server" ControlToValidate="txtContactPhone" ErrorMessage="*" ValidationExpression="((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}"></asp:RegularExpressionValidator>
+                            <asp:RegularExpressionValidator ID="regValContacPhone" runat="server" ControlToValidate="txtContactPhone" ErrorMessage="*" ValidationExpression="((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}"></asp:RegularExpressionValidator>
                         </td>
                     </tr>
                     <tr>
@@ -288,7 +288,12 @@
                                     </ItemTemplate>
                                 </asp:TemplateField>
                                 <asp:BoundField HeaderText="Phone" DataField="Phone" Visible="False" />
-                                <asp:BoundField HeaderText="Email:" DataField="Email" />
+                                <asp:TemplateField HeaderText="Email:">
+                                    <ItemTemplate>
+                                        <%# Eval("Email") %>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField HeaderText="Email:" DataField="Email" Visible="false" />
                                 <asp:CommandField DeleteText="Remove" ShowDeleteButton="True" >
                                     <ItemStyle HorizontalAlign="Center" />
                                 </asp:CommandField>
@@ -421,7 +426,7 @@
                             <td  >
                                 <asp:TextBox ID="txtReferencesPhone" runat="server" MaxLength="20" EnableViewState="false"></asp:TextBox>
                                 <asp:RequiredFieldValidator id="reqValReferencesPhone" ControlToValidate="txtReferencesPhone" ValidationGroup="References" ErrorMessage="*" runat="server"/>
-                                <asp:RegularExpressionValidator ID="regValReferencesPhone" runat="server" ControlToValidate="txtReferencesPhone" ValidationGroup="References" ErrorMessage="*" ValidationExpression="((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}"></asp:RegularExpressionValidator>
+                                <asp:RegularExpressionValidator ID="regValReferencesPhone" runat="server" ControlToValidate="txtReferencesPhone" ValidationGroup="References" ErrorMessage="*" ValidationExpression="((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}"></asp:RegularExpressionValidator>
                             </td>
                         </tr>
                         <tr>

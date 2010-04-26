@@ -20,7 +20,7 @@ namespace CAESDO
 
         private static bool GetUseKerberos()
         {
-            bool useKerberos = true;
+            bool useKerberos = false;
             return useKerberos;
         }
 

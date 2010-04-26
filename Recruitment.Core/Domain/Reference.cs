@@ -176,6 +176,7 @@ namespace CAESDO.Recruitment.Core.Domain
         private string _UploadID;
 
         [StringLengthValidator(50)]
+        [IgnoreNulls]
         public virtual string UploadID
         {
             get { return _UploadID; }
