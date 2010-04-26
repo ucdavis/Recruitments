@@ -466,7 +466,7 @@ namespace CAESDO.Recruitment.Test
             Assert.IsNotNull(p);
             Assert.IsTrue(p.IsTransient());
         }
-        
+
         [TestMethod()]
         public void ValidateAll()
         {

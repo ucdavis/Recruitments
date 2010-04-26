@@ -74,6 +74,7 @@ namespace CAESDO.Recruitment.Core.Domain
         private string _Country;
 
         [StringLengthValidator(50)]
+        [IgnoreNulls]
         public virtual string Country
         {
             get { return _Country; }
@@ -83,6 +84,7 @@ namespace CAESDO.Recruitment.Core.Domain
         private string _CountryCode;
 
         [StringLengthValidator(5)]
+        [IgnoreNulls]
         public virtual string CountryCode
         {
             get { return _CountryCode; }
