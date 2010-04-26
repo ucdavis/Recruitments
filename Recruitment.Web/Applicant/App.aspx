@@ -512,8 +512,8 @@
                         <td colspan="2"><br /></td>
                     </tr>
                     <tr>
-                        <td colspan="2" align="right">
-                            <asp:CheckBox ID="chkCoverLetterOption" runat="server" Text="I do not wish to upload a cover letter: " TextAlign="Left" AutoPostBack="True" OnCheckedChanged="chkCoverLetterOption_CheckedChanged" />
+                        <td colspan="2" align="left">
+                            <asp:CheckBox ID="chkCoverLetterOption" runat="server" Text=" I do not wish to upload a cover letter." TextAlign="Right" AutoPostBack="True" OnCheckedChanged="chkCoverLetterOption_CheckedChanged" Font-Bold="true" />
                         </td>
                     </tr>
                     <tr>
