@@ -128,7 +128,7 @@
                     <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '{ReferenceName}');" >Reference Name</a>,
                     <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '{ApplicantName}');" >Applicant Name</a>,
                     <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '{Deadline}');" >Deadline</a>,
-                    <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '{Position Title}');" >Position Title</a>
+                    <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '{PositionTitle}');" >Position Title</a>
                 
                 <FTB:FreeTextBox ID="ftxtReferenceTemplate" runat="server" Width="500px" Height="300px">
                 </FTB:FreeTextBox>
