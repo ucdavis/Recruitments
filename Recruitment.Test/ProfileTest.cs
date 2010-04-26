@@ -5,7 +5,10 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using CAESDO.Recruitment.Core.Domain;
+using CAESDO.Recruitment.Core.Utils;
 using Microsoft.Practices.EnterpriseLibrary.Validation;
+
+
 namespace CAESDO.Recruitment.Test
 {
     /// <summary>
@@ -78,8 +81,6 @@ namespace CAESDO.Recruitment.Test
 
             // TODO: Implement code to verify target
             Assert.IsNotNull(target);
-
-
         }
 
         [TestMethod()]
@@ -90,6 +91,8 @@ namespace CAESDO.Recruitment.Test
             Assert.IsNotNull(profile);
 
             Assert.AreEqual<int>(profile.ID, StaticProperties.ExistingProfileID);
+
+            Assert.IsTrue(ValidateBO<Profile>.isValid(profile)); //Make sure you get back a valid profile
 
         }
 
