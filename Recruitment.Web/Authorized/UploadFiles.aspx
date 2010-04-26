@@ -1,6 +1,12 @@
 <%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" EnableEventValidation="false" CodeFile="UploadFiles.aspx.cs" Inherits="CAESDO.Recruitment.Web.Authorized_UploadFiles" Title="Upload Files" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
+    Upload:
+    <asp:RadioButtonList ID="rlistUploadType" runat="server" AutoPostBack="True" OnSelectedIndexChanged="rlistUploadType_SelectedIndexChanged">
+        <asp:ListItem Selected="True" Value="0">References</asp:ListItem>
+        <asp:ListItem Value="1">Other Files</asp:ListItem>
+    </asp:RadioButtonList><br />
+
     Position: <asp:DropDownList ID="dlistPositions" runat="server"></asp:DropDownList>
     <br />
     Application: <asp:DropDownList ID="dlistApplications" runat="server"></asp:DropDownList>

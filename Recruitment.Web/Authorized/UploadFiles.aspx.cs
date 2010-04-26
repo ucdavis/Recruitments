@@ -19,6 +19,7 @@ namespace CAESDO.Recruitment.Web
         private const string STR_Applicationpdf = "application/pdf";
         private const string STR_Publication = "Publication";
         private const string STR_LetterOfRec = "LetterOfRec";
+        private const string REFERENCE_VALUE = "0";
 
         public Application selectedApplication 
         {
@@ -32,17 +33,39 @@ namespace CAESDO.Recruitment.Web
 
         }
         
+        protected void rlistUploadType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            mViewFileType.ActiveViewIndex = int.Parse(rlistUploadType.SelectedValue);
+        }
+
         /// <summary>
         /// Uploads a file of the given type into the selected application
         /// </summary>
         protected void btnfileUpload_Click(object sender, EventArgs e)
         {
+            if (rlistUploadType.SelectedValue == REFERENCE_VALUE)
+            {
+                UploadReferences();
+            }
+            else
+            {
+                UploadFiles();
+            }
+        }
+
+        private void UploadReferences()
+        {
+            throw new Exception("The method or operation is not implemented.");
+        }
+
+        private void UploadFiles()
+        {
             FileType selectedFileType = daoFactory.GetFileTypeDao().GetById(int.Parse(dlistFileTypes.SelectedValue), false);
-            
+
             //For all fileTypes except for Publications we should remove existing files
             if (selectedFileType.FileTypeName != STR_Publication && selectedFileType.FileTypeName != STR_LetterOfRec)
                 RemoveAllFilesOfType(selectedFileType.FileTypeName);
-            
+
             if (fileUpload.HasFile)
             {
                 if (fileUpload.PostedFile.ContentType == STR_Applicationpdf)
@@ -77,7 +100,6 @@ namespace CAESDO.Recruitment.Web
                 }//TODO: Handle if content not PDF
             }
         }
-
         /// <summary>
         /// Removes all files of the given type from the current applicaiton.  This removes the files themselves,
         /// the file info entry and the application files link
