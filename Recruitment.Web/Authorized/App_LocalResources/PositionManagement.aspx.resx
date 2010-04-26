@@ -117,6 +117,12 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="ApplicantName.Text" xml:space="preserve">
+    <value>Applicant Name</value>
+  </data>
+  <data name="ApplicantName.Value" xml:space="preserve">
+    <value>{ApplicantName}</value>
+  </data>
   <data name="btnModifyPositionResource1.Text" xml:space="preserve">
     <value>Create!</value>
   </data>
@@ -231,6 +237,19 @@
   <data name="comValReferencesResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
+  <data name="ConfidentialityStatement.Text" xml:space="preserve">
+    <value>Confidentiality Statement</value>
+  </data>
+  <data name="ConfidentialityStatement.Value" xml:space="preserve">
+    <value>Although the contents of your letter may be passed on to the candidate at prescribed stages of the review process, your identity will be held in confidence. The material made available will lack the letterhead, the signature block, and material below the latter. Therefore, we ask that you indicate your relationship to the candidate below the signature block, as well as any other information that you wish to include that might identify yourself. In any legal proceeding or other situation in which the source of the confidential information is sought, the University does its utmost to protect the identity of such sources. We trust that you will provide your candid professional evaluation regardless of the changing status of the laws protecting confidentiality in academic institutions.</value>
+    <comment>From Chris diMuro email</comment>
+  </data>
+  <data name="Deadline.Text" xml:space="preserve">
+    <value>Deadline</value>
+  </data>
+  <data name="Deadline.Value" xml:space="preserve">
+    <value>{Deadline}</value>
+  </data>
   <data name="dlistDepartmentResource1.ToolTip" xml:space="preserve">
     <value />
   </data>
@@ -314,6 +333,30 @@
   </data>
   <data name="pnlPositionDescriptionResource1.ToolTip" xml:space="preserve">
     <value />
+  </data>
+  <data name="PositionTitle.Text" xml:space="preserve">
+    <value>Position Title</value>
+  </data>
+  <data name="PositionTitle.Value" xml:space="preserve">
+    <value>{PositionTitle}</value>
+  </data>
+  <data name="PrimaryDepartment.Text" xml:space="preserve">
+    <value>Primary Department</value>
+  </data>
+  <data name="PrimaryDepartment.Value" xml:space="preserve">
+    <value>{PrimaryDepartment}</value>
+  </data>
+  <data name="RecruitmentAdminName.Text" xml:space="preserve">
+    <value>Recruitment Admin Name</value>
+  </data>
+  <data name="RecruitmentAdminName.Value" xml:space="preserve">
+    <value>{RecruitmentAdminName}</value>
+  </data>
+  <data name="ReferenceLastName.Text" xml:space="preserve">
+    <value>Reference Last Name</value>
+  </data>
+  <data name="ReferenceLastName.Value" xml:space="preserve">
+    <value>{ReferenceLastName}</value>
   </data>
   <data name="regValHREmailResource1.ErrorMessage" xml:space="preserve">
     <value>* Email Format Not Valid</value>
