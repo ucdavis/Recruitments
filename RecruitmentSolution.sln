@@ -1,66 +1,31 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 9.00
-# Visual Studio 2005
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AC44A94D-0EE1-498F-BCAF-F4023E22BC47}"
+EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recruitment.Core", "Recruitment.Core\Recruitment.Core.csproj", "{5F40A7DB-8142-4564-BB05-0F9C2DD3EF75}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recruitment.Data", "Recruitment.Data\Recruitment.Data.csproj", "{BFA5EBED-0F4D-481F-9C91-EBE45B481F83}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recruitment.Providers", "Recruitment.Providers\Recruitment.Providers.csproj", "{B48CCC6E-ED4B-4589-86F4-3486FD187453}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AC44A94D-0EE1-498F-BCAF-F4023E22BC47}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Recruitment.Reporting", "Recruitment.Reporting\Recruitment.Reporting.rptproj", "{E414181C-D129-4380-99E4-AA58C1A04697}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recruitment.DB", "Recruitment.DB\Recruitment.DB.csproj", "{426073DF-AC37-4C4B-B95A-D4761E393E76}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{2CFEAB61-6A3B-4EB8-B523-560B4BEEF521}") = "Recruitment.Web_deploy", "Recruitment.Web_deploy\Recruitment.Web_deploy.wdproj", "{D16592C4-BD7E-4D4F-94CD-6AF212F54D83}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Recruitment.Setup", "Recruitment.Setup\Recruitment.Setup.vdproj", "{DE13CDD4-EFBF-467C-8312-79C6206CED44}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recruitment.Test", "Recruitment.Test\Recruitment.Test.csproj", "{576B683A-020C-4FBB-993E-AEE545D5B3F1}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "C:\...\Recruitment.Web\", "Recruitment.Web", "{54A50826-9DFD-40B6-ADEC-4480BE72A324}"
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Recruitment.Web", "Recruitment.Web", "{54A50826-9DFD-40B6-ADEC-4480BE72A324}"
 	ProjectSection(WebsiteProperties) = preProject
 		SccProjectName = "SAK"
 		SccAuxPath = "SAK"
 		SccLocalPath = "SAK"
 		SccProvider = "SAK"
+		TargetFramework = "3.5"
 		ProjectReferences = "{5F40A7DB-8142-4564-BB05-0F9C2DD3EF75}|CAESDO.Recruitment.Core.dll;{BFA5EBED-0F4D-481F-9C91-EBE45B481F83}|CAESDO.Recruitment.Data.dll;{B48CCC6E-ED4B-4589-86F4-3486FD187453}|CAESDO.Recruitment.Providers.dll;{B7E438A4-E39B-4D9B-BFAE-D55F78769115}|CAESDO.Recruitment.BLL.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/Recruitment.Web"
 		Debug.AspNetCompiler.PhysicalPath = "Recruitment.Web\"
@@ -80,58 +45,53 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "C:\...\Recruitment.Web\", "
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recruitment.BLL", "Recruitment.BLL\Recruitment.BLL.csproj", "{B7E438A4-E39B-4D9B-BFAE-D55F78769115}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Project("{2CFEAB61-6A3B-4EB8-B523-560B4BEEF521}") = "Recruitment.Deployment", "Recruitment.Deployment\Recruitment.Deployment.wdproj", "{44635FA6-C614-44D4-9D34-1728B2B1542D}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
 EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
 		SccNumberOfProjects = 12
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://cubert:8080/
-		SccLocalPath0 = .
-		SccProjectUniqueName1 = Recruitment.Core\\Recruitment.Core.csproj
-		SccProjectName1 = Recruitment.Core
-		SccLocalPath1 = Recruitment.Core
-		SccProjectUniqueName2 = Recruitment.Data\\Recruitment.Data.csproj
-		SccProjectName2 = Recruitment.Data
-		SccLocalPath2 = Recruitment.Data
-		SccProjectUniqueName3 = Recruitment.Providers\\Recruitment.Providers.csproj
-		SccProjectName3 = Recruitment.Providers
-		SccLocalPath3 = Recruitment.Providers
-		SccProjectUniqueName4 = Recruitment.Reporting\\Recruitment.Reporting.rptproj
-		SccProjectName4 = Recruitment.Reporting
-		SccLocalPath4 = Recruitment.Reporting
-		SccProjectUniqueName5 = Recruitment.DB\\Recruitment.DB.csproj
-		SccProjectName5 = Recruitment.DB
-		SccLocalPath5 = Recruitment.DB
-		SccProjectUniqueName6 = Recruitment.Web_deploy\\Recruitment.Web_deploy.wdproj
-		SccProjectName6 = Recruitment.Web_deploy
-		SccLocalPath6 = Recruitment.Web_deploy
-		SccProjectUniqueName7 = Recruitment.Setup\\Recruitment.Setup.vdproj
-		SccProjectName7 = Recruitment.Setup
-		SccLocalPath7 = Recruitment.Setup
-		SccProjectUniqueName8 = Recruitment.Test\\Recruitment.Test.csproj
-		SccProjectName8 = Recruitment.Test
-		SccLocalPath8 = Recruitment.Test
-		SccWebProject9 = true
-		SccProjectUniqueName9 = Recruitment.Web
-		SccLocalPath9 = .
-		SccProjectFilePathRelativizedFromConnection9 = Recruitment.Web\\
-		SccProjectEnlistmentChoice9 = 2
-		SccProjectUniqueName10 = Recruitment.BLL\\Recruitment.BLL.csproj
-		SccProjectName10 = Recruitment.BLL
-		SccLocalPath10 = Recruitment.BLL
-		SccProjectUniqueName11 = Recruitment.Deployment\\Recruitment.Deployment.wdproj
-		SccProjectName11 = Recruitment.Deployment
-		SccLocalPath11 = Recruitment.Deployment
+		SccProjectUniqueName0 = Recruitment.Core\\Recruitment.Core.csproj
+		SccProjectName0 = Recruitment.Core
+		SccLocalPath0 = Recruitment.Core
+		SccProjectUniqueName1 = Recruitment.Data\\Recruitment.Data.csproj
+		SccProjectName1 = Recruitment.Data
+		SccLocalPath1 = Recruitment.Data
+		SccProjectUniqueName2 = Recruitment.Providers\\Recruitment.Providers.csproj
+		SccProjectName2 = Recruitment.Providers
+		SccLocalPath2 = Recruitment.Providers
+		SccProjectUniqueName3 = Recruitment.Reporting\\Recruitment.Reporting.rptproj
+		SccProjectName3 = Recruitment.Reporting
+		SccLocalPath3 = Recruitment.Reporting
+		SccProjectUniqueName4 = Recruitment.DB\\Recruitment.DB.csproj
+		SccProjectName4 = Recruitment.DB
+		SccLocalPath4 = Recruitment.DB
+		SccProjectUniqueName5 = Recruitment.Web_deploy\\Recruitment.Web_deploy.wdproj
+		SccProjectName5 = Recruitment.Web_deploy
+		SccLocalPath5 = Recruitment.Web_deploy
+		SccProjectUniqueName6 = Recruitment.Setup\\Recruitment.Setup.vdproj
+		SccProjectName6 = Recruitment.Setup
+		SccLocalPath6 = Recruitment.Setup
+		SccProjectUniqueName7 = Recruitment.Test\\Recruitment.Test.csproj
+		SccProjectName7 = Recruitment.Test
+		SccLocalPath7 = Recruitment.Test
+		SccWebProject8 = true
+		SccProjectUniqueName8 = Recruitment.Web
+		SccLocalPath8 = .
+		SccProjectFilePathRelativizedFromConnection8 = Recruitment.Web\\
+		SccProjectEnlistmentChoice8 = 2
+		SccProjectUniqueName9 = Recruitment.BLL\\Recruitment.BLL.csproj
+		SccProjectName9 = Recruitment.BLL
+		SccLocalPath9 = Recruitment.BLL
+		SccProjectUniqueName10 = Recruitment.Deployment\\Recruitment.Deployment.wdproj
+		SccProjectName10 = Recruitment.Deployment
+		SccLocalPath10 = Recruitment.Deployment
+		SccLocalPath11 = .
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Recruitment.Web4.vsmdi
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|.NET = Debug|.NET
@@ -372,8 +332,5 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = Recruitment.Web4.vsmdi
 	EndGlobalSection
 EndGlobal
