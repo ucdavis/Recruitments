@@ -157,6 +157,16 @@ a:active { color:#a50000; }
 	font-weight: bold;
 }
 
+.box td
+{
+	font-weight:bold;
+}
+
+.loginHide
+{
+	display:none;
+}
+
 .paddingLeft
 {
 	padding-left:10px;
