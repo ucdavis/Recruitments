@@ -156,15 +156,5 @@ namespace CAESDO.Recruitment.Core.Domain
         {
             //throw new System.NotImplementedException();
         }
-
-        public virtual void Fill(int PositionID)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public virtual void Save()
-        {
-            throw new System.NotImplementedException();
-        }
     }
 }

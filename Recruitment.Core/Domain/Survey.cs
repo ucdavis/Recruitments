@@ -86,16 +86,6 @@ namespace CAESDO.Recruitment.Core.Domain
             throw new Exception("The method or operation is not implemented.");
         }
 
-        public virtual void Fill()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        public virtual void Save()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
         #endregion
 
         public Survey()

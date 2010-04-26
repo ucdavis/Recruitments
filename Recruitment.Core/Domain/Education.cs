@@ -58,16 +58,6 @@ namespace CAESDO.Recruitment.Core.Domain
             return Complete;
         }
 
-        public virtual void Fill()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
-        public virtual void Save()
-        {
-            throw new Exception("The method or operation is not implemented.");
-        }
-
         #endregion
 
         private ApplicationStepType _ApplicationStepType;

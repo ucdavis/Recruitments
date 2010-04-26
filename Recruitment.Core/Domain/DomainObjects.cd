@@ -5,7 +5,7 @@
     <Position X="4" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <FileName>Domain\Application.cs</FileName>
-      <HashCode>AAAAAIBBAQDAAAgAgAAAAiEAAAAQGAAAAAEgABMBCIA=</HashCode>
+      <HashCode>AAAAAABBAQDAAAAAgAAAAiEAAAAQEAAAAAEgABMBCIA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="CAESDO.Recruitment.Core.Domain.User" Collapsed="true">
@@ -15,19 +15,11 @@
       <HashCode>AAAAAIAAAAgAAAAAAAAAAAgAAAEACAAAAAAAAACBAAA=</HashCode>
     </TypeIdentifier>
   </Class>
-  <Class Name="CAESDO.Recruitment.Core.Domain.Committee" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="1.25" Y="5.5" Width="1.5" />
-    <TypeIdentifier>
-      <FileName>Domain\Committee.cs</FileName>
-      <HashCode>AAAAAAAABCgAAAAAAAAAAAgAAAEAAAAAgAAEAAAAAAA=</HashCode>
-    </TypeIdentifier>
-    <Lollipop Position="0.2" Collapsed="true" />
-  </Class>
   <Class Name="CAESDO.Recruitment.Core.Domain.CurrentPosition" Collapsed="true" BaseTypeListCollapsed="true">
     <Position X="7.5" Y="3" Width="1.5" />
     <TypeIdentifier>
       <FileName>Domain\CurrentPosition.cs</FileName>
-      <HashCode>ACBACIAAAAAEAkoIQAAEWEQAGIIACAAAAEAABCEAAAg=</HashCode>
+      <HashCode>ACBACAAAAAAEAkIIQAAEWEQAGIIAAAAAAEAABCEAAAg=</HashCode>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
@@ -42,12 +34,12 @@
     <Position X="0.75" Y="3" Width="1.5" />
     <TypeIdentifier>
       <FileName>Domain\Education.cs</FileName>
-      <HashCode>AABAAIAAAAIEAAIAQAAAUAQAAAAACAABBAAAAAEABAg=</HashCode>
+      <HashCode>AABAAAAAAAIEAAIAQAAAUAQAAAAAAAABBAAAAAEABAg=</HashCode>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
   <Class Name="CAESDO.Recruitment.Core.Domain.FacultyReviewGroup" Collapsed="true" BaseTypeListCollapsed="true">
-    <Position X="3.25" Y="5.5" Width="1.5" />
+    <Position X="2.5" Y="4.5" Width="1.5" />
     <TypeIdentifier>
       <FileName>Domain\FacultyReviewGroup.cs</FileName>
       <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAgAAEAAAAAAA=</HashCode>
@@ -58,21 +50,21 @@
     <Position X="9" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <FileName>Domain\File.cs</FileName>
-      <HashCode>ABAAAoCAEAAwAAAACAAAAAAAAAAACAQEAAAAAABAAAA=</HashCode>
+      <HashCode>ABAAAgCAEAAwAAAACAAAAAAAAAAAAAQEAAAAAABAAAA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="CAESDO.Recruitment.Core.Domain.Position" Collapsed="true">
     <Position X="1.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <FileName>Domain\Position.cs</FileName>
-      <HashCode>gACDAIAGAggiBAAIACAAAABhSDBASAAACAkAEIALoAA=</HashCode>
+      <HashCode>gACDAAAGAggiBAAIACAAAABhSDBAQAAACAkAEIALoIA=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="CAESDO.Recruitment.Core.Domain.Profile" Collapsed="true">
     <Position X="6.25" Y="1.75" Width="1.5" />
     <TypeIdentifier>
       <FileName>Domain\Profile.cs</FileName>
-      <HashCode>ACAACMCAABEAAgAYAAFUCEAAAAIACAAAAkAAJCAAAAg=</HashCode>
+      <HashCode>ACAACMCAABEAAgAYAAFUCEAAAAIAAAAAAkAAJCAAAAg=</HashCode>
     </TypeIdentifier>
   </Class>
   <Class Name="CAESDO.Recruitment.Core.Domain.Reference" Collapsed="true">
@@ -87,7 +79,7 @@
     <Position X="5.25" Y="3" Width="1.5" />
     <TypeIdentifier>
       <FileName>Domain\Survey.cs</FileName>
-      <HashCode>BABAAIAAqACUAAKAACAAcgABAAAACAAgAiAAAAkAAAg=</HashCode>
+      <HashCode>BABAAAAAqACUAAKAACAAcgABAAAAAAAgACAAAAEAAAg=</HashCode>
     </TypeIdentifier>
     <Lollipop Position="0.2" Collapsed="true" />
   </Class>
@@ -95,7 +87,7 @@
     <Position X="2.75" Y="3" Width="1.5" />
     <TypeIdentifier>
       <FileName>Domain\Applicant.cs</FileName>
-      <HashCode>AIAAAgBAACAAAgAAEAAAAAABAAEACAAAAAAAAAAAAAE=</HashCode>
+      <HashCode>AIAAAgBAACAAAgAAEAAAAAABAAEAAAAAAAAAAAAAAAE=</HashCode>
     </TypeIdentifier>
   </Class>
   <Interface Name="CAESDO.Recruitment.Core.Domain.IApplicationStep" Collapsed="true">
@@ -106,7 +98,7 @@
     </TypeIdentifier>
   </Interface>
   <Interface Name="CAESDO.Recruitment.Core.Domain.IGroup" Collapsed="true">
-    <Position X="9.5" Y="4.25" Width="1.5" />
+    <Position X="10" Y="5.5" Width="1.5" />
     <TypeIdentifier>
       <FileName>Domain\IGroup.cs</FileName>
       <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAgAAEAAAAAAA=</HashCode>
