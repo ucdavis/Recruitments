@@ -3,11 +3,18 @@ using System.Collections.Generic;
 using NHibernate;
 using CAESDO.Recruitment.Core.DataInterfaces;
 using NHibernate.Criterion;
+using System.Linq;
+using NHibernate.Linq;
 
 namespace CAESDO.Recruitment.Data
 {
     public abstract class AbstractNHibernateDao<T, IdT> : IDao<T, IdT>
     {
+        public IQueryable<T> GetQueryable()
+        {
+            return NHibernateSession.Linq<T>();
+        }
+
         /// <summary>
         /// Loads an instance of type T from the DB based on its ID.
         /// </summary>

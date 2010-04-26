@@ -3,7 +3,7 @@
   <class
     name="CAESDO.Recruitment.Core.Domain.File, CAESDO.Recruitment.Core"
     table="Files" >
-    <id name="id" access="field" column="FileID" unsaved-value="0">
+    <id name="ID" access="nosetter.lowercase" column="FileID" unsaved-value="0">
       <generator class="identity" />
     </id>
 

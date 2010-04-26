@@ -3,7 +3,7 @@
   <class
     name="CAESDO.Recruitment.Core.Domain.Department, CAESDO.Recruitment.Core"
     table="PosXDept" >
-    <id name="id" access="field" column="PosXDeptID" unsaved-value="0">
+    <id name="ID" access="nosetter.lowercase" column="PosXDeptID" unsaved-value="0">
       <generator class="identity" />
     </id>
 
@@ -22,7 +22,7 @@
   <class
   name="CAESDO.Recruitment.Core.Domain.Theme, CAESDO.Recruitment.Core"
   table="DeptXTheme" mutable="false" >
-    <id name="id" access="field" column="DepartmentFIS" unsaved-value="0">
+    <id name="ID" access="nosetter.lowercase" column="DepartmentFIS" unsaved-value="0">
       <generator class="assigned" />
     </id>
 
@@ -33,7 +33,7 @@
   <class
     name="CAESDO.Recruitment.Core.Domain.Gender, CAESDO.Recruitment.Core"
     table="Gender" >
-    <id name="id" access="field" column="GenderID" unsaved-value="0">
+    <id name="ID" access="nosetter.lowercase" column="GenderID" unsaved-value="0">
       <generator class="identity" />
     </id>
 
@@ -44,7 +44,7 @@
   <class
     name="CAESDO.Recruitment.Core.Domain.RecruitmentSrc, CAESDO.Recruitment.Core"
     table="RecruitmentSrc" >
-    <id name="id" access="field" column="RecruitmentSrcID" unsaved-value="0">
+    <id name="ID" access="nosetter.lowercase" column="RecruitmentSrcID" unsaved-value="0">
       <generator class="identity" />
     </id>
 
@@ -56,7 +56,7 @@
   <class
     name="CAESDO.Recruitment.Core.Domain.Ethnicity, CAESDO.Recruitment.Core"
     table="Ethnicity" >
-    <id name="id" access="field" column="EthnicityID" unsaved-value="0">
+    <id name="ID" access="nosetter.lowercase" column="EthnicityID" unsaved-value="0">
       <generator class="identity" />
     </id>
 
@@ -68,7 +68,7 @@
   <class
     name="CAESDO.Recruitment.Core.Domain.FileType, CAESDO.Recruitment.Core"
     table="FileTypes" >
-    <id name="id" access="field" column="FileTypeID" unsaved-value="0">
+    <id name="ID" access="nosetter.lowercase" column="FileTypeID" unsaved-value="0">
       <generator class="identity" />
     </id>
 
@@ -80,7 +80,7 @@
   <class
     name="CAESDO.Recruitment.Core.Domain.Login, CAESDO.Recruitment.Core"
     table="vLogin" >
-    <id name="id" access="field" column="LoginID" unsaved-value="empty">
+    <id name="ID" access="nosetter.lowercase" column="LoginID" unsaved-value="empty">
       <generator class="assigned" />
     </id>
 
@@ -91,7 +91,7 @@
   <class
     name="CAESDO.Recruitment.Core.Domain.Unit, CAESDO.Recruitment.Core"
     table="vUnit" >
-    <id name="id" access="field" column="FIS_Code" unsaved-value="0">
+    <id name="ID" access="nosetter.lowercase" column="FIS_Code" unsaved-value="0">
       <generator class="assigned" />
     </id>
 
@@ -107,7 +107,7 @@
   <class
   name="CAESDO.Recruitment.Core.Domain.ChangeType, CAESDO.Recruitment.Core"
   table="ChangeTypes" >
-    <id name="id" access="field" column="ChangeTypeID" unsaved-value="0">
+    <id name="ID" access="nosetter.lowercase" column="ChangeTypeID" unsaved-value="0">
       <generator class="identity" />
     </id>
 
@@ -118,7 +118,7 @@
   <class
     name="CAESDO.Recruitment.Core.Domain.MemberType, CAESDO.Recruitment.Core"
     table="MemberTypes" >
-    <id name="id" access="field" column="MemberTypeID" unsaved-value="0">
+    <id name="ID" access="nosetter.lowercase" column="MemberTypeID" unsaved-value="0">
       <generator class="identity" />
     </id>
 
@@ -129,7 +129,7 @@
   <class
   name="CAESDO.Recruitment.Core.Domain.SurveyXRecruitmentSrc, CAESDO.Recruitment.Core"
   table="SurveyXRecruitmentSrc" >
-    <id name="id" access="field" column="SurveyXRecruitmentSrcID" unsaved-value="0">
+    <id name="ID" access="nosetter.lowercase" column="SurveyXRecruitmentSrcID" unsaved-value="0">
       <generator class="identity" />
     </id>
 
@@ -146,7 +146,7 @@
   <class
   name="CAESDO.Recruitment.Core.Domain.Template, CAESDO.Recruitment.Core"
   table="Templates" >
-    <id name="id" access="field" column="TemplateID" unsaved-value="0">
+    <id name="ID" access="nosetter.lowercase" column="TemplateID" unsaved-value="0">
       <generator class="identity" />
     </id>
 
@@ -159,7 +159,7 @@
   <class
     name="CAESDO.Recruitment.Core.Domain.TemplateType, CAESDO.Recruitment.Core"
     table="TemplateTypes" >
-    <id name="id" access="field" column="TemplateTypeID" unsaved-value="0">
+    <id name="ID" access="nosetter.lowercase" column="TemplateTypeID" unsaved-value="0">
       <generator class="identity" />
     </id>
 

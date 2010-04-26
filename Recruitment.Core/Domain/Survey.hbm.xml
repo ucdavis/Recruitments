@@ -3,7 +3,7 @@
   <class
     name="CAESDO.Recruitment.Core.Domain.Survey, CAESDO.Recruitment.Core"
     table="Survey" >
-    <id name="id" access="field" column="SurveyID" unsaved-value="0">
+    <id name="ID" access="nosetter.lowercase" column="SurveyID" unsaved-value="0">
       <generator class="identity" />
     </id>
 

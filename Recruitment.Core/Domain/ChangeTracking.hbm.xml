@@ -3,7 +3,7 @@
   <class
     name="CAESDO.Recruitment.Core.Domain.ChangeTracking, CAESDO.Recruitment.Core"
     table="ChangeTracking" >
-    <id name="id" access="field" column="TrackingID" unsaved-value="0">
+    <id name="ID" access="nosetter.lowercase" column="TrackingID" unsaved-value="0">
       <generator class="identity" />
     </id>
 
@@ -26,7 +26,7 @@
   <class
   name="CAESDO.Recruitment.Core.Domain.ChangedProperty, CAESDO.Recruitment.Core"
   table="ChangedProperties" >
-    <id name="id" access="field" column="ChangedPropertyID" unsaved-value="0">
+    <id name="ID" access="nosetter.lowercase" column="ChangedPropertyID" unsaved-value="0">
       <generator class="identity" />
     </id>
 

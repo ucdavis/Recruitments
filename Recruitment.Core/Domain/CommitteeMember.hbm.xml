@@ -4,7 +4,7 @@
     name="CAESDO.Recruitment.Core.Domain.CommitteeMember, CAESDO.Recruitment.Core"
     table="PositionCommittee" >
     
-    <id name="id" access="field" column="PositionCommitteeID" unsaved-value="0">
+    <id name="ID" access="nosetter.lowercase" column="PositionCommitteeID" unsaved-value="0">
       <generator class="identity" />
     </id>
 

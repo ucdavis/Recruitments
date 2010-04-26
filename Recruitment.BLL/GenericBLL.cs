@@ -7,6 +7,7 @@ using CAESDO.Recruitment.Core.Abstractions;
 using CAESDO.Recruitment.Core.DataInterfaces;
 using CAESDO.Recruitment.Data;
 using CAESDO.Recruitment.Core.Domain;
+using System.Linq;
 
 namespace CAESDO.Recruitment.BLL
 {
@@ -21,6 +22,11 @@ namespace CAESDO.Recruitment.BLL
             {
                 return new NHibernateDaoFactory();
             }
+        }
+
+        public static IQueryable<T> EntitySet
+        {
+            get { return daoFactory.GetGenericDao<T, IdT>().GetQueryable(); }
         }
 
         public GenericBLL()
