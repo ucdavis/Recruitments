@@ -27,7 +27,7 @@
     
     <asp:ListView ID="lviewApplications" runat="server" DataSourceID="ObjectDataApplications">
         <LayoutTemplate>
-        <table id="tblApplications" class="tablesorter" style="width:100%">
+        <table id="tblApplications" class="tablesorter">
             <thead>
                 <tr>
                     <th>
