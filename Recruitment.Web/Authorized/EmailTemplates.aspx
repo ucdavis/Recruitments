@@ -49,6 +49,21 @@
     <br />
     <asp:Button ID="btnSendEmail" runat="server" Text="Send Reminder Emails" OnClick="btnSendEmail_Click" /><br />
     <asp:Label ID="lblSentEmail" runat="server" ForeColor="green" EnableViewState="false"></asp:Label>
+        <AjaxControlToolkit:AnimationExtender ID="animationApplicationStatus" runat="server" TargetControlID="lblSentEmail">
+            <Animations>
+                <OnLoad>
+                    <Sequence>
+                        <Color Duration="2"
+                        StartValue="#ffff99"
+                        EndValue="#FFFFFF"
+                        Property="style"
+                        PropertyKey="backgroundColor" />
+                        <StyleAction Attribute="backgroundColor" value="" />
+                    </Sequence>
+                </OnLoad>
+            </Animations>                            
+        </AjaxControlToolkit:AnimationExtender>
+                            
     <br />
 <hr />
     <br />

@@ -63,7 +63,23 @@
     </asp:ObjectDataSource>
     
     <br />
-    <asp:Label ID="lblResult" runat="server" EnableViewState="false"></asp:Label><br />
+    <asp:Label ID="lblResult" runat="server" EnableViewState="false"></asp:Label>
+        <AjaxControlToolkit:AnimationExtender ID="animationApplicationStatus" runat="server" TargetControlID="lblResult">
+            <Animations>
+                <OnLoad>
+                    <Sequence>
+                        <Color Duration="2"
+                        StartValue="#ffff99"
+                        EndValue="#FFFFFF"
+                        Property="style"
+                        PropertyKey="backgroundColor" />
+                        <StyleAction Attribute="backgroundColor" value="" />
+                    </Sequence>
+                </OnLoad>
+            </Animations>                            
+        </AjaxControlToolkit:AnimationExtender>
+    
+    <br />
     <br />
     
     <asp:Button ID="btnUpdateList" runat="server" Text="Update Applications List" Visible="false" OnClick="btnUpdateList_Click" />

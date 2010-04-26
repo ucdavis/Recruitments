@@ -3,6 +3,8 @@
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
  <span class="boxTitle"><img src="../Images/profile_sm.gif" style="vertical-align:middle;" alt="" /> Create Account</span>
        
+       <AjaxControlToolkit:NoBot ID="noBotNewUser" runat="server" />
+       
     <asp:Wizard ID="wizCreateUser" runat="server" ActiveStepIndex="0" BackColor="#EFEFEF" BorderColor="#7f7f7f"
         BorderStyle="dotted" BorderWidth="1px" DisplaySideBar="False" OnFinishButtonClick="wizCreateUser_FinishButtonClick">
         <StepStyle BorderWidth="0px" />

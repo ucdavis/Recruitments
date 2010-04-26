@@ -57,6 +57,20 @@
                         <td colspan="2">
                             <br />
                             <asp:Label ID="lblApplicationStepStatus" runat="server" ForeColor="green" EnableViewState="false"></asp:Label>
+                            <AjaxControlToolkit:AnimationExtender ID="animationApplicationStatus" runat="server" TargetControlID="lblApplicationStepStatus">
+                                <Animations>
+                                    <OnLoad>
+                                        <Sequence>
+                                            <Color Duration="1.5"
+                                            StartValue="#ffff99"
+                                            EndValue="#EFEFEF"
+                                            Property="style"
+                                            PropertyKey="backgroundColor" />
+                                            <StyleAction Attribute="backgroundColor" value="" />
+                                        </Sequence>
+                                    </OnLoad>
+                                </Animations>                            
+                            </AjaxControlToolkit:AnimationExtender>
                         </td>
                     </tr>
                     <tr>

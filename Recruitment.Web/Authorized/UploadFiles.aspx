@@ -64,7 +64,23 @@
     <table style="width:540px; background-color:#fff; border: 1px solid #a7a7a7; margin-left: 10px; padding-left: 20px; padding-right: 20px;" cellpadding="5">
                 <tr>
                     <td colspan="2"><br />
-                        <asp:Label ID="lblStatus" runat="server" EnableViewState="False" ForeColor="Green"></asp:Label></td>
+                        <asp:Label ID="lblStatus" runat="server" EnableViewState="False" ForeColor="Green"></asp:Label>
+                        <AjaxControlToolkit:AnimationExtender ID="animationApplicationStatus" runat="server"
+                            TargetControlID="lblStatus">
+                            <Animations>
+                                <OnLoad>
+                                    <Sequence>
+                                        <Color Duration="2"
+                                        StartValue="#ffff99"
+                                        EndValue="#FFFFFF"
+                                        Property="style"
+                                        PropertyKey="backgroundColor" />
+                                        <StyleAction Attribute="backgroundColor" value="" />
+                                    </Sequence>
+                                </OnLoad>
+                            </Animations>
+                        </AjaxControlToolkit:AnimationExtender>
+                    </td>
                 </tr>
                 <tr>
                     <td colspan="2">

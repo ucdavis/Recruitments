@@ -80,6 +80,8 @@ namespace CAESDO.Recruitment.Web
                     }
                 }
             }
+
+            lblResult.Text = "Application List Updated";
         }
 
         protected void lbtnViewApplication_Click(object sender, EventArgs e)

@@ -271,6 +271,9 @@ namespace CAESDO.Recruitment.Web
             }
 
             this.bindMembers();
+
+            //Display an update successful message
+            lblCommitteeUpdated.Text = "Committee Membership Successfully Updated";
         }
 
         /// <summary>

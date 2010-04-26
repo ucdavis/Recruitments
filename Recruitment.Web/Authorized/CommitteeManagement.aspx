@@ -116,7 +116,23 @@
 
     <br /><br />
     <asp:Panel ID="pnlAccess" runat="server" Visible="false">
-        <asp:Button ID="btnUpdateAccess" runat="server" Text="Update Access" OnClick="btnUpdateAccess_Click" />
+        <asp:Button ID="btnUpdateAccess" runat="server" Text="Update Access" OnClick="btnUpdateAccess_Click" /><br />        
+        <asp:Label ID="lblCommitteeUpdated" runat="server" ForeColor="green" EnableViewState="false"></asp:Label>
+        <AjaxControlToolkit:AnimationExtender ID="animationApplicationStatus" runat="server" TargetControlID="lblCommitteeUpdated">
+            <Animations>
+                <OnLoad>
+                    <Sequence>
+                        <Color Duration="2"
+                        StartValue="#ffff99"
+                        EndValue="#FFFFFF"
+                        Property="style"
+                        PropertyKey="backgroundColor" />
+                        <StyleAction Attribute="backgroundColor" value="" />
+                    </Sequence>
+                </OnLoad>
+            </Animations>                            
+        </AjaxControlToolkit:AnimationExtender>
+        
         <br /><br />     
                 
         <br />
