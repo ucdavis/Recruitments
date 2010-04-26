@@ -9,7 +9,8 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        Default
+        <br /><br />
+        <asp:Button ID="Button1" runat="server" Text="Refresh" />
     </div>
     </form>
 </body>

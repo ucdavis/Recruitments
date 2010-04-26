@@ -16,8 +16,28 @@ namespace CAESDO.Recruitment.Web
 {
     public partial class _Default : ApplicationPage
     {
+        public Application app11
+        {
+            get
+            {
+                if (Session["APP"] == null)
+                {
+                    IApplicationDao appDao = daoFactory.GetApplicationDao();
+                    Session["APP"] = appDao.GetById(11, false);
+                }
+
+                return (Application)Session["APP"];
+            }
+
+            set
+            {
+                Session["APP"] = value;
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
+
             //Response.Write(Roles.IsUserInRole("Admin"));
             
             //IPositionsDao posDao = daoFactory.GetPositionsDao();
@@ -50,13 +70,19 @@ namespace CAESDO.Recruitment.Web
             //ISurveyDao surveyDao = daoFactory.GetSurveyDao();
 
             //Survey survey = surveyDao.GetById(1, false);
+            if (!Page.IsPostBack)
+            {
+                Response.Write(app11.ID.ToString() + "   " + app11.SubmitDate.ToShortDateString() + "<br/>");
+            }
+            else
+            {
+                Response.Write(app11.Files[0].FileName);
+                Response.Write(app11.Education.Count);
+                Response.Write(app11.CurrentPositions.Count);
+            }
 
-            IApplicationDao aDao = daoFactory.GetApplicationDao();
-
-            Application app = aDao.GetById(11, false);
-
-            Response.Write(app.ID.ToString() + "  " + app.SubmitDate.ToShortDateString() + "<br/>");
-            Response.Write(app.References[0].City);
+            //Response.Write(app.ID.ToString() + "  " + app.SubmitDate.ToShortDateString() + "<br/>");
+            //Response.Write(app.References[0].City);
             //IApplicantDao appDao = daoFactory.GetApplicantDao();
 
             //Applicant applicant = appDao.GetById(1, false);

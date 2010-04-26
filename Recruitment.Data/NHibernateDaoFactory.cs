@@ -59,6 +59,11 @@ namespace CAESDO.Recruitment.Data
             return new FileDao();
         }
 
+        public IEducationDao GetEducationDao()
+        {
+            return new EducationDao();
+        }
+
         #region Inline DAO implementations
 
         /// <summary>
@@ -86,6 +91,8 @@ namespace CAESDO.Recruitment.Data
 
         public class FileDao : AbstractNHibernateDao<File, int>, IFileDao { }
 
+        public class EducationDao : AbstractNHibernateDao<Education, int>, IEducationDao { }
+          
         #endregion
 
     }

@@ -13,8 +13,8 @@ namespace CAESDO.Recruitment.Web
     public class NHibernateSessionModule : IHttpModule
     {
         public void Init(HttpApplication context) {
-            context.BeginRequest += new EventHandler(BeginTransaction);
-            context.EndRequest += new EventHandler(CommitAndCloseSession);
+            //context.BeginRequest += new EventHandler(BeginTransaction);
+            //context.EndRequest += new EventHandler(CommitAndCloseSession);
         }
 
         /// <summary>
