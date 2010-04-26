@@ -67,8 +67,6 @@ namespace CAESDO.Recruitment.Test.BusinessTests
         [TestMethod]
         public void ViewPositionsOpenAndAdminAcceptedAndAllowApps()
         {
-            //var result = //controller.ViewPositions(null, null) as ViewResult;
-
             var positions = PositionBLL.GetByStatusAndDepartment(Closed, AdminAccepted, AllowApplications, null, null);
             
             Assert.IsNotNull(positions);

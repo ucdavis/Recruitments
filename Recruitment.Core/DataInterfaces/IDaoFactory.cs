@@ -1,3 +1,4 @@
+using CAESDO.Recruitment.Core.Abstractions;
 using CAESDO.Recruitment.Core.Domain;
 using System.Collections.Generic;
 
@@ -42,9 +43,9 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
     public interface IGenericDao<T, IdT> : IDao<T, IdT> { }
 
     public interface IPositionDao : IDao<Position, int> {
-        List<Position> GetAllPositionsByStatus(bool Closed, bool AdminAccepted);
-        List<Position> GetAllPositionsByStatus(bool Closed, bool AdminAccepted, bool? AllowApplications);
-        List<Position> GetAllPositionsByStatusAndDepartment(bool Closed, bool AdminAccepted, bool? AllowApplications, string DepartmentFIS, string SchoolCode);
+        List<Position> GetAllPositionsByStatus(bool Closed, bool AdminAccepted, IUserContext userContext);
+        List<Position> GetAllPositionsByStatus(bool Closed, bool AdminAccepted, bool? AllowApplications, IUserContext userContext);
+        List<Position> GetAllPositionsByStatusAndDepartment(bool Closed, bool AdminAccepted, bool? AllowApplications, string DepartmentFIS, string SchoolCode, IUserContext userContext);
         List<Position> GetAllPositionsByStatusForCommittee(bool Closed, bool AdminAccepted);
         bool VerifyPositionAccess(Position position);
     }

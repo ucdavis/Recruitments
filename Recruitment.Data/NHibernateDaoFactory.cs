@@ -1,3 +1,4 @@
+using CAESDO.Recruitment.Core.Abstractions;
 using CAESDO.Recruitment.Core.DataInterfaces;
 using CAESDO.Recruitment.Core.Domain;
 using System.Collections.Generic;
@@ -156,22 +157,18 @@ namespace CAESDO.Recruitment.Data
         public class PositionDao : AbstractNHibernateDao<Position, int>, IPositionDao {          
             
             [DataObjectMethod(DataObjectMethodType.Select, true)]
-            public List<Position> GetAllPositionsByStatus(bool Closed, bool AdminAccepted)
+            public List<Position> GetAllPositionsByStatus(bool Closed, bool AdminAccepted, IUserContext userContext)
             {
-                return GetAllPositionsByStatus(Closed, AdminAccepted, null);
+                return GetAllPositionsByStatus(Closed, AdminAccepted, null, userContext);
             }
 
-            public List<Position> GetAllPositionsByStatus(bool Closed, bool AdminAccepted, bool? AllowApplications)
+            public List<Position> GetAllPositionsByStatus(bool Closed, bool AdminAccepted, bool? AllowApplications, IUserContext userContext)
             {
-                return GetAllPositionsByStatusAndDepartment(Closed, AdminAccepted, AllowApplications, null, null);
+                return GetAllPositionsByStatusAndDepartment(Closed, AdminAccepted, AllowApplications, null, null, userContext);
             }
 
-            public List<Position> GetAllPositionsByStatusAndDepartment(bool Closed, bool AdminAccepted, bool? AllowApplications, string DepartmentFIS, string SchoolCode)
+            public List<Position> GetAllPositionsByStatusAndDepartment(bool Closed, bool AdminAccepted, bool? AllowApplications, string DepartmentFIS, string SchoolCode, IUserContext userContext)
             {
-                Position p = new Position();
-                //p.Departments[0].
-                User currentUser = new UserDao().GetUserByLogin(HttpContext.Current.User.Identity.Name);
-
                 ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(Position))
                     .Add(Expression.Eq("Closed", Closed))
                     .Add(Expression.Eq("AdminAccepted", AdminAccepted))
@@ -187,18 +184,23 @@ namespace CAESDO.Recruitment.Data
                 if (!string.IsNullOrEmpty(SchoolCode))
                     criteria.Add(Expression.Eq("Unit.SchoolCode", SchoolCode));
 
-                if (currentUser != null) //only filter logged in users
+                if (userContext != null) //only filter logged in users
                 {
-                    if (!Roles.IsUserInRole("Admin"))
+                    User currentUser = new UserDao().GetUserByLogin(userContext.Name());
+
+                    if (currentUser != null)
                     {
-                        List<string> deptFIS = new List<string>();
-
-                        foreach (Unit u in currentUser.Units)
+                        if (userContext.IsUserInRole("Admin"))
                         {
-                            deptFIS.Add(u.ID);
-                        }
+                            List<string> deptFIS = new List<string>();
 
-                        criteria.Add(Expression.In("Depts.DepartmentFIS", deptFIS.ToArray()));
+                            foreach (Unit u in currentUser.Units)
+                            {
+                                deptFIS.Add(u.ID);
+                            }
+
+                            criteria.Add(Expression.In("Depts.DepartmentFIS", deptFIS.ToArray()));
+                        }
                     }
                 }
 

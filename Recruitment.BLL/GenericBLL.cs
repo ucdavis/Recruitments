@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using System.ComponentModel;
+using CAESDO.Recruitment.Core.Abstractions;
 using CAESDO.Recruitment.Core.DataInterfaces;
 using CAESDO.Recruitment.Data;
 using CAESDO.Recruitment.Core.Domain;
@@ -11,6 +12,8 @@ namespace CAESDO.Recruitment.BLL
     [DataObject]
     public class GenericBLL<T, IdT>
     {
+        public static IUserContext UserContext = new UserContext();
+
         public static IDaoFactory daoFactory
         {
             get

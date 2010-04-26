@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using CAESDO.Recruitment.Core.Domain;
 using System.Web.Configuration;
+using CAESDO.Recruitment.Core.Abstractions;
 
 namespace CAESDO.Recruitment.BLL
 {
@@ -10,12 +11,23 @@ namespace CAESDO.Recruitment.BLL
     {
         public static List<Position> GetByStatus(bool Closed, bool AdminAccepted, bool? AllowApplications)
         {
-            return daoFactory.GetPositionDao().GetAllPositionsByStatus(Closed, AdminAccepted, AllowApplications);
+            return GetByStatusAndDepartment(Closed, AdminAccepted, AllowApplications, null, null, null); //no filtering
         }
 
+        /// <summary>
+        /// This overload doesn't take a usercontext (meaning we don't want to filter by user)
+        /// </summary>
         public static List<Position> GetByStatusAndDepartment(bool Closed, bool AdminAccepted, bool? AllowApplications, string DepartmentFIS, string SchoolCode)
         {
-            return daoFactory.GetPositionDao().GetAllPositionsByStatusAndDepartment(Closed, AdminAccepted, AllowApplications, DepartmentFIS, SchoolCode);
+            return GetByStatusAndDepartment(Closed, AdminAccepted, AllowApplications, DepartmentFIS, SchoolCode, null);
+        }
+
+        /// <summary>
+        /// Get by school and/or department, and optionally filter by the user given in the usercontext
+        /// </summary>
+        public static List<Position> GetByStatusAndDepartment(bool Closed, bool AdminAccepted, bool? AllowApplications, string DepartmentFIS, string SchoolCode, IUserContext userContext)
+        {
+            return daoFactory.GetPositionDao().GetAllPositionsByStatusAndDepartment(Closed, AdminAccepted, AllowApplications, DepartmentFIS, SchoolCode, userContext);
         }
 
         public static List<Position> GetAllPositionsByStatusForCommittee(bool Closed, bool AdminAccepted)
