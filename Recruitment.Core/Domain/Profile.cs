@@ -149,7 +149,8 @@ namespace CAESDO.Recruitment.Core.Domain
         
         public Profile()
         {
-
+            this.Tracked = true;
+            this.TrackProperties = true;
         }
     }
 }

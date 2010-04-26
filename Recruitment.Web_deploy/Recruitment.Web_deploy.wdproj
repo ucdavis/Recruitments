@@ -51,10 +51,10 @@
   </ItemGroup>
   <ItemGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
     <AssemblyAttributes Include="AssemblyFileVersion">
-      <Value>1.9.13.2007</Value>
+      <Value>1.9.21.2007</Value>
     </AssemblyAttributes>
     <AssemblyAttributes Include="AssemblyVersion">
-      <Value>1.9.13.2007</Value>
+      <Value>1.9.21.2007</Value>
     </AssemblyAttributes>
     <WebConfigReplacementFiles Include="ProdAppSettings.config">
       <Section>appSettings</Section>

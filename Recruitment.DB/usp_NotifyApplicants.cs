@@ -44,7 +44,7 @@ namespace CAESDO.Recruitment
             foreach (UserInfo user in users)
             {
                 sendEmail.CommandText = string.Format("EXEC msdb.dbo.sp_send_dbmail @recipients='{0}', @subject='{1}', @body = '{2}', @body_format = '{3}'",
-                                                "srkirkland@ucdavis.edu", //user.Email, 
+                                                user.Email, //user.Email, 
                                                 "Application Reminder",
                                                 new TemplateProcessing().ProcessTemplate(user),
                                                 "HTML");
