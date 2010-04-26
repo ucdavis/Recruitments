@@ -1,11 +1,11 @@
-<%@ Page Language="C#" AutoEventWireup="true" CodeFile="viewPositions.aspx.cs" Inherits="CAESDO.Recruitment.Web.viewPositions" MasterPageFile="~/MasterPage.master" %>
+<%@ Page Language="C#" AutoEventWireup="true" CodeFile="viewPositions.aspx.cs" Inherits="CAESDO.Recruitment.Web.viewPositions" MasterPageFile="~/MasterPage.master" Theme="MainTheme" %>
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <asp:ImageButton ID="ibtnCreatePosition" runat="server" ImageUrl="~/Images/ibCreatePosition.gif" /><br />
+    <asp:ImageButton ID="ibtnCreatePosition" runat="server" ImageUrl="~/Images/ibCreatePosition.gif" PostBackUrl="~/addPosition.aspx" /><br />
     <br />
 
-    <asp:GridView ID="gViewPositions" runat="server" GridLines="none" CellPadding="2" CellSpacing="16" DataKeyNames="ID" AutoGenerateColumns="False" DataSourceID="ObjectDataOpenPositions">
+    <asp:GridView ID="gViewPositions" skinID="gridViewPositions" runat="server" GridLines="None" CellPadding="0" DataKeyNames="ID" AutoGenerateColumns="False" DataSourceID="ObjectDataOpenPositions" Width="100%">
         <Columns>
             <asp:TemplateField HeaderText="Position/Department" SortExpression="PositionTitle">
                 <ItemTemplate>
@@ -13,20 +13,28 @@
                     <br />
                     <asp:Label ID="lblDepartmentList" runat="server" Text='<%# Bind("DepartmentList") %>'></asp:Label>
                 </ItemTemplate>
+                <ItemStyle CssClass="paddingLeft" />
+                <HeaderStyle HorizontalAlign="Left" />
             </asp:TemplateField>
             <asp:BoundField DataField="Deadline" DataFormatString="{0:d}" HeaderText="Deadline"
-                HtmlEncode="False" SortExpression="Deadline" />
+                HtmlEncode="False" SortExpression="Deadline" >
+                <HeaderStyle HorizontalAlign="Left" Width="100px" />
+            </asp:BoundField>
             
-            <asp:TemplateField HeaderText="Modify" ItemStyle-HorizontalAlign="center">
+            <asp:TemplateField HeaderText="Modify">
                 <ItemTemplate>
                     <asp:ImageButton ID="ibtnModifyPosition" runat="server" ImageUrl="~/Images/modify.gif" CommandArgument='<%# Eval("ID") %>' />
                 </ItemTemplate>
+                <ItemStyle HorizontalAlign="Center" />
+                <HeaderStyle Width="100px" />
             </asp:TemplateField>
             
-            <asp:TemplateField HeaderText="Applicants" SortExpression="ApplicationCount" ItemStyle-HorizontalAlign="center">
+            <asp:TemplateField HeaderText="Applicants" SortExpression="ApplicationCount">
                 <ItemTemplate>
                     <asp:LinkButton ID="lbtnApplicationCount" runat="server" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("ApplicationCount") %>'></asp:LinkButton>
                 </ItemTemplate>
+                <ItemStyle HorizontalAlign="Center" />
+                <HeaderStyle Width="100px" />
             </asp:TemplateField>
         </Columns>
     
