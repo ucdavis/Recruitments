@@ -160,8 +160,11 @@ namespace CAESDO.Recruitment.Web
             //Make sure the loggedInUser has an Applicant account
             if (loggedInUser == null)
             {
-                //TODO: Throw error
                 Trace.Warn("Not Logged Is As Member");
+
+                FormsAuthentication.SignOut(); //Causes the user to sign out and redirect
+                FormsAuthentication.RedirectToLoginPage(Request.Url.AbsolutePath); //Make the user log in
+                return;                
             }
 
             //If the applicant already has an application for this position, redirect to the app page
