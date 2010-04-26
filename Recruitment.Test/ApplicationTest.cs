@@ -273,37 +273,6 @@ namespace CAESDO.Recruitment.Test
             Assert.IsNotNull(target.Surveys);
             Assert.AreNotEqual<int>(target.Surveys.Count, 0);    
         }
-
-        [TestMethod]
-        public void ReferSourcesTest()
-        {
-            Application target = ExampleApplication;
-
-            int numReferSources = target.ReferSources.Count;
-
-            target.ReferSources.Add(NHibernateHelper.daoFactory.GetReferSourceDao().GetUniqueByExample(new ReferSource("Internet")));
-
-            using (new NHibernateTransaction())
-            {
-                target = NHibernateHelper.daoFactory.GetApplicationDao().SaveOrUpdate(target);
-            }
-
-            Assert.IsFalse(target.IsTransient());
-
-            Assert.AreEqual<int>(numReferSources + 1, target.ReferSources.Count, "ReferSource not added");
-
-            using (new NHibernateTransaction())
-            {
-                target.ReferSources.RemoveAt(target.ReferSources.Count - 1);
-
-                target = NHibernateHelper.daoFactory.GetApplicationDao().SaveOrUpdate(target);
-            }
-
-            Assert.IsFalse(target.IsTransient());
-
-            Assert.AreEqual<int>(numReferSources, target.ReferSources.Count, "ReferSource not deleted");
-
-        }
     }
 
 

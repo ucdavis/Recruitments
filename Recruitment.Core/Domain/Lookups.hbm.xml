@@ -13,7 +13,7 @@
     <many-to-one name="AssociatedPosition" column="PositionID"
       class="CAESDO.Recruitment.Core.Domain.Position, CAESDO.Recruitment.Core" not-null="true" />
 
-    <many-to-one name="Unit" column="DepartmentFIS" class="CAESDO.Recruitment.Core.Domain.Unit, CAESDO.Recruitment.Core" cascade="none" not-null="false"></many-to-one>
+    <many-to-one name="Unit" insert="false" update="false" column="DepartmentFIS" class="CAESDO.Recruitment.Core.Domain.Unit, CAESDO.Recruitment.Core" cascade="none" not-null="false"></many-to-one>
     
   </class>
 

@@ -78,10 +78,10 @@ namespace CAESDO.Recruitment.Web
             if (!IsPostBack)
             {
                 DepartmentList = new List<CAESDO.Recruitment.Core.Domain.Unit>();
+                
+                if (currentPositionID.HasValue)
+                    DataBindExistingPosition();
             }
-
-            if (currentPositionID.HasValue)
-                DataBindExistingPosition();
         }
 
         protected void btnModifyPosition_Click(object sender, EventArgs e)
