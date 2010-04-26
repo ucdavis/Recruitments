@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
 
 namespace CAESDO.Recruitment.Core.Domain
 {
@@ -8,6 +9,7 @@ namespace CAESDO.Recruitment.Core.Domain
     {
         private Profile _AssociatedProfile;
 
+        [NotNullValidator]
         public virtual Profile AssociatedProfile
         {
             get { return _AssociatedProfile; }
@@ -16,6 +18,7 @@ namespace CAESDO.Recruitment.Core.Domain
         
         private Position _AppliedPosition;
 
+        [NotNullValidator]
         public virtual Position AppliedPosition
         {
             get { return _AppliedPosition; }
@@ -24,6 +27,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private bool _Submitted;
 
+        [NotNullValidator]
         public virtual bool Submitted
         {
             get { return _Submitted; }
@@ -31,6 +35,8 @@ namespace CAESDO.Recruitment.Core.Domain
         }
         private DateTime? _SubmitDate;
 
+        [TypeConversionValidator(typeof(DateTime))]
+        [IgnoreNulls]
         public virtual DateTime? SubmitDate
         {
             get { return _SubmitDate; }
@@ -39,6 +45,8 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private DateTime _LastUpdated;
 
+        [TypeConversionValidator(typeof(DateTime))]
+        [NotNullValidator]
         public virtual DateTime LastUpdated
         {
             get { return _LastUpdated; }
@@ -46,7 +54,9 @@ namespace CAESDO.Recruitment.Core.Domain
         }
 
         private string _Email;
-
+        
+        [StringLengthValidator(50)]
+        [NotNullValidator]
         public virtual string Email
         {
             get { return _Email; }
@@ -96,6 +106,15 @@ namespace CAESDO.Recruitment.Core.Domain
         public Application()
         {
 
+        }
+
+        /// <summary>
+        /// Checks to see if the current Application is valid
+        /// </summary>
+        /// <returns>true if valid, else false</returns>
+        public virtual bool isValid()
+        {
+            return ValidateBO<Application>.isValid(this);
         }
 
         public virtual bool isComplete()

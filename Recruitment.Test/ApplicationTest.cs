@@ -84,6 +84,20 @@ namespace CAESDO.Recruitment.Test
             //Assert.IsFalse(target.isComplete());
         }
 
+        [TestMethod]
+        public void ValidateAllTest()
+        {
+            List<Application> appList = NHibernateHelper.daoFactory.GetApplicationDao().GetAll();
+
+            Assert.AreNotEqual<int>(0, appList.Count);
+
+            foreach (Application app in appList)
+            {
+                Assert.IsTrue(ValidateBO<Application>.isValid(app));
+            }
+
+        }
+
         /// <summary>
         ///A test for AssociatedProfile
         ///</summary>
