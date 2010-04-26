@@ -48,8 +48,8 @@
     <Compile Include="Utils\DesignByContract.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Domain\Applications.hbm.xml" />
-    <Content Include="Domain\Positions.hbm.xml" />
+    <EmbeddedResource Include="Domain\Applications.hbm.xml" />
+    <EmbeddedResource Include="Domain\Positions.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
