@@ -64,8 +64,10 @@ namespace CAESDO.Recruitment.Web
             {
                 strResult = reader.ReadToEnd();
                 reader.Close();
-                response.Close();
             }
+
+            response.Close(); //Close the response
+            req.Abort(); //Abort the request (now that we have the response)
 
             Response.Clear();
 
