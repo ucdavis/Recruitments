@@ -6,6 +6,7 @@ using NHibernate;
 using NHibernate.Criterion;
 using System.ComponentModel;
 using System.Web;
+using System.Linq;
 using System.Web.Security;
 
 namespace CAESDO.Recruitment.Data
@@ -209,10 +210,17 @@ namespace CAESDO.Recruitment.Data
 
                 DetachedCriteria projectIds = criteria.SetProjection(Projections.Id());
 
-                return NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(Position))
-                           .Add(Subqueries.PropertyIn("id", projectIds))
-                           .AddOrder(Order.Asc("Deadline"))
-                           .List<Position>() as List<Position>;
+                //Get the positions eager joined with the departments
+                var posList = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof (Position))
+                    .Add(Subqueries.PropertyIn("id", projectIds))
+                    .AddOrder(Order.Asc("Deadline"))
+                    .SetFetchMode("Departments", FetchMode.Eager)
+                    .List<Position>();
+
+                //We only want a unique copy of these positions
+                var uniquePositions = new HashSet<Position>(posList);
+
+                return uniquePositions.ToList();
             }
 
             private static DetachedCriteria GetUnitsForUser(string username)
