@@ -19,6 +19,26 @@ html, #aspnetForm
 	margin:0;
 }
 
+
+/* Different College Styles */
+
+.CAESstyle
+{
+	background: url(Images/cl_caes.gif) no-repeat right;
+	float:right;
+	padding-top: 90px; 
+	overflow:hidden;
+}
+
+
+.CABAstyle
+{
+	background: url(Images/cl_caba.gif) no-repeat;
+	float:right;
+	padding-top: 90px; 
+	overflow:hidden;
+}
+
 /* Resizes and centers title bar and body. */
 #wrapper 
 {

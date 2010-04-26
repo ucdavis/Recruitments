@@ -1,5 +1,7 @@
-<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="PositionDetails.aspx.cs" Inherits="CAESDO.Recruitment.Web.PositionDetails" Title="Position Details" %>
+<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="PositionDetails.aspx.cs" Inherits="CAESDO.Recruitment.Web.PositionDetails" Title="Position Details" Theme="MainTheme" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+<asp:Panel ID="Panel1" runat="server" Height="0px" Width="340px" CssClass="CAESstyle"> </asp:Panel>
+
     <asp:HyperLink ID="hlinkPositionList" runat="server" NavigateUrl="~/viewPositions.aspx">Go To Position List</asp:HyperLink><br />
     <br />
     <span class="boxTitle"><img src="Images/profile_sm.gif" style="vertical-align:middle;" alt="" /> Position Details</span><br />
