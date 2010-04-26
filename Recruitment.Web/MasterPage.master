@@ -13,7 +13,7 @@
     <%--    <asp:scriptmanager ID="Scriptmanager1" runat="server"></asp:scriptmanager>--%>
     <AjaxControlToolkit:ToolkitScriptManager ID="toolkitScript" runat="server">
         <Scripts>
-            <Ajax:ScriptReference Path="~/JS/jquery-1.2.6-vsdoc.js" />
+            <Ajax:ScriptReference Path="~/JS/jquery-1.2.6.min.js" />
             <Ajax:ScriptReference Path="~/JS/jquery.tablesorter.min.js" />
             <Ajax:ScriptReference Path="~/JS/jquery.quicksearch.js" />
         </Scripts>
