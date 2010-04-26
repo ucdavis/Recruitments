@@ -23,7 +23,15 @@
     $(document).ready(function() {
         $("input[id$=Phone]").bt('Phone Number Format Examples: <br/>xxx-yyy-zzzz<br/>(xxx) yyy-zzzz<br/>+xx yyy zzz zzzz', {
             trigger: ['focus', 'blur'],
-            positions: ['right']
+            positions: ['right'],
+            padding: 10,
+            spikeLength: 10,
+            spikeGirth: 15,
+            cornerRadius: 10,
+            fill: 'rgba(227, 237, 247, .95)',
+            strokeWidth: 1.5,
+            strokeStyle: '#000000',
+            cssStyles: { color: '#0a0a0a'}
         });
     });
     
@@ -342,8 +350,8 @@
                                 
                 <asp:Panel ID="pnlReferencesEntry" runat="server" CssClass="modalPopup" style="display:none;" meta:resourcekey="pnlReferencesEntryResource1">
                     <span class="modalTitle">Add/Update Reference</span>
-                    <div style="height:450px; width: 460px; overflow:auto;">
-                    <table cellpadding="5">
+                    <div style="height:550px; width: 460px; overflow:auto;">
+                    <table cellpadding="5" id="App_ReferencesEntry">
                         <tr>
                             <td align="right">
                                 Title:</td>

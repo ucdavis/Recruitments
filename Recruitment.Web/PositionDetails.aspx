@@ -74,7 +74,7 @@
                 Description:</td>
             <td>
                 <asp:TextBox ID="txtPositionDescription" runat="server" ReadOnly="True" Height="150px" Rows="4" TextMode="MultiLine"
-                    Width="375px"></asp:TextBox></td>
+                    Width="375px" BackColor="#EFEFEF" BorderStyle="None" Font-Names="Trebuchet MS,Arial,Georgia" Font-Size="1em" ></asp:TextBox></td>
         </tr>
         <tr>
             <td align="right">

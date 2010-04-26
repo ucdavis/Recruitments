@@ -523,3 +523,8 @@ display:block; height:auto; line-height:1.5em; padding:5px 10px 4px 35px; width:
     margin-left:10px;
     margin-bottom:-2px;
 }
+#App_ReferencesEntry td
+{
+    margin-bottom:-10px;
+    padding-bottom:0px;
+} 
