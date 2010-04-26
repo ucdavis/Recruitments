@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="EmailTemplates.aspx.cs" Inherits="CAESDO.Recruitment.Web.Authorized_EmailTemplates" Title="Send Templated Emails" Theme="MainTheme" %>
+<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="EmailTemplates.aspx.cs" Inherits="CAESDO.Recruitment.Web.Authorized_EmailTemplates" Title="Send Templated Emails" Theme="MainTheme" ValidateRequest="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
     <Ajax:ScriptManagerProxy ID="scriptProxy" runat="server">
@@ -84,32 +84,7 @@
             No Applications Found For This Position
         </EmptyDataTemplate>
     </asp:ListView>
-    
-    <%--<asp:GridView ID="gViewApplications" SkinID="gridViewUserManagement" runat="server" 
-            DataKeyNames="id" AutoGenerateColumns="False" DataSourceID="ObjectDataApplications" BorderStyle="None" CellPadding="0" GridLines="None">
-        <Columns>
-            <asp:TemplateField HeaderText="Email">
-                <ItemTemplate>
-                    <asp:CheckBox ID="chkEmailApplicant" runat="server" />
-                </ItemTemplate>
-                <ItemStyle CssClass="paddingLeft" />
-                <HeaderStyle CssClass="paddingLeft" Width="75px" />
-            </asp:TemplateField>
-        
-            <asp:TemplateField HeaderText="Name">
-                <ItemTemplate>
-                    <%# GetNullSafeFullName((string)Eval("AssociatedProfile.FullName")) %>
-                </ItemTemplate>
-                <HeaderStyle Width="450px" />
-            </asp:TemplateField>
-            
-            <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
-            <asp:BoundField DataField="Submitted" HeaderText="Submitted" SortExpression="Submitted" />
-            
-        </Columns>
-        <HeaderStyle HorizontalAlign="Left" />
-    
-    </asp:GridView>--%>
+
     <asp:ObjectDataSource ID="ObjectDataApplications" runat="server" SelectMethod="GetByPositionID"
         TypeName="CAESDO.Recruitment.BLL.ApplicationBLL" OldValuesParameterFormatString="original_{0}">
          <SelectParameters>
@@ -121,7 +96,7 @@
     <br />
     <asp:Panel ID="pnlApplicationsExist" runat="server" Visible="false">
     <asp:Button ID="btnSendEmail" runat="server" Text="Send Reminder Emails" OnClick="btnSendEmail_Click" /><br />
-    <asp:Button ID="btnSendTemplate" runat="server" Text="Send Template Emails" /><br />
+    <asp:Button ID="btnSendTemplate" runat="server" Text="Send Template Emails" CausesValidation="true" ValidationGroup="EmailTemplate" /><br />
     <asp:Label ID="lblSentEmail" runat="server" ForeColor="green" EnableViewState="false"></asp:Label>
         <AjaxControlToolkit:AnimationExtender ID="animationApplicationStatus" runat="server" TargetControlID="lblSentEmail">
             <Animations>
@@ -145,8 +120,10 @@
     Template Type: 
     <asp:DropDownList ID="dlistEmailTemplates" runat="server" 
             DataSourceID="odsTemplateTypes" DataTextField="Type" DataValueField="Type" AppendDataBoundItems="true">
-            <asp:ListItem Text="-- Select A Template --"></asp:ListItem>
+            <asp:ListItem Text="-- Select A Template --" Value=""></asp:ListItem>
     </asp:DropDownList>
+    <asp:RequiredFieldValidator ID="reqValEmailTemplate" runat="server" ControlToValidate="dlistEmailTemplates" ValidationGroup="EmailTemplate"
+     ErrorMessage="* Please select a template type" InitialValue=""></asp:RequiredFieldValidator>
     
     <asp:ObjectDataSource ID="odsTemplateTypes" runat="server" 
         OldValuesParameterFormatString="original_{0}" SelectMethod="GetEmailTemplates" 
