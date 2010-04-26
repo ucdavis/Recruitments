@@ -84,7 +84,7 @@
     <br /><br />
     <asp:ListView ID="lviewMembers" runat="server" DataKeyNames="id" OnItemDataBound="lviewMembers_ItemDataBound">
         <LayoutTemplate>
-            <table id="tblMembers" class="tablesorter">
+            <table id="tblMembers" class="tablesorter tablesearch">
                 <thead>
                     <tr>
                         <th>

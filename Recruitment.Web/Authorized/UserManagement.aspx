@@ -105,7 +105,7 @@
         <ContentTemplate>
             <asp:ListView ID="lviewUsers" runat="server" DataSourceID="ObjectDataSourceUsers">
                 <LayoutTemplate>
-                    <table id="tblUsers" class="tablesorter">
+                    <table id="tblUsers" class="tablesorter tablesearch">
                         <thead>
                             <tr>
                                 <th>

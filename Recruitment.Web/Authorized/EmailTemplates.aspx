@@ -37,7 +37,7 @@
         DataSourceID="ObjectDataApplications" DataKeyNames="id" 
         ondatabound="lviewApplications_DataBound">
         <LayoutTemplate>
-        <table id="tblApplications" class="tablesorter">
+        <table id="tblApplications" class="tablesorter tablesearch">
             <thead>
                 <tr>
                     <th>

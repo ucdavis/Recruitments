@@ -40,7 +40,7 @@
     
     <asp:ListView ID="lviewApplications" runat="server" DataSourceID="ObjectDataApplications" DataKeyNames="id">
         <LayoutTemplate>
-            <table id="tblApplications" class="tablesorter">
+            <table id="tblApplications" class="tablesorter tablesearch">
                 <thead>
                     <tr>
                         <th>

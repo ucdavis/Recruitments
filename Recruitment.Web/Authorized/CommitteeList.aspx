@@ -71,7 +71,7 @@
     
         <asp:ListView ID="lviewApplications" runat="server" DataSourceID="ObjectDepartmentMembers">
         <LayoutTemplate>
-        <table id="tblCommitteeList" class="tablesorter">
+        <table id="tblCommitteeList" class="tablesorter tablesearch">
             <thead>
                 <tr>
                     <th>

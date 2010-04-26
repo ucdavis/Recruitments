@@ -3,22 +3,45 @@
 <script type="text/javascript">
 
     $(document).ready(function() {
+        var allApplications = $("#tblApplications tbody tr");
+        
         //Sort table
         $("#tblApplications").tablesorter(
-            {
-                sortList: [[2, 1], [0, 0]],
-                cssAsc: 'headerSortUp',
-                cssDesc: 'headerSortDown',
-                cssHeader: 'header',
-                headers: { 2: { sorter: 'checkbox' }, 0: { sorter: 'link'} },
-                widgets: ['zebra']
-            });
+        {
+            sortList: [[2, 1], [0, 0]],
+            cssAsc: 'headerSortUp',
+            cssDesc: 'headerSortDown',
+            cssHeader: 'header',
+            headers: { 2: { sorter: 'checkbox' }, 0: { sorter: 'link'} },
+            widgets: ['zebra']
+        });
+
+        //Search any table that has the tablesorter class
+        $("#tblApplications tbody tr").quicksearch({
+            labelText: 'Search: ',
+            attached: null,
+            attachType: 'table',
+            position: 'before',
+            delay: 100,
+            loaderText: 'Loading...',
+            onAfter: function() {
+                var table = this.attached;
+                if ($(table).filter("tbody tr:visible").length != 0) {
+                    $(table).trigger("update");
+                    $(table).trigger("appendCache");
+
+                    if ($("#chkShowUnsubmitted").is(":checked")) { 
+                        //If the show submitted only box is checked, hide the non submitted rows
+                        allApplications.not(":has(:checked)").hide(0);
+                    }
+                }
+            }
+        });
 
         //The show unsubmitted applicants checkbox should be in an initial checked state 
         $("#chkShowUnsubmitted").attr("checked", "checked");
 
         $("#chkShowUnsubmitted").click(function() {
-            var allApplications = $("#tblApplications tbody tr");
 
             if ($(this).is(":checked")) {
                 //Hide the unsubmitted rows
@@ -30,6 +53,7 @@
             }
 
             $("#tblApplications").trigger("applyWidgets"); //Apply the zebra stripes
+            SearchTables(); //
         });
     });
         
