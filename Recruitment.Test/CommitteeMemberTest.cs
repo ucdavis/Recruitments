@@ -117,11 +117,57 @@ namespace CAESDO.Recruitment.Test
         }
 
         [TestMethod()]
+        public void Fast()
+        {
+            for (int i = 0; i < 100000; i++)
+            {
+                AllCommitteeMembersTest();   
+            }
+        }
+
+        [TestMethod()]
+        public void Slow()
+        {
+            for (int i = 0; i < 100000; i++)
+            {
+                AllCommitteeMembersSlow();
+            }
+        }
+
+        [TestMethod()]
         public void AllCommitteeMembersTest()
         {
             Position target = NHibernateHelper.daoFactory.GetPositionDao().GetById(StaticProperties.ExistingPositionID, false);
 
+            this.TestContext.BeginTimer(StaticProperties.TestString);
             List<CommitteeMember> members = NHibernateHelper.daoFactory.GetCommitteeMemberDao().GetAllByMemberType(target, MemberTypes.AllCommittee);
+            this.TestContext.EndTimer(StaticProperties.TestString);
+
+            Assert.AreNotEqual<int>(members.Count, 0);
+
+            this.TestContext.WriteLine("There are {0} members for this position", members.Count);
+
+            foreach (CommitteeMember m in members)
+            {
+                this.TestContext.WriteLine("PositionID = {0}, CommitteeMemberID = {1}, Type = {2}", m.AssociatedPosition.ID, m.ID, m.MemberType.Type);
+            }
+        }
+
+        [TestMethod()]
+        public void AllCommitteeMembersSlow()
+        {
+            Position target = NHibernateHelper.daoFactory.GetPositionDao().GetById(StaticProperties.ExistingPositionID, false);
+
+            this.TestContext.BeginTimer(StaticProperties.TestString);
+            List<CommitteeMember> members = new List<CommitteeMember>();
+
+            foreach (CommitteeMember m in target.CommitteeMembers)
+            {
+                if (m.MemberType.ID == (int)MemberTypes.CommitteeChair || m.MemberType.ID == (int)MemberTypes.CommitteeMember)
+                    members.Add(m);
+            }
+
+            this.TestContext.EndTimer(StaticProperties.TestString);
 
             Assert.AreNotEqual<int>(members.Count, 0);
 
