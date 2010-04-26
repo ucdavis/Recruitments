@@ -60,8 +60,6 @@ namespace CAESDO.Recruitment.Web
             }
         }
 
-        //ErrorReporting eReport = new ErrorReporting(WebConfigurationManager.AppSettings["AppName"]);
-
         public ApplicationPage()
         {
         }
@@ -69,31 +67,31 @@ namespace CAESDO.Recruitment.Web
         protected override void OnError(EventArgs e)
         {
             //Might want to rollback the transaction whenever an error gets this far up the stack
-            //NHibernateSessionManager.Instance.RollbackTransaction();
+            NHibernateSessionManager.Instance.RollbackTransaction();
 
             //Grab the page context
-            //HttpContext ctx = HttpContext.Current;
+            HttpContext ctx = HttpContext.Current;
 
-            ////Grab the exception that raised this error
-            //Exception ex = ctx.Server.GetLastError();
+            //Grab the exception that raised this error
+            Exception ex = ctx.Server.GetLastError();
 
-            ////Only handle HttpException Errors
-            //if (ex.GetType().Name == "HttpException")
-            //{
-            //    //Clear the error and redirect to the page the raised this error (getting a fresh copy)
-            //    ctx.Server.ClearError();
-            //    ctx.Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.SESSION));
-            //}
-            //else
-            //{
-            //    if (ex.InnerException != null)
-            //        eReport.ReportError(ex.InnerException, "OnError");
-            //    else
-            //        eReport.ReportError(ex, "OnError");
+            //Only handle HttpException Errors
+            if (ex.GetType().Name == "HttpException")
+            {
+                //Clear the error and redirect to the page the raised this error (getting a fresh copy)
+                ctx.Server.ClearError();
+                ctx.Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.SESSION));
+            }
+            else
+            {
+                if (ex.InnerException != null)
+                    RecruitmentErrorReporting.ReportError(ex.InnerException, "OnError");
+                else
+                    RecruitmentErrorReporting.ReportError(ex, "OnError");
 
-            //    ctx.Server.ClearError();
-            //    ctx.Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.UNKNOWN));
-            //}
+                ctx.Server.ClearError();
+                ctx.Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.UNKNOWN));
+            }
 
             base.OnError(e); //won't get called
         }
