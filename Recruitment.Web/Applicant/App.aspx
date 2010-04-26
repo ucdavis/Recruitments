@@ -1,5 +1,23 @@
 <%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="App.aspx.cs" Inherits="CAESDO.Recruitment.Web.App" Title="Position Application" Trace="true" Theme="MainTheme" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
+    <script type="text/javascript" language="javascript">
+    
+    ///Makes the applicant confirm the PHD date if it is in the future
+    function confirmPHDDate()
+    {
+        var PHDBox = document.getElementById("<%= txtEducationPHDDate.ClientID %>");
+        
+        var today = new Date();
+        var PHDDate = new Date(PHDBox.value);
+                        
+        if ( PHDDate > today )
+            return confirm("Only set a Ph.D. date in the future if you have not yet received your Ph.D. and are indicating your expected Ph.D. date");
+        else
+            return true;
+    
+    }
+    
+    </script>
      
     <table summary="This table is for layout. The left-hand column contains the navigation bar and the right hand column contains the main text for the page." cellpadding="0" cellspacing="0" border="0" style="font-size:1.0em; width:100%;">
     <tr>
@@ -185,7 +203,7 @@
                         </td>
                         <td align="right"  >
                             <br />
-                            <asp:Button ID="btnEducationSave" runat="server" Text="Update" OnClick="btnEducationSave_Click" /></td>
+                            <asp:Button ID="btnEducationSave" runat="server" Text="Update" OnClientClick="return confirmPHDDate();" OnClick="btnEducationSave_Click" /></td>
                     </tr>
                 </table>
             </asp:View>
