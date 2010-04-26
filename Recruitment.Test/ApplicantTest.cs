@@ -5,6 +5,7 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using CAESDO.Recruitment.Core.Domain;
+using CAESDO.Recruitment.Data;
 namespace CAESDO.Recruitment.Test
 {
     /// <summary>
@@ -95,31 +96,48 @@ namespace CAESDO.Recruitment.Test
             }
         }
 
-        [TestMethod()]
-        public void SaveDeleteApplicant()
+        [TestMethod]
+        public void ProfilesTest()
         {
-            // --- Saving an applicant is not done through NHibernate ---
-            //Applicant applicant = new Applicant();
+            Applicant target = NHibernateHelper.daoFactory.GetApplicantDao().GetById(StaticProperties.ExistingApplicantID, false);
 
-            //applicant.CreatedBy = 1;
-            //applicant.Email = StaticProperties.TestString;
-            //applicant.IsActive = true;
+            Assert.AreNotEqual<int>(0, target.Profiles.Count);
 
-            //Applicant savedApplicant = NHibernateHelper.daoFactory.GetApplicantDao().Save(applicant);
-
-            //Assert.IsNotNull(savedApplicant); //Make sure an applicant comes back
-            //Assert.AreNotEqual<int>(savedApplicant.ID, 0); //Make sure it has a real ID
-            //Assert.IsNull(savedApplicant.MainProfile); //Shouldn't have a profile
-            //Assert.AreEqual<int>(applicant.CreatedBy, 1);
-            //Assert.AreEqual<string>(applicant.Email, StaticProperties.TestString);
-            //Assert.AreEqual<bool>(applicant.IsActive, true);
-
-            ////Now we know we have a saved applicant, so delete it
-            //NHibernateHelper.daoFactory.GetApplicantDao().Delete(savedApplicant);
-
-            //Applicant deletedApplicant = NHibernateHelper.daoFactory.GetApplicantDao().GetById(savedApplicant.ID, false);
+            Assert.IsNotNull(target.MainProfile);
         }
 
+        [TestMethod]
+        public void UpdateEmail()
+        {
+            Applicant target = NHibernateHelper.daoFactory.GetApplicantDao().GetById(StaticProperties.ExistingApplicantID, false);
+
+            string originalEmail = target.Email;
+
+            target.Email = StaticProperties.TestString;
+
+            Assert.IsTrue(ValidateBO<Applicant>.isValid(target)); //make sure the target is valid before saving
+
+            using (new NHibernateTransaction())
+            {
+                target = NHibernateHelper.daoFactory.GetApplicantDao().SaveOrUpdate(target);
+            }
+
+            //Get the target back out of the database
+            Applicant targetDB = NHibernateHelper.daoFactory.GetApplicantDao().GetById(StaticProperties.ExistingApplicantID, false);
+
+            //Make sure the email was changed
+            Assert.AreEqual<string>(targetDB.Email, StaticProperties.TestString);
+
+            //Change it back
+            targetDB.Email = originalEmail;
+
+            Assert.IsTrue(ValidateBO<Applicant>.isValid(targetDB)); //make sure the target is valid before saving
+
+            using (new NHibernateTransaction())
+            {
+                NHibernateHelper.daoFactory.GetApplicantDao().SaveOrUpdate(targetDB);
+            }
+        }
     }
 
 
