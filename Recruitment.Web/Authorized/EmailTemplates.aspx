@@ -14,7 +14,7 @@
     
     <br /><br />
     
-    <asp:GridView ID="gViewApplications" SkinID="gridViewUserManagement" runat="server" DataKeyNames="ID" AutoGenerateColumns="False" DataSourceID="ObjectDataApplications" BorderStyle="None" CellPadding="0" GridLines="None">
+    <asp:GridView ID="gViewApplications" SkinID="gridViewUserManagement" runat="server" DataKeyNames="id" AutoGenerateColumns="False" DataSourceID="ObjectDataApplications" BorderStyle="None" CellPadding="0" GridLines="None">
         <Columns>
             <asp:TemplateField HeaderText="Email">
                 <ItemTemplate>
@@ -47,7 +47,8 @@
     </asp:ObjectDataSource>
     
     <br />
-    <asp:Button ID="btnSendEmail" runat="server" Text="Send Reminder Emails" /><br />
+    <asp:Button ID="btnSendEmail" runat="server" Text="Send Reminder Emails" OnClick="btnSendEmail_Click" /><br />
+    <asp:Label ID="lblSentEmail" runat="server" ForeColor="green" EnableViewState="false"></asp:Label>
     <br />
 <hr />
     <br />

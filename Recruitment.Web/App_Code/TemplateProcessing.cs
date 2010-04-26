@@ -69,7 +69,10 @@ namespace CAESDO.Recruitment
             }
 
             sb.Append(body);
-            sb.Append(getUploadIDPortion());
+            
+            if ( this._reference != null )
+                sb.Append(getUploadIDPortion());
+            
             sb.Append("</body></html>");
 
             return sb.ToString();
