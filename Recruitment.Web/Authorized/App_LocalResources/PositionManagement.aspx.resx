@@ -1,0 +1,498 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="btnModifyPositionResource1.Text" xml:space="preserve">
+    <value>Create!</value>
+  </data>
+  <data name="btnModifyPositionResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnPositionDescriptionReplaceCancelResource1.Text" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="btnPositionDescriptionReplaceCancelResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="btnPositionDescriptionReplaceResource1.Text" xml:space="preserve">
+    <value>Upload</value>
+  </data>
+  <data name="btnPositionDescriptionReplaceResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cboxPrimaryResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="cboxPrimaryResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkAllowApplicationsResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkAllowApplicationsResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkAllowFacultyResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkAllowFacultyResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkFileTypeResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkPositionClosedResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkPositionClosedResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkShowCurrentPositionResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkShowCurrentPositionResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkShowEducationResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="chkShowEducationResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CommandFieldResource1.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CommandFieldResource1.CancelText" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="CommandFieldResource1.DeleteText" xml:space="preserve">
+    <value>Remove</value>
+  </data>
+  <data name="CommandFieldResource1.EditText" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="CommandFieldResource1.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CommandFieldResource1.HeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="CommandFieldResource1.InsertText" xml:space="preserve">
+    <value>Insert</value>
+  </data>
+  <data name="CommandFieldResource1.NewText" xml:space="preserve">
+    <value>New</value>
+  </data>
+  <data name="CommandFieldResource1.SelectText" xml:space="preserve">
+    <value>Select</value>
+  </data>
+  <data name="CommandFieldResource1.UpdateText" xml:space="preserve">
+    <value>Update</value>
+  </data>
+  <data name="comValDeadlineResource1.ErrorMessage" xml:space="preserve">
+    <value>* Review Date Format Not Valid</value>
+  </data>
+  <data name="comValDeadlineResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="comValDeadlineResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="comValPublicationsResource1.ErrorMessage" xml:space="preserve">
+    <value>* Number of Publications Can Not Be Negative</value>
+  </data>
+  <data name="comValPublicationsResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="comValPublicationsResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="comValReferencesResource1.ErrorMessage" xml:space="preserve">
+    <value>* Number of References Can Not Be Negative</value>
+  </data>
+  <data name="comValReferencesResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="comValReferencesResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="dlistDepartmentResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="filePositionDescriptionReplaceResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="filePositionDescriptionResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="gviewDepartmentsResource1.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="gviewDepartmentsResource1.EmptyDataText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="gviewDepartmentsResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="gviewFileTypesResource1.Caption" xml:space="preserve">
+    <value />
+  </data>
+  <data name="gviewFileTypesResource1.EmptyDataText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="gviewFileTypesResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="ibtnReplacePositionDescriptionResource1.AlternateText" xml:space="preserve">
+    <value>[Replace]</value>
+  </data>
+  <data name="ibtnReplacePositionDescriptionResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="imgDeadlineCalendarResource1.AlternateText" xml:space="preserve">
+    <value>Click to show calendar</value>
+  </data>
+  <data name="imgDeadlineCalendarResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="imgProfileResource1.AlternateText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="imgProfileResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblInvalidFileTypeResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblInvalidFileTypeResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblPrimaryDeptErrorMessageResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lblPrimaryDeptErrorMessageResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lbtnAddDepartmentResource1.Text" xml:space="preserve">
+    <value>Add Department</value>
+  </data>
+  <data name="lbtnAddDepartmentResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="lbtnDownloadPositionDescriptionResource1.Text" xml:space="preserve">
+    <value>Download Existing File</value>
+  </data>
+  <data name="lbtnDownloadPositionDescriptionResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="litDownloadPositionDescriptionResource1.Text" xml:space="preserve">
+    <value>&lt;br /&gt;&lt;br /&gt;</value>
+  </data>
+  <data name="litPositionStateResource1.Text" xml:space="preserve">
+    <value>Create Position</value>
+  </data>
+  <data name="PageResource1.Title" xml:space="preserve">
+    <value>Position Management</value>
+  </data>
+  <data name="pnlPositionDescriptionResource1.GroupingText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="pnlPositionDescriptionResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="regValHREmailResource1.ErrorMessage" xml:space="preserve">
+    <value>* Email Format Not Valid</value>
+  </data>
+  <data name="regValHREmailResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="regValHREmailResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="regValHRPhoneResource1.ErrorMessage" xml:space="preserve">
+    <value>* Phone Number Required</value>
+  </data>
+  <data name="regValHRPhoneResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="regValHRPhoneResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="reqValDeadlineResource1.ErrorMessage" xml:space="preserve">
+    <value>* Review Date Required</value>
+  </data>
+  <data name="reqValDeadlineResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="reqValDeadlineResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="reqValHREmailResource1.ErrorMessage" xml:space="preserve">
+    <value>* Email Required</value>
+  </data>
+  <data name="reqValHREmailResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="reqValHREmailResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="reqValHRRepResource1.ErrorMessage" xml:space="preserve">
+    <value>* Recruitment Reprenentative Required</value>
+  </data>
+  <data name="reqValHRRepResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="reqValHRRepResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="reqValPositionDescriptionReplaceResource1.ErrorMessage" xml:space="preserve">
+    <value>* Position Description Required</value>
+  </data>
+  <data name="reqValPositionDescriptionReplaceResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="reqValPositionDescriptionReplaceResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="reqValPositionDescriptionResource1.ErrorMessage" xml:space="preserve">
+    <value>* Job Description Required</value>
+  </data>
+  <data name="reqValPositionDescriptionResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="reqValPositionDescriptionResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="reqValPositionTitleResource1.ErrorMessage" xml:space="preserve">
+    <value>* Position Title Required</value>
+  </data>
+  <data name="reqValPositionTitleResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="reqValPositionTitleResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="reqValPublicationsResource1.ErrorMessage" xml:space="preserve">
+    <value>* Publications Required</value>
+  </data>
+  <data name="reqValPublicationsResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="reqValPublicationsResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="reqValReferencesResource1.ErrorMessage" xml:space="preserve">
+    <value>* Reference Required</value>
+  </data>
+  <data name="reqValReferencesResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="reqValReferencesResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="reqValReferenceTemplateResource1.ErrorMessage" xml:space="preserve">
+    <value>* Reference Template Required</value>
+  </data>
+  <data name="reqValReferenceTemplateResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="reqValReferenceTemplateResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource1.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource1.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource1.HeaderText" xml:space="preserve">
+    <value>Home Dept</value>
+  </data>
+  <data name="TemplateFieldResource2.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource2.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource2.HeaderText" xml:space="preserve">
+    <value>Department Name</value>
+  </data>
+  <data name="TemplateFieldResource3.AccessibleHeaderText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource3.FooterText" xml:space="preserve">
+    <value />
+  </data>
+  <data name="TemplateFieldResource3.HeaderText" xml:space="preserve">
+    <value>File Types</value>
+  </data>
+  <data name="txtDeadlineResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtDeadlineResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtHREmailResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtHREmailResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtHRPhoneResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtHRPhoneResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtHRRepResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtHRRepResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtPositionNumberResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtPositionNumberResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtPositionTitleResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtPositionTitleResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtPublicationsResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtPublicationsResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtReferencesResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtReferencesResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtShortDescriptionResource1.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="txtShortDescriptionResource1.ToolTip" xml:space="preserve">
+    <value />
+  </data>
+</root>
