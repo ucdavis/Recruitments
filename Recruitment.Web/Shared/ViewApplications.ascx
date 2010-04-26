@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeFile="ViewApplications.ascx.cs" Inherits="CAESDO.Recruitment.Web.Shared_ViewApplications" %>
 
 <script type="text/javascript">
-    var phdInfoExpanded = true;
+    var phdInfoExpanded = false;
 
     $(document).ready(function() {
         //help balloon added by tyler
@@ -171,7 +171,7 @@ position.
                     <span class="ApplicantViewListDate"><%# (int)Eval("Education.Count") > 0 ? ((DateTime)Eval("Education[0].Date")).ToShortDateString() : string.Empty%></span>
                     <span class="ApplicantViewListDateShowHideTxt">+/-</span>
                 </div>
-                <div class="ApplicantViewListPhDInformation">
+                <div class="ApplicantViewListPhDInformation" style="display:none;">
                     <%# (int)Eval("Education.Count") > 0 ? Eval("Education[0].Institution") : string.Empty%><br />
                     <%# (int)Eval("Education.Count") > 0 ? Eval("Education[0].Discipline") : string.Empty%><br />
                     <i>
