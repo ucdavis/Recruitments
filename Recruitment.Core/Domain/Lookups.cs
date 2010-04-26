@@ -125,6 +125,14 @@ namespace CAESDO.Recruitment.Core.Domain
         //    set { _User = value; }
         //}
 
+        private string _ShortName;
+
+        public virtual string ShortName
+        {
+            get { return _ShortName; }
+            set { _ShortName = value; }
+        }
+
         private string _FullName;
 
         public virtual string FullName

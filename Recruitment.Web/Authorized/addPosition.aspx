@@ -34,8 +34,13 @@
             <td   align="right">
                 Department:</td>
             <td  >
-                <asp:DropDownList ID="dlistDepartment" runat="server" DataSourceID="ObjectDataUnits" DataTextField="FullName" DataValueField="FISCode"></asp:DropDownList><asp:ObjectDataSource ID="ObjectDataUnits" runat="server" SelectMethod="GetAll"
-                    TypeName="CAESDO.Recruitment.Data.NHibernateDaoFactory+UnitDao"></asp:ObjectDataSource>
+                <asp:DropDownList ID="dlistDepartment" runat="server" DataSourceID="ObjectDataUnits" DataTextField="ShortName" DataValueField="FISCode"></asp:DropDownList><asp:ObjectDataSource ID="ObjectDataUnits" runat="server" SelectMethod="GetAll"
+                    TypeName="CAESDO.Recruitment.Data.NHibernateDaoFactory+UnitDao">
+                    <SelectParameters>
+                        <asp:Parameter DefaultValue="ShortName" Name="propertyName" Type="String" />
+                        <asp:Parameter DefaultValue="true" Name="ascending" Type="Boolean" />
+                    </SelectParameters>
+                </asp:ObjectDataSource>
             </td>
         </tr>
         <tr>

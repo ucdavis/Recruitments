@@ -31,18 +31,42 @@ namespace CAESDO.Recruitment.Data
             return GetByCriteria();
         }
 
+        public List<T> GetAll(string propertyName, bool ascending)
+        {
+            return GetByCriteria(propertyName, ascending);
+        }
+
         /// <summary>
-        /// Loads every instance of the requested type using the supplied <see cref="ICriterion" />.
+        /// Loads every instance of the requested type using the supplied <see cref="ICriterion"></see>.
+        /// If no <see cref="ICriterion"></see> is supplied, this behaves like <see cref="GetAll"></see>.
+        /// </summary>
+        public List<T> GetByCriteria(params ICriterion[] criterion)
+        {
+            string propertyName = String.Empty;
+            bool ascending = false;
+
+            return GetByCriteria(propertyName, ascending, criterion);
+        }
+
+        /// <summary>
+        /// Overload that allows for sorting by one property
         /// If no <see cref="ICriterion" /> is supplied, this behaves like <see cref="GetAll" />.
         /// </summary>
-        public List<T> GetByCriteria(params ICriterion[] criterion) {
+        public List<T> GetByCriteria(string propertyName, bool ascending, params ICriterion[] criterion) {
             ICriteria criteria = NHibernateSession.CreateCriteria(persitentType);
 
             foreach (ICriterion criterium in criterion) {
                 criteria.Add(criterium);
             }
 
+            if (!string.IsNullOrEmpty(propertyName))
+            {
+                //If the propertyName is not empty, sort by that property
+                criteria.AddOrder(new Order(propertyName, ascending));
+            }
+
             ListToGenericListConverter<T> converter = new ListToGenericListConverter<T>();
+
             return converter.ConvertToGenericList(criteria.List());
         }
 
