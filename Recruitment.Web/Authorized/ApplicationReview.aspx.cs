@@ -232,12 +232,11 @@ namespace CAESDO.Recruitment.Web
             Response.AddHeader("Content-Length", file.Length.ToString());
             //Response.TransmitFile(path + FileID.ToString());
             Response.TransmitFile(file.FullName);
-            Response.Flush();
+            
+            Response.End();
 
             //Now remove the temporary file
             file.Delete();
-
-            Response.End();            
         }
 
         /// <summary>
