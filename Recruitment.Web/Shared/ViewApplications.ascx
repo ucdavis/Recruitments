@@ -5,16 +5,17 @@
 
     $(document).ready(function() {
         //help balloon added by tyler
-        $('#ApplicantViewListShowHideHeader').bt('This will expand the PhD Information field for all applicants.  To expand this field for a certain applicant click on the +/- located to the right of the date in that row.', {
-            trigger: 'hover',
-            positions: 'top'
-        });
-        //help balloon added by tyler
         $('.ApplicantViewListDateShowHideTxt').bt('This will expand the PhD information field for this applicant.  To expand this field for all applicants click on the +/- in the column header.', {
             trigger: 'hover',
             positions: 'right'
         });
 
+        //help balloon added by tyler
+        $('#ApplicantViewListShowHideHeader').bt('This will expand the PhD Information field for all applicants.  To expand this field for a certain applicant click on the +/- located to the right of the date in that row.', {
+            trigger: 'hover',
+            positions: 'top'
+        });
+        
         $.tablesorter.addParser({
             id: 'phdInfo',
             is: function(s) { return false; },
