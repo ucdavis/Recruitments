@@ -105,7 +105,7 @@ namespace CAESDO.Recruitment.Web
                     aDao.SaveOrUpdate(app11);
                 }
 
-                Response.Write(app11.LastUpdated.ToShortDateString());
+                Response.Write(app11.LastUpdated.ToString());
 
                 
                 Education edu = new Education();
