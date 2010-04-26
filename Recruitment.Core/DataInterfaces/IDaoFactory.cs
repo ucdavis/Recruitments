@@ -79,7 +79,7 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
     
     public interface IThemeDao : IDao<Theme, int> { }
 
-    public interface IUnitDao : IDao<Unit, int> { }  
+    public interface IUnitDao : IDao<Unit, string> { }  
 
     #endregion
 }

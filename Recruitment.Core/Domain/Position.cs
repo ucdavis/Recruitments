@@ -178,9 +178,9 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _DescriptionFile = value; }
         }
 
-        private IList<Department> _Departments;
+        private IList<Unit> _Departments;
 
-        public virtual IList<Department> Departments
+        public virtual IList<Unit> Departments
         {
             get { return _Departments; }
             set { _Departments = value; }
@@ -216,11 +216,11 @@ namespace CAESDO.Recruitment.Core.Domain
                 for (int i = 0; i < Departments.Count; i++)
                 {
                     if (i == 0)
-                        deptList.Append(Departments[i].DepartmentFIS);
+                        deptList.Append(Departments[i].ShortName);
                     else
                     {
                         deptList.Append(", ");
-                        deptList.Append(Departments[i].DepartmentFIS);
+                        deptList.Append(Departments[i].ShortName);
                     }
                 }
 

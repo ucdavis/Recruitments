@@ -73,14 +73,15 @@
   <class
     name="CAESDO.Recruitment.Core.Domain.Unit, CAESDO.Recruitment.Core"
     table="vUnit" >
-    <id name="id" access="field" column="UnitID" unsaved-value="0">
-      <generator class="identity" />
+    <id name="id" access="field" column="FIS_Code" unsaved-value="0">
+      <generator class="assigned" />
     </id>
 
     <property name="FullName" column="FullName" />
     <property name="ShortName" column="ShortName" />
     <property name="PPSCode" column="PPS_Code" />
     <property name="FISCode" column="FIS_Code" />
+    <property name="UnitID" column="UnitID" />
 
   </class>
 

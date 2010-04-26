@@ -6,6 +6,7 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
     {
         T GetById(IdT id, bool shouldLock);
         List<T> GetAll();
+        List<T> GetAll(string propertyName, bool ascending);
         List<T> GetByExample(T exampleInstance, params string[] propertiesToExclude);
         T GetUniqueByExample(T exampleInstance, params string[] propertiesToExclude);
         T Save(T entity);

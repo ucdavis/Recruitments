@@ -224,7 +224,7 @@ namespace CAESDO.Recruitment.Data
 
         public class ThemeDao : AbstractNHibernateDao<Theme, int>, IThemeDao { }
 
-        public class UnitDao : AbstractNHibernateDao<Unit, int>, IUnitDao { }
+        public class UnitDao : AbstractNHibernateDao<Unit, string>, IUnitDao { }
         #endregion
           
     }

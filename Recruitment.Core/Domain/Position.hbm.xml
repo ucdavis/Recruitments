@@ -38,9 +38,9 @@
       <one-to-many class="CAESDO.Recruitment.Core.Domain.Application, CAESDO.Recruitment.Core" />
     </bag>
 
-    <bag name="Departments" table="PosXDepts" inverse="true">
+    <bag name="Departments" table="PosXDept">
       <key column="PositionID" />
-      <one-to-many class="CAESDO.Recruitment.Core.Domain.Department, CAESDO.Recruitment.Core" />
+      <many-to-many column="DepartmentFIS"  class="CAESDO.Recruitment.Core.Domain.Unit, CAESDO.Recruitment.Core" />
     </bag>
 
     <bag name="CommitteeMembers" table="CommitteeMembers" inverse="true">

@@ -115,7 +115,7 @@ namespace CAESDO.Recruitment.Core.Domain
         }
     }
 
-    public class Unit : DomainObject<int>
+    public class Unit : DomainObject<string>
     {
         //private User _User;
 
@@ -156,6 +156,15 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _FISCode; }
             set { _FISCode = value; }
         }
+
+        private int _UnitID;
+
+        public virtual int UnitID
+        {
+            get { return _UnitID; }
+            set { _UnitID = value; }
+        }
+
 
         public Unit()
         {

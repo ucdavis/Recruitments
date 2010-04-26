@@ -34,7 +34,24 @@
             <td   align="right">
                 Department:</td>
             <td  >
-                <asp:DropDownList ID="dlistDepartment" runat="server" DataSourceID="ObjectDataUnits" DataTextField="ShortName" DataValueField="FISCode"></asp:DropDownList><asp:ObjectDataSource ID="ObjectDataUnits" runat="server" SelectMethod="GetAll"
+                <Ajax:UpdatePanel ID="updateDepartments" runat="server" UpdateMode="conditional">
+                <ContentTemplate>
+                    <asp:DropDownList ID="dlistDepartment" runat="server" DataSourceID="ObjectDataUnits" DataTextField="ShortName" DataValueField="FISCode"></asp:DropDownList>
+                    <asp:LinkButton ID="lbtnAddDepartment" runat="server" Text="Add Department" CausesValidation="False" OnClick="lbtnAddDepartment_Click"></asp:LinkButton>
+                    <br />
+                    
+                    <asp:Repeater ID="repDepartments" runat="server">
+                    <ItemTemplate>
+                        <%# Eval("ShortName") %>
+                    </ItemTemplate>
+                    <SeparatorTemplate>
+                        <br />
+                    </SeparatorTemplate>
+                    </asp:Repeater>
+                </ContentTemplate>
+                </Ajax:UpdatePanel>
+                
+                <asp:ObjectDataSource ID="ObjectDataUnits" runat="server" SelectMethod="GetAll"
                     TypeName="CAESDO.Recruitment.Data.NHibernateDaoFactory+UnitDao">
                     <SelectParameters>
                         <asp:Parameter DefaultValue="ShortName" Name="propertyName" Type="String" />
@@ -70,6 +87,22 @@
             </td>
         </tr>
         <tr>
+            <td align="right" valign="top">
+                Summary:</td>
+            <td  >
+                <asp:TextBox ID="txtShortDescription" runat="server" Height="90px" Rows="4" TextMode="MultiLine"
+                    Width="233px"></asp:TextBox></td>
+        </tr>
+        <tr>
+            <td align="right">
+                Full job description (PDF):</td>
+            <td  >
+                <asp:FileUpload ID="filePositionDescription" runat="server" />
+                
+                <asp:RequiredFieldValidator ID="reqValPositionDescription" runat="server" ControlToValidate="filePositionDescription" ErrorMessage="*"></asp:RequiredFieldValidator>
+            </td>
+        </tr>
+        <tr>
             <td   align="right">
                 Number of Required Publications:</td>
             <td  >
@@ -89,22 +122,6 @@
                 
                 <asp:RequiredFieldValidator ID="reqValReferences" runat="server" ErrorMessage="*" ControlToValidate="txtReferences"></asp:RequiredFieldValidator>    
                 <asp:CompareValidator ID="comValReferences" runat="server" ErrorMessage="*" ControlToValidate="txtReferences" ValueToCompare="0" Type="Integer" Operator="GreaterThanEqual"></asp:CompareValidator>
-            </td>
-        </tr>
-        <tr>
-            <td align="right" valign="top">
-                Summary:</td>
-            <td  >
-                <asp:TextBox ID="txtShortDescription" runat="server" Height="90px" Rows="4" TextMode="MultiLine"
-                    Width="233px"></asp:TextBox></td>
-        </tr>
-        <tr>
-            <td align="right">
-                Full job description (PDF):</td>
-            <td  >
-                <asp:FileUpload ID="filePositionDescription" runat="server" />
-                
-                <asp:RequiredFieldValidator ID="reqValPositionDescription" runat="server" ControlToValidate="filePositionDescription" ErrorMessage="*"></asp:RequiredFieldValidator>
             </td>
         </tr>
         <tr>
