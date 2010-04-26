@@ -18,6 +18,32 @@ namespace CAESDO.Recruitment.Web
         {
         }
 
+        protected void btnSelectUser_Click(object sender, EventArgs e)
+        {
+            IButtonControl btn = (IButtonControl)sender; //get the calling button
+
+            string selectedLoginID = btn.CommandArgument;
+
+            //Now get the selected user's corresponding object
+            User selectedUser = daoFactory.GetUserDao().GetUserByLogin(selectedLoginID);
+
+            //Fill in all User Info fields
+            lblUserInfoName.Text = string.Format("{0} {1}", selectedUser.FirstName, selectedUser.LastName);
+
+            lblUserInfoLoginID.Text = selectedLoginID;
+            lblUserInfoEmployeeID.Text = selectedUser.EmployeeID;
+
+            gViewUserUnits.DataSource = selectedUser.Units;
+            gViewUserUnits.DataBind();
+
+            gViewUserRoles.DataSource = CatbertManager.GetRolesByUser(selectedLoginID);
+            gViewUserRoles.DataBind();
+
+            //Update the panel with the newest information and show the modal popup
+            updateUserInfo.Update();
+            mpopupUserInfo.Show();
+        }
+
         protected void GViewUsers_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Grab the loginID for the selected user from the DataKeys
@@ -121,7 +147,7 @@ namespace CAESDO.Recruitment.Web
             gViewAddUserSearch.SelectedIndex = -1;
             gViewAddUserSearch.Visible = false; //hide the search grid
 
-            GViewUsers.DataBind(); //rebind the user grid and update
+            lviewUsers.DataBind(); //rebind the user grid and update
             updateUserGrid.Update();
 
             updateAddUser.Update(); // update the add user panel

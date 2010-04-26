@@ -2,6 +2,23 @@
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+    <script type="text/javascript">
+
+        $(document).ready(function() {
+            //Sort table
+            $("#tblUsers").tablesorter(
+            {
+                sortList: [[1, 0]],
+                cssAsc: 'headerSortUp',
+                cssDesc: 'headerSortDown',
+                cssHeader: 'header',
+                headers: { 0: { sorter: false} },
+                widgets: ['zebra']
+            });
+        });
+        
+    </script>
+    
 <Ajax:UpdatePanel ID="updateAddUser" runat="server" UpdateMode="Conditional">
 <ContentTemplate>
   <asp:ImageButton ID="btnAddUser" runat="server" ImageUrl="~/Images/ibAddUser.gif" />
@@ -82,8 +99,62 @@
         
         <Ajax:UpdatePanel ID="updateUserGrid" runat="server" UpdateMode="Conditional">
         <ContentTemplate>
-        
-            <asp:GridView ID="GViewUsers" skinID="gridViewUM" runat="server" DataKeyNames="Login" CellPadding="4" ForeColor="#333333" GridLines="None" DataSourceID="ObjectDataSource1" AutoGenerateColumns="False" OnSelectedIndexChanged="GViewUsers_SelectedIndexChanged">
+            <asp:ListView ID="lviewUsers" runat="server" DataSourceID="ObjectDataSourceUsers">
+                <LayoutTemplate>
+                    <table id="tblUsers" class="tablesorter">
+                        <thead>
+                            <tr>
+                                <th>
+                                    &nbsp;
+                                </th>
+                                <th>
+                                    LoginID
+                                </th>
+                                <th>
+                                    Role
+                                </th>
+                                <th>
+                                    Last Name
+                                </th>
+                                <th>
+                                    First Name
+                                </th>
+                                <th>
+                                    EmployeeID
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="itemPlaceholder" runat="server">
+                            </tr>
+                        </tbody>
+                    </table>
+                </LayoutTemplate>
+                <ItemTemplate>
+                    <tr>
+                        <td>
+                            <asp:ImageButton ID="btnSelectUser" runat="server" CommandArgument='<%# Eval("Login") %>' OnClick="btnSelectUser_Click" ImageUrl="~/Images/select.gif" />
+                        </td>
+                        <td>
+                            <%# Eval("Login")%>
+                        </td>
+                        <td>
+                            <%# Eval("Role") %>
+                        </td>
+                        <td>
+                            <%# Eval("LastName") %>
+                        </td>
+                        <td>
+                            <%# Eval("FirstName") %>
+                        </td>
+                        <td>
+                            <%# Eval("EmployeeID") %>
+                        </td>
+                    </tr>
+                </ItemTemplate>
+            </asp:ListView>
+            
+            <%--<asp:GridView ID="GViewUsers" skinID="gridViewUM" runat="server" DataKeyNames="Login" CellPadding="4" ForeColor="#333333" GridLines="None" DataSourceID="ObjectDataSource1" AutoGenerateColumns="False" OnSelectedIndexChanged="GViewUsers_SelectedIndexChanged">
                 <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                 <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                 <EditRowStyle BackColor="#999999" />
@@ -100,8 +171,8 @@
                     <asp:BoundField DataField="FirstName" HeaderText="FirstName"><HeaderStyle HorizontalAlign="Left" Width="150px" /></asp:BoundField>
                     <asp:BoundField DataField="EmployeeID" HeaderText="EmployeeID"><HeaderStyle HorizontalAlign="Left"/></asp:BoundField>
                 </Columns>
-            </asp:GridView>
-            <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetUsersInApplication" TypeName="CAESDO.Recruitment.CatbertManager"></asp:ObjectDataSource>
+            </asp:GridView>--%>
+            <asp:ObjectDataSource ID="ObjectDataSourceUsers" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetUsersInApplication" TypeName="CAESDO.Recruitment.CatbertManager"></asp:ObjectDataSource>
 
         </ContentTemplate>
         </Ajax:UpdatePanel>
