@@ -9,14 +9,14 @@ namespace CAESDO.Recruitment.Data
     /// </summary>
     public class NHibernateDaoFactory : IDaoFactory
     {
-        public IApplicationsDao GetApplicationsDao()
+        public IApplicationDao GetApplicationDao()
         {
-            return new ApplicationsDao();
+            return new ApplicationDao();
         }
 
-        public IPositionsDao GetPositionsDao()
+        public IPositionDao GetPositionDao()
         {
-            return new PositionsDao();
+            return new PositionDao();
         }
 
         #region Inline DAO implementations
@@ -26,9 +26,9 @@ namespace CAESDO.Recruitment.Data
         /// This should be extracted into its own class-file if it needs to extend the
         /// inherited DAO functionality.
         /// </summary>
-        public class PositionsDao : AbstractNHibernateDao<Positions, int>, IPositionsDao { }
+        public class PositionDao : AbstractNHibernateDao<Position, int>, IPositionDao { }
 
-        public class ApplicationsDao : AbstractNHibernateDao<Applications, int>, IApplicationsDao { }
+        public class ApplicationDao : AbstractNHibernateDao<Application, int>, IApplicationDao { }
         #endregion
     }
 }

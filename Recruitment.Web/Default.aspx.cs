@@ -21,9 +21,11 @@ namespace CAESDO.Recruitment.Web
             //Response.Write(Roles.IsUserInRole("Admin"));
             
             //IPositionsDao posDao = daoFactory.GetPositionsDao();
-            IPositionsDao posDao = daoFactory.GetPositionsDao();
+            //IPositionsDao posDao = daoFactory.GetPositionsDao();
 
-            List<Positions> posList = posDao.GetAll();
+            IPositionDao posDao = daoFactory.GetPositionDao();
+
+            List<Position> posList = posDao.GetAll();
 
         }
     }  
