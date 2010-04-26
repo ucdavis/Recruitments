@@ -4,16 +4,16 @@ using System.Text;
 
 namespace CAESDO.Recruitment.Core.Domain
 {
-    public class File
+    public class File : DomainObject<int>
     {
-        private int _FileID;
-        private int _FileType;
+        private FileType _FileType;
 
-        public int FileType
+        public FileType FileType
         {
             get { return _FileType; }
             set { _FileType = value; }
         }
+
         private string _Label;
 
         public string Label
@@ -21,22 +21,12 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _Label; }
             set { _Label = value; }
         }
-        private string _Decription;
+        private string _Description;
 
-        public string Decription
+        public string Description
         {
-            get { return _Decription; }
-            set { _Decription = value; }
-        }
-
-        public File()
-        {
-            throw new System.NotImplementedException();
-        }
-
-        public static Dictionary<int, string> GetFileTypes()
-        {
-            throw new System.NotImplementedException();
+            get { return _Description; }
+            set { _Description = value; }
         }
 
         private string _FileName;
@@ -45,6 +35,10 @@ namespace CAESDO.Recruitment.Core.Domain
         {
             get { return _FileName; }
             set { _FileName = value; }
+        }
+
+        public File()
+        {
         }
 
         public void Fill()

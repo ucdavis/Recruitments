@@ -54,6 +54,11 @@ namespace CAESDO.Recruitment.Data
             return new GenderDao();
         }
 
+        public IFileDao GetFileDao()
+        {
+            return new FileDao();
+        }
+
         #region Inline DAO implementations
 
         /// <summary>
@@ -78,6 +83,8 @@ namespace CAESDO.Recruitment.Data
         public class EthnicityDao : AbstractNHibernateDao<Ethnicity, int>, IEthnicityDao { }
 
         public class GenderDao : AbstractNHibernateDao<Gender, int>, IGenderDao { }
+
+        public class FileDao : AbstractNHibernateDao<File, int>, IFileDao { }
 
         #endregion
 

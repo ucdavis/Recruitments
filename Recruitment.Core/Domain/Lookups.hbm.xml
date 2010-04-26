@@ -23,13 +23,6 @@
 
     <property name="GenderType" column="Gender" />
 
-    <!--<many-to-one name="_AssociatedPosition" access="field" column="PositionID"
-      class="CAESDO.Recruitment.Core.Domain.Position, CAESDO.Recruitment.Core" not-null="true" />-->
-
-    <!--<bag name="_AssociatedApplications" access="field" table="Applications" inverse="true">
-      <key column="PositionID" />
-      <one-to-many class="CAESDO.Recruitment.Core.Domain.Application, CAESDO.Recruitment.Core" />
-    </bag>-->
   </class>
 
   <class
@@ -41,13 +34,6 @@
 
     <property name="RecruitmentSource" column="RecruitmentSrc" />
 
-    <!--<many-to-one name="_AssociatedPosition" access="field" column="PositionID"
-      class="CAESDO.Recruitment.Core.Domain.Position, CAESDO.Recruitment.Core" not-null="true" />-->
-
-    <!--<bag name="_AssociatedApplications" access="field" table="Applications" inverse="true">
-      <key column="PositionID" />
-      <one-to-many class="CAESDO.Recruitment.Core.Domain.Application, CAESDO.Recruitment.Core" />
-    </bag>-->
   </class>
 
   <class
@@ -58,13 +44,18 @@
     </id>
 
     <property name="EthnicityValue" column="Ethnicity" />
-    
-    <!--<many-to-one name="_AssociatedSurvey" access="field" column="EthnicityID"
-      class="CAESDO.Recruitment.Core.Domain.Survey, CAESDO.Recruitment.Core" not-null="true" />-->
 
-    <!--<bag name="_AssociatedApplications" access="field" table="Applications" inverse="true">
-      <key column="PositionID" />
-      <one-to-many class="CAESDO.Recruitment.Core.Domain.Application, CAESDO.Recruitment.Core" />
-    </bag>-->
   </class>
+
+  <class
+    name="CAESDO.Recruitment.Core.Domain.FileType, CAESDO.Recruitment.Core"
+    table="FileTypes" lazy="false">
+    <id name="id" access="field" column="FileTypeID" unsaved-value="0">
+      <generator class="identity" />
+    </id>
+
+    <property name="FileTypeName" column="FileType" />
+
+  </class>
+
 </hibernate-mapping>

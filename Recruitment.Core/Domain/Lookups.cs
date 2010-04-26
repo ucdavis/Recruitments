@@ -75,4 +75,20 @@ namespace CAESDO.Recruitment.Core.Domain
 
         }
     }
+
+    public class FileType : DomainObject<int>
+    {
+        private string _FileTypeName;
+
+        public string FileTypeName
+        {
+            get { return _FileTypeName; }
+            set { _FileTypeName = value; }
+        }
+
+        public FileType()
+        {
+
+        }
+    }
 }

@@ -47,11 +47,14 @@ namespace CAESDO.Recruitment.Web
 
             //List<Profile> profiles = proDao.GetAll();
 
-            ISurveyDao surveyDao = daoFactory.GetSurveyDao();
+            //ISurveyDao surveyDao = daoFactory.GetSurveyDao();
 
-            Survey survey = surveyDao.GetById(1, false);
+            //Survey survey = surveyDao.GetById(1, false);
 
-            Response.Write(survey.Ethnicity.EthnicityValue);
+            IApplicationDao aDao = daoFactory.GetApplicationDao();
+
+            Application app = aDao.GetById(11, false);
+            
 
             //IApplicantDao appDao = daoFactory.GetApplicantDao();
 
@@ -60,6 +63,11 @@ namespace CAESDO.Recruitment.Web
             //survey.Ethnicity = ethList[2];
             
             //surveyDao.SaveOrUpdate(survey);
+
+
+            //IFileDao fDao = daoFactory.GetFileDao();
+
+            //List<File> files = fDao.GetAll();
         }
     }  
 }

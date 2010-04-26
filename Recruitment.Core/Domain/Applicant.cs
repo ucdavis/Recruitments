@@ -28,22 +28,6 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _IsActive; }
             set { _IsActive = value; }
         }
-                
-        //private int _AccountID;
-
-        //public int AccountID
-        //{
-        //    get { return _AccountID; }
-        //    set { _AccountID = value; }
-        //}
-
-        private Profile _Profile;
-
-        public Profile Profile
-        {
-            get { return _Profile; }
-            set { _Profile = value; }
-        }
 
         private IList<Profile> _Profiles;
 
@@ -51,6 +35,17 @@ namespace CAESDO.Recruitment.Core.Domain
         {
             get { return _Profiles; }
             set { _Profiles = value; }
+        }
+
+        public Profile MainProfile
+        {
+            get
+            {
+                if (Profiles.Count != 0)
+                    return Profiles[0];
+                else
+                    return null;
+            }
         }
         
         public Applicant()

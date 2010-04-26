@@ -51,26 +51,35 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _SubmitDate; }
             set { _SubmitDate = value; }
         }
-        private List<File> _ApplicationFiles;
 
-        public List<File> ApplicationFiles
+        private IList<File> _Files;
+
+        public IList<File> Files
         {
-            get { return _ApplicationFiles; }
-            set { _ApplicationFiles = value; }
+            get { return _Files; }
+            set { _Files = value; }
         }
 
+        private IList<Survey> _Surveys;
+
+        public IList<Survey> Surveys
+        {
+            get { return _Surveys; }
+            set { _Surveys = value; }
+        }
+        
         public Application()
         {
-            //throw new System.NotImplementedException();
+
         }
 
-        private List<IApplicationStep> _ApplicationSteps;
+        //private List<IApplicationStep> _ApplicationSteps;
 
-        public List<IApplicationStep> ApplicationSteps
-        {
-            get { return _ApplicationSteps; }
-            set { _ApplicationSteps = value; }
-        }
+        //public List<IApplicationStep> ApplicationSteps
+        //{
+        //    get { return _ApplicationSteps; }
+        //    set { _ApplicationSteps = value; }
+        //}
 
         public bool isComplete()
         {

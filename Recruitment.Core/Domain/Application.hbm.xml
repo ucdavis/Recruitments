@@ -10,11 +10,21 @@
     <property name="Submitted" column="Submitted" />
     <property name="SubmitDate" column="SubmitDate" />
 
-    <many-to-one name="_AppliedPosition" access="field" column="PositionID"
+    <many-to-one name="AppliedPosition" column="PositionID"
       class="CAESDO.Recruitment.Core.Domain.Position, CAESDO.Recruitment.Core" not-null="true" />
 
-    <many-to-one name="_AssociatedProfile" access="field" column="ProfileID"
+    <many-to-one name="AssociatedProfile" column="ProfileID"
       class="CAESDO.Recruitment.Core.Domain.Profile, CAESDO.Recruitment.Core" not-null="true" />
+
+    <bag name="Surveys" table="Survey" inverse="true">
+      <key column="ApplicationID" />
+      <one-to-many class="CAESDO.Recruitment.Core.Domain.Survey, CAESDO.Recruitment.Core" />
+    </bag>
+
+    <bag name="Files" table="ApplicationFiles" >
+      <key column="ApplicationID" />
+      <many-to-many column="FileID"  class="CAESDO.Recruitment.Core.Domain.File, CAESDO.Recruitment.Core" />
+    </bag>
     
   </class>
 </hibernate-mapping>

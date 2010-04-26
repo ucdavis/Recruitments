@@ -16,6 +16,7 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
         IRecruitmentSrcDao GetRecruitmentSrcDao();
         IEthnicityDao GetEthnicityDao();
         IGenderDao GetGenderDao();
+        IFileDao GetFileDao();
     }
 
     // There's no need to declare each of the DAO interfaces in its own file, so just add them inline here.
@@ -40,5 +41,7 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
 
     public interface IGenderDao : IDao<Gender, int> { }
 
+    public interface IFileDao : IDao<File, int> { }
+          
     #endregion
 }
