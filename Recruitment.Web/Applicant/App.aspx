@@ -17,7 +17,8 @@
     
     }
     
-    </script>
+    </script>  
+    <h2 style="margin-top:0;"><asp:Label ID="lblApplicationPositionTitle2" runat="server"></asp:Label> Application</h2>
      
     <table summary="This table is for layout. The left-hand column contains the navigation bar and the right hand column contains the main text for the page." cellpadding="0" cellspacing="0" border="0" style="font-size:1.0em; width:100%;">
     <tr>

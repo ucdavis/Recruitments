@@ -1400,6 +1400,7 @@ namespace CAESDO.Recruitment.Web
         private void DataBindHome()
         {
             lblApplicationPositionTitle.Text = currentApplication.AppliedPosition.PositionTitle;
+            lblApplicationPositionTitle2.Text = currentApplication.AppliedPosition.PositionTitle;
             lblApplicationDeadline.Text = currentApplication.AppliedPosition.Deadline.ToShortDateString();
         }
 
