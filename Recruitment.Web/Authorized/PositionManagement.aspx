@@ -28,50 +28,17 @@
         $(document).ready(function() {
             $("input[id$=txtPositionTitle]").bt('Examples: <br/>*Asst. Prof of Climate Control, LAWR<br/>*Professor of Brewing', {
                 trigger: ['focus', 'blur'],
-                width: '250px',
-                positions: ['right'],
-                padding:10,
-                spikeLength: 10,
-                spikeGirth: 15,
-                cornerRadius: 10,
-                fill: 'rgba(227, 237, 247, .95)',
-                strokeWidth: 1.25,
-                strokeStyle: '#000000',
-                cssStyles: { color: '#0a0a0a'}
+                positions: ['right']
             });
 
             $("input[id$=txtHRPhone]").bt('Phone Number Format Examples: <br/>xxx-yyy-zzzz<br/>(xxx) yyy-zzzz', {
                 trigger: ['focus', 'blur'],
-                positions: ['right'],
-                padding: 10,
-                spikeLength: 10,
-                spikeGirth: 15,
-                cornerRadius: 10,
-                fill: 'rgba(227, 237, 247, .95)',
-                strokeWidth: 1.5,
-                strokeStyle: '#000000',
-                cssStyles: { color: '#0a0a0a'}
+                positions: ['right']
             });
             $('#FreeTextBox_help').bt('When creating a form letter you can click the fields bellow and the information will auto populate the reference template', {
                 trigger: 'click',
-                positions: 'top',
-                width: '250px',
-                padding: 10,
-                spikeLength: 10,
-                spikeGirth: 15,
-                cornerRadius: 10,
-                fill: 'rgba(227, 237, 247, .95)',
-                strokeWidth: 1.5,
-                strokeStyle: '#000000',
-                cssStyles: { color: '#0a0a0a'}
+                positions: 'top'
             });
-
-            /*
-            $("#spanSummaryInfo").bt('Some summary info', {
-                trigger: ['click'],
-                positions: ['right']
-            });
-            */
         });
         
     </script>
