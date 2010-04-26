@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <class
+    name="CAESDO.Recruitment.Core.Domain.File, CAESDO.Recruitment.Core"
+    table="Files" >
+    <id name="id" access="field" column="FileID" unsaved-value="0">
+      <generator class="identity" />
+    </id>
+
+    <property name="Label" column="Label" />
+    <property name="FileName" column="FileName" />
+    <property name="Description" column="Description" />
+
+    <many-to-one name="FileType" class="CAESDO.Recruitment.Core.Domain.FileType, CAESDO.Recruitment.Core" column="FileTypeID" not-null="true" />
+
+  </class>
+</hibernate-mapping>

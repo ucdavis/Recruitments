@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="Recruitment">
+      <DataSourceReference>Recruitment</DataSourceReference>
+      <rd:DataSourceID>e24d2045-b9ea-48c4-a107-d587b72c2628</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <BottomMargin>1in</BottomMargin>
+  <RightMargin>1in</RightMargin>
+  <ReportParameters>
+    <ReportParameter Name="PositionID">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>43</Value>
+        </Values>
+      </DefaultValue>
+      <AllowBlank>true</AllowBlank>
+      <Prompt>PositionID</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <Body>
+    <ReportItems>
+      <Matrix Name="matrix2">
+        <MatrixColumns>
+          <MatrixColumn>
+            <Width>3.25in</Width>
+          </MatrixColumn>
+        </MatrixColumns>
+        <Left>0.25in</Left>
+        <RowGroupings>
+          <RowGrouping>
+            <Width>1in</Width>
+            <DynamicRows>
+              <ReportItems>
+                <Textbox Name="textbox4">
+                  <rd:DefaultName>textbox4</rd:DefaultName>
+                  <ZIndex>1</ZIndex>
+                  <Style>
+                    <PaddingLeft>2pt</PaddingLeft>
+                    <PaddingBottom>2pt</PaddingBottom>
+                    <PaddingRight>2pt</PaddingRight>
+                    <PaddingTop>2pt</PaddingTop>
+                  </Style>
+                  <CanGrow>true</CanGrow>
+                  <Value />
+                </Textbox>
+              </ReportItems>
+              <Grouping Name="matrix2_RowGroup1">
+                <GroupExpressions>
+                  <GroupExpression />
+                </GroupExpressions>
+              </Grouping>
+            </DynamicRows>
+          </RowGrouping>
+        </RowGroupings>
+        <ColumnGroupings>
+          <ColumnGrouping>
+            <DynamicColumns>
+              <ReportItems>
+                <Textbox Name="RecruitmentSrc_1">
+                  <rd:DefaultName>RecruitmentSrc_1</rd:DefaultName>
+                  <ZIndex>2</ZIndex>
+                  <Style>
+                    <PaddingLeft>2pt</PaddingLeft>
+                    <PaddingBottom>2pt</PaddingBottom>
+                    <PaddingRight>2pt</PaddingRight>
+                    <PaddingTop>2pt</PaddingTop>
+                  </Style>
+                  <CanGrow>true</CanGrow>
+                  <Value>=Fields!RecruitmentSrc.Value</Value>
+                </Textbox>
+              </ReportItems>
+              <Grouping Name="matrix2_RecruitmentSrc">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!RecruitmentSrc.Value</GroupExpression>
+                </GroupExpressions>
+              </Grouping>
+            </DynamicColumns>
+            <Height>0.25in</Height>
+          </ColumnGrouping>
+        </ColumnGroupings>
+        <DataSetName>OtherSourcesText</DataSetName>
+        <Top>1.25in</Top>
+        <ZIndex>1</ZIndex>
+        <Width>4.25in</Width>
+        <Corner>
+          <ReportItems>
+            <Textbox Name="textbox2">
+              <rd:DefaultName>textbox2</rd:DefaultName>
+              <ZIndex>3</ZIndex>
+              <Style>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingBottom>2pt</PaddingBottom>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+              </Style>
+              <CanGrow>true</CanGrow>
+              <Value />
+            </Textbox>
+          </ReportItems>
+        </Corner>
+        <Height>0.5in</Height>
+        <MatrixRows>
+          <MatrixRow>
+            <Height>0.25in</Height>
+            <MatrixCells>
+              <MatrixCell>
+                <ReportItems>
+                  <Table Name="table1">
+                    <Details>
+                      <TableRows>
+                        <TableRow>
+                          <TableCells>
+                            <TableCell>
+                              <ReportItems>
+                                <Textbox Name="RecruitmentSrcOther">
+                                  <rd:DefaultName>RecruitmentSrcOther</rd:DefaultName>
+                                  <Style>
+                                    <PaddingLeft>2pt</PaddingLeft>
+                                    <PaddingBottom>2pt</PaddingBottom>
+                                    <PaddingRight>2pt</PaddingRight>
+                                    <PaddingTop>2pt</PaddingTop>
+                                  </Style>
+                                  <CanGrow>true</CanGrow>
+                                  <Value>=Fields!RecruitmentSrcOther.Value</Value>
+                                </Textbox>
+                              </ReportItems>
+                            </TableCell>
+                          </TableCells>
+                          <Height>0.25in</Height>
+                        </TableRow>
+                      </TableRows>
+                    </Details>
+                    <TableColumns>
+                      <TableColumn>
+                        <Width>3.25in</Width>
+                      </TableColumn>
+                    </TableColumns>
+                  </Table>
+                </ReportItems>
+              </MatrixCell>
+            </MatrixCells>
+          </MatrixRow>
+        </MatrixRows>
+      </Matrix>
+      <Matrix Name="matrix1">
+        <MatrixColumns>
+          <MatrixColumn>
+            <Width>1.875in</Width>
+          </MatrixColumn>
+        </MatrixColumns>
+        <Left>0.125in</Left>
+        <RowGroupings>
+          <RowGrouping>
+            <Width>1.5in</Width>
+            <DynamicRows>
+              <ReportItems>
+                <Textbox Name="PositionID">
+                  <rd:DefaultName>PositionID</rd:DefaultName>
+                  <ZIndex>1</ZIndex>
+                  <Style>
+                    <TextAlign>Left</TextAlign>
+                    <PaddingLeft>2pt</PaddingLeft>
+                    <PaddingBottom>2pt</PaddingBottom>
+                    <PaddingRight>2pt</PaddingRight>
+                    <PaddingTop>2pt</PaddingTop>
+                  </Style>
+                  <CanGrow>true</CanGrow>
+                  <Value>=Count(Fields!PositionID.Value)</Value>
+                </Textbox>
+              </ReportItems>
+              <Grouping Name="matrix1_PositionID">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!PositionID.Value</GroupExpression>
+                </GroupExpressions>
+              </Grouping>
+            </DynamicRows>
+          </RowGrouping>
+        </RowGroupings>
+        <ColumnGroupings>
+          <ColumnGrouping>
+            <DynamicColumns>
+              <ReportItems>
+                <Textbox Name="RecruitmentSrc">
+                  <rd:DefaultName>RecruitmentSrc</rd:DefaultName>
+                  <ZIndex>2</ZIndex>
+                  <Style>
+                    <PaddingLeft>2pt</PaddingLeft>
+                    <PaddingBottom>2pt</PaddingBottom>
+                    <PaddingRight>2pt</PaddingRight>
+                    <PaddingTop>2pt</PaddingTop>
+                  </Style>
+                  <CanGrow>true</CanGrow>
+                  <Value>=Fields!RecruitmentSrc.Value</Value>
+                </Textbox>
+              </ReportItems>
+              <Grouping Name="matrix1_RecruitmentSrc">
+                <GroupExpressions>
+                  <GroupExpression>=Fields!RecruitmentSrc.Value</GroupExpression>
+                </GroupExpressions>
+              </Grouping>
+            </DynamicColumns>
+            <Height>0.25in</Height>
+          </ColumnGrouping>
+        </ColumnGroupings>
+        <DataSetName>RecruitmentSources</DataSetName>
+        <Top>0.25in</Top>
+        <Width>3.375in</Width>
+        <Corner>
+          <ReportItems>
+            <Textbox Name="textbox1">
+              <rd:DefaultName>textbox1</rd:DefaultName>
+              <ZIndex>3</ZIndex>
+              <Style>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingBottom>2pt</PaddingBottom>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+              </Style>
+              <CanGrow>true</CanGrow>
+              <Value>Total Applications</Value>
+            </Textbox>
+          </ReportItems>
+        </Corner>
+        <Height>0.5in</Height>
+        <MatrixRows>
+          <MatrixRow>
+            <Height>0.25in</Height>
+            <MatrixCells>
+              <MatrixCell>
+                <ReportItems>
+                  <Textbox Name="SourceCount">
+                    <rd:DefaultName>SourceCount</rd:DefaultName>
+                    <Style>
+                      <TextAlign>Left</TextAlign>
+                      <PaddingLeft>2pt</PaddingLeft>
+                      <PaddingBottom>2pt</PaddingBottom>
+                      <PaddingRight>2pt</PaddingRight>
+                      <PaddingTop>2pt</PaddingTop>
+                    </Style>
+                    <CanGrow>true</CanGrow>
+                    <Value>=IIf(Fields!SourceCount.Value Is Nothing, 
+		0, 
+		Fields!SourceCount.Value)</Value>
+                  </Textbox>
+                </ReportItems>
+              </MatrixCell>
+            </MatrixCells>
+          </MatrixRow>
+        </MatrixRows>
+      </Matrix>
+    </ReportItems>
+    <Height>2.125in</Height>
+  </Body>
+  <rd:ReportID>0f3b1622-c419-4c85-905a-70abb5390e4e</rd:ReportID>
+  <LeftMargin>1in</LeftMargin>
+  <DataSets>
+    <DataSet Name="RecruitmentSources">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandText>SELECT     RS.RecruitmentSrc, @PositionID AS PositionID,
+	(
+		SELECT     COUNT(RecruitmentSrc.RecruitmentSrc) AS SourceCount
+		FROM         SurveyXRecruitmentSrc INNER JOIN
+                      Survey ON SurveyXRecruitmentSrc.SurveyID = Survey.SurveyID INNER JOIN
+                      RecruitmentSrc ON SurveyXRecruitmentSrc.RecruitmentSrcID = RecruitmentSrc.RecruitmentSrcID LEFT OUTER JOIN
+                      Positions INNER JOIN
+                      Applications ON Positions.PositionID = Applications.PositionID ON Survey.ApplicationID = Applications.ApplicationID
+		WHERE     (Positions.PositionID = @PositionID) AND (RecruitmentSrc.RecruitmentSrc = RS.RecruitmentSrc)
+		GROUP BY Positions.PositionID
+
+	) AS SourceCount
+FROM         RecruitmentSrc AS RS</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@PositionID">
+            <Value>=Parameters!PositionID.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>Recruitment</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="RecruitmentSrc">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>RecruitmentSrc</DataField>
+        </Field>
+        <Field Name="PositionID">
+          <rd:TypeName>System.Object</rd:TypeName>
+          <DataField>PositionID</DataField>
+        </Field>
+        <Field Name="SourceCount">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>SourceCount</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+    <DataSet Name="OtherSourcesText">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandText>SELECT     RecruitmentSrc.RecruitmentSrc, SurveyXRecruitmentSrc.RecruitmentSrcOther
+FROM         SurveyXRecruitmentSrc INNER JOIN
+                      Survey ON SurveyXRecruitmentSrc.SurveyID = Survey.SurveyID INNER JOIN
+                      RecruitmentSrc ON SurveyXRecruitmentSrc.RecruitmentSrcID = RecruitmentSrc.RecruitmentSrcID LEFT OUTER JOIN
+                      Positions INNER JOIN
+                      Applications ON Positions.PositionID = Applications.PositionID ON Survey.ApplicationID = Applications.ApplicationID
+WHERE     (Positions.PositionID = @PositionID) AND (NOT (SurveyXRecruitmentSrc.RecruitmentSrcOther IS NULL))</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@PositionID">
+            <Value>=Parameters!PositionID.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>Recruitment</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="RecruitmentSrc">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>RecruitmentSrc</DataField>
+        </Field>
+        <Field Name="RecruitmentSrcOther">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>RecruitmentSrcOther</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <Width>6.50001in</Width>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <Language>en-US</Language>
+  <TopMargin>1in</TopMargin>
+</Report>

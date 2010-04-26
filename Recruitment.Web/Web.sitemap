@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+    <siteMapNode url="Default.aspx"  title="Home" >
+      
+      <siteMapNode url="ViewPositions.aspx" title="View Positions">
+        <siteMapNode url="PositionDetails.aspx" title="Position Details" />
+        <siteMapNode url="Applicant/App.aspx" title="Position Application" />
+        <siteMapNode url="Applicant/ViewApplicationsInProgress.aspx" title="View Applications In Progress" />
+      </siteMapNode>
+
+      <siteMapNode url="UploadReference.aspx" title="Upload Reference" />
+
+      <siteMapNode url="Authorized/AdminIndex.aspx" title="Administration">
+        <siteMapNode url="Authorized/viewPositionsPending.aspx" title="View Pending Positions" />
+        <siteMapNode url="Authorized/viewPositionsClosed.aspx" title="View Closed Positions" />
+        <siteMapNode url="Authorized/PositionManagement.aspx" title="Add/Modify Position" />
+        <siteMapNode url="Authorized/UserManagement.aspx" title="User Management" />
+        <siteMapNode url="Authorized/CommitteeManagement.aspx" title="Committee Management" />
+        <siteMapNode url="Authorized/EmailTemplates.aspx" title="Email Templates" />
+        <siteMapNode url="Authorized/ApplicationReview.aspx" title="Application Review" />
+        <siteMapNode url="Authorized/UploadFiles.aspx" title="Upload Files" />
+        <siteMapNode url="Authorized/ApplicationsList.aspx" title="Applications List" />
+        <siteMapNode url="Authorized/UnsolicitedReferences.aspx" title="Unsolicited References" />
+        <siteMapNode url="Authorized/CommitteeList.aspx" title="Committee List" />
+        <siteMapNode url="Authorized/Reports.aspx" title="Reports" />
+        
+        <siteMapNode url="Authorized/viewPositionsAdmin.aspx" title="View Positions">
+          <siteMapNode url="Authorized/viewApplications.aspx" title="View Applications" />
+        </siteMapNode>
+      </siteMapNode>
+
+      <siteMapNode url="Review/Index.aspx" title="Review">
+        <siteMapNode url="Review/BiographicalSelection.aspx" title="Biographical Data Spreadsheet" />
+        <siteMapNode url="Review/ApplicationChoice.aspx" title="Application Choice">
+          <siteMapNode url="Review/ApplicationReview.aspx" title="Application Review" />
+        </siteMapNode>
+      </siteMapNode>
+      
+      <siteMapNode url="Login/CreateUser.aspx" title="Create User" />
+      <siteMapNode url="Login/ResetPassword.aspx" title="Reset Password" />
+      <siteMapNode url="Login/ChangePassword.aspx" title="Change Password" />
+      <siteMapNode url="Login.aspx" title="Login" />
+
+    </siteMapNode>
+</siteMap>

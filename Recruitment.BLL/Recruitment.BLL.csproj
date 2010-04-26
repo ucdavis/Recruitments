@@ -1,0 +1,86 @@
+﻿<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{B7E438A4-E39B-4D9B-BFAE-D55F78769115}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CAESDO.Recruitment.BLL</RootNamespace>
+    <AssemblyName>CAESDO.Recruitment.BLL</AssemblyName>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="itextsharp, Version=4.0.4.0, Culture=neutral, PublicKeyToken=8354ae6d2174ddca">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Recruitment.Web\Bin\itextsharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.DirectoryServices.Protocols" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="ApplicantBLL.cs" />
+    <Compile Include="ApplicationBLL.cs" />
+    <Compile Include="CommitteeMemberBLL.cs" />
+    <Compile Include="CurrentPositionBLL.cs" />
+    <Compile Include="DepartmentMemberBLL.cs" />
+    <Compile Include="EducationBLL.cs" />
+    <Compile Include="EthnicityBLL.cs" />
+    <Compile Include="FileBLL.cs" />
+    <Compile Include="FileTypeBLL.cs" />
+    <Compile Include="GenderBLL.cs" />
+    <Compile Include="GenericBLL.cs" />
+    <Compile Include="MemberTypeBLL.cs" />
+    <Compile Include="PositionBLL.cs" />
+    <Compile Include="ProfileBLL.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecruitmentSrcBLL.cs" />
+    <Compile Include="ReferenceBLL.cs" />
+    <Compile Include="TemplateBLL.cs" />
+    <Compile Include="AuthBLL.cs" />
+    <Compile Include="TemplateTypeBLL.cs" />
+    <Compile Include="UtilsBLL.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Recruitment.Core\Recruitment.Core.csproj">
+      <Project>{5F40A7DB-8142-4564-BB05-0F9C2DD3EF75}</Project>
+      <Name>Recruitment.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Recruitment.Data\Recruitment.Data.csproj">
+      <Project>{BFA5EBED-0F4D-481F-9C91-EBE45B481F83}</Project>
+      <Name>Recruitment.Data</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

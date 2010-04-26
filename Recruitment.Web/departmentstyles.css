@@ -1,0 +1,186 @@
+﻿/* Different College Styles */
+
+.ADNOstyle
+{
+	background: url(Images/cl_ADNO.gif) no-repeat top right;
+	float:right;
+	padding-top: 150px; 
+	overflow:hidden;
+}
+
+.AANSstyle
+{
+	background: url(Images/cl_AANS.gif) no-repeat top right;
+	float:right;
+	padding-top: 150px; 
+	overflow:hidden;
+}
+
+.AETXstyle
+{
+	background: url(Images/cl_AETX.gif) no-repeat top right;
+	float:right;
+	padding-top: 150px; 
+	overflow:hidden;
+}
+
+.AAREstyle
+{
+	background: url(Images/cl_AARE.gif) no-repeat top right;
+	float:right;
+	padding-top: 150px; 
+	overflow:hidden;
+}
+.ABAEstyle
+{
+	background: url(Images/cl_ABAE.gif) no-repeat top right;
+	float:right;
+	padding-top: 150px; 
+	overflow:hidden;
+}
+
+.ABMLstyle
+{
+	background: url(Images/cl_ABML.gif) no-repeat top right;
+	float:right;
+	padding-top: 150px; 
+	overflow:hidden;
+}
+
+.AEHTstyle
+{
+	background: url(Images/cl_AEHT.gif) no-repeat top right;
+	float:right;
+	padding-top: 150px; 
+	overflow:hidden;
+}
+
+
+.AHCDstyle
+{
+	background: url(Images/cl_AHCD.gif) no-repeat top right;
+	float:right;
+	padding-top: 150px; 
+	overflow:hidden;
+}
+
+.ALAWstyle
+{
+	background: url(Images/cl_LAWR.gif) no-repeat top right;
+	float:right;
+	padding-top: 150px; 
+	overflow:hidden;
+}
+
+.APLSstyle
+{
+	background: url(Images/cl_APLS.gif) no-repeat top right;
+	float:right;
+	padding-top: 150px; 
+	overflow:hidden;
+}
+
+.APPAstyle
+{
+	background: url(Images/cl_APPA.gif) no-repeat top right;
+	float:right;
+	padding-top: 150px; 
+	overflow:hidden;
+}
+
+.AVITstyle
+{
+	background: url(Images/cl_AVIT.gif) no-repeat top right;
+	float:right;
+	padding-top: 150px; 
+	overflow:hidden;
+}
+
+.BMICstyle
+{
+	background: url(Images/cl_BMIC.gif) no-repeat top right;
+	float:right;
+	padding-top: 150px; 
+	overflow:hidden;
+}
+
+.WGSLstyle
+{
+	background: url(Images/cl_WGSL.gif) no-repeat top right;
+	float:right;
+	padding-top: 150px; 
+	overflow:hidden;
+}
+
+.CABAstyle
+{
+	background: url(Images/cl_CABA.gif) no-repeat;
+	float:right;
+	padding-top: 150px; 
+	overflow:hidden;
+}
+
+/* College of Engineering */
+.EDOstyle, .BAEstyle, .DASstyle, .CHMSstyle, .CEEstyle, .ECSstyle, .ECEstyle, .BMEstyle, .MAEstyle
+{
+	background: url(Images/cl_EDO.gif) no-repeat;
+	float:right;
+	padding-top: 150px; 
+	overflow:hidden;    
+}
+
+.STAMstyle
+{
+    background: url(Images/cl_STAM.gif) no-repeat;
+	float:right;
+	padding-top: 150px; 
+	overflow:hidden;
+}
+
+.GELMstyle
+{
+    background: url(Images/cl_GELM.gif) no-repeat;
+	float:right;
+	padding-top: 150px; 
+	overflow:hidden;
+}
+
+.CHEMstyle
+{
+    background: url(Images/cl_CHEM.gif) no-repeat;
+	float:right;
+	padding-top: 150px; 
+	overflow:hidden;
+}
+
+.FAIHstyle
+{
+    background: url(Images/cl_FAIH.gif) no-repeat;
+	float:right;
+	padding-top: 150px; 
+	overflow:hidden;
+}
+
+.UWPHstyle
+{
+    background: url(Images/cl_UWPH.gif) no-repeat;
+	float:right;
+	padding-top: 150px; 
+	overflow:hidden;
+}
+
+.RSTHstyle
+{
+    background: url(Images/cl_RSTH.gif) no-repeat;
+	float:right;
+	padding-top: 150px; 
+	overflow:hidden;
+}
+
+.RUSHstyle
+{
+    background: url(Images/cl_RUSH.gif) no-repeat;
+	float:right;
+	padding-top: 150px; 
+	overflow:hidden;
+}

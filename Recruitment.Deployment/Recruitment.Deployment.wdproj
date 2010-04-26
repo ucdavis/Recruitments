@@ -1,0 +1,81 @@
+﻿<!-- 
+  Microsoft Visual Studio 2005 Web Deployment Project 
+  http://go.microsoft.com/fwlink/?LinkId=55111
+-->
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.60403</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{44635FA6-C614-44D4-9D34-1728B2B1542D}</ProjectGuid>
+    <SourceWebPhysicalPath>..\Recruitment.Web</SourceWebPhysicalPath>
+    <SourceWebProject>{54A50826-9DFD-40B6-ADEC-4480BE72A324}|C:\Projects\RecruitmentBranch\Recruitment.Web</SourceWebProject>
+    <SourceWebVirtualPath>/Recruitment.Web</SourceWebVirtualPath>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>.\Debug</OutputPath>
+    <EnableUpdateable>true</EnableUpdateable>
+    <UseMerge>true</UseMerge>
+    <SingleAssemblyName>Recruitment.Deployment</SingleAssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>false</DebugSymbols>
+    <OutputPath>.\Release</OutputPath>
+    <EnableUpdateable>true</EnableUpdateable>
+    <UseMerge>true</UseMerge>
+    <SingleAssemblyName>Recruitment.Deployment</SingleAssemblyName>
+    <UseWebConfigReplacement>true</UseWebConfigReplacement>
+  </PropertyGroup>
+  <ItemGroup>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Recruitment.BLL\Recruitment.BLL.csproj">
+      <Project>{B7E438A4-E39B-4D9B-BFAE-D55F78769115}</Project>
+      <Name>Recruitment.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Recruitment.Core\Recruitment.Core.csproj">
+      <Project>{5F40A7DB-8142-4564-BB05-0F9C2DD3EF75}</Project>
+      <Name>Recruitment.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Recruitment.Data\Recruitment.Data.csproj">
+      <Project>{BFA5EBED-0F4D-481F-9C91-EBE45B481F83}</Project>
+      <Name>Recruitment.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Recruitment.Providers\Recruitment.Providers.csproj">
+      <Project>{B48CCC6E-ED4B-4589-86F4-3486FD187453}</Project>
+      <Name>Recruitment.Providers</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup Condition="'$(Configuration)|$(Platform)' == 'Release|AnyCPU'">
+    <AssemblyAttributes Include="AssemblyFileVersion">
+      <Value>1.11.19.2008</Value>
+    </AssemblyAttributes>
+    <AssemblyAttributes Include="AssemblyVersion">
+      <Value>1.11.19.2008</Value>
+    </AssemblyAttributes>
+    <WebConfigReplacementFiles Include="ProdAppSettings.config">
+      <Section>appSettings</Section>
+    </WebConfigReplacementFiles>
+    <WebConfigReplacementFiles Include="ProdConnectionStrings.config">
+      <Section>connectionStrings</Section>
+    </WebConfigReplacementFiles>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WebDeployment\v8.0\Microsoft.WebDeployment.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.WebDeployment.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="BeforeMerge">
+  </Target>
+  <Target Name="AfterMerge">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

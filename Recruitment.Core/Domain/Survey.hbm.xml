@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <class
+    name="CAESDO.Recruitment.Core.Domain.Survey, CAESDO.Recruitment.Core"
+    table="Survey" >
+    <id name="id" access="field" column="SurveyID" unsaved-value="0">
+      <generator class="identity" />
+    </id>
+
+    <property name="TribalAffiliation" column="TribalAffiliation" />
+    <property name="Pub_Advertisement" column="Pub_Advertisement" />
+    <property name="Prof_Organization" column="Prof_Organization" />
+    <property name="Other" column="Other" />
+    <property name="Complete" column="Complete" />
+    
+    <many-to-one name="Gender" class="CAESDO.Recruitment.Core.Domain.Gender, CAESDO.Recruitment.Core" column="GenderID" />
+
+    <!--<many-to-one name="RecruitmentSrc" class="CAESDO.Recruitment.Core.Domain.RecruitmentSrc, CAESDO.Recruitment.Core" column="RecruitmentSrcID" not-null="true" />-->
+    <bag name="RecruitmentSources" table="SurveyXRecruitmentSrc" cascade="all-delete-orphan"  inverse="true">
+      <key column="SurveyID" />
+      <one-to-many class="CAESDO.Recruitment.Core.Domain.SurveyXRecruitmentSrc, CAESDO.Recruitment.Core" />
+    </bag>
+    
+    <many-to-one name="Ethnicity" class="CAESDO.Recruitment.Core.Domain.Ethnicity, CAESDO.Recruitment.Core" column="EthnicityID" />
+
+    <many-to-one name="AssociatedApplication" column="ApplicationID"
+      class="CAESDO.Recruitment.Core.Domain.Application, CAESDO.Recruitment.Core" not-null="true" />
+    
+    <!--<property name="DescriptionFile" column="DescriptionFile" />-->
+
+  </class>
+</hibernate-mapping>
