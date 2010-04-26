@@ -137,6 +137,38 @@ public class RecruitmentService : System.Web.Services.WebService
     }
 
     [WebMethod]
+    public string GetTemplatePreview(string templateBody)
+    {
+        var processing = new TemplateProcessing();
+
+        var previewDepartment = new Department
+        {
+            DepartmentFIS = "CHAN",
+            PrimaryDept = true,
+            Unit = new Unit { FullName = "Advanced Sciences" }
+        };
+
+        var previewReference = new Reference {FirstName = "Mike", MiddleName = "H", LastName = "Jones", Title = "Dr."};
+
+        var previewApplication = new Application
+                                     {
+                                         AssociatedProfile =
+                                             new Profile {FirstName = "John", MiddleName = "P", LastName = "Smith"}
+                                     };
+
+        previewApplication.AppliedPosition = new Position
+        {
+            Deadline = DateTime.Now.AddDays(20),
+            PositionTitle = "Professor of Technology",
+            HRRep = "Jane Williams",
+            HREmail = "jwilliams@ucdavis.edu",
+            Departments = new List<Department> { previewDepartment }
+        };
+        
+        return processing.ProcessTemplate(previewReference, previewApplication, templateBody);
+    }
+
+    [WebMethod]
     public DepartmentMember LookupKerberosUser(string loginID)
     {
         return DepartmentMemberBLL.Search(loginID);

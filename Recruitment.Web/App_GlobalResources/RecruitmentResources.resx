@@ -148,6 +148,12 @@
   <data name="PrimaryDepartmentValue" xml:space="preserve">
     <value>{PrimaryDepartment}</value>
   </data>
+  <data name="RecruitmentAdminEmailText" xml:space="preserve">
+    <value>Recruitment Admin Email</value>
+  </data>
+  <data name="RecruitmentAdminEmailValue" xml:space="preserve">
+    <value>{RecruitmentAdminEmail}</value>
+  </data>
   <data name="RecruitmentAdminNameText" xml:space="preserve">
     <value>Recruitment Admin Name</value>
   </data>

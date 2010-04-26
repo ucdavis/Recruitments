@@ -114,11 +114,12 @@ namespace CAESDO.Recruitment
                 case "RecruitmentAdminName":
                     return this._application.AppliedPosition.HRRep;
                 case "RecruitmentAdminEmail":
-                    return this._application.AppliedPosition.HREmail;
+                    return string.Format("<a href='mailto:{0}'>{0}</a>", this._application.AppliedPosition.HREmail);
                 case "PositionContact" :
                     return this._application.AppliedPosition.HRRep;
                 case "PositionContactEmail" :
-                    return this._application.AppliedPosition.HREmail;
+                    return string.Format("<a href='mailto:{0}'>{0}</a>", this._application.AppliedPosition.HREmail);
+                    //return this._application.AppliedPosition.HREmail;
                 case "PositionContactPhone" :
                     return this._application.AppliedPosition.HRPhone;
                 case "Deadline": //deadline and reviewDate are the same token

@@ -141,13 +141,36 @@
             skin: "o2k7",
             plugins: "paste",
 
-            theme_advanced_buttons1: "bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,formatselect,fontsizeselect",
+            theme_advanced_buttons1: "preview,|,bold,italic,underline,strikethrough,|,justifyleft,justifycenter,justifyright,justifyfull,|,formatselect,fontsizeselect",
             theme_advanced_buttons2: "cut,copy,pastetext,pasteword,|,bullist,numlist,|,undo,redo,|,link,unlink,anchor,image,|,forecolor,backcolor",
             theme_advanced_buttons3: "",
             theme_advanced_toolbar_location: "top",
 
             setup: function(ed) {
-            EmailTemplateEditor = ed;
+                EmailTemplateEditor = ed;
+
+                ed.addButton('preview', {
+                    title: 'Preview', image: '../Images/delete.gif',
+                    onclick: function() {
+
+                        var content = ed.getContent(); //Get the current content inside the editor
+
+                        RecruitmentService.GetTemplatePreview(content, callback);
+                        //ScriptService.PreviewTemplate(content, callback, LoadOnFail, null);
+
+                        //callback(content); //fake the callback for now
+
+                        function callback(result) {
+                            newWin = window.open('', 'Preview', '');
+
+                            if (newWin != null) {
+                                var doc = newWin.document;
+                                doc.write(result);
+                                doc.close();
+                            }
+                        }
+                    }
+                });
             }
         });
 
@@ -198,6 +221,8 @@
                 <%= GetGlobalResourceObject("RecruitmentResources", "PrimaryDepartmentText")%><br />
             </a><a href="javascript:InsertTemplateText('<%= GetGlobalResourceObject("RecruitmentResources", "RecruitmentAdminNameValue") %>');">
                 <%= GetGlobalResourceObject("RecruitmentResources", "RecruitmentAdminNameText")%><br />
+            </a><a href="javascript:InsertTemplateText('<%= GetGlobalResourceObject("RecruitmentResources", "RecruitmentAdminEmailValue") %>');">
+                <%= GetGlobalResourceObject("RecruitmentResources", "RecruitmentAdminEmailText")%><br />
             </a>
         </div>
         <div style="width: 818px; height: 389px; background: url(../Images/envelope.jpg) no-repeat;
