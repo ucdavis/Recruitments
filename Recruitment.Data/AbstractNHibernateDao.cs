@@ -4,7 +4,7 @@ using NHibernate;
 using NHibernate.Expression;
 using CAESDO.Recruitment.Core.DataInterfaces;
 
-namespace Recruitment.Data
+namespace CAESDO.Recruitment.Data
 {
     public abstract class AbstractNHibernateDao<T, IdT> : IDao<T, IdT>
     {

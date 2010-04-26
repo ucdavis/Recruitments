@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace Recruitment.Data
+namespace CAESDO.Recruitment.Data
 {
     public class ListToGenericListConverter<T>
     {

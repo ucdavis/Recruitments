@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Recruitment.Data")]
+[assembly: AssemblyTitle("CAESDO.Recruitment.Data")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("CAESDO")]
-[assembly: AssemblyProduct("Recruitment.Data")]
+[assembly: AssemblyProduct("CAESDO.Recruitment.Data")]
 [assembly: AssemblyCopyright("Copyright © CAESDO 2007")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

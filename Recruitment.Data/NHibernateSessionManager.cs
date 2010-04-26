@@ -4,7 +4,7 @@ using NHibernate;
 using NHibernate.Cache;
 using NHibernate.Cfg;
 
-namespace Recruitment.Data
+namespace CAESDO.Recruitment.Data
 {
     /// <summary>
     /// Handles creation and management of sessions and transactions.  It is a singleton because 

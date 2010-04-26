@@ -7,8 +7,8 @@
     <ProjectGuid>{5F40A7DB-8142-4564-BB05-0F9C2DD3EF75}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Recruitment.Core</RootNamespace>
-    <AssemblyName>Recruitment.Core</AssemblyName>
+    <RootNamespace>CAESDO.Recruitment.Core</RootNamespace>
+    <AssemblyName>CAESDO.Recruitment.Core</AssemblyName>
     <SccProjectName>SAK</SccProjectName>
     <SccLocalPath>SAK</SccLocalPath>
     <SccAuxPath>SAK</SccAuxPath>

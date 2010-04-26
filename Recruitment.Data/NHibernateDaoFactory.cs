@@ -1,7 +1,7 @@
 using CAESDO.Recruitment.Core.DataInterfaces;
 using CAESDO.Recruitment.Core.Domain;
 
-namespace Recruitment.Data
+namespace CAESDO.Recruitment.Data
 {
     /// <summary>
     /// Exposes access to NHibernate DAO classes.  Motivation for this DAO
