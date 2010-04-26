@@ -6,11 +6,15 @@
       <generator class="identity" />
     </id>
 
-    <property name="ProfileID" column="ProfileID" />
+    <!--<property name="ProfileID" column="ProfileID" />-->
     <property name="Submitted" column="Submitted" />
     <property name="SubmitDate" column="SubmitDate" />
 
     <many-to-one name="_AppliedPosition" access="field" column="PositionID"
       class="CAESDO.Recruitment.Core.Domain.Position, CAESDO.Recruitment.Core" not-null="true" />
+
+    <many-to-one name="_AssociatedProfile" access="field" column="ProfileID"
+      class="CAESDO.Recruitment.Core.Domain.Profile, CAESDO.Recruitment.Core" not-null="true" />
+    
   </class>
 </hibernate-mapping>

@@ -84,6 +84,14 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _AssociatedApplicant; }
             set { _AssociatedApplicant = value; }
         }
+
+        private IList<Application> _Applications;
+
+        public IList<Application> Applications
+        {
+            get { return _Applications; }
+            set { _Applications = value; }
+        }
         
         public Profile()
         {

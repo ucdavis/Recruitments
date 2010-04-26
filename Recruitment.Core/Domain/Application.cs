@@ -6,14 +6,22 @@ namespace CAESDO.Recruitment.Core.Domain
 {
     public class Application : DomainObject<int>
     {
-        private int _ProfileID;
+        //private int _ProfileID;
 
-        public int ProfileID
+        //public int ProfileID
+        //{
+        //    get { return _ProfileID; }
+        //    set { _ProfileID = value; }
+        //}
+
+        private Profile _AssociatedProfile;
+
+        public Profile AssociatedProfile
         {
-            get { return _ProfileID; }
-            set { _ProfileID = value; }
+            get { return _AssociatedProfile; }
+            set { _AssociatedProfile = value; }
         }
-
+        
         private Position _AppliedPosition;
 
         public Position AppliedPosition

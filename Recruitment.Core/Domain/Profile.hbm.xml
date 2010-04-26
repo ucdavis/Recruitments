@@ -21,9 +21,9 @@
     <many-to-one name="_AssociatedApplicant" access="field" column="AccountID"
       class="CAESDO.Recruitment.Core.Domain.Applicant, CAESDO.Recruitment.Core" not-null="true" />
     
-    <!--<bag name="_AssociatedApplications" access="field" table="Applications" inverse="true">
-      <key column="PositionID" />
+    <bag name="_Applications" access="field" table="Applications" inverse="true">
+      <key column="ProfileID" />
       <one-to-many class="CAESDO.Recruitment.Core.Domain.Application, CAESDO.Recruitment.Core" />
-    </bag>-->
+    </bag>
   </class>
 </hibernate-mapping>
