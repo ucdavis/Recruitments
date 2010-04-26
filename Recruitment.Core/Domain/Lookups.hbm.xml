@@ -70,6 +70,21 @@
   </class>
 
   <class
+    name="CAESDO.Recruitment.Core.Domain.Unit, CAESDO.Recruitment.Core"
+    table="vUserUnit" >
+    <id name="id" access="field" column="UnitID" unsaved-value="0">
+      <generator class="identity" />
+    </id>
+
+    <property name="FullName" column="FullName" />
+    <property name="PPSCode" column="PPS_Code" />
+    <property name="FISCode" column="FIS_Code" />
+    
+    <many-to-one name="User" class="CAESDO.Recruitment.Core.Domain.User, CAESDO.Recruitment.Core" column="UserID" not-null="true" />
+
+  </class>
+
+  <class
   name="CAESDO.Recruitment.Core.Domain.ChangeType, CAESDO.Recruitment.Core"
   table="ChangeTypes" >
     <id name="id" access="field" column="ChangeTypeID" unsaved-value="0">

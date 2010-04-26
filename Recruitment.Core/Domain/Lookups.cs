@@ -107,6 +107,46 @@ namespace CAESDO.Recruitment.Core.Domain
         }
     }
 
+    public class Unit : DomainObject<int>
+    {
+        private User _User;
+
+        public virtual User User
+        {
+            get { return _User; }
+            set { _User = value; }
+        }
+
+        private string _FullName;
+
+        public virtual string FullName
+        {
+            get { return _FullName; }
+            set { _FullName = value; }
+        }
+
+        private string _PPSCode;
+
+        public virtual string PPSCode
+        {
+            get { return _PPSCode; }
+            set { _PPSCode = value; }
+        }
+
+        private string _FISCode;
+
+        public virtual string FISCode
+        {
+            get { return _FISCode; }
+            set { _FISCode = value; }
+        }
+
+        public Unit()
+        {
+
+        }
+    }
+
     public class ChangeType : DomainObject<int>
     {
         private string _Type;

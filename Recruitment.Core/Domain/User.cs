@@ -14,6 +14,14 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _LoginIDs = value; }
         }
 
+        private IList<Unit> _Units;
+
+        public virtual IList<Unit> Units
+        {
+            get { return _Units; }
+            set { _Units = value; }
+        }
+        
         private string _FirstName;
 
         public virtual string FirstName

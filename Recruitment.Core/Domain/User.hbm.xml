@@ -17,6 +17,11 @@
       <key column="UserID" />
       <one-to-many class="CAESDO.Recruitment.Core.Domain.Login, CAESDO.Recruitment.Core" />
     </bag>
+
+    <bag name="Units" table="vUserUnit" inverse="true">
+      <key column="UserID" />
+      <one-to-many class="CAESDO.Recruitment.Core.Domain.Unit, CAESDO.Recruitment.Core" />
+    </bag>
     
   </class>
 </hibernate-mapping>
