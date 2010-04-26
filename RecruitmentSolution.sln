@@ -2,6 +2,20 @@
 Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AC44A94D-0EE1-498F-BCAF-F4023E22BC47}"
+	ProjectSection(SolutionItems) = preProject
+		Bin\Castle.Core.dll = Bin\Castle.Core.dll
+		Bin\Castle.DynamicProxy.dll = Bin\Castle.DynamicProxy.dll
+		Bin\Castle.DynamicProxy2.dll = Bin\Castle.DynamicProxy2.dll
+		Bin\Elmah.dll = Bin\Elmah.dll
+		Bin\Iesi.Collections.dll = Bin\Iesi.Collections.dll
+		Bin\itextsharp.dll = Bin\itextsharp.dll
+		Bin\log4net.dll = Bin\log4net.dll
+		Bin\Moq.dll = Bin\Moq.dll
+		Bin\NHibernate.dll = Bin\NHibernate.dll
+		Bin\NHibernate.Linq.dll = Bin\NHibernate.Linq.dll
+		Bin\NHibernate.ProxyGenerators.CastleDynamicProxy.dll = Bin\NHibernate.ProxyGenerators.CastleDynamicProxy.dll
+		Bin\System.Data.SQLite.DLL = Bin\System.Data.SQLite.DLL
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recruitment.Core", "Recruitment.Core\Recruitment.Core.csproj", "{5F40A7DB-8142-4564-BB05-0F9C2DD3EF75}"
 EndProject
