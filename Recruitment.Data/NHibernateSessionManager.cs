@@ -65,7 +65,8 @@ namespace CAESDO.Recruitment.Data
         }
 
         public ISession GetSession() {
-            return GetSession(null);
+            //return GetSession(null);
+            return GetSession(new TrackingInterceptor());
         }
 
         /// <summary>
