@@ -179,16 +179,16 @@ a.ContextMenuItem:hover
 }
 
 .box {
-border : 1px dotted #7f7f7f;
-padding : 10px;
-background-color:#EFEFEF;
+	border : 1px dotted #7f7f7f;
+	padding : 10px;
+	background-color:#EFEFEF;
 } 
 
 .boxTitle 
 {
 	border : 1px solid #CCCCCC;
 	position : relative;
-	top : 27px;
+	top : 30px;
 	left : 30px;
 	background-color : #FFF;
 	padding : 5px 10px;
