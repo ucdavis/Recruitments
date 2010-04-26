@@ -11,6 +11,8 @@ using System.Web.UI.HtmlControls;
 using CAESDO.Recruitment.Core.Domain;
 using CAESDO.Recruitment.Data;
 using System.Collections.Generic;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 
 namespace CAESDO.Recruitment.Web
 {
@@ -76,7 +78,7 @@ namespace CAESDO.Recruitment.Web
                 }
 
             }
-            
+
             if (fileUpload.HasFile)
             {
                 if (fileUpload.PostedFile.ContentType == STR_Applicationpdf)
@@ -93,10 +95,12 @@ namespace CAESDO.Recruitment.Web
 
                     if (ValidateBO<File>.isValid(file))
                     {
-                        fileUpload.SaveAs(FilePath + file.ID.ToString());
+                        SaveReferenceWithWatermark(fileUpload, file.ID.ToString());
+
+                        //fileUpload.SaveAs(FilePath + file.ID.ToString());
 
                         selectedReference.ReferenceFile = file;
-                        
+
                         using (new NHibernateTransaction())
                         {
                             daoFactory.GetReferenceDao().SaveOrUpdate(selectedReference);
@@ -111,7 +115,7 @@ namespace CAESDO.Recruitment.Web
                 }//TODO: Handle if content not PDF
             }
         }
-
+        
         private void UploadFiles()
         {
             FileType selectedFileType = daoFactory.GetFileTypeDao().GetById(int.Parse(dlistFileTypes.SelectedValue), false);
@@ -154,6 +158,52 @@ namespace CAESDO.Recruitment.Web
                 }//TODO: Handle if content not PDF
             }
         }
+
+        private void SaveReferenceWithWatermark(FileUpload uploadedFile, string fileName)
+        {
+            PdfReader reader = new PdfReader(uploadedFile.FileContent);
+
+            int n = reader.NumberOfPages;
+
+            Response.Write(string.Format("There are {0} pages", n));
+
+            Document document = new Document(reader.GetPageSizeWithRotation(1));
+
+            PdfWriter writer = PdfWriter.GetInstance(document, new System.IO.FileStream(FilePath + fileName, System.IO.FileMode.Create));
+
+            document.Open();
+
+            PdfContentByte cb = writer.DirectContent;
+            PdfImportedPage page;
+            int rotation;
+
+            for (int i = 1; i <= n; i++)
+            {
+                document.SetPageSize(reader.GetPageSizeWithRotation(i));
+                document.NewPage();
+
+                page = writer.GetImportedPage(reader, i);
+
+                rotation = reader.GetPageRotation(i);
+
+                if (rotation == 90 || rotation == 270)
+                    cb.AddTemplate(page, 0, -1f, 1f, 0, 0, reader.GetPageSizeWithRotation(i).Height);
+                else
+                    cb.AddTemplate(page, 1f, 0, 0, 1f, 0, 0);
+
+                BaseFont bf = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
+                cb.BeginText();
+                cb.SetFontAndSize(bf, 26f);
+                cb.SetColorFill(Color.RED);
+                cb.ShowTextAligned(PdfContentByte.ALIGN_CENTER, "CONFIDENTIAL", reader.GetPageSizeWithRotation(i).Width / 2f, reader.GetPageSizeWithRotation(i).Height - 26f, 0);
+                //cb.ShowText(currentApplication.Files[f].FileType.FileTypeName);
+                cb.EndText();
+
+            }
+
+            document.Close();
+        }
+        
 
         /// <summary>
         /// Removes all files of the given type from the current applicaiton.  This removes the files themselves,
