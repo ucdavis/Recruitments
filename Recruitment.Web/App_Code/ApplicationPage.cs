@@ -18,6 +18,7 @@ using System.Web.Caching;
 using System.Text;
 using CAESDO.Recruitment.Core.DataInterfaces;
 using CAESDO.Recruitment.Data;
+using System.Web.Configuration;
 
 
 namespace CAESDO.Recruitment.Web
@@ -37,6 +38,8 @@ namespace CAESDO.Recruitment.Web
             get { return new NHibernateDaoFactory(); }
         }
 
+        ErrorReporting eReport = new ErrorReporting(WebConfigurationManager.AppSettings["AppName"], null);
+
         public ApplicationPage()
         {
         }
@@ -46,28 +49,31 @@ namespace CAESDO.Recruitment.Web
             //Might want to rollback the transaction whenever an error gets this far up the stack
             //NHibernateSessionManager.Instance.RollbackTransaction();
 
+            //Grab the page context
             HttpContext ctx = HttpContext.Current;
 
+            //Grab the exception that raised this error
             Exception ex = ctx.Server.GetLastError();
 
             //Only handle HttpException Errors
             if (ex.GetType().Name == "HttpException")
             {
-                StringBuilder errorInfo = new StringBuilder();
-                errorInfo.Append("Offending URL: " + ctx.Request.Url.ToString());
-                errorInfo.Append("<br>Source: " + ex.Source);
-                errorInfo.Append("<br>Type: " + ex.GetType().Name);
-                errorInfo.Append("<br>Message: " + ex.Message);
-                errorInfo.Append("<br>Stack Trace: " + ex.StackTrace);
-
-                ctx.Response.Write(errorInfo.ToString());
+                //Clear the error and redirect to the page the raised this error (getting a fresh copy)
+                ctx.Server.ClearError();
+                ctx.Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.SESSION));
+            }
+            else
+            {
+                if (ex.InnerException != null)
+                    eReport.ReportError(ex.InnerException, "OnError");
+                else
+                    eReport.ReportError(ex, "OnError");
 
                 ctx.Server.ClearError();
-
-                //Try a redirect
-                ctx.Response.Redirect(ctx.Request.Url.ToString());
+                ctx.Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.UNKNOWN));
             }
-            base.OnError(e);
+
+            base.OnError(e); //won't get called
         }
 
         //#region Events
