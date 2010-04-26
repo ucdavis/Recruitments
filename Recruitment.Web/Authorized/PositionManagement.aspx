@@ -29,7 +29,7 @@
                 refTemplateEditor = ed;
 
                 ed.addButton('preview', {
-                    title: 'Preview', image: '../Images/delete.gif',
+                    title: 'Preview', image: '../Images/previewIcon.gif',
                     onclick: function() {
 
                         var content = ed.getContent(); //Get the current content inside the editor
