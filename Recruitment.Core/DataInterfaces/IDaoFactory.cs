@@ -11,6 +11,7 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
         IPositionDao GetPositionDao();
         IApplicantDao GetApplicantDao();
         IProfileDao GetProfileDao();
+        IDepartmentDao GetDepartmentDao();
     }
 
     // There's no need to declare each of the DAO interfaces in its own file, so just add them inline here.
@@ -24,6 +25,8 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
     public interface IApplicantDao : IDao<Applicant, int> { }
 
     public interface IProfileDao : IDao<Profile, int> { }
+
+    public interface IDepartmentDao : IDao<Department, int> { }
 
     #endregion
 }

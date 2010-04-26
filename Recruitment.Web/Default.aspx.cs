@@ -26,7 +26,7 @@ namespace CAESDO.Recruitment.Web
             IPositionDao posDao = daoFactory.GetPositionDao();
 
             Position pos = posDao.GetById(15, false);
-
+          
             //List<Position> posList = posDao.GetAll();
 
             //IApplicantDao applicantDao = daoFactory.GetApplicantDao();
