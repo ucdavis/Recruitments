@@ -13,7 +13,7 @@
             <Columns>
                 <asp:TemplateField HeaderText="Name">
                     <ItemTemplate>
-                        <%# Eval("AssociatedProfile.LastName")%>, <%# Eval("AssociatedProfile.FirstName")%> <%# string.IsNullOrEmpty((string)Eval("AssociatedProfile.MiddleName")) ? string.Empty : Eval("AssociatedProfile.MiddleName")%>
+                        <%# GetNullSafeName((CAESDO.Recruitment.Core.Domain.Profile)Eval("AssociatedProfile")) %>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Title" Visible="false">

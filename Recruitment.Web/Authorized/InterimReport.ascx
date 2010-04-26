@@ -91,7 +91,11 @@
             <td>&nbsp;&nbsp;</td>
             <td><asp:GridView ID="gviewApplicants" runat="server" Width="90%" AutoGenerateColumns="False" EnableViewState="False">
             <Columns>
-                <asp:BoundField DataField="FullName" HeaderText="Name" ReadOnly="True" SortExpression="FullName" />
+                <asp:TemplateField HeaderText="Name">
+                    <ItemTemplate>
+                        <%# GetNullSafeName((CAESDO.Recruitment.Core.Domain.Profile)Eval("AssociatedProfile")) %>
+                    </ItemTemplate>
+                </asp:TemplateField>
                 <asp:TemplateField HeaderText="Comments">
                     <ItemTemplate>
                         &nbsp;
@@ -148,9 +152,15 @@
         <br />
         D. List the names of the persons selected for interview and attach a copy of their
         curriculum vitae.<br />
-        <asp:BulletedList ID="blistInterviewApplicants" runat="server" DataTextField="FullName"
-            DataValueField="FullName" EnableViewState="False">
-        </asp:BulletedList>
+        
+        <ul>
+            <asp:Repeater ID="rptInterviewApplicants" runat="server">
+                <ItemTemplate>
+                    <li> <%# GetNullSafeName((CAESDO.Recruitment.Core.Domain.Profile)Eval("AssociatedProfile"))%> </li>
+                </ItemTemplate>
+            </asp:Repeater>
+        </ul>
+        
         <br />
         <br />
         E. Provide written justification for continuing the search if applicant pool/pool

@@ -301,6 +301,27 @@ namespace CAESDO.Recruitment.Web
             return false;
         }
 
+        public static string GetNullSafeName(Profile associatedProfile)
+        {
+            StringBuilder name = new StringBuilder();
+
+            if (!string.IsNullOrEmpty(associatedProfile.LastName))
+            {
+                //If the last name is not null, output the full name
+                name.Append(associatedProfile.LastName);
+                name.Append(", ");
+                name.Append(associatedProfile.FirstName);
+
+                if (!string.IsNullOrEmpty(associatedProfile.MiddleName))
+                    name.Append(" " + associatedProfile.MiddleName);
+            }
+            else
+            {
+                name.Append(associatedProfile.AssociatedApplicant.Email);
+            }
+
+            return name.ToString();
+        }
     }
     
 }

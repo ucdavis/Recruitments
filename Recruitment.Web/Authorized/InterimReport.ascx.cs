@@ -13,6 +13,7 @@ using CAESDO.Recruitment.Core.Domain;
 using CAESDO.Recruitment.Core.DataInterfaces;
 using CAESDO.Recruitment.Data;
 using System.Collections.Specialized;
+using System.Text;
 
 namespace CAESDO.Recruitment.Web
 {
@@ -88,27 +89,49 @@ namespace CAESDO.Recruitment.Web
                 gviewApplicants.DataSource = this.GetApplicants(false); //Get the applicants who are not selected for interview
                 gviewApplicants.DataBind();
 
-                blistInterviewApplicants.DataSource = this.GetApplicants(true); //List the applicants selected for interview
-                blistInterviewApplicants.DataBind();
+                rptInterviewApplicants.DataSource = this.GetApplicants(true); //List the applicants selected for interview
+                rptInterviewApplicants.DataBind();
 
                 gviewInterviewSexEthnicity.DataSource = SexEthnicityList.GetSexEthnicityList(currentPosition, true);
                 gviewInterviewSexEthnicity.DataBind();
             }
         }
 
-        private List<Profile> GetApplicants(bool selectedForInterview)
+        private List<Application> GetApplicants(bool selectedForInterview)
         {
-            List<Profile> profileList = new List<Profile>();
+            List<Application> applicationList = new List<Application>();
 
             foreach (Application app in currentPosition.AssociatedApplications)
             {
                 if (app.InterviewList == selectedForInterview)
                 {
-                    profileList.Add(app.AssociatedProfile);
+                    applicationList.Add(app);
                 }
             }
 
-            return profileList;
+            return applicationList;
+        }
+
+        public static string GetNullSafeName(Profile associatedProfile)
+        {
+            StringBuilder name = new StringBuilder();
+
+            if (!string.IsNullOrEmpty(associatedProfile.LastName))
+            {
+                //If the last name is not null, output the full name
+                name.Append(associatedProfile.LastName);
+                name.Append(", ");
+                name.Append(associatedProfile.FirstName);
+
+                if (!string.IsNullOrEmpty(associatedProfile.MiddleName))
+                    name.Append(" " + associatedProfile.MiddleName);
+            }
+            else
+            {
+                name.Append(associatedProfile.AssociatedApplicant.Email);
+            }
+
+            return name.ToString();
         }
 
         #region IReportUserControl Members
