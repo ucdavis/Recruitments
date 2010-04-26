@@ -17,8 +17,7 @@
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Title" Visible="false">
-                    <ItemTemplate>
-                        
+                    <ItemTemplate>                        
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Ph.D. Info">
@@ -30,6 +29,16 @@
                 <asp:TemplateField HeaderText="Discipline">
                     <ItemTemplate>
                         <%# (int)Eval("Education.Count") > 0 ? Eval("Education[0].Discipline") : string.Empty%>
+                    </ItemTemplate>
+                </asp:TemplateField>                
+                <asp:TemplateField HeaderText="ResearchField">
+                    <ItemTemplate>
+                        <%# (int)Eval("Education.Count") > 0 ? Eval("Education[0].ResearchField") : string.Empty%>
+                    </ItemTemplate>
+                </asp:TemplateField>                
+                <asp:TemplateField HeaderText="Advisor">
+                    <ItemTemplate>
+                        <%# (int)Eval("Education.Count") > 0 ? Eval("Education[0].Advisor") : string.Empty%>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Current Employement">
