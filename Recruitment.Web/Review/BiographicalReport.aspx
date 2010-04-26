@@ -9,7 +9,7 @@
 <body>
     <form id="form1" runat="server">
     <div>
-        <asp:GridView ID="gViewBiographicalData" runat="server" AutoGenerateColumns="false">
+        <asp:GridView ID="gViewBiographicalData" runat="server" AutoGenerateColumns="false" DataKeyNames="id" OnRowDataBound="gViewBiographicalData_RowDataBound">
             <Columns>
                 <asp:TemplateField HeaderText="Name">
                     <ItemTemplate>
@@ -40,7 +40,7 @@
                 <asp:TemplateField HeaderText="Comments">
                     <ItemTemplate>
                         <%# (bool)Eval("Submitted") ? "Submitted" : "Incomplete"  %><br />
-                        <asp:Literal ID="litComments" runat="server" EnableViewState="false"></asp:Literal>
+                        <asp:Literal ID="litMissingSteps" runat="server" EnableViewState="false"></asp:Literal>
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>  

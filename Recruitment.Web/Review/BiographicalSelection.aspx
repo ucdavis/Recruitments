@@ -10,7 +10,7 @@ Position:
     <asp:CheckBox ID="chkOutputToFile" runat="server" Text="Output To Excel File" Checked="true" />
     <br /><br />
     
-    <asp:Button ID="btnDisplayReport" runat="server" Text="Open Spreadsheet" />    
+    <asp:Button ID="btnDisplayReport" runat="server" Text="Open Spreadsheet" OnClick="btnDisplayReport_Click" />    
 
     <AjaxControlToolkit:CascadingDropDown ID="cascadePositions" runat="server" Category="Positions"
         PromptText="Select a Position" ServiceMethod="GetPositionsForCommittee" ServicePath="RecruitmentCommitteeService.asmx"
