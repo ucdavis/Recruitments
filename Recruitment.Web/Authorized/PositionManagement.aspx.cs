@@ -190,6 +190,14 @@ namespace CAESDO.Recruitment.Web
             gviewDepartments.DataSource = DepartmentList;
             gviewDepartments.DataBind();
         }
+        
+        protected void cboxPrimary_CheckedChanged(object sender, EventArgs e)
+        {
+            if (!updatePrimaryDepartmentStatus())
+            {
+                lblPrimaryDeptErrorMessage.Text = "You must select exactly one primary department for this position";
+            }
+        }
 
         protected void gviewDepartments_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {

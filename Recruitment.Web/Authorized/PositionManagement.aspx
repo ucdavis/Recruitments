@@ -56,7 +56,7 @@
                     <Columns>
                         <asp:TemplateField HeaderText="Primary">
                             <ItemTemplate>
-                                <asp:CheckBox ID="cboxPrimary" runat="server" Checked='<%# Eval("PrimaryDept") %>' />
+                                <asp:CheckBox ID="cboxPrimary" runat="server" Checked='<%# Eval("PrimaryDept") %>' AutoPostBack="true" OnCheckedChanged="cboxPrimary_CheckedChanged" />
                             </ItemTemplate>
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Department Name">
