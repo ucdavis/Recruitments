@@ -325,19 +325,28 @@ namespace CAESDO.Recruitment.Web
             int numPrimaryDepartmentsChecked = 0;
             string primaryDepartmentFIS = string.Empty;
 
-            foreach (GridViewRow row in gviewDepartments.Rows)
+            if (gviewDepartments.Rows.Count == 0)
             {
-                //For each datarow, find the checkbox
-                if (row.RowType == DataControlRowType.DataRow)
+                //Use the default drop down list item as the primary dept
+                primaryDepartmentFIS = dlistDepartment.SelectedValue;
+                numPrimaryDepartmentsChecked = 1;
+            }
+            else //If there are any departments added to the multi-departments list
+            {
+                foreach (GridViewRow row in gviewDepartments.Rows)
                 {
-                    CheckBox cbox = row.FindControl("cboxPrimary") as CheckBox;
-
-                    if (cbox.Checked)
+                    //For each datarow, find the checkbox
+                    if (row.RowType == DataControlRowType.DataRow)
                     {
-                        //If the checkbox is checked, increment the numPrimaryDepartmentsChecked variable and record the FIS code
-                        numPrimaryDepartmentsChecked++;
+                        CheckBox cbox = row.FindControl("cboxPrimary") as CheckBox;
 
-                        primaryDepartmentFIS = gviewDepartments.DataKeys[row.RowIndex]["DepartmentFIS"] as string;
+                        if (cbox.Checked)
+                        {
+                            //If the checkbox is checked, increment the numPrimaryDepartmentsChecked variable and record the FIS code
+                            numPrimaryDepartmentsChecked++;
+
+                            primaryDepartmentFIS = gviewDepartments.DataKeys[row.RowIndex]["DepartmentFIS"] as string;
+                        }
                     }
                 }
             }
@@ -364,7 +373,7 @@ namespace CAESDO.Recruitment.Web
         }
 
         /// <summary>
-        /// First removed all existing departments from 
+        /// First remove all existing departments from the position
         /// </summary>
         /// <param name="p"></param>
         private void addDepartmentsToPosition(Position p)
@@ -373,16 +382,28 @@ namespace CAESDO.Recruitment.Web
                 p.Departments = new List<Department>();
             else
                 p.Departments.Clear();
-                        
-            foreach (Department d in DepartmentList)
+
+            if (DepartmentList.Count == 0) //if there are no depts in the list, use the select list choice
             {
-                //Foreach unit, add it to the department list                
                 Department dept = new Department();
-                dept.AssociatedPosition = p;    //Associate the departments with the given positiopns
-                dept.DepartmentFIS = d.DepartmentFIS;
-                dept.PrimaryDept = d.PrimaryDept;
+                dept.AssociatedPosition = p;
+                dept.DepartmentFIS = dlistDepartment.SelectedValue;
+                dept.PrimaryDept = true; //Make this one department primary
 
                 p.Departments.Add(dept);
+            }
+            else //If we have more than one department in the list, look through them and assign appropriately
+            {
+                foreach (Department d in DepartmentList)
+                {
+                    //Foreach unit, add it to the department list                
+                    Department dept = new Department();
+                    dept.AssociatedPosition = p;    //Associate the departments with the given positiopns
+                    dept.DepartmentFIS = d.DepartmentFIS;
+                    dept.PrimaryDept = d.PrimaryDept;
+
+                    p.Departments.Add(dept);
+                }
             }
         }
 
