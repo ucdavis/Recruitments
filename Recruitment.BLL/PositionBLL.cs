@@ -13,6 +13,11 @@ namespace CAESDO.Recruitment.BLL
             return daoFactory.GetPositionDao().GetAllPositionsByStatus(Closed, AdminAccepted, AllowApplications);
         }
 
+        public static List<Position> GetAllPositionsByStatusForCommittee(bool Closed, bool AdminAccepted)
+        {
+            return daoFactory.GetPositionDao().GetAllPositionsByStatusForCommittee(Closed, AdminAccepted);
+        }
+
         /// <summary>
         /// Sends a notification about the given position to the AppMailTo address
         /// </summary>

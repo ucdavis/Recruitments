@@ -1,31 +1,48 @@
-<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ApplicationChoice.aspx.cs" Inherits="CAESDO.Recruitment.Web.Review_ApplicationChoice" Title="Application Choice" EnableEventValidation="false" %>
+<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ApplicationChoice.aspx.cs" Inherits="CAESDO.Recruitment.Web.Review_ApplicationChoice" Title="Application Choice" Theme="MainTheme" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     
-    Position:
-    <asp:DropDownList ID="dlistPositions" runat="server">
-    </asp:DropDownList>
-    <asp:RequiredFieldValidator id="reqValPositions" ControlToValidate="dlistPositions" ErrorMessage="* Position Required" runat="server"/>
-    <br />
-    <br />
-
-    Application:
-    <asp:DropDownList ID="dlistApplications" runat="server">
-    </asp:DropDownList>
-    <asp:RequiredFieldValidator id="reqValApplications" ControlToValidate="dlistApplications" ErrorMessage="* Application Required" runat="server"/>
-    <br />
-    <br />
+<asp:GridView ID="gViewPositions" skinID="gridViewUM" runat="server" GridLines="None" EmptyDataText="No Positions Found" CellPadding="0" DataKeyNames="ID" AutoGenerateColumns="False" DataSourceID="ObjectDataOpenPositions" Width="100%">
+        <Columns>
+            <asp:TemplateField HeaderText="Position/Department" SortExpression="PositionTitle">
+                <ItemTemplate>
+                    <asp:LinkButton ID="lbtnPositionTitle" runat="server" CommandArgument='<%# Eval("ID") %>' Text='<%# Bind("PositionTitle") %>' OnClick="lbtnPositionTitle_Click"></asp:LinkButton>
+                    <br />
+                    <asp:Label ID="lblDepartmentList" runat="server" Text='<%# Eval("DepartmentList") %>'></asp:Label>
+                </ItemTemplate>
+                <ItemStyle CssClass="paddingLeft" />
+                <HeaderStyle HorizontalAlign="Left" CssClass="paddingLeft" />
+            </asp:TemplateField>
+            
+            <asp:BoundField DataField="Deadline" DataFormatString="{0:d}" HeaderText="Review Date"
+                HtmlEncode="False" SortExpression="Deadline"  >
+                <HeaderStyle HorizontalAlign="Left" Width="100px" />
+            </asp:BoundField>
+            
+            <asp:TemplateField HeaderText="Modify" Visible="False">
+                <ItemTemplate>
+                    <asp:ImageButton ID="ibtnModifyPosition" runat="server" ImageUrl="~/Images/modify.gif" CommandArgument='<%# Eval("ID") %>' />
+                </ItemTemplate>
+                <ItemStyle HorizontalAlign="Center" />
+                <HeaderStyle Width="100px" />
+            </asp:TemplateField>
+            
+            <asp:TemplateField HeaderText="Applicants" SortExpression="ApplicationCount">
+                <ItemTemplate>
+                    <asp:LinkButton ID="lbtnApplicationCount" runat="server" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("ApplicationCount") %>' OnClick="lbtnApplicationCount_Click"></asp:LinkButton>
+                </ItemTemplate>
+                <ItemStyle HorizontalAlign="Center" />
+                <HeaderStyle Width="100px" />
+            </asp:TemplateField>
+        </Columns>
     
-    <asp:Button ID="btnApplicationReview" runat="server" Text="Review Application" OnClick="btnApplicationReview_Click" />
-    
-    <AjaxControlToolkit:CascadingDropDown ID="cascadePositions" runat="server" Category="Positions"
-        PromptText="Select a Position" ServiceMethod="GetPositionsForCommittee" ServicePath="RecruitmentCommitteeService.asmx"
-        TargetControlID="dlistPositions">
-    </AjaxControlToolkit:CascadingDropDown>
-    
-    <AjaxControlToolkit:CascadingDropDown ID="cascadeApplications" runat="server" Category="Applications"
-        ParentControlID="dlistPositions" PromptText="Select an Application" ServiceMethod="GetApplications"
-        ServicePath="RecruitmentCommitteeService.asmx" TargetControlID="dlistApplications">
-    </AjaxControlToolkit:CascadingDropDown>    
+    </asp:GridView>
+    <asp:ObjectDataSource ID="ObjectDataOpenPositions" runat="server" SelectMethod="GetAllPositionsByStatusForCommittee"
+        TypeName="CAESDO.Recruitment.BLL.PositionBLL" OldValuesParameterFormatString="original_{0}">
+        <SelectParameters>
+            <asp:Parameter DefaultValue="false" Name="Closed" Type="Boolean" />
+            <asp:Parameter DefaultValue="true" Name="AdminAccepted" Type="Boolean" />
+        </SelectParameters>
+    </asp:ObjectDataSource>
 
 </asp:Content>
 

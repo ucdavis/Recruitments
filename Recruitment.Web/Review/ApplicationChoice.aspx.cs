@@ -13,15 +13,25 @@ namespace CAESDO.Recruitment.Web
 {
     public partial class Review_ApplicationChoice : ApplicationPage
     {
-        private const string STR_ApplicationReviewURL = "ApplicationReview.aspx?ApplicationID=";
+        private const string STR_ViewApplicationsURL = "viewApplications.aspx";
+        
         protected void Page_Load(object sender, EventArgs e)
         {
 
         }
 
-        protected void btnApplicationReview_Click(object sender, EventArgs e)
+        protected void lbtnPositionTitle_Click(object sender, EventArgs e)
         {
-            Response.Redirect(STR_ApplicationReviewURL + dlistApplications.SelectedValue);
+            LinkButton lbtn = sender as LinkButton;
+
+            Response.Redirect(STR_ViewApplicationsURL + "?PositionID=" + lbtn.CommandArgument);
+        }
+
+        protected void lbtnApplicationCount_Click(object sender, EventArgs e)
+        {
+            LinkButton lbtn = sender as LinkButton;
+
+            Response.Redirect(STR_ViewApplicationsURL + "?PositionID=" + lbtn.CommandArgument);
         }
 }
 }
