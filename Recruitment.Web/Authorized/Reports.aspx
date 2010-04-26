@@ -8,7 +8,7 @@
     
     <br /><br />
     
-    Position: <asp:DropDownList ID="dlistPositions" runat="server" AutoPostBack="True" DataSourceID="ObjectDataPositions" DataTextField="TitleAndApplicationCount" DataValueField="ID" AppendDataBoundItems="true">
+    Position: <asp:DropDownList ID="dlistPositions" runat="server" DataSourceID="ObjectDataPositions" DataTextField="TitleAndApplicationCount" DataValueField="ID" AppendDataBoundItems="true">
         <asp:ListItem Selected="True" Value="0">Select a Position</asp:ListItem>
     </asp:DropDownList>
     
