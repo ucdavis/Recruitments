@@ -60,11 +60,11 @@
     
     <br /><br />
     
-    <span style="float:right;"><input id="chkShowUnsubmitted" type="checkbox" /><label for="chkShowUnsubmitted">Show Submitted Only</label></span>
     <asp:ListView ID="lviewApplications" runat="server" 
         DataSourceID="ObjectDataApplications" DataKeyNames="id" 
         ondatabound="lviewApplications_DataBound">
         <LayoutTemplate>
+        <span style="float:right;"><input id="chkShowUnsubmitted" type="checkbox" /><label for="chkShowUnsubmitted">Show Submitted Only</label></span>
         <table id="tblApplications" class="tablesorter tablesearch">
             <thead>
                 <tr>
