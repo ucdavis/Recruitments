@@ -33,7 +33,17 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _Unit; }
             set { _Unit = value; }
         }
-                
+
+        private string _OtherDepartmentName;
+
+        [IgnoreNulls]
+        [StringLengthValidator(50)]
+        public virtual string OtherDepartmentName
+        {
+            get { return _OtherDepartmentName; }
+            set { _OtherDepartmentName = value; }
+        }
+                        
         private string _LoginID;
 
         [NotNullValidator]

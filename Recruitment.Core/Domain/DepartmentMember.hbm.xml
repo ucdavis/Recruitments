@@ -8,6 +8,7 @@
     </id>
 
     <property name="DepartmentFIS" column="DepartmentFIS" />
+    <property name="OtherDepartmentName" column="OtherDepartmentName" />
     <property name="LoginID" column="LoginID" />
     <property name="FirstName" column="FirstName" />
     <property name="LastName" column="LastName" />

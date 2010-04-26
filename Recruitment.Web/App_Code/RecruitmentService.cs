@@ -10,6 +10,7 @@ using CAESDO.Recruitment.Core.Domain;
 using CAESDO.Recruitment.Data;
 using CAESDO.Recruitment.Core.DataInterfaces;
 using System.Collections.Specialized;
+using CAESDO.Recruitment;
 
 
 /// <summary>
@@ -124,6 +125,22 @@ public class RecruitmentService : System.Web.Services.WebService
         }
         
         return values.ToArray();
+    }
+
+    [WebMethod]
+    public CatOps.Users LookupKerberosUser(string loginID)
+    {
+        CatOps.Users[] users = CatbertManager.SearchNewUsersByLogin(loginID);
+        Unit unit = new Unit();
+
+        if (users.Length > 0)
+        {
+            CatOps.Users u = users[0];
+
+            return u;
+        }
+
+        return null;
     }
 
     /// <summary>

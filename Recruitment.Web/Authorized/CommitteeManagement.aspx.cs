@@ -41,6 +41,17 @@ namespace CAESDO.Recruitment.Web
             }
         }
 
+        public MemberType currentMemberType
+        {
+            get
+            {
+                if (dlistType.SelectedValue == STR_Committee)
+                    return daoFactory.GetMemberTypeDao().GetById((int)MemberTypes.CommitteeMember, false);
+                else
+                    return daoFactory.GetMemberTypeDao().GetById((int)MemberTypes.FacultyMember, false);
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -77,6 +88,7 @@ namespace CAESDO.Recruitment.Web
         private void bindMembers()
         {
             List<DepartmentMember> members = new List<DepartmentMember>();
+
             List<string> departmentFISList = new List<string>();
 
             //Get a list of all departments assocaited with this position
@@ -95,9 +107,20 @@ namespace CAESDO.Recruitment.Web
                 members = daoFactory.GetDepartmentMemberDao().GetMembersByDepartmentAndType(departmentFISList.ToArray(), MemberTypes.FacultyMember);
             }
 
+            foreach (DepartmentMember m in currentPosition.PositionCommittee)
+            {
+                if (m.MemberType == currentMemberType) //Make sure the member is of the correct type
+                {
+                    //Make sure the member is in the FRAC department
+                    if (m.DepartmentFIS == "FRAC")
+                    {
+                        members.Add(m);
+                    }
+                }
+            }
+
             gviewMembers.DataSource = members;
             gviewMembers.DataBind();
-            
         }
 
         /// <summary>
@@ -155,6 +178,49 @@ namespace CAESDO.Recruitment.Web
                     }
                 }
             }
+
+            this.bindMembers();
+        }
+
+        protected void btnAddMember_Click(object sender, EventArgs e)
+        {
+            //Create the new department member
+            DepartmentMember member = new DepartmentMember();
+
+            member.DepartmentFIS = "FRAC";
+            member.FirstName = txtFName.Text;
+            member.LastName = txtLName.Text;
+            member.OtherDepartmentName = txtDepartment.Text;
+            member.LoginID = txtLoginID.Text;
+
+            if (dlistType.SelectedValue == STR_Committee)
+            {
+                member.MemberType = daoFactory.GetMemberTypeDao().GetById((int)MemberTypes.CommitteeMember, false);
+            }
+            else
+            {
+                member.MemberType = daoFactory.GetMemberTypeDao().GetById((int)MemberTypes.FacultyMember, false);
+            }
+
+            //save the department member and add to the position committee for this position
+            if (ValidateBO<DepartmentMember>.isValid(member))
+            {
+                using (new NHibernateTransaction())
+                {
+                    member = daoFactory.GetDepartmentMemberDao().SaveOrUpdate(member); //Save them member
+                    
+                    currentPosition.PositionCommittee.Add(member);
+                    daoFactory.GetPositionDao().SaveOrUpdate(currentPosition);
+                }
+            }
+            else
+            {
+                eReport.ReportError(new ApplicationException("Member Not Valid: " + ValidateBO<DepartmentMember>.GetValidationResultsAsString(member)), "btnAddMember_Click");
+                Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.VALIDATION));
+            }
+
+            //rebind the datagrid
+            this.bindMembers();
         }
 }
 }
