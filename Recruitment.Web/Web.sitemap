@@ -47,5 +47,7 @@
       <siteMapNode url="Login/ChangePassword.aspx" title="Change Password" />
       <siteMapNode url="Login.aspx" title="Login" />
 
+      <siteMapNode url="Help/Default.aspx" title="Version 2 Updates" />
+
     </siteMapNode>
 </siteMap>
