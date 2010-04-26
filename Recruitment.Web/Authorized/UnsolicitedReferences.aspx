@@ -20,6 +20,11 @@ Application: <asp:DropDownList ID="dlistApplications" runat="server" AutoPostBac
 <asp:GridView ID="gViewReferences" runat="server" SkinID="gridViewUserManagement" DataKeyNames="id" AutoGenerateColumns="false"
             EmptyDataText="No References Found" Visible="false">
     <Columns>
+        <asp:TemplateField HeaderText="Send Letter">
+            <ItemTemplate>
+                <asp:Button ID="sendEmail" runat="server" Text="Send Letter" CommandArgument='<%# Eval("id") %>' OnClick="sendEmail_Click" />
+            </ItemTemplate>
+        </asp:TemplateField>
         <asp:TemplateField HeaderText="Unsolicited">
             <ItemTemplate>
                 <asp:CheckBox ID="chkUnsolicited" runat="server" Checked='<%# Eval("UnsolicitedReference") %>' />
@@ -60,6 +65,16 @@ Application: <asp:DropDownList ID="dlistApplications" runat="server" AutoPostBac
     <br />
     
     <asp:Button ID="btnUpdateList" runat="server" Text="Update Unsolicited List" Visible="false" OnClick="btnUpdateList_Click" />
+
+      <br />
+<hr />
+    <br />
+    <br />
+    <div style="width:818px; height:389px; background:url(../Images/envelope.jpg) no-repeat; padding:50px;">
+    <div class="blueletter">
+       <asp:Literal ID="litEmailBody" runat="server"></asp:Literal><br />
+    </div>
+    </div>
 
 </asp:Content>
 

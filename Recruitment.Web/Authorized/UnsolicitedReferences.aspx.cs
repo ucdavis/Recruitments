@@ -11,6 +11,9 @@ using System.Web.UI.HtmlControls;
 using System.Collections.Generic;
 using CAESDO.Recruitment.Core.Domain;
 using CAESDO.Recruitment.Data;
+using CAESDO.Recruitment.Core.DataInterfaces;
+using System.Net.Mail;
+using System.Web.Configuration;
 
 namespace CAESDO.Recruitment.Web
 {
@@ -27,9 +30,23 @@ namespace CAESDO.Recruitment.Web
             }
         }
 
+        public Template UnsolicitedTemplate
+        {
+            get
+            {
+                return daoFactory.GetTemplateDao().GetTemplatesByType(UnsolicitedTemplateType)[0];
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
+            
 
+
+            if (!IsPostBack)
+            {
+                litEmailBody.Text = UnsolicitedTemplate.TemplateText;
+            }
         }
 
         protected void dlistApplications_SelectedIndexChanged(object sender, EventArgs e)
@@ -79,6 +96,27 @@ namespace CAESDO.Recruitment.Web
             //Notify the user that the update was successful
             lblResult.Text = "Unsolicited List Updated";
         }
-}
+
+        /// <summary>
+        /// Sends a unsolicited letter to the selected reference
+        /// </summary>
+        protected void sendEmail_Click(object sender, EventArgs e)
+        {
+            Button btnSender = (Button)sender;
+
+            int referenceID = int.Parse(btnSender.CommandArgument);
+
+            Reference currentReference = daoFactory.GetReferenceDao().GetById(referenceID, false);
+                        
+            SmtpClient client = new SmtpClient();
+            MailMessage message = new MailMessage(WebConfigurationManager.AppSettings["emailFromEmail"],
+                                                    currentReference.Email,
+                                                    "UC Davis Recruitment Unsolicited Letter Response",
+                                                    new TemplateProcessing().ProcessTemplate(currentReference, currentReference.AssociatedApplication, UnsolicitedTemplate.TemplateText)
+                                                );
+            message.IsBodyHtml = true;
+            client.Send(message);
+        }
+    }
 
 }
