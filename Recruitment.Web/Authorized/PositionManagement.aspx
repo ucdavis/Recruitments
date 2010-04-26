@@ -22,8 +22,26 @@
             else            
             {
                 FTB_API[txtID].InsertHtml(text);
-            }   
+            }
         }
+
+        $(document).ready(function() {
+            $("input[id$=txtPositionTitle]").bt('Examples: <br/>*Asst. Prof of Climate Control, LAWR<br/>*Professor of Brewing', {
+                trigger: ['focus', 'blur'],
+                width: '250px',
+                positions: ['right']
+            });
+
+            $("input[id$=txtHRPhone]").bt('Phone Number Format Examples: <br/>xxx-yyy-zzzz<br/>(xxx) yyy-zzzz', {
+                trigger: ['focus', 'blur'],
+                positions: ['right']
+            });
+
+            $("#spanSummaryInfo").bt('Some summary info', {
+                trigger: ['click'],
+                positions: ['right']
+            });
+        });
         
     </script>
     <span class="boxTitle"><asp:Image ID="imgProfile" runat="server" EnableViewState="False" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" meta:resourcekey="imgProfileResource1" /><asp:Literal ID="litPositionState" runat="server" Text="Create Position" EnableViewState="False" meta:resourcekey="litPositionStateResource1"></asp:Literal></span><br />
@@ -128,7 +146,7 @@
         </tr>
         <tr>
             <td align="right" valign="top" style="width: 240">
-                Summary:</td>
+                <span id="spanSummaryInfo">Summary<img src="../Images/modify.gif" alt="SummaryInfo" /></span>:</td>
             <td  >
                 <asp:TextBox ID="txtShortDescription" runat="server" Height="255px" Rows="4" TextMode="MultiLine"
                     Width="502px" meta:resourcekey="txtShortDescriptionResource1"></asp:TextBox></td>
