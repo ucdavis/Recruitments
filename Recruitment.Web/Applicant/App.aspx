@@ -74,11 +74,17 @@
                         </td>
                     </tr>
                     <tr>
+                        <td colspan="2">
+                            </span>
+                            <asp:Literal ID="litApplicationFinalizeStatus" runat="server" EnableViewState="false" />
+                        </td>
+                    </tr>
+                    <tr>
                         <td   align="right">
                         </td>
                         <td align="right">
                             <br />
-                            <asp:Button ID="btnApplicationFinalize" runat="server" Text="Finalize Application" /></td>
+                            <asp:Button ID="btnApplicationFinalize" runat="server" Text="Finalize Application" OnClick="btnApplicationFinalize_Click" /></td>
                     </tr>
                 </table>
             </asp:View>
@@ -501,6 +507,32 @@
                         <td align="right"  >
                             <br />
                             <asp:Button ID="btnResumeUpload" runat="server" Text="Upload" OnClick="btnResumeUpload_Click" /></td>
+                    </tr>
+                </table>
+            </asp:View>
+            
+            <asp:View ID="viewCV" runat="server">
+                 <span class="boxTitle">CV</span><br />
+                <table class="box" style="width:500px;" cellpadding="5">
+                    <tr>
+                        <td colspan="2"><br /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            Please upload your file as a PDF Document. Maximum file size allowed is 10 MB. 
+                        </td>                       
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <asp:FileUpload ID="fileCV" runat="server" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td   align="right">
+                        </td>
+                        <td align="right"  >
+                            <br />
+                            <asp:Button ID="btnCVUpload" runat="server" Text="Upload" OnClick="btnCVUpload_Click" /></td>
                     </tr>
                 </table>
             </asp:View>

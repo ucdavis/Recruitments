@@ -174,7 +174,8 @@ namespace CAESDO.Recruitment.Web
             }
             else
             {
-                //Error message
+                Response.Write(ValidateBO<Position>.GetValidationResultsAsString(newPosition));
+                //TODO: Error message
             }
         }
 

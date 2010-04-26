@@ -124,6 +124,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         [RegexValidator(@"((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}", 
             MessageTemplate="Phone number must be properly formatted")]
+        [IgnoreNulls]
         public virtual string HRPhone
         {
             get { return _HRPhone; }
