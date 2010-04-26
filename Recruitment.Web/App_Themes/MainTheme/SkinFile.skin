@@ -36,3 +36,9 @@ Default skin template. The following skins are provided as examples only.
         <RowStyle BackColor="White" CssClass="dottedBotBorder" Wrap="True" />
         <HeaderStyle CssClass="solidHeaderSmall" Font-Size="1.2em" ForeColor="#252a2f" Height="34px" />
 </asp:GridView>
+
+
+<asp:GridView runat="server" SkinId="gridViewPosManage" BackColor="White" BorderStyle="None" CellPadding="0" GridLines="None">
+        <RowStyle BackColor="White" CssClass="dottedBotBorder" Wrap="True" Height="28px"/>
+        <HeaderStyle CssClass="solidHeaderSmall" Font-Size="1.2em" ForeColor="#252a2f" Height="34px" />
+</asp:GridView>

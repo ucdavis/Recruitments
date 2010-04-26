@@ -1,4 +1,4 @@
-<%@ Page AutoEventWireup="true" CodeFile="PositionManagement.aspx.cs" Inherits="CAESDO.Recruitment.Web.PositionManagement" ValidateRequest="false" Language="C#" MasterPageFile="~/MasterPage.master" Title="Position Management" %>
+<%@ Page AutoEventWireup="true" CodeFile="PositionManagement.aspx.cs" Inherits="CAESDO.Recruitment.Web.PositionManagement" Theme="MainTheme" ValidateRequest="false" Language="C#" MasterPageFile="~/MasterPage.master" Title="Position Management"  %>
 
 <%@ Register Assembly="FreeTextBox" Namespace="FreeTextBoxControls" TagPrefix="FTB" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
@@ -13,25 +13,25 @@
     </script>
 
     <span class="boxTitle"><asp:Image ID="imgProfile" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" /><asp:Literal ID="litPositionState" runat="server" Text="Create Position" EnableViewState="false"></asp:Literal></span><br />
-    <table class="box" style="width:550px; height: 350px;" cellpadding="5">
+    <table class="box" style="width:690px;" cellpadding="5">
         <tr>
             <td colspan="2"><br /></td>
         </tr>
         <tr>
-            <td   align="right">
+            <td   align="right" style="width: 240">
                 Position Title:</td>
             <td  >
                 <asp:TextBox ID="txtPositionTitle" runat="server" MaxLength="100"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="reqValPositionTitle" runat="server" ControlToValidate="txtPositionTitle" ErrorMessage="*"></asp:RequiredFieldValidator></td>
         </tr>
         <tr>
-            <td   align="right">
+            <td   align="right" style="width: 240">
                 Position Number:</td>
             <td  >
                 <asp:TextBox ID="txtPositionNumber" runat="server" MaxLength="20"></asp:TextBox></td>
         </tr>
         <tr>
-            <td align="right">
+            <td align="right" style="width: 240" valign="top">
                 Review Date:</td>
             <td >
                 <asp:TextBox ID="txtDeadline" runat="server"></asp:TextBox> <asp:Image ID="imgDeadlineCalendar" runat="server" ImageUrl="~/Images/icon.calendar.png" AlternateText="Click to show calendar" />
@@ -43,7 +43,7 @@
             </td>
         </tr>
         <tr>
-            <td   align="right">
+            <td   align="right" style="width: 240" valign="top">
                 Department:</td>
             <td  >
                 <Ajax:UpdatePanel ID="updateDepartments" runat="server" UpdateMode="conditional">
@@ -51,13 +51,16 @@
                     <asp:DropDownList ID="dlistDepartment" runat="server" DataSourceID="ObjectDataUnits" DataTextField="ShortName" DataValueField="FISCode"></asp:DropDownList>
                     <asp:LinkButton ID="lbtnAddDepartment" runat="server" Text="Add Department" CausesValidation="False" OnClick="lbtnAddDepartment_Click"></asp:LinkButton>
                     <br />
+                    <br />
                     
-                    <asp:GridView ID="gviewDepartments" runat="server" DataKeyNames="DepartmentFIS" AutoGenerateColumns="False" OnRowDeleting="gviewDepartments_RowDeleting">
+                    <asp:GridView ID="gviewDepartments" runat="server" DataKeyNames="DepartmentFIS" AutoGenerateColumns="False" OnRowDeleting="gviewDepartments_RowDeleting" Width="346px" SkinID="gridViewPosManage">
                     <Columns>
                         <asp:TemplateField HeaderText="Primary">
                             <ItemTemplate>
                                 <asp:CheckBox ID="cboxPrimary" runat="server" Checked='<%# Eval("PrimaryDept") %>' AutoPostBack="true" OnCheckedChanged="cboxPrimary_CheckedChanged" />
                             </ItemTemplate>
+                            <ItemStyle CssClass="paddingLeft" />
+                            <HeaderStyle CssClass="paddingLeft" />
                         </asp:TemplateField>
                         <asp:TemplateField HeaderText="Department Name">
                             <ItemTemplate>
@@ -66,6 +69,8 @@
                         </asp:TemplateField>
                         <asp:CommandField DeleteText="Remove" ShowDeleteButton="True" />
                     </Columns>                    
+                        <HeaderStyle HorizontalAlign="Left" CssClass="paddingRight" />
+                        <RowStyle CssClass="paddingRight" />
                     </asp:GridView>
                     <asp:Label ID="lblPrimaryDeptErrorMessage" runat="server" EnableViewState="false" ForeColor="red" Text=""></asp:Label>
                 </ContentTemplate>
@@ -81,7 +86,7 @@
             </td>
         </tr>
         <tr>
-            <td   align="right">
+            <td   align="right" style="width: 240">
                 HR Representative:</td>
             <td  >
                 <asp:TextBox ID="txtHRRep" runat="server" MaxLength="100"></asp:TextBox>
@@ -89,7 +94,7 @@
             </td>
         </tr>
         <tr>
-            <td   align="right">
+            <td   align="right" style="width: 240">
                 HR Phone Number:</td>
             <td  >
                 <asp:TextBox ID="txtHRPhone" runat="server" MaxLength="13"></asp:TextBox>                
@@ -97,7 +102,7 @@
             </td>
         </tr>
         <tr>
-            <td align="right">
+            <td align="right" style="width: 240">
                 HR Email:
             </td>
             <td>
@@ -108,14 +113,14 @@
             </td>
         </tr>
         <tr>
-            <td align="right" valign="top">
+            <td align="right" valign="top" style="width: 240">
                 Summary:</td>
             <td  >
-                <asp:TextBox ID="txtShortDescription" runat="server" Height="90px" Rows="4" TextMode="MultiLine"
-                    Width="233px"></asp:TextBox></td>
+                <asp:TextBox ID="txtShortDescription" runat="server" Height="255px" Rows="4" TextMode="MultiLine"
+                    Width="502px"></asp:TextBox></td>
         </tr>
         <tr>
-            <td align="right" valign="top">
+            <td align="right" valign="top" style="width: 240">
                 Reference Template:
             </td>
             <td>
@@ -131,7 +136,7 @@
             </td>
         </tr>
         <tr>
-            <td align="right">
+            <td align="right" style="width: 240">
                 Full job description (PDF):</td>
             <td  >
                 <asp:LinkButton ID="lbtnDownloadPositionDescription" runat="server" Text="Download Existing File" Visible="false"></asp:LinkButton>
@@ -141,7 +146,7 @@
             </td>
         </tr>
         <tr>
-            <td   align="right">
+            <td   align="right" style="width: 240">
                 Number of Required Publications:</td>
             <td  >
                 <asp:TextBox ID="txtPublications" runat="server"></asp:TextBox>
@@ -152,7 +157,7 @@
             </td>
         </tr>
         <tr>
-            <td   align="right">
+            <td   align="right" style="width: 240">
                 Number of Required References:</td>
             <td  >
                 <asp:TextBox ID="txtReferences" runat="server"></asp:TextBox>   
@@ -163,7 +168,7 @@
             </td>
         </tr>
         <tr>
-            <td align="right">
+            <td align="right" style="width: 240">
                 Show Education:
             </td>
             <td>
@@ -171,7 +176,7 @@
             </td>
         </tr>
         <tr>
-            <td align="right">
+            <td align="right" style="width: 240">
                 Show Current Position:
             </td>
             <td>
@@ -179,9 +184,9 @@
             </td>
         </tr>
         <tr>
-            <td align="right">Required File Types:</td>
+            <td align="right" style="width: 240" valign="top">Required File Types:</td>
             <td>
-                <asp:GridView ID="gviewFileTypes" runat="server" DataKeyNames="id" AutoGenerateColumns="False" DataSourceID="ObjectDataFileTypes">
+                <asp:GridView ID="gviewFileTypes" runat="server" DataKeyNames="id" AutoGenerateColumns="False" DataSourceID="ObjectDataFileTypes" BorderStyle="None" CellPadding="0" GridLines="None" Width="289px">
                     <Columns>
                         <asp:TemplateField HeaderText="File Types">
                             <ItemTemplate>
@@ -189,6 +194,8 @@
                             </ItemTemplate>
                         </asp:TemplateField>
                     </Columns>
+                    <RowStyle HorizontalAlign="Left" />
+                    <HeaderStyle HorizontalAlign="Left" />
                 </asp:GridView>                
                 <asp:ObjectDataSource ID="ObjectDataFileTypes" runat="server" SelectMethod="GetAll"
                     TypeName="CAESDO.Recruitment.Data.NHibernateDaoFactory+FileTypeDao">
@@ -200,14 +207,14 @@
             </td>
         </tr>
         <tr>
-            <td align="right">
+            <td align="right" style="width: 240">
                 Allow Applications:</td>
             <td  >
                 <asp:CheckBox ID="chkAllowApplications" runat="server" Checked="true" />
             </td>
         </tr>
         <tr>
-            <td   align="right">
+            <td   align="right" style="width: 240">
             </td>
             <td align="right"  >
                 <br />
