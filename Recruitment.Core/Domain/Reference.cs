@@ -173,6 +173,15 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _SentEmail = value; }
         }
 
+        private string _UploadID;
+
+        [StringLengthValidator(50)]
+        public virtual string UploadID
+        {
+            get { return _UploadID; }
+            set { _UploadID = value; }
+        }
+        
         private Application _AssociatedApplication;
 
         public virtual Application AssociatedApplication

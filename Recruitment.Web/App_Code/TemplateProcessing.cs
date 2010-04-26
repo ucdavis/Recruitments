@@ -17,6 +17,8 @@ namespace CAESDO.Recruitment
     /// </summary>
     public class TemplateProcessing
     {
+        private const string STR_UploadReferenceURL = "/Authorized/UploadReference.aspx";
+
         public TemplateProcessing()
         {
             //
@@ -67,6 +69,7 @@ namespace CAESDO.Recruitment
             }
 
             sb.Append(body);
+            sb.Append(getUploadIDPortion());
             sb.Append("</body></html>");
 
             return sb.ToString();
@@ -137,6 +140,12 @@ namespace CAESDO.Recruitment
             return "";
 #endif
         }
+
+        private string getUploadIDPortion()
+        {
+            return "<a href='" + HttpContext.Current.Request.Url.Host + STR_UploadReferenceURL + "?ID=" + this._reference.UploadID + "'>Click here to upload reference letter</a>";
+        }        
+
         // Takes an int representation of Month and returns the string name
         private string GetMonth(int month)
         {

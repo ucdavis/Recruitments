@@ -106,6 +106,9 @@ namespace CAESDO.Recruitment.Web
                     {
                         if (reference.SentEmail == false)   //Only email references who haven't been emailed yet
                         {
+                            //Before sending the email, make sure we have a uid
+                            this.ensureUniqueID(reference);
+
                             string result = sendReferenceEmail(currentPosition, app, reference);
 
                             //If a result was returned, then add it to the error emails
@@ -135,6 +138,23 @@ namespace CAESDO.Recruitment.Web
 
                 lblResult.ForeColor = System.Drawing.Color.Red;
                 lblResult.Text = "The Following References Were Not Sent Emails: " + delimitedReferenceErrorList.ToString();
+            }
+        }
+
+        /// <summary>
+        /// Returns immediately if a uniqueID exists for the given reference, else it generates and saves a new one
+        /// into the existing reference's record
+        /// </summary>
+        private void ensureUniqueID(Reference reference)
+        {
+            if (string.IsNullOrEmpty(reference.UploadID))
+            {                
+                //We don't have an uploadID, so create a new GUID and assign it to the reference
+                using (new NHibernateTransaction())
+                {
+                    reference.UploadID = Guid.NewGuid().ToString();
+                    daoFactory.GetReferenceDao().SaveOrUpdate(reference);
+                }
             }
         }
 
