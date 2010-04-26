@@ -79,9 +79,26 @@ namespace CAESDO.Recruitment.Web
             bool allowedAccess = false;
 
             foreach (CommitteeMember member in currentApplication.AppliedPosition.CommitteeMembers)
-            {                
-                if ( member.DepartmentMember.LoginID == User.Identity.Name)
-                    allowedAccess = true;
+            {
+                if (member.DepartmentMember.LoginID == User.Identity.Name)
+                {
+                    //The user is in this position's access list, but we need to check access status
+                    if (member.MemberType.ID == (int)MemberTypes.CommitteeChair || member.MemberType.ID == (int)MemberTypes.CommitteeMember)
+                    {
+                        //Allow access always if the user is in the committee
+                        allowedAccess = true;
+                        break;
+                    }
+                    else
+                    {
+                        if (currentApplication.AppliedPosition.FacultyView)
+                        {
+                            //If the user is faculty or reviewer, make sure this position is accepting faculty review
+                            allowedAccess = true;
+                            break;
+                        }
+                    }
+                }
             }
                         
             if (!allowedAccess)

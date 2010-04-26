@@ -23,13 +23,13 @@ namespace CAESDO.Recruitment.Web
             }
 
             bool CommitteeMember = daoFactory.GetCommitteeMemberDao().IsUserMember(MemberTypes.AllCommittee);
-            bool FacultyMember = daoFactory.GetCommitteeMemberDao().IsUserMember(MemberTypes.FacultyMember);
+            bool FacultyOrReviewMember = daoFactory.GetCommitteeMemberDao().IsUserMember(MemberTypes.FacultyMember) || daoFactory.GetCommitteeMemberDao().IsUserMember(MemberTypes.Reviewer);
             
             pnlCommitteeAccess.Visible = CommitteeMember;
-            pnlFacultyAccess.Visible = FacultyMember;
+            pnlFacultyAccess.Visible = FacultyOrReviewMember;
                         
             //If the user is neither, redirect them to the error page
-            if ( !CommitteeMember && !FacultyMember)
+            if (!CommitteeMember && !FacultyOrReviewMember)
             {
                 Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.AUTH));
             }

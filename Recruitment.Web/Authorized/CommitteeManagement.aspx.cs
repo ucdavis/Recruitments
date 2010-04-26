@@ -204,8 +204,12 @@ namespace CAESDO.Recruitment.Web
                             //member is not in the committee list.  If the box is checked, add them to the committee list
                             if (cboxCommittee.Checked)
                             {
-                                currentMember.MemberType = daoFactory.GetMemberTypeDao().GetById((int)MemberTypes.CommitteeMember, false);
-                                currentPosition.CommitteeMembers.Add(currentMember);
+                                CommitteeMember newMemberAccess = new CommitteeMember();
+                                newMemberAccess.DepartmentMember = member;
+                                newMemberAccess.AssociatedPosition = currentPosition;
+                                newMemberAccess.MemberType = daoFactory.GetMemberTypeDao().GetById((int)MemberTypes.CommitteeMember, false);
+
+                                currentPosition.CommitteeMembers.Add(newMemberAccess);
                             }
                         }
                         else
@@ -223,8 +227,12 @@ namespace CAESDO.Recruitment.Web
                             //member is not in the faculty list.  If the box is checked, add them
                             if (cboxFaculty.Checked)
                             {
-                                currentMember.MemberType = daoFactory.GetMemberTypeDao().GetById((int)MemberTypes.FacultyMember, false);
-                                currentPosition.CommitteeMembers.Add(currentMember);
+                                CommitteeMember newMemberAccess = new CommitteeMember();
+                                newMemberAccess.DepartmentMember = member;
+                                newMemberAccess.AssociatedPosition = currentPosition;
+                                newMemberAccess.MemberType = daoFactory.GetMemberTypeDao().GetById((int)MemberTypes.FacultyMember, false);
+
+                                currentPosition.CommitteeMembers.Add(newMemberAccess);
                             }
                         }
                         else
@@ -242,8 +250,12 @@ namespace CAESDO.Recruitment.Web
                             //member is not in the reviewer list.  If the box is checked, add them
                             if (cboxReview.Checked)
                             {
-                                currentMember.MemberType = daoFactory.GetMemberTypeDao().GetById((int)MemberTypes.Reviewer, false);
-                                currentPosition.CommitteeMembers.Add(currentMember);
+                                CommitteeMember newMemberAccess = new CommitteeMember();
+                                newMemberAccess.DepartmentMember = member;
+                                newMemberAccess.AssociatedPosition = currentPosition;
+                                newMemberAccess.MemberType = daoFactory.GetMemberTypeDao().GetById((int)MemberTypes.Reviewer, false);
+
+                                currentPosition.CommitteeMembers.Add(newMemberAccess);
                             }
                         }
                         else
