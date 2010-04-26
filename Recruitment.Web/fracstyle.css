@@ -140,9 +140,9 @@ table.tablesorter thead tr .header {
 }
 table.tablesorter tbody td {
 	color: #3D3D3D;
-	padding: 4px 4px 4px 20px;
+	padding: 20px 4px 4px 20px;
 	background-color: #FFF;
-	vertical-align: middle;
+	vertical-align: top;
 	border-bottom: 1px dotted #333333;
 	height: 50px;
 	font-size: 1.2em;
@@ -608,8 +608,4 @@ display:block; height:auto; line-height:1.5em; padding:5px 10px 4px 35px; width:
     float:right;
     margin-right:10px;
     cursor:pointer;
-}
-table.tablesorter tbody td.ApplicantViewListPhdCell
-{
-    padding:20px 0;
 }
