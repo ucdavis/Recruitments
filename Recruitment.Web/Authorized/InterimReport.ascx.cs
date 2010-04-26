@@ -8,29 +8,27 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
-using CAESDO.Recruitment.Core.Domain;
 using System.Collections.Generic;
+using CAESDO.Recruitment.Core.Domain;
+using CAESDO.Recruitment.Core.DataInterfaces;
+using CAESDO.Recruitment.Data;
+using System.Collections.Specialized;
 
 namespace CAESDO.Recruitment.Web
 {
-    public partial class Authorized_InterimReport : ApplicationPage
+    public partial class Authorized_InterimReport : System.Web.UI.UserControl, IReportUserControl
     {
+        public IDaoFactory daoFactory
+        {
+            get { return new NHibernateDaoFactory(); }
+        }
+
+        private int? _currentPositionID;
+
         public int? currentPositionID
         {
-            get
-            {
-                int posID = 0;
-
-                if (int.TryParse(Request.QueryString["PositionID"], out posID))
-                {
-                    //If the parse succeeded, return the integer
-                    return posID;
-                }
-                else
-                {
-                    return null;
-                }
-            }
+            get { return _currentPositionID; }
+            set { _currentPositionID = value; }
         }
 
         public Position currentPosition
@@ -51,9 +49,9 @@ namespace CAESDO.Recruitment.Web
         {
             if (currentPosition == null)
                 Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.UNKNOWN));
-            else if ( !Roles.IsUserInRole("Admin") ) //If the user isn't an admin, check department relationships
+            else if (!Roles.IsUserInRole("Admin")) //If the user isn't an admin, check department relationships
             {
-                User u = daoFactory.GetUserDao().GetUserByLogin(User.Identity.Name);
+                User u = daoFactory.GetUserDao().GetUserByLogin(HttpContext.Current.User.Identity.Name);
                 bool positionAccess = false;
 
                 foreach (Department d in currentPosition.Departments)
@@ -74,30 +72,27 @@ namespace CAESDO.Recruitment.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (currentPosition != null)
             {
-                if (currentPosition != null)
-                {
-                    lblDeadline.Text = currentPosition.Deadline.ToLongDateString();
-                    lblDepartment.Text = currentPosition.DepartmentList;
-                    lblPosition.Text = currentPosition.PositionTitle;
-                    lblPosNum.Text = currentPosition.PositionNumber;
+                lblDeadline.Text = currentPosition.Deadline.ToLongDateString();
+                lblDepartment.Text = currentPosition.DepartmentList;
+                lblPosition.Text = currentPosition.PositionTitle;
+                lblPosNum.Text = currentPosition.PositionNumber;
 
-                    //Get the SexEthnicityCount for the current position
-                    SexEthnicityCount SexEthnicityList = new SexEthnicityCount();
+                //Get the SexEthnicityCount for the current position
+                SexEthnicityCount SexEthnicityList = new SexEthnicityCount();
 
-                    gviewSexEthnicity.DataSource = SexEthnicityList.GetSexEthnicityList(currentPosition, null);
-                    gviewSexEthnicity.DataBind();
+                gviewSexEthnicity.DataSource = SexEthnicityList.GetSexEthnicityList(currentPosition, null);
+                gviewSexEthnicity.DataBind();
 
-                    gviewApplicants.DataSource = this.GetApplicants(false); //Get the applicants who are not selected for interview
-                    gviewApplicants.DataBind();
+                gviewApplicants.DataSource = this.GetApplicants(false); //Get the applicants who are not selected for interview
+                gviewApplicants.DataBind();
 
-                    blistInterviewApplicants.DataSource = this.GetApplicants(true); //List the applicants selected for interview
-                    blistInterviewApplicants.DataBind();
+                blistInterviewApplicants.DataSource = this.GetApplicants(true); //List the applicants selected for interview
+                blistInterviewApplicants.DataBind();
 
-                    gviewInterviewSexEthnicity.DataSource = SexEthnicityList.GetSexEthnicityList(currentPosition, true);
-                    gviewInterviewSexEthnicity.DataBind();
-                }
+                gviewInterviewSexEthnicity.DataSource = SexEthnicityList.GetSexEthnicityList(currentPosition, true);
+                gviewInterviewSexEthnicity.DataBind();
             }
         }
 
@@ -115,6 +110,23 @@ namespace CAESDO.Recruitment.Web
 
             return profileList;
         }
+
+        #region IReportUserControl Members
+
+        public void LoadReport(StringDictionary parameters)
+        {
+            int posID = 0;
+
+            if (int.TryParse(parameters["PositionID"], out posID))
+                currentPositionID = posID;
+            else
+                currentPositionID = null;
+
+            Page_Init(null, null);
+            Page_Load(null, null);
+        }
+
+        #endregion
     }
 
     public class SexEthnicityCount
@@ -223,7 +235,7 @@ namespace CAESDO.Recruitment.Web
             //No matter which category it falls under, update the total as well
             currentSex.TotalCount++;
         }
-        
+
         /// <summary>
         /// For each sex and ethnicity category (uncluding unidentifed), add up the application pool composition
         /// </summary>
@@ -243,7 +255,7 @@ namespace CAESDO.Recruitment.Web
 
             foreach (Application app in position.AssociatedApplications)
             {
-                
+
                 if (selectedForInterview.HasValue == true)
                 {
                     //If we specify a interview designation, make sure the application fits that designation
@@ -290,4 +302,5 @@ namespace CAESDO.Recruitment.Web
             return result;
         }
     }
+    
 }

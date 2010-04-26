@@ -21,12 +21,13 @@ namespace CAESDO.Recruitment.Web
     {
         private const string STR_Interim = "Interim";
         private const string STR_Survey = "Survey";
+        private const string STR_PositionID = "PositionID";
 
         public string InterimPage
         {
             get
             {
-                return Request.Url.GetComponents(UriComponents.SchemeAndServer, UriFormat.SafeUnescaped) + HttpContext.Current.Request.ApplicationPath + "/Authorized/InterimReport.aspx?PositionID=" + dlistPositions.SelectedValue;
+                return "InterimReport.ascx";
             }
         }
 
@@ -34,7 +35,7 @@ namespace CAESDO.Recruitment.Web
         {
             get
             {
-                return Request.Url.GetComponents(UriComponents.SchemeAndServer, UriFormat.SafeUnescaped) + HttpContext.Current.Request.ApplicationPath + "/Authorized/RecruitmentSources.aspx?PositionID=" + dlistPositions.SelectedValue;
+                return "RecruitmentSources.ascx";
             }
         }
 
@@ -63,19 +64,19 @@ namespace CAESDO.Recruitment.Web
         private void OutputPage(string URL, ReportOutputType output)
         {
             StringDictionary parameters = new StringDictionary();
-            parameters.Add("PositionID", dlistPositions.SelectedValue);
+            parameters.Add(STR_PositionID, dlistPositions.SelectedValue);
 
-            Control reportPleaseWork;
+            Control report;
             StringBuilder sb = new StringBuilder();
             StringWriter sw = new StringWriter(sb);
             Html32TextWriter hw = new Html32TextWriter(sw);
             
             try
             {
-                reportPleaseWork = LoadControl("RecruitmentSources.ascx");
-                ((IReportUserControl)reportPleaseWork).LoadReport(parameters); //Load the report with parameters
+                report = LoadControl(URL);
+                ((IReportUserControl)report).LoadReport(parameters); //Load the report with parameters
                 
-                reportPleaseWork.RenderControl(hw);
+                report.RenderControl(hw);
             }
             catch (Exception ex)
             {
