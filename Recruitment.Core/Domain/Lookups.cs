@@ -324,6 +324,8 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _Type = value; }
         }
 
+        public virtual bool IsEmailTemplate { get; set; }
+
         public TemplateType()
         {
 

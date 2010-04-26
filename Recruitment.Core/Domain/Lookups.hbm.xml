@@ -164,7 +164,8 @@
     </id>
 
     <property name="Type" column="TemplateType" />
-
+    <property name="IsEmailTemplate" columns="IsEmailTemplate" />
+    
   </class>
 
 </hibernate-mapping>
