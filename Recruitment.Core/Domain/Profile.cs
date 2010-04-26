@@ -85,11 +85,9 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _AssociatedApplicant = value; }
         }
         
-        //private int _AccountID;
-
         public Profile()
         {
-            //throw new System.NotImplementedException();
+
         }
 
         public void Fill(int ApplicantID)
