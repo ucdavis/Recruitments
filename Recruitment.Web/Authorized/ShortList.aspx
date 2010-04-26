@@ -1,35 +1,53 @@
-<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ShortList.aspx.cs" Inherits="CAESDO.Recruitment.Web.Authorized_ShortList" Title="Untitled Page" %>
+<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="ShortList.aspx.cs" Inherits="CAESDO.Recruitment.Web.Authorized_ShortList" Title="Short List" Theme="MainTheme" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
 <%--//TODO: Add drop down list that contains all positions with applications
 
 //TODO: Add GridView with all applicants for the chosen position.  Make the applicant's name link back to their application
 //      by using the ApplicationReview.aspx page (use datakeys to keep the applicationID around).--%>
-    <asp:DropDownList ID="DropDownList1" runat="server" AutoPostBack="True" DataSourceID="ObjectDataPositions" DataTextField="TitleAndApplicationCount" DataValueField="ID">
+    <asp:DropDownList ID="dlistPositions" runat="server" AutoPostBack="True" DataSourceID="ObjectDataPositions" DataTextField="TitleAndApplicationCount" DataValueField="ID" OnSelectedIndexChanged="dlistPositions_SelectedIndexChanged" AppendDataBoundItems="true">
+        <asp:ListItem Selected="True" Value="0">Select a Position</asp:ListItem>
     </asp:DropDownList>
+    
+    <asp:RequiredFieldValidator id="reqValPositions" ControlToValidate="dlistPositions" ErrorMessage="*" runat="server"/>
+    
     <asp:ObjectDataSource ID="ObjectDataPositions" runat="server" SelectMethod="GetAll" TypeName="CAESDO.Recruitment.Data.NHibernateDaoFactory+PositionDao"></asp:ObjectDataSource>
-    <asp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" DataSourceID="ObjectDataApplications">
+    <br /><br />
+    <asp:GridView ID="gviewApplications" runat="server" AllowPaging="true" skinID="gridViewUM" DataKeyNames="id" GridLines="None" CellPadding="0" AutoGenerateColumns="False" DataSourceID="ObjectDataApplications" EmptyDataText="No Applications Found For This Position">
         <Columns>
-            <asp:CheckBoxField DataField="Submitted" HeaderText="Submitted" SortExpression="Submitted" />
-            <asp:CheckBoxField DataField="ReferencesComplete" HeaderText="ReferencesComplete"
-                SortExpression="ReferencesComplete" />
-            <asp:CheckBoxField DataField="Tracked" HeaderText="Tracked" SortExpression="Tracked" />
-            <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
-            <asp:CheckBoxField DataField="TrackProperties" HeaderText="TrackProperties" SortExpression="TrackProperties" />
-            <asp:BoundField DataField="SubmitDate" HeaderText="SubmitDate" SortExpression="SubmitDate" />
-            <asp:BoundField DataField="ID" HeaderText="ID" ReadOnly="True" SortExpression="ID" />
-            <asp:CheckBoxField DataField="PublicationsComplete" HeaderText="PublicationsComplete"
-                SortExpression="PublicationsComplete" />
-            <asp:BoundField DataField="LastUpdated" HeaderText="LastUpdated" SortExpression="LastUpdated" />
-        </Columns>
+            <asp:TemplateField HeaderText="Short List">
+                <ItemTemplate>
+                    <asp:CheckBox ID="chkShortList" runat="server" Checked='<%# Eval("ShortList") %>' />
+                </ItemTemplate>
+                <ItemStyle CssClass="paddingLeft" />
+                <HeaderStyle HorizontalAlign="Left" CssClass="paddingLeft" />
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Applicant Name">
+                <ItemTemplate>
+                    <asp:LinkButton ID="lbtnViewApplication" runat="server" CommandArgument='<%# Eval("id") %>' Text='<%# GetNullSafeFullName((string)Eval("AssociatedProfile.FullName")) %>' OnClick="lbtnViewApplication_Click"></asp:LinkButton>
+                </ItemTemplate>
+                <ItemStyle CssClass="paddingLeft" />
+                <HeaderStyle HorizontalAlign="Left" CssClass="paddingLeft" />
+            </asp:TemplateField>
+            <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" >
+                <HeaderStyle Width="100px" />
+            </asp:BoundField>
+            <asp:CheckBoxField DataField="Submitted" HeaderText="Submitted" SortExpression="Submitted">
+                <ItemStyle HorizontalAlign="Center" />
+                <HeaderStyle Width="100px" />
+            </asp:CheckBoxField>
+        </Columns>    
     </asp:GridView>
-    <asp:ObjectDataSource ID="ObjectDataApplications" runat="server" OldValuesParameterFormatString="original_{0}"
-        SelectMethod="GetApplicationsByPosition" TypeName="CAESDO.Recruitment.Data.NHibernateDaoFactory+ApplicationDao">
+    
+    <asp:ObjectDataSource ID="ObjectDataApplications" runat="server" SelectMethod="GetApplicationsByPosition"
+        TypeName="CAESDO.Recruitment.Data.NHibernateDaoFactory+ApplicationDao" OnSelecting="ObjectDataApplications_Selecting">
         <SelectParameters>
-            <asp:ControlParameter ControlID="DropDownList1" Name="positionID" PropertyName="SelectedValue"
-                Type="Int32" />
+            <asp:Parameter Name="position" Type="Object" />
         </SelectParameters>
     </asp:ObjectDataSource>
+
+    <br /><br />
+    <asp:Button ID="btnUpdateShortList" runat="server" Text="Update Short List" Visible="false" OnClick="btnUpdateShortList_Click" />
 
 </asp:Content>
 

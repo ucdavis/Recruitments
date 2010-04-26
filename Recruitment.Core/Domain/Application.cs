@@ -24,6 +24,15 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _AppliedPosition; }
             set { _AppliedPosition = value; }
         }
+
+        private bool _ShortList;
+
+        [NotNullValidator]
+        public virtual bool ShortList
+        {
+            get { return _ShortList; }
+            set { _ShortList = value; }
+        }
                 
         private bool _Submitted;
 

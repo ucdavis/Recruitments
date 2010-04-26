@@ -9,6 +9,7 @@
     <!--<property name="ProfileID" column="ProfileID" />-->
     <property name="Submitted" column="Submitted" />
     <property name="SubmitDate" column="SubmitDate" />
+    <property name="ShortList" column="ShortList" />
     <property name="LastUpdated" column="LastUpdated" />
     <property name="Email" column="Email" />
     <property name="PublicationsComplete" column="PublicationsComplete" />
