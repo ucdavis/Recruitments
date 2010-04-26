@@ -228,6 +228,14 @@
             </td>
         </tr>
         <tr>
+            <td align="right" style="width: 240">
+                Allow Faculty Review:
+            </td>
+            <td>
+                <asp:CheckBox ID="chkAllowFaculty" runat="server" />
+            </td>
+        </tr>
+        <tr>
             <td   align="right" style="width: 240">
             </td>
             <td align="right"  >

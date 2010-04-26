@@ -140,6 +140,7 @@ namespace CAESDO.Recruitment.Web
             newPosition.NumReferences = int.Parse(txtReferences.Text);
 
             newPosition.AllowApps = chkAllowApplications.Checked;
+            newPosition.FacultyView = chkAllowFaculty.Checked;
 
             if (filePositionDescription.HasFile)
             {
@@ -333,6 +334,7 @@ namespace CAESDO.Recruitment.Web
             txtReferences.Text = currentPosition.NumReferences.ToString();
 
             chkAllowApplications.Checked = currentPosition.AllowApps;
+            chkAllowFaculty.Checked = currentPosition.FacultyView;
 
             lbtnDownloadPositionDescription.Visible = true;
             litDownloadPositionDescription.Visible = true;
