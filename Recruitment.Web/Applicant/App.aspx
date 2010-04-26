@@ -1,51 +1,32 @@
-<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="App.aspx.cs" Inherits="App" Title="Untitled Page" %>
+<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="App.aspx.cs" Inherits="CAESDO.Recruitment.Web.App" Title="Untitled Page" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <br />
-    <br />
-    <br />
-
-<asp:MultiView ID="mvApplicationSteps" runat="server" ActiveViewIndex="0">
-    <asp:View ID="vView1" runat="server">
-        <asp:GridView ID="GViewUsers" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" DataSourceID="ObjectDataSource1" AutoGenerateColumns="False">
-            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-            <EditRowStyle BackColor="#999999" />
-            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-            <Columns>
-                <asp:BoundField DataField="Login" HeaderText="UserName" />
-                <asp:BoundField DataField="Role" HeaderText="Role" />
-                <asp:BoundField DataField="LastName" HeaderText="LastName" />
-                <asp:BoundField DataField="FirstName" HeaderText="FirstName" />
-                <asp:BoundField DataField="EmployeeID" HeaderText="EmployeeID" />
-            </Columns>
-        </asp:GridView>
-        <asp:ObjectDataSource ID="ObjectDataSource1" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetUsersInApplication" TypeName="CAESDO.Recruitment.CatbertManager"></asp:ObjectDataSource>    
-    </asp:View>
-    <asp:View ID="vView2" runat="server">
-        <asp:GridView ID="GridView1" runat="server" CellPadding="4" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False">
-            <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-            <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
-            <EditRowStyle BackColor="#999999" />
-            <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
-            <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
-            <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
-            <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
-            <Columns>
-                <asp:BoundField DataField="Login" HeaderText="UserName" />
-                <asp:BoundField DataField="Role" HeaderText="Role" />
-                <asp:BoundField DataField="LastName" HeaderText="LastName" />
-                <asp:BoundField DataField="FirstName" HeaderText="FirstName" />
-                <asp:BoundField DataField="EmployeeID" HeaderText="EmployeeID" />
-            </Columns>
-        </asp:GridView>
-        <asp:ObjectDataSource ID="ObjectDataSource2" runat="server" OldValuesParameterFormatString="original_{0}" SelectMethod="GetUsersInApplication" TypeName="CAESDO.Recruitment.CatbertManager"></asp:ObjectDataSource>
-
-    </asp:View>
-
-</asp:MultiView>
-
+     
+    <div style="height:22px; background-image:url(../Images/appmenuTop.gif);"><img src="../Images/appmenuTopLeft.gif" alt="" style="float:left;" /><img src="../Images/appmenuTopRight.gif" alt="" style="float:right;" /></div>
+    <div style="width:203px; float:left; background: url(../Images/appmenuLeft.gif) repeat-y; height:500px;">
+    
+    <ul class="applicationMenu">
+        <asp:Repeater ID="rptSteps" runat="server">
+            <ItemTemplate>
+               <asp:Panel ID="pnlStep" runat="server" Visible='<%# Eval("StepVisible") %>'>
+                    <li class="unselected">
+                    <div class="appButton">
+                        <asp:Image ID="imgStep" runat="server" ImageUrl='<%# Eval("ImgURL") %>' />
+                    </div>
+                    <div class="appLink">
+                        <asp:LinkButton ID="lbtnStep" runat="server" Text='<%# Eval("StepName") %>' CommandArgument='<%# Eval("StepName") %>' Style="margin-left: 12px;"></asp:LinkButton>
+                    </div>
+                    </li>
+               </asp:Panel>
+            </ItemTemplate>
+        </asp:Repeater>
+    </ul>
+    </div>
+    <div style="background:url(../Images/appmenuRight.gif) repeat-y right; height:500px;">
+        <asp:Panel ID="Panel1" runat="server">
+         
+        </asp:Panel>
+    </div>
+    
+    <div style="clear:both; height:22px; background-image:url(../Images/appmenuBot.gif);"><img src="../Images/appmenuBotLeft.gif" alt="" style="float:left;" /><img src="../Images/appmenuBotRight.gif" alt="" style="float:right;" /></div>
 </asp:Content>
 
