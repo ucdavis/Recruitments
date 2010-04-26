@@ -72,7 +72,7 @@
     <br />
     <br /><br />
 
-    <asp:GridView ID="gviewMembers" runat="server" AutoGenerateColumns="False" SkinID="gridViewUM" DataKeyNames="id" OnRowDataBound="gviewMembers_RowDataBound" CellPadding="0" GridLines="None">
+    <asp:GridView ID="gviewMembers" runat="server" AutoGenerateColumns="False" SkinID="gridViewUM" AllowSorting="true" DataKeyNames="id" OnRowDataBound="gviewMembers_RowDataBound" CellPadding="0" GridLines="None" OnSorting="gviewMembers_Sorting">
         <Columns>
             <asp:TemplateField HeaderText="Allow">
                 <ItemTemplate>
@@ -81,22 +81,22 @@
                 <ItemStyle CssClass="paddingLeft" />
                 <HeaderStyle CssClass="paddingLeft" />
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="LoginID">
+            <asp:TemplateField HeaderText="LoginID" SortExpression="LoginID">
                 <ItemTemplate>
                     <%# Eval("LoginID") %>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="FirstName">
+            <asp:TemplateField HeaderText="FirstName" SortExpression="FirstName">
                 <ItemTemplate>
                     <%# Eval("FirstName") %>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="LastName">
+            <asp:TemplateField HeaderText="LastName" SortExpression="LastName">
                 <ItemTemplate>
                     <%# Eval("LastName") %>
                 </ItemTemplate>
             </asp:TemplateField>
-            <asp:TemplateField HeaderText="Department">
+            <asp:TemplateField HeaderText="Department" SortExpression="Department">
                 <ItemTemplate>
                     <%# string.IsNullOrEmpty(Eval("OtherDepartmentName") as string) ? Eval("Unit.ShortName") : Eval("OtherDepartmentName")%>
                 </ItemTemplate>

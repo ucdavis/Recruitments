@@ -21,6 +21,8 @@ namespace CAESDO.Recruitment.Web
         private const string STR_Committee = "committee";
         private const string STR_Faculty = "faculty";
         private const string STR_CBOXALLOW = "chkAllowMember";
+        private const string STR_FRAC = "FRAC";
+        private const string STR_MembersSortDirection = "MembersSortDirection";
 
         public string committeeType
         {
@@ -52,6 +54,24 @@ namespace CAESDO.Recruitment.Web
             }
         }
 
+        public SortDirection membersSortDirection
+        {
+            get
+            {
+                if (ViewState[STR_MembersSortDirection] == null)
+                {
+                    ViewState[STR_MembersSortDirection] = SortDirection.Ascending;
+                }
+
+                return (SortDirection)ViewState[STR_MembersSortDirection];
+            }
+
+            set
+            {
+                ViewState[STR_MembersSortDirection] = value;
+            }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -73,6 +93,13 @@ namespace CAESDO.Recruitment.Web
         {
             if (dlistPositions.SelectedValue != "0") //Make sure they chose a real position
                 this.bindMembers();
+            else
+            {
+                //If the change to the select a position 0 entry, hide the access panel and rebind to the empty set
+                pnlAccess.Visible = false;
+                gviewMembers.DataSource = null;
+                gviewMembers.DataBind();
+            }
 
             if (gviewMembers.Rows.Count > 0)
                 pnlAccess.Visible = true;
@@ -85,7 +112,15 @@ namespace CAESDO.Recruitment.Web
             Response.Redirect(STR_CommitteeManagement + dlistType.SelectedValue);
         }
 
+        /// <summary>
+        /// Overload to call bindMembers with the default sorting
+        /// </summary>
         private void bindMembers()
+        {
+            this.bindMembers("LastName", SortDirection.Ascending);
+        }
+
+        private void bindMembers(string sortExpression, SortDirection sortDirection)
         {
             List<DepartmentMember> members = new List<DepartmentMember>();
 
@@ -112,13 +147,16 @@ namespace CAESDO.Recruitment.Web
                 if (m.MemberType == currentMemberType) //Make sure the member is of the correct type
                 {
                     //Make sure the member is in the FRAC department
-                    if (m.DepartmentFIS == "FRAC")
+                    if (m.DepartmentFIS == STR_FRAC)
                     {
                         members.Add(m);
                     }
                 }
             }
 
+            members.Sort(new DepartmentMemberComparer(sortExpression, sortDirection));
+            //members.Sort(new GenericComparer<DepartmentMember>(sortExpression, sortDirection));
+            
             gviewMembers.DataSource = members;
             gviewMembers.DataBind();
         }
@@ -187,7 +225,7 @@ namespace CAESDO.Recruitment.Web
             //Create the new department member
             DepartmentMember member = new DepartmentMember();
 
-            member.DepartmentFIS = "FRAC";
+            member.DepartmentFIS = STR_FRAC;
             member.FirstName = txtFName.Text;
             member.LastName = txtLName.Text;
             member.OtherDepartmentName = txtDepartment.Text;
@@ -222,5 +260,86 @@ namespace CAESDO.Recruitment.Web
             //rebind the datagrid
             this.bindMembers();
         }
-}
+
+        protected void gviewMembers_Sorting(object sender, GridViewSortEventArgs e)
+        {            
+            this.bindMembers(e.SortExpression, membersSortDirection); //Sort by the current sort direction
+
+            //Now flip the current sort direction
+            membersSortDirection = (membersSortDirection == SortDirection.Ascending) ? SortDirection.Descending : SortDirection.Ascending;
+        }
+    }
+
+    public class DepartmentMemberComparer : IComparer<DepartmentMember>
+    {
+        private const string STR_FRAC = "FRAC";
+        private const string STR_Department = "Department";
+
+        private SortDirection sortDirection;  
+
+        public SortDirection SortDirection
+        {
+            get { return this.sortDirection; }
+            set { this.sortDirection = value; } 
+        }
+
+        private string sortExpression;
+
+        public DepartmentMemberComparer(string sortExpression, SortDirection sortDirection)
+	    {
+            this.sortExpression = sortExpression;
+            this.sortDirection = sortDirection; 
+	    }
+
+        #region IComparer<DepartmentMember> Members
+
+        public int Compare(DepartmentMember x, DepartmentMember y)
+        {
+            IComparable obj1 = null;
+            IComparable obj2 = null;
+            
+            if (sortExpression == STR_Department)
+            {
+                //Do a custom search for department
+                if (x.DepartmentFIS != STR_FRAC)
+                {
+                    //If the department FIS is not FRAC, use the unit short name
+                    obj1 = x.Unit.ShortName;
+                }
+                else
+                {
+                    //Else, use the OtherDepartmentName
+                    obj1 = x.OtherDepartmentName;
+                }
+
+                //Do a custom search for department
+                if (y.DepartmentFIS != STR_FRAC)
+                {
+                    //If the department FIS is not FRAC, use the unit short name
+                    obj2 = y.Unit.ShortName;
+                }
+                else
+                {
+                    //Else, use the OtherDepartmentName
+                    obj2 = y.OtherDepartmentName;
+                }
+            }
+            else
+            {
+                //If it's not department, use the generic comparison
+                System.Reflection.PropertyInfo propertyInfo = typeof(DepartmentMember).GetProperty(sortExpression);
+                obj1 = (IComparable)propertyInfo.GetValue(x, null);
+                obj2 = (IComparable)propertyInfo.GetValue(y, null);
+            }
+                        
+            if (SortDirection == SortDirection.Ascending)
+            {
+                return obj1.CompareTo(obj2);
+            }
+            else 
+                return obj2.CompareTo(obj1); 
+        }
+
+        #endregion
+    }
 }
