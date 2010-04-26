@@ -14,11 +14,11 @@ namespace CAESDO.Recruitment.BLL
         /// Sends a message according to the given criteria
         /// </summary>
         /// <returns>true on success</returns>
-        public static bool SendMessage(string to, string from, string body, string subject)
+        public static bool SendMessage(string from, string to, string subject, string body)
         {
             try
             {
-                MessageGateway.SendMessage(to, from, body, subject);
+                MessageGateway.SendMessage(from, to, subject, body);
             }
             catch
             {

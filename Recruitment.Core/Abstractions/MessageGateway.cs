@@ -4,7 +4,7 @@ namespace CAESDO.Recruitment.Core.Abstractions
 {
     public interface IMessageGateway
     {
-        void SendMessage(string to, string from, string body, string subject);
+        void SendMessage(string from, string to, string subject, string body);
     }
 
     public class MessageGateway : IMessageGateway
@@ -12,7 +12,7 @@ namespace CAESDO.Recruitment.Core.Abstractions
         /// <summary>
         /// Use email to send out the message
         /// </summary>
-        public void SendMessage(string to, string from, string body, string subject)
+        public void SendMessage(string from, string to, string subject, string body)
         {
             SmtpClient client = new SmtpClient();
             MailMessage message = new MailMessage(from, to, subject, body);

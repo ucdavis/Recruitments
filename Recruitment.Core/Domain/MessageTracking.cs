@@ -18,7 +18,6 @@ namespace CAESDO.Recruitment.Core.Domain
         public virtual string SentBy { get; set; }
 
         [NotNullValidator]
-        [StringLengthValidator(1, 50)]
         public virtual string Body { get; set; }
 
         [NotNullValidator] //always not null since its a datetime

@@ -17,7 +17,7 @@ namespace CAESDO.Recruitment.Test.BusinessTests
             //Mock up an iprincipal
             SetupMessageGateway("testtest", true);
 
-            var success = MessageBLL.SendMessage("to", "from", "body", "subject");
+            var success = MessageBLL.SendMessage("from", "to", "subject", "body");
 
             Assert.IsTrue(success);
 
@@ -36,7 +36,7 @@ namespace CAESDO.Recruitment.Test.BusinessTests
             //Mock up an iprincipal
             SetupMessageGateway("testtest", false);
 
-            var success = MessageBLL.SendMessage("to", "from", "body", "subject");
+            var success = MessageBLL.SendMessage("from", "to", "subject", "body");
 
             Assert.IsFalse(success);
 

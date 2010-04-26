@@ -58,21 +58,16 @@ namespace CAESDO.Recruitment.Web
                     int userID = (int)lviewApplications.DataKeys[row.DataItemIndex]["id"];
                     Application selectedApplication = ApplicationBLL.GetByID(userID);
 
-                    try
-                    {
-                        SmtpClient client = new SmtpClient();
-                        MailMessage message = new MailMessage(WebConfigurationManager.AppSettings["emailFromEmail"],
-                                                                selectedApplication.Email,
-                                                                "UC Davis Recruitment Reminder",
-                                                                new TemplateProcessing().ProcessTemplate(null, selectedApplication, ReferenceTemplate.TemplateText, false)
-                                                            );
-                        message.IsBodyHtml = true;
-                        client.Send(message);
-                    }
-                    catch
-                    {
-                        errorEmails.AppendFormat("{0}, ", selectedApplication.Email);
-                    }
+                    var bodyFromTemplate = new TemplateProcessing().ProcessTemplate(null, selectedApplication,
+                                                                                    ReferenceTemplate.TemplateText,
+                                                                                    false);
+
+                    bool success = MessageBLL.SendMessage(WebConfigurationManager.AppSettings["emailFromEmail"],
+                                                            selectedApplication.Email,
+                                                            "UC Davis Recruitment Reminder", 
+                                                            bodyFromTemplate);
+
+                    if ( success == false ) errorEmails.AppendFormat("{0}, ", selectedApplication.Email);
                 }
             }
 
