@@ -162,6 +162,9 @@ namespace CAESDO.Recruitment.Web
                         case (int)MemberTypes.FacultyMember:
                             cboxFaculty.Checked = true;
                             break;
+                        case (int)MemberTypes.Reviewer:
+                            cboxReview.Checked = true;
+                            break;
                         default:
                             break;
                     }
@@ -232,7 +235,23 @@ namespace CAESDO.Recruitment.Web
                         }
 
                         //Finally check for review member access
+                        currentMemberAccess = this.MemberInCommitteeListOfType(memberAccess, MemberTypes.Reviewer);
 
+                        if (currentMemberAccess == null)
+                        {
+                            //member is not in the reviewer list.  If the box is checked, add them
+                            if (cboxReview.Checked)
+                            {
+                                currentMember.MemberType = daoFactory.GetMemberTypeDao().GetById((int)MemberTypes.Reviewer, false);
+                                currentPosition.CommitteeMembers.Add(currentMember);
+                            }
+                        }
+                        else
+                        {
+                            //member is in the committee list.  Remove if the box is unchecked
+                            if (!cboxReview.Checked)
+                                currentPosition.CommitteeMembers.Remove(currentMemberAccess);
+                        }
 
                         daoFactory.GetPositionDao().SaveOrUpdate(currentPosition);
                     }
