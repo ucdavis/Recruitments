@@ -33,9 +33,9 @@ namespace CAESDO.Recruitment.Web
             newPosition.PositionTitle = txtPositionTitle.Text;
             newPosition.PositionNumber = txtPositionNumber.Text;
 
-            newPosition.HRRep = txtHRRep.Text;
-            newPosition.HRPhone = txtHRPhone.Text;
-            newPosition.HREmail = txtHREmail.Text;
+            newPosition.HRRep = string.IsNullOrEmpty(txtHRRep.Text) ? null : txtHRRep.Text;
+            newPosition.HRPhone = string.IsNullOrEmpty(txtHRPhone.Text) ? null : txtHRPhone.Text;
+            newPosition.HREmail = string.IsNullOrEmpty(txtHREmail.Text) ? null : txtHREmail.Text;
 
             newPosition.ShortDescription = txtShortDescription.Text;
 

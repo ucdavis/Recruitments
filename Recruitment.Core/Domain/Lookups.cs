@@ -117,13 +117,13 @@ namespace CAESDO.Recruitment.Core.Domain
 
     public class Unit : DomainObject<int>
     {
-        private User _User;
+        //private User _User;
 
-        public virtual User User
-        {
-            get { return _User; }
-            set { _User = value; }
-        }
+        //public virtual User User
+        //{
+        //    get { return _User; }
+        //    set { _User = value; }
+        //}
 
         private string _FullName;
 

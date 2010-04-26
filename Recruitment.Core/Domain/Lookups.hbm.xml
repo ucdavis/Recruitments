@@ -72,7 +72,7 @@
 
   <class
     name="CAESDO.Recruitment.Core.Domain.Unit, CAESDO.Recruitment.Core"
-    table="vUserUnit" >
+    table="vUnit" >
     <id name="id" access="field" column="UnitID" unsaved-value="0">
       <generator class="identity" />
     </id>
@@ -80,8 +80,6 @@
     <property name="FullName" column="FullName" />
     <property name="PPSCode" column="PPS_Code" />
     <property name="FISCode" column="FIS_Code" />
-    
-    <many-to-one name="User" class="CAESDO.Recruitment.Core.Domain.User, CAESDO.Recruitment.Core" column="UserID" not-null="true" />
 
   </class>
 

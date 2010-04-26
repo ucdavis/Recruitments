@@ -34,7 +34,9 @@
             <td   align="right">
                 Department:</td>
             <td  >
-                <asp:TextBox ID="TextBox2" runat="server"></asp:TextBox></td>
+                <asp:DropDownList ID="dlistDepartment" runat="server" DataSourceID="ObjectDataUnits" DataTextField="FullName" DataValueField="FISCode"></asp:DropDownList><asp:ObjectDataSource ID="ObjectDataUnits" runat="server" SelectMethod="GetAll"
+                    TypeName="CAESDO.Recruitment.Data.NHibernateDaoFactory+UnitDao"></asp:ObjectDataSource>
+            </td>
         </tr>
         <tr>
             <td   align="right">
@@ -47,8 +49,8 @@
                 HR Phone Number:</td>
             <td  >
                 <asp:TextBox ID="txtHRPhone" runat="server" MaxLength="13"></asp:TextBox>
-                <AjaxControlToolkit:MaskedEditExtender ID="maskHRPhone" runat="server" TargetControlID="txtHRPhone" MaskType="Number" Mask="(999) 999-9999" ClearMaskOnLostFocus="false" AutoComplete="false"></AjaxControlToolkit:MaskedEditExtender>
-                
+                <%--<AjaxControlToolkit:MaskedEditExtender ID="maskHRPhone" runat="server" TargetControlID="txtHRPhone" MaskType="Number" Mask="(999) 999-9999" ClearMaskOnLostFocus="false" Filtered="" AutoComplete="false"></AjaxControlToolkit:MaskedEditExtender>
+                --%>
                 <asp:RegularExpressionValidator ID="regValHRPhone" runat="server" ControlToValidate="txtHRPhone" ErrorMessage="*" ValidationExpression="((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}"></asp:RegularExpressionValidator>
             </td>
         </tr>

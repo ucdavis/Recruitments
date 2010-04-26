@@ -107,6 +107,12 @@ namespace CAESDO.Recruitment.Data
         {
             return new ThemeDao();
         }
+
+        public IUnitDao GetUnitDao()
+        {
+            return new UnitDao();
+        }
+
         #endregion
 
         #region Inline DAO implementations
@@ -218,6 +224,7 @@ namespace CAESDO.Recruitment.Data
 
         public class ThemeDao : AbstractNHibernateDao<Theme, int>, IThemeDao { }
 
+        public class UnitDao : AbstractNHibernateDao<Unit, int>, IUnitDao { }
         #endregion
           
     }
