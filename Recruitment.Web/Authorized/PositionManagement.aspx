@@ -76,15 +76,15 @@
             <td   align="right">
                 HR Representative:</td>
             <td  >
-                <asp:TextBox ID="txtHRRep" runat="server" MaxLength="100"></asp:TextBox></td>
+                <asp:TextBox ID="txtHRRep" runat="server" MaxLength="100"></asp:TextBox>
+                <asp:RequiredFieldValidator id="reqValHRRep" ControlToValidate="txtHRRep" ErrorMessage="*" runat="server"/>
+            </td>
         </tr>
         <tr>
             <td   align="right">
                 HR Phone Number:</td>
             <td  >
-                <asp:TextBox ID="txtHRPhone" runat="server" MaxLength="13"></asp:TextBox>
-                <%--<AjaxControlToolkit:MaskedEditExtender ID="maskHRPhone" runat="server" TargetControlID="txtHRPhone" MaskType="Number" Mask="(999) 999-9999" ClearMaskOnLostFocus="false" Filtered="" AutoComplete="false"></AjaxControlToolkit:MaskedEditExtender>
-                --%>
+                <asp:TextBox ID="txtHRPhone" runat="server" MaxLength="13"></asp:TextBox>                
                 <asp:RegularExpressionValidator ID="regValHRPhone" runat="server" ControlToValidate="txtHRPhone" ErrorMessage="*" ValidationExpression="((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}"></asp:RegularExpressionValidator>
             </td>
         </tr>
@@ -95,6 +95,7 @@
             <td>
                 <asp:TextBox ID="txtHREmail" runat="server" MaxLength="100"></asp:TextBox>
                 
+                <asp:RequiredFieldValidator id="reqValHREmail" ControlToValidate="txtHREmail" ErrorMessage="*" runat="server"/>                
                 <asp:RegularExpressionValidator ID="regValHREmail" runat="server" ErrorMessage="*" ControlToValidate="txtHREmail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
             </td>
         </tr>

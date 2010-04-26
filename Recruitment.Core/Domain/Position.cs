@@ -113,7 +113,7 @@ namespace CAESDO.Recruitment.Core.Domain
         }
         private string _HRRep;
 
-        [IgnoreNulls()]
+        [NotNullValidator]
         [StringLengthValidator(0, 100)]
         public virtual string HRRep
         {
@@ -122,7 +122,6 @@ namespace CAESDO.Recruitment.Core.Domain
         }
         private string _HRPhone;
 
-        [IgnoreNulls()]
         [RegexValidator(@"((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}", 
             MessageTemplate="Phone number must be properly formatted")]
         public virtual string HRPhone
@@ -132,7 +131,7 @@ namespace CAESDO.Recruitment.Core.Domain
         }
         private string _HREmail;
 
-        [IgnoreNulls()]
+        [NotNullValidator]
         [StringLengthValidator(7, RangeBoundaryType.Inclusive,
             150, RangeBoundaryType.Inclusive,
             MessageTemplate="Email address must be from 7 to 150 characters")]

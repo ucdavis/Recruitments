@@ -32,6 +32,8 @@
             </asp:TemplateField>
             
             <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" />
+            <asp:BoundField DataField="Submitted" HeaderText="Submitted" SortExpression="Submitted" />
+            
         </Columns>
         <HeaderStyle HorizontalAlign="Left" />
     
