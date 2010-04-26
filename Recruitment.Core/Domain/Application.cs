@@ -92,17 +92,29 @@ namespace CAESDO.Recruitment.Core.Domain
 
         public virtual bool isComplete()
         {
-            throw new System.NotImplementedException();
-        }
+            bool Complete = false;
 
-        public virtual void Save()
-        {
-            throw new System.NotImplementedException();
-        }
+            foreach (Reference r in References)
+            {
+                Complete = Complete & r.isComplete();
+            }
 
-        public virtual void Fill(int ApplicationID, bool GetFiles, bool GetSteps)
-        {
-            throw new System.NotImplementedException();
+            foreach (Education edu in Education)
+            {
+                Complete = Complete & edu.isComplete();
+            }
+
+            foreach (Survey s in Surveys)
+            {
+                Complete = Complete & s.isComplete();
+            }
+
+            foreach (CurrentPosition p in CurrentPositions)
+            {
+                Complete = Complete & p.isComplete();
+            }
+
+            return Complete;
         }
 
     }
