@@ -900,8 +900,10 @@
                             <asp:Button ID="btnPublicationsUpload" runat="server" Text="Upload" OnClick="btnPublicationsUpload_Click" meta:resourcekey="btnPublicationsUploadResource1" /></td>
                     </tr>
                     <tr>
+                        <td colspan="2"><asp:Label ID="litPublicationsFileTypeWarning" runat="server" EnableViewState="false" ForeColor="Red"></asp:Label></td>
+                    </tr>
+                    <tr>
                         <td colspan="2">
-                        <br />
                             <asp:Repeater ID="rptPublications" runat="server">
                                 <HeaderTemplate>
                                     Existing Publication Files <asp:Label ID="lblPublicationsRemaining" runat="server" Text='<%# NumPublicationsRemainingText() %>' ForeColor="Brown" EnableViewState="False" meta:resourcekey="lblPublicationsRemainingResource1"></asp:Label>: <br />

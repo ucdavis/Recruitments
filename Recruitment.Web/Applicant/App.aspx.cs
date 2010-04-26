@@ -537,7 +537,7 @@ namespace CAESDO.Recruitment.Web
             }
             else
             {
-                ///TODO: Error message
+                litPublicationsFileTypeWarning.Text = string.Format("Error occurred saving the publication.  Please ensure that the file is of the proper type and size and try uploading again.");
             }
 
             DataBindPublications();
@@ -888,7 +888,7 @@ namespace CAESDO.Recruitment.Web
             else
             {
                 lblApplicationStepStatus.ForeColor = System.Drawing.Color.Red;
-                lblApplicationStepStatus.Text = string.Format("Error occurred saving {0}.  Please return to the {0} tab and try again. If the problem persists, please contact applicaion support", fromStepName);
+                lblApplicationStepStatus.Text = string.Format("Error occurred saving {0}.  Please return to the {0} tab and try again. If the problem persists, please contact support", fromStepName);
             }
 
             //Reload the steps list
