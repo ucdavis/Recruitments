@@ -20,17 +20,11 @@ namespace CAESDO.Recruitment.Web
         private const string STR_CommitteeManagement = "CommitteeManagement.aspx?type=";
         private const string STR_Committee = "committee";
         private const string STR_Faculty = "faculty";
-        private const string STR_CBOXALLOW = "chkAllowMember";
         private const string STR_FRAC = "FRAC";
         private const string STR_MembersSortDirection = "MembersSortDirection";
-
-        public string committeeType
-        {
-            get
-            {
-                return Request.QueryString["type"];
-            }
-        }
+        private const string STR_ChkAllowCommittee = "chkAllowMember";        
+        private const string STR_ChkAllowFaculty = "chkAllowFaculty";
+        private const string STR_ChkAllowReview = "chkAllowReview";
 
         public Position currentPosition
         {
@@ -40,17 +34,6 @@ namespace CAESDO.Recruitment.Web
                     return null;
                 else
                     return daoFactory.GetPositionDao().GetById(int.Parse(dlistPositions.SelectedValue), false);
-            }
-        }
-
-        public MemberType currentMemberType
-        {
-            get
-            {
-                if (dlistType.SelectedValue == STR_Committee)
-                    return daoFactory.GetMemberTypeDao().GetById((int)MemberTypes.CommitteeMember, false);
-                else
-                    return daoFactory.GetMemberTypeDao().GetById((int)MemberTypes.FacultyMember, false);
             }
         }
 
@@ -74,21 +57,12 @@ namespace CAESDO.Recruitment.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                if (string.IsNullOrEmpty(committeeType))
-                    Response.Redirect(STR_ADMININDEX);
 
-                //Now that we have a proper query string, set the selected item
-                ListItem item = dlistType.Items.FindByValue(committeeType.ToLower());
-
-                if (item != null)
-                    item.Selected = true;
-                else
-                    Response.Redirect(STR_ADMININDEX);
-            }
         }
 
+        /// <summary>
+        /// When the user chooses a position, pull all of the departmental members for that position with their roles
+        /// </summary>
         protected void dlistPositions_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (dlistPositions.SelectedValue != "0") //Make sure they chose a real position
@@ -107,11 +81,6 @@ namespace CAESDO.Recruitment.Web
                 pnlAccess.Visible = false;
         }
         
-        protected void dlistType_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            Response.Redirect(STR_CommitteeManagement + dlistType.SelectedValue);
-        }
-
         /// <summary>
         /// Overload to call bindMembers with the default sorting
         /// </summary>
@@ -122,7 +91,8 @@ namespace CAESDO.Recruitment.Web
 
         private void bindMembers(string sortExpression, SortDirection sortDirection)
         {
-            List<DepartmentMember> members = new List<DepartmentMember>();
+            List<DepartmentMember> nonUniqueMembers = new List<DepartmentMember>();
+            List<DepartmentMember> uniqueMembers = new List<DepartmentMember>();
 
             List<string> departmentFISList = new List<string>();
 
@@ -133,41 +103,41 @@ namespace CAESDO.Recruitment.Web
             }
 
             //Get all DepartmentMembers for the current position (aka: in the list of positions departments) of the proper type
-            if (committeeType == STR_Committee)
+            nonUniqueMembers = daoFactory.GetDepartmentMemberDao().GetMembersByDepartment(departmentFISList.ToArray());
+            
+            //Add external members
+            foreach (CommitteeMember m in currentPosition.CommitteeMembers)
             {
-                members = daoFactory.GetDepartmentMemberDao().GetMembersByDepartmentAndType(departmentFISList.ToArray(), MemberTypes.AllCommittee);
-            }
-            else if (committeeType == STR_Faculty)
-            {
-                members = daoFactory.GetDepartmentMemberDao().GetMembersByDepartmentAndType(departmentFISList.ToArray(), MemberTypes.FacultyMember);
-            }
-
-            foreach (DepartmentMember m in currentPosition.PositionCommittee)
-            {
-                if (m.MemberType == currentMemberType) //Make sure the member is of the correct type
+                //Make sure the member is in the FRAC department
+                if (m.DepartmentMember.DepartmentFIS == STR_FRAC)
                 {
-                    //Make sure the member is in the FRAC department
-                    if (m.DepartmentFIS == STR_FRAC)
-                    {
-                        members.Add(m);
-                    }
+                    nonUniqueMembers.Add(m.DepartmentMember);
                 }
             }
 
-            members.Sort(new DepartmentMemberComparer(sortExpression, sortDirection));
-            //members.Sort(new GenericComparer<DepartmentMember>(sortExpression, sortDirection));
-            
-            gviewMembers.DataSource = members;
+            //Now go through and make sure the member as unique
+            foreach (DepartmentMember member in nonUniqueMembers)
+            {
+                if (!uniqueMembers.Contains(member))
+                    uniqueMembers.Add(member);
+            }
+
+            uniqueMembers.Sort(new DepartmentMemberComparer(sortExpression, sortDirection));
+
+            gviewMembers.DataSource = uniqueMembers;
             gviewMembers.DataBind();
         }
 
         /// <summary>
-        /// Gets the row's department member, and checks the allow box if the member is in the current position
+        /// Gets the row's department member, and checks all of the appropriate boxes regarding the roles that the member
+        /// has in the current position
         /// </summary>
         protected void gviewMembers_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             GridView gview = (GridView)sender;
-            CheckBox cbox = e.Row.FindControl(STR_CBOXALLOW) as CheckBox;
+            CheckBox cboxCommittee = e.Row.FindControl(STR_ChkAllowCommittee) as CheckBox;
+            CheckBox cboxFaculty = e.Row.FindControl(STR_ChkAllowFaculty) as CheckBox;
+            CheckBox cboxReview = e.Row.FindControl(STR_ChkAllowReview) as CheckBox;
 
             int DepartmentMemberID;
             DepartmentMember member;
@@ -177,10 +147,25 @@ namespace CAESDO.Recruitment.Web
                 DepartmentMemberID = (int)gview.DataKeys[e.Row.RowIndex]["id"];
                 member = daoFactory.GetDepartmentMemberDao().GetById(DepartmentMemberID, false);
 
-                if (currentPosition.PositionCommittee.Contains(member))
-                    cbox.Checked = true;
-                else
-                    cbox.Checked = false;                
+                //Now we have the departmental member, check the committee records for this position
+                List<CommitteeMember> committeAccessList = daoFactory.GetCommitteeMemberDao().GetMemberAssociationsByPosition(currentPosition, member);
+
+                //Now we have a list of all access types for this department member, so go through and check the correct boxes
+
+                foreach (CommitteeMember cAccess in committeAccessList)
+                {
+                    switch (cAccess.MemberType.ID)
+                    {
+                        case (int)MemberTypes.CommitteeMember:
+                            cboxCommittee.Checked = true;
+                            break;
+                        case (int)MemberTypes.FacultyMember:
+                            cboxFaculty.Checked = true;
+                            break;
+                        default:
+                            break;
+                    }
+                }
             }
         }
 
@@ -190,27 +175,64 @@ namespace CAESDO.Recruitment.Web
             {
                 if (row.RowType == DataControlRowType.DataRow)
                 {
-                    CheckBox cboxAllow = (CheckBox)row.FindControl(STR_CBOXALLOW);
+                    CheckBox cboxCommittee = row.FindControl(STR_ChkAllowCommittee) as CheckBox;
+                    CheckBox cboxFaculty = row.FindControl(STR_ChkAllowFaculty) as CheckBox;
+                    CheckBox cboxReview = row.FindControl(STR_ChkAllowReview) as CheckBox;
+
+                    //Get the departmental member associated with this row
                     DepartmentMember member = daoFactory.GetDepartmentMemberDao().GetById((int)gviewMembers.DataKeys[row.RowIndex]["id"], false);
 
+                    //Now get all committee roles for this member
+                    List<CommitteeMember> memberAccess = daoFactory.GetCommitteeMemberDao().GetMemberAssociationsByPosition(currentPosition, member);
+                    
                     using (new NHibernateTransaction())
                     {
-                        if (currentPosition.PositionCommittee.Contains(member))
+                        CommitteeMember currentMember = new CommitteeMember();
+                        currentMember.DepartmentMember = member;
+                        currentMember.AssociatedPosition = currentPosition;
+
+                        CommitteeMember currentMemberAccess = new CommitteeMember();
+
+                        //First check for Committee Member access
+                        currentMemberAccess = this.MemberInCommitteeListOfType(memberAccess, MemberTypes.CommitteeMember);
+
+                        if (currentMemberAccess == null)
                         {
-                            //If the member is already in the committee, then delete only if the box is unchecked
-                            if (cboxAllow.Checked == false)
+                            //member is not in the committee list.  If the box is checked, add them to the committee list
+                            if (cboxCommittee.Checked)
                             {
-                                currentPosition.PositionCommittee.Remove(member);
+                                currentMember.MemberType = daoFactory.GetMemberTypeDao().GetById((int)MemberTypes.CommitteeMember, false);
+                                currentPosition.CommitteeMembers.Add(currentMember);
                             }
                         }
                         else
                         {
-                            //The member is not already in the committee, so add only if the box is checked
-                            if (cboxAllow.Checked == true)
+                            //member is in the committee list.  Remove if the box is unchecked
+                            if (!cboxCommittee.Checked)
+                                currentPosition.CommitteeMembers.Remove(currentMemberAccess);
+                        }
+
+                        //Now check for Faculty Member access
+                        currentMemberAccess = this.MemberInCommitteeListOfType(memberAccess, MemberTypes.FacultyMember);
+
+                        if (currentMemberAccess == null)
+                        {
+                            //member is not in the faculty list.  If the box is checked, add them
+                            if (cboxFaculty.Checked)
                             {
-                                currentPosition.PositionCommittee.Add(member);
+                                currentMember.MemberType = daoFactory.GetMemberTypeDao().GetById((int)MemberTypes.FacultyMember, false);
+                                currentPosition.CommitteeMembers.Add(currentMember);
                             }
                         }
+                        else
+                        {
+                            //member is in the committee list.  Remove if the box is unchecked
+                            if (!cboxFaculty.Checked)
+                                currentPosition.CommitteeMembers.Remove(currentMemberAccess);
+                        }
+
+                        //Finally check for review member access
+
 
                         daoFactory.GetPositionDao().SaveOrUpdate(currentPosition);
                     }
@@ -218,6 +240,21 @@ namespace CAESDO.Recruitment.Web
             }
 
             this.bindMembers();
+        }
+
+        /// <summary>
+        /// Searches the committee list and returns the member record that matches the given type
+        /// </summary>
+        /// <returns>Member if found, else null</returns>
+        private CommitteeMember MemberInCommitteeListOfType(List<CommitteeMember> memberList, MemberTypes type)
+        {
+            foreach (CommitteeMember member in memberList)
+            {
+                if (member.MemberType.ID == (int)type) //If the member type matches, return
+                    return member;
+            }
+
+            return null;
         }
 
         protected void btnAddMember_Click(object sender, EventArgs e)
@@ -231,13 +268,22 @@ namespace CAESDO.Recruitment.Web
             member.OtherDepartmentName = txtDepartment.Text;
             member.LoginID = txtLoginID.Text;
 
-            if (dlistType.SelectedValue == STR_Committee)
+            //Create the membership object
+            CommitteeMember committeeAccess = new CommitteeMember();
+            committeeAccess.AssociatedPosition = currentPosition;
+            committeeAccess.DepartmentMember = member;
+
+            switch (dlistMemberType.SelectedValue)
             {
-                member.MemberType = daoFactory.GetMemberTypeDao().GetById((int)MemberTypes.CommitteeMember, false);
-            }
-            else
-            {
-                member.MemberType = daoFactory.GetMemberTypeDao().GetById((int)MemberTypes.FacultyMember, false);
+                case "Committee":
+                    committeeAccess.MemberType = daoFactory.GetMemberTypeDao().GetById((int)MemberTypes.CommitteeMember, false);
+                    break;
+                case "Faculty":
+                    committeeAccess.MemberType = daoFactory.GetMemberTypeDao().GetById((int)MemberTypes.FacultyMember, false);
+                    break;
+                case "Review":
+                    committeeAccess.MemberType = daoFactory.GetMemberTypeDao().GetById((int)MemberTypes.Reviewer, false);
+                    break;
             }
 
             //save the department member and add to the position committee for this position
@@ -246,8 +292,10 @@ namespace CAESDO.Recruitment.Web
                 using (new NHibernateTransaction())
                 {
                     member = daoFactory.GetDepartmentMemberDao().SaveOrUpdate(member); //Save them member
-                    
-                    currentPosition.PositionCommittee.Add(member);
+
+                    committeeAccess.DepartmentMember = member;
+
+                    currentPosition.CommitteeMembers.Add(committeeAccess);
                     daoFactory.GetPositionDao().SaveOrUpdate(currentPosition);
                 }
             }

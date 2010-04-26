@@ -7,9 +7,9 @@ namespace CAESDO.Recruitment.Core.Domain
 {
     public class DepartmentMember : DomainObject<int>
     {
+        //TEMP: TODO: Clean
         private MemberType _MemberType;
 
-        [NotNullValidator]
         public virtual MemberType MemberType
         {
             get { return _MemberType; }
@@ -80,7 +80,7 @@ namespace CAESDO.Recruitment.Core.Domain
         }
 
         /// <summary>
-        /// Two department members are equal if their loginIDs, Departments and membertypes match
+        /// Two department members are equal if their loginIDs and Departments match
         /// </summary>
         public override bool Equals(object obj)
         {
@@ -88,9 +88,9 @@ namespace CAESDO.Recruitment.Core.Domain
             
             bool LoginMatch = this.LoginID == member.LoginID;
             bool DepartmentMatch = this.DepartmentFIS == member.DepartmentFIS;
-            bool MemberTypeMatch = this.MemberType.Type == member.MemberType.Type;
+            //bool MemberTypeMatch = this.MemberType.Type == member.MemberType.Type;
 
-            return LoginMatch && DepartmentMatch && MemberTypeMatch;
+            return LoginMatch && DepartmentMatch;
         }
 
         public override int GetHashCode()

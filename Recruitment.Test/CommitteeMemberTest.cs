@@ -108,7 +108,7 @@ namespace CAESDO.Recruitment.Test
 
             MemberType mtype = NHibernateHelper.daoFactory.GetMemberTypeDao().GetById((int)MemberTypes.CommitteeMember, false);
 
-            member.Email = StaticProperties.TestString;
+            //member.Email = StaticProperties.TestString;
             //member.UserID = StaticProperties.ExistingUserID;
             member.AssociatedPosition = NHibernateHelper.daoFactory.GetPositionDao().GetById(StaticProperties.ExistingPositionID, false);
             member.MemberType = mtype;

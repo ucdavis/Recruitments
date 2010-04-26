@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="CommitteeManagement.aspx.cs" Inherits="CAESDO.Recruitment.Web.Authorized_CommitteeManagement" Title="Committee Management" Theme="MainTheme" Trace="false" %>
+<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="CommitteeManagement.aspx.cs" Inherits="CAESDO.Recruitment.Web.Authorized_CommitteeManagement" Title="Committee Management" Theme="MainTheme" Trace="true" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <Ajax:ScriptManagerProxy ID="scriptProxy" runat="server">
         <Services>
@@ -52,11 +52,6 @@
     
     </script>
 
-    Member Type: <asp:DropDownList ID="dlistType" runat="server" AutoPostBack="True" OnSelectedIndexChanged="dlistType_SelectedIndexChanged">
-        <asp:ListItem Value="committee">Committee</asp:ListItem>
-        <asp:ListItem Value="faculty">Faculty</asp:ListItem>
-    </asp:DropDownList>
-    <br /><br />
     <asp:DropDownList ID="dlistPositions" runat="server" AutoPostBack="True" DataSourceID="ObjectDataPositions" DataTextField="TitleAndApplicationCount" DataValueField="ID" AppendDataBoundItems="true" OnSelectedIndexChanged="dlistPositions_SelectedIndexChanged">
         <asp:ListItem Selected="True" Value="0">Select a Position</asp:ListItem>
     </asp:DropDownList>
@@ -74,9 +69,23 @@
 
     <asp:GridView ID="gviewMembers" runat="server" AutoGenerateColumns="False" SkinID="gridViewUM" AllowSorting="true" DataKeyNames="id" OnRowDataBound="gviewMembers_RowDataBound" CellPadding="0" GridLines="None" OnSorting="gviewMembers_Sorting">
         <Columns>
-            <asp:TemplateField HeaderText="Allow">
+            <asp:TemplateField HeaderText="Committee">
                 <ItemTemplate>
                     <asp:CheckBox ID="chkAllowMember" runat="server" />
+                </ItemTemplate>
+                <ItemStyle CssClass="paddingLeft" />
+                <HeaderStyle CssClass="paddingLeft" />
+            </asp:TemplateField>
+            <asp:TemplateField HeaderText="Faculty">
+                <ItemTemplate>
+                    <asp:CheckBox ID="chkAllowFaculty" runat="server" />
+                </ItemTemplate>
+                <ItemStyle CssClass="paddingLeft" />
+                <HeaderStyle CssClass="paddingLeft" />
+            </asp:TemplateField>            
+            <asp:TemplateField HeaderText="Review">
+                <ItemTemplate>
+                    <asp:CheckBox ID="chkAllowReview" runat="server" />
                 </ItemTemplate>
                 <ItemStyle CssClass="paddingLeft" />
                 <HeaderStyle CssClass="paddingLeft" />
@@ -124,6 +133,11 @@
             First Name: <asp:TextBox ID="txtFName" runat="server" MaxLength="50"></asp:TextBox><br /><br />
             Last Name: <asp:TextBox ID="txtLName" runat="server" MaxLength="50"></asp:TextBox><br /><br />
             Department: <asp:TextBox ID="txtDepartment" runat="server" MaxLength="50"></asp:TextBox><br /><br />
+            Member Type: <asp:DropDownList ID="dlistMemberType" runat="server">
+                            <asp:ListItem Text="Committee" Selected="true"></asp:ListItem>
+                            <asp:ListItem Text="Faculty"></asp:ListItem>
+                            <asp:ListItem Text="Review"></asp:ListItem>
+                        </asp:DropDownList><br /><br />
             
             <asp:Button ID="btnAddMember" runat="server" Text="Add Member" OnClick="btnAddMember_Click" ValidationGroup="ExternalMember" />   
         </asp:Panel>

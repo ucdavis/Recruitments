@@ -353,6 +353,15 @@ namespace CAESDO.Recruitment.Data
 
                 return query.List<CommitteeMember>() as List<CommitteeMember>;
             }
+
+            public List<CommitteeMember> GetMemberAssociationsByPosition(Position associatedPosition, DepartmentMember member)
+            {
+                ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(CommitteeMember))
+                    .Add(Expression.Eq("AssociatedPosition", associatedPosition))
+                    .Add(Expression.Eq("DepartmentMember", member));
+
+                return criteria.List<CommitteeMember>() as List<CommitteeMember>;
+            }
         }
 
         public class UserDao : AbstractNHibernateDao<User, int>, IUserDao {
@@ -462,6 +471,23 @@ namespace CAESDO.Recruitment.Data
                 depts.Add(DepartmentFIS);
 
                 return GetMembersByDepartmentAndType(depts.ToArray(), type);
+            }
+
+            [DataObjectMethod(DataObjectMethodType.Select, true)]
+            public List<DepartmentMember> GetMembersByDepartment(string DepartmentFIS)
+            {
+                List<string> depts = new List<string>();
+                depts.Add(DepartmentFIS);
+
+                return GetMembersByDepartment(depts.ToArray());
+            }
+
+            public List<DepartmentMember> GetMembersByDepartment(string[] DepartmentFIS)
+            {
+                ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(DepartmentMember))
+                    .Add(Expression.In("DepartmentFIS", DepartmentFIS));
+                
+                return criteria.List<DepartmentMember>() as List<DepartmentMember>;
             }
 
             public bool IsUserMember(MemberTypes type)

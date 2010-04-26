@@ -78,6 +78,7 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
     
     public interface ICommitteeMemberDao : IDao<CommitteeMember, int> {
         List<CommitteeMember> GetAllByMemberType(Position associatedPosition, MemberTypes type);
+        List<CommitteeMember> GetMemberAssociationsByPosition(Position associatedPosition, DepartmentMember member);
     }
      
     public interface IUserDao : IDao<User, int> {
@@ -113,6 +114,8 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
     public interface IDepartmentMemberDao : IDao<DepartmentMember, int> {
         List<DepartmentMember> GetMembersByDepartmentAndType(string[] DepartmentFIS, MemberTypes type);
         List<DepartmentMember> GetMembersByDepartmentAndType(string DepartmentFIS, MemberTypes type);
+        List<DepartmentMember> GetMembersByDepartment(string[] DepartmentFIS);
+        List<DepartmentMember> GetMembersByDepartment(string DepartmentFIS);
         bool IsUserMember(MemberTypes type);
     }
     

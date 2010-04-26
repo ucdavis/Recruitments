@@ -44,14 +44,6 @@ namespace CAESDO.Recruitment.Web
             dlistDepartment.DataBind();
         }
 
-        protected void ObjectDepartmentMembers_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
-        {
-            if (dlistType.SelectedValue == STR_Committee)
-                e.InputParameters["type"] = MemberTypes.AllCommittee;
-            else
-                e.InputParameters["type"] = MemberTypes.FacultyMember;
-        }
-
         protected void dlistDepartment_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (dlistDepartment.SelectedValue == "0")
@@ -67,12 +59,7 @@ namespace CAESDO.Recruitment.Web
             member.LoginID = txtLoginID.Text;
             member.FirstName = txtFName.Text;
             member.LastName = txtLName.Text;
-
-            if (dlistType.SelectedValue == STR_Committee)
-                member.MemberType = daoFactory.GetMemberTypeDao().GetById((int)MemberTypes.CommitteeMember, false);
-            else
-                member.MemberType = daoFactory.GetMemberTypeDao().GetById((int)MemberTypes.FacultyMember, false);
-
+                        
             member.DepartmentFIS = dlistDepartment.SelectedValue;
 
             if (ValidateBO<DepartmentMember>.isValid(member))

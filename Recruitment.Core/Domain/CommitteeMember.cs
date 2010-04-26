@@ -7,25 +7,6 @@ namespace CAESDO.Recruitment.Core.Domain
 {
     public class CommitteeMember : DomainObject<int>
     {
-        private string _LoginID;
-
-        [NotNullValidator()]
-        [StringLengthValidator(50)]
-        public virtual string LoginID
-        {
-            get { return _LoginID; }
-            set { _LoginID = value; }
-        }
-
-        private string _Email;
-
-        [StringLengthValidator(100)]
-        public virtual string Email
-        {
-            get { return _Email; }
-            set { _Email = value; }
-        }
-
         private MemberType _MemberType;
 
         [NotNullValidator]
@@ -35,6 +16,15 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _MemberType = value; }
         }
 
+        private DepartmentMember _DepartmentMember;
+
+        [NotNullValidator]
+        public virtual DepartmentMember DepartmentMember
+        {
+            get { return _DepartmentMember; }
+            set { _DepartmentMember = value; }
+        }
+        
         private Position _AssociatedPosition;
 
         [NotNullValidator]
@@ -51,7 +41,13 @@ namespace CAESDO.Recruitment.Core.Domain
 
         public override bool Equals(object obj)
         {
-            return this.LoginID == ((CommitteeMember)obj).LoginID;
+            CommitteeMember member = (CommitteeMember)obj;
+
+            bool MemberMatch = this.DepartmentMember == member.DepartmentMember;
+            bool PositionMatch = this.AssociatedPosition == member.AssociatedPosition;
+            bool MemberTypeMatch = this.MemberType.Type == member.MemberType.Type;
+
+            return MemberMatch && PositionMatch && MemberTypeMatch;
         }
 
         public override int GetHashCode()

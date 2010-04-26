@@ -288,7 +288,8 @@ namespace CAESDO.Recruitment.Core.Domain
         AllCommittee                = 0,
         CommitteeMember             = 1,
         CommitteeChair              = 2,
-        FacultyMember               = 3
+        FacultyMember               = 3,
+        Reviewer                    = 4
     }
 
     public class SurveyXRecruitmentSrc : DomainObject<int>

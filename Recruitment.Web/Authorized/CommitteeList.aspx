@@ -51,15 +51,7 @@
     }
     
     </script>
-
-
-    List Type: <asp:DropDownList ID="dlistType" runat="server" AutoPostBack="True" OnSelectedIndexChanged="dlistType_SelectedIndexChanged">
-        <asp:ListItem Selected="True">Committee</asp:ListItem>
-        <asp:ListItem>Faculty</asp:ListItem>
-    </asp:DropDownList>
-    
-    <br /><br />
-    
+   
     Department: <asp:DropDownList ID="dlistDepartment" runat="server" AppendDataBoundItems="true" AutoPostBack="true" DataTextField="ShortName" DataValueField="FISCode" OnSelectedIndexChanged="dlistDepartment_SelectedIndexChanged">
         <asp:ListItem Value="0">Select A Department</asp:ListItem>
     </asp:DropDownList><br /><br />
@@ -77,15 +69,12 @@
         <HeaderStyle HorizontalAlign="Left" />
     </asp:GridView>
     
-    <asp:ObjectDataSource ID="ObjectDepartmentMembers" runat="server" OnSelecting="ObjectDepartmentMembers_Selecting"
-        SelectMethod="GetMembersByDepartmentAndType" TypeName="CAESDO.Recruitment.Data.NHibernateDaoFactory+DepartmentMemberDao">
+    <asp:ObjectDataSource ID="ObjectDepartmentMembers" runat="server" SelectMethod="GetMembersByDepartment" TypeName="CAESDO.Recruitment.Data.NHibernateDaoFactory+DepartmentMemberDao" OldValuesParameterFormatString="original_{0}">
         <SelectParameters>
             <asp:ControlParameter ControlID="dlistDepartment" Name="DepartmentFIS" PropertyName="SelectedValue"
                 Type="String" />
-            <asp:Parameter Name="type" Type="Object" />
         </SelectParameters>
-    </asp:ObjectDataSource>
-    
+    </asp:ObjectDataSource>    
     
     <br /><br />
     
