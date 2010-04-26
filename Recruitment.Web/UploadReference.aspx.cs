@@ -86,7 +86,9 @@ namespace CAESDO.Recruitment.Web
                             string subject = "Reference Upload Confirmation";
                             
                             StringBuilder bodyText = new StringBuilder();
-                            bodyText.AppendFormat("Your reference letter for {0} has been successfully received.", currentReference.AssociatedApplication.AssociatedProfile.FullName);
+
+                            bodyText.AppendFormat("Your reference letter for {0}, who applied to the {1} position at the University of California, has been successfully received.", currentReference.AssociatedApplication.AssociatedProfile.FullName, currentReference.AssociatedApplication.AppliedPosition.PositionTitle);
+                            bodyText.AppendFormat("  We appreciate your comments concerning Dr. {0}.", currentReference.AssociatedApplication.AssociatedProfile.LastName);
                             
                             MailMessage message = new MailMessage(currentReference.AssociatedApplication.AppliedPosition.HREmail, currentReference.Email, subject, bodyText.ToString());
                             message.IsBodyHtml = true;
