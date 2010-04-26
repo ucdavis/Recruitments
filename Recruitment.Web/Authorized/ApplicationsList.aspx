@@ -21,31 +21,35 @@
                     <asp:CheckBox ID="chkShortList" runat="server" Checked='<%# Eval("InterviewList") %>' />
                 </ItemTemplate>
                 <ItemStyle CssClass="paddingLeft2" HorizontalAlign="Left" />
-                <HeaderStyle HorizontalAlign="Left" CssClass="paddingLeft" Width="15%" />
+                <HeaderStyle HorizontalAlign="Left" CssClass="paddingLeft" Width="10%" />
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Get References">
                 <ItemTemplate>
                     <asp:CheckBox ID="chkReferences" runat="server" Checked='<%# Eval("GetReferences") %>' />
                 </ItemTemplate>
+                <ItemStyle CssClass="paddingLeft2" />
+                <HeaderStyle Width="13%" />
             </asp:TemplateField>
             <asp:TemplateField HeaderText="No Consideration">
                 <ItemTemplate>
                     <asp:CheckBox ID="chkNoConsideration" runat="server" Checked='<%# Eval("NoConsideration") %>' />
                 </ItemTemplate>
+                <ItemStyle CssClass="paddingLeft2" />
+                <HeaderStyle Width="15%" />
             </asp:TemplateField>
             <asp:TemplateField HeaderText="Applicant Name">
                 <ItemTemplate>
                     <asp:LinkButton ID="lbtnViewApplication" runat="server" CommandArgument='<%# Eval("id") %>' Text='<%# GetNullSafeFullName((string)Eval("AssociatedProfile.FullName")) %>' OnClick="lbtnViewApplication_Click"></asp:LinkButton>
                 </ItemTemplate>
                 <ItemStyle CssClass="paddingLeft" />
-                <HeaderStyle HorizontalAlign="Left" CssClass="paddingLeft" Width="30%" />
+                <HeaderStyle HorizontalAlign="Left" CssClass="paddingLeft" Width="27%" />
             </asp:TemplateField>
             <asp:BoundField DataField="Email" HeaderText="Email" SortExpression="Email" >
-                <HeaderStyle Width="40%" />
+                <HeaderStyle Width="25%" />
             </asp:BoundField>
             <asp:CheckBoxField DataField="Submitted" HeaderText="Submitted" SortExpression="Submitted">
                 <ItemStyle HorizontalAlign="Center" />
-                <HeaderStyle Width="15%" HorizontalAlign="Center" />
+                <HeaderStyle Width="10%" HorizontalAlign="Center" />
             </asp:CheckBoxField>
         </Columns>    
         <HeaderStyle HorizontalAlign="Left" />
@@ -58,8 +62,9 @@
         </SelectParameters>
     </asp:ObjectDataSource>
     
-    <br /><br />
-    <asp:Label ID="lblResult" runat="server" EnableViewState="false"></asp:Label><br /><br />
+    <br />
+    <asp:Label ID="lblResult" runat="server" EnableViewState="false"></asp:Label><br />
+    <br />
     
     <asp:Button ID="btnUpdateList" runat="server" Text="Update Applications List" Visible="false" OnClick="btnUpdateList_Click" />
     <asp:Button ID="btnEmailReferences" runat="server" Text="Email References" Visible="false" OnClick="btnEmailReferences_Click" />

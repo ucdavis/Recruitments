@@ -21,17 +21,20 @@
     <br />
     <br /><br />
 
-    <asp:GridView ID="gviewMembers" runat="server" AllowPaging="false" AutoGenerateColumns="false" SkinID="gridViewUM" DataKeyNames="id" OnRowDataBound="gviewMembers_RowDataBound">
+    <asp:GridView ID="gviewMembers" runat="server" AutoGenerateColumns="False" SkinID="gridViewUM" DataKeyNames="id" OnRowDataBound="gviewMembers_RowDataBound" CellPadding="0" GridLines="None">
         <Columns>
             <asp:TemplateField HeaderText="Allow">
                 <ItemTemplate>
                     <asp:CheckBox ID="chkAllowMember" runat="server" />
                 </ItemTemplate>
+                <ItemStyle CssClass="paddingLeft" />
+                <HeaderStyle CssClass="paddingLeft" />
             </asp:TemplateField>
             <asp:BoundField DataField="LoginID" HeaderText="LoginID" SortExpression="LoginID" />            
             <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
             <asp:BoundField DataField="LastName" HeaderText="LastName" SortExpression="LastName" />
         </Columns>
+        <HeaderStyle HorizontalAlign="Left" />
     </asp:GridView>
 
     <br /><br />

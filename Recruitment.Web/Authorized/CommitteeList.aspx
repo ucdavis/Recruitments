@@ -13,13 +13,17 @@
         <asp:ListItem Value="0">Select A Department</asp:ListItem>
     </asp:DropDownList><br /><br />
     
-    <asp:GridView ID="gviewCommitteeList" SkinID="gridViewShortList" runat="server" DataKeyNames="id" EmptyDataText="No Members Found" AutoGenerateColumns="False" DataSourceID="ObjectDepartmentMembers" OnRowDeleting="gviewCommitteeList_RowDeleting">
+    <asp:GridView ID="gviewCommitteeList" SkinID="gridViewShortList" runat="server" DataKeyNames="id" EmptyDataText="No Members Found" AutoGenerateColumns="False" DataSourceID="ObjectDepartmentMembers" OnRowDeleting="gviewCommitteeList_RowDeleting" CellPadding="0" GridLines="None">
         <Columns>
-            <asp:BoundField DataField="LoginID" HeaderText="LoginID" SortExpression="LoginID" />            
+            <asp:BoundField DataField="LoginID" HeaderText="LoginID" SortExpression="LoginID" >
+                <ItemStyle CssClass="paddingLeft" />
+                <HeaderStyle CssClass="paddingLeft" />
+            </asp:BoundField>            
             <asp:BoundField DataField="FirstName" HeaderText="FirstName" SortExpression="FirstName" />
             <asp:BoundField DataField="LastName" HeaderText="LastName" SortExpression="LastName" />
             <asp:CommandField DeleteText="Remove" ShowDeleteButton="True" />
         </Columns>    
+        <HeaderStyle HorizontalAlign="Left" />
     </asp:GridView>
     
     <asp:ObjectDataSource ID="ObjectDepartmentMembers" runat="server" OnSelecting="ObjectDepartmentMembers_Selecting"
@@ -33,15 +37,19 @@
     
     
     <br /><br />
+    
+    <span class="boxTitle">Add Member</span>
+    <div style="width: 500px;" class="box">
+    <br />
     <asp:Panel ID="pnlAddMember" runat="server" Visible="false">
-        Add Member: <br />
+
         Login (Kerberos): <asp:TextBox ID="txtLoginID" runat="server"></asp:TextBox>
-                            <asp:RequiredFieldValidator id="reqValLoginID" ControlToValidate="txtLoginID" ErrorMessage="*" runat="server"/><br />
-        First Name: <asp:TextBox ID="txtFName" runat="server"></asp:TextBox><br />
+                            <asp:RequiredFieldValidator id="reqValLoginID" ControlToValidate="txtLoginID" ErrorMessage="*" runat="server"/><br /><br />
+        First Name: <asp:TextBox ID="txtFName" runat="server"></asp:TextBox><br /><br />
         Last Name: <asp:TextBox ID="txtLName" runat="server"></asp:TextBox><br />
         <br />
         <asp:Button ID="btnAddMember" runat="server" Text="Add Member" OnClick="btnAddMember_Click" />   
     </asp:Panel>
-    
+    </div>    
 </asp:Content>
 
