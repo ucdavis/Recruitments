@@ -16,8 +16,30 @@
     <AjaxControlToolkit:ToolkitScriptManager ID="toolkitScript" runat="server">
         <Scripts>
             <Ajax:ScriptReference Path="~/JS/jquery-1.2.6-vsdoc.js" />
+            <Ajax:ScriptReference Path="~/JS/jquery.tablesorter.min.js" />
         </Scripts>
     </AjaxControlToolkit:ToolkitScriptManager>
+
+    <script type="text/javascript">
+        //Two custom table sorters for links and checkboxes
+        $.tablesorter.addParser({
+            id: 'link',
+            is: function(s) { return false; },
+            format: function(value, table, cell) {
+                return $("a", cell).html().toLowerCase(); //Get the links in this cell, and return the html inside the first one
+            },
+            type: 'text'
+        });
+
+        $.tablesorter.addParser({
+            id: 'checkbox',
+            is: function(s) { return false; },
+            format: function(value, table, cell) {
+                return $(":checked", cell).size(); //Returns the number of checked boxes in this cell
+            },
+            type: 'numeric'
+        });
+    </script>
     
     <% if (false) { %>
         <script src="JS/jquery-1.2.6-vsdoc.js" type="text/javascript"></script>

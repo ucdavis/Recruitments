@@ -1,21 +1,17 @@
 <%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="viewApplications.aspx.cs" Inherits="CAESDO.Recruitment.Web.Authorized_viewApplications" Title="View Applications" Theme="MainTheme" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <Ajax:ScriptManagerProxy ID="scriptProxy" runat="server">
-        <Scripts>
-            <Ajax:ScriptReference Path="../JS/jquery.tablesorter.min.js" />
-        </Scripts>
-    </Ajax:ScriptManagerProxy>
-    
+   
     <script type="text/javascript">
+                    
         $(document).ready(function() {
             $("#tblApplications").tablesorter(
             {
-                sortList: [[0, 1]],
+                sortList: [[2,1],[0, 0]],
                 cssAsc: 'headerSortUp',
                 cssDesc: 'headerSortDown',
                 cssHeader: 'header',
-                headers: { 2: { sorter: false} },
+                headers: { 2: { sorter: 'checkbox'}, 0: { sorter: 'link' } },
                 widgets: ['zebra']
             });
         });
