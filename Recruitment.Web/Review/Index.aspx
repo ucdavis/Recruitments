@@ -14,7 +14,7 @@ Committee Members:
 </asp:Panel>
 <asp:Panel ID="pnlFacultyAccess" runat="server" Visible="false">
 
-Faculty Members:
+Faculty Members And Reviewers:
     <br />
     <ul style="list-style-type:none;">
         <li><a href="ApplicationChoice.aspx">Review Candidates</a></li>

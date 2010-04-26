@@ -78,9 +78,9 @@ namespace CAESDO.Recruitment.Web
 
             bool allowedAccess = false;
 
-            foreach (DepartmentMember member in currentApplication.AppliedPosition.PositionCommittee)
+            foreach (CommitteeMember member in currentApplication.AppliedPosition.CommitteeMembers)
             {                
-                if (member.LoginID == User.Identity.Name)
+                if ( member.DepartmentMember.LoginID == User.Identity.Name)
                     allowedAccess = true;
             }
                         

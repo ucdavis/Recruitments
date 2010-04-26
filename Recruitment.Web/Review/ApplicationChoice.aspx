@@ -3,12 +3,16 @@
     
     Position:
     <asp:DropDownList ID="dlistPositions" runat="server">
-    </asp:DropDownList><br />
+    </asp:DropDownList>
+    <asp:RequiredFieldValidator id="reqValPositions" ControlToValidate="dlistPositions" ErrorMessage="* Position Required" runat="server"/>
+    <br />
     <br />
 
     Application:
     <asp:DropDownList ID="dlistApplications" runat="server">
-    </asp:DropDownList><br />
+    </asp:DropDownList>
+    <asp:RequiredFieldValidator id="reqValApplications" ControlToValidate="dlistApplications" ErrorMessage="* Application Required" runat="server"/>
+    <br />
     <br />
     
     <asp:Button ID="btnApplicationReview" runat="server" Text="Review Application" OnClick="btnApplicationReview_Click" />

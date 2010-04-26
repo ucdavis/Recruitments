@@ -244,14 +244,6 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _CommitteeMembers = value; }
         }
 
-        private IList<DepartmentMember> _PositionCommittee;
-
-        public virtual IList<DepartmentMember> PositionCommittee
-        {
-            get { return _PositionCommittee; }
-            set { _PositionCommittee = value; }
-        }
-
         public virtual string TitleAndApplicationCount
         {
             get

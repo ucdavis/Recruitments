@@ -58,10 +58,5 @@
       <one-to-many class="CAESDO.Recruitment.Core.Domain.CommitteeMember, CAESDO.Recruitment.Core" />
     </bag>
 
-    <bag name="PositionCommittee" table="PositionCommittee">
-      <key column="PositionID"></key>
-      <many-to-many column="DepartmentMemberID" class="CAESDO.Recruitment.Core.Domain.DepartmentMember, CAESDO.Recruitment.Core"/>
-    </bag>
-
   </class>
 </hibernate-mapping>
