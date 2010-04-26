@@ -193,7 +193,44 @@ namespace CAESDO.Recruitment.Web
             gviewDepartments.DataSource = DepartmentList;
             gviewDepartments.DataBind();
         }
-        
+
+        protected void btnPositionDescriptionReplace_Click(object sender, EventArgs e)
+        {
+
+            if (filePositionDescriptionReplace.HasFile)
+            {
+                if (filePositionDescriptionReplace.PostedFile.ContentType == "application/pdf")
+                {
+                    File jobDescription = new File();
+
+                    jobDescription.FileName = filePositionDescriptionReplace.FileName;
+                    jobDescription.FileType = JobDescriptionFileType;
+
+                    jobDescription = daoFactory.GetFileDao().SaveOrUpdate(jobDescription);
+            
+                    if (ValidateBO<File>.isValid(jobDescription))
+                    {
+                        //Delete the old file
+                        System.IO.FileInfo oldFile = new System.IO.FileInfo(FilePath + currentPosition.DescriptionFile.ID.ToString());
+                        oldFile.Delete();
+
+                        daoFactory.GetFileDao().Delete(currentPosition.DescriptionFile);
+
+                        filePositionDescriptionReplace.SaveAs(FilePath + jobDescription.ID.ToString());
+
+                        using (new NHibernateTransaction())
+                        {
+                            currentPosition.DescriptionFile = jobDescription;
+                        }
+                    }
+                }
+                else
+                {
+                    //TODO: Error message: Job Description Must Be a PDF File
+                }
+            }
+        }
+
         protected void cboxPrimary_CheckedChanged(object sender, EventArgs e)
         {
             if (!updatePrimaryDepartmentStatus())
@@ -269,9 +306,9 @@ namespace CAESDO.Recruitment.Web
 
             chkAllowApplications.Checked = currentPosition.AllowApps;
 
-            //TODO: All logic for download of job description and replacement
             lbtnDownloadPositionDescription.Visible = true;
             litDownloadPositionDescription.Visible = true;
+            ibtnReplacePositionDescription.Visible = true;
 
             //Change the text of the position status literal and then submit button to represent an edit
             litPositionState.Text = "Edit Position";
@@ -440,5 +477,6 @@ namespace CAESDO.Recruitment.Web
             }
             return output;
         }
+
 }
 }

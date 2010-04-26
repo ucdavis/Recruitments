@@ -140,9 +140,22 @@
                 Full job description (PDF):</td>
             <td  >
                 <asp:LinkButton ID="lbtnDownloadPositionDescription" runat="server" Text="Download Existing File" Visible="false"></asp:LinkButton>
+                <asp:ImageButton ID="ibtnReplacePositionDescription" runat="server" ImageUrl="~/Images/delete.gif" AlternateText="[Replace]" Visible="false" />
                 <asp:Literal ID="litDownloadPositionDescription" runat="server" Visible="false"><br /><br /></asp:Literal>
                 <asp:FileUpload ID="filePositionDescription" runat="server" Visible="true" />                
                 <asp:RequiredFieldValidator ID="reqValPositionDescription" runat="server" ControlToValidate="filePositionDescription" ErrorMessage="*" Visible="true"></asp:RequiredFieldValidator>
+                                                                     
+                <asp:Panel ID="pnlPositionDescription" runat="server" CssClass="modalPopup" style="display:none;">
+                    Replace Existing Position Description: <br /><br />
+                    <asp:FileUpload ID="filePositionDescriptionReplace" runat="server" Visible="true" />
+                    <asp:RequiredFieldValidator ID="reqValPositionDescriptionReplace" runat="server" ControlToValidate="filePositionDescriptionReplace" ErrorMessage="*" Visible="true"></asp:RequiredFieldValidator>
+                    <br /><br />
+                    <asp:Button ID="btnPositionDescriptionReplace" runat="server" Text="Upload" OnClick="btnPositionDescriptionReplace_Click" />
+                    <asp:Button ID="btnPositionDescriptionReplaceCancel" runat="server" Text="Cancel" />
+                </asp:Panel>
+                                
+                <AjaxControlToolkit:ModalPopupExtender ID="mpopupPositionDescriptionReplacement" runat="server" TargetControlID="ibtnReplacePositionDescription"
+                                                     PopupControlID="pnlPositionDescription" BackgroundCssClass="modalBackground" CancelControlID="btnPositionDescriptionReplaceCancel" />
             </td>
         </tr>
         <tr>
