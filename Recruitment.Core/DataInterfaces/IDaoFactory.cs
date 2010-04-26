@@ -60,7 +60,9 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
         List<CommitteeMember> GetAllByMemberType(Position associatedPosition, MemberTypes type);
     }
      
-    public interface IUserDao : IDao<User, int> { }
+    public interface IUserDao : IDao<User, int> {
+        User GetUserByLogin(string LoginID);
+    }
 
     public interface IFileTypeDao : IDao<FileType, int> { }
           

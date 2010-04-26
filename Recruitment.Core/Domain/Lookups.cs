@@ -104,7 +104,6 @@ namespace CAESDO.Recruitment.Core.Domain
 
         public Login()
         {
-
         }
     }
 

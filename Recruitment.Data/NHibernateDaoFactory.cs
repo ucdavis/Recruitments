@@ -182,7 +182,17 @@ namespace CAESDO.Recruitment.Data
             }
         }
 
-        public class UserDao : AbstractNHibernateDao<User, int>, IUserDao { }
+        public class UserDao : AbstractNHibernateDao<User, int>, IUserDao {
+            public User GetUserByLogin(string LoginID)
+            {
+                ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(Login))
+                    .Add(Expression.Eq("id", LoginID));
+
+                Login login = criteria.UniqueResult<Login>();
+
+                return login.User;
+            }
+        }
 
         public class FileTypeDao : AbstractNHibernateDao<FileType, int>, IFileTypeDao { }
 
