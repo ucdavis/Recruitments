@@ -83,7 +83,6 @@ namespace CAESDO.Recruitment.Test
 
             Assert.IsNotNull(target);
             Assert.IsTrue(target.IsTransient());
-            //Assert.IsFalse(target.isComplete());
         }
 
         [TestMethod]
@@ -117,7 +116,16 @@ namespace CAESDO.Recruitment.Test
 
             Assert.IsFalse(target.IsTransient());
 
+            Assert.IsNotNull(target.AssociatedProfile);
             Assert.AreEqual<int>(target.AssociatedProfile.ID, StaticProperties.ExistingProfileID);
+        }
+
+        [TestMethod]
+        public void AppliedPosition()
+        {
+            Application target = ExampleApplication;
+
+            Assert.IsNotNull(target.AppliedPosition);
         }
 
         /// <summary>
@@ -162,16 +170,31 @@ namespace CAESDO.Recruitment.Test
         [TestMethod()]
         public void isCompleteTest()
         {
-            Application target = new Application();
+            Application target = ExampleApplication;
 
-            //bool expected = false;
-            //bool actual;
+            bool Complete = false;
 
-            //actual = target.isComplete();
+            foreach (Reference r in target.References)
+            {
+                Complete = Complete && r.isComplete();
+            }
 
-            //Assert.AreEqual(expected, actual, "CAESDO.Recruitment.Core.Domain.Application.isComplete did not return the expected" +
-            //        " value.");
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            foreach (Education edu in target.Education)
+            {
+                Complete = Complete && edu.isComplete();
+            }
+
+            foreach (Survey s in target.Surveys)
+            {
+                Complete = Complete && s.isComplete();
+            }
+
+            foreach (CurrentPosition p in target.CurrentPositions)
+            {
+                Complete = Complete && p.isComplete();
+            }
+
+            Assert.AreEqual<bool>(Complete, target.isComplete());
         }
 
         /// <summary>

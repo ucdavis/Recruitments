@@ -115,31 +115,42 @@ namespace CAESDO.Recruitment.Core.Domain
             return ValidateBO<Application>.isValid(this);
         }
 
-        public virtual bool isComplete()
+        /// <summary>
+        /// Using an Generic IEnumerable return to get all steps in this application
+        /// </summary>
+        /// <returns>Enumerable list of IApplicationSteps</returns>
+        public virtual IEnumerable<IApplicationStep> GetSteps()
         {
-            bool Complete = false;
-
             foreach (Reference r in References)
             {
-                Complete = Complete & r.isComplete();
+                yield return r;
             }
 
             foreach (Education edu in Education)
             {
-                Complete = Complete & edu.isComplete();
+                yield return edu;
             }
 
             foreach (Survey s in Surveys)
             {
-                Complete = Complete & s.isComplete();
+                yield return s;
             }
 
             foreach (CurrentPosition p in CurrentPositions)
             {
-                Complete = Complete & p.isComplete();
+                yield return p;
+            }
+        }
+
+        public virtual bool isComplete()
+        {
+            foreach (IApplicationStep step in this.GetSteps())
+            {
+                if (step.isComplete() == false)
+                    return false;
             }
 
-            return Complete;
+            return true;
         }
 
     }
