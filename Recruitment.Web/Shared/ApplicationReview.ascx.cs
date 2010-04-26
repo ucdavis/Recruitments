@@ -160,7 +160,17 @@ namespace CAESDO.Recruitment.Web
 
         protected void btnDownloadAll_Click(object sender, EventArgs e)
         {
-            bool success = FileBLL.DownloadByApplication(currentApplication);
+            bool success = FileBLL.DownloadByApplication(currentApplication, false); //Don't include references
+
+            if (!success)
+            {
+                lblDownloadAllStatus.Text = "Files could not be combined successfully.";
+            }
+        }
+
+        protected void btnDownloadAllPlusReferences_Click(object sender, EventArgs e)
+        {
+            bool success = FileBLL.DownloadByApplication(currentApplication, true); //Include references
 
             if (!success)
             {

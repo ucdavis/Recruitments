@@ -403,6 +403,7 @@
                             <br />
                             <asp:Label ID="lblDownloadAllStatus" runat="server" ForeColor="red" EnableViewState="false"></asp:Label>
                             <asp:Button ID="btnDownloadAll" runat="server" Text="Download All Files" OnClick="btnDownloadAll_Click" />
+                            <asp:Button ID="btnDownloadAllPlusReferences" runat="server" Text="Download All Files + References" OnClick="btnDownloadAllPlusReferences_Click" OnClientClick='return confirm("This file may contain confidential documents.");' />
                         </td>
                     </tr>
                 </table>

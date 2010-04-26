@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using CAESDO.Recruitment.Core.Domain;
 using System.Web.Configuration;
@@ -180,13 +181,24 @@ namespace CAESDO.Recruitment.BLL
         /// Downloads all files associated with the current application
         /// </summary>
         /// <returns>True on success</returns>
-        public static bool DownloadByApplication(Application application)
+        public static bool DownloadByApplication(Application application, bool includeReferences)
         {
             string fileName = application.AssociatedProfile.LastName + "-Application" + application.ID.ToString() + ".pdf";
             string destination = FilePath + fileName;
-
+            
             if (application.Files.Count == 0)
                 return false;
+
+            var filesToDownload = new List<File>(application.Files);
+
+            if (includeReferences)
+            {
+                var referenceFiles = from reference in application.References
+                                     where reference.ReferenceFile != null
+                                     select reference.ReferenceFile;
+
+                filesToDownload.AddRange(referenceFiles);
+            }
 
             HttpResponse response = HttpContext.Current.Response;
 
@@ -194,7 +206,7 @@ namespace CAESDO.Recruitment.BLL
             {
                 int f = 0;
 
-                PdfReader reader = new PdfReader(FilePath + application.Files[f].ID.ToString());
+                PdfReader reader = new PdfReader(FilePath + filesToDownload[f].ID.ToString());
 
                 int n = reader.NumberOfPages;
 
@@ -211,9 +223,9 @@ namespace CAESDO.Recruitment.BLL
                 PdfImportedPage page;
                 int rotation;
 
-                while (f < application.Files.Count)
+                while (f < filesToDownload.Count)
                 {
-                    Paragraph cTitle = new Paragraph(application.Files[f].FileType.FileTypeName, chapterFont);
+                    Paragraph cTitle = new Paragraph(filesToDownload[f].FileType.FileTypeName, chapterFont);
                     Chapter chapter = new Chapter(cTitle, f + 1);
 
                     int i = 0;
@@ -238,15 +250,15 @@ namespace CAESDO.Recruitment.BLL
                         BaseFont bf = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
                         cb.BeginText();
                         cb.SetFontAndSize(bf, 12f);
-                        cb.ShowTextAligned(PdfContentByte.ALIGN_CENTER, application.Files[f].FileType.FileTypeName + " -- " + application.Files[f].FileName, reader.GetPageSizeWithRotation(i).Width / 2, reader.GetPageSizeWithRotation(i).Height - 12f, 0);
+                        cb.ShowTextAligned(PdfContentByte.ALIGN_CENTER, filesToDownload[f].FileType.FileTypeName + " -- " + filesToDownload[f].FileName, reader.GetPageSizeWithRotation(i).Width / 2, reader.GetPageSizeWithRotation(i).Height - 12f, 0);
                         //cb.ShowText(currentApplication.Files[f].FileType.FileTypeName);
                         cb.EndText();
                     }
                     f++;
 
-                    if (f < application.Files.Count)
+                    if (f < filesToDownload.Count)
                     {
-                        reader = new PdfReader(FilePath + application.Files[f].ID.ToString());
+                        reader = new PdfReader(FilePath + filesToDownload[f].ID.ToString());
 
                         n = reader.NumberOfPages;
                     }
