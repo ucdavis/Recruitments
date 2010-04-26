@@ -38,6 +38,21 @@ namespace CAESDO.Recruitment.Data
         {
             return new SurveyDao();
         }
+        
+        public IRecruitmentSrcDao GetRecruitmentSrcDao()
+        {
+            return new RecruitmentSrcDao();
+        }
+
+        public IEthnicityDao GetEthnicityDao()
+        {
+            return new EthnicityDao();
+        }
+
+        public IGenderDao GetGenderDao()
+        {
+            return new GenderDao();
+        }
 
         #region Inline DAO implementations
 
@@ -57,6 +72,12 @@ namespace CAESDO.Recruitment.Data
         public class DepartmentDao : AbstractNHibernateDao<Department, int>, IDepartmentDao { }
 
         public class SurveyDao : AbstractNHibernateDao<Survey, int>, ISurveyDao { }
+
+        public class RecruitmentSrcDao : AbstractNHibernateDao<RecruitmentSrc, int>, IRecruitmentSrcDao { }
+
+        public class EthnicityDao : AbstractNHibernateDao<Ethnicity, int>, IEthnicityDao { }
+
+        public class GenderDao : AbstractNHibernateDao<Gender, int>, IGenderDao { }
 
         #endregion
 

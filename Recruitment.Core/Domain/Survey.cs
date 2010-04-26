@@ -6,35 +6,6 @@ namespace CAESDO.Recruitment.Core.Domain
 {
     public class Survey : DomainObject<int>, IApplicationStep
     {
-        //private int _ApplicationID;
-        //private int _Ethnicity;
-
-        //public int Ethnicity
-        //{
-        //    get { return _Ethnicity; }
-        //    set { _Ethnicity = value; }
-        //}
-        //private int _Gender;
-
-        //public int Gender
-        //{
-        //    get { return _Gender; }
-        //    set { _Gender = value; }
-        //}
-        //private int _RecruitmentSrc;
-
-        //public int RecruitmentSrc
-        //{
-        //    get { return _RecruitmentSrc; }
-        //    set { _RecruitmentSrc = value; }
-        //}
-
-        //public int ApplicationID
-        //{
-        //    get { return _ApplicationID; }
-        //    set { _ApplicationID = value; }
-        //}
-
         private Gender _Gender;
 
         public Gender Gender

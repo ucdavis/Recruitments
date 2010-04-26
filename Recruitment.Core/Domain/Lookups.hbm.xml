@@ -58,9 +58,9 @@
     </id>
 
     <property name="EthnicityValue" column="Ethnicity" />
-
-    <!--<many-to-one name="_AssociatedPosition" access="field" column="PositionID"
-      class="CAESDO.Recruitment.Core.Domain.Position, CAESDO.Recruitment.Core" not-null="true" />-->
+    
+    <!--<many-to-one name="_AssociatedSurvey" access="field" column="EthnicityID"
+      class="CAESDO.Recruitment.Core.Domain.Survey, CAESDO.Recruitment.Core" not-null="true" />-->
 
     <!--<bag name="_AssociatedApplications" access="field" table="Applications" inverse="true">
       <key column="PositionID" />

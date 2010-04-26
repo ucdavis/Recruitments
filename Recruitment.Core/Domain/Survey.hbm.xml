@@ -12,12 +12,12 @@
     <property name="Prof_Organization" column="Prof_Organization" />
     <property name="Other" column="Other" />
     <property name="Complete" column="Complete" />
+    
+    <many-to-one name="Gender" class="CAESDO.Recruitment.Core.Domain.Gender, CAESDO.Recruitment.Core" column="GenderID" not-null="true" />
 
-    <one-to-one name="Gender" class="CAESDO.Recruitment.Core.Domain.Gender, CAESDO.Recruitment.Core" />
+    <many-to-one name="RecruitmentSrc" class="CAESDO.Recruitment.Core.Domain.RecruitmentSrc, CAESDO.Recruitment.Core" column="RecruitmentSrcID" not-null="true" />
 
-    <one-to-one name="RecruitmentSrc" class="CAESDO.Recruitment.Core.Domain.RecruitmentSrc, CAESDO.Recruitment.Core" />
-
-    <one-to-one name="Ethnicity" class="CAESDO.Recruitment.Core.Domain.Ethnicity, CAESDO.Recruitment.Core" />
+    <many-to-one name="Ethnicity" class="CAESDO.Recruitment.Core.Domain.Ethnicity, CAESDO.Recruitment.Core" column="EthnicityID" not-null="true" />
     
     <!--<property name="DescriptionFile" column="DescriptionFile" />-->
 

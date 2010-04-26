@@ -50,6 +50,14 @@ namespace CAESDO.Recruitment.Web
             ISurveyDao surveyDao = daoFactory.GetSurveyDao();
 
             Survey survey = surveyDao.GetById(1, false);
+
+            IEthnicityDao ethDao = daoFactory.GetEthnicityDao();
+
+            IList<Ethnicity> ethList = ethDao.GetAll();
+
+            survey.Ethnicity = ethList[2];
+            
+            //surveyDao.SaveOrUpdate(survey);
         }
     }  
 }
