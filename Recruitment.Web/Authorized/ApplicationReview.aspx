@@ -176,7 +176,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                        Existing References:
+                        <span style="color:Red">Confidential References:</span>
                             <asp:GridView ID="gviewReferences" skinID="gridViewReferences" runat="server" DataKeyNames="ID" OnSelectedIndexChanged="gviewReferences_SelectedIndexChanged" AutoGenerateColumns="False" EmptyDataText="No References Added" BorderStyle="None" CellPadding="0" GridLines="None">
                             <Columns>
                                 <asp:CommandField ShowSelectButton="True" SelectText="View" EditText="" >
@@ -207,7 +207,8 @@
                                 <asp:BoundField HeaderText="Email:" DataField="Email" />
                                 <asp:TemplateField HeaderText="File">
                                     <ItemTemplate>
-                                        <asp:LinkButton ID="lbtnReferenceFile" runat="server" Text="Download File" CommandArgument='<%# Eval("ReferenceFile.id") %>' Visible='<%# GetRefernceFileStatusString((int)Eval("id")) %>' OnClick="lbtnReferenceFile_Click"></asp:LinkButton>
+                                        <asp:LinkButton ID="lbtnReferenceFile" runat="server" Text="Download File" CommandArgument='<%# Eval("ReferenceFile.id") %>' Visible='<%# GetRefernceFileStatusString((int)Eval("id")) %>' 
+                                                OnClick="lbtnReferenceFile_Click" OnClientClick='return confirm("This is a confidential file");'></asp:LinkButton>
                                     </ItemTemplate>
                                 </asp:TemplateField>
                             </Columns>
