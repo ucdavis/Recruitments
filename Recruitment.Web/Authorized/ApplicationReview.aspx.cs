@@ -66,11 +66,14 @@ namespace CAESDO.Recruitment.Web
                 Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.UNKNOWN));
             }
 
-            //Check User Permissions
-            if (daoFactory.GetPositionDao().VerifyPositionAccess(currentApplication.AppliedPosition) == false)
+            //Check User Permissions if the user isn't an admin
+            if (!Roles.IsUserInRole("Admin"))
             {
-                //If the user does not have position access, redirect to the not authorized page
-                Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.AUTH));
+                if (daoFactory.GetPositionDao().VerifyPositionAccess(currentApplication.AppliedPosition) == false)
+                {
+                    //If the user does not have position access, redirect to the not authorized page
+                    Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.AUTH));
+                }
             }
 
             Trace.Write("Valid user and application " + currentApplication.ID.ToString() + Environment.NewLine);
