@@ -52,15 +52,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		localtestrun.testrunconfig = localtestrun.testrunconfig
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recruitment.Test", "Z:\Recruitment\Recruitment.Test\Recruitment.Test.csproj", "{7CA4EA8C-D59D-472F-8DD7-72654273B16F}"
-	ProjectSection(WebsiteProperties) = preProject
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.Debug = "False"
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 6
+		SccNumberOfProjects = 5
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
 		SccTeamFoundationServer = http://cubert:8080/
 		SccLocalPath0 = .
@@ -78,9 +72,6 @@ Global
 		SccProjectUniqueName4 = Z:\\Recruitment\\Recruitment.Providers\\Recruitment.Providers.csproj
 		SccProjectName4 = Recruitment.Providers
 		SccLocalPath4 = Z:\\Recruitment\\Recruitment.Providers
-		SccProjectUniqueName5 = Z:\\Recruitment\\Recruitment.Test\\Recruitment.Test.csproj
-		SccProjectName5 = Recruitment.Test
-		SccLocalPath5 = Z:\\Recruitment\\Recruitment.Test
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|.NET = Debug|.NET
@@ -131,16 +122,6 @@ Global
 		{B48CCC6E-ED4B-4589-86F4-3486FD187453}.Release|Any CPU.Build.0 = Release|Any CPU
 		{B48CCC6E-ED4B-4589-86F4-3486FD187453}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{B48CCC6E-ED4B-4589-86F4-3486FD187453}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{7CA4EA8C-D59D-472F-8DD7-72654273B16F}.Debug|.NET.ActiveCfg = Debug|Any CPU
-		{7CA4EA8C-D59D-472F-8DD7-72654273B16F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7CA4EA8C-D59D-472F-8DD7-72654273B16F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7CA4EA8C-D59D-472F-8DD7-72654273B16F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{7CA4EA8C-D59D-472F-8DD7-72654273B16F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{7CA4EA8C-D59D-472F-8DD7-72654273B16F}.Release|.NET.ActiveCfg = Release|Any CPU
-		{7CA4EA8C-D59D-472F-8DD7-72654273B16F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7CA4EA8C-D59D-472F-8DD7-72654273B16F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7CA4EA8C-D59D-472F-8DD7-72654273B16F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{7CA4EA8C-D59D-472F-8DD7-72654273B16F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
