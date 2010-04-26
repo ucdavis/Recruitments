@@ -8,6 +8,8 @@ namespace CAESDO.Recruitment.Data
     {
         public NHibernateTransaction()
         {
+            NHibernateSessionManager.Instance.GetSession();
+
             NHibernateSessionManager.Instance.BeginTransaction();
         }
 

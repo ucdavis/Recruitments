@@ -73,12 +73,12 @@ namespace CAESDO.Recruitment.Web
             
             if (!Page.IsPostBack)
             {
-                //app11 = null;
+                app11 = null;
 
-                using (new NHibernateTransaction())
-                {
+                //using (new NHibernateTransaction())
+                //{
                     Response.Write(app11.ID.ToString() + "   " + app11.SubmitDate.ToShortDateString() + "<br/>");
-                }
+                //}
             }
             else
             {
@@ -86,14 +86,25 @@ namespace CAESDO.Recruitment.Web
 
                 app11.SubmitDate = DateTime.Now;
 
-                using (NHibernateTransaction tx = new NHibernateTransaction())
-                {
-                    IApplicationDao aDao = daoFactory.GetApplicationDao();
+                //using (NHibernateTransaction tx = new NHibernateTransaction())
+                //{
+                IApplicationDao aDao = daoFactory.GetApplicationDao();
 
-                    aDao.SaveOrUpdate(app11);
+                aDao.SaveOrUpdate(app11);
 
-                    Response.Write(tx.HasOpenTransaction);
-                }
+                Response.Write(app11.Education[0].Discipline);
+
+                NHibernateSessionManager.Instance.RollbackTransaction();
+
+                NHibernateSessionManager.Instance.BeginTransaction();
+
+                app11.SubmitDate = DateTime.Now.AddDays(12);
+
+                aDao.SaveOrUpdate(app11);
+
+                NHibernateSessionManager.Instance.CommitTransaction();
+
+                //}
             }
 
             //Response.Write(app.ID.ToString() + "  " + app.SubmitDate.ToShortDateString() + "<br/>");
@@ -116,5 +127,5 @@ namespace CAESDO.Recruitment.Web
             //User user = uDao.GetById(1, false);
             
         }
-    }  
+    }
 }
