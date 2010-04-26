@@ -10,6 +10,7 @@ namespace CAESDO.Recruitment.Test
     {
         public ContinuousIntegrationDeploymentHack()
         {
+            new NHibernate.ProxyGenerators.CastleDynamicProxy.ProxyFactoryFactory();
             new System.Data.SQLite.SQLiteException();
 
             throw new Exception("This class should never be called or instantiated");
