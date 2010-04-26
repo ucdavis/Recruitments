@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="AdminIndex.aspx.cs" Inherits="Authorized_AdminIndex" Title="Admin Home Page" %>
+<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="AdminIndex.aspx.cs" Inherits="Authorized_AdminIndex" Title="Admin Home Page" Trace="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 <div style="text-align:center;">
@@ -14,7 +14,7 @@
     <a href="ApplicationsList.aspx">Applications List</a><br /><br />
     <a href="committeeList.aspx">Committee List</a><br /><br />
     <a href="committeeManagement.aspx?type=committee">Committee Management</a><br /><br />
-    
+    <asp:Button ID="btnDownloadPage" runat="server" Text="Get Word" OnClick="btnDownloadPage_Click" />
 </div>
            
 </asp:Content>
