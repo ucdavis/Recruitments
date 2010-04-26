@@ -1,10 +1,11 @@
 <%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="CreateUser.aspx.cs" Inherits="CAESDO.Recruitment.Web.CreateUser" Title="Create User" %>
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-    <asp:Wizard ID="wizCreateUser" runat="server" ActiveStepIndex="0" BackColor="#F7F6F3" BorderColor="#CCCCCC"
-        BorderStyle="Solid" BorderWidth="1px" Font-Names="Verdana" Font-Size="1em" DisplaySideBar="False" OnFinishButtonClick="wizCreateUser_FinishButtonClick">
-        <StepStyle BorderWidth="0px" ForeColor="#5D7B9D" />
+ <span class="boxTitle"><img src="../Images/profile_sm.gif" style="vertical-align:middle;" alt="" /> Create Account</span>
+       
+    <asp:Wizard ID="wizCreateUser" runat="server" ActiveStepIndex="0" BackColor="#EFEFEF" BorderColor="#7f7f7f"
+        BorderStyle="dotted" BorderWidth="1px" DisplaySideBar="False" OnFinishButtonClick="wizCreateUser_FinishButtonClick">
+        <StepStyle BorderWidth="0px" />
         <StartNavigationTemplate>
             <asp:Button ID="StartNextButton" runat="server" CommandName="MoveNext" Text="Next" ValidationGroup="CreateAccount" />
         </StartNavigationTemplate>
@@ -13,10 +14,11 @@
             
         <WizardSteps>
             <asp:WizardStep ID="WizardStep1" runat="server" StepType="finish" Title="Create Account">
-            <table border="0">
+              <table border="0" cellpadding="5" style="width: 320px; font-weight:bold;">
                         <tr>
-                            <td align="center" colspan="2" style="font-weight: bold; color: white; background-color: #5d7b9d">
-                                Create Your New Account</td>
+                            <td align="center" colspan="2">
+                            <br />
+                            </td>
                         </tr>
                         <tr>
                             <td align="right">
@@ -89,6 +91,7 @@
             <asp:Button ID="FinishPreviousButton" runat="server" CausesValidation="False" CommandName="MovePrevious"
                 Text="Previous" Visible="false" />
             <asp:Button ID="FinishButton" runat="server" CommandName="MoveComplete" Text="Finish" ValidationGroup="CreateAccount" />
+            <br /><br />
         </FinishNavigationTemplate>
     </asp:Wizard>
 
