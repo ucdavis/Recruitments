@@ -1,7 +1,5 @@
 /* 
-FRAC 1.0
-CSS by Viet Tran
-May 2007
+FRAC 1.0 CSS
  */
 
 body 
@@ -12,7 +10,7 @@ body
 	font-family: Trebuchet MS, Arial, Georgia;
 }
 
-html, body, #wrapper, #aspnetForm
+html, body, #wrapper, #aspnetForm, #fom1, #content
 {
 	height:100%;
 	margin:0;
@@ -31,8 +29,8 @@ html, body, #wrapper, #aspnetForm
 	background-color: #fff;
 	border-left: solid 1px #ccc8b5;
 	border-right: solid 1px #ccc8b5;
-	height:100%;
 	margin-top:7px;
+	margin-bottom: 0px;
 }
 
 #breadcrumbs
@@ -129,4 +127,72 @@ a.ContextMenuItem:hover
 	border-color:Gray;
 	padding:3px;
 	width:75%;
+}
+
+.applicationMenu 
+{
+	list-style:none;
+	padding:0;
+	margin:0;
+	font-size: 1.1em;
+	letter-spacing: -0.2px;
+}
+
+.applicationMenu li.unselected
+{
+	width:203px;
+	height: 41px;
+	background-image: url(Images/appmenuUnsel.gif);
+}
+
+.applicationMenu li.selected
+{
+	width:203px;
+	height: 41px;
+	background-image: url(Images/appmenuSel.gif);
+}
+
+.unselected a:link { color:#000; text-decoration: none; }
+.unselected a:link { color:#000; }
+.unselected a:hover { color:#a50000; }
+.unselected a:active { color:#a50000; }
+.selected a:hover { color:#0b65c1; }
+
+.applicationMenu li.unselected:hover
+{
+	background-image: url(Images/appmenuHilight.gif);
+}
+
+.X
+{
+	margin-top:12px;
+}
+
+.appButton
+{
+	width:15px; float:left; margin-left:15px; padding-top:12px; height:19px;
+}
+
+.appLink 
+{
+  padding-top:12px;
+}
+
+.box {
+border : 1px dotted #7f7f7f;
+padding : 10px;
+background-color:#EFEFEF;
+} 
+
+.boxTitle 
+{
+	border : 1px solid #CCCCCC;
+	position : relative;
+	top : 27px;
+	left : 30px;
+	background-color : #FFF;
+	padding : 5px 10px;
+	color:#0b65c5;
+	font-size: 1.2em;
+	font-weight: bold;
 }
