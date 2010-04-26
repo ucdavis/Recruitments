@@ -1,12 +1,73 @@
 <%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="viewApplications.aspx.cs" Inherits="CAESDO.Recruitment.Web.Authorized_viewApplications" Title="View Applications" Theme="MainTheme" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-
+    <Ajax:ScriptManagerProxy ID="scriptProxy" runat="server">
+        <Scripts>
+            <Ajax:ScriptReference Path="../JS/jquery.tablesorter.min.js" />
+        </Scripts>
+    </Ajax:ScriptManagerProxy>
+    
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $("#tblApplications").tablesorter(
+            {
+                sortList: [[0, 1]],
+                cssAsc: 'headerSortUp',
+                cssDesc: 'headerSortDown',
+                cssHeader: 'header',
+                headers: { 2: { sorter: false} }
+            });
+        });
+        
+    </script>
+    
     Viewing Applicants for the <asp:Literal ID="litPositionTitle" runat="server" /> position.
     
     <br /><br />
-
-    <asp:GridView ID="gviewApplications" runat="server" AllowPaging="True" skinID="gridViewUM" GridLines="None" CellPadding="0" AutoGenerateColumns="False" DataSourceID="ObjectDataApplications" EmptyDataText="No Applications Found For This Position">
+    
+    <asp:ListView ID="lviewApplications" runat="server" DataSourceID="ObjectDataApplications">
+        <LayoutTemplate>
+        <table id="tblApplications" class="tablesorter" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        Applicant Name
+                    </th>
+                    <th>
+                        Email
+                    </th>
+                    <th>
+                        Submitted
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="itemPlaceholder" runat="server"></tr>
+            </tbody>
+        </table>
+        </LayoutTemplate>
+        <ItemTemplate>
+                <tr class='<%# Container.DisplayIndex % 2 == 0 ? "" : "odd" %>'>
+                    <td>
+                        <asp:LinkButton ID="lbtnViewApplication" runat="server" CommandArgument='<%# Eval("id") %>' Text='<%# GetNullSafeFullName((string)Eval("AssociatedProfile.FullName")) %>' OnClick="lbtnViewApplication_Click"></asp:LinkButton>
+                    </td>
+                    <td>
+                        <%# Eval("Email") %>
+                    </td>
+                    <td>
+                        <asp:CheckBox ID="checkbox" runat="server" Enabled="false" Checked='<%# (bool)Eval("Submitted")  %>' />
+                    </td>
+                </tr>
+        </ItemTemplate>
+        <EmptyDataTemplate>
+            No Applications Found For This Position
+        </EmptyDataTemplate>
+    </asp:ListView>
+    
+    <br /><br /><br />
+    
+    <asp:GridView ID="gviewApplications" runat="server" AllowPaging="True" skinID="gridViewUM" GridLines="None" CellPadding="0" AutoGenerateColumns="False" 
+    DataSourceID="ObjectDataApplications" EmptyDataText="No Applications Found For This Position">
         <Columns>
             <asp:TemplateField HeaderText="Applicant Name">
                 <ItemTemplate>

@@ -13,7 +13,16 @@
 <body>
     <form id="form1" runat="server">
 <%--    <asp:scriptmanager ID="Scriptmanager1" runat="server"></asp:scriptmanager>--%>
-    <AjaxControlToolkit:ToolkitScriptManager ID="toolkitScript" runat="server"></AjaxControlToolkit:ToolkitScriptManager>
+    <AjaxControlToolkit:ToolkitScriptManager ID="toolkitScript" runat="server">
+        <Scripts>
+            <Ajax:ScriptReference Path="~/JS/jquery-1.2.6-vsdoc.js" />
+        </Scripts>
+    </AjaxControlToolkit:ToolkitScriptManager>
+    
+    <% if (false) { %>
+        <script src="JS/jquery-1.2.6-vsdoc.js" type="text/javascript"></script>
+    <% } %> 
+    
     <div id="wrapper">
     <div id="header" style="height:62px;">
         <asp:Image ID="imgRecruitmentLogo" runat="server" ImageUrl="~/Images/logo.gif" style="float:left;" /><asp:Image ID="imgRecruitmentDavisLogo" runat="server" ImageUrl="~/Images/logo_ucdavis.gif" AlternateText="UC Davis, College of Agricultural and Environmental Sciences" style="float:right" />
