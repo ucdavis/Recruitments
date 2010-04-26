@@ -25,30 +25,77 @@
         <div id="bodytext">
             <asp:ImageButton ID="ibCreatePosition" runat="server" ImageUrl="~/Images/ibCreatePosition.gif" /><br />
             <br />
-            <table cellpadding="0" cellspacing="0" style="width:100%;">
-                <tr class="headingBlue">
+            
+            <!--Can replace this with gridview or something else-->
+            <table cellpadding="0" cellspacing="0" style="width:100%;" class="dottedBotBorder">
+                <tr style="height: 40px;" class="headingBlue">
                     <td>Position/Department:</td>
-                    <td style="width: 100px">Modify:</td>
-                    <td style="width: 100px">Delete:</td>
-                    <td style="width: 100px">Applicants:</td>
+                    <td style="width: 100px; text-align: center;">Modify:</td>
+                    <td style="width: 100px; text-align: center;">Delete:</td>
+                    <td style="width: 100px; text-align: center;">Applicants:</td>
                 </tr>
                 <tr style="background-color:#eeeeee; height: 60px;">
-                    <td style="border-top: dotted 1px #333333;">&nbsp;</td>
-                    <td style="border-top: dotted 1px #333333;">&nbsp;</td>
-                    <td style="border-top: dotted 1px #333333;">&nbsp;</td>
-                    <td style="border-top: dotted 1px #333333;">&nbsp;</td>
+                    <td style="padding-left: 10px;">
+                        <a href="#">Assistant Professor and Assistant Quantitative Geneticist</a><br />
+                        Agricultural Experiment Station Department of Plant Sciences
+                    </td>
+                    <td align="center"><asp:ImageButton ID="ImageButton1" runat="server" ImageUrl="~/Images/modify.gif" /></td>
+                    <td align="center"><asp:ImageButton ID="ImageButton2" runat="server" ImageUrl="~/Images/delete.gif" /></td>
+                    <td align="center"><a href="#">15</a></td>
                 </tr>
-                 <tr style="height: 60px;">
-                    <td style="border-top: dotted 1px #333333;">&nbsp;</td>
-                    <td style="border-top: dotted 1px #333333;">&nbsp;</td>
-                    <td style="border-top: dotted 1px #333333;">&nbsp;</td>
-                    <td style="border-top: dotted 1px #333333;">&nbsp;</td>
+                <tr style="height: 60px;">
+                    <td style="padding-left: 10px;">
+                        <a href="#">Assistant Professor of Metabolomics (AP #06-01)</a><br />
+                         Nutrition, Food Science and Technology
+                    </td>
+                    <td align="center"><asp:ImageButton ID="ImageButton7" runat="server" ImageUrl="~/Images/modify.gif" /></td>
+                    <td align="center" ><asp:ImageButton ID="ImageButton9" runat="server" ImageUrl="~/Images/delete.gif" /></td>
+                    <td align="center"><a href="#">15</a></td>
                 </tr>
                 <tr style="background-color:#eeeeee; height: 60px;">
-                    <td style="border-top: dotted 1px #333333;">&nbsp;</td>
-                    <td style="border-top: dotted 1px #333333;">&nbsp;</td>
-                    <td style="border-top: dotted 1px #333333;">&nbsp;</td>
-                    <td style="border-top: dotted 1px #333333;">&nbsp;</td>
+                     <td style="padding-left: 10px;">
+                        <a href="#">Assistant Professor of Human Development (AP #06-20)</a><br />
+                        Center for Mind and Brain
+                    </td>
+                    <td align="center"><asp:ImageButton ID="ImageButton3" runat="server" ImageUrl="~/Images/modify.gif" /></td>
+                    <td align="center"><asp:ImageButton ID="ImageButton4" runat="server" ImageUrl="~/Images/delete.gif" /></td>
+                    <td align="center"><a href="#">15</a></td>
+                </tr>
+                <tr style="height: 60px;">
+                     <td style="padding-left: 10px;">
+                        <a href="#">Assistant Professor of American Studies and of Food Science and Technology</a><br />
+                        American Studies Program, Department of Food Science and Technology
+                    </td>
+                    <td align="center"><asp:ImageButton ID="ImageButton8" runat="server" ImageUrl="~/Images/modify.gif" /></td>
+                    <td align="center" ><asp:ImageButton ID="ImageButton10" runat="server" ImageUrl="~/Images/delete.gif" /></td>
+                    <td align="center"><a href="#">15</a></td>
+                </tr>
+                <tr style="background-color:#eeeeee; height: 60px;">
+                     <td style="padding-left: 10px;">
+                        <a href="#">Assistant Professor: Agricultural Sustainability and Society Position</a><br />
+                        Community Studies and Development Program
+                    </td>
+                    <td align="center"><asp:ImageButton ID="ImageButton5" runat="server" ImageUrl="~/Images/modify.gif" /></td>
+                    <td align="center"><asp:ImageButton ID="ImageButton6" runat="server" ImageUrl="~/Images/delete.gif" /></td>
+                    <td align="center"><a href="#">15</a></td>
+                </tr>
+                             <tr style="height: 60px;">
+                     <td style="padding-left: 10px;">
+                        <a href="#">Assistant Professor in Plant Sciences: Plant Biologist</a><br />
+                        Department of Plant Sciences
+                    </td>
+                    <td align="center"><asp:ImageButton ID="ImageButton11" runat="server" ImageUrl="~/Images/modify.gif" /></td>
+                    <td align="center" ><asp:ImageButton ID="ImageButton12" runat="server" ImageUrl="~/Images/delete.gif" /></td>
+                    <td align="center"><a href="#">15</a></td>
+                </tr>
+                <tr style="background-color:#eeeeee; height: 60px;">
+                     <td style="padding-left: 10px;">
+                        <a href="#">Head Librarian, AREL</a><br />
+                        Agricultural and Resource Economics Library
+                    </td>
+                    <td align="center"><asp:ImageButton ID="ImageButton13" runat="server" ImageUrl="~/Images/modify.gif" /></td>
+                    <td align="center"><asp:ImageButton ID="ImageButton14" runat="server" ImageUrl="~/Images/delete.gif" /></td>
+                    <td align="center"><a href="#">15</a></td>
                 </tr>
             </table>
         </div>

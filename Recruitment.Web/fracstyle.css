@@ -53,3 +53,24 @@ html, body, #wrapper, #form1
 	font-size: 1.2em;
 	font-weight: bold;
 }
+
+.grayThang
+{
+	height:60px;
+	background-color: #eee;
+}
+
+.dottedBotBorder td
+{
+	border-bottom: dotted 1px #333333;
+}
+
+.dottedBotBorder tr:hover td
+{
+	background-color: #e3edf7;
+}
+
+a:link { color:#0b65c1; text-decoration: none; font-weight:bold; }
+a:visited { color:#0b65c1; }
+a:hover { color:#a50000; }
+a:active { color:#a50000; }
