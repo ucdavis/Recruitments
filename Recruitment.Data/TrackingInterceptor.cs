@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Collections.Specialized;
 using System.Web;
+using CAESDO.Recruitment.Core.Domain;
 
 namespace CAESDO.Recruitment.Data
 {
@@ -65,13 +66,13 @@ namespace CAESDO.Recruitment.Data
                 {
                     if (currentState[i].Equals(previousState[i]) == false)
                     {
-                        dirtyProperties.Add(new ChangedProperty(previousState[i].ToString(), currentState[i].ToString(), propertyNames[i], types[i]));
+                        dirtyProperties.Add(new ChangedProperty(currentState[i].ToString(), propertyNames[i], null));
                         //dirtyProperties.Add(propertyNames[i], previousState[i].ToString());
                     }
                 }
             }
 
-            TrackChanges(dirtyProperties, entity, id);
+            TrackChanges(dirtyProperties, entity, id, ChangeTypes.Update);
 
             return false; //false means that the object wasn't modified
 
@@ -101,20 +102,27 @@ namespace CAESDO.Recruitment.Data
             //throw new Exception("The method or operation is not implemented.");
         }
 
-        private void TrackChanges(List<ChangedProperty> changeList, object target, object id)
+        private void TrackChanges(List<ChangedProperty> changeList, object target, object id, ChangeTypes changeType)
         {
             if (HttpContext.Current == null)
                 return;
 
-            Guid changeID = Guid.NewGuid();
+            //ChangeTracking trackChange = new ChangeTracking();
+            
+
 
             System.IO.StreamWriter writer = new System.IO.StreamWriter(HttpContext.Current.Server.MapPath("RecruitmentTracking.txt"),true);
 
-            writer.WriteLine("ChangeID {0} => Object type {1} with ID {2} was modified as follows", changeID.ToString(), target.GetType().Name, id.ToString());
+            //trackChange.ObjectChanged = target.GetType().Name;
+            //trackChange.ObjectChangedID = id.ToString();
+            writer.WriteLine("ChangeID {0} => Object type {1} with ID {2} was modified as follows", Guid.NewGuid(), target.GetType().Name, id.ToString());
 
             foreach (ChangedProperty change in changeList)
             {
-                writer.WriteLine("--- Property {0} of type {1} was changed from {2} to {3}", change.PropertyName, change.type.Name, change.OldValue, change.NewValue);
+                //trackChange.PropertyChanged = change.type.Name;
+                //trackChange.PropertyChangedValue = change.NewValue;
+
+                writer.WriteLine("--- Property {0} was changed to {1}", change.PropertyChanged, change.PropertyChangedValue);
             }
 
             writer.Close();
@@ -123,19 +131,19 @@ namespace CAESDO.Recruitment.Data
         #endregion
     }
 
-    public class ChangedProperty
-    {
-        public string OldValue;
-        public string NewValue;
-        public string PropertyName;
-        public NHibernate.Type.IType type;
+    //public class ChangedProperty
+    //{
+    //    public string OldValue;
+    //    public string NewValue;
+    //    public string PropertyName;
+    //    public NHibernate.Type.IType type;
 
-        public ChangedProperty(string OldValue, string NewValue, string PropertyName, NHibernate.Type.IType type)
-        {
-            this.OldValue = OldValue;
-            this.NewValue = NewValue;
-            this.PropertyName = PropertyName;
-            this.type = type;
-        }
-    }
+    //    public ChangedProperty(string OldValue, string NewValue, string PropertyName, NHibernate.Type.IType type)
+    //    {
+    //        this.OldValue = OldValue;
+    //        this.NewValue = NewValue;
+    //        this.PropertyName = PropertyName;
+    //        this.type = type;
+    //    }
+    //}
 }

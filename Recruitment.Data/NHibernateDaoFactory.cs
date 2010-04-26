@@ -86,7 +86,18 @@ namespace CAESDO.Recruitment.Data
         public IMemberTypeDao GetMemberTypeDao()
         {
             return new MemberTypeDao();
-        }         
+        }
+
+        public IChangeTrackingDao GetChangeTrackingDao()
+        {
+            return new ChangeTrackingDao();
+        }
+
+        public IChangeTypeDao GetChangeTypeDao()
+        {
+            return new ChangeTypeDao();
+        }
+                
         #endregion
 
         #region Inline DAO implementations
@@ -177,6 +188,9 @@ namespace CAESDO.Recruitment.Data
 
         public class MemberTypeDao : AbstractNHibernateDao<MemberType, int>, IMemberTypeDao { }
 
+        public class ChangeTrackingDao : AbstractNHibernateDao<ChangeTracking, int>, IChangeTrackingDao { }
+
+        public class ChangeTypeDao : AbstractNHibernateDao<ChangeType, int>, IChangeTypeDao { }
           
         #endregion
           

@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="ApplicantTest.cs" />
     <Compile Include="ApplicationTest.cs" />
+    <Compile Include="ChangeTrackingTest.cs" />
     <Compile Include="CommitteeMemberTest.cs" />
     <Compile Include="FileTest.cs" />
     <Compile Include="NHibernateHelper.cs" />

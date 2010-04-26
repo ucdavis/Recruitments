@@ -108,6 +108,25 @@ namespace CAESDO.Recruitment.Core.Domain
         }
     }
 
+    public class ChangeType : DomainObject<int>
+    {
+        private string _Type;
+
+        public virtual string Type
+        {
+            get { return _Type; }
+            set { _Type = value; }
+        }
+
+    }
+
+    public enum ChangeTypes
+    {
+        Save            = 1,
+        Delete          = 2,
+        Update          = 3
+    }
+
     public class MemberType : DomainObject<int>
     {
         private string _Type;

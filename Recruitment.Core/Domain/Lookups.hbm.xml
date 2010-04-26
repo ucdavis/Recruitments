@@ -70,6 +70,17 @@
   </class>
 
   <class
+  name="CAESDO.Recruitment.Core.Domain.ChangeType, CAESDO.Recruitment.Core"
+  table="ChangeTypes" >
+    <id name="id" access="field" column="ChangeTypeID" unsaved-value="0">
+      <generator class="identity" />
+    </id>
+
+    <property name="Type" column="ChangeType" />
+
+  </class>
+
+  <class
     name="CAESDO.Recruitment.Core.Domain.MemberType, CAESDO.Recruitment.Core"
     table="MemberTypes" >
     <id name="id" access="field" column="MemberTypeID" unsaved-value="0">

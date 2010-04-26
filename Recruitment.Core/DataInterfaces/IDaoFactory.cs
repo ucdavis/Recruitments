@@ -23,6 +23,8 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
         IUserDao GetUserDao();
         IFileTypeDao GetFileTypeDao();
         IMemberTypeDao GetMemberTypeDao();
+        IChangeTrackingDao GetChangeTrackingDao();
+        IChangeTypeDao GetChangeTypeDao();
     }
 
     // There's no need to declare each of the DAO interfaces in its own file, so just add them inline here.
@@ -64,6 +66,11 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
           
     public interface IMemberTypeDao : IDao<MemberType, int> { }
     
+    public interface IChangeTrackingDao : IDao<ChangeTracking, int> { }
+          
+    public interface IChangeTypeDao : IDao<ChangeType, int> { }
+          
+     
     
     #endregion
 }

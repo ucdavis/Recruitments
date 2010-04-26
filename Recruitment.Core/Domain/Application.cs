@@ -35,7 +35,6 @@ namespace CAESDO.Recruitment.Core.Domain
         }
         private DateTime? _SubmitDate;
 
-        [TypeConversionValidator(typeof(DateTime))]
         [IgnoreNulls]
         public virtual DateTime? SubmitDate
         {
@@ -45,7 +44,6 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private DateTime _LastUpdated;
 
-        [TypeConversionValidator(typeof(DateTime))]
         [NotNullValidator]
         public virtual DateTime LastUpdated
         {
