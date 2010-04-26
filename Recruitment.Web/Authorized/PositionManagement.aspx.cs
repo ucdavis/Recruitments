@@ -11,12 +11,21 @@ using System.Web.UI.HtmlControls;
 using CAESDO.Recruitment.Core.Domain;
 using System.Collections.Generic;
 using CAESDO.Recruitment.Data;
+using System.Web.Configuration;
 
 namespace CAESDO.Recruitment.Web
 {
     public partial class PositionManagement : ApplicationPage
     {
         private const string STR_DepartmentList = "DepartmentList";
+
+        public string PendingPageURL
+        {
+            get
+            {
+                return Request.Url.GetComponents(UriComponents.SchemeAndServer, UriFormat.SafeUnescaped) + HttpContext.Current.Request.ApplicationPath + "/Authorized/ViewPositionsPending.aspx";
+            }
+        }
 
         public int? currentPositionID
         {
@@ -169,10 +178,22 @@ namespace CAESDO.Recruitment.Web
 
             if (ValidateBO<Position>.isValid(newPosition))
             {
+                //If the position is new, send an email to the the AppMailTo about the new pending position
+                if (newPosition.IsTransient())
+                {
+                    string notificationBody = "A new position has been created which needs to be accepted before it can receive applications.<br/><br/> "
+                                                + "<a href='" + PendingPageURL + "'>Click here to view pending positions</a>";
+                    System.Net.Mail.SmtpClient client = new System.Net.Mail.SmtpClient();
+                    System.Net.Mail.MailMessage message = new System.Net.Mail.MailMessage(WebConfigurationManager.AppSettings["emailFromEmail"], WebConfigurationManager.AppSettings["AppMailTo"],
+                                                                   "CAESDO Recruitments: Position '" + newPosition.PositionTitle + "' Created", notificationBody);
+                    message.IsBodyHtml = true;
+                    client.Send(message);
+                }
+
                 using (new NHibernateTransaction())
                 {
                     daoFactory.GetPositionDao().SaveOrUpdate(newPosition);
-                }
+                }                
             }
             else
             {
