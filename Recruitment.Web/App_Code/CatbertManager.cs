@@ -23,6 +23,7 @@ namespace CAESDO.Recruitment
 
         static CatOps.CatOps catops = new CatOps.CatOps();
 
+        [DataObjectMethod(DataObjectMethodType.Select)]
         public static CatOps.Units[] GetUnits()
         {
             return catops.GetUnits(HASH);
@@ -33,19 +34,24 @@ namespace CAESDO.Recruitment
             return catops.SearchNewUser(null, null, null, login, HASH);
         }
 
-        public static void AddUserToRole(CatOps.Roles role, CatOps.Users user)
+        public static bool AddUserToRole(CatOps.Users user, CatOps.Roles role)
         {
-            catops.AssignPermissions(user.Login, AppName, role.RoleID, HASH);
+            return catops.AssignPermissions(user.Login, AppName, role.RoleID, HASH);
         }
 
-        public static void AddUserToRole(int roleID, string login)
+        public static bool AddUserToRole(string login, int roleID)
         {
-            catops.AssignPermissions(login, AppName, roleID, HASH);
+            return catops.AssignPermissions(login, AppName, roleID, HASH);
         }
 
         public static bool RemoveUserFromRole(int roleID, string login)
         {
             return catops.DeletePermissions(login, AppName, roleID, HASH);
+        }
+
+        public static bool AddUserToUnit(string login, int UnitID)
+        {
+            return catops.AddUnit(login, UnitID, HASH);
         }
 
         [DataObjectMethod(DataObjectMethodType.Select)]
@@ -58,6 +64,7 @@ namespace CAESDO.Recruitment
         {
             CatOps.Users u = new CatOps.Users();
             CatOps.CatbertUsers cu = new CatOps.CatbertUsers();
+
             //cu.EmployeeID;
             //cu.FirstName;
             //cu.LastName;
