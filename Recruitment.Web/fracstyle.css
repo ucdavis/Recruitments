@@ -84,7 +84,7 @@ html, #aspnetForm
 	height: 40px;
 }
 
-#ctl00_ContentPlaceHolder1_gViewApplications td, #ctl00_ContentPlaceHolder1_gviewCommitteeList td
+#ctl00_ContentPlaceHolder1_gViewApplications td, #ctl00_ContentPlaceHolder1_gviewCommitteeList td, #ctl00_ContentPlaceHolder1_gViewReferences td
 {
 	border-bottom: dotted 1px #333333;
 	height: 32px;

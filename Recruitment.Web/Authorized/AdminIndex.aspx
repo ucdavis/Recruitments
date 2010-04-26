@@ -12,10 +12,10 @@
     <asp:ImageButton ID="ibCommitteeList" runat="server" ImageUrl="~/Images/def_comlist.jpg" PostBackUrl="~/Authorized/committeeList.aspx" />
     <asp:ImageButton ID="ibCommitteeManagement" runat="server" ImageUrl="~/Images/def_commanage.jpg" PostBackUrl="~/Authorized/committeeManagement.aspx?type=committee" />
     <asp:ImageButton ID="ibReports" runat="server" ImageUrl="~/Images/def_reports.jpg" PostBackUrl="~/Authorized/reports.aspx" />
-    <asp:ImageButton ID="ibUploadFiles" runat="server" ImageUrl="~/Images/def_upload.jpg" PostBackUrl="~/Authorized/UploadFiles.aspx" /><br />
+    <asp:ImageButton ID="ibUploadFiles" runat="server" ImageUrl="~/Images/def_upload.jpg" PostBackUrl="~/Authorized/UploadFiles.aspx" />
+    <asp:ImageButton ID="ibUnsolicited" runat="server" ImageUrl="~/Images/def_unsolicited.jpg" PostBackUrl="~/Authorized/UnsolicitedReferences.aspx" />
     <br />
-    <a href="unsolicitedReferences.aspx">Unsolicited References</a>
-   
+    <br /> 
 </div>
            
 </asp:Content>

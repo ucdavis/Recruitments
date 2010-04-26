@@ -17,30 +17,36 @@ Application: <asp:DropDownList ID="dlistApplications" runat="server" AutoPostBac
 </AjaxControlToolkit:CascadingDropDown>
 
 
-<asp:GridView ID="gViewReferences" runat="server" SkinID="gridViewUserManagement" DataKeyNames="id" AutoGenerateColumns="false"
+<asp:GridView ID="gViewReferences" runat="server" SkinID="gridViewUserManagement" GridLines="None" CellPadding="0" DataKeyNames="id" AutoGenerateColumns="false"
             EmptyDataText="No References Found" Visible="false">
     <Columns>
         <asp:TemplateField HeaderText="Send Letter">
             <ItemTemplate>
                 <asp:Button ID="sendEmail" runat="server" Text="Send Letter" CommandArgument='<%# Eval("id") %>' OnClick="sendEmail_Click" />
             </ItemTemplate>
+            <HeaderStyle HorizontalAlign="Left" CssClass="paddingLeft" />
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Unsolicited">
             <ItemTemplate>
                 <asp:CheckBox ID="chkUnsolicited" runat="server" Checked='<%# Eval("UnsolicitedReference") %>' />
             </ItemTemplate>
+            <ItemStyle HorizontalAlign="Center" />
+            <HeaderStyle HorizontalAlign="Left" />
         </asp:TemplateField>
-        <asp:BoundField HeaderText="Reference Name" DataField="FullName" />
-        <asp:BoundField HeaderText="Email" DataField="Email" />
+        <asp:BoundField HeaderText="Reference Name" DataField="FullName"><HeaderStyle HorizontalAlign="Left" /></asp:BoundField>
+        <asp:BoundField HeaderText="Email" DataField="Email"><HeaderStyle HorizontalAlign="Left" /></asp:BoundField>
         <asp:TemplateField HeaderText="Notified">
             <ItemTemplate>
                 <%# Eval("EmailDate") == null ? "Not Notified" : ((DateTime)Eval("EmailDate")).ToShortDateString() %>
             </ItemTemplate>
+            <HeaderStyle HorizontalAlign="Left" />
         </asp:TemplateField>
         <asp:TemplateField HeaderText="File Received">
             <ItemTemplate>
                 <%# Eval("ReferenceFile") == null ? false : true %>
             </ItemTemplate>
+            <ItemStyle HorizontalAlign="Center" />
+            <HeaderStyle HorizontalAlign="Left" />
         </asp:TemplateField>
     </Columns>    
 </asp:GridView>
@@ -65,7 +71,7 @@ Application: <asp:DropDownList ID="dlistApplications" runat="server" AutoPostBac
     <br />
     
     <asp:Button ID="btnUpdateList" runat="server" Text="Update Unsolicited List" Visible="false" OnClick="btnUpdateList_Click" />
-
+      <br />
       <br />
 <hr />
     <br />
@@ -75,6 +81,6 @@ Application: <asp:DropDownList ID="dlistApplications" runat="server" AutoPostBac
        <asp:Literal ID="litEmailBody" runat="server"></asp:Literal><br />
     </div>
     </div>
-
+<br /><br /><br />
 </asp:Content>
 
