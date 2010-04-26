@@ -7,7 +7,7 @@ namespace CAESDO.Recruitment.BLL
 {
     public class MessageBLL
     {
-        public static IMessageGateway MessageGateway = new DevMessageGateway();
+        public static IMessageGateway MessageGateway = new MessageGateway();
         public static IPrincipal UserContext = new UserContext();
 
         /// <summary>
