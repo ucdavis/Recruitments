@@ -295,7 +295,7 @@
                         <td colspan="2"><br /></td>
                     </tr>
                     <tr>
-                        <td colspan="2">Please note all extramural references must be from outside UC Davis.</td>
+                        <td colspan="2">Extramural reviewers should be people from outside UC Davis.</td>
                     </tr>
                     <tr>
                         <td colspan="2">
