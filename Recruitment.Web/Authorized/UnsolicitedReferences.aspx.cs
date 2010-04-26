@@ -9,6 +9,7 @@ using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Collections.Generic;
+using CAESDO.Recruitment.Core.Abstractions;
 using CAESDO.Recruitment.Core.Domain;
 using CAESDO.Recruitment.Data;
 using CAESDO.Recruitment.Core.DataInterfaces;

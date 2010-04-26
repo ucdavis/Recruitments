@@ -8,6 +8,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
+using CAESDO.Recruitment.Core.Abstractions;
 using CAESDO.Recruitment.Core.Domain;
 using CAESDO.Recruitment.Data;
 using System.Web.Configuration;

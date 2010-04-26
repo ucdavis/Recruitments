@@ -1,5 +1,6 @@
 using System;
 using System.Web.UI.WebControls;
+using CAESDO.Recruitment.Core.Abstractions;
 using CAESDO.Recruitment.Core.Domain;
 using System.Web.Configuration;
 using CAESDO.Recruitment.BLL;

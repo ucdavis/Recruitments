@@ -6,6 +6,7 @@ using System.Web.Services.Protocols;
 using System.Web.Script.Services;
 using AjaxControlToolkit;
 using System.Collections.Generic;
+using CAESDO.Recruitment.Core.Abstractions;
 using CAESDO.Recruitment.Core.Domain;
 using CAESDO.Recruitment.Data;
 using CAESDO.Recruitment.Core.DataInterfaces;
