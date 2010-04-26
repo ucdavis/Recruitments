@@ -119,6 +119,8 @@ namespace CAESDO.Recruitment.Test
             
             target = NHibernateHelper.daoFactory.GetProfileDao().Save(target); //save the target
 
+            this.TestContext.WriteLine("Profile created: ID={0}", target.ID);
+
             Assert.IsNotNull(target);
             Assert.IsFalse(target.IsTransient()); //make sure that target is saved to the database
 
@@ -128,10 +130,10 @@ namespace CAESDO.Recruitment.Test
             Assert.AreEqual<Profile>(target, targetDB);
 
             //Now delete the new profile
-            NHibernateHelper.daoFactory.GetProfileDao().Delete(target);
-
-            NHibernateHelper.daoFactory.GetProfileDao().CommitChanges(); //Must commit your changes
-
+            using (new CAESDO.Recruitment.Data.NHibernateTransaction())
+            {
+                NHibernateHelper.daoFactory.GetProfileDao().Delete(target);
+            }
             //Make sure it is deleted
             bool isDeleted = false;
 
