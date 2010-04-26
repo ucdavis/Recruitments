@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace Recruitment.Core
+namespace CAESDO.Recruitment.Core
 {
     public class Class1
     {
