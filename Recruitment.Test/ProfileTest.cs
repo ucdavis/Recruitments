@@ -18,8 +18,6 @@ namespace CAESDO.Recruitment.Test
     [TestClass()]
     public class ProfileTest
     {
-
-
         private TestContext testContextInstance;
 
         /// <summary>

@@ -154,13 +154,13 @@ namespace CAESDO.Recruitment.Test
         {
             Application target = new Application();
 
-            bool expected = false;
-            bool actual;
+            //bool expected = false;
+            //bool actual;
 
-            actual = target.isComplete();
+            //actual = target.isComplete();
 
-            Assert.AreEqual(expected, actual, "CAESDO.Recruitment.Core.Domain.Application.isComplete did not return the expected" +
-                    " value.");
+            //Assert.AreEqual(expected, actual, "CAESDO.Recruitment.Core.Domain.Application.isComplete did not return the expected" +
+            //        " value.");
             Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
