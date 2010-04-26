@@ -294,7 +294,7 @@
                                 First Name:</td>
                             <td  >
                                 <asp:TextBox ID="txtReferencesFirstName" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
-                                <asp:RequiredFieldValidator id="reqValReferencesFirstName" ControlToValidate="txtReferencesFirstName" ErrorMessage="*" runat="server"/>
+                                <asp:RequiredFieldValidator id="reqValReferencesFirstName" ControlToValidate="txtReferencesFirstName" ValidationGroup="References" ErrorMessage="*" runat="server"/>
                             </td>
                         </tr>
                         <tr>
@@ -302,7 +302,7 @@
                                 Last Name:</td>
                             <td  >
                                 <asp:TextBox ID="txtReferencesLastName" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
-                                <asp:RequiredFieldValidator id="reqValReferencesLastName" ControlToValidate="txtReferencesLastName" ErrorMessage="*" runat="server"/>
+                                <asp:RequiredFieldValidator id="reqValReferencesLastName" ControlToValidate="txtReferencesLastName" ValidationGroup="References" ErrorMessage="*" runat="server"/>
                             </td>
                         </tr>
                         <tr>
@@ -310,7 +310,7 @@
                                 Academic Title:</td>
                             <td  >
                                 <asp:TextBox ID="txtReferencesAcadTitle" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
-                                <asp:RequiredFieldValidator id="reqValReferencesAcadTitle" ControlToValidate="txtReferencesAcadTitle" ErrorMessage="*" runat="server"/>                                
+                                <asp:RequiredFieldValidator id="reqValReferencesAcadTitle" ControlToValidate="txtReferencesAcadTitle" ValidationGroup="References" ErrorMessage="*" runat="server"/>                                
                             </td>
                         </tr>
                         <tr>
@@ -318,7 +318,7 @@
                                 Area of Expertise:</td>
                             <td  >
                                 <asp:TextBox ID="txtReferencesExpertise" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
-                                <asp:RequiredFieldValidator id="reqValReferencesExpertise" ControlToValidate="txtReferencesExpertise" ErrorMessage="*" runat="server"/>
+                                <asp:RequiredFieldValidator id="reqValReferencesExpertise" ControlToValidate="txtReferencesExpertise" ValidationGroup="References" ErrorMessage="*" runat="server"/>
                             </td>
                         </tr>
                          <tr>
@@ -326,7 +326,7 @@
                                 Department:</td>
                             <td  >
                                 <asp:TextBox ID="txtReferencesDepartment" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
-                                <asp:RequiredFieldValidator id="reqValReferencesDepartment" ControlToValidate="txtReferencesDepartment" ErrorMessage="*" runat="server"/>
+                                <asp:RequiredFieldValidator id="reqValReferencesDepartment" ControlToValidate="txtReferencesDepartment" ValidationGroup="References" ErrorMessage="*" runat="server"/>
                             </td>
                         </tr>
                          <tr>
@@ -334,7 +334,7 @@
                                 Institute:</td>
                             <td  >
                                 <asp:TextBox ID="txtReferencesInstitute" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
-                                <asp:RequiredFieldValidator id="reqValReferencesInstitute" ControlToValidate="txtReferencesInstitute" ErrorMessage="*" runat="server"/>
+                                <asp:RequiredFieldValidator id="reqValReferencesInstitute" ControlToValidate="txtReferencesInstitute" ValidationGroup="References" ErrorMessage="*" runat="server"/>
                             </td>
                         </tr>
                         <tr>
@@ -342,7 +342,7 @@
                                 Address 1:</td>
                             <td  >
                                 <asp:TextBox ID="txtReferencesAddress1" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
-                                <asp:RequiredFieldValidator id="reqValReferencesAddress1" ControlToValidate="txtReferencesAddress1" ErrorMessage="*" runat="server"/>
+                                <asp:RequiredFieldValidator id="reqValReferencesAddress1" ControlToValidate="txtReferencesAddress1" ValidationGroup="References" ErrorMessage="*" runat="server"/>
                             </td>
                         </tr>
                         <tr>
@@ -357,7 +357,7 @@
                                 City:</td>
                             <td  >
                                 <asp:TextBox ID="txtReferencesCity" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
-                                <asp:RequiredFieldValidator id="reqValReferencesCity" ControlToValidate="txtReferencesCity" ErrorMessage="*" runat="server"/>
+                                <asp:RequiredFieldValidator id="reqValReferencesCity" ControlToValidate="txtReferencesCity" ValidationGroup="References" ErrorMessage="*" runat="server"/>
                             </td>
                         </tr>
                         <tr>
@@ -365,7 +365,7 @@
                                 State:</td>
                             <td  >
                                 <asp:TextBox ID="txtReferencesState" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
-                                <asp:RequiredFieldValidator id="reqValReferencesState" ControlToValidate="txtReferencesState" ErrorMessage="*" runat="server"/>
+                                <asp:RequiredFieldValidator id="reqValReferencesState" ControlToValidate="txtReferencesState" ValidationGroup="References" ErrorMessage="*" runat="server"/>
                             </td>
                         </tr>
                         <tr>
@@ -373,7 +373,7 @@
                                 Zip:</td>
                             <td  >
                                 <asp:TextBox ID="txtReferencesZip" runat="server" MaxLength="20" EnableViewState="false"></asp:TextBox>
-                                <asp:RequiredFieldValidator id="reqValReferencesZip" ControlToValidate="txtReferencesZip" ErrorMessage="*" runat="server"/>
+                                <asp:RequiredFieldValidator id="reqValReferencesZip" ControlToValidate="txtReferencesZip" ValidationGroup="References" ErrorMessage="*" runat="server"/>
                             </td>
                         </tr>
                         <tr>
@@ -388,8 +388,8 @@
                                 Phone Number:</td>
                             <td  >
                                 <asp:TextBox ID="txtReferencesPhone" runat="server" MaxLength="20" EnableViewState="false"></asp:TextBox>
-                                <asp:RequiredFieldValidator id="reqValReferencesPhone" ControlToValidate="txtReferencesPhone" ErrorMessage="*" runat="server"/>
-                                <asp:RegularExpressionValidator ID="regValReferencesPhone" runat="server" ControlToValidate="txtReferencesPhone" ErrorMessage="*" ValidationExpression="((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}"></asp:RegularExpressionValidator>
+                                <asp:RequiredFieldValidator id="reqValReferencesPhone" ControlToValidate="txtReferencesPhone" ValidationGroup="References" ErrorMessage="*" runat="server"/>
+                                <asp:RegularExpressionValidator ID="regValReferencesPhone" runat="server" ControlToValidate="txtReferencesPhone" ValidationGroup="References" ErrorMessage="*" ValidationExpression="((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}"></asp:RegularExpressionValidator>
                             </td>
                         </tr>
                         <tr>
@@ -397,8 +397,8 @@
                                 Email:</td>
                             <td  >
                                 <asp:TextBox ID="txtReferencesEmail" runat="server" MaxLength="100" EnableViewState="false"></asp:TextBox>
-                                <asp:RequiredFieldValidator id="reqValReferencesEmail" ControlToValidate="txtReferencesEmail" ErrorMessage="*" runat="server"/>
-                                <asp:RegularExpressionValidator ID="regValReferencesEmail" runat="server" ErrorMessage="*" ControlToValidate="txtReferencesEmail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
+                                <asp:RequiredFieldValidator id="reqValReferencesEmail" ControlToValidate="txtReferencesEmail" ValidationGroup="References" ErrorMessage="*" runat="server"/>
+                                <asp:RegularExpressionValidator ID="regValReferencesEmail" runat="server" ValidationGroup="References" ErrorMessage="*" ControlToValidate="txtReferencesEmail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                             </td>
                         </tr>
                         <tr>
@@ -406,8 +406,8 @@
                             </td>
                             <td align="right"  >
                                 <br />
-                                <asp:Button ID="btnReferencesAddUpdate" runat="server" CommandArgument="0" Text="Add Reference" OnClick="btnReferencesAddUpdate_Click" />
-                                <asp:Button ID="btnReferencesCancel" runat="server" Text="Cancel" OnClick="btnReferencesCancel_Click" />
+                                <asp:Button ID="btnReferencesAddUpdate" runat="server" CommandArgument="0" Text="Add Reference" ValidationGroup="References" OnClick="btnReferencesAddUpdate_Click" />
+                                <asp:Button ID="btnReferencesCancel" runat="server" Text="Cancel" CausesValidation="false" OnClick="btnReferencesCancel_Click" />
                             </td>
                         </tr>
                     </table></div>
