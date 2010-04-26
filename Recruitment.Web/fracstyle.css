@@ -357,7 +357,7 @@ li.viewPositionsList a:active {background: url(Images/ibPositionsList3.gif) no-r
 /*                               */
 
 .dropdownmenu {
-float:right; text-align:right; position:relative; background:transparent; width:240px;  margin:0;
+float:right; text-align:right; position:relative; background:transparent; width:310px;  margin:0; z-index: 100;
 }
 .dropdownmenu ul {
 padding:0; margin:0; list-style-type: none;
