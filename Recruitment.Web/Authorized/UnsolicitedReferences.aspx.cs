@@ -117,6 +117,14 @@ namespace CAESDO.Recruitment.Web
             message.IsBodyHtml = true;
             client.Send(message);
 
+            //Record when the unsolicited email was sent out
+            using (new NHibernateTransaction())
+            {
+                currentReference.UnsolicitedEmailDate = DateTime.Now;
+
+                daoFactory.GetReferenceDao().SaveOrUpdate(currentReference);
+            }
+
             lblResult.Text = "Email sent successfully";
         }
     }

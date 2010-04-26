@@ -30,6 +30,7 @@
     <property name="SentEmail" column="SentEmail" />
     <property name="EmailDate" column="EmailDate" />
     <property name="UnsolicitedReference" column="UnsolicitedReference" />
+    <property name="UnsolicitedEmailDate" column="UnsolicitedEmailDate" />
     <property name="UploadID" column="UploadID" />
     <property name="Complete" column="Complete" />
 

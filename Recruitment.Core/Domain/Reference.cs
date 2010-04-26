@@ -188,6 +188,15 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _UnsolicitedReference; }
             set { _UnsolicitedReference = value; }
         }
+
+        private DateTime _UnsolicitedEmailDate;
+
+        [IgnoreNulls]
+        public virtual DateTime UnsolicitedEmailDate
+        {
+            get { return _UnsolicitedEmailDate; }
+            set { _UnsolicitedEmailDate = value; }
+        }
                 
         private string _UploadID;
 
