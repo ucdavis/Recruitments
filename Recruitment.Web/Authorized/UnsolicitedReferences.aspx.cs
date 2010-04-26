@@ -55,13 +55,14 @@ namespace CAESDO.Recruitment.Web
                 return; //Return if the selected value is not a valid applicationID
             }
 
-            gViewReferences.Visible = true; //Show the references grid
-            btnUpdateList.Visible = true;
-
             Application currentApplication = ApplicationBLL.GetByID(applicationID);
 
             gViewReferences.DataSource = currentApplication.References;
             gViewReferences.DataBind();
+
+            gViewReferences.Visible = true; //Show the references grid
+
+            btnUpdateList.Visible = gViewReferences.Rows.Count > 0;
         }
         
         protected void btnUpdateList_Click(object sender, EventArgs e)
