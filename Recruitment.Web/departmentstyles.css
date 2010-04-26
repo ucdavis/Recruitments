@@ -2,7 +2,7 @@
 
 .ADNOstyle
 {
-	background: url(Images/cl_caes.gif) no-repeat top right;
+	background: url(Images/cl_ADNO.gif) no-repeat top right;
 	float:right;
 	padding-top: 150px; 
 	overflow:hidden;
@@ -10,7 +10,7 @@
 
 .AANSstyle
 {
-	background: url(Images/cl_AANS.jpg) no-repeat top right;
+	background: url(Images/cl_AANS.gif) no-repeat top right;
 	float:right;
 	padding-top: 150px; 
 	overflow:hidden;
@@ -26,7 +26,7 @@
 }
 .ABAEstyle
 {
-	background: url(Images/cl_AANS.jpg) no-repeat top right;
+	background: url(Images/cl_ABAE.gif) no-repeat top right;
 	float:right;
 	padding-top: 150px; 
 	overflow:hidden;
@@ -52,14 +52,6 @@
 .AHCDstyle
 {
 	background: url(Images/cl_AHCD.gif) no-repeat top right;
-	float:right;
-	padding-top: 150px; 
-	overflow:hidden;
-}
-
-.AINDstyle
-{
-	background: url(Images/cl_AIND.gif) no-repeat top right;
 	float:right;
 	padding-top: 150px; 
 	overflow:hidden;
