@@ -37,8 +37,8 @@ namespace CAESDO.Recruitment.Web
             gViewUserUnits.DataSource = selectedUser.Units;
             gViewUserUnits.DataBind();
 
-            //gViewUserRoles.DataSource = CatbertManager.GetRolesByUser(selectedLoginID);
-            //gViewUserRoles.DataBind();
+            gViewUserRoles.DataSource = CatbertManager.GetRolesByUser(selectedLoginID);
+            gViewUserRoles.DataBind();
 
             //Update the panel with the newest information and show the modal popup
             updateUserInfo.Update();
@@ -122,6 +122,34 @@ namespace CAESDO.Recruitment.Web
             updateAddUser.Update(); // update the add user panel
 
             mpopupAddUser.Show(); //keep up the popup
+        }
+
+        protected void btnUserInfoAddRole_Click(object sender, EventArgs e)
+        {
+            //Add the user to the desired unit
+            bool success = CatbertManager.AddUserToRole(lblUserInfoLoginID.Text, int.Parse(dlistRoles.SelectedValue));
+            
+            //update the grid
+            gViewUserRoles.DataSource = CatbertManager.GetRolesByUser(lblUserInfoLoginID.Text);
+            gViewUserRoles.DataBind();
+
+            updateUserInfo.Update();
+            mpopupUserInfo.Show();
+        }
+
+        protected void gViewUserRoles_RowDeleting(object sender, GridViewDeleteEventArgs e)
+        {
+            GridView gv = (GridView)sender;
+
+            //Remove the user from the desired unit
+            bool success = CatbertManager.RemoveUserFromRole((int)gv.DataKeys[e.RowIndex].Value, lblUserInfoLoginID.Text);
+            
+            //update the grid
+            gViewUserRoles.DataSource = CatbertManager.GetRolesByUser(lblUserInfoLoginID.Text);
+            gViewUserRoles.DataBind();
+
+            updateUserInfo.Update();
+            mpopupUserInfo.Show();
         }
 }
 }

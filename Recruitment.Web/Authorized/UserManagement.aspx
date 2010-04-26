@@ -117,7 +117,7 @@
             EmployeeID: <asp:Label ID="lblUserInfoEmployeeID" runat="server" Text=""></asp:Label>
             <br />
                 Units:<br />
-                <asp:GridView ID="gViewUserUnits" runat="server" DataKeyNames="ID" CellPadding="4" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" OnRowDeleting="gViewUserUnits_RowDeleting">
+                <asp:GridView ID="gViewUserUnits" runat="server" DataKeyNames="UnitID" CellPadding="4" ForeColor="#333333" GridLines="None" AutoGenerateColumns="False" OnRowDeleting="gViewUserUnits_RowDeleting">
                     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                     <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                     <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
@@ -139,11 +139,12 @@
                 Roles:
                 <br />
                 <asp:GridView ID="gViewUserRoles" runat="server" AutoGenerateColumns="False" CellPadding="4"
-                    DataKeyNames="RoleID" ForeColor="#333333" GridLines="None">
+                    DataKeyNames="RoleID" ForeColor="#333333" GridLines="None" OnRowDeleting="gViewUserRoles_RowDeleting">
                     <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
                     <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
                     <Columns>
                         <asp:BoundField DataField="Role" HeaderText="Role" />
+                        <asp:CommandField DeleteText="Remove" ShowDeleteButton="True" />
                     </Columns>
                     <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
                     <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
@@ -152,7 +153,7 @@
                     <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
                 </asp:GridView>
                 <br />
-                <asp:LinkButton ID="btnUserInfoAddRole" runat="server">Add Role</asp:LinkButton>
+                <asp:LinkButton ID="btnUserInfoAddRole" runat="server" OnClick="btnUserInfoAddRole_Click">Add Role</asp:LinkButton>
                 <asp:DropDownList ID="dlistRoles" runat="server" DataSourceID="ObjectDataRoles" DataTextField="Role"
                     DataValueField="RoleID">
                 </asp:DropDownList><asp:ObjectDataSource ID="ObjectDataRoles" runat="server" OldValuesParameterFormatString="original_{0}"

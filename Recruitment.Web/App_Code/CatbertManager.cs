@@ -85,7 +85,16 @@ namespace CAESDO.Recruitment
 
         public static int InsertNewUser(string login)
         {
-            return catops.InsertNewUser(login, HASH);
+            CatOps.Users[] newUsers = CatbertManager.SearchNewUsersByLogin(login);
+            if ( newUsers.Length != 1 )
+                return -1;
+
+            return catops.InsertNewUser(newUsers[0], HASH);
+        }
+
+        public static int InsertNewUser(CatOps.Users user)
+        {
+            return catops.InsertNewUser(user, HASH);
         }
 
         public CatbertManager()
@@ -93,11 +102,7 @@ namespace CAESDO.Recruitment
             CatOps.Users u = new CatOps.Users();
             CatOps.CatbertUsers cu = new CatOps.CatbertUsers();
             CatOps.Roles r = new CatOps.Roles();
-            //cu.EmployeeID;
-            //cu.FirstName;
-            //cu.LastName;
-            //cu.Role;
-
+           
             //
             // TODO: Add constructor logic here
             //
