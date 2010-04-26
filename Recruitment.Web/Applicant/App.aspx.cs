@@ -473,128 +473,18 @@ namespace CAESDO.Recruitment.Web
         }
 
         protected void btnResumeUpload_Click(object sender, EventArgs e)
-        {
-            FileType resumeFileType = daoFactory.GetFileTypeDao().GetFileTypeByName(STR_Resume);
-
-            RemoveAllFilesOfType(STR_Resume);
-
-            if (fileResume.HasFile)
-            {
-                if (fileResume.PostedFile.ContentType == STR_Applicationpdf)
-                {
-                    File resume = new File();
-
-                    resume.FileName = fileResume.FileName;
-                    resume.FileType = resumeFileType;
-
-                    using (new NHibernateTransaction())
-                    {
-                        resume = daoFactory.GetFileDao().Save(resume);
-                    }
-
-                    if (ValidateBO<File>.isValid(resume))
-                    {
-                        fileResume.SaveAs(FilePath + resume.ID.ToString());
-
-                        currentApplication.Files.Add(resume);
-
-                        using (new NHibernateTransaction())
-                        {
-                            daoFactory.GetApplicationDao().SaveOrUpdate(currentApplication);
-                        }
-                    }
-                    else
-                    {
-                        Trace.Warn(ValidateBO<File>.GetValidationResultsAsString(resume));
-                    }
-                }
-            }
-
-            ReloadStepListAndSelectHome(STR_Resume, true);
+        {            
+            ReloadStepListAndSelectHome(STR_Resume, AddUniqueFileToApplication(fileResume, STR_Resume));
         }
 
         protected void btnCVUpload_Click(object sender, EventArgs e)
         {
-            FileType cvFileType = daoFactory.GetFileTypeDao().GetFileTypeByName(STR_CV);
-
-            RemoveAllFilesOfType(STR_CV);
-
-            if (fileCV.HasFile)
-            {
-                if (fileCV.PostedFile.ContentType == STR_Applicationpdf)
-                {
-                    File cv = new File();
-
-                    cv.FileName = fileCV.FileName;
-                    cv.FileType = cvFileType;
-
-                    using (new NHibernateTransaction())
-                    {
-                        cv = daoFactory.GetFileDao().Save(cv);
-                    }
-
-                    if (ValidateBO<File>.isValid(cv))
-                    {
-                        fileCV.SaveAs(FilePath + cv.ID.ToString());
-
-                        currentApplication.Files.Add(cv);
-
-                        using (new NHibernateTransaction())
-                        {
-                            daoFactory.GetApplicationDao().SaveOrUpdate(currentApplication);
-                        }
-                    }
-                    else
-                    {
-                        Trace.Warn(ValidateBO<File>.GetValidationResultsAsString(cv));
-                    }
-                }
-            }
-            else
-                ReloadStepListAndSelectHome(STR_CV, false);
-
-            ReloadStepListAndSelectHome(STR_CV, true);
+            ReloadStepListAndSelectHome(STR_CV, AddUniqueFileToApplication(fileCV, STR_CV));
         }
 
         protected void btnCoverLetterUpload_Click(object sender, EventArgs e)
         {
-            FileType coverLetterFileType = daoFactory.GetFileTypeDao().GetFileTypeByName(STR_FileType_CoverLetter);
-
-            RemoveAllFilesOfType(STR_FileType_CoverLetter);
-
-            if (fileCoverLetter.HasFile)
-            {
-                if (fileCoverLetter.PostedFile.ContentType == STR_Applicationpdf)
-                {
-                    File coverLetter = new File();
-
-                    coverLetter.FileName = fileCoverLetter.FileName;
-                    coverLetter.FileType = coverLetterFileType;
-
-                    using (new NHibernateTransaction())
-                    {
-                        coverLetter = daoFactory.GetFileDao().Save(coverLetter);
-                    }
-
-                    if (ValidateBO<File>.isValid(coverLetter))
-                    {
-                        fileCoverLetter.SaveAs(FilePath + coverLetter.ID.ToString());
-
-                        currentApplication.Files.Add(coverLetter);
-
-                        using (new NHibernateTransaction())
-                        {
-                            daoFactory.GetApplicationDao().SaveOrUpdate(currentApplication);
-                        }
-                    }
-                    else
-                    {
-                        Trace.Warn(ValidateBO<File>.GetValidationResultsAsString(coverLetter));
-                    }
-                }
-            }
-
-            ReloadStepListAndSelectHome(STR_CoverLetter, true);
+            ReloadStepListAndSelectHome(STR_CoverLetter, AddUniqueFileToApplication(fileCoverLetter, STR_FileType_CoverLetter));
         }
 
         protected void chkCoverLetterOption_CheckedChanged(object sender, EventArgs e)
@@ -609,219 +499,27 @@ namespace CAESDO.Recruitment.Web
 
         protected void btnResearchInterestsUpload_Click(object sender, EventArgs e)
         {
-            FileType ResearchInterestsFileType = daoFactory.GetFileTypeDao().GetFileTypeByName(STR_FileType_ResearchInterests);
-
-            RemoveAllFilesOfType(STR_FileType_ResearchInterests);
-
-            if (fileResearchInterests.HasFile)
-            {
-                if (fileResearchInterests.PostedFile.ContentType == STR_Applicationpdf)
-                {
-                    File researchInterests = new File();
-
-                    researchInterests.FileName = fileResearchInterests.FileName;
-                    researchInterests.FileType = ResearchInterestsFileType;
-
-                    using (new NHibernateTransaction())
-                    {
-                        researchInterests = daoFactory.GetFileDao().Save(researchInterests);
-                    }
-
-                    if (ValidateBO<File>.isValid(researchInterests))
-                    {
-                        fileResearchInterests.SaveAs(FilePath + researchInterests.ID.ToString());
-
-                        currentApplication.Files.Add(researchInterests);
-
-                        using (new NHibernateTransaction())
-                        {
-                            daoFactory.GetApplicationDao().SaveOrUpdate(currentApplication);
-                        }
-                    }
-                    else
-                    {
-                        Trace.Warn(ValidateBO<File>.GetValidationResultsAsString(researchInterests));
-                    }
-                }
-
-                ReloadStepListAndSelectHome(STR_ResearchInterests, true);
-            }
-            else
-            {
-                ReloadStepListAndSelectHome(STR_ResearchInterests, false);
-            }
+            ReloadStepListAndSelectHome(STR_ResearchInterests, AddUniqueFileToApplication(fileResearchInterests, STR_FileType_ResearchInterests));
         }
 
         protected void btnExtensionInterestsUpload_Click(object sender, EventArgs e)
         {
-            FileType ExtensionInterestsFileType = daoFactory.GetFileTypeDao().GetFileTypeByName(STR_FileType_ExtensionInterests);
-
-            RemoveAllFilesOfType(STR_FileType_ExtensionInterests);
-
-            if (fileExtensionInterests.HasFile)
-            {
-                if (fileExtensionInterests.PostedFile.ContentType == STR_Applicationpdf)
-                {
-                    File extensionInterests = new File();
-
-                    extensionInterests.FileName = fileExtensionInterests.FileName;
-                    extensionInterests.FileType = ExtensionInterestsFileType;
-
-                    using (new NHibernateTransaction())
-                    {
-                        extensionInterests = daoFactory.GetFileDao().Save(extensionInterests);
-                    }
-
-                    if (ValidateBO<File>.isValid(extensionInterests))
-                    {
-                        fileExtensionInterests.SaveAs(FilePath + extensionInterests.ID.ToString());
-
-                        currentApplication.Files.Add(extensionInterests);
-
-                        using (new NHibernateTransaction())
-                        {
-                            daoFactory.GetApplicationDao().SaveOrUpdate(currentApplication);
-                        }
-                    }
-                    else
-                    {
-                        Trace.Warn(ValidateBO<File>.GetValidationResultsAsString(extensionInterests));
-                    }
-                }
-
-                ReloadStepListAndSelectHome(STR_ExtensionInterests, true);
-            }
-            else
-            {
-                ReloadStepListAndSelectHome(STR_ExtensionInterests, false);
-            }
+            ReloadStepListAndSelectHome(STR_ExtensionInterests, AddUniqueFileToApplication(fileExtensionInterests, STR_FileType_ExtensionInterests));
         }
 
         protected void btnTeachingInterestsUpload_Click(object sender, EventArgs e)
         {
-            FileType TeachingInterestsFileType = daoFactory.GetFileTypeDao().GetFileTypeByName(STR_FileType_TeachingInterests);
-
-            RemoveAllFilesOfType(STR_FileType_TeachingInterests);
-
-            if (fileTeachingInterests.HasFile)
-            {
-                if (fileTeachingInterests.PostedFile.ContentType == STR_Applicationpdf)
-                {
-                    File teachingInterests = new File();
-
-                    teachingInterests.FileName = fileTeachingInterests.FileName;
-                    teachingInterests.FileType = TeachingInterestsFileType;
-
-                    using (new NHibernateTransaction())
-                    {
-                        teachingInterests = daoFactory.GetFileDao().Save(teachingInterests);
-                    }
-
-                    if (ValidateBO<File>.isValid(teachingInterests))
-                    {
-                        fileTeachingInterests.SaveAs(FilePath + teachingInterests.ID.ToString());
-
-                        currentApplication.Files.Add(teachingInterests);
-
-                        using (new NHibernateTransaction())
-                        {
-                            daoFactory.GetApplicationDao().SaveOrUpdate(currentApplication);
-                        }
-                    }
-                    else
-                    {
-                        Trace.Warn(ValidateBO<File>.GetValidationResultsAsString(teachingInterests));
-                    }
-                }
-
-                ReloadStepListAndSelectHome(STR_TeachingInterests, true);
-            }
-            else
-            {
-                ReloadStepListAndSelectHome(STR_TeachingInterests, false);
-            }
+            ReloadStepListAndSelectHome(STR_TeachingInterests, AddUniqueFileToApplication(fileTeachingInterests, STR_FileType_TeachingInterests));
         }
 
         protected void btnTranscriptsUpload_Click(object sender, EventArgs e)
         {
-            FileType transcriptsFileType = daoFactory.GetFileTypeDao().GetFileTypeByName(_Transcript);
-
-            RemoveAllFilesOfType(_Transcript);
-
-            if (fileTranscripts.HasFile)
-            {
-                if (fileTranscripts.PostedFile.ContentType == STR_Applicationpdf)
-                {
-                    File transcripts = new File();
-
-                    transcripts.FileName = fileTranscripts.FileName;
-                    transcripts.FileType = transcriptsFileType;
-
-                    using (new NHibernateTransaction())
-                    {
-                        transcripts = daoFactory.GetFileDao().Save(transcripts);
-                    }
-
-                    if (ValidateBO<File>.isValid(transcripts))
-                    {
-                        fileTranscripts.SaveAs(FilePath + transcripts.ID.ToString());
-
-                        currentApplication.Files.Add(transcripts);
-
-                        using (new NHibernateTransaction())
-                        {
-                            daoFactory.GetApplicationDao().SaveOrUpdate(currentApplication);
-                        }
-                    }
-                    else
-                    {
-                        Trace.Warn(ValidateBO<File>.GetValidationResultsAsString(transcripts));
-                    }
-                }
-            }
-
-            ReloadStepListAndSelectHome(STR_Transcripts, true);
+            ReloadStepListAndSelectHome(STR_Transcripts, AddUniqueFileToApplication(fileTranscripts, STR_FileType_Transcript));
         }
         
         protected void btnDissertationUpload_Click(object sender, EventArgs e)
         {
-            FileType dissertationFileType = daoFactory.GetFileTypeDao().GetFileTypeByName(STR_Dissertation);
-
-            RemoveAllFilesOfType(STR_Dissertation);
-
-            if (fileDissertation.HasFile)
-            {
-                if (fileDissertation.PostedFile.ContentType == STR_Applicationpdf)
-                {
-                    File dissertation = new File();
-
-                    dissertation.FileName = fileDissertation.FileName;
-                    dissertation.FileType = dissertationFileType;
-
-                    using (new NHibernateTransaction())
-                    {
-                        dissertation = daoFactory.GetFileDao().Save(dissertation);
-                    }
-
-                    if (ValidateBO<File>.isValid(dissertation))
-                    {
-                        fileDissertation.SaveAs(FilePath + dissertation.ID.ToString());
-
-                        currentApplication.Files.Add(dissertation);
-
-                        using (new NHibernateTransaction())
-                        {
-                            daoFactory.GetApplicationDao().SaveOrUpdate(currentApplication);
-                        }
-                    }
-                    else
-                    {
-                        Trace.Warn(ValidateBO<File>.GetValidationResultsAsString(dissertation));
-                    }
-                }
-            }
-
-            ReloadStepListAndSelectHome(STR_Dissertation, true);
+            ReloadStepListAndSelectHome(STR_Dissertation, AddUniqueFileToApplication(fileDissertation, STR_Dissertation));
         }
 
         protected void btnPublicationsUpload_Click(object sender, EventArgs e)
@@ -1337,6 +1035,52 @@ namespace CAESDO.Recruitment.Web
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// Function which will upload the file in the fileUpload control into the current application
+        /// as the given fileType.  Note that this will remove all other files of the fileType from the application
+        /// </summary>
+        /// <param name="fileUpload">The file upload control containing the file</param>
+        /// <param name="fileTypeName">The fileType to upload as</param>
+        /// <returns>True on success, else false</returns>
+        private bool AddUniqueFileToApplication(FileUpload fileUpload, string fileTypeName)
+        {
+            FileType FileType = daoFactory.GetFileTypeDao().GetFileTypeByName(fileTypeName);
+
+            RemoveAllFilesOfType(fileTypeName);
+
+            if (fileUpload.HasFile)
+            {
+                if (fileUpload.PostedFile.ContentType == STR_Applicationpdf)
+                {
+                    File file = new File();
+
+                    file.FileName = fileUpload.FileName;
+                    file.FileType = FileType;
+
+                    using (new NHibernateTransaction())
+                    {
+                        file = daoFactory.GetFileDao().Save(file);
+                    }
+
+                    if (ValidateBO<File>.isValid(file))
+                    {
+                        fileUpload.SaveAs(FilePath + file.ID.ToString());
+
+                        currentApplication.Files.Add(file);
+
+                        using (new NHibernateTransaction())
+                        {
+                            daoFactory.GetApplicationDao().SaveOrUpdate(currentApplication);
+                        }
+
+                        return true;
+                    }
+                }
+            }
+
+            return false;
         }
 
         /// <summary>
