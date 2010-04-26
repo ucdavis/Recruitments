@@ -300,7 +300,7 @@ namespace CAESDO.Recruitment.Web
                 {
                     case ApplicationStepType.CurrentPosition:
                         if (!currentApplication.isComplete(ApplicationStepType.CurrentPosition))
-                            incompleteSteps.Add(STR_CurrentApplication);
+                            incompleteSteps.Add(STR_CurrentPosition);
                         break;
                     case ApplicationStepType.Education:
                         if (!currentApplication.isComplete(ApplicationStepType.Education))
