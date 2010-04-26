@@ -10,8 +10,11 @@
         var today = new Date();
         var PHDDate = new Date(PHDBox.value);
                         
+        var confirmText = "<%= GetLocalResourceObject("PhDFutureMessage") %>";
         if ( PHDDate > today )
-            return confirm("Only set a Ph.D. date in the future if you have not yet received your Ph.D. and are indicating your expected Ph.D. date");
+        {
+            return confirm(confirmText);
+        }            
         else
             return true;
     

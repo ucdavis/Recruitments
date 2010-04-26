@@ -477,6 +477,10 @@
     <value>Please upload your file as a PDF Document. Maximum file size allowed is 10 MB.</value>
     <comment>PDF String used in multiple locations when a PDF upload is  happening.</comment>
   </data>
+  <data name="PhDFutureMessage" xml:space="preserve">
+    <value>Only set a Ph.D. date in the future if you have not yet received your Ph.D. and are indicating your expected Ph.D. date</value>
+    <comment>JavaScript popup message when the PhD date is in the future</comment>
+  </data>
   <data name="pnlConfidentialSurveyHolderResource1.GroupingText" xml:space="preserve">
     <value />
   </data>
