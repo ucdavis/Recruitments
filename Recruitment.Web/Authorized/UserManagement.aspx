@@ -25,6 +25,11 @@
      <asp:Button ID="btnAddUserCancel" runat="server" Text="Cancel" />
      <br />
      <asp:Label ID="lblAddUserStatus" runat="server" ForeColor="Green" EnableViewState="False"></asp:Label><br />
+     <Ajax:UpdateProgress ID="progressAddUser" runat="server" AssociatedUpdatePanelID="updateAddUser">
+        <ProgressTemplate>
+            Searching ... 
+        </ProgressTemplate>
+    </Ajax:UpdateProgress>
      <asp:GridView ID="gViewAddUserSearch" skinID="gridViewUserManagement" runat="server" DataKeyNames="Login" CellPadding="4" DataSourceID="ObjectDataUserSearch" EmptyDataText="No Matching Users Found" ForeColor="#333333" GridLines="None" Visible="False" AutoGenerateColumns="False" OnSelectedIndexChanged="gViewAddUserSearch_SelectedIndexChanged">
          <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
          <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
@@ -71,7 +76,6 @@
  </AjaxControlToolkit:ModalPopupExtender>
 </ContentTemplate>
 </Ajax:UpdatePanel>
-
  
         <br />
         User List:
