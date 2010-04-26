@@ -58,8 +58,10 @@
             Content
             </asp:contentplaceholder>
         </div>
+        <br /><br />
     </div>
 </div>
+<div id="shadowBottom"></div><br /><br />
 </form>
 
 </body>

@@ -1,6 +1,7 @@
-/* 
-FRAC 1.0 CSS
- */
+/*  FRAC 1.0 CSS 
+    June 2007
+    By: Viet Tran
+*/
 
 body 
 {
@@ -8,14 +9,17 @@ body
 	height:100%;
 	font-size:0.8em;
 	font-family: Trebuchet MS, Arial, Georgia;
+	margin: 0;
+	min-width: 750px;
 }
 
-html, body, #wrapper, #aspnetForm, #fom1, #content
+html, #aspnetForm
 {
 	height:100%;
 	margin:0;
 }
 
+/* Resizes and centers title bar and body. */
 #wrapper 
 {
 	width: 80%;
@@ -23,12 +27,14 @@ html, body, #wrapper, #aspnetForm, #fom1, #content
 	margin-right: auto;
 }
 
+/* Adds solid border around content */
 #content
 {
 	clear: both;
 	background-color: #fff;
-	border-left: solid 1px #ccc8b5;
-	border-right: solid 1px #ccc8b5;
+	border-left: solid 1px #bfbaa6;
+	border-right: solid 1px #bfbaa6;
+	border-bottom: solid 1px #bfbaa6;
 	margin-top:7px;
 	margin-bottom: 0px;
 }
@@ -52,26 +58,116 @@ html, body, #wrapper, #aspnetForm, #fom1, #content
 	font-weight: bold;
 }
 
-.grayThang
-{
-	height:60px;
-	background-color: #eee;
-}
-
-.dottedBotBorder td
+/* Adds dotted border to seperate rows in gridview */
+.dottedBotBorder
 {
 	border-bottom: dotted 1px #333333;
 }
 
-.dottedBotBorder tr:hover td
+/* Rows turn to light blue on hover */
+.dottedBotBorder:hover td
 {
 	background-color: #e3edf7;
 }
 
+/* Link colors */
 a:link { color:#0b65c1; text-decoration: none; font-weight:bold; }
 a:visited { color:#0b65c1; }
 a:hover { color:#a50000; }
 a:active { color:#a50000; }
+
+
+/*                               */
+/*     APPLICATION MENU CSS      */
+/*                               */
+
+/* Creates list out of app links and destylizes it */
+.applicationMenu 
+{
+	list-style:none;
+	padding:0;
+	margin:0;
+	font-size: 1.1em;
+	letter-spacing: -0.2px;
+}
+
+/* Creates light blue unselected button */
+.applicationMenu li.unselected
+{
+	width:203px;
+	height: 41px;
+	background-image: url(Images/appmenuUnsel.gif);
+}
+
+/* Creates white selected button */
+.applicationMenu li.selected
+{
+	width:203px;
+	height: 41px;
+	background-image: url(Images/appmenuSel.gif);
+}
+
+/* Link colors for application tabs*/
+.unselected a:link { color:#000; text-decoration: none; }
+.unselected a:link { color:#000; }
+.unselected a:hover { color:#a50000; }
+.unselected a:active { color:#a50000; }
+.selected a:hover { color:#0b65c1; }
+
+/* Rollover effect, turns tabs yellow on hover */
+.applicationMenu li.unselected:hover
+{
+	background-image: url(Images/appmenuHilight.gif);
+}
+
+/* Formatting for X, Check, and Link Buttons */
+.X
+{
+	margin-top:12px;
+}
+
+.appButton
+{
+	width:15px; float:left; margin-left:15px; padding-top:12px; height:19px;
+}
+
+.appLink 
+{
+  padding-top:12px;
+}
+
+
+/* Creates a box around form */
+.box {
+	border : 1px dotted #7f7f7f;
+	padding : 10px;
+	background-color:#EFEFEF;
+} 
+
+.boxTitle 
+{
+	border : 1px solid #CCCCCC;
+	position : relative;
+	top : 15px;
+	left : 30px;
+	background-color : #FFF;
+	padding : 5px 10px;
+	color:#0b65c5;
+	font-size: 1.2em;
+	font-weight: bold;
+}
+
+.paddingLeft
+{
+	padding-left:10px;
+}
+
+
+/* Adds shadow to bottom of content page*/
+#shadowBottom 
+{
+	width: 79%; height:2px; background-color:#d5cfb8; margin-left:auto; margin-right:auto; padding-left:3px; padding-right:3px;
+}
 
 /* Context Drop Down Menu */
 .ContextMenuPanel 
@@ -127,72 +223,4 @@ a.ContextMenuItem:hover
 	border-color:Gray;
 	padding:3px;
 	width:75%;
-}
-
-.applicationMenu 
-{
-	list-style:none;
-	padding:0;
-	margin:0;
-	font-size: 1.1em;
-	letter-spacing: -0.2px;
-}
-
-.applicationMenu li.unselected
-{
-	width:203px;
-	height: 41px;
-	background-image: url(Images/appmenuUnsel.gif);
-}
-
-.applicationMenu li.selected
-{
-	width:203px;
-	height: 41px;
-	background-image: url(Images/appmenuSel.gif);
-}
-
-.unselected a:link { color:#000; text-decoration: none; }
-.unselected a:link { color:#000; }
-.unselected a:hover { color:#a50000; }
-.unselected a:active { color:#a50000; }
-.selected a:hover { color:#0b65c1; }
-
-.applicationMenu li.unselected:hover
-{
-	background-image: url(Images/appmenuHilight.gif);
-}
-
-.X
-{
-	margin-top:12px;
-}
-
-.appButton
-{
-	width:15px; float:left; margin-left:15px; padding-top:12px; height:19px;
-}
-
-.appLink 
-{
-  padding-top:12px;
-}
-
-.box {
-	border : 1px dotted #7f7f7f;
-	padding : 10px;
-	background-color:#EFEFEF;
-} 
-
-.boxTitle 
-{
-	border : 1px solid #CCCCCC;
-	position : relative;
-	top : 30px;
-	left : 30px;
-	background-color : #FFF;
-	padding : 5px 10px;
-	color:#0b65c5;
-	font-size: 1.2em;
-	font-weight: bold;
 }

@@ -1,7 +1,6 @@
 <%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="addPosition.aspx.cs" Inherits="Default2" Title="Untitled Page" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     <span class="boxTitle"><img src="Images/profile_sm.gif" style="vertical-align:middle;" alt="" /> Create Position</span><br />
-    <br />
     <table class="box" style="width:550px; height: 350px;" cellpadding="5">
         <tr>
             <td style="width:225px;" align="right">
@@ -80,5 +79,6 @@
                 <asp:Button ID="Button2" runat="server" Text="Create!" /></td>
         </tr>
     </table>
+ 
 </asp:Content>
 
