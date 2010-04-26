@@ -47,6 +47,7 @@
         <SelectParameters>
             <asp:Parameter DefaultValue="false" Name="Closed" Type="Boolean" />
             <asp:Parameter DefaultValue="true" Name="AdminAccepted" Type="Boolean" />
+            <asp:Parameter DefaultValue="true" Name="AllowApplications" Type="boolean" />
         </SelectParameters>
     </asp:ObjectDataSource>
 

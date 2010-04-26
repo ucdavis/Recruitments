@@ -154,13 +154,23 @@ namespace CAESDO.Recruitment.Data
         /// inherited DAO functionality.
         /// </summary>
         public class PositionDao : AbstractNHibernateDao<Position, int>, IPositionDao {          
+            
+            [DataObjectMethod(DataObjectMethodType.Select, true)]
             public List<Position> GetAllPositionsByStatus(bool Closed, bool AdminAccepted)
             {
+                return GetAllPositionsByStatus(Closed, AdminAccepted, null);
+            }
+
+            public List<Position> GetAllPositionsByStatus(bool Closed, bool AdminAccepted, bool? AllowApplications)
+            {
                 User currentUser = new UserDao().GetUserByLogin(HttpContext.Current.User.Identity.Name);
-                                                
+
                 ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(Position))
                     .Add(Expression.Eq("Closed", Closed))
                     .Add(Expression.Eq("AdminAccepted", AdminAccepted));
+
+                if (AllowApplications.HasValue)
+                    criteria.Add(Expression.Eq("AllowApps", AllowApplications.Value));
 
                 if (currentUser != null) //only filter logged in users
                 {

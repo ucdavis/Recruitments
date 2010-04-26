@@ -141,6 +141,7 @@ namespace CAESDO.Recruitment.Web
 
             newPosition.AllowApps = chkAllowApplications.Checked;
             newPosition.FacultyView = chkAllowFaculty.Checked;
+            newPosition.Closed = chkPositionClosed.Checked;
 
             if (filePositionDescription.HasFile)
             {
@@ -338,6 +339,7 @@ namespace CAESDO.Recruitment.Web
 
             chkAllowApplications.Checked = currentPosition.AllowApps;
             chkAllowFaculty.Checked = currentPosition.FacultyView;
+            chkPositionClosed.Checked = currentPosition.Closed;
 
             lbtnDownloadPositionDescription.Visible = true;
             litDownloadPositionDescription.Visible = true;

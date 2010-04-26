@@ -66,6 +66,12 @@ namespace CAESDO.Recruitment.Web
                 Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.UNKNOWN));
             }
 
+            //Make sure the current's position isn't closed and that it is allowing applications
+            if (currentPosition.Closed || !currentPosition.AllowApps)
+            {
+                Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.AUTH));
+            }
+
             //Now we have a valid Position, so fill in the corresponding fields
             lblPositionTitle.Text = currentPosition.PositionTitle;
             lblPositionNumber.Text = currentPosition.PositionNumber;

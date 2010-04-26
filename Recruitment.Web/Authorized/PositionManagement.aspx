@@ -236,6 +236,14 @@
             </td>
         </tr>
         <tr>
+            <td align="right" style="width:240">
+                Closed:
+            </td>
+            <td>
+                <asp:CheckBox ID="chkPositionClosed" runat="server" />
+            </td>
+        </tr>
+        <tr>
             <td   align="right" style="width: 240">
             </td>
             <td align="right"  >
