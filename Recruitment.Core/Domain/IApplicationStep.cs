@@ -13,9 +13,5 @@ namespace CAESDO.Recruitment.Core.Domain
         }
 
         bool isComplete();
-
-        void Fill();
-
-        void Save();
     }
 }

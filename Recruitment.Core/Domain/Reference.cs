@@ -4,9 +4,8 @@ using System.Text;
 
 namespace CAESDO.Recruitment.Core.Domain
 {
-    public class Reference
+    public class Reference : DomainObject<int>, IApplicationStep
     {
-        private int _ApplicationID;
         private string _Title;
 
         public string Title
@@ -119,35 +118,26 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _Email; }
             set { _Email = value; }
         }
-        private List<File> _ReferenceFiles;
 
-        public List<File> ReferenceFiles
+        private Application _AssociatedApplication;
+
+        public Application AssociatedApplication
         {
-            get { return _ReferenceFiles; }
-            set { _ReferenceFiles = value; }
+            get { return _AssociatedApplication; }
+            set { _AssociatedApplication = value; }
+        }
+                
+        private IList<File> _Files;
+
+        public IList<File> Files
+        {
+            get { return _Files; }
+            set { _Files = value; }
         }
 
         public Reference()
         {
-            throw new System.NotImplementedException();
-        }
-
-        public void Fill(int ReferenceID)
-        {
-            throw new System.NotImplementedException();
-        }
-
-        private int _ReferenceID;
-
-        public int ReferenceID
-        {
-            get { return _ReferenceID; }
-            set { _ReferenceID = value; }
-        }
-
-        public void Save()
-        {
-            throw new System.NotImplementedException();
+            ApplicationStepType = ApplicationStepType.References;
         }
 
         private bool _Complete;
@@ -160,7 +150,19 @@ namespace CAESDO.Recruitment.Core.Domain
 
         public bool isComplete()
         {
-            throw new System.NotImplementedException();
+            return Complete;
         }
+
+        #region IApplicationStep Members
+
+        private ApplicationStepType _ApplicationStepType;
+
+        public ApplicationStepType ApplicationStepType
+        {
+            get { return _ApplicationStepType; }
+            set { _ApplicationStepType = value; }
+        }
+
+        #endregion
     }
 }

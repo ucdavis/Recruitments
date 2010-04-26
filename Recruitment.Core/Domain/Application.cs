@@ -30,13 +30,6 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _AppliedPosition = value; }
         }
 
-        private List<Reference> _References;
-
-        public List<Reference> References
-        {
-            get { return _References; }
-            set { _References = value; }
-        }
         private bool _Submitted;
 
         public bool Submitted
@@ -83,19 +76,19 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _Education; }
             set { _Education = value; }
         }
-        
+
+        private IList<Reference> _References;
+
+        public IList<Reference> References
+        {
+            get { return _References; }
+            set { _References = value; }
+        }
+                
         public Application()
         {
 
         }
-
-        //private List<IApplicationStep> _ApplicationSteps;
-
-        //public List<IApplicationStep> ApplicationSteps
-        //{
-        //    get { return _ApplicationSteps; }
-        //    set { _ApplicationSteps = value; }
-        //}
 
         public bool isComplete()
         {
