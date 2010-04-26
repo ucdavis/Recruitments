@@ -23,6 +23,7 @@ namespace CAESDO.Recruitment.Web
         private const string STR_FileType_CoverLetter = "CoverLetter";
         private const string STR_FileType_ResearchInterests = "ResearchInterests";
         private const string STR_FileType_Publication = "Publication";
+        private const int INT_REFERENCE_FILE_COLUMN = 7;
 
         public int currentApplicationID
         {
@@ -77,6 +78,7 @@ namespace CAESDO.Recruitment.Web
             }
 
             bool allowedAccess = false;
+            bool reviewerAccess = false;
 
             foreach (CommitteeMember member in currentApplication.AppliedPosition.CommitteeMembers)
             {
@@ -87,15 +89,22 @@ namespace CAESDO.Recruitment.Web
                     {
                         //Allow access always if the user is in the committee
                         allowedAccess = true;
-                        break;
+                        break; //If the user is a committee member, break out because they have full access
                     }
-                    else
+                    else //user is faculty or reviewer
                     {
-                        if (currentApplication.AppliedPosition.FacultyView)
+                        if (currentApplication.AppliedPosition.FacultyView) //make sure this position is accepting faculty review
                         {
-                            //If the user is faculty or reviewer, make sure this position is accepting faculty review
-                            allowedAccess = true;
-                            break;
+                            if (member.MemberType.ID == (int)MemberTypes.FacultyMember)
+                            {
+                                allowedAccess = true; //If the user is a faculty member, break out because they have full access
+                                break;
+                            }
+                            else if (member.MemberType.ID == (int)MemberTypes.Reviewer)
+                            {
+                                reviewerAccess = true;  //Don't break with reviewers, because they may be faculty or committee also
+                                allowedAccess = true;
+                            }
                         }
                     }
                 }
@@ -105,6 +114,9 @@ namespace CAESDO.Recruitment.Web
             {
                 Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.AUTH));
             }
+
+            if ( reviewerAccess )
+                gviewReferences.Columns[INT_REFERENCE_FILE_COLUMN].Visible = false;
 
             //Trace.Write("Valid user and application " + currentApplication.ID.ToString() + Environment.NewLine);
         }
