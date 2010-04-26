@@ -96,7 +96,7 @@ public class RecruitmentCommitteeService : System.Web.Services.WebService
 
         //First sort by complete, then by name
         applicants = applicants.OrderBy(app => !app.Submitted)
-            .ThenBy(app => string.IsNullOrEmpty(app.AssociatedProfile.FullName.Trim()) ? app.Email : app.AssociatedProfile.FullName).ToList();
+            .ThenBy(app => string.IsNullOrEmpty(app.AssociatedProfile.FullName.Trim()) ? app.Email : app.AssociatedProfile.LastName).ToList();
 
         foreach (Application app in applicants)
         {

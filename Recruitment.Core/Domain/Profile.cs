@@ -39,12 +39,29 @@ namespace CAESDO.Recruitment.Core.Domain
         {
             get
             {
+                if (string.IsNullOrEmpty(LastName))
+                {
+                    return string.Empty;
+                }
+                else
+                {
+                    return string.Format("{0}, {1} {2}", LastName, FirstName, MiddleName);
+                }
+            }
+        }
+
+        /*
+        public virtual string FullName
+        {
+            get
+            {
                 if (string.IsNullOrEmpty(MiddleName))
                     return FirstName + " " + LastName;
                 else
                     return FirstName + " " + MiddleName + " " + LastName;
             }
         }
+        */
 
         private string _Address1;
 
