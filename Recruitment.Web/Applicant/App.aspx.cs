@@ -150,6 +150,22 @@ namespace CAESDO.Recruitment.Web
             Trace.Write("-- lbtnStep_Click End --");
         }
 
+        protected void lbtnPublicationFile_Click(object sender, EventArgs e)
+        {
+            int FileID = 0;
+            bool success = false;
+
+            success = int.TryParse(((LinkButton)sender).CommandArgument, out FileID);
+
+            if (success)
+            {
+                if (DownloadFile(FileID) == false)
+                {
+                    //Error downloading file
+                }
+            }
+        }
+
         /// <summary>
         /// Saves the contact information entered into the form and then changes back to the home screen
         /// </summary>
@@ -441,6 +457,88 @@ namespace CAESDO.Recruitment.Web
 
             ReloadStepListAndSelectHome();
         }
+        
+        protected void btnDissertationUpload_Click(object sender, EventArgs e)
+        {
+            FileType dissertationFileType = daoFactory.GetFileTypeDao().GetFileTypeByName("Dissertation");
+
+            //TODO: Remove all existing resume files from this application
+
+            if (fileDissertation.HasFile)
+            {
+                if (fileDissertation.PostedFile.ContentType == STR_Applicationpdf)
+                {
+                    File dissertation = new File();
+
+                    dissertation.FileName = fileDissertation.FileName;
+                    dissertation.FileType = dissertationFileType;
+
+                    using (new NHibernateTransaction())
+                    {
+                        dissertation = daoFactory.GetFileDao().Save(dissertation);
+                    }
+
+                    if (ValidateBO<File>.isValid(dissertation))
+                    {
+                        fileDissertation.SaveAs(FilePath + dissertation.ID.ToString());
+
+                        currentApplication.Files.Add(dissertation);
+
+                        using (new NHibernateTransaction())
+                        {
+                            daoFactory.GetApplicationDao().SaveOrUpdate(currentApplication);
+                        }
+                    }
+                    else
+                    {
+                        Trace.Warn(ValidateBO<File>.GetValidationResultsAsString(dissertation));
+                    }
+                }
+            }
+
+            ReloadStepListAndSelectHome();
+        }
+
+        protected void btnPublicationsUpload_Click(object sender, EventArgs e)
+        {
+            FileType publicationsFileType = daoFactory.GetFileTypeDao().GetFileTypeByName("Publication");
+
+            //TODO: Remove all existing resume files from this application
+
+            if (filePublications.HasFile)
+            {
+                if (filePublications.PostedFile.ContentType == STR_Applicationpdf)
+                {
+                    File publication = new File();
+
+                    publication.FileName = filePublications.FileName;
+                    publication.FileType = publicationsFileType;
+
+                    using (new NHibernateTransaction())
+                    {
+                        publication = daoFactory.GetFileDao().Save(publication);
+                    }
+
+                    if (ValidateBO<File>.isValid(publication))
+                    {
+                        filePublications.SaveAs(FilePath + publication.ID.ToString());
+
+                        currentApplication.Files.Add(publication);
+
+                        using (new NHibernateTransaction())
+                        {
+                            daoFactory.GetApplicationDao().SaveOrUpdate(currentApplication);
+                        }
+                    }
+                    else
+                    {
+                        Trace.Warn(ValidateBO<File>.GetValidationResultsAsString(publication));
+                    }
+                }
+            }
+
+            ReloadStepListAndSelectHome();
+        }
 
         #endregion
 
@@ -572,6 +670,66 @@ namespace CAESDO.Recruitment.Web
         }
 
         /// <summary>
+        /// Downloads the file given by FileID
+        /// </summary>
+        /// <param name="FileID">FileID of the File to Download</param>
+        /// <returns>true if file is found successfully</returns>
+        private bool DownloadFile(int FileID)
+        {
+            string fileName = string.Empty;
+
+            File fileToDownload = daoFactory.GetFileDao().GetById(FileID, false);
+
+            try
+            {
+                fileName = fileToDownload.FileName;
+            }
+            catch (NHibernate.ObjectNotFoundException)
+            {
+                return false; //file download did not succeed
+            }
+
+            System.IO.FileInfo file = new System.IO.FileInfo(FilePath + fileToDownload.ID.ToString());
+
+            if (file.Exists)
+            {
+                Response.Clear();
+
+                //Control the name that they see
+                Response.ContentType = "application/octet-stream";
+                Response.AddHeader("Content-Disposition", "attachment;filename=" + HttpUtility.UrlEncode(fileName));
+                Response.AddHeader("Content-Length", file.Length.ToString());
+                //Response.TransmitFile(path + FileID.ToString());
+                Response.TransmitFile(file.FullName);
+                Response.End();
+            }
+            else
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        /// <summary>
+        /// Parses down the currentApplication files list to just contain files of the correct type
+        /// </summary>
+        /// <param name="fileTypeName">The name of the file type desired</param>
+        /// <returns>Just the currentApplication files of the given type</returns>
+        private List<File> GetFilesOfType(string fileTypeName)
+        {
+            List<File> correctTypeFiles = new List<File>();
+
+            foreach (File f in currentApplication.Files)
+            {
+                if (f.FileType.FileTypeName == fileTypeName)
+                    correctTypeFiles.Add(f);
+            }
+
+            return correctTypeFiles;
+        }
+
+        /// <summary>
         /// Sets a step to be the active step (in style and active view)
         /// </summary>
         /// <param name="stepName">The name of the step to make active</param>
@@ -626,6 +784,9 @@ namespace CAESDO.Recruitment.Web
                 case "Transcripts":
                     break;
                 case "Confidential Survey":
+                    break;
+                case "Publications":
+                    DataBindPublications();
                     break;
                 default:
                     break;
@@ -694,7 +855,22 @@ namespace CAESDO.Recruitment.Web
             txtCurrentPositionCountry.Text = currentPosition.Country;
         }
 
+        /// <summary>
+        /// Bind the existing publications to the grid
+        /// </summary>
+        private void DataBindPublications()
+        {
+            //Set the number of required publications
+            litPublicationsNum.Text = currentApplication.AppliedPosition.NumPublications.ToString();
+
+            //Bind the publications grid with existing files
+            rptPublications.DataSource = GetFilesOfType("Publication");
+            rptPublications.DataBind();
+        }
+
         #endregion
+
+
 
         #endregion
 

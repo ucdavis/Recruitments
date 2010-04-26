@@ -408,11 +408,74 @@
             </asp:View>
             
             <asp:View ID="viewPublications" runat="server">
-                Pubs
+                <span class="boxTitle"><asp:Image ID="imgPublications" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />Publications</span><br />
+                <table class="box" style="width:500px; height: 350px;" cellpadding="5">
+                    <tr>
+                        <td colspan="2">
+                        <br />
+                            <asp:Repeater ID="rptPublications" runat="server">
+                                <HeaderTemplate>
+                                    Existing Publication Files: <br />
+                                </HeaderTemplate>
+                                <ItemTemplate>
+                                    &nbsp;&nbsp;<asp:LinkButton ID="lbtnPublicationFile" runat="server" Text='<%# Eval("FileName") %>' CommandArgument='<%# Eval("ID") %>' OnClick="lbtnPublicationFile_Click"></asp:LinkButton>
+                                </ItemTemplate>
+                                <SeparatorTemplate>
+                                    <br />
+                                </SeparatorTemplate>
+                            </asp:Repeater>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <br />
+                            This position description requests <asp:Literal ID="litPublicationsNum" runat="server" EnableViewState="false"></asp:Literal>  publications, although recent graduates may not have that many. Please submit as many as you have, indicating below when complete. You can return to this page to change or enter more publications later.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            Please upload your file as a PDF Document. Maximum file size allowed is 10 MB. 
+                        </td>                       
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <asp:FileUpload ID="filePublications" runat="server" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                        </td>
+                        <td align="right"  >
+                            <br />
+                            <asp:Button ID="btnPublicationsUpload" runat="server" Text="Upload" OnClick="btnPublicationsUpload_Click" /></td>
+                    </tr>
+                </table>
             </asp:View>
             
             <asp:View ID="viewDissertation" runat="server">
-                Dissertations
+                <span class="boxTitle"><asp:Image ID="imgDissertation" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />Dissertations</span><br />
+                <table class="box" style="width:500px; height: 350px;" cellpadding="5">
+                    <tr>
+                        <td colspan="2"><br /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            Please upload your file as a PDF Document. Maximum file size allowed is 10 MB. 
+                        </td>                       
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <asp:FileUpload ID="fileDissertation" runat="server" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td   align="right">
+                        </td>
+                        <td align="right"  >
+                            <br />
+                            <asp:Button ID="btnDissertationUpload" runat="server" Text="Upload" OnClick="btnDissertationUpload_Click" /></td>
+                    </tr>
+                </table>
             </asp:View>
             
             </asp:MultiView>
