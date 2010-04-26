@@ -293,6 +293,7 @@ namespace CAESDO.Recruitment.Web
             txtContactAddress2.Text = currentProfile.Address2;
             txtContactCity.Text = currentProfile.City;
             txtContactState.Text = currentProfile.State;
+            txtContactZip.Text = currentProfile.Zip;
 
             txtContactPhone.Text = currentProfile.Phone;
         }

@@ -56,6 +56,14 @@
                         </td>
                     </tr>
                     <tr>
+                        <td align="right">
+                            Zip:
+                        </td>
+                        <td>
+                            <asp:TextBox ReadOnly="true" ID="txtContactZip" runat="server" MaxLength="50"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
                         <td   align="right">
                             Phone Number:</td>
                         <td  >
