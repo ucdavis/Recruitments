@@ -26,14 +26,13 @@
             loaderText: 'Loading...',
             onAfter: function() {
                 var table = this.attached;
-                if ($(table).filter("tbody tr:visible").length != 0) {
-                    $(table).trigger("update");
-                    $(table).trigger("appendCache");
-
-                    if ($("#chkShowUnsubmitted").is(":checked")) {
-                        //If the show submitted only box is checked, hide the non submitted rows
-                        allApplications.not(":has(:checked)").hide(0);
-                    }
+                
+                $(table).trigger("update");
+                $(table).trigger("appendCache");
+                
+                if ($("#chkShowUnsubmitted").is(":checked")) {
+                    //If the show submitted only box is checked, hide the non submitted rows
+                    allApplications.not(":has(:checked)").hide(0);
                 }
             }
         });
