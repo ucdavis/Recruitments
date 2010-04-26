@@ -64,6 +64,8 @@
     <Compile Include="GenderBLL.cs" />
     <Compile Include="GenericBLL.cs" />
     <Compile Include="MemberTypeBLL.cs" />
+    <Compile Include="MessageBLL.cs" />
+    <Compile Include="MessageTrackingBLL.cs" />
     <Compile Include="PositionBLL.cs" />
     <Compile Include="ProfileBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
