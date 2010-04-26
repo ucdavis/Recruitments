@@ -11,7 +11,7 @@
     <property name="CreatedBy" column="CreatedBy" />
     <property name="IsActive" column="IsActive" />
     
-    <bag name="_Profiles" access="field" table="Profiles" inverse="true">
+    <bag name="Profiles" table="Profiles" inverse="true">
       <key column="AccountID" />
       <one-to-many class="CAESDO.Recruitment.Core.Domain.Profile, CAESDO.Recruitment.Core" />
     </bag>
