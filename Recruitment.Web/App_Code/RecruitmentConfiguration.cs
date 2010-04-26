@@ -57,7 +57,7 @@ namespace CAESDO.Recruitment.Web
         /// </summary>
         public enum ErrorType
         {
-            DATA, AUTH, MAIL, SESSION, FILE, QUERY, UNKNOWN
+            DATA, AUTH, MAIL, SESSION, FILE, QUERY, VALIDATION, UNKNOWN
         }
 
         /// <summary>
@@ -100,6 +100,8 @@ namespace CAESDO.Recruitment.Web
                 return ErrorPageName + "?reason=file";
             else if (error == ErrorType.QUERY)
                 return ErrorPageName + "?reason=query";
+            else if (error == ErrorType.VALIDATION)
+                return ErrorPageName + "?reason=validation";
             else
                 return ErrorPageName + "?reason=unknown";
         }
@@ -121,6 +123,8 @@ namespace CAESDO.Recruitment.Web
                 return "File Not Found Error";
             else if (error == ErrorType.QUERY)
                 return "Query String Error";
+            else if (error == ErrorType.VALIDATION)
+                return "Object Validation Error";
             else
                 return "Unknown Error";
         }
@@ -146,6 +150,8 @@ namespace CAESDO.Recruitment.Web
                 return "File Not Found Exception";
             else if (reason == "query")
                 return "Query String Not Valid";
+            else if (reason == "validation")
+                return "Object Validation Error";
             else if (reason == "mail")
                 return "Email Send Error-- Could Not Reach All Recipients";
             else

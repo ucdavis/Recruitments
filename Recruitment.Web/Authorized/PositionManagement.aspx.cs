@@ -175,8 +175,9 @@ namespace CAESDO.Recruitment.Web
             }
             else
             {
-                Response.Write(ValidateBO<Position>.GetValidationResultsAsString(newPosition));
-                //TODO: Error message
+                //Response.Write(ValidateBO<Position>.GetValidationResultsAsString(newPosition));
+                eReport.ReportError(new ApplicationException("Position Not Valid: " + ValidateBO<Position>.GetValidationResultsAsString(newPosition)), "btnModifyPosition_Click");
+                Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.VALIDATION));
             }
         }
 
@@ -210,7 +211,7 @@ namespace CAESDO.Recruitment.Web
                     jobDescription.FileType = JobDescriptionFileType;
 
                     jobDescription = daoFactory.GetFileDao().SaveOrUpdate(jobDescription);
-            
+
                     if (ValidateBO<File>.isValid(jobDescription))
                     {
                         //Delete the old file
@@ -253,7 +254,9 @@ namespace CAESDO.Recruitment.Web
             }
             else
             {
-                //TODO: Error message
+                //Error message
+                eReport.ReportError(new System.IO.FileNotFoundException("Position Description Not Found: ID=" + currentPosition.DescriptionFile.ID.ToString()), "lbtnDownloadPositionDescription_Click");
+                Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.FILE));
             }
         }
 
