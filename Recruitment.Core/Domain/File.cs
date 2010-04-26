@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
 
 namespace CAESDO.Recruitment.Core.Domain
 {
@@ -8,6 +9,7 @@ namespace CAESDO.Recruitment.Core.Domain
     {
         private FileType _FileType;
 
+        [NotNullValidator]
         public virtual FileType FileType
         {
             get { return _FileType; }
@@ -16,6 +18,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private string _Label;
 
+        [StringLengthValidator(0, 100)]
         public virtual string Label
         {
             get { return _Label; }
@@ -31,6 +34,8 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private string _FileName;
 
+        [NotNullValidator]
+        [StringLengthValidator(1, 50)]
         public virtual string FileName
         {
             get { return _FileName; }

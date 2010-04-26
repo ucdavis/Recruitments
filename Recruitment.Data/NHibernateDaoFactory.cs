@@ -77,6 +77,11 @@ namespace CAESDO.Recruitment.Data
             return new UserDao();
         }
 
+        public IFileTypeDao GetFileTypeDao()
+        {
+            return new FileTypeDao();
+        }
+
         #region Inline DAO implementations
 
         /// <summary>
@@ -161,6 +166,8 @@ namespace CAESDO.Recruitment.Data
 
         public class UserDao : AbstractNHibernateDao<User, int>, IUserDao { }
 
+        public class FileTypeDao : AbstractNHibernateDao<FileType, int>, IFileTypeDao { }
+          
         #endregion
           
     }
