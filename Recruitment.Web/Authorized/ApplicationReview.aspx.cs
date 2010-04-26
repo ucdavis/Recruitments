@@ -101,6 +101,22 @@ namespace CAESDO.Recruitment.Web
             }
         }
 
+        protected void lbtnReferenceFile_Click(object sender, EventArgs e)
+        {
+            LinkButton lbtn = (LinkButton)sender;
+
+            int fileID = 0;
+
+            if (int.TryParse(lbtn.CommandArgument, out fileID))
+            {
+                DownloadFile(fileID);
+            }
+            else
+            {
+                //TODO: Error message if file doesn't exist
+            }
+        }
+
         protected void lbtnFileDownload_Click(object sender, EventArgs e)
         {
             int FileID = 0;
@@ -115,6 +131,87 @@ namespace CAESDO.Recruitment.Web
                     //Error downloading file
                 }
             }
+        }
+
+        protected void btnDownloadAll_Click(object sender, EventArgs e)
+        {
+            string fileName = currentApplication.AssociatedProfile.LastName + "-Application" + currentApplication.ID.ToString() + ".pdf";
+            string destination = FilePath + fileName;
+
+            if (currentApplication.Files.Count == 0)
+                return;
+
+            try
+            {
+                int f = 0;
+
+                PdfReader reader = new PdfReader(FilePath + currentApplication.Files[f].ID.ToString());
+
+                int n = reader.NumberOfPages;
+
+                Response.Write(string.Format("There are {0} pages in the original docuemnt", n));
+
+                Document document = new Document(reader.GetPageSizeWithRotation(1));
+
+                PdfWriter writer = PdfWriter.GetInstance(document, new System.IO.FileStream(destination, System.IO.FileMode.Create));
+
+                document.Open();
+
+                PdfContentByte cb = writer.DirectContent;
+                PdfImportedPage page;
+                int rotation;
+
+                while (f < currentApplication.Files.Count)
+                {
+                    int i = 0;
+                    while (i < n)
+                    {
+                        i++;
+                        document.SetPageSize(reader.GetPageSizeWithRotation(1));
+                        document.NewPage();
+                        page = writer.GetImportedPage(reader, i);
+                        rotation = reader.GetPageRotation(i);
+
+                        if (rotation == 90 || rotation == 270)
+                            cb.AddTemplate(page, 0, -1f, 1f, 0, 0, reader.GetPageSizeWithRotation(i).Height);
+                        else
+                            cb.AddTemplate(page, 1f, 0, 0, 1f, 0, 0);
+                    }
+                    f++;
+
+                    if (f < currentApplication.Files.Count)
+                    {
+                        reader = new PdfReader(FilePath + currentApplication.Files[f].ID.ToString());
+
+                        n = reader.NumberOfPages;
+                    }
+                }
+
+                document.Close();
+            }
+            catch (Exception)
+            {
+                lblDownloadAllStatus.Text = "Files could not be combined successfully.";
+                return;
+            }
+
+            //If we got this far, no exceptions have been made
+            System.IO.FileInfo file = new System.IO.FileInfo(destination);
+
+            Response.Clear();
+
+            //Control the name that they see
+            Response.ContentType = "application/octet-stream";
+            Response.AddHeader("Content-Disposition", "attachment;filename=" + HttpUtility.UrlEncode(fileName));
+            Response.AddHeader("Content-Length", file.Length.ToString());
+            //Response.TransmitFile(path + FileID.ToString());
+            Response.TransmitFile(file.FullName);
+            Response.Flush();
+
+            //Now remove the temporary file
+            file.Delete();
+
+            Response.End();            
         }
 
         /// <summary>
@@ -255,6 +352,19 @@ namespace CAESDO.Recruitment.Web
             return output;
         }
 
+        /// <summary>
+        /// Returns true if a file exists, else false
+        /// </summary>
+        protected bool GetRefernceFileStatusString(int referenceID)
+        {
+            Reference reference = daoFactory.GetReferenceDao().GetById(referenceID, false);
+
+            if (reference.ReferenceFile != null)
+                return true;
+            else
+                return false;
+        }
+
         #region DataBindingMethods
 
         /// <summary>
@@ -363,60 +473,6 @@ namespace CAESDO.Recruitment.Web
 
         #endregion
 
-        protected void btnDownloadAll_Click(object sender, EventArgs e)
-        {
-            string destination = FilePath + "tester.pdf";
-
-            if (currentApplication.Files.Count == 0)
-                return;
-
-            int f = 0;
-
-            PdfReader reader = new PdfReader(FilePath + currentApplication.Files[f].ID.ToString());
-
-            int n = reader.NumberOfPages;
-
-            Response.Write(string.Format("There are {0} pages in the original docuemnt", n));
-
-            Document document = new Document(reader.GetPageSizeWithRotation(1));
-
-            PdfWriter writer = PdfWriter.GetInstance(document, new System.IO.FileStream(destination, System.IO.FileMode.Create));
-
-            document.Open();
-
-            PdfContentByte cb = writer.DirectContent;
-            PdfImportedPage page;
-            int rotation;
-
-            while (f < currentApplication.Files.Count)
-            {
-                int i = 0;
-                while (i < n)
-                {
-                    i++;
-                    document.SetPageSize(reader.GetPageSizeWithRotation(1));
-                    document.NewPage();
-                    page = writer.GetImportedPage(reader, i);
-                    rotation = reader.GetPageRotation(i);
-
-                    if (rotation == 90 || rotation == 270)
-                        cb.AddTemplate(page, 0, -1f, 1f, 0, 0, reader.GetPageSizeWithRotation(i).Height);
-                    else
-                        cb.AddTemplate(page, 1f, 0, 0, 1f, 0, 0);
-                }
-                f++;
-
-                if (f < currentApplication.Files.Count)
-                {
-                    reader = new PdfReader(FilePath + currentApplication.Files[f].ID.ToString());
-
-                    n = reader.NumberOfPages;
-                }
-            }
-
-            document.Close();
-        }
-
         /*
         public static void MergeFiles(string destinationFile, string[] sourceFiles)
         {
@@ -482,7 +538,8 @@ namespace CAESDO.Recruitment.Web
             }
         }
         */
-    }
+    
+}
 
     /// <summary>
     /// Comparer that uses the FileTypeName of a file for comparison

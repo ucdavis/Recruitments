@@ -205,6 +205,11 @@
                                 </asp:TemplateField>
                                 <asp:BoundField HeaderText="Phone" DataField="Phone" Visible="False" />
                                 <asp:BoundField HeaderText="Email:" DataField="Email" />
+                                <asp:TemplateField HeaderText="File">
+                                    <ItemTemplate>
+                                        <asp:LinkButton ID="lbtnReferenceFile" runat="server" Text="Download File" CommandArgument='<%# Eval("ReferenceFile.id") %>' Visible='<%# GetRefernceFileStatusString((int)Eval("id")) %>' OnClick="lbtnReferenceFile_Click"></asp:LinkButton>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                             </Columns>
                                 <HeaderStyle HorizontalAlign="Left" />
                             </asp:GridView>                           
@@ -360,10 +365,15 @@
                             </asp:GridView>
                         </td>
                     </tr>
+                    <tr>
+                        <td colspan="2">
+                            <br />
+                            <asp:Label ID="lblDownloadAllStatus" runat="server" ForeColor="red" EnableViewState="false"></asp:Label>
+                            <asp:Button ID="btnDownloadAll" runat="server" Text="Download All Files" OnClick="btnDownloadAll_Click" />
+                        </td>
+                    </tr>
                 </table>
-                
-                <asp:Button ID="btnDownloadAll" runat="server" Text="Download All Files" OnClick="btnDownloadAll_Click" />
-            </asp:Panel>          
+            </asp:Panel>
             
             <asp:Panel ID="pnlPublications" runat="server" Visible="false">
                 <span class="boxTitle">Publications</span><br />
