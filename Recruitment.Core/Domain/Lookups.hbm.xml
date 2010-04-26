@@ -11,6 +11,56 @@
 
     <many-to-one name="_AssociatedPosition" access="field" column="PositionID"
       class="CAESDO.Recruitment.Core.Domain.Position, CAESDO.Recruitment.Core" not-null="true" />
+    
+  </class>
+
+  <class
+    name="CAESDO.Recruitment.Core.Domain.Gender, CAESDO.Recruitment.Core"
+    table="Gender" lazy="false">
+    <id name="id" access="field" column="GenderID" unsaved-value="0">
+      <generator class="identity" />
+    </id>
+
+    <property name="GenderType" column="Gender" />
+
+    <!--<many-to-one name="_AssociatedPosition" access="field" column="PositionID"
+      class="CAESDO.Recruitment.Core.Domain.Position, CAESDO.Recruitment.Core" not-null="true" />-->
+
+    <!--<bag name="_AssociatedApplications" access="field" table="Applications" inverse="true">
+      <key column="PositionID" />
+      <one-to-many class="CAESDO.Recruitment.Core.Domain.Application, CAESDO.Recruitment.Core" />
+    </bag>-->
+  </class>
+
+  <class
+    name="CAESDO.Recruitment.Core.Domain.RecruitmentSrc, CAESDO.Recruitment.Core"
+    table="RecruitmentSrc" lazy="false">
+    <id name="id" access="field" column="RecruitmentSrcID" unsaved-value="0">
+      <generator class="identity" />
+    </id>
+
+    <property name="RecruitmentSource" column="RecruitmentSrc" />
+
+    <!--<many-to-one name="_AssociatedPosition" access="field" column="PositionID"
+      class="CAESDO.Recruitment.Core.Domain.Position, CAESDO.Recruitment.Core" not-null="true" />-->
+
+    <!--<bag name="_AssociatedApplications" access="field" table="Applications" inverse="true">
+      <key column="PositionID" />
+      <one-to-many class="CAESDO.Recruitment.Core.Domain.Application, CAESDO.Recruitment.Core" />
+    </bag>-->
+  </class>
+
+  <class
+    name="CAESDO.Recruitment.Core.Domain.Ethnicity, CAESDO.Recruitment.Core"
+    table="Ethnicity" lazy="false">
+    <id name="id" access="field" column="EthnicityID" unsaved-value="0">
+      <generator class="identity" />
+    </id>
+
+    <property name="EthnicityValue" column="Ethnicity" />
+
+    <!--<many-to-one name="_AssociatedPosition" access="field" column="PositionID"
+      class="CAESDO.Recruitment.Core.Domain.Position, CAESDO.Recruitment.Core" not-null="true" />-->
 
     <!--<bag name="_AssociatedApplications" access="field" table="Applications" inverse="true">
       <key column="PositionID" />

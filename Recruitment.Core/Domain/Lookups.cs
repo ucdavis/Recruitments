@@ -27,4 +27,52 @@ namespace CAESDO.Recruitment.Core.Domain
 
         }
     }
+
+    public class Gender : DomainObject<int>
+    {
+        private string _GenderType;
+
+        public string GenderType
+        {
+            get { return _GenderType; }
+            set { _GenderType = value; }
+        }
+
+        public Gender()
+        {
+
+        }
+    }
+
+    public class RecruitmentSrc : DomainObject<int>
+    {
+        private string _RecruitmentSource;
+
+        public string RecruitmentSource
+        {
+            get { return _RecruitmentSource; }
+            set { _RecruitmentSource = value; }
+        }
+
+        public RecruitmentSrc()
+        {
+
+        }
+    }
+
+    public class Ethnicity : DomainObject<int>
+    {
+        private string _EthnicityValue;
+
+        public string EthnicityValue
+        {
+            get { return _EthnicityValue; }
+            set { _EthnicityValue = value; }
+        }
+
+        public Ethnicity()
+        {
+
+        }
+    }
 }

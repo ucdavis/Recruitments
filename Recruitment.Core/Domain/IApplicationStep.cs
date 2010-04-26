@@ -6,12 +6,6 @@ namespace CAESDO.Recruitment.Core.Domain
 {
     public interface IApplicationStep
     {
-        int ApplicationID
-        {
-            get;
-            set;
-        }
-
         ApplicationStepType ApplicationStepType
         {
             get;

@@ -1,0 +1,36 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <class
+    name="CAESDO.Recruitment.Core.Domain.Survey, CAESDO.Recruitment.Core"
+    table="Survey" lazy="false">
+    <id name="id" access="field" column="SurveyID" unsaved-value="0">
+      <generator class="identity" />
+    </id>
+
+    <property name="TribalAffiliation" column="TribalAffiliation" />
+    <property name="Pub_Advertisement" column="Pub_Advertisement" />
+    <property name="Prof_Organization" column="Prof_Organization" />
+    <property name="Other" column="Other" />
+    <property name="Complete" column="Complete" />
+
+    <one-to-one name="Gender" class="CAESDO.Recruitment.Core.Domain.Gender, CAESDO.Recruitment.Core" />
+
+    <one-to-one name="RecruitmentSrc" class="CAESDO.Recruitment.Core.Domain.RecruitmentSrc, CAESDO.Recruitment.Core" />
+
+    <one-to-one name="Ethnicity" class="CAESDO.Recruitment.Core.Domain.Ethnicity, CAESDO.Recruitment.Core" />
+    
+    <!--<property name="DescriptionFile" column="DescriptionFile" />-->
+
+    <!--<bag name="_AssociatedApplications" access="field" table="Applications" inverse="true">
+      <key column="PositionID" />
+      <one-to-many class="CAESDO.Recruitment.Core.Domain.Application, CAESDO.Recruitment.Core" />
+    </bag>
+
+    <bag name="_Departments" access="field" table="PosXDepts" inverse="true">
+      <key column="PositionID" />
+      <one-to-many class="CAESDO.Recruitment.Core.Domain.Department, CAESDO.Recruitment.Core" />
+    </bag>-->
+
+
+  </class>
+</hibernate-mapping>
