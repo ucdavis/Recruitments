@@ -35,11 +35,11 @@
     <li>When viewing the applicant list for a position  (as an admin or committee member), you can view the search plan by clicking on  the provided link. <img src="view_search_plan.jpg" alt="" width="527" height="108" /><h4 class="help_back_to_top"><a href="#top">Back to Top</a></h4></li>
   </ul></li>
   <li><a name="EmailApplicants"><h3>Send template emails to applicants<br /></h3></a>
-    You can now  send an ad-hoc list of applicants any formatted email directly from the  system.  There will be starter templates  to choose from, or you can create your own.<br /><img src="email_templates.jpg" alt="" width="628" height="400" /><h4 class="help_back_to_top"><a href="#top">Back to Top</a></h4></li>
+    You can now  send an ad-hoc list of applicants any formatted email directly from the  system.  There will be starter templates  to choose from (more coming later) or you can create your own.<br /><img src="email_templates.jpg" alt="" width="628" height="400" /><h4 class="help_back_to_top"><a href="#top">Back to Top</a></h4></li>
   <li><a name="TextEditor"><h3>Improved Email Text Editor<br /></h3></a>
     You can now preview  letters with example data and insert text from Microsoft Word (see example):<br /><img src="external_editor.jpg" alt="" width="663" height="278" /><h4 class="help_back_to_top"><a href="#top">Back to Top</a></h4></li>
   <li><a name="FilterList"><h3>Filter Positions List<br /></h3></a>
-    You can filter the list  of all positions by either department or school.  If you would like to just list the positions  in Human &amp; Community Development, you can append ‘?DepartmentFIS=AHCD’ to  the view positions Url.<br /><img src="filter_positions_list.jpg" alt="" width="690" height="311" /><h4 class="help_back_to_top"><a href="#top">Back to Top</a></h4></li>
+    You can filter the list  of all positions by either department or school.  If you would like to just list the positions  in Human &amp; Community Development, you can append ‘?DepartmentFIS=AHCD’ to  the view positions Url. Example: https://secure.caes.ucdavis.edu/Recruitment/viewPositions.aspx?DepartmentFIS=AHCD <br /><img src="filter_positions_list.jpg" alt="" width="690" height="311" /><h4 class="help_back_to_top"><a href="#top">Back to Top</a></h4></li>
   <li><a name="RSS"><h3>RSS Feeds<br /></h3></a>
     The main view positions page can now  be consumed as an RSS feed in any feed reader (like iGoogle/Google reader) or on  any page that can consume feeds (like a department homepage).  The feed can be filtered by unit or school.
     <ul>
@@ -61,9 +61,9 @@
   <li><a name="ImprovedApplicationsView"><h3>Improved Applications View<br /></h3></a>
   The applications view (for admins or committee members) now shows the current position and PhD Information for each applicant.  The PhD Information by default shows just the PhD award date and is sortable by this date.  By clicking +/- buttons you can choose to show or hide additional PhD information (like institution, field, etc.)<br /><img src="improved_app_view.jpg" /><h4 class="help_back_to_top"><a href="#top">Back to Top</a></h4>.</li>
   <li><a name="AdditionalReferences"><h3>Additional references<br /></h3></a>
-    A new file type called  “Additional References” has been created which will allow you to upload any  desired information about references which were not included in the original  application.  This document will be kept  along with the application and can be viewed along with the application packet.<img src="additional_references.jpg" alt="" width="483" height="264" /><h4 class="help_back_to_top"><a href="#top">Back to Top</a></h4></li>
+    A new file type called  “Additional References” has been created which will allow you to upload any  desired information about references which were not included in the original  application.  This PDF document will be kept  along with the application and can be viewed along with the application packet.<img src="additional_references.jpg" alt="" width="483" height="264" /><h4 class="help_back_to_top"><a href="#top">Back to Top</a></h4></li>
   <li><a name="RecruitmentManager"><h3>Recruitment manager email<br /></h3></a>
-    The Recruitment Manager contact email is now  shown on the homepage of every application so an applicant can contact the  correct person for help if they have any questions.<br /><img src="recruitment_manager_email.jpg" alt="" width="580" height="207" /><h4 class="help_back_to_top"><a href="#top">Back to Top</a></h4></li>
+    The Recruitment Manager contact email is now  shown on the homepage of every application so an applicant can easily send an email to the correct person if they have any questions.<br /><img src="recruitment_manager_email.jpg" alt="" width="580" height="207" /><h4 class="help_back_to_top"><a href="#top">Back to Top</a></h4></li>
   <li><a name="ReferenceTemplate"><h3>Reference Template<br /></h3></a>
     The Upload Link can be  placed at any desired position within the reference template by clicking on the  “Upload Link” template field.  If no  upload link is found, the default behavior is to add the link at the bottom of  the email.
       <ul>
