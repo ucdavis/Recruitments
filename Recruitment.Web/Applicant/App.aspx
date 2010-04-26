@@ -587,7 +587,7 @@
         
             <asp:View ID="viewCoverLetter" runat="server">
                 <span class="boxTitle">Cover Letter</span><br />
-                <table class="box" style="width:500px; height:" cellpadding="5">
+                <table class="box" style="width:500px;" cellpadding="5">
                     <tr>
                         <td colspan="2"><br /></td>
                     </tr>
