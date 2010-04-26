@@ -15,7 +15,7 @@ namespace CAESDO.Recruitment.Test
     ///to contain all CAESDO.Recruitment.Core.Domain.CommitteeMember Unit Tests
     ///</summary>
     [TestClass()]
-    public class CommitteeMemberTest
+    public class CommitteeMemberTest  : DatabaseTestBase
     {
 
 
@@ -112,10 +112,11 @@ namespace CAESDO.Recruitment.Test
             //member.Email = StaticProperties.TestString;
             //member.UserID = StaticProperties.ExistingUserID;
             member.AssociatedPosition = NHibernateHelper.daoFactory.GetPositionDao().GetById(StaticProperties.ExistingPositionID, false);
+            member.DepartmentMember = NHibernateHelper.daoFactory.GetDepartmentMemberDao().GetById(1, false);
             member.MemberType = mtype;
 
             //Make sure the file is valid
-            Assert.IsTrue(ValidateBO<CommitteeMember>.isValid(member), "CommitteeMember not valid");
+            Assert.IsTrue(ValidateBO<CommitteeMember>.isValid(member), "CommitteeMember not valid: " + member.getValidationResultsAsString(member));
 
             Assert.IsTrue(member.IsTransient()); //file is not saved
 
@@ -260,6 +261,44 @@ namespace CAESDO.Recruitment.Test
             {
                 Assert.AreEqual<int>((int)MemberTypes.FacultyMember, m.ID); //only want faculty members
                 this.TestContext.WriteLine("PositionID = {0}, CommitteeMemberID = {1}, Type = {2}", m.AssociatedPosition.ID, m.ID, m.MemberType.Type);
+            }
+        }
+
+        public override void LoadData()
+        {
+            base.LoadData();
+
+            DepartmentMember departmentMember = new DepartmentMember
+                                                    {
+                                                        DepartmentFIS = StaticProperties.TestString,
+                                                        FirstName = StaticProperties.TestString,
+                                                        LastName = StaticProperties.TestString,
+                                                        LoginID = StaticProperties.TestString,
+                                                        OtherDepartmentName = StaticProperties.TestString
+                                                    };
+
+            using (var ts = new TransactionScope())
+            {
+                DepartmentMemberBLL.EnsurePersistent(ref departmentMember);
+
+                for (int i = 0; i < 4; i++)
+                {
+                    var memberType = new MemberType {Type = StaticProperties.TestString};
+                    
+                    var committeeMember = new CommitteeMember
+                    {
+                        AssociatedPosition =
+                            PositionBLL.GetByID(StaticProperties.ExistingPositionID),
+                        DepartmentMember = departmentMember,
+                        MemberType = memberType
+                    };
+
+
+                    MemberTypeBLL.EnsurePersistent(ref memberType);
+                    CommitteeMemberBLL.EnsurePersistent(ref committeeMember);
+                }
+
+                ts.CommitTransaction();
             }
         }
 
