@@ -54,6 +54,8 @@ namespace CAESDO.Recruitment.Web
             if (lviewApplications.Items.Count > 0)
             {
                 pnlPositionSelected.Visible = true;
+
+                litReferenceTemplate.Text = currentPosition.ReferenceTemplate.TemplateText;
                 //btnUpdateList.Visible = true;
                 //btnEmailReferences.Visible = true;
             }

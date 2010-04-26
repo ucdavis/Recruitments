@@ -130,5 +130,27 @@
             ConfirmText="You are about to email all references for the Short Listed applicants"
             TargetControlID="btnEmailReferences">
         </AjaxControlToolkit:ConfirmButtonExtender>
+        
+        <asp:Panel ID="pnlRefernceTemplateHolder" runat="server">
+        <br /><br />
+            <span style="font-weight: bold;">View Sample Email Notification</span>
+            <br />
+            <asp:ImageButton ID="CSNImage" runat="server" ImageUrl="~/Images/show_details.jpg"
+                AlternateText="Show Details" meta:resourcekey="CSNImageResource1" />
+        </asp:Panel>
+        <asp:Panel ID="pnlReferenceTemplate" runat="server" Height="0px">
+            <div id="referenceEmail">
+                <asp:Literal ID="litReferenceTemplate" runat="server"></asp:Literal>
+                <br />
+            </div>
+        </asp:Panel>
+        
+        <AjaxControlToolkit:CollapsiblePanelExtender ID="collapseEmailReference"
+            runat="server" TargetControlID="pnlReferenceTemplate" Collapsed="True"
+            CollapseControlID="pnlRefernceTemplateHolder" ExpandControlID="pnlRefernceTemplateHolder"
+            ImageControlID="CSNImage" ExpandedImage="../Images/hidedetails.jpg" CollapsedImage="../Images/show_details.jpg"
+            SuppressPostBack="True" Enabled="True">
+        </AjaxControlToolkit:CollapsiblePanelExtender>
+        
     </asp:Panel>
 </asp:Content>
