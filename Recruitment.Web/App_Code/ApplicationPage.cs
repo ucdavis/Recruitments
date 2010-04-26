@@ -43,6 +43,9 @@ namespace CAESDO.Recruitment.Web
 
         protected override void OnError(EventArgs e)
         {
+            //Might want to rollback the transaction whenever an error gets this far up the stack
+            //NHibernateSessionManager.Instance.RollbackTransaction();
+
             HttpContext ctx = HttpContext.Current;
 
             Exception ex = ctx.Server.GetLastError();
