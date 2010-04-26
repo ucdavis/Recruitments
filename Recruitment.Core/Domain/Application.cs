@@ -67,6 +67,14 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _Surveys; }
             set { _Surveys = value; }
         }
+
+        private IList<CurrentPosition> _CurrentPositions;
+
+        public IList<CurrentPosition> CurrentPositions
+        {
+            get { return _CurrentPositions; }
+            set { _CurrentPositions = value; }
+        }
         
         public Application()
         {

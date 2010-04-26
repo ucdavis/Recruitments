@@ -21,6 +21,11 @@
       <one-to-many class="CAESDO.Recruitment.Core.Domain.Survey, CAESDO.Recruitment.Core" />
     </bag>
 
+    <bag name="CurrentPositions" table="CurrentPosition" inverse="true">
+      <key column="ApplicationID" />
+      <one-to-many class="CAESDO.Recruitment.Core.Domain.CurrentPosition, CAESDO.Recruitment.Core" />
+    </bag>
+
     <bag name="Files" table="ApplicationFiles" >
       <key column="ApplicationID" />
       <many-to-many column="FileID"  class="CAESDO.Recruitment.Core.Domain.File, CAESDO.Recruitment.Core" />

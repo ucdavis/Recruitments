@@ -80,11 +80,15 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _Country = value; }
         }
 
-        public int ApplicationID
+        private bool _Complete;
+
+        public bool Complete
         {
-            get { return _ApplicationID; }
-            set { _ApplicationID = value; }
+            get { return _Complete; }
+            set { _Complete = value; }
         }
+
+
         #region IApplicationStep Members
 
 
