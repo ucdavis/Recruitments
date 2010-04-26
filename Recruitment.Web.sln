@@ -7,6 +7,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Z:\Recruitment\Recruitment.
 		SccAuxPath = "SAK"
 		SccLocalPath = "SAK"
 		SccProvider = "SAK"
+		ProjectReferences = "{B48CCC6E-ED4B-4589-86F4-3486FD187453}|Recruitment.Providers.dll;{5F40A7DB-8142-4564-BB05-0F9C2DD3EF75}|Recruitment.Core.dll;{BFA5EBED-0F4D-481F-9C91-EBE45B481F83}|Recruitment.Data.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/Recruitment.Web"
 		Debug.AspNetCompiler.PhysicalPath = "Z:\Recruitment\Recruitment.Web\"
 		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Recruitment.Web\"
