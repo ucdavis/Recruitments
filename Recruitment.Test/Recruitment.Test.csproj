@@ -69,6 +69,7 @@
     <Compile Include="DomainTests\CommitteeMemberTest.cs" />
     <Compile Include="DatabaseHelper.cs" />
     <Compile Include="DatabaseTestBase.cs" />
+    <Compile Include="DomainTests\MessageTrackingTest.cs" />
     <Compile Include="EntityIdSetter.cs" />
     <Compile Include="DomainTests\FileTest.cs" />
     <Compile Include="DomainTests\NHibernateHelper.cs" />
@@ -84,7 +85,7 @@
       <Project>{B7E438A4-E39B-4D9B-BFAE-D55F78769115}</Project>
       <Name>Recruitment.BLL</Name>
     </ProjectReference>
-    <ProjectReference Include="C:\Projects\Recruitment\Recruitment.Core\Recruitment.Core.csproj">
+    <ProjectReference Include="..\Recruitment.Core\Recruitment.Core.csproj">
       <Project>{5F40A7DB-8142-4564-BB05-0F9C2DD3EF75}</Project>
       <Name>Recruitment.Core</Name>
     </ProjectReference>

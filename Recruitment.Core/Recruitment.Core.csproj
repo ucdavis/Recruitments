@@ -66,6 +66,7 @@
     <Compile Include="Domain\IGroup.cs" />
     <Compile Include="Domain\IHasAssignedId.cs" />
     <Compile Include="Domain\ITrackable.cs" />
+    <Compile Include="Domain\MessageTracking.cs" />
     <Compile Include="Domain\Position.cs" />
     <Compile Include="Domain\Profile.cs" />
     <Compile Include="Domain\Reference.cs" />
@@ -120,6 +121,9 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Domain\DepartmentMember.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Domain\MessageTracking.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

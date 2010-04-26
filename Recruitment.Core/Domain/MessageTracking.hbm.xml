@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2">
+  <class
+    name="CAESDO.Recruitment.Core.Domain.MessageTracking, CAESDO.Recruitment.Core"
+    table="MessageTracking" >
+    <id name="ID" access="nosetter.lowercase" column="MessageTrackingID" unsaved-value="0">
+      <generator class="identity" />
+    </id>
+
+    <property name="To" column="ToAddress" />
+    <property name="From" column="FromAddress" />
+    <property name="SentBy" column="SentBy" />
+    <property name="Body" column="Body" />
+    <property name="DateSent" column="DateSent" />
+    
+  </class>
+</hibernate-mapping>
