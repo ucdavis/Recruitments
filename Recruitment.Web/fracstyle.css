@@ -77,6 +77,11 @@ html, #aspnetForm
 	height: 60px;
 }
 
+#ctl00_ContentPlaceHolder1_gviewApplications td
+{
+	border-bottom: dotted 1px #333333;
+	height: 40px;
+}
 .dottedBotBorder
 {
 	border-bottom: dotted 1px #333333;
