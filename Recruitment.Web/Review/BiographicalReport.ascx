@@ -20,27 +20,27 @@
                     <ItemTemplate>                        
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Ph.D. Info">
+                <asp:TemplateField HeaderText="PhD Info">
                     <ItemTemplate>
                         <%# (int)Eval("Education.Count") > 0 ? GetPHDAwardedString((DateTime)Eval("Education[0].Date")) + " " : string.Empty%>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Institution">
+                <asp:TemplateField HeaderText="PhD Institution">
                     <ItemTemplate>
                         <%# (int)Eval("Education.Count") > 0 ? Eval("Education[0].Institution") : string.Empty%>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Discipline">
+                <asp:TemplateField HeaderText="PhD Discipline">
                     <ItemTemplate>
                         <%# (int)Eval("Education.Count") > 0 ? Eval("Education[0].Discipline") : string.Empty%>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="ResearchField">
+                <asp:TemplateField HeaderText="PhD ResearchField">
                     <ItemTemplate>
                         <%# (int)Eval("Education.Count") > 0 ? Eval("Education[0].ResearchField") : string.Empty%>
                     </ItemTemplate>
                 </asp:TemplateField>                
-                <asp:TemplateField HeaderText="Advisor">
+                <asp:TemplateField HeaderText="PhD Advisor">
                     <ItemTemplate>
                         <%# (int)Eval("Education.Count") > 0 ? Eval("Education[0].Advisor") : string.Empty%>
                     </ItemTemplate>
