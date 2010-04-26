@@ -123,7 +123,7 @@ namespace CAESDO.Recruitment.Web
 
             IPositionDao pDao = daoFactory.GetPositionDao();
 
-            List<Position> pList = pDao.GetAllPositionsByStatus(false);
+            List<Position> pList = pDao.GetAllPositionsByStatus(true);
             
         }
     }
