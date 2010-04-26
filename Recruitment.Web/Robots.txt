@@ -1,0 +1,5 @@
+﻿# robots.txt for Recruitments
+User-agent: *
+Disallow: /Images/
+Disallow: /JS/
+Disallow: /ScriptResource.axd
