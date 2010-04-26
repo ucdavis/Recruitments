@@ -40,7 +40,7 @@ namespace CAESDO.Recruitment.Web
             }
         }
 
-        protected void Page_PreInit(object sender, EventArgs e)
+        protected void Page_Init(object sender, EventArgs e)
         {
             CheckQueryString();
         }

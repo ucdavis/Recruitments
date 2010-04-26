@@ -98,11 +98,6 @@ namespace CAESDO.Recruitment.Web
             base.OnError(e); //won't get called
         }
 
-        protected override void OnPreInit(EventArgs e)
-        {
-            base.OnPreInit(e);
-        }
-
         //#region Events
         ///// <summary>
         ///// Automatically invoked before the page is displayed

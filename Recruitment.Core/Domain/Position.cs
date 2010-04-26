@@ -216,11 +216,11 @@ namespace CAESDO.Recruitment.Core.Domain
                 for (int i = 0; i < Departments.Count; i++)
                 {
                     if (i == 0)
-                        deptList.Append(Departments[i].DepartmentFIS);
+                        deptList.Append(Departments[i].Unit == null ? Departments[i].DepartmentFIS : Departments[i].Unit.FullName);
                     else
                     {
                         deptList.Append(", ");
-                        deptList.Append(Departments[i].DepartmentFIS);
+                        deptList.Append(Departments[i].Unit == null ? Departments[i].DepartmentFIS : Departments[i].Unit.FullName);
                     }
                 }
 

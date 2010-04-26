@@ -22,6 +22,14 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _AssociatedPosition = value; }
         }
 
+        private Unit _Unit;
+
+        public virtual Unit Unit
+        {
+            get { return _Unit; }
+            set { _Unit = value; }
+        }
+        
         private bool _PrimaryDept;
 
         public virtual bool PrimaryDept
