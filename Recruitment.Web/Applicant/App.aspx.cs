@@ -275,9 +275,8 @@ namespace CAESDO.Recruitment.Web
             }
             else
             {
-                Trace.Warn("Profile Not Valid");
-                Trace.Warn(ValidateBO<Profile>.GetValidationResultsAsString(currentProfile));
-                //Error message
+                eReport.ReportError(new ApplicationException("Profile Not Valid: " + ValidateBO<Profile>.GetValidationResultsAsString(currentProfile)), "btnContactSave_Click");
+                Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.VALIDATION));
             }
 
             ReloadStepListAndSelectHome(STR_ContactInformation, true);
@@ -436,7 +435,8 @@ namespace CAESDO.Recruitment.Web
             }
             else
             {
-                Trace.Warn(ValidateBO<Education>.GetValidationResultsAsString(currentEducation));
+                eReport.ReportError(new ApplicationException("Education Not Valid: " + ValidateBO<Education>.GetValidationResultsAsString(currentEducation)), "btnEducationSave_Click");
+                Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.VALIDATION));
             }
 
             ReloadStepListAndSelectHome(STR_EducationInformation, true);
@@ -480,7 +480,8 @@ namespace CAESDO.Recruitment.Web
             }
             else
             {
-                Trace.Warn(ValidateBO<CurrentPosition>.GetValidationResultsAsString(currentPosition));
+                eReport.ReportError(new ApplicationException("Current Position Not Valid: " + ValidateBO<CurrentPosition>.GetValidationResultsAsString(currentPosition)), "btnCurrentPositionSave_Click");
+                Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.VALIDATION));
             }
 
             ReloadStepListAndSelectHome(STR_CurrentPosition, true);
@@ -568,8 +569,13 @@ namespace CAESDO.Recruitment.Web
                     }
                     else
                     {
-                        Trace.Warn(ValidateBO<File>.GetValidationResultsAsString(publication));
+                        eReport.ReportError(new ApplicationException("Publication Not Valid: " + ValidateBO<File>.GetValidationResultsAsString(publication)), "btnPublicationsUpload_Click");
+                        Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.VALIDATION));
                     }
+                }
+                else
+                {
+                    //TODO: Pub must be PDF
                 }
             }
 
@@ -782,8 +788,8 @@ namespace CAESDO.Recruitment.Web
             }
             else
             {
-                Trace.Warn(ValidateBO<Reference>.GetValidationResultsAsString(currentReference));
-                //TODO: Error Message
+                eReport.ReportError(new ApplicationException("Reference Not Valid: " + ValidateBO<Reference>.GetValidationResultsAsString(currentReference)), "btnReferencesAddUpdate_Click");
+                Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.VALIDATION));
             }
 
             //Set the button text back to 'Add Reference' and the Command Argument to 0

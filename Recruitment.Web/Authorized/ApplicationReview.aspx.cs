@@ -114,7 +114,7 @@ namespace CAESDO.Recruitment.Web
             }
             else
             {
-                eReport.ReportError(new ApplicationException("Publication File Not Found: ID=" + FileID.ToString()), "lbtnPublicationFile_Click");
+                eReport.ReportError(new ApplicationException("Reference File Not Found: ID=" + fileID.ToString()), "lbtnReferenceFile_Click");
                 Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.FILE));
             }
         }
@@ -130,7 +130,7 @@ namespace CAESDO.Recruitment.Web
             {
                 if (DownloadFile(FileID) == false)
                 {
-                    eReport.ReportError(new ApplicationException("Publication File Not Found: ID=" + FileID.ToString()), "lbtnPublicationFile_Click");
+                    eReport.ReportError(new ApplicationException("Publication File Not Found: ID=" + FileID.ToString()), "lbtnFileDownload_Click");
                     Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.FILE));
                 }
             }
