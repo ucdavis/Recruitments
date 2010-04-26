@@ -29,12 +29,12 @@ namespace CAESDO
             //Grab the return URL
             string returnURL = Request.QueryString[STR_ReturnURL] ?? string.Empty;
 
-            if (returnURL.Contains(@"/Authorized/"))
+            if (returnURL.ToLower().Contains(@"/authorized/"))
             {
                 //We know that the user needs an DistAuth login
                 DistAuthLogin();
             }
-            else if (returnURL.Contains("/Applicant/"))
+            else if (returnURL.ToLower().Contains("/applicant/"))
             {
                 //We know the user needs a Membership login, so hide the DistAuth option
                 pnlKerberosLogin.Visible = false;
