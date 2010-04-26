@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
 
 namespace CAESDO.Recruitment.Core.Domain
 {
@@ -8,6 +9,7 @@ namespace CAESDO.Recruitment.Core.Domain
     {
         private string _FirstName;
 
+        [StringLengthValidator(50)]
         public virtual string FirstName
         {
             get { return _FirstName; }
@@ -15,6 +17,7 @@ namespace CAESDO.Recruitment.Core.Domain
         }
         private string _MiddleName;
 
+        [StringLengthValidator(50)]
         public virtual string MiddleName
         {
             get { return _MiddleName; }
