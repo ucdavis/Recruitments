@@ -9,19 +9,19 @@
         {
             var parent = FTB_API[txtID].GetParentElement();
             
-            if ( parent.tagName == 'BODY' )
-            {
-                FTB_API[txtID].InsertHtml(text);
+            if ( parent.tagName == 'HTML' )
+            {                
+                var currentHTML = FTB_API[txtID].GetHtml();
+                
+                FTB_API[txtID].SetHtml(currentHTML + text);                
             }
             else if ( parent.tagName == "BR" )
             {
                 return; //Don't do anything with BR's, they aren't formatted correctly
             }
-            else
+            else            
             {
-                var currentHTML = FTB_API[txtID].GetHtml();
-                
-                FTB_API[txtID].SetHtml(currentHTML + text);                
+                FTB_API[txtID].InsertHtml(text);
             }   
         }
         
@@ -139,13 +139,15 @@
             </td>
             <td>
                 Template Fields: 
-                    <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '{ReferenceName}');" >Reference Name</a>,
+                    <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '{ReferenceLastName}');" >Reference Last Name</a>,
                     <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '{ApplicantName}');" >Applicant Name</a>,
                     <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '{Deadline}');" >Deadline</a>,
-                    <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '{PositionTitle}');" >Position Title</a>
+                    <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '{PositionTitle}');" >Position Title</a>,
+                    <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '{RecruitmentAdminName}');" >Recruitment Admin Name</a>,
+                    <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '{PrimaryDepartment}');" >Primary Department</a>,
                     <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '<%= ConfidentialityStatement() %>');" >Confidentiality Statement</a>
                 
-                <FTB:FreeTextBox ID="ftxtReferenceTemplate" runat="server" Width="500px" Height="300px" EnableHtmlMode="true">
+                <FTB:FreeTextBox ID="ftxtReferenceTemplate" runat="server" Width="500px" Height="300px" EnableHtmlMode="false">
                 </FTB:FreeTextBox>
                 <asp:RequiredFieldValidator id="reqValReferenceTemplate" ControlToValidate="ftxtReferenceTemplate" ErrorMessage="* Reference Template Required" runat="server"/>
             </td>
