@@ -178,7 +178,7 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _DescriptionFile = value; }
         }
         
-        [NotNullValidator]
+        //[NotNullValidator]
         public virtual File SearchPlanFile { get; set; }
 
         public virtual Department PrimaryDepartment

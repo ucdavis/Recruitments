@@ -519,6 +519,39 @@ namespace CAESDO.Recruitment.Test.DomainTests
 
             ValidateResults(position);
         }
+
+        [TestMethod()]
+        public void CreatePositionWithoutSearchPlan()
+        {
+            Position position = new Position();
+
+            DateTime today = DateTime.Now;
+
+            // Fill in all non-nullable values
+            position.PositionTitle = "Test Wrangler";
+            position.DatePosted = today;
+            position.Deadline = today.AddDays(7);
+            position.AllowApps = true;
+            position.NumReferences = 0;
+            position.NumPublications = 0;
+            position.FacultyView = false;
+            position.Vote = false;
+            position.FinalVote = false;
+            position.Closed = false;
+            position.AdminAccepted = false;
+            position.HRRep = StaticProperties.TestString;
+            position.HREmail = StaticProperties.ExistingApplicantEmail;
+            position.ReferenceTemplate = TemplateBLL.GetByID(1);
+            position.DescriptionFile = FileBLL.GetByID(StaticProperties.ExistingFileID);
+            
+            position = Save(position);
+
+            // Save PositionID for later retrieval
+            StaticProperties.CreatedPositionID = position.ID;
+            Assert.IsNotNull(StaticProperties.CreatedPositionID, "Position ID not saved! Warning, other tests will fail!");
+
+            ValidateResults(position);
+        }
         
         [WorkItem(166), TestMethod()]
         public void ReadPosition()
