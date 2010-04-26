@@ -98,27 +98,33 @@ namespace CAESDO.Recruitment.Test
             for (int i = 0; i < 20; i++) //Add 10 positions
             {
                 var pos = new Position()
-                {
-                    AdminAccepted = i < 15,
-                    Closed = i % 5 == 0,
-                    AllowApps = i < 13,
-                    PositionTitle = "Position Title",
-                    HRRep = "HR Rep",
-                    HREmail = "fake@fake.com",
-                    HRPhone = "555-5555",
-                    ReferenceTemplate = new Template()
-                    {
-                        TemplateText = "Sample Text",
-                        TemplateType =
-                            GenericBLL<TemplateType, int>.GetByID(1)
-                    },
-                    DescriptionFile = new File()
-                    {
-                        Description = "Some File",
-                        FileName = "SomeFile",
-                        FileType = GenericBLL<FileType, int>.GetByID(1)
-                    }
-                };
+                              {
+                                  AdminAccepted = i < 15,
+                                  Closed = i%5 == 0,
+                                  AllowApps = i < 13,
+                                  PositionTitle = "Position Title",
+                                  HRRep = "HR Rep",
+                                  HREmail = "fake@fake.com",
+                                  HRPhone = "555-5555",
+                                  ReferenceTemplate = new Template()
+                                                          {
+                                                              TemplateText = "Sample Text",
+                                                              TemplateType =
+                                                                  GenericBLL<TemplateType, int>.GetByID(1)
+                                                          },
+                                  DescriptionFile = new File()
+                                                        {
+                                                            Description = "Some File",
+                                                            FileName = "SomeFile",
+                                                            FileType = GenericBLL<FileType, int>.GetByID(1)
+                                                        },
+                                  SearchPlanFile = new File()
+                                                       {
+                                                           Description = "Some file2",
+                                                           FileName = "TEST",
+                                                           FileType = GenericBLL<FileType, int>.GetByID(1)
+                                                       }
+                              };
 
                 pos.Departments = new List<Department>
                                       {
@@ -140,8 +146,10 @@ namespace CAESDO.Recruitment.Test
                 }
 
                 var descriptionFile = pos.DescriptionFile;
+                var searchPlanFile = pos.SearchPlanFile;
 
                 GenericBLL<File, int>.EnsurePersistent(descriptionFile);
+                GenericBLL<File, int>.EnsurePersistent(searchPlanFile);
                 GenericBLL<Position, int>.EnsurePersistent(pos);
             }
         }

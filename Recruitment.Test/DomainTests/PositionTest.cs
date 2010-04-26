@@ -509,6 +509,7 @@ namespace CAESDO.Recruitment.Test.DomainTests
             position.HREmail = StaticProperties.ExistingApplicantEmail;
             position.ReferenceTemplate = TemplateBLL.GetByID(1);
             position.DescriptionFile = FileBLL.GetByID(StaticProperties.ExistingFileID);
+            position.SearchPlanFile = FileBLL.GetByID(StaticProperties.ExistingFileID);
             
             position = Save(position);
             
