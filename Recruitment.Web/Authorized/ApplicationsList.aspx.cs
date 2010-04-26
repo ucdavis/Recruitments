@@ -108,7 +108,8 @@ namespace CAESDO.Recruitment.Web
                 {
                     foreach (Reference reference in app.References)
                     {
-                        if (reference.SentEmail == false)   //Only email references who haven't been emailed yet
+                        //Only email references who haven't been emailed yet and have not sent an unsolicited reference letter
+                        if (reference.SentEmail == false && reference.UnsolicitedReference == false)   
                         {
                             //Before sending the email, make sure we have a uid
                             this.ensureUniqueID(reference);
