@@ -19,11 +19,12 @@ namespace CAESDO.Recruitment.Test
                 LoadPositions();
                 LoadApplicants();
                 LoadApplications();
+                LoadUser();
 
                 ts.CommitTransaction();
             }
         }
-
+        
         private static void LoadApplicants()
         {
             for (int i = 0; i < 10; i++)
@@ -75,9 +76,8 @@ namespace CAESDO.Recruitment.Test
             for (int i = 0; i < 4; i++)
             {
                 var unit = new Unit(fiscodes[i]) { FullName = "Animal Science", SchoolCode = schools[i] };
-
                 
-                GenericBLL<Unit, string>.EnsurePersistent(unit, true);
+                UnitBLL.EnsurePersistent(unit, true);
             }
         }
 
@@ -145,5 +145,28 @@ namespace CAESDO.Recruitment.Test
                 GenericBLL<Position, int>.EnsurePersistent(pos);
             }
         }
+
+        private static void LoadUser()
+        {
+            //Let's put a user for testing
+            var user = new User { FirstName = "Test", LastName = "User", LoginIDs = new List<Login>() };
+            var userLogin = new Login() { User = user };
+            EntityIdSetter.SetIdOf<string>(userLogin, "tester");
+
+            user.LoginIDs.Add(userLogin);
+
+            //Now associate this person with some units
+            user.Units = new List<Unit>();
+
+            var apls = UnitBLL.GetByID("APLS");
+            var chem = UnitBLL.GetByID("CHEM");
+
+            user.Units.Add(apls);
+            user.Units.Add(chem);
+
+            UserBLL.EnsurePersistent(user, true);
+            GenericBLL<Login, string>.EnsurePersistent(userLogin, true);
+        }
+
     }
 }

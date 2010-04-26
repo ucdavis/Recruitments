@@ -1,7 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using CAESDO.Recruitment.BLL;
+using CAESDO.Recruitment.Core.Abstractions;
 using CAESDO.Recruitment.Core.Domain;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Moq;
+
 namespace CAESDO.Recruitment.Test.BusinessTests
 {
     [TestClass]
@@ -13,22 +17,30 @@ namespace CAESDO.Recruitment.Test.BusinessTests
         private const bool Closed = false;
         private const bool AdminAccepted = true;
         private const bool AllowApplications = true;
+        
+        private static Mock<IUserContext> GetMockContext(string username, bool? isAdmin, bool? isRecruitmentManager)
+        {
+            var cc = new Mock<IUserContext>();
+            cc.Setup(d => d.Name()).Returns(username);
+
+            if (isAdmin.HasValue) cc.Setup(d => d.IsUserInRole("Admin")).Returns(isAdmin.Value);
+
+            if (isAdmin.HasValue) cc.Setup(d => d.IsUserInRole("RecruitmentManager")).Returns(isRecruitmentManager.Value);
+
+            return cc;
+        }
+
+        private static Mock<IUserContext> GetMockContext(string username)
+        {
+            return GetMockContext(username, null, null);
+        }
 
         [TestMethod]
         public void ViewPositionsForRecruitmentManager()
         {
-            //Let's mock up the user and permissions so this user is seen as a recruitment manager
-            var controller = new AdminController();
+            var mockUserContext = GetMockContext("tester", false, true);
 
-            var cc = GetMockContext("tester");
-            cc.Setup(d => d.HttpContext.User.IsInRole("Admin")).Returns(false);//this user isn't an admin
-            cc.Setup(d => d.HttpContext.User.IsInRole("RecruitmentManager")).Returns(true); //mock this person as a recruitment manager
-
-            controller.ControllerContext = cc.Object;
-
-            ViewResult result = controller.ViewPositions() as ViewResult;
-
-            var positions = result.ViewData.Model as List<Position>;
+            var positions = PositionBLL.GetByStatusAndDepartment(Closed, AdminAccepted, AllowApplications, null, null, mockUserContext.Object);
 
             Assert.IsNotNull(positions);
             Assert.AreEqual(8, positions.Count);
@@ -53,18 +65,9 @@ namespace CAESDO.Recruitment.Test.BusinessTests
         [TestMethod]
         public void ViewPositionsForAdmin()
         {
-            var controller = new AdminController();
+            var mockUserContext = GetMockContext("tester", true, false);
 
-            var cc = GetMockContext("tester");
-            cc.Setup(d => d.HttpContext.User.IsInRole("Admin")).Returns(true);//this user is an admin
-
-            controller.ControllerContext = cc.Object;
-
-            ViewResult result = controller.ViewPositions() as ViewResult;
-
-            Assert.IsNotNull(result);
-
-            var positions = result.ViewData.Model as List<Position>;
+            var positions = PositionBLL.GetByStatusAndDepartment(Closed, AdminAccepted, AllowApplications, null, null, mockUserContext.Object);
 
             Assert.IsNotNull(positions);
             Assert.AreEqual(10, positions.Count);//there should be 10 positions that meet the criteria
@@ -76,8 +79,7 @@ namespace CAESDO.Recruitment.Test.BusinessTests
                 Assert.IsTrue(position.AllowApps);
                 Assert.IsFalse(position.Closed);
             }
-        } 
-        #endregion
+        }
 
         [TestMethod]
         public void ViewPositions()

@@ -169,47 +169,62 @@ namespace CAESDO.Recruitment.Data
 
             public List<Position> GetAllPositionsByStatusAndDepartment(bool Closed, bool AdminAccepted, bool? AllowApplications, string DepartmentFIS, string SchoolCode, IUserContext userContext)
             {
-                ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(Position))
-                    .Add(Expression.Eq("Closed", Closed))
-                    .Add(Expression.Eq("AdminAccepted", AdminAccepted))
-                    .CreateAlias("Departments", "Depts")
-                    .CreateAlias("Depts.Unit", "Unit");
+                DetachedCriteria criteria = DetachedCriteria.For(typeof(Position))
+                .Add(Restrictions.Eq("Closed", Closed))
+
+                .CreateAlias("Departments", "Depts")
+                .CreateAlias("Depts.Unit", "Unit");
+
+                //if (AdminAccepted.HasValue)
+                criteria.Add(Restrictions.Eq("AdminAccepted", AdminAccepted));
+
 
                 if (AllowApplications.HasValue)
-                    criteria.Add(Expression.Eq("AllowApps", AllowApplications.Value));
+                    criteria.Add(Restrictions.Eq("AllowApps", AllowApplications.Value));
 
+                //Add in the department fis restriction if it exists
                 if (!string.IsNullOrEmpty(DepartmentFIS))
-                    criteria.Add(Expression.Eq("Unit.id", DepartmentFIS));
+                {
+                    criteria.Add(Restrictions.Eq("Unit.id", DepartmentFIS));
+                }
 
                 if (!string.IsNullOrEmpty(SchoolCode))
-                    criteria.Add(Expression.Eq("Unit.SchoolCode", SchoolCode));
+                {
+                    criteria.Add(Restrictions.Eq("Unit.SchoolCode", SchoolCode));
+                }
 
                 if (userContext != null) //only filter logged in users
                 {
-                    User currentUser = new UserDao().GetUserByLogin(userContext.Name());
+                    string username = userContext.Name();
 
-                    if (currentUser != null)
+                    if (userContext.IsUserInRole("Admin") == false) //Don't filter if the user is an admin
                     {
-                        if (userContext.IsUserInRole("Admin"))
+                        //RecruitmentManagers can only see positions associated with their departments
+                        if (userContext.IsUserInRole("RecruitmentManager"))
                         {
-                            List<string> deptFIS = new List<string>();
-
-                            foreach (Unit u in currentUser.Units)
-                            {
-                                deptFIS.Add(u.ID);
-                            }
-
-                            criteria.Add(Expression.In("Depts.DepartmentFIS", deptFIS.ToArray()));
+                            criteria.Add(Subqueries.PropertyIn("Depts.DepartmentFIS", GetUnitsForUser(username)));
                         }
                     }
                 }
 
-                var projectsList = criteria.SetProjection(Projections.Id()).List();
+                DetachedCriteria projectIds = criteria.SetProjection(Projections.Id());
 
                 return NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(Position))
-                    .Add(Expression.In("id", projectsList))
-                    .AddOrder(Order.Asc("Deadline"))
-                    .List<Position>() as List<Position>;
+                           .Add(Subqueries.PropertyIn("id", projectIds))
+                           .AddOrder(Order.Asc("Deadline"))
+                           .List<Position>() as List<Position>;
+            }
+
+            private static DetachedCriteria GetUnitsForUser(string username)
+            {
+                //Get the user's unit associations (by fis, which is the Unit class ID)
+                DetachedCriteria unitCriteria = DetachedCriteria.For(typeof(User))
+                    .CreateAlias("LoginIDs", "Logins")
+                    .Add(Restrictions.Eq("Logins.id", username))
+                    .CreateAlias("Units", "Units")
+                    .SetProjection(Projections.Property("Units.id")); //FIS
+
+                return unitCriteria;
             }
 
             public List<Position> GetAllPositionsByStatusForCommittee(bool Closed, bool AdminAccepted)
