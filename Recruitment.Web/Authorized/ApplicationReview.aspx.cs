@@ -281,6 +281,12 @@ namespace CAESDO.Recruitment.Web
         /// </summary>
         private void DataBindEducationInformation()
         {
+            if (!currentApplication.AppliedPosition.Steps.Contains(ApplicationStepType.Education))
+            {
+                pnlEducationInformation.Visible = false;
+                return;
+            }
+
             //Only databind if there is an education available
             if (currentApplication.Education.Count == 0)
                 return;
@@ -297,6 +303,12 @@ namespace CAESDO.Recruitment.Web
         /// </summary>
         private void DataBindCurrentPositionInformation()
         {
+            if (!currentApplication.AppliedPosition.Steps.Contains(ApplicationStepType.CurrentPosition))
+            {
+                pnlCurrentPosition.Visible = false;
+                return;
+            }
+
             //Only databindd if there is a current position available
             if (currentApplication.CurrentPositions.Count == 0)
                 return;
