@@ -72,14 +72,16 @@ namespace CAESDO.Recruitment.Web
             HttpWebRequest req = (HttpWebRequest)HttpWebRequest.Create(URL);
             req.Headers.Set("Cookie", Request.Headers["Cookie"]);
 
+            req.Timeout = 1000; //One second timeout
+
             try
             {
                 response = req.GetResponse();
             }
             catch (Exception ex)
             {
-                eReport.ReportError(ex, "OutputPage");
-                Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.UNKNOWN));
+                lblReportStatus.Text = "Report Could Not Be Generated.  Please Try Again"; //Most likely timeout -- try again                
+                return;
             }
 
             using (StreamReader reader = new StreamReader(response.GetResponseStream()))

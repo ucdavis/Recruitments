@@ -22,8 +22,8 @@
     </asp:ObjectDataSource>
     
     <br /><br />
-    <asp:CheckBox ID="chkOutputFile" runat="server" Checked="true" Text="Output to File: " TextAlign="Left" />
+    <asp:CheckBox ID="chkOutputFile" runat="server" Checked="true" Text="Output to Word: " TextAlign="Left" />
     <br /><br />
     <asp:Button ID="btnGenerateReport" runat="server" Text="Generate Report!" OnClick="btnGenerateReport_Click" />
-    
+    <br /><asp:Label ID="lblReportStatus" runat="server" EnableViewState="false" ForeColor="red"></asp:Label>
 </asp:Content>

@@ -13,7 +13,7 @@
  <p align="right">
      SECTION UCD-500</p>
  <p align="right">Academic Personnel Manual</p>
- <p align="center">INTERIM RECRUITEMENT REPORT ON APPLICANT POOLS</p>
+ <p align="center">INTERIM RECRUITMENT REPORT ON APPLICANT POOLS</p>
  <table width="100%"  border="0">
    <tr>
      <td>Department: <strong>

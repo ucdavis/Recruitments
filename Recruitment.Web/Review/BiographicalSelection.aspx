@@ -11,7 +11,8 @@ Position:
     <br /><br />
     
     <asp:Button ID="btnDisplayReport" runat="server" Text="Open Spreadsheet" OnClick="btnDisplayReport_Click" />    
-
+    <br /><asp:Label ID="lblReportStatus" runat="server" EnableViewState="false" ForeColor="red"></asp:Label>
+    
     <AjaxControlToolkit:CascadingDropDown ID="cascadePositions" runat="server" Category="Positions"
         PromptText="Select a Position" ServiceMethod="GetPositionsForCommitteeOnly" ServicePath="RecruitmentCommitteeService.asmx"
         TargetControlID="dlistPositions">
