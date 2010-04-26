@@ -1,6 +1,8 @@
 using CAESDO.Recruitment.Core.DataInterfaces;
 using CAESDO.Recruitment.Core.Domain;
 using System.Collections.Generic;
+using NHibernate;
+using NHibernate.Expression;
 
 namespace CAESDO.Recruitment.Data
 {
@@ -103,33 +105,33 @@ namespace CAESDO.Recruitment.Data
 
             public List<CommitteeMember> GetAllByMemberType(Position associatedPosition, MemberTypes type)
             {
-                MemberType mtype = new MemberType();
-                CommitteeMember member = new CommitteeMember();
-                member.MemberType = new MemberType();
+                //string queryString = "from CAESDO.Recruitment.Core.Domain.CommitteeMember as CM where PositionID = :PositionID "
+                //               + " and (MemberTypeID = :MemberTypeID or MemberTypeID = :MemberTypeSecondaryID)";
 
-                member.AssociatedPosition = associatedPosition;
+                int MemberTypeID, MemberTypeSecondaryID;
 
-                List<CommitteeMember> members = new List<CommitteeMember>();
-
+                //If we want all committee members, we must get the chair an members
                 if (type == MemberTypes.AllCommittee)
                 {
-                    member.MemberType.Type = mtype.GetTypeByEnum(MemberTypes.CommitteeChair);
-                    members.AddRange(this.GetByExample(member, "Email", "UserID"));
-                    //
-                    member.MemberType.Type = mtype.GetTypeByEnum(MemberTypes.CommitteeMember);
-                    members.AddRange(this.GetByExample(member, "Email", "UserID"));
+                    MemberTypeID = (int)MemberTypes.CommitteeChair;
+                    MemberTypeSecondaryID = (int)MemberTypes.CommitteeMember;
                 }
                 else
                 {
-                    member.MemberType.Type = mtype.GetTypeByEnum(type);
-                    members.AddRange(this.GetByExample(member, "Email", "UserID"));
+                    MemberTypeID = (int)type;
+                    MemberTypeSecondaryID = (int)type;
                 }
+                
+                IQuery query = NHibernateSessionManager.Instance.GetSession().CreateQuery(NHQueries.GetAllByMemberType)
+                            .SetInt32("PositionID", associatedPosition.ID)
+                            .SetInt32("MemberTypeID", MemberTypeID)
+                            .SetInt32("MemberTypeSecondaryID", MemberTypeSecondaryID);
 
-                return members;
+                return query.List<CommitteeMember>() as List<CommitteeMember>;
             }
         }
-          
-        #endregion
 
+        #endregion
+          
     }
 }

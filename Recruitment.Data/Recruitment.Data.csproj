@@ -47,6 +47,11 @@
     <Compile Include="NHibernateDaoFactory.cs" />
     <Compile Include="NHibernateSessionManager.cs" />
     <Compile Include="NHibernateTransaction.cs" />
+    <Compile Include="NHQueries.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>NHQueries.resx</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -54,6 +59,13 @@
       <Project>{5F40A7DB-8142-4564-BB05-0F9C2DD3EF75}</Project>
       <Name>Recruitment.Core</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="NHQueries.resx">
+      <SubType>Designer</SubType>
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>NHQueries.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

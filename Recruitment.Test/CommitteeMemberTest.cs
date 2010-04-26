@@ -127,6 +127,11 @@ namespace CAESDO.Recruitment.Test
 
             this.TestContext.WriteLine("There are {0} members for this position", members.Count);
 
+            foreach (CommitteeMember m in members)
+            {
+                this.TestContext.WriteLine("PositionID = {0}, CommitteeMemberID = {1}, Type = {2}", m.AssociatedPosition.ID, m.ID, m.MemberType.Type);
+            }
+
         }
 
         /// <summary>

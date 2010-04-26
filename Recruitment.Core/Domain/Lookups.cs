@@ -106,30 +106,13 @@ namespace CAESDO.Recruitment.Core.Domain
         {
 
         }
-
-        public virtual string GetTypeByEnum(MemberTypes type)
-        {
-            switch (type)
-            {
-                case MemberTypes.AllCommittee:
-                    return "AllCommittee";
-                case MemberTypes.CommitteeChair:
-                    return "CommitteeChair";
-                case MemberTypes.CommitteeMember:
-                    return "CommitteeMember";
-                case MemberTypes.FacultyMember:
-                    return "FacultyMember";
-                default:
-                    return "Unknown";
-            }
-        }
     }
 
     public enum MemberTypes 
     {
-        AllCommittee,
-        CommitteeMember,
-        CommitteeChair,
-        FacultyMember
+        AllCommittee                = 0,
+        CommitteeMember             = 1,
+        CommitteeChair              = 2,
+        FacultyMember               = 3
     }
 }
