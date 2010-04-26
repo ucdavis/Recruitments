@@ -91,6 +91,11 @@ namespace CAESDO.Recruitment.Data
                             .SetBoolean("Closed", Closed);
 
                 return query.List<Position>() as List<Position>;
+
+                //ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(Position))
+                //    .Add(Expression.Eq("Closed", Closed));
+
+                //return criteria.List<Position>() as List<Position>;
             }
         }
 
