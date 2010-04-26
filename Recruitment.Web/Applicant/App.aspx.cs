@@ -131,6 +131,8 @@ namespace CAESDO.Recruitment.Web
         /// <remarks>The lbtnStep has a command argument which represents the selected step name</remarks>
         protected void lbtnStep_Click(object sender, EventArgs e)
         {
+            Trace.Write("-- lbtnStep_Click Begin --");
+
             //Grab the link button's command argument (the step name)
             string stepName = ((LinkButton)sender).CommandArgument;
 
@@ -139,6 +141,8 @@ namespace CAESDO.Recruitment.Web
                 if (step.StepName == stepName)
                 {
                     step.setSelectionStatus(true);
+
+                    SetCorrespondingView(stepName);
                 }
                 else
                 {
@@ -148,6 +152,24 @@ namespace CAESDO.Recruitment.Web
 
             rptSteps.DataSource = ApplicationSteps;
             rptSteps.DataBind();
+
+            Trace.Write("-- lbtnStep_Click End --");
+        }
+
+        /// <summary>
+        /// Find the View that corresponds to this step 
+        /// </summary>
+        /// <remarks>ViewStepID is 'view' plus the StepName with no spaces</remarks>
+        private void SetCorrespondingView(string stepName)
+        {
+            string viewStepName = "view" + stepName.Replace(" ", "");
+
+            View viewStep = mviewSteps.FindControl(viewStepName) as View;
+
+            if (viewStep != null)
+            {
+                mviewSteps.SetActiveView(viewStep);
+            }
         }
 
         /// <summary>

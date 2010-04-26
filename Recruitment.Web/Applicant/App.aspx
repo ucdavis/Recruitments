@@ -22,8 +22,52 @@
     </ul>
     </div>
     <div style="background:url(../Images/appmenuRight.gif) repeat-y right; height:500px;">
-        <asp:Panel ID="Panel1" runat="server">
-         
+        <asp:Panel ID="pnlMainWindow" runat="server">
+        
+        <asp:MultiView ID="mviewSteps" runat="server" ActiveViewIndex="0">
+        
+            <asp:View ID="viewHome" runat="server">
+                Home
+            </asp:View>
+            
+            <asp:View ID="viewContactInformation" runat="server">
+                Contact Info
+            </asp:View>
+            
+            <asp:View ID="viewEducationInformation" runat="server">
+                Education Info
+            </asp:View>
+        
+            <asp:View ID="viewReferences" runat="server">
+                References
+            </asp:View>
+        
+            <asp:View ID="viewCurrentPosition" runat="server">
+                Current Position
+            </asp:View>
+            
+            <asp:View ID="viewResume" runat="server">
+                Resume
+            </asp:View>
+        
+            <asp:View ID="viewCoverLetter" runat="server">
+                Cover Letter
+            </asp:View>
+        
+            <asp:View ID="viewResearchInterests" runat="server">
+                Research Interests
+            </asp:View>
+            
+            <asp:View ID="viewTranscripts" runat="server">
+                Transcripts
+            </asp:View>
+            
+            <asp:View ID="viewConfidentialSurvey" runat="server">
+                Confidential Survey
+            </asp:View>
+            
+        </asp:MultiView>
+        
         </asp:Panel>
     </div>
     
