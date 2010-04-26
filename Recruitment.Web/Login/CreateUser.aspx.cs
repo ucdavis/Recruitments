@@ -17,7 +17,8 @@ namespace CAESDO.Recruitment.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            lblPasswordComplexityReqs.Text = 
+                string.Format("Your password must be at least {0} characters long and contain at least {1} 'symbol(s)' (non-alphanumeric) such as !@#$%^&*()_+=;/? (anything that is not A-Z or 0-9).", Membership.MinRequiredPasswordLength, Membership.MinRequiredNonAlphanumericCharacters);
         }
 
         protected void wizCreateUser_FinishButtonClick(object sender, WizardNavigationEventArgs e)

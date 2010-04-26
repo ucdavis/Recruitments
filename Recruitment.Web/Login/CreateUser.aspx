@@ -96,5 +96,6 @@
             <br /><br />
         </FinishNavigationTemplate>
     </asp:Wizard>
-
+    <br />
+    <asp:Label ID="lblPasswordComplexityReqs" runat="server" ForeColor="Green" EnableViewState="false"></asp:Label>
 </asp:Content>
