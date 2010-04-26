@@ -20,9 +20,9 @@
                     <ItemTemplate>                        
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="PhD Info">
+                <asp:TemplateField HeaderText="PhD Award Date">
                     <ItemTemplate>
-                        <%# (int)Eval("Education.Count") > 0 ? GetPHDAwardedString((DateTime)Eval("Education[0].Date")) + " " : string.Empty%>
+                        <%# (int)Eval("Education.Count") > 0 ? ((DateTime)Eval("Education[0].Date")).ToShortDateString() : string.Empty%>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="PhD Institution">
