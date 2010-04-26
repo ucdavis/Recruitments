@@ -96,6 +96,14 @@
 	overflow:hidden;
 }
 
+.AASIstyle
+{
+	background: url(Images/cl_AASI.gif) no-repeat top right;
+	float:right;
+	padding-top: 150px; 
+	overflow:hidden;
+}
+
 .BMICstyle
 {
 	background: url(Images/cl_BMIC.gif) no-repeat top right;
