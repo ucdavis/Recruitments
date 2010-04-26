@@ -291,6 +291,15 @@ namespace CAESDO.Recruitment.Data
 
                 return criteria.UniqueResult<FileType>();
             }
+
+            public List<FileType> GetAllByApplicationFileType(bool applicationFileType, string propertyName, bool ascending)
+            {
+                ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(FileType))
+                    .Add(Expression.Eq("ApplicationFile", applicationFileType))
+                    .AddOrder(new Order(propertyName, ascending));
+
+                return criteria.List<FileType>() as List<FileType>;
+            }
         }
 
         public class MemberTypeDao : AbstractNHibernateDao<MemberType, int>, IMemberTypeDao { }

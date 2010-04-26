@@ -59,6 +59,7 @@
     </id>
 
     <property name="FileTypeName" column="FileType" />
+    <property name="ApplicationFile" column="ApplicationFile" />
 
   </class>
 

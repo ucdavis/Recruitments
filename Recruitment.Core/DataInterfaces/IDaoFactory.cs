@@ -83,6 +83,7 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
 
     public interface IFileTypeDao : IDao<FileType, int> {
         FileType GetFileTypeByName(string fileTypeName);
+        List<FileType> GetAllByApplicationFileType(bool ApplicationFileType, string propertyName, bool ascending);
     }
           
     public interface IMemberTypeDao : IDao<MemberType, int> { }

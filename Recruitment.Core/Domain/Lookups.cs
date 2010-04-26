@@ -120,6 +120,14 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _FileTypeName = value; }
         }
 
+        private bool _ApplicationFile;
+
+        public virtual bool ApplicationFile
+        {
+            get { return _ApplicationFile; }
+            set { _ApplicationFile = value; }
+        }
+        
         public FileType()
         {
 

@@ -210,9 +210,10 @@
                     <RowStyle HorizontalAlign="Left" />
                     <HeaderStyle HorizontalAlign="Left" />
                 </asp:GridView>                
-                <asp:ObjectDataSource ID="ObjectDataFileTypes" runat="server" SelectMethod="GetAll"
+                <asp:ObjectDataSource ID="ObjectDataFileTypes" runat="server" SelectMethod="GetAllByApplicationFileType"
                     TypeName="CAESDO.Recruitment.Data.NHibernateDaoFactory+FileTypeDao">
                     <SelectParameters>
+                        <asp:Parameter DefaultValue="true" Name="applicationFileType" Type="Boolean" />
                         <asp:Parameter DefaultValue="FileTypeName" Name="propertyName" Type="String" />
                         <asp:Parameter DefaultValue="true" Name="ascending" Type="Boolean" />
                     </SelectParameters>
