@@ -1,7 +1,7 @@
 
 namespace CAESDO.Recruitment.Web
 {
-    public partial class Authorized_viewApplications : ApplicationPage
+    public partial class Review_viewApplications : ApplicationPage
     {
         
     }

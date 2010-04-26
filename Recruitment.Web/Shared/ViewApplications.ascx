@@ -2,9 +2,9 @@
 
 <script type="text/javascript">
 
-        $(document).ready(function() {
-            //Sort table
-            $("#tblApplications").tablesorter(
+    $(document).ready(function() {
+        //Sort table
+        $("#tblApplications").tablesorter(
             {
                 sortList: [[2, 1], [0, 0]],
                 cssAsc: 'headerSortUp',
@@ -13,7 +13,25 @@
                 headers: { 2: { sorter: 'checkbox' }, 0: { sorter: 'link'} },
                 widgets: ['zebra']
             });
+
+        //The show unsubmitted applicants checkbox should be in an initial unchecked state 
+        $("#chkShowUnsubmitted").removeAttr("checked");
+
+        $("#chkShowUnsubmitted").click(function() {
+            var allApplications = $("#tblApplications tbody tr");
+
+            if ($(this).is(":checked")) {
+                //Checkbox is checked, show all rows
+                allApplications.show(0);
+            }
+            else {
+                //Hide the unsubmitted rows
+                allApplications.not(":has(:checked)").hide(0);
+            }
+
+            $("#tblApplications").trigger("applyWidgets"); //Apply the zebra stripes
         });
+    });
         
 </script>
 
@@ -22,6 +40,7 @@ Viewing Applicants for the
 position.
 <br />
 <br />
+<span style="float:right;"><input id="chkShowUnsubmitted" type="checkbox" /> Show All Applicants</span>
 <asp:ListView ID="lviewApplications" runat="server" DataSourceID="ObjectDataApplications">
     <LayoutTemplate>
         <table id="tblApplications" class="tablesorter">
@@ -45,7 +64,7 @@ position.
         </table>
     </LayoutTemplate>
     <ItemTemplate>
-        <tr>
+        <tr style='<%# (bool)Eval("Submitted") ? "" : "display:none;" %>'> <%--Hide unsubmitted applications by default--%>
             <td>
                 <asp:LinkButton ID="lbtnViewApplication" runat="server" CommandArgument='<%# Eval("id") %>'
                     Text='<%# GetNullSafeFullName((string)Eval("AssociatedProfile.FullName")) %>'
@@ -55,7 +74,7 @@ position.
                 <%# Eval("Email") %>
             </td>
             <td>
-                <asp:CheckBox ID="checkbox" runat="server" Enabled="false" Checked='<%# (bool)Eval("Submitted")  %>' />
+                <asp:CheckBox ID="checkbox" runat="server" Checked='<%# (bool)Eval("Submitted")  %>' onclick="javascript:return false;" />
             </td>
         </tr>
     </ItemTemplate>
