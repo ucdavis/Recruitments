@@ -22,7 +22,7 @@
                 <HeaderStyle HorizontalAlign="Left" Width="100px" />
             </asp:BoundField>
             
-            <asp:TemplateField HeaderText="Modify">
+            <asp:TemplateField HeaderText="Modify" Visible="false">
                 <ItemTemplate>
                     <asp:ImageButton ID="ibtnModifyPosition" runat="server" ImageUrl="~/Images/modify.gif" CommandArgument='<%# Eval("ID") %>' />
                 </ItemTemplate>

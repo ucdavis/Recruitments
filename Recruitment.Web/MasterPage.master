@@ -55,7 +55,7 @@
                                 
                             </AnonymousTemplate>
                             <RoleGroups>
-                                <asp:RoleGroup Roles="User,Admin">
+                                <asp:RoleGroup Roles="User,Admin,RecruitmentManager">
                                     <ContentTemplate>
                                         <div class="dropdownmenu">
                                             <ul>
