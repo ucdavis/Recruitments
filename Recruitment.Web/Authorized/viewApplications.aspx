@@ -15,21 +15,6 @@
                 headers: { 2: { sorter: 'checkbox' }, 0: { sorter: 'link'} },
                 widgets: ['zebra']
             });
-
-            //Search table
-            $("#tblApplications tbody tr").quicksearch({
-                labelText: 'Search: ',
-                attached: '#tblApplications',
-                position: 'before',
-                delay: 100,
-                loaderText: 'Loading...',
-                onAfter: function() {
-                    if ($("#tblApplications tbody tr:visible").length != 0) {
-                        $("#tblApplications").trigger("update");
-                        $("#tblApplications").trigger("appendCache");
-                    } 
-                }
-            });
         });
         
     </script>
@@ -79,7 +64,7 @@
     
     <br /><br /><br />
     
-    <asp:GridView ID="gviewApplications" runat="server" AllowPaging="True" skinID="gridViewUM" GridLines="None" CellPadding="0" AutoGenerateColumns="False" 
+    <asp:GridView ID="gviewApplications" runat="server" Visible="false" AllowPaging="True" skinID="gridViewUM" GridLines="None" CellPadding="0" AutoGenerateColumns="False" 
     DataSourceID="ObjectDataApplications" EmptyDataText="No Applications Found For This Position">
         <Columns>
             <asp:TemplateField HeaderText="Applicant Name">
