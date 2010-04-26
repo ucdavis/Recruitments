@@ -16,6 +16,7 @@ namespace CAESDO.Recruitment.Web
     public partial class PositionDetails : ApplicationPage
     {
         private const string STR_PositionID = "PositionID";
+        private const string STR_DEFAULT_DEPARTMENT = "ADNO";
         
         public int currentPositionID
         {
@@ -37,6 +38,14 @@ namespace CAESDO.Recruitment.Web
             get
             {
                 return daoFactory.GetPositionDao().GetById(currentPositionID, false);
+            }
+        }
+
+        public Theme defaultTheme
+        {
+            get
+            {
+                return daoFactory.GetThemeDao().GetById(STR_DEFAULT_DEPARTMENT, false);
             }
         }
 
@@ -74,6 +83,26 @@ namespace CAESDO.Recruitment.Web
             //lblHRPhone.Text = currentPosition.HRPhone ?? "N/A";
             //lblHREmail.Text = currentPosition.HREmail ?? "N/A";
 
+            //Setup the StyleSheet
+            //First find the "primary department"
+            if (currentPosition.PrimaryDepartment == null)
+            {
+                //If we don't have a primary department, get the default theme
+                pnlDepartmentLogo.CssClass = defaultTheme.ThemeName;
+            }
+            else
+            {
+                if (currentPosition.PrimaryDepartment.Theme == null)
+                {
+                    //If the primary department doesn't have a theme, get the default
+                    pnlDepartmentLogo.CssClass = defaultTheme.ThemeName;
+                }
+                else
+                {
+                    //We have a primary dept and a theme
+                    pnlDepartmentLogo.CssClass = currentPosition.PrimaryDepartment.Theme.ThemeName;
+                }
+            }
         }
 
         /// <summary>

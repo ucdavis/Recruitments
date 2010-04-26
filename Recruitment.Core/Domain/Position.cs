@@ -177,13 +177,31 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _DescriptionFile; }
             set { _DescriptionFile = value; }
         }
-
-        private Department _PrimaryDepartment;
-
+                
         public virtual Department PrimaryDepartment
         {
-            get { return _PrimaryDepartment; }
-            set { _PrimaryDepartment = value; }
+            get {
+                
+                //Look for the primary department, return if it is found
+                foreach (Department d in this.Departments)
+                {
+                    if (d.PrimaryDept)
+                        return d;
+                }
+
+                return null;
+            }
+            set {
+
+                //Loop through each department and set the primary department while clearing all other department's primary flag
+                foreach (Department d in this.Departments)
+                {
+                    if (d.ID == value.ID)
+                        d.PrimaryDept = true;
+                    else
+                        d.PrimaryDept = false;
+                }            
+            }
         }
 
         private IList<FileType> _FileTypes;

@@ -93,7 +93,7 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
           
     public interface IChangeTypeDao : IDao<ChangeType, int> { }
           
-    public interface IThemeDao : IDao<Theme, int> { }
+    public interface IThemeDao : IDao<Theme, string> { }
 
     public interface IUnitDao : IDao<Unit, string> { }
 

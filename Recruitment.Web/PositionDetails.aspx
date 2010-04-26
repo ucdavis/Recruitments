@@ -1,6 +1,6 @@
 <%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="PositionDetails.aspx.cs" Inherits="CAESDO.Recruitment.Web.PositionDetails" Title="Position Details" Theme="MainTheme" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <asp:Panel ID="Panel1" runat="server" Height="0px" Width="340px" CssClass="CABAstyle"> </asp:Panel><br />
+    <asp:Panel ID="pnlDepartmentLogo" runat="server" Height="0px" Width="340px" CssClass="CABAstyle"> </asp:Panel><br />
     <asp:ImageButton ID="hlinkPositionList" runat="server" PostBackUrl="~/viewPositions.aspx"  ImageUrl="~/Images/gotopositionslist.jpg" />
     <br />
     <br />

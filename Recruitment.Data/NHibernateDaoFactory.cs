@@ -316,7 +316,7 @@ namespace CAESDO.Recruitment.Data
 
         public class ChangeTypeDao : AbstractNHibernateDao<ChangeType, int>, IChangeTypeDao { }
 
-        public class ThemeDao : AbstractNHibernateDao<Theme, int>, IThemeDao { }
+        public class ThemeDao : AbstractNHibernateDao<Theme, string>, IThemeDao { }
 
         public class UnitDao : AbstractNHibernateDao<Unit, string>, IUnitDao { }
 

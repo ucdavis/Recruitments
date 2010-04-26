@@ -58,7 +58,6 @@
     <Compile Include="Domain\Profile.cs" />
     <Compile Include="Domain\Reference.cs" />
     <Compile Include="Domain\Survey.cs" />
-    <Compile Include="Domain\Theme.cs" />
     <Compile Include="Domain\User.cs" />
     <Compile Include="Domain\Lookups.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -106,9 +105,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Domain\ChangeTracking.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="Domain\Theme.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

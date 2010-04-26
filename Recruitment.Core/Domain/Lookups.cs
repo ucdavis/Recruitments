@@ -29,7 +29,15 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _Unit; }
             set { _Unit = value; }
         }
-        
+
+        private Theme _Theme;
+
+        public virtual Theme Theme
+        {
+            get { return _Theme; }
+            set { _Theme = value; }
+        }
+
         private bool _PrimaryDept;
 
         public virtual bool PrimaryDept
@@ -51,6 +59,22 @@ namespace CAESDO.Recruitment.Core.Domain
         public override int GetHashCode()
         {
             return base.GetHashCode();
+        }
+    }
+
+    public class Theme : DomainObject<string>
+    {
+        private string _ThemeName;
+
+        public virtual string ThemeName
+        {
+            get { return _ThemeName; }
+            set { _ThemeName = value; }
+        }
+
+        public Theme()
+        {
+
         }
     }
 
