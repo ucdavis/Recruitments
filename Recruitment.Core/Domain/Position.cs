@@ -59,6 +59,16 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _Deadline; }
             set { _Deadline = value; }
         }
+
+        private ReferenceTemplate _ReferenceTemplate;
+
+        [IgnoreNulls()]
+        public virtual ReferenceTemplate ReferenceTemplate
+        {
+            get { return _ReferenceTemplate; }
+            set { _ReferenceTemplate = value; }
+        }
+        
         private bool _AllowApps;
 
         public virtual bool AllowApps

@@ -118,4 +118,16 @@
 
   </class>
 
+
+  <class
+    name="CAESDO.Recruitment.Core.Domain.ReferenceTemplate, CAESDO.Recruitment.Core"
+    table="ReferenceTemplates" >
+    <id name="id" access="field" column="ReferenceTemplateID" unsaved-value="0">
+      <generator class="identity" />
+    </id>
+
+    <property name="TemplateText" column="TemplateText" />
+
+  </class>
+
 </hibernate-mapping>

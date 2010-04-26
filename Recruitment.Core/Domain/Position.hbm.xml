@@ -26,6 +26,9 @@
     <property name="AdminAccepted" column="AdminAccepted" />
 
     <!--<property name="DescriptionFile" column="DescriptionFile" />-->
+
+    <many-to-one name="ReferenceTemplate" column="ReferenceTemplateID"
+     class="CAESDO.Recruitment.Core.Domain.ReferenceTemplate, CAESDO.Recruitment.Core" not-null="false" />
     
     <bag name="AssociatedApplications" table="Applications" inverse="true">
       <key column="PositionID" />

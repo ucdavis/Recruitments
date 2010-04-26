@@ -217,4 +217,20 @@ namespace CAESDO.Recruitment.Core.Domain
             this.Source = source;
         }
     }
+
+    public class ReferenceTemplate : DomainObject<int>
+    {
+        private string _TemplateText;
+
+        public virtual string TemplateText
+        {
+            get { return _TemplateText; }
+            set { _TemplateText = value; }
+        }
+        
+        public ReferenceTemplate()
+        {
+
+        }
+    }
 }
