@@ -70,7 +70,7 @@ namespace CAESDO.Recruitment.Web
                 if (Session[STR_ApplicationSteps] == null)
                     return null;  //Session[STR_ApplicationSteps] = new List<Step>();
 
-                return (List<Step>)Session[STR_ApplicationSteps];
+                return Session[STR_ApplicationSteps] as List<Step>;
             }
 
             set
@@ -138,10 +138,10 @@ namespace CAESDO.Recruitment.Web
         /// <remarks>The lbtnStep has a command argument which represents the selected step name</remarks>
         protected void lbtnStep_Click(object sender, EventArgs e)
         {
-            Trace.Write("-- lbtnStep_Click Begin --");
-
             //Grab the link button's command argument (the step name)
             string stepName = ((LinkButton)sender).CommandArgument;
+
+            Trace.Write("-- lbtnStep_Click Begin " + stepName + "--");
 
             MakeStepActive(stepName);
 
@@ -672,6 +672,96 @@ namespace CAESDO.Recruitment.Web
             }
         }
 
+        protected void btnReferencesAddUpdate_Click(object sender, EventArgs e)
+        {
+            Button referenceButton = sender as Button;
+
+            //Grab the referenceID from the command argument (0 if it doesn't parse)
+            int referenceID = 0;
+            
+            int.TryParse(referenceButton.CommandArgument, out referenceID);
+
+            Reference currentReference = new Reference();
+
+            //If we have a positive int, get the associated reference
+            if (referenceID > 0)
+                currentReference = daoFactory.GetReferenceDao().GetById(referenceID, false);
+
+            //Now fill in the current reference with the form fields
+            currentReference.Title = txtReferencesTitle.Text;
+            currentReference.FirstName = txtReferencesFirstName.Text;
+            currentReference.LastName = txtReferencesLastName.Text;
+
+            currentReference.AcadTitle = txtReferencesAcadTitle.Text;
+            currentReference.Expertise = txtReferencesExpertise.Text;
+
+            currentReference.Dept = txtReferencesDepartment.Text;
+            currentReference.Institution = txtReferencesInstitute.Text;
+
+            currentReference.Address1 = txtReferencesAddress1.Text;
+            currentReference.Address2 = txtReferencesAddress2.Text;
+            currentReference.City = txtReferencesCity.Text;
+            currentReference.State = txtReferencesState.Text;
+            currentReference.Zip = txtReferencesZip.Text;
+            currentReference.Country = txtReferencesCountry.Text;
+
+            currentReference.Phone = txtReferencesPhone.Text;
+            currentReference.Email = txtReferencesEmail.Text;
+
+            currentReference.Complete = true;
+
+            //Now save this reference by adding it to the current application if it is new, or by replacing the old copy if it exists
+            currentReference.AssociatedApplication = currentApplication;
+
+            using (new NHibernateTransaction())
+            {
+                daoFactory.GetReferenceDao().SaveOrUpdate(currentReference);
+            }
+
+            //Now DataBind the step to show any changes
+            DataBindReferences();
+        }
+        
+        /// <summary>
+        /// Called from the Refences Grid whenever a row is selected (Edited).
+        /// Populates the reference's information into the info table and then shows the popup
+        /// </summary>
+        protected void gviewReferences_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            GridView referenceGrid = sender as GridView;
+
+            //Grab the reference from the dataKey ID
+            Reference currentReference = daoFactory.GetReferenceDao().GetById((int)referenceGrid.SelectedDataKey["ID"], false);
+
+            //Now fill in the form fields with the current reference
+            txtReferencesTitle.Text = currentReference.Title;
+            txtReferencesFirstName.Text = currentReference.FirstName;
+            txtReferencesLastName.Text = currentReference.LastName;
+
+            txtReferencesAcadTitle.Text = currentReference.AcadTitle;
+            txtReferencesExpertise.Text = currentReference.Expertise;
+
+            txtReferencesDepartment.Text = currentReference.Dept;
+            txtReferencesInstitute.Text = currentReference.Institution;
+
+            txtReferencesAddress1.Text = currentReference.Address1;
+            txtReferencesAddress2.Text = currentReference.Address2;
+            txtReferencesCity.Text = currentReference.City;
+            txtReferencesState.Text = currentReference.State;
+            txtReferencesZip.Text = currentReference.Zip;
+            txtReferencesCountry.Text = currentReference.Country;
+
+            txtReferencesPhone.Text = currentReference.Phone;
+            txtReferencesEmail.Text = currentReference.Email;
+            
+            //Now set the command argument of the update button to the ID of the currentReference, and change the text as well
+            btnReferencesAddUpdate.Text = "Update Reference";
+            btnReferencesAddUpdate.CommandArgument = currentReference.ID.ToString();
+
+            //Now show the popup control
+            mpopupReferencesEntry.Show();
+        }
+
         #endregion
 
         #region PrivateFunctions
@@ -945,6 +1035,7 @@ namespace CAESDO.Recruitment.Web
                     DataBindEducationInformation();
                     break;
                 case "References":
+                    DataBindReferences();
                     break;
                 case "Current Position":
                     DataBindCurrentPositionInformation();
@@ -1043,6 +1134,16 @@ namespace CAESDO.Recruitment.Web
             //Bind the publications grid with existing files
             rptPublications.DataSource = GetFilesOfType("Publication");
             rptPublications.DataBind();
+        }
+
+        /// <summary>
+        /// Have to bind the current application's existing references to the grid
+        /// </summary>
+        private void DataBindReferences()
+        {
+            Trace.Warn("References Bound");
+            gviewReferences.DataSource = currentApplication.References;
+            gviewReferences.DataBind();
         }
 
         #endregion

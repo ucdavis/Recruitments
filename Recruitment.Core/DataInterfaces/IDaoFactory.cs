@@ -28,6 +28,7 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
         IChangeTypeDao GetChangeTypeDao();
         IThemeDao GetThemeDao();
         IUnitDao GetUnitDao();
+        IReferenceDao GetReferenceDao();
     }
 
     // There's no need to declare each of the DAO interfaces in its own file, so just add them inline here.
@@ -83,7 +84,8 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
           
     public interface IThemeDao : IDao<Theme, int> { }
 
-    public interface IUnitDao : IDao<Unit, string> { }  
+    public interface IUnitDao : IDao<Unit, string> { }
 
+    public interface IReferenceDao : IDao<Reference, int> { }
     #endregion
 }

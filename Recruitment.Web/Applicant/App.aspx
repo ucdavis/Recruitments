@@ -83,9 +83,9 @@
                         </td>
                     </tr>
                     <tr>
-                        <td   align="right">
+                        <td   align="right" style="height: 34px">
                             State:</td>
-                        <td  >
+                        <td style="height: 34px"  >
                             <asp:TextBox ID="txtContactState" runat="server" MaxLength="50"></asp:TextBox>
                             <asp:RequiredFieldValidator id="reqValContactState" ControlToValidate="txtContactState" ErrorMessage="*" runat="server"/>
                         </td>
@@ -157,8 +157,53 @@
         
             <asp:View ID="viewReferences" runat="server">
                 <span class="boxTitle"><asp:Image ID="imgReferences" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />References</span><br />
+                <table class="box" style="width:500px; height: 350px;" cellpadding="5">
+                    <tr>
+                        <td colspan="2"><br /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <asp:LinkButton ID="lbtnReferencesAdd" runat="server" Text="Add Reference" ></asp:LinkButton><br />
+                        </td>                       
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                        Existing References:
+                            <asp:GridView ID="gviewReferences" runat="server" DataKeyNames="ID" AutoGenerateColumns="False" EmptyDataText="No References Added" OnSelectedIndexChanged="gviewReferences_SelectedIndexChanged">
+                            <Columns>
+                                <asp:CommandField ShowSelectButton="True" SelectText="Edit" />
+                                <asp:TemplateField HeaderText="Name">
+                                    <ItemTemplate>
+                                        <%# Eval("Title") %> <%# Eval("FirstName") %> <%# Eval("LastName") %>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Title Expertise">
+                                    <ItemTemplate>
+                                        <%# Eval("AcadTitle") %> <%# Eval("Expertise") %>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Department Institution">
+                                    <ItemTemplate>
+                                        <%# Eval("Dept") %> <%# Eval("Institution") %>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:TemplateField HeaderText="Address">
+                                    <ItemTemplate>
+                                        <%# Eval("Address1") %> <%# Eval("Address2") %> <br />
+                                        <%# Eval("City") %> <%# Eval("State") %> <%# Eval("Zip") %> <%# Eval("Country") %>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
+                                <asp:BoundField HeaderText="Phone" DataField="Phone" />
+                                <asp:BoundField HeaderText="Email" DataField="Email" />
+                                <asp:CommandField DeleteText="Remove" ShowDeleteButton="True" />
+                            </Columns>
+                            </asp:GridView>                           
+                        </td>
+                    </tr>
+                </table>       
                                 
-                <asp:Panel ID="pnlReferencesEntry" runat="server" Visible="true">
+                <asp:Panel ID="pnlReferencesEntry" runat="server" CssClass="modalPopup" style="display:none">
+                    <span class="boxTitle"><asp:Image ID="imgReferencesAddUpdate" runat="server" EnableViewState="false" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" AlternateText="" />Add/Update Reference</span><br />
                     <table class="box" style="width:500px; height: 350px;" cellpadding="5">
                         <tr>
                             <td colspan="2"><br /></td>
@@ -275,10 +320,15 @@
                             </td>
                             <td align="right"  >
                                 <br />
-                                <asp:Button ID="btnReferencesUpdate" runat="server" Text="Update" /></td>
+                                <asp:Button ID="btnReferencesAddUpdate" runat="server" CommandArgument="0" Text="Add Reference" OnClick="btnReferencesAddUpdate_Click" />
+                                <asp:Button ID="btnReferencesCancel" runat="server" Text="Cancel" />
+                            </td>
                         </tr>
                     </table>
                 </asp:Panel>
+                
+                <AjaxControlToolkit:ModalPopupExtender ID="mpopupReferencesEntry" runat="server" CancelControlID="btnReferencesCancel" BackgroundCssClass="modalBackground" PopupControlID="pnlReferencesEntry" TargetControlID="lbtnReferencesAdd"></AjaxControlToolkit:ModalPopupExtender>
+                
             </asp:View>
         
             <asp:View ID="viewCurrentPosition" runat="server">
