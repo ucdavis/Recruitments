@@ -116,16 +116,10 @@ namespace CAESDO.Recruitment.Test
         [TestMethod()]
         public void CurrentPositionsTest()
         {
-            Application target = new Application();
+            Application target = ExampleApplication;
 
-            System.Collections.Generic.IList<CAESDO.Recruitment.Core.Domain.CurrentPosition> val = null; // TODO: Assign to an appropriate value for the property
-
-            target.CurrentPositions = val;
-
-
-            Assert.AreEqual(val, target.CurrentPositions, "CAESDO.Recruitment.Core.Domain.Application.CurrentPositions was not set correctly" +
-                    ".");
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            Assert.IsNotNull(target.CurrentPositions);
+            Assert.AreNotEqual<int>(target.CurrentPositions.Count, 0);
         }
 
         /// <summary>
@@ -134,15 +128,10 @@ namespace CAESDO.Recruitment.Test
         [TestMethod()]
         public void EducationTest()
         {
-            Application target = new Application();
+            Application target = ExampleApplication;
 
-            System.Collections.Generic.IList<CAESDO.Recruitment.Core.Domain.Education> val = null; // TODO: Assign to an appropriate value for the property
-
-            target.Education = val;
-
-
-            Assert.AreEqual(val, target.Education, "CAESDO.Recruitment.Core.Domain.Application.Education was not set correctly.");
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            Assert.IsNotNull(target.Education);
+            Assert.AreNotEqual<int>(target.Education.Count, 0);
         }
 
         /// <summary>
@@ -151,15 +140,10 @@ namespace CAESDO.Recruitment.Test
         [TestMethod()]
         public void FilesTest()
         {
-            Application target = new Application();
+            Application target = ExampleApplication;
 
-            System.Collections.Generic.IList<CAESDO.Recruitment.Core.Domain.File> val = null; // TODO: Assign to an appropriate value for the property
-
-            target.Files = val;
-
-
-            Assert.AreEqual(val, target.Files, "CAESDO.Recruitment.Core.Domain.Application.Files was not set correctly.");
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            Assert.IsNotNull(target.Files);
+            Assert.AreNotEqual<int>(target.Files.Count, 0);            
         }
 
         /// <summary>
