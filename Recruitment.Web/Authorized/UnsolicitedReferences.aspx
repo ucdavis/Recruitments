@@ -76,11 +76,11 @@ Application: <asp:DropDownList ID="dlistApplications" runat="server" AutoPostBac
 <hr />
     <br />
     <br />
-    <div style="width:818px; height:389px; background:url(../Images/envelope.jpg) no-repeat; padding:50px;">
+    <%--<div style="width:818px; height:389px; background:url(../Images/envelope.jpg) no-repeat; padding:50px;">--%>
     <div class="blueletter">
        <asp:Literal ID="litEmailBody" runat="server"></asp:Literal><br />
     </div>
-    </div>
+    <%--</div>--%>
 <br /><br /><br />
 </asp:Content>
 
