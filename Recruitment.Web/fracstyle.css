@@ -6,23 +6,23 @@
 body 
 {
 	background:url(Images/background.jpg) repeat-x #e8e3d0;
-	height:100%;
+
 	font-size:0.8em;
 	font-family: Trebuchet MS, Arial, Georgia;
 	margin: 0;
-	min-width: 750px;
+	min-width: 900px;
 }
 
 html, #aspnetForm
 {
-	height:100%;
+
 	margin:0;
 }
 
 /* Resizes and centers title bar and body. */
 #wrapper 
 {
-	width: 80%;
+	width: 90%;
 	margin-left: auto;
 	margin-right: auto;
 }
@@ -158,7 +158,9 @@ a:active { color:#a50000; }
 
 
 /* Creates a box around form */
-.box {
+.box 
+{
+	margin-left:20px;
 	border : 1px dotted #7f7f7f;
 	padding : 10px;
 	background-color:#EFEFEF;
@@ -175,11 +177,7 @@ a:active { color:#a50000; }
 	color:#0b65c5;
 	font-size: 1.2em;
 	font-weight: bold;
-}
-
-.box td
-{
-	font-weight:bold;
+	margin-left:20px;
 }
 
 .loginHide
@@ -196,7 +194,7 @@ a:active { color:#a50000; }
 /* Adds shadow to bottom of content page*/
 #shadowBottom 
 {
-	width: 79%; height:2px; background-color:#d5cfb8; margin-left:auto; margin-right:auto; padding-left:3px; padding-right:3px;
+	width: 89%; height:2px; background-color:#d5cfb8; margin-left:auto; margin-right:auto; padding-left:3px; padding-right:3px;
 }
 
 /* Context Drop Down Menu */
