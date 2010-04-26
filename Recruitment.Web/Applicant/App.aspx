@@ -8,7 +8,7 @@
         <asp:Repeater ID="rptSteps" runat="server">
             <ItemTemplate>
                <asp:Panel ID="pnlStep" runat="server" Visible='<%# Eval("StepVisible") %>'>
-                    <li class="unselected">
+                    <li class='<%# Eval("CSSClass") %>'>
                     <div class="appButton">
                         <asp:Image ID="imgStep" runat="server" ImageUrl='<%# Eval("ImgURL") %>' />
                     </div>
