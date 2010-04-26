@@ -557,6 +557,58 @@
                 </table>
             </asp:View>
             
+            <asp:View ID="viewExtensionInterests" runat="server">
+                <span class="boxTitle">Extension Interests</span><br />
+                <table class="box" style="width:500px; " cellpadding="5">
+                    <tr>
+                        <td colspan="2"><br /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            Please upload your file as a PDF Document. Maximum file size allowed is 10 MB. 
+                        </td>                       
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <asp:FileUpload ID="fileExtensionInterests" runat="server" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td   align="right">
+                        </td>
+                        <td align="right"  >
+                            <br />
+                            <asp:Button ID="btnExtensionInterestsUpload" runat="server" Text="Upload" OnClick="btnExtensionInterestsUpload_Click" /></td>
+                    </tr>
+                </table>
+            </asp:View>
+            
+            <asp:View ID="viewTeachingInterests" runat="server">
+                <span class="boxTitle">Teaching Interests</span><br />
+                <table class="box" style="width:500px; " cellpadding="5">
+                    <tr>
+                        <td colspan="2"><br /></td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            Please upload your file as a PDF Document. Maximum file size allowed is 10 MB. 
+                        </td>                       
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <asp:FileUpload ID="fileTeachingInterests" runat="server" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td   align="right">
+                        </td>
+                        <td align="right"  >
+                            <br />
+                            <asp:Button ID="btnTeachingInterestsUpload" runat="server" Text="Upload" OnClick="btnTeachingInterestsUpload_Click" /></td>
+                    </tr>
+                </table>
+            </asp:View>
+            
             <asp:View ID="viewTranscripts" runat="server">
                 <span class="boxTitle">Transcripts</span><br />
                 <table class="box" style="width:500px;" cellpadding="5">

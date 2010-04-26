@@ -19,6 +19,8 @@ namespace CAESDO.Recruitment.Web
     {
         #region ConstVariables
         private const string STR_ApplicationID = "ApplicationID";
+        private const string STR_ExtensionInterests  = "Extension Interests";
+        private const string STR_TeachingInterests = "Teaching Interests"; 
         private const string _Transcript = "Transcript";
         private const string STR_ConfidentialSurvey = "Confidential Survey";
         private const string STR_EducationInformation = "Education Information";
@@ -40,7 +42,10 @@ namespace CAESDO.Recruitment.Web
         private const string STR_FileType_Transcript = "Transcript";
         private const string STR_FileType_CoverLetter = "CoverLetter";
         private const string STR_FileType_ResearchInterests = "ResearchInterests";
-        private const string STR_FileType_Publication = "Publication"; 
+        private const string STR_FileType_ExtensionInterests = "ExtensionInterests";
+        private const string STR_FileType_TeachingInterests = "TeachingInterests";
+        private const string STR_FileType_Publication = "Publication";
+        
         #endregion
 
         #region Properties
@@ -440,13 +445,13 @@ namespace CAESDO.Recruitment.Web
 
             RemoveAllFilesOfType(STR_FileType_ResearchInterests);
 
-            if (fileResearchInterests.HasFile)
+            if (fileTeachingInterests.HasFile)
             {
-                if (fileResearchInterests.PostedFile.ContentType == STR_Applicationpdf)
+                if (fileTeachingInterests.PostedFile.ContentType == STR_Applicationpdf)
                 {
                     File researchInterests = new File();
 
-                    researchInterests.FileName = fileResearchInterests.FileName;
+                    researchInterests.FileName = fileTeachingInterests.FileName;
                     researchInterests.FileType = ResearchInterestsFileType;
 
                     using (new NHibernateTransaction())
@@ -456,7 +461,7 @@ namespace CAESDO.Recruitment.Web
 
                     if (ValidateBO<File>.isValid(researchInterests))
                     {
-                        fileResearchInterests.SaveAs(FilePath + researchInterests.ID.ToString());
+                        fileTeachingInterests.SaveAs(FilePath + researchInterests.ID.ToString());
 
                         currentApplication.Files.Add(researchInterests);
 
@@ -476,6 +481,96 @@ namespace CAESDO.Recruitment.Web
             else
             {
                 ReloadStepListAndSelectHome(STR_ResearchInterests, false);
+            }
+        }
+
+        protected void btnExtensionInterestsUpload_Click(object sender, EventArgs e)
+        {
+            FileType ExtensionInterestsFileType = daoFactory.GetFileTypeDao().GetFileTypeByName(STR_FileType_ExtensionInterests);
+
+            RemoveAllFilesOfType(STR_FileType_ExtensionInterests);
+
+            if (fileExtensionInterests.HasFile)
+            {
+                if (fileExtensionInterests.PostedFile.ContentType == STR_Applicationpdf)
+                {
+                    File extensionInterests = new File();
+
+                    extensionInterests.FileName = fileExtensionInterests.FileName;
+                    extensionInterests.FileType = ExtensionInterestsFileType;
+
+                    using (new NHibernateTransaction())
+                    {
+                        extensionInterests = daoFactory.GetFileDao().Save(extensionInterests);
+                    }
+
+                    if (ValidateBO<File>.isValid(extensionInterests))
+                    {
+                        fileExtensionInterests.SaveAs(FilePath + extensionInterests.ID.ToString());
+
+                        currentApplication.Files.Add(extensionInterests);
+
+                        using (new NHibernateTransaction())
+                        {
+                            daoFactory.GetApplicationDao().SaveOrUpdate(currentApplication);
+                        }
+                    }
+                    else
+                    {
+                        Trace.Warn(ValidateBO<File>.GetValidationResultsAsString(extensionInterests));
+                    }
+                }
+
+                ReloadStepListAndSelectHome(STR_ExtensionInterests, true);
+            }
+            else
+            {
+                ReloadStepListAndSelectHome(STR_ExtensionInterests, false);
+            }
+        }
+
+        protected void btnTeachingInterestsUpload_Click(object sender, EventArgs e)
+        {
+            FileType TeachingInterestsFileType = daoFactory.GetFileTypeDao().GetFileTypeByName(STR_FileType_TeachingInterests);
+
+            RemoveAllFilesOfType(STR_FileType_TeachingInterests);
+
+            if (fileTeachingInterests.HasFile)
+            {
+                if (fileTeachingInterests.PostedFile.ContentType == STR_Applicationpdf)
+                {
+                    File teachingInterests = new File();
+
+                    teachingInterests.FileName = fileTeachingInterests.FileName;
+                    teachingInterests.FileType = TeachingInterestsFileType;
+
+                    using (new NHibernateTransaction())
+                    {
+                        teachingInterests = daoFactory.GetFileDao().Save(teachingInterests);
+                    }
+
+                    if (ValidateBO<File>.isValid(teachingInterests))
+                    {
+                        fileTeachingInterests.SaveAs(FilePath + teachingInterests.ID.ToString());
+
+                        currentApplication.Files.Add(teachingInterests);
+
+                        using (new NHibernateTransaction())
+                        {
+                            daoFactory.GetApplicationDao().SaveOrUpdate(currentApplication);
+                        }
+                    }
+                    else
+                    {
+                        Trace.Warn(ValidateBO<File>.GetValidationResultsAsString(teachingInterests));
+                    }
+                }
+
+                ReloadStepListAndSelectHome(STR_TeachingInterests, true);
+            }
+            else
+            {
+                ReloadStepListAndSelectHome(STR_TeachingInterests, false);
             }
         }
 
@@ -964,6 +1059,8 @@ namespace CAESDO.Recruitment.Web
             bool hasCV = false;
             bool hasTranscript = false;
             bool hasResearchInterest = false;
+            bool hasTeachingInterests = false;
+            bool hasExtensionInterests = false;
             bool hasPublication = false;
             bool hasDissertation = false;
 
@@ -993,6 +1090,12 @@ namespace CAESDO.Recruitment.Web
                     case STR_Dissertation:
                         hasDissertation = true;
                         break;
+                    case STR_FileType_TeachingInterests:
+                        hasTeachingInterests = true;
+                        break;
+                    case STR_FileType_ExtensionInterests:
+                        hasExtensionInterests = true;
+                        break;
                     default:
                         break;
                 }
@@ -1002,9 +1105,11 @@ namespace CAESDO.Recruitment.Web
             ApplicationSteps.Add(new Step(STR_Resume, hasResume, false, true));
             ApplicationSteps.Add(new Step(STR_CoverLetter, hasCoverLetter, false, true));
             ApplicationSteps.Add(new Step(STR_ResearchInterests, hasResearchInterest, false, true));
+            ApplicationSteps.Add(new Step(STR_ExtensionInterests, hasExtensionInterests, false, true));
+            ApplicationSteps.Add(new Step(STR_TeachingInterests, hasTeachingInterests, false, true));
             ApplicationSteps.Add(new Step(STR_Transcripts, hasTranscript, false, true));
             ApplicationSteps.Add(new Step(STR_Publications, currentApplication.PublicationsComplete, false, true));
-            ApplicationSteps.Add(new Step(STR_Dissertation, hasDissertation, false, true));
+            //ApplicationSteps.Add(new Step(STR_Dissertation, hasDissertation, false, true));
 
             //Add the confidential survey
             ApplicationSteps.Add(new Step(STR_ConfidentialSurvey, currentApplication.isComplete(ApplicationStepType.Survey), false, true));
