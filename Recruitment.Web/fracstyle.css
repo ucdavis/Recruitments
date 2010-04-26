@@ -609,3 +609,7 @@ display:block; height:auto; line-height:1.5em; padding:5px 10px 4px 35px; width:
     margin-right:10px;
     cursor:pointer;
 }
+table.tablesorter tbody td.ApplicantViewListPhdCell
+{
+    padding:20px 0;
+}
