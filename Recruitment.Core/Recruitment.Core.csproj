@@ -37,9 +37,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="DataInterfaces\IDao.cs" />
     <Compile Include="DataInterfaces\IDaoFactory.cs" />
+    <Compile Include="Domain\Applicant.cs" />
     <Compile Include="Domain\Application.cs" />
     <Compile Include="Domain\ApplicationStepType.cs" />
     <Compile Include="Domain\Committee.cs" />
@@ -65,6 +65,12 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Domain\Position.hbm.xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Domain\DomainObjects.cd" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Domain\Applicant.hbm.xml" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

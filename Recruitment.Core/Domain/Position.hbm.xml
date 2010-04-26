@@ -9,16 +9,23 @@
 
     <property name="PositionTitle" column="PositionTitle" />
     <property name="PositionNumber" column="PositionNumber" />
+    <property name="ShortDescription" column="ShortDescription" />
     <property name="DatePosted" column="DatePosted" />
     <property name="Deadline" column="Deadline" />
     <property name="AllowApps" column="AllowApps" />
     <property name="NumReferences" column="NumReferences" />
     <property name="NumPublications" column="NumPublications" />
+    <property name="HRRep" column="HR_Rep" />
+    <property name="HRAreaCode" column="HR_AreaCode" />
+    <property name="HRPhone" column="HR_Phone" />
+    <property name="HREmail" column="HR_Email" />
     <property name="CommitteeView" column="CommitteeView" />
     <property name="FacultyView" column="FacultyView" />
     <property name="Vote" column="Vote" />
     <property name="FinalVote" column="FinalVote" />
 
+    <!--<property name="DescriptionFile" column="DescriptionFile" />-->
+    
     <bag name="_AssociatedApplications" access="field" table="Applications" inverse="true">
       <key column="PositionID" />
       <one-to-many class="CAESDO.Recruitment.Core.Domain.Application, CAESDO.Recruitment.Core" />

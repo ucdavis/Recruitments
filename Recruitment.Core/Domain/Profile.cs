@@ -4,7 +4,7 @@ using System.Text;
 
 namespace CAESDO.Recruitment.Core.Domain
 {
-    public class Profile
+    public class Profile : DomainObject<int>
     {
         private string _FirstName;
 
@@ -81,7 +81,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         public Profile()
         {
-            throw new System.NotImplementedException();
+            //throw new System.NotImplementedException();
         }
 
         public void Fill(int ApplicantID)

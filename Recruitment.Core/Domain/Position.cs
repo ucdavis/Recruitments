@@ -6,7 +6,6 @@ namespace CAESDO.Recruitment.Core.Domain
 {
     public class Position : DomainObject<int>
     {
-        //private int _PositionID;
         private string _PositionTitle;
 
         public string PositionTitle
@@ -21,12 +20,12 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _PositionNumber; }
             set { _PositionNumber = value; }
         }
-        private string _Summary;
+        private string _ShortDescription;
 
-        public string Summary
+        public string ShortDescription
         {
-            get { return _Summary; }
-            set { _Summary = value; }
+            get { return _ShortDescription; }
+            set { _ShortDescription = value; }
         }
         private int _DescriptionFileID;
 
@@ -35,6 +34,7 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _DescriptionFileID; }
             set { _DescriptionFileID = value; }
         }
+        
         private List<string> _DepartmentsFIS;
 
         public List<string> DepartmentsFIS

@@ -6,8 +6,6 @@ namespace CAESDO.Recruitment.Core.Domain
 {
     public class Application : DomainObject<int>
     {
-        //private int _PositionID;
-        
         private int _ProfileID;
 
         public int ProfileID

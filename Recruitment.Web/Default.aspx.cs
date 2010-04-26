@@ -23,9 +23,13 @@ namespace CAESDO.Recruitment.Web
             //IPositionsDao posDao = daoFactory.GetPositionsDao();
             //IPositionsDao posDao = daoFactory.GetPositionsDao();
 
-            IPositionDao posDao = daoFactory.GetPositionDao();
+            //IPositionDao posDao = daoFactory.GetPositionDao();
 
-            List<Position> posList = posDao.GetAll();
+            //List<Position> posList = posDao.GetAll();
+
+            IApplicantDao applicantDao = daoFactory.GetApplicantDao();
+
+            List<Applicant> applicantList = applicantDao.GetAll();          
 
         }
     }  

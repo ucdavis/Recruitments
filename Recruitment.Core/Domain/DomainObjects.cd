@@ -1,0 +1,136 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Font Name="Tahoma" Size="8.25" />
+  <Class Name="CAESDO.Recruitment.Core.Domain.Application" Collapsed="true">
+    <Position X="4" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Domain\Application.cs</FileName>
+      <HashCode>AAAAAIBBAQBAiAgAAAAAAiAABAAQCAAAAAAAAQEBiAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAESDO.Recruitment.Core.Domain.User" Collapsed="true">
+    <Position X="9.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Domain\User.cs</FileName>
+      <HashCode>AAAAAIAAAAgAAAAAAAAAAAgAAAEACAAAAAAAAACBAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAESDO.Recruitment.Core.Domain.Committee" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="5.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Domain\Committee.cs</FileName>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAgAAEAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CAESDO.Recruitment.Core.Domain.CurrentPosition" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="8" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Domain\CurrentPosition.cs</FileName>
+      <HashCode>ACAACIBAAAAFAkgIQAAECEQAGIIACAAAAEAABCEAAAg=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CAESDO.Recruitment.Core.Domain.DomainObject&lt;IdT&gt;" Collapsed="true">
+    <Position X="2.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Domain\DomainObject.cs</FileName>
+      <HashCode>AAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAIAgA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAESDO.Recruitment.Core.Domain.Education" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="10" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Domain\Education.cs</FileName>
+      <HashCode>AAAAAIAAAAIFAAgAQAAAEAQAAAAACAABBAAAAAEABAg=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CAESDO.Recruitment.Core.Domain.FacultyReviewGroup" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Domain\FacultyReviewGroup.cs</FileName>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAgAAEAAAAAAA=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CAESDO.Recruitment.Core.Domain.File" Collapsed="true">
+    <Position X="7.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Domain\File.cs</FileName>
+      <HashCode>ABIAAoCAGAAQAAAACACAAAAAAAAACAUAAAAAAABAAAA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAESDO.Recruitment.Core.Domain.Position" Collapsed="true">
+    <Position X="1.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Domain\Position.cs</FileName>
+      <HashCode>gACDAIAGAggiBAAIAAAAIABhSDBASAAACAkAEIALoAQ=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAESDO.Recruitment.Core.Domain.Profile" Collapsed="true">
+    <Position X="6.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Domain\Profile.cs</FileName>
+      <HashCode>ACAECMAAAAEACgAYAAEUCEAAAAIACAAAAEAAJCAAAAg=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAESDO.Recruitment.Core.Domain.Reference" Collapsed="true">
+    <Position X="10.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Domain\Reference.cs</FileName>
+      <HashCode>BCAgCMAEACkAAkoYQAEUGEQkAIMACAAIAEiAJSEAAAg=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CAESDO.Recruitment.Core.Domain.References" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="12.25" Y="1.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Domain\References.cs</FileName>
+      <HashCode>AAAAAIAAAAAFAAgAAAAAIAAAAAAQCAAAAAAAAAEAAAg=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CAESDO.Recruitment.Core.Domain.Survey" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="7.25" Y="2.5" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Domain\Survey.cs</FileName>
+      <HashCode>AAAAAIAAIACVAAqAAAAAAAABAAAACAAgAgAAAAkAAAg=</HashCode>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="CAESDO.Recruitment.Core.Domain.Applicant" Collapsed="true">
+    <Position X="2.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Domain\Applicant.cs</FileName>
+      <HashCode>AIAAAgBAACAAAAAAEAAAAAAAAAEACAAAABAAAAAAAAE=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="CAESDO.Recruitment.Core.Domain.IApplicationStep" Collapsed="true">
+    <Position X="7.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Domain\IApplicationStep.cs</FileName>
+      <HashCode>AAAAAIAAAAABAAAAAAAAAAAAAAAACAAAAAAAAAEAAAg=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CAESDO.Recruitment.Core.Domain.IGroup" Collapsed="true">
+    <Position X="9.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Domain\IGroup.cs</FileName>
+      <HashCode>AAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAgAAEAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="CAESDO.Recruitment.Core.Domain.IHasAssignedId&lt;IdT&gt;" Collapsed="true">
+    <Position X="11.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Domain\IHasAssignedId.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="CAESDO.Recruitment.Core.Domain.ApplicationStepType" Collapsed="true">
+    <Position X="4.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <FileName>Domain\ApplicationStepType.cs</FileName>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAQAgAAAACgAAAAAAA=</HashCode>
+    </TypeIdentifier>
+  </Enum>
+</ClassDiagram>
