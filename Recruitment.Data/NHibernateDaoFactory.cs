@@ -1,5 +1,6 @@
 using CAESDO.Recruitment.Core.DataInterfaces;
 using CAESDO.Recruitment.Core.Domain;
+using System.Collections.Generic;
 
 namespace CAESDO.Recruitment.Data
 {
@@ -64,6 +65,11 @@ namespace CAESDO.Recruitment.Data
             return new EducationDao();
         }
 
+        public ICommitteeMemberDao GetCommitteeMemberDao()
+        {
+            return new CommitteeMemberDao();
+        }
+
         #region Inline DAO implementations
 
         /// <summary>
@@ -92,6 +98,36 @@ namespace CAESDO.Recruitment.Data
         public class FileDao : AbstractNHibernateDao<File, int>, IFileDao { }
 
         public class EducationDao : AbstractNHibernateDao<Education, int>, IEducationDao { }
+
+        public class CommitteeMemberDao : AbstractNHibernateDao<CommitteeMember, int>, ICommitteeMemberDao {
+
+            public List<CommitteeMember> GetAllByMemberType(Position associatedPosition, MemberTypes type)
+            {
+                MemberType mtype = new MemberType();
+                CommitteeMember member = new CommitteeMember();
+                member.MemberType = new MemberType();
+
+                member.AssociatedPosition = associatedPosition;
+
+                List<CommitteeMember> members = new List<CommitteeMember>();
+
+                if (type == MemberTypes.AllCommittee)
+                {
+                    member.MemberType.Type = mtype.GetTypeByEnum(MemberTypes.CommitteeChair);
+                    members.AddRange(this.GetByExample(member, "Email", "UserID"));
+                    //
+                    member.MemberType.Type = mtype.GetTypeByEnum(MemberTypes.CommitteeMember);
+                    members.AddRange(this.GetByExample(member, "Email", "UserID"));
+                }
+                else
+                {
+                    member.MemberType.Type = mtype.GetTypeByEnum(type);
+                    members.AddRange(this.GetByExample(member, "Email", "UserID"));
+                }
+
+                return members;
+            }
+        }
           
         #endregion
 

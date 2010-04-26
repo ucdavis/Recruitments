@@ -1,4 +1,5 @@
 using CAESDO.Recruitment.Core.Domain;
+using System.Collections.Generic;
 
 namespace CAESDO.Recruitment.Core.DataInterfaces
 {
@@ -18,6 +19,7 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
         IGenderDao GetGenderDao();
         IFileDao GetFileDao();
         IEducationDao GetEducationDao();
+        ICommitteeMemberDao GetCommitteeMemberDao();
     }
 
     // There's no need to declare each of the DAO interfaces in its own file, so just add them inline here.
@@ -45,7 +47,11 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
     public interface IFileDao : IDao<File, int> { }
           
     public interface IEducationDao : IDao<Education, int> { }
-          
+    
+    public interface ICommitteeMemberDao : IDao<CommitteeMember, int> {
+        List<CommitteeMember> GetAllByMemberType(Position associatedPosition, MemberTypes type);
+    }
+     
     
     #endregion
 }

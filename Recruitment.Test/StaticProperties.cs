@@ -9,6 +9,7 @@ namespace CAESDO.Recruitment.Test
         public static int ExistingApplicantID = 4;
         public static int ExistingProfileID = 11;
         public static int ExistingApplicationID = 11;
+        public static int ExistingPositionID = 13;
 
         public static string ExistingApplicantEmail = "srkirkland@ucdavis.edu";
         public static string TestString = "TEST";
