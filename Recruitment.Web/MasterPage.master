@@ -16,7 +16,7 @@
             <Ajax:ScriptReference Path="~/JS/jquery-1.2.6.min.js" />
             <Ajax:ScriptReference Path="~/JS/jquery.tablesorter.min.js" />
             <Ajax:ScriptReference Path="~/JS/jquery.quicksearch.js" />
-            <Ajax:ScriptReference Path="JS/jquery.bt.min.js" />
+            <%--<Ajax:ScriptReference Path="JS/jquery.bt.min.js" />--%>
         </Scripts>
     </AjaxControlToolkit:ToolkitScriptManager>
 
