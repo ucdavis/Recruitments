@@ -7,12 +7,14 @@ using Microsoft.SqlServer.Server;
 
 public partial class StoredProcedures
 {
+    static readonly double NumPriorNotificationDays = 7;
+
     [Microsoft.SqlServer.Server.SqlProcedure]
     public static void usp_NotifyApplicants()
     {
         SqlConnection con = new SqlConnection("Context Connection=true");
 
-        string query = "EXEC usp_GetNotificationList";
+        string query = "EXEC usp_GetNotificationList" + "'" + DateTime.Now.AddDays(NumPriorNotificationDays).ToShortDateString() + "'";
         
         SqlCommand cmd = new SqlCommand(query, con);
 
