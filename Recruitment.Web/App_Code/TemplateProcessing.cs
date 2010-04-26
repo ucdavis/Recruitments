@@ -28,6 +28,7 @@ namespace CAESDO.Recruitment
 
         private Recruitment.Core.Domain.Reference _reference;
         private Recruitment.Core.Domain.Application _application;
+        private bool _includeUploadPortion = false;
 
         public string ProcessTemplate(Recruitment.Core.Domain.Reference reference, Recruitment.Core.Domain.Application application, string template)
         {
@@ -35,6 +36,13 @@ namespace CAESDO.Recruitment
             this._application = application;
 
             return this.HandleBody(template);
+        }
+
+        public string ProcessTemplate(Recruitment.Core.Domain.Reference reference, Recruitment.Core.Domain.Application application, string template, bool includeUploadPortion)
+        {
+            this._includeUploadPortion = includeUploadPortion;
+
+            return this.ProcessTemplate(reference, application, template);
         }
 
         #region Private Methods
@@ -70,7 +78,7 @@ namespace CAESDO.Recruitment
 
             sb.Append(body);
             
-            if ( this._reference != null )
+            if ( this._includeUploadPortion )
                 sb.Append(getUploadIDPortion());
             
             sb.Append("</body></html>");
@@ -97,6 +105,9 @@ namespace CAESDO.Recruitment
                     //else
                     //    return this._reference.FirstName + " " + this._reference.LastName;
                     break;
+                case "ReferenceLastName":
+                    return this._reference.LastName;
+                    break;
                 case "ReferenceTitle" :
                     return this._reference.Title;
                     break;
@@ -105,6 +116,9 @@ namespace CAESDO.Recruitment
                         return this._application.AssociatedProfile.FirstName + " " + this._application.AssociatedProfile.MiddleName + " " + this._application.AssociatedProfile.LastName;
                     else
                         return this._application.AssociatedProfile.FirstName + " " + this._application.AssociatedProfile.LastName;
+                    break;
+                case "RecruitmentAdminName":
+                    return this._application.AppliedPosition.HRRep;
                     break;
                 case "PositionContact" :
                     return this._application.AppliedPosition.HRRep;
@@ -120,6 +134,10 @@ namespace CAESDO.Recruitment
                     break;
                 case "PositionTitle":
                     return this._application.AppliedPosition.PositionTitle;
+                    break;
+                case "PrimaryDepartment":
+                    if ( this._application.AppliedPosition.PrimaryDepartment.Unit != null )
+                        return this._application.AppliedPosition.PrimaryDepartment.Unit.FullName;
                     break;
                 case "Date":
                     StringBuilder date = new StringBuilder();

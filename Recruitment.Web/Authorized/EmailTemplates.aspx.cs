@@ -63,7 +63,7 @@ namespace CAESDO.Recruitment.Web
                         MailMessage message = new MailMessage(WebConfigurationManager.AppSettings["emailFromEmail"], 
                                                                 selectedApplication.Email, 
                                                                 "UC Davis Recruitment Reminder", 
-                                                                new TemplateProcessing().ProcessTemplate(null, selectedApplication, ReferenceTemplate.TemplateText)
+                                                                new TemplateProcessing().ProcessTemplate(null, selectedApplication, ReferenceTemplate.TemplateText, false)
                                                             );
                         message.IsBodyHtml = true;
                         client.Send(message);

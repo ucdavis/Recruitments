@@ -173,7 +173,7 @@ namespace CAESDO.Recruitment.Web
             TemplateProcessing template = new TemplateProcessing();
 
             //Process the template to get the body text of the email
-            string bodyText = template.ProcessTemplate(reference, application, position.ReferenceTemplate.TemplateText);
+            string bodyText = template.ProcessTemplate(reference, application, position.ReferenceTemplate.TemplateText, true);
 
             //Exchange Ops is commented out because it will not send HTML emails currently (also needs MSXML2)
             //Now configure the email host

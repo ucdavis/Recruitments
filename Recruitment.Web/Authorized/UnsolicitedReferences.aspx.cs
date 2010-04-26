@@ -112,10 +112,12 @@ namespace CAESDO.Recruitment.Web
             MailMessage message = new MailMessage(WebConfigurationManager.AppSettings["emailFromEmail"],
                                                     currentReference.Email,
                                                     "UC Davis Recruitment Unsolicited Letter Response",
-                                                    new TemplateProcessing().ProcessTemplate(currentReference, currentReference.AssociatedApplication, UnsolicitedTemplate.TemplateText)
+                                                    new TemplateProcessing().ProcessTemplate(currentReference, currentReference.AssociatedApplication, UnsolicitedTemplate.TemplateText, false)
                                                 );
             message.IsBodyHtml = true;
             client.Send(message);
+
+            lblResult.Text = "Email sent successfully";
         }
     }
 
