@@ -17,17 +17,19 @@
             <td>
                 <asp:Label ID="lblPositionNumber" runat="server" Text=""></asp:Label></td>
         </tr>
-        <tr>
+<%--        <tr>
             <td align="right">
                 Date Posted:</td>
             <td>
                 <asp:Label ID="lblDatePosted" runat="server" Text=""></asp:Label></td>
-        </tr>
+        </tr>--%>
         <tr>
             <td align="right">
-                Review Date:</td>
+                Review Date:
+            </td>
             <td>
-                <asp:Label ID="lblDeadline" runat="server" Text=""></asp:Label></td>
+                <asp:Label ID="lblDeadline" runat="server" Text=""></asp:Label>
+            </td>
         </tr>
         <tr>
             <td align="right">
@@ -69,12 +71,19 @@
             <td>
                 <asp:Label ID="lblHREmail" runat="server" Text=""></asp:Label></td>
         </tr>--%>
-        <tr>
+        <%--<tr>
             <td align="right">
                 Description:</td>
             <td>
                 <asp:TextBox ID="txtPositionDescription" runat="server" ReadOnly="True" Height="150px" Rows="4" TextMode="MultiLine"
                     Width="375px" BackColor="#EFEFEF" BorderStyle="None" Font-Names="Trebuchet MS,Arial,Georgia" Font-Size="1em" ></asp:TextBox></td>
+        </tr>
+        --%>
+        <tr>
+            <td align="right">Description:</td>
+            <td>
+                <asp:Literal ID="litPositionDescription" runat="server"></asp:Literal>
+            </td>
         </tr>
         <tr>
             <td align="right">

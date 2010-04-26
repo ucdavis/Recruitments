@@ -73,9 +73,10 @@ namespace CAESDO.Recruitment.Web
             lblPositionTitle.Text = currentPosition.PositionTitle;
             lblPositionNumber.Text = currentPosition.PositionNumber;
 
-            txtPositionDescription.Text = currentPosition.ShortDescription;
+            //txtPositionDescription.Text = currentPosition.ShortDescription;
+            litPositionDescription.Text = currentPosition.ShortDescription;
 
-            lblDatePosted.Text = currentPosition.DatePosted.ToShortDateString();
+            //lblDatePosted.Text = currentPosition.DatePosted.ToShortDateString();
             lblDeadline.Text = currentPosition.Deadline.ToShortDateString();
             lblDepartments.Text = currentPosition.DepartmentList;
 
