@@ -53,13 +53,15 @@ namespace CAESDO.Recruitment.Web
 
             if (lviewApplications.Items.Count > 0)
             {
-                btnUpdateList.Visible = true;
-                btnEmailReferences.Visible = true;
+                pnlPositionSelected.Visible = true;
+                //btnUpdateList.Visible = true;
+                //btnEmailReferences.Visible = true;
             }
             else
             {
-                btnUpdateList.Visible = false;
-                btnEmailReferences.Visible = false;
+                pnlPositionSelected.Visible = false;
+                //btnUpdateList.Visible = false;
+                //btnEmailReferences.Visible = false;
             }
         }
 
