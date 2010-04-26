@@ -279,7 +279,7 @@
                     <tr>
                         <td colspan="2">
                             <asp:ImageButton ID="lbtnReferencesAdd" runat="server" ImageURL="~/Images/addReference.gif" ImageAlign="Middle" meta:resourcekey="lbtnReferencesAddResource1"></asp:ImageButton>
-                            &nbsp;<asp:Label ID="lblReferencesRemaining" runat="server" ForeColor="Brown" EnableViewState="False" meta:resourcekey="lblReferencesRemainingResource1"></asp:Label>
+                            &nbsp;<asp:Label ID="lblReferencesRemaining" runat="server" ForeColor="Brown" EnableViewState="true" meta:resourcekey="lblReferencesRemainingResource1"></asp:Label>
                             <br /><br />
                         </td>                       
                     </tr>

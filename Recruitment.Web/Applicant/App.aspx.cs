@@ -765,6 +765,10 @@ namespace CAESDO.Recruitment.Web
 
         protected void btnReferencesCancel_Click(object sender, EventArgs e)
         {
+            //Set the button text back to 'Add Reference' and the Command Argument to 0
+            btnReferencesAddUpdate.Text = "Add Reference";
+            btnReferencesAddUpdate.CommandArgument = "0";
+
             ClearTextBoxesInPanel(pnlReferencesEntry);
         }
 
