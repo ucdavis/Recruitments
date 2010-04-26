@@ -84,7 +84,7 @@ namespace CAESDO.Recruitment.Web
         {
             FormsAuthentication.SignOut();
 
-            Response.Redirect(Request.Url.AbsolutePath);
+            Response.Redirect(FormsAuthentication.DefaultUrl);
         }
 
         protected void lbtnSignIn_Click(object sender, EventArgs e)

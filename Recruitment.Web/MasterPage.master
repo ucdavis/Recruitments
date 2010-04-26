@@ -163,7 +163,7 @@
                                                             <li class="subnews"><a href="~/Authorized/PositionManagement.aspx" runat="server">Create
                                                                 Position</a></li>
                                                             <li class="subnews">
-                                                                <asp:LinkButton runat="server" ID="lbtnLogout" Text="Logout" OnClick="lbtnLogout_Click" /></li>
+                                                                <asp:LinkButton runat="server" ID="lbtnLogout" Text="Logout" CausesValidation="false" OnClick="lbtnLogout_Click" /></li>
                                                         </ul>
                                                         <!--[if lte IE 6]></td></tr></table></a><![endif]-->
                                                     </li>
@@ -186,7 +186,7 @@
                                                 <!--[if lte IE 6]><table><tr><td><![endif]-->
                                                 <ul>
                                                     <li class="subnews">
-                                                        <asp:LinkButton runat="server" ID="lbtnLogout" Text="Logout" OnClick="lbtnLogout_Click" /></li>
+                                                        <asp:LinkButton runat="server" ID="lbtnLogout" Text="Logout" OnClick="lbtnLogout_Click" CausesValidation="false" /></li>
                                                     <li class="subnews"><a href="~/viewPositions.aspx" runat="server">View Positions</a></li>
                                                     <li class="subnews"><a href="~/Applicant/ViewApplicationsInProgress.aspx" runat="server">
                                                         In Progress Applications</a></li>
