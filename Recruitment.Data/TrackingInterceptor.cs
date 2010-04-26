@@ -165,6 +165,56 @@ namespace CAESDO.Recruitment.Data
         }
 
         #endregion
+
+        #region IInterceptor Members
+
+
+        public object GetEntity(string entityName, object id)
+        {
+            return null;
+        }
+
+        public string GetEntityName(object entity)
+        {
+            return null;
+        }
+
+        public object Instantiate(string entityName, NHibernate.EntityMode entityMode, object id)
+        {
+            return null;
+        }
+
+        public bool? IsTransient(object entity)
+        {
+            return null;
+        }
+
+        public void OnCollectionRecreate(object collection, object key)
+        {
+            
+        }
+
+        public void OnCollectionRemove(object collection, object key)
+        {
+            
+        }
+
+        public void OnCollectionUpdate(object collection, object key)
+        {
+            
+        }
+
+        public NHibernate.SqlCommand.SqlString OnPrepareStatement(NHibernate.SqlCommand.SqlString sql)
+        {
+            return sql;
+        }
+
+        public void SetSession(NHibernate.ISession session)
+        {
+            
+        }
+
+        #endregion
     }
 
 }

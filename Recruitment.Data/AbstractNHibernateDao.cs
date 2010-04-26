@@ -1,8 +1,8 @@
 using System;
 using System.Collections.Generic;
 using NHibernate;
-using NHibernate.Expression;
 using CAESDO.Recruitment.Core.DataInterfaces;
+using NHibernate.Criterion;
 
 namespace CAESDO.Recruitment.Data
 {

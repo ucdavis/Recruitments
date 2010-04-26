@@ -2,7 +2,7 @@ using CAESDO.Recruitment.Core.DataInterfaces;
 using CAESDO.Recruitment.Core.Domain;
 using System.Collections.Generic;
 using NHibernate;
-using NHibernate.Expression;
+using NHibernate.Criterion;
 using System.ComponentModel;
 using System.Web;
 using System.Web.Security;

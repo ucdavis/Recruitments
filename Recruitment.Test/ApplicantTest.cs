@@ -13,10 +13,8 @@ namespace CAESDO.Recruitment.Test
     ///to contain all CAESDO.Recruitment.Core.Domain.Applicant Unit Tests
     ///</summary>
     [TestClass()]
-    public class ApplicantTest
+    public class ApplicantTest : DatabaseTestBase
     {
-
-
         private TestContext testContextInstance;
 
         /// <summary>
