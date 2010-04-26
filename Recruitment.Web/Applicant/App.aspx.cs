@@ -109,10 +109,10 @@ namespace CAESDO.Recruitment.Web
                 Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.UNKNOWN));
             }
 
-            Response.Write("Valid user and application " + currentApplication.ID.ToString() + "<br />");
+            Trace.Write("Valid user and application " + currentApplication.ID.ToString() + Environment.NewLine);
 
             if (currentApplication.AssociatedProfile.AssociatedApplicant.Email != loggedInUser.Email)
-                Response.Write("User trying to access incorrect application");
+                Trace.Write("User trying to access incorrect application");
         }
 
         protected void Page_Load(object sender, EventArgs e)
@@ -638,13 +638,17 @@ namespace CAESDO.Recruitment.Web
 
                 Survey currentSurvey = currentApplication.Surveys[0];
 
-                //Save the gender if the ID was set (non-zero)
+                //Save the gender if the ID was set (non-zero), else save that is was null
                 if (genderID > 0)
                 {
                     currentSurvey.Gender = daoFactory.GetGenderDao().GetById(genderID, false);
                 }
+                else
+                {
+                    currentSurvey.Gender = null;
+                }
 
-                //Save the ethnicity if it is not-null
+                //Save the ethnicity 
                 if (ethnicity != null)
                 {
                     Ethnicity chosenEthnicity = new Ethnicity();
@@ -653,8 +657,16 @@ namespace CAESDO.Recruitment.Web
                     currentSurvey.Ethnicity = daoFactory.GetEthnicityDao().GetUniqueByExample(chosenEthnicity);
                     currentSurvey.TribalAffiliation = string.IsNullOrEmpty(txtAmericanIndian.Text) ? null : txtAmericanIndian.Text;
                 }
+                else
+                {
+                    currentSurvey.Ethnicity = null;
+                    currentSurvey.TribalAffiliation = null;
+                }
 
                 //Save each recruitment source & clear out existing sources
+                if (currentSurvey.RecruitmentSources == null)
+                    currentSurvey.RecruitmentSources = new List<SurveyXRecruitmentSrc>();
+
                 currentSurvey.RecruitmentSources.Clear();
 
                 foreach (SurveyXRecruitmentSrc chosenRecruitmentSource in RecruitmentSources)
@@ -667,9 +679,12 @@ namespace CAESDO.Recruitment.Web
                 
                 //Finally, set this step to complete
                 currentSurvey.Complete = true;
+                currentSurvey.AssociatedApplication = currentApplication;
 
                 daoFactory.GetApplicationDao().SaveOrUpdate(currentApplication);
             }
+
+            ReloadStepListAndSelectHome();
         }
 
         protected void btnReferencesAddUpdate_Click(object sender, EventArgs e)
