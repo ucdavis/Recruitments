@@ -160,7 +160,8 @@
                 <asp:ImageButton ID="ibtnReplacePositionDescription" runat="server" ImageUrl="~/Images/delete.gif" AlternateText="[Replace]" Visible="false" />
                 <asp:Literal ID="litDownloadPositionDescription" runat="server" Visible="false"><br /><br /></asp:Literal>
                 <asp:FileUpload ID="filePositionDescription" runat="server" Visible="true" />                
-                <asp:RequiredFieldValidator ID="reqValPositionDescription" runat="server" ControlToValidate="filePositionDescription" ErrorMessage="* Job Description Required" Visible="true"></asp:RequiredFieldValidator>
+                <asp:RequiredFieldValidator ID="reqValPositionDescription" runat="server" Display="Dynamic" ControlToValidate="filePositionDescription" ErrorMessage="* Job Description Required" Visible="true"></asp:RequiredFieldValidator>
+                <asp:Label ID="lblInvalidFileType" runat="server" ForeColor="red" EnableViewState="false"></asp:Label>
                                                                      
                 <asp:Panel ID="pnlPositionDescription" runat="server" CssClass="modalPopup" style="display:none;">
                     Replace Existing Position Description: <br /><br />

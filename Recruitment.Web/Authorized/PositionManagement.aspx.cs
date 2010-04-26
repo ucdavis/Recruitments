@@ -173,6 +173,8 @@ namespace CAESDO.Recruitment.Web
                 else
                 {
                     //Error message: Job Description Must Be a PDF File
+                    lblInvalidFileType.Text = " *Job Description Must Be a PDF File";
+                    return;
                 }
             }
 
