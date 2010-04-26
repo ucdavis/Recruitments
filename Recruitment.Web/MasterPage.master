@@ -72,6 +72,11 @@
         $.bt.defaults.strokeWidth = 1.25;
         $.bt.defaults.strokeStyle = '#000000';
         $.bt.defaults.cssStyles = { color: '#0a0a0a' };
+        
+        //Default messages for the popup tips
+        var helpMessages = new Object();
+        helpMessages["phone"] = 'Phone Number Format Examples: <br/>xxx-yyy-zzzz<br/>(xxx) yyy-zzzz<br/>+xx yyy zzz zzzz';
+        helpMessages["positionTitle"] = 'Examples: <br/>*Asst. Prof of Climate Control, LAWR<br/>*Professor of Brewing';
     </script>
 
     <% if (false)
