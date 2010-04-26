@@ -27,7 +27,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private ReferSource _ReferSource;
 
-        [NotNullValidator]
+        [IgnoreNulls]
         public virtual ReferSource ReferSource
         {
             get { return _ReferSource; }
