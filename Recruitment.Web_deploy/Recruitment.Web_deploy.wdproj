@@ -62,9 +62,6 @@
     <WebConfigReplacementFiles Include="ProdConnectionStrings.config">
       <Section>connectionStrings</Section>
     </WebConfigReplacementFiles>
-    <WebConfigReplacementFiles Include="ProdHibernateConfig.config">
-      <Section>hibernate-configuration</Section>
-    </WebConfigReplacementFiles>
   </ItemGroup>
   <ItemGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|AnyCPU'">
     <WebConfigReplacementFiles Include="ProdAppSettings.config">
