@@ -34,14 +34,6 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _ShortDescription; }
             set { _ShortDescription = value; }
         }
-        private int _DescriptionFileID;
-
-        [IgnoreNulls()]
-        public virtual int DescriptionFileID
-        {
-            get { return _DescriptionFileID; }
-            set { _DescriptionFileID = value; }
-        }
         
         private DateTime _DatePosted;
 
@@ -166,6 +158,24 @@ namespace CAESDO.Recruitment.Core.Domain
         {
             get { return _AdminAccepted; }
             set { _AdminAccepted = value; }
+        }
+
+        private int _DescriptionFileID;
+
+        [IgnoreNulls()]
+        public virtual int DescriptionFileID
+        {
+            get { return _DescriptionFileID; }
+            set { _DescriptionFileID = value; }
+        }
+
+        private File _DescriptionFile;
+
+        [NotNullValidator]
+        public virtual File DescriptionFile
+        {
+            get { return _DescriptionFile; }
+            set { _DescriptionFile = value; }
         }
 
         private IList<Department> _Departments;

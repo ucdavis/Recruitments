@@ -58,13 +58,14 @@ namespace CAESDO.Recruitment.Web
 
             lblDatePosted.Text = currentPosition.DatePosted.ToShortDateString();
             lblDeadline.Text = currentPosition.Deadline.ToShortDateString();
+            lblDepartments.Text = currentPosition.DepartmentList;
 
             lblNumReferences.Text = currentPosition.NumReferences.ToString();
             lblNumPublications.Text = currentPosition.NumPublications.ToString();
 
-            lblHRRep.Text = currentPosition.HRRep ?? "N/A";
-            lblHRPhone.Text = currentPosition.HRPhone ?? "N/A";
-            lblHREmail.Text = currentPosition.HREmail ?? "N/A";
+            //lblHRRep.Text = currentPosition.HRRep ?? "N/A";
+            //lblHRPhone.Text = currentPosition.HRPhone ?? "N/A";
+            //lblHREmail.Text = currentPosition.HREmail ?? "N/A";
 
         }
 

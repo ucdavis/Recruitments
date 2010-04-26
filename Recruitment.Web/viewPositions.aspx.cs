@@ -13,6 +13,7 @@ namespace CAESDO.Recruitment.Web
 {
     public partial class viewPositions : System.Web.UI.Page
     {
+        private const string STR_PositionDetailsURL = "PositionDetails.aspx";
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -22,5 +23,12 @@ namespace CAESDO.Recruitment.Web
         {
 
         }
-    }
+
+        protected void lbtnPositionTitle_Click(object sender, EventArgs e)
+        {
+            LinkButton lbtn = sender as LinkButton;
+
+            Response.Redirect(STR_PositionDetailsURL + "?PositionID=" + lbtn.CommandArgument);
+        }
+}
 }
