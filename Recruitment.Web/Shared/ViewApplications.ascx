@@ -17,7 +17,7 @@
         //Sort table
         $("#tblApplications").tablesorter(
         {
-            sortList: [[2, 1], [0, 0]],
+            sortList: [[4, 1], [0, 0]],
             cssAsc: 'headerSortUp',
             cssDesc: 'headerSortDown',
             cssHeader: 'header',
@@ -125,13 +125,21 @@ position.
                 <%# Eval("Email") %>
             </td>
             <td class="ApplicantViewListCurrentPosition">
-                Faculty Recruitment Assistant at UC Davis
+                <%# (int)Eval("CurrentPositions.Count") > 0 ? Eval("CurrentPositions[0].Institution") + " -- " + Eval("CurrentPositions[0].Title") : string.Empty%>
             </td>
             <td>
-                <div class="ApplicantViewListDateShowHideDiv"><span class="ApplicantViewListDate">6/30/1976</span><span class="ApplicantViewListDateShowHideTxt">+/-</span></div>
-                <div class="ApplicantViewListPhDInformation">UC Davis<br />
-                Mathematics<br />
-                <i>Missing: Confidential Survey, Cover Letter, Publications, Research Interests</i></div>
+                <div class="ApplicantViewListDateShowHideDiv">
+                    <span class="ApplicantViewListDate"><%# (int)Eval("Education.Count") > 0 ? ((DateTime)Eval("Education[0].Date")).ToShortDateString() : string.Empty%></span>
+                    <span class="ApplicantViewListDateShowHideTxt">+/-</span>
+                </div>
+                <div class="ApplicantViewListPhDInformation">
+                    <%# (int)Eval("Education.Count") > 0 ? Eval("Education[0].Institution") : string.Empty%><br />
+                    <%# (int)Eval("Education.Count") > 0 ? Eval("Education[0].Discipline") : string.Empty%><br />
+                    <i>
+                        <%# (int)Eval("Education.Count") > 0 && !string.IsNullOrEmpty((string) Eval("Education[0].ResearchField")) ? "Field: " + Eval("Education[0].ResearchField") : string.Empty%><br />
+                        <%# (int)Eval("Education.Count") > 0 && !string.IsNullOrEmpty((string)Eval("Education[0].Advisor")) ? "Advisor: " + Eval("Education[0].Advisor") : string.Empty%>
+                    </i>
+                </div>
             </td>
             <td class="submittedHeader">
                 <%--<asp:CheckBox ID="checkbox" runat="server" Checked='<%# (bool)Eval("Submitted")  %>' onclick="javascript:return false;" />--%>
