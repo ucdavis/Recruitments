@@ -216,14 +216,14 @@
             </asp:View>
             
             <asp:View ID="viewEducationInformation" runat="server">
-                <span class="boxTitle">Ph.D. Award Information</span><br />
+                <span class="boxTitle">Terminal Degree Information</span><br />
                 <table class="box" style="width:500px; " cellpadding="5">
                     <tr>
                         <td colspan="2"><br /></td>
                     </tr>
                     <tr>
                         <td align="right">
-                            Ph.D. Date:</td>
+                            Terminal Degree Date:</td>
                         <td >
                             <asp:TextBox ID="txtEducationPHDDate" runat="server" meta:resourcekey="txtEducationPHDDateResource1"></asp:TextBox> <asp:Image ID="imgEducationPHDDateCalendar" runat="server" ImageUrl="~/Images/icon.calendar.png" AlternateText="Click to show calendar" meta:resourcekey="imgEducationPHDDateCalendarResource1" />
                             <AjaxControlToolkit:CalendarExtender ID="calEducationPHDDate" runat="server" TargetControlID="txtEducationPHDDate" PopupButtonID="imgEducationPHDDateCalendar" Enabled="True"></AjaxControlToolkit:CalendarExtender>
