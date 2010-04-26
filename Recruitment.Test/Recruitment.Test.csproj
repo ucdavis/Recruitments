@@ -54,6 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BusinessTests\ViewPositionsTest.cs" />
     <Compile Include="DomainTests\ApplicantTest.cs" />
     <Compile Include="DomainTests\ApplicationTest.cs" />
     <Compile Include="DomainTests\ChangeTrackingTest.cs" />
