@@ -22,8 +22,11 @@ namespace CAESDO.Recruitment.Web
             {
                 if (Session["APP"] == null)
                 {
-                    IApplicationDao appDao = daoFactory.GetApplicationDao();
-                    Session["APP"] = appDao.GetById(11, false);
+                    using (new NHibernateTransaction())
+                    {
+                        IApplicationDao appDao = daoFactory.GetApplicationDao();
+                        Session["APP"] = appDao.GetById(11, false);
+                    }
                 }
 
                 return (Application)Session["APP"];
@@ -70,37 +73,26 @@ namespace CAESDO.Recruitment.Web
             //ISurveyDao surveyDao = daoFactory.GetSurveyDao();
 
             //Survey survey = surveyDao.GetById(1, false);
-
-            //if (!Page.IsPostBack)
-            //{
-            //    app11 = null;
             
-            //    Response.Write(app11.ID.ToString() + "   " + app11.SubmitDate.ToShortDateString() + "<br/>");
-            //}
-            //else
-            //{
-            //    Education edu = new Education();
-            //    edu.AssociatedApplication = app11;
-            //    edu.Date = DateTime.Now;
-            //    edu.Discipline = "CSENG";
-            //    edu.Institution = "UCD";
+            if (!Page.IsPostBack)
+            {
+                //app11 = null;
 
-            //    using (new NHibernateTransaction())
-            //    {
-            //        daoFactory.GetEducationDao().Save(edu);
-            //        app11.Education.Add(edu);
-            //    }
+                Response.Write(app11.ID.ToString() + "   " + app11.SubmitDate.ToShortDateString() + "<br/>");
+            }
+            else
+            {
+                Response.Write(app11.SubmitDate);
 
-            //    Response.Write(app11.Files[0].FileName);
-            //    Response.Write(app11.Education.Count);
-            //    foreach (Education ed in app11.Education)
-            //    {
-            //        Response.Write("<br/>" + ed.Institution + "  " + ed.Discipline);
-            //    }
+                app11.SubmitDate = DateTime.Now;
 
-            //    Response.Write(app11.Education.Count);
-            //    Response.Write(app11.CurrentPositions.Count);
-            //}
+                using (new NHibernateTransaction())
+                {
+                    IApplicationDao aDao = daoFactory.GetApplicationDao();
+
+                    aDao.SaveOrUpdate(app11);
+                }
+            }
 
             //Response.Write(app.ID.ToString() + "  " + app.SubmitDate.ToShortDateString() + "<br/>");
             //Response.Write(app.References[0].City);
@@ -117,9 +109,9 @@ namespace CAESDO.Recruitment.Web
 
             //List<File> files = fDao.GetAll();
 
-            IUserDao uDao = daoFactory.GetUserDao();
+            //IUserDao uDao = daoFactory.GetUserDao();
 
-            User user = uDao.GetById(1, false);
+            //User user = uDao.GetById(1, false);
             
         }
     }  
