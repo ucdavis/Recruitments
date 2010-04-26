@@ -20,12 +20,12 @@
     
     }
     
-//    $(document).ready(function() {
-//        $("input [id$=txtContactPhone]").bt({
-//            trigger: ['focus', 'blur'],
-//            positions: ['right']
-//        });
-//    });
+    $(document).ready(function() {
+        $("input[id$=Phone]").bt('Phone Number Format Examples: <br/>xxx-yyy-zzzz<br/>(xxx) yyy-zzzz<br/>+xx yyy zzz zzzz', {
+            trigger: ['focus', 'blur'],
+            positions: ['right']
+        });
+    });
     
     </script>  
     <h2 style="margin-top:0;"><asp:Label ID="lblApplicationPositionTitle2" runat="server" meta:resourcekey="lblApplicationPositionTitle2Resource1"></asp:Label> Application</h2>
