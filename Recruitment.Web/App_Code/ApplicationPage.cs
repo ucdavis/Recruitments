@@ -39,9 +39,11 @@ namespace CAESDO.Recruitment.Web
             }
         }
 
+        /*
         public ErrorReporting eReport = new ErrorReporting(WebConfigurationManager.AppSettings["AppName"],
                                                         WebConfigurationManager.AppSettings["ErrorFromEmail"],
                                                         WebConfigurationManager.AppSettings["ErrorAdminEmail"]);
+        */
 
         protected override void OnError(EventArgs e)
         {
@@ -62,18 +64,8 @@ namespace CAESDO.Recruitment.Web
                 ctx.Server.ClearError();
                 ctx.Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.SESSION));
             }
-            else
-            {
-                if (ex.InnerException != null)
-                    eReport.ReportError(ex.InnerException, "OnError");
-                else
-                    eReport.ReportError(ex, "OnError");
 
-                ctx.Server.ClearError();
-                ctx.Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.UNKNOWN));
-            }
-
-            base.OnError(e); //won't get called
+            base.OnError(e);
         }
 
     }
