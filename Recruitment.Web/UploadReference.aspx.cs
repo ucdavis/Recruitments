@@ -62,9 +62,11 @@ namespace CAESDO.Recruitment.Web
                     file.FileName = fileUploadReference.FileName;
                     file.FileType = referenceFileType;
 
-                    using (new NHibernateTransaction())
+                    using (var ts = new TransactionScope())
                     {
                         file = daoFactory.GetFileDao().Save(file);
+
+                        ts.CommitTransaction();
                     }
 
                     if (ValidateBO<File>.isValid(file))
@@ -73,9 +75,11 @@ namespace CAESDO.Recruitment.Web
 
                         currentReference.ReferenceFile = file;
 
-                        using (new NHibernateTransaction())
+                        using (var ts = new TransactionScope())
                         {
                             daoFactory.GetReferenceDao().SaveOrUpdate(currentReference);
+
+                            ts.CommitTransaction();
                         }
 
                         //Send confirmation email after success -- if there are errors, ignore

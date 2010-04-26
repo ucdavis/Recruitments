@@ -84,7 +84,7 @@ namespace CAESDO.Recruitment.Web
             {
                 File fileToDelete = FileBLL.GetByID(FileID);
 
-                using (new TransactionScope())
+                using (var ts = new TransactionScope())
                 {
                     FileBLL.DeletePDF(fileToDelete);
                     
@@ -94,6 +94,8 @@ namespace CAESDO.Recruitment.Web
                     application.Files.Remove(fileToDelete);
 
                     daoFactory.GetApplicationDao().SaveOrUpdate(application);
+
+                    ts.CommitTransaction();
                 }
             }
 
@@ -128,18 +130,20 @@ namespace CAESDO.Recruitment.Web
             //If there is already a reference file, we need to delete it
             if (selectedReference.ReferenceFile != null)
             {
-                using (new TransactionScope())
+                using (var ts = new TransactionScope())
                 {
                     FileBLL.DeletePDF(selectedReference.ReferenceFile);
                     selectedReference.ReferenceFile = null;
 
                     ReferenceBLL.EnsurePersistent(ref selectedReference);
+
+                    ts.CommitTransaction();
                 }
             }
 
             if (fileUpload.HasFile)
             {
-                using (new TransactionScope())
+                using (var ts = new TransactionScope())
                 {
                     File file = FileBLL.SavePDFWithWatermark(fileUpload, referenceFileType);
 
@@ -156,6 +160,8 @@ namespace CAESDO.Recruitment.Web
                     {
                         lblStatus.Text = "File Upload Did Not Succeed: Ensure That File Is A PDF File";
                     }
+
+                    ts.CommitTransaction();
                 }
             }
         }
@@ -168,7 +174,7 @@ namespace CAESDO.Recruitment.Web
             if (selectedFileType.FileTypeName != STR_Publication && selectedFileType.FileTypeName != STR_LetterOfRec)
                 RemoveAllFilesOfType(selectedFileType.FileTypeName);
 
-            using (new TransactionScope())
+            using (var ts = new TransactionScope())
             {
                 File file = FileBLL.SavePDF(fileUpload, selectedFileType);
 
@@ -186,6 +192,8 @@ namespace CAESDO.Recruitment.Web
                 {
                     lblStatus.Text = "File Upload Did Not Succeed: Ensure That File Is A PDF File";   
                 }
+                
+                ts.CommitTransaction();
             }
         }
 
@@ -194,7 +202,7 @@ namespace CAESDO.Recruitment.Web
             FileType publicationsFileType = FileTypeBLL.GetByName(STR_Publication);
             Application application = selectedApplication;
 
-            using (new TransactionScope())
+            using (var ts = new TransactionScope())
             {
                 File file = FileBLL.SavePDF(fileUpload, publicationsFileType);
 
@@ -210,6 +218,8 @@ namespace CAESDO.Recruitment.Web
                 {
                     lblStatus.Text = "File Upload Did Not Succeed: Ensure That File Is A PDF File";
                 }
+
+                ts.CommitTransaction();
             }
 
             rptPublications.DataSource = GetFilesOfType(STR_Publication);
@@ -227,7 +237,7 @@ namespace CAESDO.Recruitment.Web
 
             if (existingFiles.Count != 0)
             {
-                using (new TransactionScope())
+                using (var ts = new TransactionScope())
                 {
                     foreach (File existingFile in existingFiles)
                     {
@@ -237,6 +247,8 @@ namespace CAESDO.Recruitment.Web
                     }
 
                     ApplicationBLL.EnsurePersistent(ref application);
+
+                    ts.CommitTransaction();
                 }
             }
         }

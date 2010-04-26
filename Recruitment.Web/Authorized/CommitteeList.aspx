@@ -2,6 +2,7 @@
 
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
+    
     <Ajax:ScriptManagerProxy ID="scriptProxy" runat="server">
         <Services>
             <Ajax:ServiceReference Path="RecruitmentService.asmx" />

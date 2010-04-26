@@ -152,9 +152,11 @@ namespace CAESDO.Recruitment.Web
             {
                 File jobDescriptionFile = null;
 
-                using (new TransactionScope())
+                using (var ts = new TransactionScope())
                 {
                     jobDescriptionFile = FileBLL.SavePDF(filePositionDescription, JobDescriptionFileType);
+
+                    ts.CommitTransaction();
                 }
 
                 if (jobDescriptionFile == null)
@@ -175,9 +177,11 @@ namespace CAESDO.Recruitment.Web
                 PositionBLL.SendNotificationEmail(newPosition, PendingPageURL);
             }
 
-            using (new TransactionScope())
+            using (var ts = new TransactionScope())
             {
                 PositionBLL.EnsurePersistent(ref newPosition);
+
+                ts.CommitTransaction();
             }
 
             //Redirect to the position modified page
@@ -213,11 +217,13 @@ namespace CAESDO.Recruitment.Web
                 FileBLL.DeletePDF(position.DescriptionFile);
 
                 //Save the new reference
-                using (new TransactionScope())
+                using (var ts = new TransactionScope())
                 {
                     position.DescriptionFile = jobDescription;
 
                     PositionBLL.EnsurePersistent(ref position);
+
+                    ts.CommitTransaction();
                 }
             }
             else

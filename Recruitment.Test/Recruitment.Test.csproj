@@ -73,6 +73,10 @@
     <Content Include="AuthoringTests.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Recruitment.BLL\Recruitment.BLL.csproj">
+      <Project>{B7E438A4-E39B-4D9B-BFAE-D55F78769115}</Project>
+      <Name>Recruitment.BLL</Name>
+    </ProjectReference>
     <ProjectReference Include="C:\Projects\Recruitment\Recruitment.Core\Recruitment.Core.csproj">
       <Project>{5F40A7DB-8142-4564-BB05-0F9C2DD3EF75}</Project>
       <Name>Recruitment.Core</Name>

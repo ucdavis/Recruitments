@@ -178,9 +178,11 @@ namespace CAESDO.Recruitment.Web
                     int departmentMemberID = (int)lviewMembers.DataKeys[row.DataItemIndex]["id"];
                     DepartmentMember member = DepartmentMemberBLL.GetByID(departmentMemberID);
 
-                    using (new TransactionScope())
+                    using (var ts = new TransactionScope())
                     {
                         DepartmentMemberBLL.UpdateAccess(member, currentPosition, cboxCommittee.Checked, cboxFaculty.Checked, cboxReview.Checked);
+                    
+                        ts.CommitTransaction();
                     }
                 }
             }
@@ -223,7 +225,7 @@ namespace CAESDO.Recruitment.Web
             }
 
             //save the department member and add to the position committee for this position
-            using (new TransactionScope())
+            using (var ts = new TransactionScope())
             {
                 DepartmentMemberBLL.EnsurePersistent(ref member);
 
@@ -234,6 +236,8 @@ namespace CAESDO.Recruitment.Web
                 Position position = currentPosition;
 
                 PositionBLL.EnsurePersistent(ref position);
+
+                ts.CommitTransaction();
             }
 
             //Display an update successful message

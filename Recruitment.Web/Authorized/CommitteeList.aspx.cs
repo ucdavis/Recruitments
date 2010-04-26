@@ -63,9 +63,11 @@ namespace CAESDO.Recruitment.Web
                         
             member.DepartmentFIS = dlistDepartment.SelectedValue;
 
-            using (new TransactionScope())
+            using (var ts = new TransactionScope())
             {
                 DepartmentMemberBLL.EnsurePersistent(ref member);
+
+                ts.CommitTransaction();
             }
 
             //Now we have a new member, so rebind the grid
@@ -79,11 +81,13 @@ namespace CAESDO.Recruitment.Web
             int departmentMemberID = int.Parse(lbtn.CommandArgument);
             DepartmentMember member = DepartmentMemberBLL.GetByID(departmentMemberID);
 
-            using (new TransactionScope())
+            using (var ts = new TransactionScope())
             {
                 member.Inactive = true; //Mark the member as inactive
 
                 DepartmentMemberBLL.EnsurePersistent(ref member);
+
+                ts.CommitTransaction();
             }
 
             lviewApplications.DataBind();
@@ -95,11 +99,13 @@ namespace CAESDO.Recruitment.Web
             int departmentMemberID = (int)gviewCommitteeList.DataKeys[e.RowIndex]["id"];
             DepartmentMember member = DepartmentMemberBLL.GetByID(departmentMemberID);
 
-            using (new TransactionScope())
+            using (var ts = new TransactionScope())
             {
                 member.Inactive = true; //Mark the member as inactive
 
                 DepartmentMemberBLL.EnsurePersistent(ref member);
+                
+                ts.CommitTransaction();
             }
 
             e.Cancel = true;

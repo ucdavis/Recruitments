@@ -4,6 +4,7 @@ using System.Collections;
 using System.Web.Services;
 using System.Web.Services.Protocols;
 using System.Security.Principal;
+using CAESDO.Recruitment.BLL;
 using CAESDO.Recruitment.Core.Domain;
 using CAESDO.Recruitment.Data;
 using CAESDO.Recruitment.Core.DataInterfaces;
@@ -223,7 +224,7 @@ public class RecruitmentUploadService : System.Web.Services.WebService
         //If there is already a reference file, we need to delete it
         if (selectedReference.ReferenceFile != null)
         {
-            using (new NHibernateTransaction())
+            using (var ts = new TransactionScope())
             {
                 int fileID = selectedReference.ReferenceFile.ID;
 
@@ -235,6 +236,8 @@ public class RecruitmentUploadService : System.Web.Services.WebService
                 fileToDelete.Delete();
 
                 daoFactory.GetReferenceDao().SaveOrUpdate(selectedReference);
+
+                ts.CommitTransaction();
             }
         }
 
@@ -243,9 +246,11 @@ public class RecruitmentUploadService : System.Web.Services.WebService
         file.FileName = selectedReference.FullName + ".pdf";
         file.FileType = referenceFileType;
 
-        using (new NHibernateTransaction())
+        using (var ts = new TransactionScope())
         {
             file = daoFactory.GetFileDao().Save(file);
+
+            ts.CommitTransaction();
         }
 
         if (ValidateBO<File>.isValid(file))
@@ -254,9 +259,11 @@ public class RecruitmentUploadService : System.Web.Services.WebService
                         
             selectedReference.ReferenceFile = file;
 
-            using (new NHibernateTransaction())
+            using (var ts = new TransactionScope())
             {
                 daoFactory.GetReferenceDao().SaveOrUpdate(selectedReference);
+
+                ts.CommitTransaction();
             }
 
             return true;
@@ -281,9 +288,11 @@ public class RecruitmentUploadService : System.Web.Services.WebService
         file.FileName = selectedFileType.FileTypeName + ".pdf";
         file.FileType = selectedFileType;
 
-        using (new NHibernateTransaction())
+        using (var ts = new TransactionScope())
         {
             file = daoFactory.GetFileDao().Save(file);
+
+            ts.CommitTransaction();
         }
 
         if (ValidateBO<File>.isValid(file))
@@ -292,9 +301,11 @@ public class RecruitmentUploadService : System.Web.Services.WebService
                         
             selectedApplication.Files.Add(file);
 
-            using (new NHibernateTransaction())
+            using (var ts = new TransactionScope())
             {
                 daoFactory.GetApplicationDao().SaveOrUpdate(selectedApplication);
+
+                ts.CommitTransaction();
             }
 
             return true;
@@ -315,9 +326,11 @@ public class RecruitmentUploadService : System.Web.Services.WebService
         publication.FileName = publicationsFileType.FileTypeName + ".pdf";
         publication.FileType = publicationsFileType;
 
-        using (new NHibernateTransaction())
+        using (var ts = new TransactionScope())
         {
             publication = daoFactory.GetFileDao().Save(publication);
+
+            ts.CommitTransaction();
         }
 
         if (ValidateBO<File>.isValid(publication))
@@ -326,9 +339,11 @@ public class RecruitmentUploadService : System.Web.Services.WebService
 
             selectedApplication.Files.Add(publication);
 
-            using (new NHibernateTransaction())
+            using (var ts = new TransactionScope())
             {
                 daoFactory.GetApplicationDao().SaveOrUpdate(selectedApplication);
+
+                ts.CommitTransaction();
             }
 
             return true;
@@ -392,7 +407,7 @@ public class RecruitmentUploadService : System.Web.Services.WebService
 
         if (existingFiles.Count != 0)
         {
-            using (new NHibernateTransaction())
+            using (var ts = new TransactionScope())
             {
                 foreach (File existingFile in existingFiles)
                 {
@@ -405,6 +420,8 @@ public class RecruitmentUploadService : System.Web.Services.WebService
                 }
 
                 daoFactory.GetApplicationDao().SaveOrUpdate(selectedApplication);
+
+                ts.CommitTransaction();
             }
         }
     }

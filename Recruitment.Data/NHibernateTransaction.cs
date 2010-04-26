@@ -1,25 +1,45 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using NHibernate;
 
 namespace CAESDO.Recruitment.Data
 {
-    public class NHibernateTransaction : IDisposable
+    public abstract class TransactionScopeBase : IDisposable
     {
-        public NHibernateTransaction()
-        {
-            NHibernateSessionManager.Instance.GetSession();
+        private bool transactionCommitted;
 
+        private static ISession Session
+        {
+            get { return NHibernateSessionManager.Instance.GetSession(); }
+        }
+
+        protected TransactionScopeBase()
+        {
+            transactionCommitted = false;
+            //Session.BeginTransaction();
             NHibernateSessionManager.Instance.BeginTransaction();
         }
 
         public void RollBackTransaction()
         {
+            //Session.Transaction.Rollback();
             NHibernateSessionManager.Instance.RollbackTransaction();
+
+            transactionCommitted = false;
+        }
+
+        public void CommitTransaction()
+        {
+            //Session.Transaction.Commit();
+            NHibernateSessionManager.Instance.CommitTransaction();
+
+            transactionCommitted = true;
         }
 
         public bool HasOpenTransaction
         {
+            //get { return Session.Transaction.IsActive; }
             get { return NHibernateSessionManager.Instance.HasOpenTransaction(); }
         }
 
@@ -27,49 +47,10 @@ namespace CAESDO.Recruitment.Data
 
         public void Dispose()
         {
-            try
+            if (transactionCommitted == false) //rollback the transaction if it hasn't been committed
             {
-                NHibernateSessionManager.Instance.CommitTransaction();
-            }
-            finally
-            {
-                //NHibernateSessionManager.Instance.CloseSession();
-            }
-        }
-
-        #endregion
-    }
-
-    public class TransactionScope : IDisposable
-    {
-        public TransactionScope()
-        {
-            NHibernateSessionManager.Instance.GetSession();
-
-            NHibernateSessionManager.Instance.BeginTransaction();
-        }
-
-        public void RollBackTransaction()
-        {
-            NHibernateSessionManager.Instance.RollbackTransaction();
-        }
-
-        public bool HasOpenTransaction
-        {
-            get { return NHibernateSessionManager.Instance.HasOpenTransaction(); }
-        }
-
-        #region IDisposable Members
-
-        public void Dispose()
-        {
-            try
-            {
-                NHibernateSessionManager.Instance.CommitTransaction();
-            }
-            finally
-            {
-                //NHibernateSessionManager.Instance.CloseSession();
+                //RollBackTransaction();
+                NHibernateSessionManager.Instance.RollbackTransaction();
             }
         }
 

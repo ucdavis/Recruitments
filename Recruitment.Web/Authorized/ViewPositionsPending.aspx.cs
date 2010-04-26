@@ -55,10 +55,12 @@ namespace CAESDO.Recruitment.Web
             
             //Now set the adminAccepted property to true
 
-            using (new TransactionScope())
+            using (var ts = new TransactionScope())
             {
                 currentPosition.AdminAccepted = true;
                 PositionBLL.EnsurePersistent(ref currentPosition);
+
+                ts.CommitTransaction();
             }
 
             //Now rebind the grid

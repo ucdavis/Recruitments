@@ -2,7 +2,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>8.0.50727</ProductVersion>
+    <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{B7E438A4-E39B-4D9B-BFAE-D55F78769115}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -68,6 +68,7 @@
     <Compile Include="TemplateBLL.cs" />
     <Compile Include="AuthBLL.cs" />
     <Compile Include="TemplateTypeBLL.cs" />
+    <Compile Include="TransactionScope.cs" />
     <Compile Include="UtilsBLL.cs" />
   </ItemGroup>
   <ItemGroup>

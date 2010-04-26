@@ -65,7 +65,7 @@ namespace CAESDO.Recruitment.Web
 
         protected void btnUpdateList_Click(object sender, EventArgs e)
         {
-            using (new TransactionScope())
+            using (var ts = new TransactionScope())
             {
                 foreach (var row in lviewApplications.Items)
                 {
@@ -78,6 +78,8 @@ namespace CAESDO.Recruitment.Web
 
                         ApplicationBLL.EnsurePersistent(ref app);
                 }
+
+                ts.CommitTransaction();
             }
 
             lblResult.Text = "Application List Updated";
@@ -156,11 +158,13 @@ namespace CAESDO.Recruitment.Web
             if (string.IsNullOrEmpty(reference.UploadID))
             {                
                 //We don't have an uploadID, so create a new GUID and assign it to the reference
-                using (new TransactionScope())
+                using (var ts = new TransactionScope())
                 {
                     reference.UploadID = Guid.NewGuid().ToString();
 
                     ReferenceBLL.EnsurePersistent(ref reference);
+
+                    ts.CommitTransaction();
                 }
             }
         }
@@ -209,12 +213,14 @@ namespace CAESDO.Recruitment.Web
             }
                         
             //No errors, so save the fact that we sent an email to the current reference
-            using (new TransactionScope())
+            using (var ts = new TransactionScope())
             {
                 reference.SentEmail = true;
                 reference.EmailDate = DateTime.Now;
 
                 ReferenceBLL.EnsurePersistent(ref reference);
+
+                ts.CommitTransaction();
             }
 
             return null;

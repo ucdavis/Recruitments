@@ -227,10 +227,12 @@ namespace CAESDO.Recruitment.Web
             application.LastUpdated = DateTime.Now;
             application.Email = txtContactEmail.Text;
 
-            using (new TransactionScope())
+            using (var ts = new TransactionScope())
             {
                 ProfileBLL.EnsurePersistent(ref currentProfile);
                 ApplicationBLL.EnsurePersistent(ref application);
+
+                ts.CommitTransaction();
             }
 
             ReloadStepListAndSelectHome(STR_ContactInformation, true);
@@ -350,10 +352,12 @@ namespace CAESDO.Recruitment.Web
             }
             else
             {
-                using (new NHibernateTransaction())
+                using (var ts = new TransactionScope())
                 {
                     currentApplication.SubmitDate = DateTime.Now;
                     currentApplication.Submitted = true;
+
+                    ts.CommitTransaction();
                 }
 
                 //Application was successfully submitted, so send a confirmation email
@@ -403,10 +407,12 @@ namespace CAESDO.Recruitment.Web
 
             currentEducation.Complete = true; //Make sure to complete on save
 
-            using (new TransactionScope())
+            using (var ts = new TransactionScope())
             {
                 EducationBLL.EnsurePersistent(ref currentEducation);
                 currentApplication.Education.Add(currentEducation);
+
+                ts.CommitTransaction();
             }
 
             ReloadStepListAndSelectHome(STR_EducationInformation, true);
@@ -439,10 +445,12 @@ namespace CAESDO.Recruitment.Web
             currentPosition.AssociatedApplication = currentApplication;
             currentPosition.Complete = true;
 
-            using (new TransactionScope())
+            using (var ts = new TransactionScope())
             {
                 CurrentPositionBLL.EnsurePersistent(ref currentPosition);
                 currentApplication.CurrentPositions.Add(currentPosition);
+
+                ts.CommitTransaction();
             }
 
             ReloadStepListAndSelectHome(STR_CurrentPosition, true);
@@ -465,9 +473,11 @@ namespace CAESDO.Recruitment.Web
 
         protected void chkCoverLetterOption_CheckedChanged(object sender, EventArgs e)
         {
-            using (new TransactionScope())
+            using (var ts = new TransactionScope())
             {
                 currentApplication.CoverLetterComplete = chkCoverLetterOption.Checked;
+
+                ts.CommitTransaction();
             }
 
             ReloadStepListAndSelectHome(STR_CoverLetter, true);
@@ -504,21 +514,25 @@ namespace CAESDO.Recruitment.Web
 
             File uploadedFile = null;
 
-            using (new TransactionScope())
+            using (var ts = new TransactionScope())
             {
                 uploadedFile = FileBLL.SavePDF(filePublications, publicationsFileType);
+
+                ts.CommitTransaction();
             }
 
             if (uploadedFile != null)
             {
                 Application application = currentApplication;
 
-                using (new TransactionScope())
+                using (var ts = new TransactionScope())
                 {
                     application.Files.Add(uploadedFile);
                     application.LastUpdated = DateTime.Now;
 
                     ApplicationBLL.EnsurePersistent(ref application);
+
+                    ts.CommitTransaction();
                 }
             }
             else
@@ -541,7 +555,7 @@ namespace CAESDO.Recruitment.Web
                 File fileToDelete = FileBLL.GetByID(fileID);
                 Application application = currentApplication;
 
-                using (new NHibernateTransaction())
+                using (var ts = new TransactionScope())
                 {
                     FileBLL.DeletePDF(fileToDelete);
 
@@ -550,6 +564,8 @@ namespace CAESDO.Recruitment.Web
 
                     //Update the current application
                     ApplicationBLL.EnsurePersistent(ref application);
+
+                    ts.CommitTransaction();
                 }
             }
 
@@ -558,9 +574,11 @@ namespace CAESDO.Recruitment.Web
 
         protected void chkPublicationsFinalize_CheckedChanged(object sender, EventArgs e)
         {
-            using (new NHibernateTransaction())
+            using (var ts = new TransactionScope())
             {
                 currentApplication.PublicationsComplete = chkPublicationsFinalize.Checked;
+
+                ts.CommitTransaction();
             }
 
             ReloadStepListAndSelectHome(STR_Publications, true);
@@ -622,7 +640,7 @@ namespace CAESDO.Recruitment.Web
             //Save ethnicity, gender, and all of the recruitment sources
             Application application = currentApplication;
 
-            using (new TransactionScope())
+            using (var ts = new TransactionScope())
             {
                 //First make sure we have a survey 
                 if (application.Surveys.Count == 0)
@@ -678,6 +696,8 @@ namespace CAESDO.Recruitment.Web
                 currentSurvey.AssociatedApplication = application;
 
                 ApplicationBLL.EnsurePersistent(ref application);
+
+                ts.CommitTransaction();
             }
 
             ReloadStepListAndSelectHome(STR_ConfidentialSurvey, true);
@@ -724,10 +744,12 @@ namespace CAESDO.Recruitment.Web
             //Now save this reference by adding it to the current application if it is new, or by replacing the old copy if it exists
             currentReference.AssociatedApplication = currentApplication;
 
-            using (new TransactionScope())
+            using (var ts = new TransactionScope())
             {
                 currentApplication.LastUpdated = DateTime.Now;
                 ReferenceBLL.EnsurePersistent(ref currentReference);
+
+                ts.CommitTransaction();
             }
 
             //Set the button text back to 'Add Reference' and the Command Argument to 0
@@ -796,10 +818,12 @@ namespace CAESDO.Recruitment.Web
             Reference currentReference = ReferenceBLL.GetByID(currentReferenceID);
 
             //Remove the reference from the currentApplication
-            using (new TransactionScope())
+            using (var ts = new TransactionScope())
             {
                 currentApplication.LastUpdated = DateTime.Now;
                 ReferenceBLL.Remove(currentReference);
+
+                ts.CommitTransaction();
             }
             
             DataBindReferences();
@@ -808,9 +832,11 @@ namespace CAESDO.Recruitment.Web
         protected void chkReferencesComplete_CheckedChanged(object sender, EventArgs e)
         {
             //Update the complete status
-            using (new TransactionScope())
+            using (var ts = new TransactionScope())
             {
                 currentApplication.ReferencesComplete = chkReferencesComplete.Checked;
+
+                ts.CommitTransaction();
             }
 
             ReloadStepListAndSelectHome(STR_References, true);
@@ -848,9 +874,11 @@ namespace CAESDO.Recruitment.Web
                 lblApplicationStepStatus.Text = string.Format("{0} successfully completed", fromStepName);
 
                 //Update the lastupdated timestamp
-                using (new TransactionScope())
+                using (var ts = new TransactionScope())
                 {
                     currentApplication.LastUpdated = DateTime.Now;
+
+                    ts.CommitTransaction();
                 }
             }
             else
@@ -999,7 +1027,7 @@ namespace CAESDO.Recruitment.Web
 
             RemoveAllFilesOfType(fileTypeName);
 
-            using (new TransactionScope())
+            using (var ts = new TransactionScope())
             {
                 File savedFile = FileBLL.SavePDF(fileUpload, FileType);
 
@@ -1010,6 +1038,8 @@ namespace CAESDO.Recruitment.Web
                     application.Files.Add(savedFile);
 
                     ApplicationBLL.EnsurePersistent(ref application);
+
+                    ts.CommitTransaction();
 
                     return true;
                 }
@@ -1107,7 +1137,7 @@ namespace CAESDO.Recruitment.Web
 
             if (existingFiles.Count != 0)
             {
-                using (new TransactionScope())
+                using (var ts = new TransactionScope())
                 {
                     Application application = currentApplication;
 
@@ -1119,6 +1149,8 @@ namespace CAESDO.Recruitment.Web
                     }
 
                     ApplicationBLL.EnsurePersistent(ref application);
+
+                    ts.CommitTransaction();
                 }
             }
         }

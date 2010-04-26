@@ -80,11 +80,13 @@ namespace CAESDO.Recruitment.Web
                     //Only save the information if it has changed
                     if (currentReference.UnsolicitedReference != cboxUnsolicited.Checked)
                     {
-                        using (new TransactionScope())
+                        using (var ts = new TransactionScope())
                         {
                             currentReference.UnsolicitedReference = cboxUnsolicited.Checked;
 
                             ReferenceBLL.EnsurePersistent(ref currentReference);
+
+                            ts.CommitTransaction();
                         }
                     }
                 }
@@ -115,11 +117,13 @@ namespace CAESDO.Recruitment.Web
             client.Send(message);
 
             //Record when the unsolicited email was sent out
-            using (new TransactionScope())
+            using (var ts = new TransactionScope())
             {
                 currentReference.UnsolicitedEmailDate = DateTime.Now;
                 
                 ReferenceBLL.EnsurePersistent(ref currentReference);
+
+                ts.CommitTransaction();
             }
 
             lblResult.Text = "Email sent successfully";

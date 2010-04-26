@@ -174,13 +174,15 @@ namespace CAESDO.Recruitment.Web
             newApplication.Email = loggedInUser.Email;
             newApplication.LastUpdated = DateTime.Now;
 
-            using (new TransactionScope())
+            using (var ts = new TransactionScope())
             {
                 //Now save the new application get get back the ID
                 ApplicationBLL.EnsurePersistent(ref newApplication);
 
                 //Redirect to the newly created application
                 Response.Redirect(string.Format("{0}?ApplicationID={1}", "Applicant/App.aspx", newApplication.ID.ToString()));
+
+                ts.CommitTransaction();
             }
         }
 }
