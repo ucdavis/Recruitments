@@ -55,7 +55,7 @@
                     
                     <asp:GridView ID="gviewDepartments" runat="server" DataKeyNames="DepartmentFIS" AutoGenerateColumns="False" OnRowDeleting="gviewDepartments_RowDeleting" Width="346px" SkinID="gridViewPosManage">
                     <Columns>
-                        <asp:TemplateField HeaderText="Primary">
+                        <asp:TemplateField HeaderText="Home Dept">
                             <ItemTemplate>
                                 <asp:CheckBox ID="cboxPrimary" runat="server" Checked='<%# Eval("PrimaryDept") %>' AutoPostBack="true" OnCheckedChanged="cboxPrimary_CheckedChanged" />
                             </ItemTemplate>
