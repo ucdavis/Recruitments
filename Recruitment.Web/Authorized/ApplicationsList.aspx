@@ -134,10 +134,34 @@
         </SelectParameters>
     </asp:ObjectDataSource>
     <asp:Panel ID="pnlPositionSelected" runat="server" Visible="false">
-        <asp:Button ID="btnUpdateList" runat="server" Text="Update Applications List"
-            OnClick="btnUpdateList_Click" />
-        <asp:Button ID="btnEmailReferences" runat="server" Text="Email References"
-            OnClick="btnEmailReferences_Click" />
+        <asp:LinkButton ID="btnUpdateList" runat="server" OnClick="btnUpdateList_Click" CssClass="no_border right_space">
+            <img src="../Images/reload.png" alt="Update Applications List" />Update Applications List</asp:LinkButton>
+                    <script type="text/javascript">
+
+                        function GetReferenceSample() {
+                            var templateText = $("#referenceEmail").html();
+
+                            RecruitmentService.GetTemplatePreview(templateText, DisplayReferenceSample);
+                        }
+
+                        function DisplayReferenceSample(result) {
+                            var newWin = window.open('', 'Preview', '');
+
+                            if (newWin != null) {
+                                var doc = newWin.document;
+                                doc.write(result);
+                                doc.close();
+                            }
+                        }
+        
+        </script>
+        <a href="javascript:GetReferenceSample();" class="no_border right_space">
+            <img src="../Images/mail_find.png" alt="Preview Reference Email" />
+            Preview Reference Email</a>
+        <asp:LinkButton ID="btnEmailReferences" runat="server" OnClick="btnEmailReferences_Click" CssClass="no_border">
+            <img src="../Images/mail_message.png" alt="Email References"/> Email References</asp:LinkButton>
+
+
         <br />
         <asp:Label ID="lblResult" runat="server" EnableViewState="false"></asp:Label>
         <AjaxControlToolkit:AnimationExtender ID="animationApplicationStatus" runat="server"
@@ -160,32 +184,7 @@
             TargetControlID="btnEmailReferences">
         </AjaxControlToolkit:ConfirmButtonExtender>
         
-        
-        <script type="text/javascript">
-
-            function GetReferenceSample() {
-                var templateText = $("#referenceEmail").html();
-
-                RecruitmentService.GetTemplatePreview(templateText, DisplayReferenceSample);
-            }
-
-            function DisplayReferenceSample(result) {
-                var newWin = window.open('', 'Preview', '');
-
-                if (newWin != null) {
-                    var doc = newWin.document;
-                    doc.write(result);
-                    doc.close();
-                }
-            }
-        
-        </script>
-
-        <br /><br />
-        <p onclick="GetReferenceSample();">
-            <img alt="PreviewIcon" id="previewSampleReferenceEmail" src="../Images/previewIcon.gif" />
-            Preview Reference Email
-        </p>
+       
          
         <div id="referenceEmail" style="display:none;">
             <asp:Literal ID="litReferenceTemplate" runat="server"></asp:Literal>
