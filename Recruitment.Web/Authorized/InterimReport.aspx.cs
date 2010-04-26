@@ -51,6 +51,25 @@ namespace CAESDO.Recruitment.Web
         {
             if (currentPosition == null)
                 Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.UNKNOWN));
+            else if ( !Roles.IsUserInRole("Admin") ) //If the user isn't an admin, check department relationships
+            {
+                User u = daoFactory.GetUserDao().GetUserByLogin(User.Identity.Name);
+                bool positionAccess = false;
+
+                foreach (Department d in currentPosition.Departments)
+                {
+                    //Check if the current unit is in the user's units
+                    if (u.Units.Contains(d.Unit))
+                    {
+                        positionAccess = true;
+                        break;
+                    }
+                }
+
+                //We have gone through all the departments, check if the user has access
+                if (positionAccess == false)
+                    Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.AUTH));
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)

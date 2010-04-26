@@ -94,7 +94,7 @@
                 <asp:BoundField DataField="FullName" HeaderText="Name" ReadOnly="True" SortExpression="FullName" />
                 <asp:TemplateField HeaderText="Comments">
                     <ItemTemplate>
-                        <asp:TextBox ID="txtComments" runat="server" Width="100%" TextMode="MultiLine"></asp:TextBox>
+                        &nbsp;
                     </ItemTemplate>
                 </asp:TemplateField>
             </Columns>

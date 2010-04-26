@@ -45,15 +45,21 @@ namespace CAESDO.Recruitment.Web
         {
             if (dlistType.SelectedValue == STR_Interim)
             {
-                this.RenderPageInWord(InterimPage);
+                if ( chkOutputFile.Checked )
+                    this.OutputPage(InterimPage, OutputType.Word);
+                else
+                    this.OutputPage(InterimPage, OutputType.Screen);
             }
             else if (dlistType.SelectedValue == STR_Survey)
             {
-                this.RenderPageInWord(SurveyPage);
+                if ( chkOutputFile.Checked )
+                    this.OutputPage(SurveyPage, OutputType.Word);
+                else
+                    this.OutputPage(SurveyPage, OutputType.Screen);
             }
         }
 
-        private void RenderPageInWord(string URL)
+        private void OutputPage(string URL, OutputType output)
         {
             string strResult;
             
@@ -75,17 +81,25 @@ namespace CAESDO.Recruitment.Web
                 reader.Close();
             }
 
-            //Response.Write(strResult);
-
             Response.Clear();
 
-            //Control the name that they see
-            Response.ContentType = "application/ms-word";
-            Response.AddHeader("Content-Disposition", "attachment;filename=" + "file.doc");
-            Response.AddHeader("Content-Length", strResult.Length.ToString());
-            //Response.TransmitFile(file.FullName);
+            if ( output == OutputType.Word )
+            {                
+                //Control the name that they see
+                Response.ContentType = "application/ms-word";
+                Response.AddHeader("Content-Disposition", "attachment;filename=" + "file.doc");
+                Response.AddHeader("Content-Length", strResult.Length.ToString());
+                //Response.TransmitFile(file.FullName);
+            }
+
             Response.Write(strResult);
             Response.End();
         }
+    }
+
+    public enum OutputType
+    {
+        Word, 
+        Screen
     }
 }
