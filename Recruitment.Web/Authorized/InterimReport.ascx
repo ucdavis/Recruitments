@@ -107,7 +107,7 @@
         </table>
         
         <br />
-        C. Indicate the composition of the pool of applicants you plant to interview.<p align="center">
+        C. Indicate the composition of the pool of applicants you plan to interview.<p align="center">
             <u>Composition of the Pool Selected for Interview</u></p>
             
             <asp:GridView ID="gviewInterviewSexEthnicity" runat="server" AutoGenerateColumns="False" HorizontalAlign="Left" EnableViewState="False">
