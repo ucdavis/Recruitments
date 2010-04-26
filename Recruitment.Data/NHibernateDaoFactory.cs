@@ -3,6 +3,7 @@ using CAESDO.Recruitment.Core.Domain;
 using System.Collections.Generic;
 using NHibernate;
 using NHibernate.Expression;
+using System.ComponentModel;
 
 namespace CAESDO.Recruitment.Data
 {
@@ -169,6 +170,7 @@ namespace CAESDO.Recruitment.Data
             }
         }
 
+        [DataObject]
         public class ApplicationDao : AbstractNHibernateDao<Application, int>, IApplicationDao {
             public List<Application> GetApplicationsByApplicant(Profile applicantProfile)
             {
@@ -179,6 +181,7 @@ namespace CAESDO.Recruitment.Data
                 return criteria.List<Application>() as List<Application>;                
             }
 
+            [DataObjectMethod(DataObjectMethodType.Select)]
             public List<Application> GetApplicationsByPosition(Position position)
             {
                 ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(Application))
@@ -189,6 +192,7 @@ namespace CAESDO.Recruitment.Data
                 return criteria.List<Application>() as List<Application>;
             }
 
+            [DataObjectMethod(DataObjectMethodType.Select)]
             public List<Application> GetApplicationsByPosition(int positionID)
             {
                 Position position = new PositionDao().GetById(positionID, false);
