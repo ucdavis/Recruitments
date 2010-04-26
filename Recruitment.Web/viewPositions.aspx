@@ -2,8 +2,11 @@
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
-    <ul style="list-style:none; margin:0; padding: 0;"><li class="viewAppsProgress"><asp:HyperLink ID="hlinkApplicationsInProgress" runat="server" NavigateUrl="~/Applicant/ViewApplicationsInProgress.aspx">View Applications In Progress</asp:HyperLink></li></ul>
-    <div style="clear:both;">&nbsp;</div>
+    <ul style="list-style:none; margin:0; padding: 0; float: right;"><li class="viewAppsProgress"><asp:HyperLink ID="hlinkApplicationsInProgress" runat="server" NavigateUrl="~/Applicant/ViewApplicationsInProgress.aspx">View Applications In Progress</asp:HyperLink></li></ul>
+    <br />To apply or view description for a position, please click on the position title.
+    <div style="clear:both;">
+        <br />
+    </div>
     <asp:GridView ID="gViewPositions" skinID="gridViewUM" runat="server" GridLines="None" CellPadding="0" DataKeyNames="ID" AutoGenerateColumns="False" DataSourceID="ObjectDataOpenPositions" Width="100%">
         <Columns>
             <asp:TemplateField HeaderText="Position/Department" SortExpression="PositionTitle">
