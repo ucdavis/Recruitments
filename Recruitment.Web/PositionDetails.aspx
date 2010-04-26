@@ -91,7 +91,10 @@
                 <br />
                 <asp:LoginView ID="lviewPositionApply" runat="server">
                     <AnonymousTemplate>
-                        You must log in to apply to this position. <br /><br />
+                        <span style="font-weight: bold; color: #ff0000">
+                        You must log in to apply to this position. <br />
+                        </span>
+                        <br />
                         Existing Users: <a href="<%= FormsAuthentication.LoginUrl %>?ReturnURL=<%= HttpUtility.UrlEncode(Request.Url.PathAndQuery) %>" >Click here to log in</a><br /><br />
                         New Users: <a href="Login/CreateUser.aspx?ReturnURL=<%= HttpUtility.UrlEncode(Request.Url.PathAndQuery) %>">Click here to create a new account</a>
                     </AnonymousTemplate>

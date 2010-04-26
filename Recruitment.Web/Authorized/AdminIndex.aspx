@@ -5,16 +5,16 @@
     <asp:ImageButton ID="ibViewpositions" runat="server" ImageUrl="~/Images/def_viewpositions.jpg" PostBackUrl="viewPositionsAdmin.aspx" />
     <asp:ImageButton ID="ibPendingpos" runat="server" ImageUrl="~/Images/def_pendingpos.jpg" PostBackUrl="ViewPositionsPending.aspx" />
     <asp:ImageButton ID="ibCreatepos" runat="server" ImageUrl="~/Images/def_createpositions.jpg" PostBackUrl="PositionManagement.aspx" />
-    <br />
     <asp:ImageButton ID="ibManageusers" runat="server" ImageUrl="~/Images/def_manageusers.jpg" PostBackUrl="UserManagement.aspx" />
     <asp:ImageButton ID="ibEmailtemplates" runat="server" ImageUrl="~/Images/def_emailtemplates.jpg" PostBackUrl="EmailTemplates.aspx" />
-    <asp:ImageButton ID="ibUploadFiles" runat="server" ImageUrl="~/Images/def_upload.jpg"
-        PostBackUrl="~/Authorized/UploadFiles.aspx" /><br />
+    <asp:ImageButton ID="ibApplicationsList" runat="server" ImageUrl="~/Images/def_applist.jpg" PostBackUrl="~/Authorized/ApplicationsList.aspx" />
+    <asp:ImageButton ID="ibCommitteeList" runat="server" ImageUrl="~/Images/def_comlist.jpg" PostBackUrl="~/Authorized/committeeList.aspx" />
+    <asp:ImageButton ID="ibCommitteeManagement" runat="server" ImageUrl="~/Images/def_commanage.jpg" PostBackUrl="~/Authorized/committeeManagement.aspx?type=committee" />
+    <asp:ImageButton ID="ibReports" runat="server" ImageUrl="~/Images/def_reports.jpg" PostBackUrl="~/Authorized/reports.aspx" />
+    <asp:ImageButton ID="ibUploadFiles" runat="server" ImageUrl="~/Images/def_upload.jpg" PostBackUrl="~/Authorized/UploadFiles.aspx" /><br />
+   
     <a href="ApplicationReview.aspx?ApplicationID=11">Review Application 11</a><br /><br />
-    <a href="ApplicationsList.aspx">Applications List</a><br /><br />
-    <a href="committeeList.aspx">Committee List</a><br /><br />
-    <a href="committeeManagement.aspx?type=committee">Committee Management</a><br /><br />
-    <a href="reports.aspx">Reports</a><br /><br />
+
 </div>
            
 </asp:Content>

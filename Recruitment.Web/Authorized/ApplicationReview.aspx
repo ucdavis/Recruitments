@@ -353,17 +353,20 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <asp:GridView ID="gviewFiles" runat="server" skinID="gridViewReferences" EmptyDataText="No Files Found" AutoGenerateColumns="false" BorderStyle="None" CellPadding="0" GridLines="None">
+                            <asp:GridView ID="gviewFiles" runat="server" skinID="gridViewReferences" EmptyDataText="No Files Found" AutoGenerateColumns="False" BorderStyle="None" CellPadding="0" GridLines="None">
                                 <Columns>
                                     <asp:TemplateField HeaderText="File Type">
                                         <ItemTemplate>
                                             <%# BreakCamelCase(Eval("FileType.FileTypeName") as string)%>
                                         </ItemTemplate>
+                                        <ItemStyle CssClass="paddingLeft" />
+                                        <HeaderStyle CssClass="paddingLeft" HorizontalAlign="Left" />
                                     </asp:TemplateField>
                                     <asp:TemplateField HeaderText="File">
                                         <ItemTemplate>
                                             <asp:LinkButton ID="lbtnFileDownload" runat="server" Text='<%# Eval("FileName") %>' CommandArgument='<%# Eval("ID") %>' OnClick="lbtnFileDownload_Click"></asp:LinkButton>
                                         </ItemTemplate>
+                                        <HeaderStyle HorizontalAlign="Left" />
                                     </asp:TemplateField>
                                 </Columns>
                             </asp:GridView>
