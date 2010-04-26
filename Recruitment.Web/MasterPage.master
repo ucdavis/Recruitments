@@ -22,7 +22,9 @@
         <div id="breadcrumbs">
             <table cellpadding="5" cellspacing="0" style="width:100%;">
                 <tr>
-                    <td style="padding-left:20px;">Home</td>
+                    <td style="padding-left:20px;">
+                        <asp:SiteMapPath ID="siteMap" runat="server"></asp:SiteMapPath>
+                    </td>
                     <td style="text-align: right;">
                         |<asp:LoginView ID="LoginView1" runat="server">
                             <AnonymousTemplate>

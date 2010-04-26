@@ -2,7 +2,6 @@
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
-    <asp:ImageButton ID="ibtnCreatePosition" runat="server" ImageUrl="~/Images/ibCreatePosition.gif" PostBackUrl="~/Authorized/addPosition.aspx" /><br />
     <br />
 
     <asp:GridView ID="gViewPositions" skinID="gridViewUM" runat="server" GridLines="None" CellPadding="0" DataKeyNames="ID" AutoGenerateColumns="False" DataSourceID="ObjectDataOpenPositions" Width="100%">
@@ -21,7 +20,7 @@
                 <HeaderStyle HorizontalAlign="Left" Width="100px" />
             </asp:BoundField>
             
-            <asp:TemplateField HeaderText="Modify">
+            <asp:TemplateField HeaderText="Modify" Visible="false">
                 <ItemTemplate>
                     <asp:ImageButton ID="ibtnModifyPosition" runat="server" ImageUrl="~/Images/modify.gif" CommandArgument='<%# Eval("ID") %>' />
                 </ItemTemplate>
@@ -29,7 +28,7 @@
                 <HeaderStyle Width="100px" />
             </asp:TemplateField>
             
-            <asp:TemplateField HeaderText="Applicants" SortExpression="ApplicationCount">
+            <asp:TemplateField HeaderText="Applicants" SortExpression="ApplicationCount" Visible="false">
                 <ItemTemplate>
                     <asp:LinkButton ID="lbtnApplicationCount" runat="server" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("ApplicationCount") %>' OnClick="lbtnApplicationCount_Click"></asp:LinkButton>
                 </ItemTemplate>

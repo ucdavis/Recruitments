@@ -1,4 +1,4 @@
-<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="App.aspx.cs" Inherits="CAESDO.Recruitment.Web.App" Title="Untitled Page" Trace="true" Theme="MainTheme" %>
+<%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="App.aspx.cs" Inherits="CAESDO.Recruitment.Web.App" Title="Position Application" Trace="true" Theme="MainTheme" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
      
     <table summary="This table is for layout. The left-hand column contains the navigation bar and the right hand column contains the main text for the page." cellpadding="0" cellspacing="0" border="0" style="font-size:1.0em; width:100%;">

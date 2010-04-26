@@ -15,6 +15,7 @@ namespace CAESDO.Recruitment.Web
     public partial class Authorized_viewApplications : ApplicationPage
     {
         private const string STR_PositionID = "PositionID";
+        private const string STR_ApplicationReviewaspx = "ApplicationReview.aspx";
 
         public int currentPositionID
         {
@@ -64,6 +65,17 @@ namespace CAESDO.Recruitment.Web
         protected void ObjectDataApplications_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
         {
             e.InputParameters["position"] = currentPosition;
+        }
+
+        /// <summary>
+        /// Redirect to the applicationReview page for this application
+        /// </summary>
+        /// <param name="sender">Sender has a command argument with the applicationID</param>
+        protected void lbtnViewApplication_Click(object sender, EventArgs e)
+        {
+            string applicationID = ((LinkButton)sender).CommandArgument;
+
+            Response.Redirect(string.Format("{0}?ApplicationID={1}", STR_ApplicationReviewaspx, applicationID));
         }
 }
 

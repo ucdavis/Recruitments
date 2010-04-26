@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<siteMap xmlns="http://schemas.microsoft.com/AspNet/SiteMap-File-1.0" >
+    <siteMapNode url="Default.aspx"  title="Home" >
+      
+      <siteMapNode url="ViewPositions.aspx" title="View Positions">
+        <siteMapNode url="PositionDetails.aspx" title="Position Details" />
+        <siteMapNode url="Applicant/App.aspx" title="Position Application" />
+      </siteMapNode>
+
+      <siteMapNode url="Authorized/AdminIndex.aspx" title="Administration">
+        <siteMapNode url="Authorized/viewPositionsAdmin.aspx" title="View Positions" />
+        <siteMapNode url="Authorized/viewPositionsPending.aspx" title="View Pending Positions" />
+        <siteMapNode url="Authorized/PositionManagement.aspx" title="Add/Modify Position" />
+        <siteMapNode url="Authorized/UserManagement.aspx" title="User Management" />
+        <siteMapNode url="Authorized/EmailTemplates.aspx" title="Email Templates" />
+        <siteMapNode url="Authorized/ApplicationReview.aspx" title="Application Review" />
+      </siteMapNode>
+
+      <siteMapNode url="Login/CreateUser.aspx" title="Create User" />
+      <siteMapNode url="Login/ResetPassword.aspx" title="Reset Password" />
+      <siteMapNode url="Login/ChangePassword.aspx" title="Change Password" />
+      <siteMapNode url="Login.aspx" title="Login" />
+
+    </siteMapNode>
+</siteMap>
