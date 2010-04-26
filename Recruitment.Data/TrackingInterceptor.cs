@@ -55,7 +55,11 @@ namespace CAESDO.Recruitment.Data
         public bool OnFlushDirty(object entity, object id, object[] currentState, object[] previousState, string[] propertyNames, NHibernate.Type.IType[] types)
         {
             if (previousState == null)
+            {
+                //Note that the entity was updated, but leave out the property changes
+                TrackChanges(null, entity, id, ChangeTypes.Update);
                 return false;
+            }
 
             List<ChangedProperty> dirtyProperties = new List<ChangedProperty>();
 
