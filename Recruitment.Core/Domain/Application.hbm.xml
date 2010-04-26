@@ -12,6 +12,7 @@
     <property name="LastUpdated" column="LastUpdated" />
     <property name="Email" column="Email" />
     <property name="PublicationsComplete" column="PublicationsComplete" />
+    <property name="ReferencesComplete" column="ReferencesComplete" />
     
     <many-to-one name="AppliedPosition" column="PositionID"
       class="CAESDO.Recruitment.Core.Domain.Position, CAESDO.Recruitment.Core" not-null="true" />

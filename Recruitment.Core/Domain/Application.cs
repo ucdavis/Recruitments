@@ -69,7 +69,16 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _PublicationsComplete; }
             set { _PublicationsComplete = value; }
         }
-                
+
+        private bool _ReferencesComplete;
+
+        [NotNullValidator]
+        public virtual bool ReferencesComplete
+        {
+            get { return _ReferencesComplete; }
+            set { _ReferencesComplete = value; }
+        }
+                        
         private IList<File> _Files;
 
         public virtual IList<File> Files

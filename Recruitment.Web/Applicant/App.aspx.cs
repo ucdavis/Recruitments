@@ -718,10 +718,22 @@ namespace CAESDO.Recruitment.Web
                 daoFactory.GetReferenceDao().SaveOrUpdate(currentReference);
             }
 
+            //Set the button text back to 'Add Reference' and the Command Argument to 0
+            btnReferencesAddUpdate.Text = "Add Reference";
+            btnReferencesAddUpdate.CommandArgument = "0";
+
+            //Clear out any iformation entered in
+            ClearTextBoxesInPanel(pnlReferencesEntry);
+
             //Now DataBind the step to show any changes
             DataBindReferences();
         }
-        
+
+        protected void btnReferencesCancel_Click(object sender, EventArgs e)
+        {
+            ClearTextBoxesInPanel(pnlReferencesEntry);
+        }
+
         /// <summary>
         /// Called from the Refences Grid whenever a row is selected (Edited).
         /// Populates the reference's information into the info table and then shows the popup
@@ -776,6 +788,17 @@ namespace CAESDO.Recruitment.Web
             }
 
             DataBindReferences();
+        }
+        
+        protected void chkReferencesComplete_CheckedChanged(object sender, EventArgs e)
+        {
+            //Update the complete status
+            using (new NHibernateTransaction())
+            {
+                currentApplication.ReferencesComplete = chkReferencesComplete.Checked;
+            }
+
+            ReloadStepListAndSelectHome();
         }
 
         #endregion
@@ -837,7 +860,7 @@ namespace CAESDO.Recruitment.Web
             ApplicationSteps.Add(new Step("Education Information", currentApplication.isComplete(ApplicationStepType.Education), false, true));
 
             //Add references
-            ApplicationSteps.Add(new Step("References", currentApplication.isComplete(ApplicationStepType.References), false, true));
+            ApplicationSteps.Add(new Step("References", currentApplication.ReferencesComplete, false, true));
 
             //Add current position
             ApplicationSteps.Add(new Step("Current Position", currentApplication.isComplete(ApplicationStepType.CurrentPosition), false, true));
@@ -1048,6 +1071,19 @@ namespace CAESDO.Recruitment.Web
         }
 
         /// <summary>
+        /// Loops through a panel's controls to clear out any textboxes in that panel
+        /// </summary>
+        /// <param name="panel">The containing panel</param>
+        private void ClearTextBoxesInPanel(Panel panel)
+        {
+            foreach (Control c in panel.Controls)
+            {
+                if (c is TextBox)
+                    ((TextBox)c).Text = string.Empty;
+            }
+        }
+
+        /// <summary>
         /// Handles DataBinding (filling in fields/datagrids/etc) for the given step
         /// </summary>
         /// <param name="stepName">The name of the step to databind</param>
@@ -1171,9 +1207,12 @@ namespace CAESDO.Recruitment.Web
         /// </summary>
         private void DataBindReferences()
         {
-            Trace.Warn("References Bound");
+            //Bind the Grid
             gviewReferences.DataSource = currentApplication.References;
             gviewReferences.DataBind();
+
+            //Show the complete status
+            chkReferencesComplete.Checked = currentApplication.ReferencesComplete;
         }
 
         #endregion
@@ -1181,7 +1220,6 @@ namespace CAESDO.Recruitment.Web
 
 
         #endregion
-                
 }
 
     /// <summary>

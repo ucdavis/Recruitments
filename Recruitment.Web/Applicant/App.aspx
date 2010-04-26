@@ -202,6 +202,17 @@
                             </asp:GridView>                           
                         </td>
                     </tr>
+                    <tr>
+                        <td colspan="2"><br /></td>
+                    </tr>
+                     <tr>
+                        <td   align="right">
+                        </td>
+                        <td align="right">
+                            <br />
+                            <asp:CheckBox ID="chkReferencesComplete" runat="server" AutoPostBack="true" TextAlign="Left" Text="Done Uploading References" OnCheckedChanged="chkReferencesComplete_CheckedChanged" />
+                        </td>
+                    </tr>
                 </table>       
                                 
                 <asp:Panel ID="pnlReferencesEntry" runat="server" CssClass="modalPopup" style="display:none">
@@ -214,98 +225,98 @@
                             <td align="right">
                                 Title:</td>
                             <td  >
-                                <asp:TextBox ID="txtReferencesTitle" runat="server" MaxLength="50"></asp:TextBox>
+                                <asp:TextBox ID="txtReferencesTitle" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td align="right">
                                 First Name:</td>
                             <td  >
-                                <asp:TextBox ID="txtReferencesFirstName" runat="server" MaxLength="50"></asp:TextBox>
+                                <asp:TextBox ID="txtReferencesFirstName" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td align="right">
                                 Last Name:</td>
                             <td  >
-                                <asp:TextBox ID="txtReferencesLastName" runat="server" MaxLength="50"></asp:TextBox>
+                                <asp:TextBox ID="txtReferencesLastName" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td   align="right">
                                 Academic Title:</td>
                             <td  >
-                                <asp:TextBox ID="txtReferencesAcadTitle" runat="server" MaxLength="50"></asp:TextBox>
+                                <asp:TextBox ID="txtReferencesAcadTitle" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td   align="right">
                                 Area of Expertise:</td>
                             <td  >
-                                <asp:TextBox ID="txtReferencesExpertise" runat="server" MaxLength="50"></asp:TextBox>
+                                <asp:TextBox ID="txtReferencesExpertise" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
                             </td>
                         </tr>
                          <tr>
                             <td   align="right">
                                 Department:</td>
                             <td  >
-                                <asp:TextBox ID="txtReferencesDepartment" runat="server" MaxLength="50"></asp:TextBox>
+                                <asp:TextBox ID="txtReferencesDepartment" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
                             </td>
                         </tr>
                          <tr>
                             <td   align="right">
                                 Institute:</td>
                             <td  >
-                                <asp:TextBox ID="txtReferencesInstitute" runat="server" MaxLength="50"></asp:TextBox>
+                                <asp:TextBox ID="txtReferencesInstitute" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td   align="right">
                                 Address 1:</td>
                             <td  >
-                                <asp:TextBox ID="txtReferencesAddress1" runat="server" MaxLength="50"></asp:TextBox>
+                                <asp:TextBox ID="txtReferencesAddress1" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td   align="right">
                                 Address 2:</td>
                             <td  >
-                                <asp:TextBox ID="txtReferencesAddress2" runat="server" MaxLength="50"></asp:TextBox>
+                                <asp:TextBox ID="txtReferencesAddress2" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td   align="right">
                                 City:</td>
                             <td  >
-                                <asp:TextBox ID="txtReferencesCity" runat="server" MaxLength="50"></asp:TextBox>
+                                <asp:TextBox ID="txtReferencesCity" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td   align="right">
                                 State:</td>
                             <td  >
-                                <asp:TextBox ID="txtReferencesState" runat="server" MaxLength="50"></asp:TextBox>
+                                <asp:TextBox ID="txtReferencesState" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td   align="right">
                                 Zip:</td>
                             <td  >
-                                <asp:TextBox ID="txtReferencesZip" runat="server" MaxLength="20"></asp:TextBox>
+                                <asp:TextBox ID="txtReferencesZip" runat="server" MaxLength="20" EnableViewState="false"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td   align="right">
                                 Country:</td>
                             <td  >
-                                <asp:TextBox ID="txtReferencesCountry" runat="server" MaxLength="50"></asp:TextBox>
+                                <asp:TextBox ID="txtReferencesCountry" runat="server" MaxLength="50" EnableViewState="false"></asp:TextBox>
                             </td>
                         </tr>
                         <tr>
                             <td   align="right">
                                 Phone Number:</td>
                             <td  >
-                                <asp:TextBox ID="txtReferencesPhone" runat="server" MaxLength="20"></asp:TextBox>
+                                <asp:TextBox ID="txtReferencesPhone" runat="server" MaxLength="20" EnableViewState="false"></asp:TextBox>
                                 <asp:RegularExpressionValidator ID="regValReferencesPhone" runat="server" ControlToValidate="txtReferencesPhone" ErrorMessage="*" ValidationExpression="((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}"></asp:RegularExpressionValidator>
                             </td>
                         </tr>
@@ -313,7 +324,7 @@
                             <td   align="right">
                                 Email:</td>
                             <td  >
-                                <asp:TextBox ID="txtReferencesEmail" runat="server" MaxLength="100"></asp:TextBox>
+                                <asp:TextBox ID="txtReferencesEmail" runat="server" MaxLength="100" EnableViewState="false"></asp:TextBox>
                                 <asp:RegularExpressionValidator ID="regValReferencesEmail" runat="server" ErrorMessage="*" ControlToValidate="txtReferencesEmail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                             </td>
                         </tr>
@@ -323,13 +334,13 @@
                             <td align="right"  >
                                 <br />
                                 <asp:Button ID="btnReferencesAddUpdate" runat="server" CommandArgument="0" Text="Add Reference" OnClick="btnReferencesAddUpdate_Click" />
-                                <asp:Button ID="btnReferencesCancel" runat="server" Text="Cancel" />
+                                <asp:Button ID="btnReferencesCancel" runat="server" Text="Cancel" OnClick="btnReferencesCancel_Click" />
                             </td>
                         </tr>
                     </table>
                 </asp:Panel>
                 
-                <AjaxControlToolkit:ModalPopupExtender ID="mpopupReferencesEntry" runat="server" CancelControlID="btnReferencesCancel" BackgroundCssClass="modalBackground" PopupControlID="pnlReferencesEntry" TargetControlID="lbtnReferencesAdd"></AjaxControlToolkit:ModalPopupExtender>
+                <AjaxControlToolkit:ModalPopupExtender ID="mpopupReferencesEntry" runat="server" BackgroundCssClass="modalBackground" PopupControlID="pnlReferencesEntry" TargetControlID="lbtnReferencesAdd"></AjaxControlToolkit:ModalPopupExtender>
                 
             </asp:View>
         
