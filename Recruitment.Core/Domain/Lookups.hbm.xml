@@ -13,9 +13,9 @@
     <many-to-one name="AssociatedPosition" column="PositionID"
       class="CAESDO.Recruitment.Core.Domain.Position, CAESDO.Recruitment.Core" not-null="true" />
 
-    <many-to-one name="Unit" insert="false" update="false" column="DepartmentFIS" class="CAESDO.Recruitment.Core.Domain.Unit, CAESDO.Recruitment.Core" cascade="none" not-null="false"></many-to-one>
+    <many-to-one name="Unit" fetch="join" insert="false" update="false" column="DepartmentFIS" class="CAESDO.Recruitment.Core.Domain.Unit, CAESDO.Recruitment.Core" cascade="none" not-null="false"></many-to-one>
 
-    <many-to-one name="Theme" insert="false" update="false" column="DepartmentFIS" class="CAESDO.Recruitment.Core.Domain.Theme, CAESDO.Recruitment.Core" cascade="none" not-found="ignore" not-null="false"></many-to-one>
+    <!--<many-to-one name="Theme" insert="false" update="false" column="DepartmentFIS" class="CAESDO.Recruitment.Core.Domain.Theme, CAESDO.Recruitment.Core" cascade="none" not-null="false"></many-to-one>-->
     
   </class>
 

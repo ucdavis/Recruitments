@@ -30,14 +30,6 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _Unit = value; }
         }
 
-        private Theme _Theme;
-
-        public virtual Theme Theme
-        {
-            get { return _Theme; }
-            set { _Theme = value; }
-        }
-
         private bool _PrimaryDept;
 
         public virtual bool PrimaryDept

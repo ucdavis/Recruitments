@@ -11,9 +11,9 @@
         <Columns>
             <asp:TemplateField HeaderText="Position/Department" SortExpression="PositionTitle">
                 <ItemTemplate>
-                    <asp:LinkButton ID="lbtnPositionTitle" runat="server" CommandArgument='<%# Eval("ID") %>' Text='<%# Bind("PositionTitle") %>' OnClick="lbtnPositionTitle_Click"></asp:LinkButton>
+                    <asp:LinkButton ID="lbtnPositionTitle" runat="server" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("PositionTitle") %>' OnClick="lbtnPositionTitle_Click"></asp:LinkButton>
                     <br />
-                    <asp:Label ID="lblDepartmentList" runat="server" Text='<%# Bind("DepartmentList") %>'></asp:Label>
+                    <asp:Label ID="lblDepartmentList" runat="server" Text='<%# Eval("DepartmentList") %>'></asp:Label>
                 </ItemTemplate>
                 <ItemStyle CssClass="paddingLeft" />
                 <HeaderStyle HorizontalAlign="Left" CssClass="paddingLeft" />
@@ -24,7 +24,7 @@
                 <HeaderStyle HorizontalAlign="Left" Width="100px" />
             </asp:BoundField>
             
-            <asp:TemplateField HeaderText="Modify" Visible="false">
+<%--            <asp:TemplateField HeaderText="Modify" Visible="false">
                 <ItemTemplate>
                     <asp:ImageButton ID="ibtnModifyPosition" runat="server" ImageUrl="~/Images/modify.gif" CommandArgument='<%# Eval("ID") %>' />
                 </ItemTemplate>
@@ -38,7 +38,7 @@
                 </ItemTemplate>
                 <ItemStyle HorizontalAlign="Center" />
                 <HeaderStyle Width="100px" />
-            </asp:TemplateField>
+            </asp:TemplateField>--%>
         </Columns>
     
     </asp:GridView>

@@ -96,7 +96,10 @@ namespace CAESDO.Recruitment.Web
             }
             else
             {
-                if (currentPosition.PrimaryDepartment.Theme == null)
+                Theme primaryDepartmentTheme =
+                    ThemeBLL.GetNullableByID(currentPosition.PrimaryDepartment.DepartmentFIS);
+
+                if (primaryDepartmentTheme == null)
                 {
                     //If the primary department doesn't have a theme, get the default
                     pnlDepartmentLogo.CssClass = defaultTheme.ThemeName;
@@ -104,7 +107,7 @@ namespace CAESDO.Recruitment.Web
                 else
                 {
                     //We have a primary dept and a theme
-                    pnlDepartmentLogo.CssClass = currentPosition.PrimaryDepartment.Theme.ThemeName;
+                    pnlDepartmentLogo.CssClass = primaryDepartmentTheme.ThemeName;
                 }
             }
         }
