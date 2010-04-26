@@ -45,6 +45,14 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _Profile = value; }
         }
 
+        private IList<Profile> _Profiles;
+
+        public IList<Profile> Profiles
+        {
+            get { return _Profiles; }
+            set { _Profiles = value; }
+        }
+        
         public Applicant()
         {
             //throw new System.NotImplementedException();

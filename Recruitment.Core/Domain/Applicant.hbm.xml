@@ -11,9 +11,9 @@
     <property name="CreatedBy" column="CreatedBy" />
     <property name="IsActive" column="IsActive" />
     
-    <!--<bag name="_AssociatedApplications" access="field" table="Applications" inverse="true">
-      <key column="PositionID" />
-      <one-to-many class="CAESDO.Recruitment.Core.Domain.Application, CAESDO.Recruitment.Core" />
-    </bag>-->
+    <bag name="_Profiles" access="field" table="Profiles" inverse="true">
+      <key column="AccountID" />
+      <one-to-many class="CAESDO.Recruitment.Core.Domain.Profile, CAESDO.Recruitment.Core" />
+    </bag>
   </class>
 </hibernate-mapping>

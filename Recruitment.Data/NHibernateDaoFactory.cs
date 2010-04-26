@@ -24,6 +24,10 @@ namespace CAESDO.Recruitment.Data
             return new ApplicantDao();
         }
 
+        public IProfileDao GetProfileDao()
+        {
+            return new ProfileDao();
+        }
 
         #region Inline DAO implementations
 
@@ -37,6 +41,8 @@ namespace CAESDO.Recruitment.Data
         public class ApplicationDao : AbstractNHibernateDao<Application, int>, IApplicationDao { }
 
         public class ApplicantDao : AbstractNHibernateDao<Applicant, int>, IApplicantDao { }
+
+        public class ProfileDao : AbstractNHibernateDao<Profile, int>, IProfileDao { }
 
         #endregion
 

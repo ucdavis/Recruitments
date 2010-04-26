@@ -77,7 +77,15 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _Phone = value; }
         }
 
-        private int _AccountID;
+        private Applicant _AssociatedApplicant;
+
+        public Applicant AssociatedApplicant
+        {
+            get { return _AssociatedApplicant; }
+            set { _AssociatedApplicant = value; }
+        }
+        
+        //private int _AccountID;
 
         public Profile()
         {
@@ -93,7 +101,5 @@ namespace CAESDO.Recruitment.Core.Domain
         {
             throw new System.NotImplementedException();
         }
-
-        private int _ProfileID;
     }
 }
