@@ -192,3 +192,11 @@
 	padding-top: 150px; 
 	overflow:hidden;
 }
+
+.TRANstyle
+{
+    background: url(Images/cl_TRAN.gif) no-repeat;
+	float:right;
+	padding-top: 150px; 
+	overflow:hidden;
+}
