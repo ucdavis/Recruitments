@@ -97,12 +97,17 @@ namespace CAESDO.Recruitment
             return catops.InsertNewUser(user, HASH);
         }
 
+        public static bool VerifyUser(string login)
+        {            
+            return catops.VerifyUser(login, HASH);
+        }
+
         public CatbertManager()
         {
             CatOps.Users u = new CatOps.Users();
             CatOps.CatbertUsers cu = new CatOps.CatbertUsers();
             CatOps.Roles r = new CatOps.Roles();
-           
+
             //
             // TODO: Add constructor logic here
             //

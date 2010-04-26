@@ -90,8 +90,13 @@ namespace CAESDO.Recruitment.Web
             
             //insert the new user
             string loginID = gview.SelectedDataKey["Login"] as string;
-
-            int userID = CatbertManager.InsertNewUser(loginID);
+            
+            int userID = -1;
+            //Check to see if the user is already in CATBERT
+            if (CatbertManager.VerifyUser(loginID) == false)
+                userID = CatbertManager.InsertNewUser(loginID);
+            else
+                userID = 0;
 
             txtAddUserLoginID.Text = userID.ToString();
             //Add the user to the given role and unit
