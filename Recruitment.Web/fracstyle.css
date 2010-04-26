@@ -12,7 +12,7 @@ body
 	font-family: Trebuchet MS, Arial, Georgia;
 }
 
-html, body, #wrapper, #form1
+html, body, #wrapper, #aspnetForm
 {
 	height:100%;
 	margin:0;
