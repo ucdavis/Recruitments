@@ -83,7 +83,7 @@
                 <ItemStyle CssClass="paddingLeft" />
                 <HeaderStyle CssClass="paddingLeft" />
             </asp:TemplateField>            
-            <asp:TemplateField HeaderText="Review">
+            <asp:TemplateField HeaderText="Reviewer">
                 <ItemTemplate>
                     <asp:CheckBox ID="chkAllowReview" runat="server" />
                 </ItemTemplate>
@@ -136,7 +136,7 @@
         <br /><br />     
                 
         <br />
-        <span class="boxTitle">Add External Member</span>
+        <span class="boxTitle">Add Additional Member</span>
         <div style="width: 500px;" class="box">
         <br />
         <asp:Panel ID="pnlAddMember" runat="server">
