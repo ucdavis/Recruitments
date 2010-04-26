@@ -22,7 +22,11 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Ph.D. Info">
                     <ItemTemplate>
-                        <%# (int)Eval("Education.Count") > 0 ? GetPHDAwardedString((DateTime)Eval("Education[0].Date")) : string.Empty%> <br />
+                        <%# (int)Eval("Education.Count") > 0 ? GetPHDAwardedString((DateTime)Eval("Education[0].Date")) + " " : string.Empty%>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <asp:TemplateField HeaderText="Institution">
+                    <ItemTemplate>
                         <%# (int)Eval("Education.Count") > 0 ? Eval("Education[0].Institution") : string.Empty%>
                     </ItemTemplate>
                 </asp:TemplateField>
@@ -30,7 +34,7 @@
                     <ItemTemplate>
                         <%# (int)Eval("Education.Count") > 0 ? Eval("Education[0].Discipline") : string.Empty%>
                     </ItemTemplate>
-                </asp:TemplateField>                
+                </asp:TemplateField>
                 <asp:TemplateField HeaderText="ResearchField">
                     <ItemTemplate>
                         <%# (int)Eval("Education.Count") > 0 ? Eval("Education[0].ResearchField") : string.Empty%>
@@ -41,14 +45,23 @@
                         <%# (int)Eval("Education.Count") > 0 ? Eval("Education[0].Advisor") : string.Empty%>
                     </ItemTemplate>
                 </asp:TemplateField>
-                <asp:TemplateField HeaderText="Current Employement">
+                <asp:TemplateField HeaderText="Current Position">
+                    <ItemTemplate>
+                        <%# (int)Eval("CurrentPositions.Count") > 0 ? Eval("CurrentPositions[0].Title") + " at " + Eval("CurrentPositions[0].Institution") : string.Empty%>
+                    </ItemTemplate>
+                </asp:TemplateField>
+                <%--<asp:TemplateField HeaderText="Current Employement" Visible="false">
                     <ItemTemplate>
                         <%# (int)Eval("CurrentPositions.Count") > 0 ? GetEmploymentString((CAESDO.Recruitment.Core.Domain.CurrentPosition)Eval("CurrentPositions[0]")) : string.Empty %>
+                    </ItemTemplate>
+                </asp:TemplateField>--%>
+                <asp:TemplateField HeaderText="Status">
+                    <ItemTemplate>
+                        <%# (bool)Eval("Submitted") ? "Submitted" : "Incomplete"  %><br />
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Comments">
                     <ItemTemplate>
-                        <%# (bool)Eval("Submitted") ? "Submitted" : "Incomplete"  %><br />
                         <asp:Literal ID="litMissingSteps" runat="server" EnableViewState="false"></asp:Literal>
                     </ItemTemplate>
                 </asp:TemplateField>
