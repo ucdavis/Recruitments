@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using CAESDO.Recruitment.Core.Domain;
 using CAESDO.Recruitment.Core.Utils;
 using Microsoft.Practices.EnterpriseLibrary.Validation;
+using CAESDO.Recruitment.Data;
 
 
 namespace CAESDO.Recruitment.Test
@@ -102,18 +103,6 @@ namespace CAESDO.Recruitment.Test
         }
 
         [TestMethod()]
-        public void FillProfile()
-        {
-            Profile profile = NHibernateHelper.daoFactory.GetProfileDao().GetById(StaticProperties.ExistingProfileID, false);
-
-            Assert.IsNotNull(profile);
-
-            Assert.AreEqual<int>(profile.ID, StaticProperties.ExistingProfileID);
-
-            Assert.IsTrue(ValidateBO<Profile>.isValid(profile));
-        }
-
-        [TestMethod()]
         public void CheckApplicant()
         {
             Profile target = NHibernateHelper.daoFactory.GetProfileDao().GetById(StaticProperties.ExistingProfileID, false);
@@ -131,10 +120,17 @@ namespace CAESDO.Recruitment.Test
             target.AssociatedApplicant = applicant; //associate with the applicant
             target.Address1 = StaticProperties.TestString;
             target.City = StaticProperties.TestString;
+            target.State = StaticProperties.TestString;
             target.FirstName = StaticProperties.TestString;
             target.LastName = StaticProperties.TestString;
             
-            target = NHibernateHelper.daoFactory.GetProfileDao().Save(target); //save the target
+            //Validate before saving
+            Assert.IsTrue(ValidateBO<Profile>.isValid(target), "Target Profile not valid");
+
+            using (new NHibernateTransaction())
+            {
+                target = NHibernateHelper.daoFactory.GetProfileDao().Save(target); //save the target
+            }
 
             this.TestContext.WriteLine("Profile created: ID={0}", target.ID);
 
@@ -187,6 +183,10 @@ namespace CAESDO.Recruitment.Test
         [TestMethod()]
         public void CheckApplications()
         {
+            Profile profile = NHibernateHelper.daoFactory.GetProfileDao().GetById(StaticProperties.ExistingProfileID, false);
+
+            Assert.IsNotNull(profile.Applications);
+
         }
     }
 

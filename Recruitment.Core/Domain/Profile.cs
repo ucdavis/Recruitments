@@ -10,6 +10,7 @@ namespace CAESDO.Recruitment.Core.Domain
         private string _FirstName;
 
         [StringLengthValidator(50)]
+        [NotNullValidator]
         public virtual string FirstName
         {
             get { return _FirstName; }
@@ -18,6 +19,7 @@ namespace CAESDO.Recruitment.Core.Domain
         private string _MiddleName;
 
         [StringLengthValidator(50)]
+        [IgnoreNulls]
         public virtual string MiddleName
         {
             get { return _MiddleName; }
@@ -26,6 +28,7 @@ namespace CAESDO.Recruitment.Core.Domain
         private string _LastName;
 
         [StringLengthValidator(50)]
+        [NotNullValidator]
         public virtual string LastName
         {
             get { return _LastName; }
@@ -34,6 +37,7 @@ namespace CAESDO.Recruitment.Core.Domain
         private string _Address1;
 
         [StringLengthValidator(100)]
+        [NotNullValidator]
         public virtual string Address1
         {
             get { return _Address1; }
@@ -42,6 +46,7 @@ namespace CAESDO.Recruitment.Core.Domain
         private string _Address2;
 
         [StringLengthValidator(100)]
+        [IgnoreNulls]
         public virtual string Address2
         {
             get { return _Address2; }
@@ -50,6 +55,7 @@ namespace CAESDO.Recruitment.Core.Domain
         private string _City;
 
         [StringLengthValidator(50)]
+        [NotNullValidator]
         public virtual string City
         {
             get { return _City; }
@@ -58,6 +64,7 @@ namespace CAESDO.Recruitment.Core.Domain
         private string _State;
 
         [StringLengthValidator(50)]
+        [NotNullValidator]
         public virtual string State
         {
             get { return _State; }
@@ -66,6 +73,7 @@ namespace CAESDO.Recruitment.Core.Domain
         private string _Zip;
 
         [StringLengthValidator(20)]
+        [IgnoreNulls]
         public virtual string Zip
         {
             get { return _Zip; }
@@ -94,6 +102,7 @@ namespace CAESDO.Recruitment.Core.Domain
         private string _Phone;
 
         [StringLengthValidator(20)]
+        [IgnoreNulls]
         public virtual string Phone
         {
             get { return _Phone; }
@@ -102,6 +111,8 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private DateTime? _LastUpdated;
 
+        [TypeConversionValidator(typeof(DateTime))]
+        [IgnoreNulls]
         public virtual DateTime? LastUpdated
         {
             get { return _LastUpdated; }
