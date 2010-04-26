@@ -12,7 +12,9 @@ namespace CAESDO.Recruitment.BLL
     {
         public static List<Position> GetByStatus(bool Closed, bool AdminAccepted, bool? AllowApplications)
         {
-            return GetByStatusAndDepartment(Closed, AdminAccepted, AllowApplications, null, null, null); //no filtering
+            var userContext = System.Web.HttpContext.Current.User;
+
+            return GetByStatusAndDepartment(Closed, AdminAccepted, AllowApplications, null, null, userContext); //no filtering by department
         }
 
         /// <summary>
