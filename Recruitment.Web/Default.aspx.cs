@@ -75,7 +75,7 @@ namespace CAESDO.Recruitment.Web
             {
                 app11 = null;
 
-                Response.Write(app11.ID.ToString() + "   " + app11.SubmitDate.ToShortDateString() + "<br/>");
+                Response.Write(app11.ID.ToString() + "   " + app11.SubmitDate.Value.ToShortDateString() + "<br/>");
             }
             else
             {
@@ -98,6 +98,8 @@ namespace CAESDO.Recruitment.Web
                 {
                     aDao.SaveOrUpdate(app11);
                 }
+
+                Response.Write(app11.LastUpdated.ToShortDateString());
             }
 
             //Response.Write(app.ID.ToString() + "  " + app.SubmitDate.ToShortDateString() + "<br/>");
