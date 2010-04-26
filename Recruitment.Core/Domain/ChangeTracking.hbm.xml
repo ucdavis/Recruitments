@@ -10,7 +10,7 @@
     <property name="TrackingGroupID" column="TrackingGroupID" />
     <property name="ObjectChanged" column="ObjectChanged" />
     <property name="ObjectChangedID" column="ObjectChangedID" />
-    <property name="UserID" column="UserID" />
+    <property name="UserName" column="UserName" />
     <property name="ChangeDate" column="ChangeDate" />
 
     <many-to-one name="ChangeType" column="ChangeTypeID"

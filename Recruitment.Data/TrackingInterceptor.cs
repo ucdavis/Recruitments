@@ -133,6 +133,7 @@ namespace CAESDO.Recruitment.Data
 
             trackChange.ChangeType = new NHibernateDaoFactory().GetChangeTypeDao().GetById((int)changeType, false);
 
+            trackChange.UserName = HttpContext.Current.User.Identity.Name;
             trackChange.ObjectChanged = target.GetType().Name;
             trackChange.ObjectChangedID = id == null ? null : id.ToString();
 

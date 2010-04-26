@@ -35,15 +35,16 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _ObjectChangedID = value; }
         }
 
-        private int _UserID;
+        private string _UserName;
 
         [IgnoreNulls]
-        public virtual int UserID
+        [StringLengthValidator(50)]
+        public virtual string UserName
         {
-            get { return _UserID; }
-            set { _UserID = value; }
+            get { return _UserName; }
+            set { _UserName = value; }
         }
-
+        
         private DateTime _ChangeDate;
 
         [NotNullValidator]
