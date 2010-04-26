@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Tests>
-  <edtdocversion branch="retail" build="50727" revision="42" />
+  <edtdocversion branch="retail" build="50727" revision="312" />
   <TestCategory type="Microsoft.VisualStudio.TestTools.Common.TestCategory">
     <id type="Microsoft.VisualStudio.TestTools.Common.TestCategoryId">
       <id type="System.Guid">3b08c912-803c-4762-8aeb-d24a0d22504c</id>
@@ -16,7 +16,7 @@
       <value type="Microsoft.VisualStudio.TestTools.Common.Link">
         <id type="System.Guid">70d00651-90d0-a193-5925-db8ac140ebe0</id>
         <name type="System.String">FillApplicant</name>
-        <storage type="System.String">z:\recruitment\recruitment.test\bin\debug\caesdo.recruitment.test.dll</storage>
+        <storage type="System.String">recruitment.test\bin\debug\caesdo.recruitment.test.dll</storage>
         <type type="System.Type, mscorlib">Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</type>
         <enabled type="System.Boolean">True</enabled>
       </value>
@@ -24,7 +24,7 @@
       <value type="Microsoft.VisualStudio.TestTools.Common.Link">
         <id type="System.Guid">2ec30103-a5d3-9bf1-8829-533bb3273c7a</id>
         <name type="System.String">FillTest</name>
-        <storage type="System.String">z:\recruitment\recruitment.test\bin\debug\caesdo.recruitment.test.dll</storage>
+        <storage type="System.String">recruitment.test\bin\debug\caesdo.recruitment.test.dll</storage>
         <type type="System.Type, mscorlib">Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</type>
         <enabled type="System.Boolean">True</enabled>
       </value>
@@ -32,7 +32,7 @@
       <value type="Microsoft.VisualStudio.TestTools.Common.Link">
         <id type="System.Guid">2bacad89-40ec-d5a8-20e1-46cfba2eff6b</id>
         <name type="System.String">ConstructorTest</name>
-        <storage type="System.String">z:\recruitment\recruitment.test\bin\debug\caesdo.recruitment.test.dll</storage>
+        <storage type="System.String">recruitment.test\bin\debug\caesdo.recruitment.test.dll</storage>
         <type type="System.Type, mscorlib">Microsoft.VisualStudio.TestTools.TestTypes.Unit.UnitTestElement, Microsoft.VisualStudio.QualityTools.Tips.UnitTest.ObjectModel, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</type>
         <enabled type="System.Boolean">True</enabled>
       </value>

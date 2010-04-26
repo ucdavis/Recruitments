@@ -1,13 +1,19 @@
 using System;
 using System.Collections.Generic;
 using System.Text;
+using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
+using System.Text.RegularExpressions;
 
 namespace CAESDO.Recruitment.Core.Domain
 {
     public class Position : DomainObject<int>
     {
+        const int STRING_LENGTH = 100;
+        const int LONG_STRING = 500;
+        
         private string _PositionTitle;
 
+        [StringLengthValidator(1,STRING_LENGTH)]
         public virtual string PositionTitle
         {
             get { return _PositionTitle; }
@@ -15,6 +21,7 @@ namespace CAESDO.Recruitment.Core.Domain
         }
         private string _PositionNumber;
 
+        [StringLengthValidator(1, STRING_LENGTH)]
         public virtual string PositionNumber
         {
             get { return _PositionNumber; }
@@ -22,6 +29,7 @@ namespace CAESDO.Recruitment.Core.Domain
         }
         private string _ShortDescription;
 
+        [StringLengthValidator(1, LONG_STRING)]
         public virtual string ShortDescription
         {
             get { return _ShortDescription; }
@@ -29,6 +37,7 @@ namespace CAESDO.Recruitment.Core.Domain
         }
         private int _DescriptionFileID;
 
+        [NotNullValidator()]
         public virtual int DescriptionFileID
         {
             get { return _DescriptionFileID; }
@@ -37,6 +46,7 @@ namespace CAESDO.Recruitment.Core.Domain
         
         private DateTime _DatePosted;
 
+        [NotNullValidator()]
         public virtual DateTime DatePosted
         {
             get { return _DatePosted; }
@@ -44,6 +54,7 @@ namespace CAESDO.Recruitment.Core.Domain
         }
         private DateTime _Deadline;
 
+        [NotNullValidator()]
         public virtual DateTime Deadline
         {
             get { return _Deadline; }
@@ -101,6 +112,7 @@ namespace CAESDO.Recruitment.Core.Domain
         }
         private string _HRRep;
 
+        [NotNullValidator()]
         public virtual string HRRep
         {
             get { return _HRRep; }
@@ -108,6 +120,12 @@ namespace CAESDO.Recruitment.Core.Domain
         }
         private string _HRAreaCode;
 
+        [StringLengthValidator(3,3,
+            MessageTemplate="Area code must be 3 characters",
+            Ruleset="primary")]
+        [RegexValidator(@"\d{3}",
+            MessageTemplate="Area code must be numbers only",
+            Ruleset="primary")]
         public virtual string HRAreaCode
         {
             get { return _HRAreaCode; }
@@ -115,6 +133,12 @@ namespace CAESDO.Recruitment.Core.Domain
         }
         private string _HRPhone;
 
+        [StringLengthValidator(7,7, 
+            MessageTemplate="Phone number must be 7 characters",
+            Ruleset="primary")]
+        [RegexValidator(@"\d{7}", 
+            MessageTemplate="Phone number must be numbers only",
+            Ruleset="primary")]
         public virtual string HRPhone
         {
             get { return _HRPhone; }
@@ -122,6 +146,13 @@ namespace CAESDO.Recruitment.Core.Domain
         }
         private string _HREmail;
 
+        [StringLengthValidator(7, RangeBoundaryType.Inclusive,
+            150, RangeBoundaryType.Inclusive,
+            MessageTemplate="Email address must be from 7 to 150 characters",
+            Ruleset="primary")]
+        [ContainsCharactersValidator("@.", ContainsCharacters.All,
+            MessageTemplate="Email must have an @ and at least one dot",
+            Ruleset="primary")]
         public virtual string HREmail
         {
             get { return _HREmail; }
