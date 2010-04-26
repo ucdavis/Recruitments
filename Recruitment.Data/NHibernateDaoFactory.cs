@@ -194,22 +194,30 @@ namespace CAESDO.Recruitment.Data
             {
                 //User currentUser = new UserDao().GetUserByLogin(HttpContext.Current.User.Identity.Name);
                 
-                //Get positions where faculty view is true, and the current user is a faculty member in the committee
+                //Get positions where faculty view is true, and the current user is a faculty member or reviewer in the committee
                 ICriteria facultyPositions = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(Position))
                     .Add(Expression.Eq("Closed", Closed))
                     .Add(Expression.Eq("AdminAccepted", AdminAccepted))
                     .Add(Expression.Eq("FacultyView", true)) //Faculty Allowed
-                    .CreateCriteria("PositionCommittee")
-                    .Add(Expression.Eq("LoginID", HttpContext.Current.User.Identity.Name))
-                    .CreateCriteria("MemberType")
-                    .Add(Expression.Eq("id", (int)MemberTypes.FacultyMember));
+                    .CreateCriteria("CommitteeMembers")
+                    .CreateAlias("DepartmentMember", "DepartmentMember")
+                    .CreateAlias("MemberType", "MemberType")
+                    .Add(Expression.Eq("DepartmentMember.LoginID", HttpContext.Current.User.Identity.Name))
+                    .Add(
+                           Expression.Or(
+                                    Expression.Eq("MemberType.id", (int)MemberTypes.FacultyMember),
+                                    Expression.Eq("MemberType.id", (int)MemberTypes.Reviewer)
+                                         )
+                        );
 
+                                    
                 //Get all positions where the user is in the committee 
                 ICriteria committeePositions = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(Position))
                     .Add(Expression.Eq("Closed", Closed))
                     .Add(Expression.Eq("AdminAccepted", AdminAccepted))
-                    .CreateCriteria("PositionCommittee")
-                    .Add(Expression.Eq("LoginID", HttpContext.Current.User.Identity.Name))
+                    .CreateCriteria("CommitteeMembers")
+                    .CreateAlias("DepartmentMember", "DepartmentMember")
+                    .Add(Expression.Eq("DepartmentMember.LoginID", HttpContext.Current.User.Identity.Name))
                     .CreateCriteria("MemberType")
                     .Add(Expression.Or(Expression.Eq("id", (int)MemberTypes.CommitteeChair), Expression.Eq("id", (int)MemberTypes.CommitteeMember)));
 
@@ -362,6 +370,42 @@ namespace CAESDO.Recruitment.Data
 
                 return criteria.List<CommitteeMember>() as List<CommitteeMember>;
             }
+
+            /// <summary>
+            /// Queries the database to find if the current user has any memberships of the given type
+            /// </summary>
+            public bool IsUserMember(MemberTypes type)
+            {         
+                int MemberTypeID, MemberTypeSecondaryID;
+
+                //If we want all committee members, we must get the chair an members
+                if (type == MemberTypes.AllCommittee)
+                {
+                    MemberTypeID = (int)MemberTypes.CommitteeChair;
+                    MemberTypeSecondaryID = (int)MemberTypes.CommitteeMember;
+                }
+                else
+                {
+                    MemberTypeID = (int)type;
+                    MemberTypeSecondaryID = (int)type;
+                }
+
+                ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(CommitteeMember))
+                    .CreateAlias("DepartmentMember", "DepartmentMember")
+                    .CreateAlias("MemberType", "MemberType")
+                    .Add(Expression.Eq("DepartmentMember.LoginID", HttpContext.Current.User.Identity.Name))
+                    .Add(
+                           Expression.Or(
+                                    Expression.Eq("MemberType.id", MemberTypeID),
+                                    Expression.Eq("MemberType.id", MemberTypeSecondaryID)
+                                         )
+                        );
+
+                if (criteria.List<CommitteeMember>().Count == 0)
+                    return false;
+                else
+                    return true;
+            }
         }
 
         public class UserDao : AbstractNHibernateDao<User, int>, IUserDao {
@@ -488,33 +532,7 @@ namespace CAESDO.Recruitment.Data
                     .Add(Expression.In("DepartmentFIS", DepartmentFIS));
                 
                 return criteria.List<DepartmentMember>() as List<DepartmentMember>;
-            }
-
-            public bool IsUserMember(MemberTypes type)
-            {
-                ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(DepartmentMember))
-                    .Add(Expression.Eq("LoginID", HttpContext.Current.User.Identity.Name));
-
-                List<DepartmentMember> members = criteria.List<DepartmentMember>() as List<DepartmentMember>;
-
-                foreach (DepartmentMember member in members)
-                {
-                    if (member.MemberType.ID == (int)type)
-                    {
-                        return true;
-                    }
-                    else if (type == MemberTypes.AllCommittee)
-                    {
-                        if (member.MemberType.ID == (int)MemberTypes.CommitteeChair)
-                            return true;
-                        else if (member.MemberType.ID == (int)MemberTypes.CommitteeMember)
-                            return true;
-                    }
-                }
-
-                //No match found
-                return false;
-            }
+            }            
         }
          
         #endregion

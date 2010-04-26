@@ -66,7 +66,8 @@ public class RecruitmentCommitteeService : System.Web.Services.WebService
             {
                 if (dm.LoginID == User.Identity.Name)
                 {
-                    if (dm.MemberType.ID == (int)MemberTypes.CommitteeChair || dm.MemberType.ID == (int)MemberTypes.CommitteeMember)
+                    //Check if there is a committee association from this position
+                    if (this.isDepartmentMemberAndTypeInPosition(p, dm, MemberTypes.CommitteeChair) || this.isDepartmentMemberAndTypeInPosition(p, dm, MemberTypes.CommitteeMember))
                     {
                         //If the user is in the position committee as a committee member, add the position to the values array
                         values.Add(new CascadingDropDownNameValue(p.TitleAndApplicationCount, p.ID.ToString()));
@@ -78,7 +79,21 @@ public class RecruitmentCommitteeService : System.Web.Services.WebService
         }
 
         return values.ToArray();
+    }
 
+    private bool isDepartmentMemberAndTypeInPosition(Position position, DepartmentMember member, MemberTypes type)
+    {
+        foreach (CommitteeMember committeeAccess in position.CommitteeMembers)
+        {
+            if (committeeAccess.DepartmentMember == member) //Find the department member in this position's committee
+            {
+                //Now check the role
+                if (committeeAccess.MemberType.ID == (int)type)
+                    return true;
+            }
+        }
+
+        return false;
     }
 
     [WebMethod]

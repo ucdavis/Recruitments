@@ -22,8 +22,8 @@ namespace CAESDO.Recruitment.Web
                 return;
             }
 
-            bool CommitteeMember = daoFactory.GetDepartmentMemberDao().IsUserMember(MemberTypes.AllCommittee);
-            bool FacultyMember = daoFactory.GetDepartmentMemberDao().IsUserMember(MemberTypes.FacultyMember);
+            bool CommitteeMember = daoFactory.GetCommitteeMemberDao().IsUserMember(MemberTypes.AllCommittee);
+            bool FacultyMember = daoFactory.GetCommitteeMemberDao().IsUserMember(MemberTypes.FacultyMember);
             
             pnlCommitteeAccess.Visible = CommitteeMember;
             pnlFacultyAccess.Visible = FacultyMember;

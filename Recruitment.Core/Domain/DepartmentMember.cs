@@ -6,16 +6,7 @@ using Microsoft.Practices.EnterpriseLibrary.Validation.Validators;
 namespace CAESDO.Recruitment.Core.Domain
 {
     public class DepartmentMember : DomainObject<int>
-    {
-        //TEMP: TODO: Clean
-        private MemberType _MemberType;
-
-        public virtual MemberType MemberType
-        {
-            get { return _MemberType; }
-            set { _MemberType = value; }
-        }
-
+    {        
         private string _DepartmentFIS;
 
         [NotNullValidator]
