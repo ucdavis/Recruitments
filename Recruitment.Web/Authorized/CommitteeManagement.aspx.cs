@@ -15,6 +15,8 @@ namespace CAESDO.Recruitment.Web
 {
     public partial class Authorized_CommitteeManagement : ApplicationPage
     {
+        public const string STR_ADMININDEX = "AdminIndex.aspx";
+
         public string committeeType
         {
             get
@@ -36,11 +38,20 @@ namespace CAESDO.Recruitment.Web
 
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            if (!IsPostBack)
+            {
+                if (string.IsNullOrEmpty(committeeType))
+                    Response.Redirect(STR_ADMININDEX);
+            }
         }
 
         protected void dlistPositions_SelectedIndexChanged(object sender, EventArgs e)
         {
+            if (dlistPositions.SelectedValue == "0")
+                pnlAddMember.Visible = false;
+            else
+                pnlAddMember.Visible = true;
+
             this.bindMembers();
         }
 
@@ -59,6 +70,34 @@ namespace CAESDO.Recruitment.Web
             this.bindMembers();
 
             e.Cancel = true;
+        }
+
+
+        protected void btnAddMember_Click(object sender, EventArgs e)
+        {
+            MemberType type = new MemberType();
+
+            if (committeeType == "committee")
+                type = daoFactory.GetMemberTypeDao().GetById((int)MemberTypes.CommitteeMember, false);
+            else
+                type = daoFactory.GetMemberTypeDao().GetById((int)MemberTypes.FacultyMember, false);
+
+            CommitteeMember member = new CommitteeMember();
+
+            member.AssociatedPosition = currentPosition;
+            member.LoginID = txtLoginID.Text;
+            member.MemberType = type;
+
+            if (!currentPosition.CommitteeMembers.Contains(member))
+            {
+                using (new NHibernateTransaction())
+                {
+                    currentPosition.CommitteeMembers.Add(member); //Add the member to the committee list
+                    daoFactory.GetPositionDao().SaveOrUpdate(currentPosition);
+                }
+            }
+
+            this.bindMembers();
         }
 
         private void bindMembers()

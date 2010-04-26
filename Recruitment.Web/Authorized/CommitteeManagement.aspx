@@ -20,4 +20,15 @@
         </Columns>    
     </asp:GridView>
         
+    <br /><br />
+    
+    <asp:Panel ID="pnlAddMember" runat="server" Visible="false">
+    
+        Kerberos Login ID: 
+        <asp:RequiredFieldValidator ID="reqValLoginID" runat="server" ControlToValidate="txtLoginID" ErrorMessage="*"></asp:RequiredFieldValidator>
+        <asp:TextBox ID="txtLoginID" runat="server"></asp:TextBox>
+        <asp:Button ID="btnAddMember" runat="server" Text="Add Member" OnClick="btnAddMember_Click" />
+        
+    </asp:Panel>
+    
 </asp:Content>
