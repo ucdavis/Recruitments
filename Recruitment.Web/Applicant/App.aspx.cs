@@ -576,6 +576,102 @@ namespace CAESDO.Recruitment.Web
             ReloadStepListAndSelectHome();
         }
 
+        protected void btnConfidentialSurveyAccept_Click(object sender, EventArgs e)
+        {
+            int genderID = 0;
+            string ethnicity = null;
+            List<SurveyXRecruitmentSrc> RecruitmentSources = new List<SurveyXRecruitmentSrc>();
+
+            foreach (ListItem item in rbtnConfidentialSurveySex.Items)
+            {
+                if (item.Selected) //Find the selected gender and set the genderID to that value
+                    genderID = int.Parse(item.Value);
+            }
+
+            //Instead of grabbing each radio button individually, loop through the control tree of the current view and look for radio buttons
+            foreach (Control c in viewConfidentialSurvey.Controls)
+            {
+                if (c is RadioButton)
+                {
+                    RadioButton ethnicityButton = (RadioButton)c;
+
+                    if (ethnicityButton.Checked && ethnicityButton.GroupName == "Ethnicity")
+                    {
+                        ethnicity = ethnicityButton.Text;
+                        break;
+                    }
+                }
+            }
+
+            //Look through each item in the recruitment source repeater
+            foreach (RepeaterItem item in rptRecruitmentSource.Items)
+            {
+                CheckBox cbox = item.FindControl("chkRecruitmentSource") as CheckBox;
+
+                if (cbox != null && cbox.Checked) //if we found a checked checkbox
+                {
+                    SurveyXRecruitmentSrc recruitmentSource = new SurveyXRecruitmentSrc();
+                    RecruitmentSrc example = new RecruitmentSrc();
+
+                    Label source = item.FindControl("lblRecruitmentSource") as Label;
+                    TextBox specific = item.FindControl("txtSpecify") as TextBox;
+
+                    if (source != null) //Make sure we have a valid source
+                    {
+                        example.RecruitmentSource = source.Text;
+
+                        //Grab the matching recruitment source out (ignore the allow specify field)
+                        recruitmentSource.RecruitmentSrc = daoFactory.GetRecruitmentSrcDao().GetUniqueByExample(example, "AllowSpecify");
+                        recruitmentSource.RecruitmentSrcOther = string.IsNullOrEmpty(specific.Text) ? null : specific.Text;
+
+                        RecruitmentSources.Add(recruitmentSource);
+                    }
+                }
+            }
+
+            //Save ethnicity, gender, and all of the recruitment sources
+            using (new NHibernateTransaction())
+            {
+                //First make sure we have a survey 
+                if (currentApplication.Surveys.Count == 0)
+                    currentApplication.Surveys.Add(new Survey());
+
+                Survey currentSurvey = currentApplication.Surveys[0];
+
+                //Save the gender if the ID was set (non-zero)
+                if (genderID > 0)
+                {
+                    currentSurvey.Gender = daoFactory.GetGenderDao().GetById(genderID, false);
+                }
+
+                //Save the ethnicity if it is not-null
+                if (ethnicity != null)
+                {
+                    Ethnicity chosenEthnicity = new Ethnicity();
+                    chosenEthnicity.EthnicityValue = ethnicity;
+
+                    currentSurvey.Ethnicity = daoFactory.GetEthnicityDao().GetUniqueByExample(chosenEthnicity);
+                    currentSurvey.TribalAffiliation = string.IsNullOrEmpty(txtAmericanIndian.Text) ? null : txtAmericanIndian.Text;
+                }
+
+                //Save each recruitment source & clear out existing sources
+                currentSurvey.RecruitmentSources.Clear();
+
+                foreach (SurveyXRecruitmentSrc chosenRecruitmentSource in RecruitmentSources)
+                {
+                    chosenRecruitmentSource.AssociatedSurvey = currentSurvey;
+
+                    currentSurvey.RecruitmentSources.Add(chosenRecruitmentSource);
+                    //Trace.Write(string.Format("Checked the source {0} with additional info {1}", s.RecruitmentSrc.RecruitmentSource, s.RecruitmentSrcOther) + Environment.NewLine);
+                }
+                
+                //Finally, set this step to complete
+                currentSurvey.Complete = true;
+
+                daoFactory.GetApplicationDao().SaveOrUpdate(currentApplication);
+            }
+        }
+
         #endregion
 
         #region PrivateFunctions

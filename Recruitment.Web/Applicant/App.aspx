@@ -365,15 +365,16 @@
                         <td  >
                             American Indian
                             <br />
-                                <asp:RadioButton ID="rbtnAmericanIndian" runat="server" GroupName="Ethnicity" Text="American Indian/Alaskan Native" />
+                                <asp:RadioButton ID="rbtnAmericanIndian" runat="server" GroupName="Ethnicity" Text="American Indian / Alaskin Native" />
                                 (specify tribal affiliation: <asp:TextBox ID="txtAmericanIndian" runat="server" ></asp:TextBox>)
                             <br />
                             Asian/Pacific Islander
                             <br />
                                 <asp:RadioButton ID="rbtnChinese" runat="server" GroupName="Ethnicity" Text="Chinese/Chinese-American" /><br />
                                 <asp:RadioButton ID="rbtnPakistani" runat="server" GroupName="Ethnicity" Text="East Indian/Pakistani" /><br />
+                                <asp:RadioButton ID="rbtnPhilipino" runat="server" GroupName="Ethnicity" Text="Filipino/Pilipino" /><br />
                                 <asp:RadioButton ID="rbtnJapanese" runat="server" GroupName="Ethnicity" Text="Japanese/Japanese-American" /><br />
-                                <asp:RadioButton ID="rbtnAsian" runat="server" GroupName="Ethnicity" Text="Other Asian (including the Far East, Korea, Southeast Asian or Pacific Islands, Samoa)" />
+                                <asp:RadioButton ID="rbtnAsian" runat="server" GroupName="Ethnicity" Text="Other Asian ( including Far East Korea, Southeast Asian or Pacific Islands, Samoa)" />
                             <br />
                             Black
                             <br />
@@ -416,7 +417,9 @@
                         </td>
                         <td align="right"  >
                             <br />
-                            <asp:Button ID="Button1" runat="server" Text="Update" /></td>
+                            <asp:Button ID="btnConfidentialSurveyAccept" runat="server" Text="I Accept" OnClick="btnConfidentialSurveyAccept_Click" />
+                            <button type="reset" value="Reset">Reset</button>
+                            </td>
                     </tr>
                 </table>
             </asp:View>
