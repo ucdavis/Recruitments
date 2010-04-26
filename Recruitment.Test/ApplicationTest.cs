@@ -170,15 +170,10 @@ namespace CAESDO.Recruitment.Test
         [TestMethod()]
         public void ReferencesTest()
         {
-            Application target = new Application();
+            Application target = ExampleApplication;
 
-            System.Collections.Generic.IList<CAESDO.Recruitment.Core.Domain.Reference> val = null; // TODO: Assign to an appropriate value for the property
-
-            target.References = val;
-
-
-            Assert.AreEqual(val, target.References, "CAESDO.Recruitment.Core.Domain.Application.References was not set correctly.");
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            Assert.IsNotNull(target.References);
+            Assert.AreNotEqual<int>(target.References.Count, 0);         
         }
 
         /// <summary>
@@ -187,15 +182,10 @@ namespace CAESDO.Recruitment.Test
         [TestMethod()]
         public void SurveysTest()
         {
-            Application target = new Application();
+            Application target = ExampleApplication;
 
-            System.Collections.Generic.IList<CAESDO.Recruitment.Core.Domain.Survey> val = null; // TODO: Assign to an appropriate value for the property
-
-            target.Surveys = val;
-
-
-            Assert.AreEqual(val, target.Surveys, "CAESDO.Recruitment.Core.Domain.Application.Surveys was not set correctly.");
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            Assert.IsNotNull(target.Surveys);
+            Assert.AreNotEqual<int>(target.Surveys.Count, 0);    
         }
 
     }
