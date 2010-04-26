@@ -1,10 +1,9 @@
 <%@ Page Language="C#" MasterPageFile="~/MasterPage.master" AutoEventWireup="true" CodeFile="PositionDetails.aspx.cs" Inherits="CAESDO.Recruitment.Web.PositionDetails" Title="Position Details" Theme="MainTheme" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
-    <asp:Panel ID="pnlDepartmentLogo" runat="server" Height="0px" Width="340px" CssClass="CABAstyle"> </asp:Panel><br />
-    <asp:ImageButton ID="hlinkPositionList" runat="server" PostBackUrl="~/viewPositions.aspx"  ImageUrl="~/Images/gotopositionslist.jpg" />
-    <br />
-    <br />
-    <span class="boxTitle"><img src="Images/profile_sm.gif" style="vertical-align:middle;" alt="" /> Position Details</span><br />
+      <ul style="list-style:none; margin:0 0 0 20px; padding: 0;"><li class="viewPositionsList"><asp:HyperLink ID="hlinkPositionList" runat="server" NavigateUrl="~/viewPositions.aspx">Go to Positions List</asp:HyperLink></li></ul>
+    <asp:Panel ID="pnlDepartmentLogo" runat="server" Height="0px" Width="340px" CssClass="CABAstyle"> </asp:Panel><br />  
+     <br /><br /><br />
+     <span class="boxTitle"><img src="Images/profile_sm.gif" style="vertical-align:middle;" alt="" /> Position Details</span><br />
     <table class="box" style="width:550px; height: 350px;" cellpadding="5">
         <tr>
             <td align="right"><br />

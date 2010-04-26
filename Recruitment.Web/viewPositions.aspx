@@ -1,9 +1,9 @@
 <%@ Page Language="C#" AutoEventWireup="true" CodeFile="viewPositions.aspx.cs" Inherits="CAESDO.Recruitment.Web.viewPositions" MasterPageFile="~/MasterPage.master" Theme="MainTheme" %>
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-
-    <br />
-
+    
+    <ul style="list-style:none; margin:0; padding: 0;"><li class="viewAppsProgress"><asp:HyperLink ID="hlinkApplicationsInProgress" runat="server" NavigateUrl="~/Applicant/ViewApplicationsInProgress.aspx">View Applications In Progress</asp:HyperLink></li></ul>
+    <div style="clear:both;">&nbsp;</div>
     <asp:GridView ID="gViewPositions" skinID="gridViewUM" runat="server" GridLines="None" CellPadding="0" DataKeyNames="ID" AutoGenerateColumns="False" DataSourceID="ObjectDataOpenPositions" Width="100%">
         <Columns>
             <asp:TemplateField HeaderText="Position/Department" SortExpression="PositionTitle">

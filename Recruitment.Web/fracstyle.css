@@ -326,6 +326,32 @@ a.ContextMenuItem:hover
 	font-weight: bold;
 }
 
+li.viewAppsProgress a
+{
+	height: 0;
+	float:left;
+	width: 188px;
+	overflow: hidden;
+	padding-top: 37px;
+	background: url(Images/ibViewAppsProgress.gif) no-repeat;
+}
+
+li.viewAppsProgress a:hover {background: url(Images/ibViewAppsProgress2.gif) no-repeat;}
+li.viewAppsProgress a:active {background: url(Images/ibViewAppsProgress3.gif) no-repeat;}
+
+li.viewPositionsList a
+{
+	height: 0;
+	float:left;
+	width: 188px;
+	overflow: hidden;
+	padding-top: 37px;
+	background: url(Images/ibPositionsList.gif) no-repeat;
+}
+
+li.viewPositionsList a:hover {background: url(Images/ibPositionsList2.gif) no-repeat;}
+li.viewPositionsList a:active {background: url(Images/ibPositionsList3.gif) no-repeat;}
+
 /*                               */
 /*      DROPDOWN MENU CSS        */
 /*                               */

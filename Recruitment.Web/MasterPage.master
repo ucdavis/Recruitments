@@ -36,6 +36,7 @@
 	                                        <ul>
 		                                       <li class="subnews"><asp:LinkButton runat="server" ID="lbtnSignIn" Text="Sign In (Existing Users)" OnClick="lbtnSignIn_Click" /></li>
 		                                       <li class="subnews"><asp:LinkButton runat="server" ID="lbtnCreate" Text="Create Account (New Applicants)" OnClick="lbtnCreate_Click" /></li>
+		                                       <li class="subnews"><a href="#nogo">Admin Functions</a></li>
 		                                       <li class="subnews"><a href="#nogo">View Positions</a></li>
 		                                       <li class="subnews"><a class="drop" href="#nogo">View Applicants</a></li>
 	                                        </ul>
@@ -61,6 +62,7 @@
 	                                        <ul>
 		                                       <li class="subnews"><asp:LinkButton runat="server" ID="lbtnLogout" Text="Logout" OnClick="lbtnLogout_Click" /></li>
 		                                       <li class="subnews"><a href="#nogo">Create New Account</a></li>
+		                                       <li class="subnews"><a href="#nogo">Admin Functions</a></li>
 		                                       <li class="subnews"><a href="#nogo">View Positions</a></li>
 		                                       <li class="subnews"><a class="drop" href="#nogo">View Applicants</a></li>
 	                                        </ul>
