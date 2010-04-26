@@ -11,6 +11,7 @@ using System.Web.UI.HtmlControls;
 using System.Collections.Generic;
 using CAESDO.Recruitment.Core.Domain;
 using CAESDO.Recruitment.Data;
+using System.Text;
 
 namespace CAESDO.Recruitment.Web
 {
@@ -95,7 +96,40 @@ namespace CAESDO.Recruitment.Web
             {
                 Session[STR_ApplicationSteps] = value;
             }
-        } 
+        }
+
+        public string ConfidentialSurveyNotificationText
+        {
+            get
+            {
+                string br = "<br />";
+                StringBuilder notificationText = new StringBuilder();
+
+                notificationText.Append(br);
+                notificationText.AppendLine("The United States Department of Labor requires the University of California to produce periodic reports on applicants for positions at UC Davis, providing this data is voluntary. Neither this form nor its contents will be used in determining or judging eligibility or qualification for employment. Thank you for your cooperation.");
+                notificationText.Append(br);
+                notificationText.Append(br);
+                notificationText.AppendLine("The University of California prohibits discrimination against or harassment of any person employed by or seeking employment with the University on the basis of race, color, national origin, religion, sex, physical or mental disability, medical condition (cancer-related or genetic characteristics), ancestry, marital status, age, sexual orientation, citizenship, or status as a covered veteran (special disabled veteran, Vietnam era veteran, or any other veteran who served on active duty during a war or in a campaign or expedition for which a campaign badge has been authorized).");
+                notificationText.Append(br);
+                notificationText.Append(br);
+                notificationText.AppendLine("The University of California is an affirmative action/equal opportunity employer. The University undertakes affirmative action to assure equal employment opportunity for underutilized minorities and women, for persons with disabilities, and for special disabled veterans, Vietnam era veterans, and any other veterans who served on active duty during a war or in a campaign or expedition for which a campaign badge has been authorized.");
+                notificationText.Append(br);
+                notificationText.Append(br);
+                notificationText.AppendLine("University policy is intended to be consistent with the provisions of applicable State and Federal laws.");
+                notificationText.Append(br);
+                notificationText.Append(br);
+                notificationText.AppendLine("Inquiries regarding the University's equal employment opportunity policies may be directed to Anil Chandra or Sylvia Reyes, Staff Affirmative Action/EEO and Diversity, TB 122, One Shields Ave., Davis, CA 95616, (530) 752-6030 or FAX (530) 752-6793. Speech or hearing impaired persons may dial (530) 752-7320 (TDD).");
+                notificationText.Append(br);
+                notificationText.Append(br);
+                notificationText.AppendLine(" PRIVACY NOTIFICATION " );
+                notificationText.Append(br);
+                notificationText.Append(br);
+                notificationText.AppendLine("The State of California Information Practices Act of 1977 requires the University to provide the following information to individuals who are asked to supply personal information about themselves. Information is requested on this form in compliance with certain laws and regulations as described on the reverse, and will be used to conduct statistical analysis in accordance with these guidelines. Furnishing the information requested on this form is voluntary. Individuals have the right to review their own records in accordance with University personnel policy and collective bargaining agreements. The officials responsible for maintaining the information obtained on these forms are the Assistant Vice President--Human Resources, Assistant Vice President--Academic Advancement, and campus Provost and Executive Vice Chancellor/Affirmative Action Officer.");
+                notificationText.Append(br);
+
+                return notificationText.ToString();
+            }
+        }
         #endregion
 
         #region Page Methods

@@ -590,6 +590,31 @@
                         <td colspan="2"><br /></td>
                     </tr>
                     <tr>
+                        <td colspan="2">
+                            <asp:Panel ID="pnlConfidentialSurveyHolder" runat="server">
+                                Confidential Survey Legal Notification
+                                <asp:Label ID="Label1" runat="server">(Show Details...)</asp:Label>
+                                <%--<asp:ImageButton ID="Image1" runat="server" ImageUrl="~/images/expand_blue.jpg" AlternateText="(Show Details...)"/>--%>
+                            </asp:Panel>
+                                                        
+                            <asp:Panel ID="pnlConfidentialSurveyNotification" runat="server" Height="0" >
+                                <%= ConfidentialSurveyNotificationText %>
+                            </asp:Panel>
+                            
+                            <AjaxControlToolkit:CollapsiblePanelExtender ID="collapseConfidentialSurveyNotification" runat="server" TargetControlID="pnlConfidentialSurveyNotification"
+                                                                         Collapsed="true" CollapseControlID="pnlConfidentialSurveyHolder" ExpandControlID="pnlConfidentialSurveyHolder"
+                                                                          TextLabelID="Label1" CollapsedText="(Show Details...)" ExpandedText="(Hide Details...)" SuppressPostBack="true"></AjaxControlToolkit:CollapsiblePanelExtender>
+                            
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            Note: While you need not fill out any fields, you must read and press the "I agree" button for your application to be considered complete. 
+                            Once you select an answer button, you can clear it by pressing the reset button below. 
+                            If you complete the form but later decide you do not want to provide this information, you can return to this form and resubmit it, leaving the desired information blank.
+                        </td>
+                    </tr>
+                    <tr>
                         <td align="right" valign="top">
                             <span style="color:#0b65c5; font-weight: bold;">
                             Sex:</span></td>
