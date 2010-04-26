@@ -5,7 +5,8 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using CAESDO.Recruitment.Core.Domain;
-namespace Recruitment.Tests
+
+namespace CAESDO.Recruitment.Test
 {
     /// <summary>
     ///This is a test class for CAESDO.Recruitment.Core.Domain.Applicant and is intended
@@ -33,6 +34,9 @@ namespace Recruitment.Tests
                 testContextInstance = value;
             }
         }
+
+        public static int ExisitingApplicantID = 4;
+
         #region Additional test attributes
         // 
         //You can use the following additional attributes as you write your tests:
@@ -71,19 +75,19 @@ namespace Recruitment.Tests
         /// <summary>
         ///A test for Applicant ()
         ///</summary>
-        [TestMethod()]
         public void ConstructorTest()
         {
             Applicant target = new Applicant();
 
-            // TODO: Implement code to verify target
-            Assert.Inconclusive("TODO: Implement code to verify target");
+            target = NHibernateHelper.daoFactory.GetApplicantDao().GetById(ExisitingApplicantID, false);
+
+            Assert.IsNotNull(target);
+            Assert.AreEqual(target.ID, ExisitingApplicantID);
         }
 
         /// <summary>
         ///A test for CreatedBy
         ///</summary>
-        [TestMethod()]
         public void CreatedByTest()
         {
             Applicant target = new Applicant();
@@ -100,7 +104,6 @@ namespace Recruitment.Tests
         /// <summary>
         ///A test for Email
         ///</summary>
-        [TestMethod()]
         public void EmailTest()
         {
             Applicant target = new Applicant();
@@ -117,7 +120,6 @@ namespace Recruitment.Tests
         /// <summary>
         ///A test for Fill (int, bool)
         ///</summary>
-        [TestMethod()]
         public void FillTest()
         {
             Applicant target = new Applicant();
@@ -134,7 +136,6 @@ namespace Recruitment.Tests
         /// <summary>
         ///A test for IsActive
         ///</summary>
-        [TestMethod()]
         public void IsActiveTest()
         {
             Applicant target = new Applicant();
@@ -151,7 +152,6 @@ namespace Recruitment.Tests
         /// <summary>
         ///A test for MainProfile
         ///</summary>
-        [TestMethod()]
         public void MainProfileTest()
         {
             Applicant target = new Applicant();
@@ -166,7 +166,6 @@ namespace Recruitment.Tests
         /// <summary>
         ///A test for Profiles
         ///</summary>
-        [TestMethod()]
         public void ProfilesTest()
         {
             Applicant target = new Applicant();

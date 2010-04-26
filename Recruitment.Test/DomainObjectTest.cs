@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 using System.Text;
 using System.Collections.Generic;
-namespace Recruitment.Tests
+namespace CAESDO.Recruitment.Test
 {
     /// <summary>
     ///This is a test class for CAESDO.Recruitment.Core.Domain.DomainObject&lt;IdT&gt; and is intended

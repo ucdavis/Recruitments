@@ -5,7 +5,7 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using CAESDO.Recruitment.Core.Domain;
-namespace Recruitment.Tests
+namespace CAESDO.Recruitment.Test
 {
     /// <summary>
     ///This is a test class for CAESDO.Recruitment.Core.Domain.User and is intended

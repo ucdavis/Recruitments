@@ -6,7 +6,7 @@ using System.Text;
 using System.Collections.Generic;
 using CAESDO.Recruitment.Core.Domain;
 using System.Security.Principal;
-namespace Recruitment.Tests
+namespace CAESDO.Recruitment.Test
 {
     /// <summary>
     ///This is a test class for CAESDO.Recruitment.Core.Domain.FacultyReviewGroup and is intended

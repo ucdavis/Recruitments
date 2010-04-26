@@ -35,6 +35,8 @@
       <HintPath>C:\WINDOWS\assembly\GAC_MSIL\Microsoft.VisualStudio.QualityTools.UnitTestFramework\8.0.0.0__b03f5f7f11d50a3a\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicantTest.cs" />
@@ -46,6 +48,7 @@
     <Compile Include="FacultyReviewGroupTest.cs" />
     <Compile Include="FileTest.cs" />
     <Compile Include="LookupsTest.cs" />
+    <Compile Include="NHibernateHelper.cs" />
     <Compile Include="PositionTest.cs" />
     <Compile Include="ProfileTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -55,10 +58,17 @@
     <Compile Include="UserTest.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ManualTest1.mht" />
+    <Content Include="AuthoringTests.txt" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AuthoringTests.txt" />
+    <ProjectReference Include="..\Recruitment.Core\Recruitment.Core.csproj">
+      <Project>{5F40A7DB-8142-4564-BB05-0F9C2DD3EF75}</Project>
+      <Name>Recruitment.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Recruitment.Data\Recruitment.Data.csproj">
+      <Project>{BFA5EBED-0F4D-481F-9C91-EBE45B481F83}</Project>
+      <Name>Recruitment.Data</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSHARP.Targets" />
 </Project>

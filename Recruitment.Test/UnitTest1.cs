@@ -40,7 +40,6 @@ namespace Recruitment.Test
         //
         #endregion
 
-        [TestMethod]
         public void TestMethod1()
         {
             //
