@@ -16,7 +16,7 @@
     <asp:ImageButton ID="ibUploadFiles" runat="server" ImageUrl="~/Images/def_upload.jpg" PostBackUrl="~/Authorized/UploadFiles.aspx" AlternateText="Upload Files" />
     <br />
     <br /> 
-    <h3><a href="../Help/V2Updates.aspx">Check out the new features in Recruitments version 2</a></h3>
+    <h3><a href="../Help/V2Updates.aspx" style="display:inline; padding:0.75em; border:1px solid #C6C3C6; background-color:#F7F7F7; text-decoration:none;">Check out the new features in Recruitments version 2</a></h3>
 </div>
            
 </asp:Content>
