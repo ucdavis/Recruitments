@@ -439,6 +439,16 @@ namespace CAESDO.Recruitment.Web
             ReloadStepListAndSelectHome(STR_CoverLetter, true);
         }
 
+        protected void chkCoverLetterOption_CheckedChanged(object sender, EventArgs e)
+        {
+            using (new NHibernateTransaction())
+            {
+                currentApplication.CoverLetterComplete = chkCoverLetterOption.Checked;
+            }
+
+            ReloadStepListAndSelectHome(STR_CoverLetter, true);
+        }
+
         protected void btnResearchInterestsUpload_Click(object sender, EventArgs e)
         {
             FileType ResearchInterestsFileType = daoFactory.GetFileTypeDao().GetFileTypeByName(STR_FileType_ResearchInterests);
@@ -1045,13 +1055,13 @@ namespace CAESDO.Recruitment.Web
             ApplicationSteps.Add(new Step(STR_ContactInformation, currentApplication.AssociatedProfile.LastUpdated != null, false, true));
 
             //Add education
-            ApplicationSteps.Add(new Step(STR_EducationInformation, currentApplication.isComplete(ApplicationStepType.Education), false, true));
+            ApplicationSteps.Add(new Step(STR_EducationInformation, currentApplication.isComplete(ApplicationStepType.Education), false, currentApplication.AppliedPosition.Steps.Contains(ApplicationStepType.Education)));
 
             //Add references
             ApplicationSteps.Add(new Step(STR_References, currentApplication.ReferencesComplete, false, true));
 
             //Add current position
-            ApplicationSteps.Add(new Step(STR_CurrentPosition, currentApplication.isComplete(ApplicationStepType.CurrentPosition), false, true));
+            ApplicationSteps.Add(new Step(STR_CurrentPosition, currentApplication.isComplete(ApplicationStepType.CurrentPosition), false, currentApplication.AppliedPosition.Steps.Contains(ApplicationStepType.CurrentPosition)));
 
             //Add files 
             bool hasResume = false;
@@ -1102,12 +1112,12 @@ namespace CAESDO.Recruitment.Web
             }
 
             //Now add each type of file, hiding if necessary
-            ApplicationSteps.Add(new Step(STR_Resume, hasResume, false, true));
-            ApplicationSteps.Add(new Step(STR_CoverLetter, hasCoverLetter, false, true));
-            ApplicationSteps.Add(new Step(STR_ResearchInterests, hasResearchInterest, false, true));
-            ApplicationSteps.Add(new Step(STR_ExtensionInterests, hasExtensionInterests, false, true));
-            ApplicationSteps.Add(new Step(STR_TeachingInterests, hasTeachingInterests, false, true));
-            ApplicationSteps.Add(new Step(STR_Transcripts, hasTranscript, false, true));
+            ApplicationSteps.Add(new Step(STR_Resume, hasResume, false, isFileTypeRequested(STR_Resume)));
+            ApplicationSteps.Add(new Step(STR_CoverLetter, hasCoverLetter || currentApplication.CoverLetterComplete, false, isFileTypeRequested(STR_FileType_CoverLetter)));
+            ApplicationSteps.Add(new Step(STR_ResearchInterests, hasResearchInterest, false, isFileTypeRequested(STR_FileType_ResearchInterests)));
+            ApplicationSteps.Add(new Step(STR_ExtensionInterests, hasExtensionInterests, false, isFileTypeRequested(STR_FileType_ExtensionInterests)));
+            ApplicationSteps.Add(new Step(STR_TeachingInterests, hasTeachingInterests, false, isFileTypeRequested(STR_FileType_TeachingInterests)));
+            ApplicationSteps.Add(new Step(STR_Transcripts, hasTranscript, false, isFileTypeRequested(STR_FileType_Transcript)));
             ApplicationSteps.Add(new Step(STR_Publications, currentApplication.PublicationsComplete, false, true));
             //ApplicationSteps.Add(new Step(STR_Dissertation, hasDissertation, false, true));
 
@@ -1197,6 +1207,20 @@ namespace CAESDO.Recruitment.Web
                 return string.Format("[{0} More Reference{1} Requested]", numReferencesRemaining, numReferencesRemaining == 1 ? string.Empty : "s");
             else
                 return string.Empty;
+        }
+
+        /// <summary>
+        /// Checks the currentApplication's appliedPosition to see if the supplied 
+        /// FileType is in the requested fileTypes list
+        /// </summary>
+        /// <param name="fileTypeName">FileTypeName string</param>
+        /// <returns>True if the fileType is a requested one, else false</returns>
+        private bool isFileTypeRequested(string fileTypeName)
+        {
+            FileType type = new FileType();
+            type.FileTypeName = fileTypeName;
+
+            return currentApplication.AppliedPosition.FileTypes.Contains(type);
         }
 
         /// <summary>
@@ -1308,6 +1332,7 @@ namespace CAESDO.Recruitment.Web
                 case STR_Resume:
                     break;
                 case STR_CoverLetter:
+                    DataBindCoverLetter();
                     break;
                 case STR_ResearchInterests:
                     break;
@@ -1423,11 +1448,20 @@ namespace CAESDO.Recruitment.Web
             lblApplicationDeadline.Text = currentApplication.AppliedPosition.Deadline.ToShortDateString();
         }
 
+        /// <summary>
+        /// Populate the Cover Letter checkbox to allow for an 'optional' cover letter
+        /// </summary>
+        private void DataBindCoverLetter()
+        {
+            chkCoverLetterOption.Checked = currentApplication.CoverLetterComplete;
+        }
+
         #endregion
 
 
 
         #endregion
+
 }
 
     /// <summary>

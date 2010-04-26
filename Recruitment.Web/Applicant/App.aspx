@@ -512,6 +512,11 @@
                         <td colspan="2"><br /></td>
                     </tr>
                     <tr>
+                        <td colspan="2" align="right">
+                            <asp:CheckBox ID="chkCoverLetterOption" runat="server" Text="I do not wish to upload a cover letter: " TextAlign="Left" AutoPostBack="True" OnCheckedChanged="chkCoverLetterOption_CheckedChanged" />
+                        </td>
+                    </tr>
+                    <tr>
                         <td colspan="2">
                             Please upload your file as a PDF Document. Maximum file size allowed is 10 MB. 
                         </td>                       

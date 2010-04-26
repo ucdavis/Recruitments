@@ -78,7 +78,16 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _ReferencesComplete; }
             set { _ReferencesComplete = value; }
         }
-                        
+
+        private bool _CoverLetterComplete;
+
+        [NotNullValidator]
+        public virtual bool CoverLetterComplete
+        {
+            get { return _CoverLetterComplete; }
+            set { _CoverLetterComplete = value; }
+        }
+                                
         private IList<File> _Files;
 
         public virtual IList<File> Files
