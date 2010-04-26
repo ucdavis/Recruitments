@@ -1,0 +1,389 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
+  <DataSources>
+    <DataSource Name="Recruitment">
+      <DataSourceReference>Recruitment</DataSourceReference>
+      <rd:DataSourceID>1bf935fe-5163-4108-bedc-fbd459a47ac6</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <ReportParameters>
+    <ReportParameter Name="PositionID">
+      <DataType>Integer</DataType>
+      <DefaultValue>
+        <Values>
+          <Value>11</Value>
+        </Values>
+      </DefaultValue>
+      <Prompt>PositionID</Prompt>
+    </ReportParameter>
+  </ReportParameters>
+  <rd:DrawGrid>true</rd:DrawGrid>
+  <InteractiveWidth>8.5in</InteractiveWidth>
+  <rd:SnapToGrid>true</rd:SnapToGrid>
+  <Body>
+    <ReportItems>
+      <Textbox Name="Deadline">
+        <Left>5.5in</Left>
+        <Top>2.5in</Top>
+        <rd:DefaultName>Deadline</rd:DefaultName>
+        <ZIndex>16</ZIndex>
+        <Width>2.625in</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <FontWeight>700</FontWeight>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>=DateValue(Fields!Deadline.Value).ToShortDateString()</Value>
+      </Textbox>
+      <Textbox Name="PositionNumber">
+        <Left>5.375in</Left>
+        <Top>1.5in</Top>
+        <rd:DefaultName>PositionNumber</rd:DefaultName>
+        <ZIndex>15</ZIndex>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <FontWeight>700</FontWeight>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>=First(Fields!PositionNumber.Value)</Value>
+      </Textbox>
+      <Textbox Name="textbox11">
+        <Left>5.375in</Left>
+        <Top>1.25in</Top>
+        <rd:DefaultName>textbox11</rd:DefaultName>
+        <ZIndex>14</ZIndex>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <FontWeight>700</FontWeight>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>Agricultural and Environmental Sciences</Value>
+      </Textbox>
+      <Textbox Name="textbox10">
+        <Left>4.375in</Left>
+        <Top>1.25in</Top>
+        <rd:DefaultName>textbox10</rd:DefaultName>
+        <ZIndex>13</ZIndex>
+        <Width>1.125in</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>College/School:</Value>
+      </Textbox>
+      <Textbox Name="PositionTitle">
+        <Left>2in</Left>
+        <Top>1.5in</Top>
+        <rd:DefaultName>PositionTitle</rd:DefaultName>
+        <ZIndex>12</ZIndex>
+        <Width>1.75in</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <FontWeight>700</FontWeight>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>=First(Fields!PositionTitle.Value)</Value>
+      </Textbox>
+      <Textbox Name="textbox5">
+        <Top>1.25in</Top>
+        <rd:DefaultName>textbox5</rd:DefaultName>
+        <ZIndex>11</ZIndex>
+        <Width>1in</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>Department:</Value>
+      </Textbox>
+      <Textbox Name="textbox4">
+        <Left>2.25in</Left>
+        <Top>0.75in</Top>
+        <rd:DefaultName>textbox4</rd:DefaultName>
+        <ZIndex>10</ZIndex>
+        <Width>4.25in</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>INTERIM RECRUITMENT REPORT ON APPLICANT POOLS</Value>
+      </Textbox>
+      <Textbox Name="textbox1">
+        <Left>7.625in</Left>
+        <rd:DefaultName>textbox1</rd:DefaultName>
+        <ZIndex>9</ZIndex>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>EXHIBIT E</Value>
+      </Textbox>
+      <Textbox Name="textbox2">
+        <Left>7.125in</Left>
+        <Top>0.25in</Top>
+        <ZIndex>8</ZIndex>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>SECTION UCD-500</Value>
+      </Textbox>
+      <Textbox Name="textbox3">
+        <Left>6.5in</Left>
+        <Top>0.5in</Top>
+        <ZIndex>7</ZIndex>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>Academic Personnel Manual</Value>
+      </Textbox>
+      <Textbox Name="textbox6">
+        <Top>1.5in</Top>
+        <ZIndex>6</ZIndex>
+        <Width>2.125in</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>Recruitment for the position of</Value>
+      </Textbox>
+      <Textbox Name="textbox7">
+        <Top>1.75in</Top>
+        <ZIndex>5</ZIndex>
+        <Width>1.125in</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>Title and rank:</Value>
+      </Textbox>
+      <Textbox Name="textbox8">
+        <Top>2in</Top>
+        <ZIndex>4</ZIndex>
+        <Width>6.25in</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>Was approval granted to upgrade the position for tenure level appointments? Yes ____ No ____</Value>
+      </Textbox>
+      <Textbox Name="textbox9">
+        <Top>2.25in</Top>
+        <ZIndex>3</ZIndex>
+        <Width>1.625in</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>Date search initiated:</Value>
+      </Textbox>
+      <Textbox Name="textbox12">
+        <Left>4.375in</Left>
+        <Top>1.5in</Top>
+        <ZIndex>2</ZIndex>
+        <Width>1in</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>Position #:</Value>
+      </Textbox>
+      <Textbox Name="textbox13">
+        <Left>4.375in</Left>
+        <Top>2.5in</Top>
+        <ZIndex>1</ZIndex>
+        <Width>1.25in</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>Search Closing:</Value>
+      </Textbox>
+      <Textbox Name="textbox14">
+        <Top>3in</Top>
+        <Width>7.125in</Width>
+        <Style>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingBottom>2pt</PaddingBottom>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+        </Style>
+        <CanGrow>true</CanGrow>
+        <Height>0.25in</Height>
+        <Value>As stated in the search plan, is there an affirmative action hiring goal for this position? Yes ____ No _____</Value>
+      </Textbox>
+    </ReportItems>
+    <Height>11in</Height>
+  </Body>
+  <rd:ReportID>e2086aa3-8e7d-4205-a9b0-02177052e4cc</rd:ReportID>
+  <DataSets>
+    <DataSet Name="PositionInfo">
+      <Query>
+        <rd:UseGenericDesigner>true</rd:UseGenericDesigner>
+        <CommandText>SELECT     PositionID, PositionTitle, PositionNumber, ShortDescription, DescriptionFile, DatePosted, Deadline, AllowApps, NumReferences, NumPublications, 
+                      HR_Rep, HR_Phone, HR_Email, CommitteeView, FacultyView, Vote, FinalVote, Closed, AdminAccepted, TemplateID, PrimaryDepartmentFIS
+FROM         Positions
+WHERE PositionID = @PositionID</CommandText>
+        <QueryParameters>
+          <QueryParameter Name="@PositionID">
+            <Value>=Parameters!PositionID.Value</Value>
+          </QueryParameter>
+        </QueryParameters>
+        <DataSourceName>Recruitment</DataSourceName>
+      </Query>
+      <Fields>
+        <Field Name="PositionID">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>PositionID</DataField>
+        </Field>
+        <Field Name="PositionTitle">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>PositionTitle</DataField>
+        </Field>
+        <Field Name="PositionNumber">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>PositionNumber</DataField>
+        </Field>
+        <Field Name="ShortDescription">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>ShortDescription</DataField>
+        </Field>
+        <Field Name="DescriptionFile">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>DescriptionFile</DataField>
+        </Field>
+        <Field Name="DatePosted">
+          <rd:TypeName>System.DateTime</rd:TypeName>
+          <DataField>DatePosted</DataField>
+        </Field>
+        <Field Name="Deadline">
+          <rd:TypeName>System.DateTime</rd:TypeName>
+          <DataField>Deadline</DataField>
+        </Field>
+        <Field Name="AllowApps">
+          <rd:TypeName>System.Boolean</rd:TypeName>
+          <DataField>AllowApps</DataField>
+        </Field>
+        <Field Name="NumReferences">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>NumReferences</DataField>
+        </Field>
+        <Field Name="NumPublications">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>NumPublications</DataField>
+        </Field>
+        <Field Name="HR_Rep">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>HR_Rep</DataField>
+        </Field>
+        <Field Name="HR_Phone">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>HR_Phone</DataField>
+        </Field>
+        <Field Name="HR_Email">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>HR_Email</DataField>
+        </Field>
+        <Field Name="CommitteeView">
+          <rd:TypeName>System.Boolean</rd:TypeName>
+          <DataField>CommitteeView</DataField>
+        </Field>
+        <Field Name="FacultyView">
+          <rd:TypeName>System.Boolean</rd:TypeName>
+          <DataField>FacultyView</DataField>
+        </Field>
+        <Field Name="Vote">
+          <rd:TypeName>System.Boolean</rd:TypeName>
+          <DataField>Vote</DataField>
+        </Field>
+        <Field Name="FinalVote">
+          <rd:TypeName>System.Boolean</rd:TypeName>
+          <DataField>FinalVote</DataField>
+        </Field>
+        <Field Name="Closed">
+          <rd:TypeName>System.Boolean</rd:TypeName>
+          <DataField>Closed</DataField>
+        </Field>
+        <Field Name="AdminAccepted">
+          <rd:TypeName>System.Boolean</rd:TypeName>
+          <DataField>AdminAccepted</DataField>
+        </Field>
+        <Field Name="TemplateID">
+          <rd:TypeName>System.Int32</rd:TypeName>
+          <DataField>TemplateID</DataField>
+        </Field>
+        <Field Name="PrimaryDepartmentFIS">
+          <rd:TypeName>System.String</rd:TypeName>
+          <DataField>PrimaryDepartmentFIS</DataField>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <Width>8.5in</Width>
+  <InteractiveHeight>11in</InteractiveHeight>
+  <Language>en-US</Language>
+</Report>
