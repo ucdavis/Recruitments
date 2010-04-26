@@ -15,9 +15,8 @@ namespace CAESDO.Recruitment.Test
     ///to contain all CAESDO.Recruitment.Core.Domain.File Unit Tests
     ///</summary>
     [TestClass()]
-    public class FileTest
+    public class FileTest : DatabaseTestBase
     {
-
 
         private TestContext testContextInstance;
 
