@@ -56,7 +56,7 @@ namespace CAESDO.Recruitment.Test
                     var application = new Application()
                     {
                         AppliedPosition = GenericBLL<Position, int>.GetByID(i + 1),
-                        AssociatedProfile = GenericBLL<Profile, int>.GetByID(j),
+                        AssociatedProfile = GenericBLL<Profile, int>.GetByID(j + 1),
                         LastUpdated = DateTime.Now,
                         Email = string.Format("email{0}@fake.com", j),
                         Submitted = i < 10 //First 10 were submitted

@@ -16,10 +16,8 @@ namespace CAESDO.Recruitment.Test
     ///to contain all CAESDO.Recruitment.Core.Domain.Application Unit Tests
     ///</summary>
     [TestClass()]
-    public class ApplicationTest
+    public class ApplicationTest : DatabaseTestBase
     {
-
-
         private TestContext testContextInstance;
 
         /// <summary>
@@ -277,6 +275,65 @@ namespace CAESDO.Recruitment.Test
 
             Assert.IsNotNull(target.Surveys);
             Assert.AreNotEqual<int>(target.Surveys.Count, 0);    
+        }
+
+        public override void LoadData()
+        {
+            base.LoadData();
+
+            var application = ApplicationBLL.GetByID(StaticProperties.ExistingApplicationID);
+
+            //Add some applications info
+            CurrentPosition currentPosition = new CurrentPosition
+                                                  {
+                                                      Address1 = StaticProperties.TestString,
+                                                      City = StaticProperties.TestString,
+                                                      Country = StaticProperties.TestString,
+                                                      Department = StaticProperties.TestString,
+                                                      Institution = StaticProperties.TestString,
+                                                      Title = StaticProperties.TestString,
+                                                      Zip = StaticProperties.TestString,
+                                                      State = StaticProperties.TestString,
+                                                      ApplicationStepType = ApplicationStepType.CurrentPosition,
+                                                      AssociatedApplication = application
+                                                  };
+
+            Education education = new Education
+                                      {
+                                          ApplicationStepType = ApplicationStepType.Education,
+                                          AssociatedApplication = application,
+                                          Date = DateTime.Now,
+                                          Discipline = StaticProperties.TestString,
+                                          Institution = StaticProperties.TestString
+                                      };
+
+            Reference reference = new Reference {AssociatedApplication = application};
+
+            Survey survey = new Survey {AssociatedApplication = application, Other = StaticProperties.TestString};
+
+            File file = new File
+                            {
+                                FileName = StaticProperties.TestString,
+                            };
+
+            FileType fileType = new FileType {ApplicationFile = true, FileTypeName = StaticProperties.TestString};
+            file.FileType = fileType;
+
+            using (var ts = new TransactionScope())
+            {
+                FileTypeBLL.EnsurePersistent(ref fileType);
+                FileBLL.EnsurePersistent(ref file);
+
+                application.CurrentPositions = new List<CurrentPosition> {currentPosition};
+                application.Education = new List<Education> {education};
+                application.References = new List<Reference> {reference};
+                application.Surveys = new List<Survey> {survey};
+                application.Files = new List<File>{file};
+
+                ApplicationBLL.EnsurePersistent(ref application);
+
+                ts.CommitTransaction();
+            }
         }
     }
 
