@@ -175,10 +175,18 @@ namespace CAESDO.Recruitment.Data
             public List<Application> GetApplicationsByApplicant(Profile applicantProfile)
             {
                 ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(Application))
-                    .Add(Expression.Eq("AssociatedProfile", applicantProfile))
-                    .AddOrder(Order.Desc("AssociatedProfile.LastName"));
+                    .Add(Expression.Eq("AssociatedProfile", applicantProfile));
+                    
+                return criteria.List<Application>() as List<Application>;
+            }
 
-                return criteria.List<Application>() as List<Application>;                
+            public List<Application> GetApplicationsByApplicant(Profile applicantProfile, bool submitted)
+            {
+                ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(Application))
+                    .Add(Expression.Eq("Submitted", submitted))
+                    .Add(Expression.Eq("AssociatedProfile", applicantProfile));
+
+                return criteria.List<Application>() as List<Application>;
             }
 
             [DataObjectMethod(DataObjectMethodType.Select)]

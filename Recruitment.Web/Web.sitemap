@@ -5,6 +5,7 @@
       <siteMapNode url="ViewPositions.aspx" title="View Positions">
         <siteMapNode url="PositionDetails.aspx" title="Position Details" />
         <siteMapNode url="Applicant/App.aspx" title="Position Application" />
+        <siteMapNode url="Applicant/ViewApplicationsInProgress.aspx" title="View Applications In Progress" />
       </siteMapNode>
 
       <siteMapNode url="Authorized/AdminIndex.aspx" title="Administration">

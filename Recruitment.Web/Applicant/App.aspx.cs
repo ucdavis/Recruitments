@@ -300,17 +300,24 @@ namespace CAESDO.Recruitment.Web
                             incompleteSteps.Add(STR_EducationInformation);
                         break;
                     case ApplicationStepType.Survey:
-                        if (!currentApplication.isComplete(ApplicationStepType.Survey))
-                            incompleteSteps.Add(STR_ConfidentialSurvey);                        
+                        //if (!currentApplication.isComplete(ApplicationStepType.Survey))
+                        //    incompleteSteps.Add(STR_ConfidentialSurvey);                        
                         break;
                     case ApplicationStepType.References:
-                        if (!currentApplication.ReferencesComplete)
-                            incompleteSteps.Add(STR_References);                        
+                        //if (!currentApplication.ReferencesComplete)
+                        //    incompleteSteps.Add(STR_References);                        
                         break;
                     default:
                         break;
                 }
             }
+
+            //Always check references and the confidential survey
+            if (!currentApplication.isComplete(ApplicationStepType.Survey))
+                incompleteSteps.Add(STR_ConfidentialSurvey);
+
+            if (!currentApplication.ReferencesComplete)
+                incompleteSteps.Add(STR_References);  
 
             //Loop through each requested file type and make sure a file of the given type exists
             foreach (FileType type in currentApplication.AppliedPosition.FileTypes)
@@ -975,7 +982,7 @@ namespace CAESDO.Recruitment.Web
             ApplicationSteps.Add(new Step(STR_ExtensionInterests, hasExtensionInterests, false, isFileTypeRequested(STR_FileType_ExtensionInterests)));
             ApplicationSteps.Add(new Step(STR_TeachingInterests, hasTeachingInterests, false, isFileTypeRequested(STR_FileType_TeachingInterests)));
             ApplicationSteps.Add(new Step(STR_Transcripts, hasTranscript, false, isFileTypeRequested(STR_FileType_Transcript)));
-            ApplicationSteps.Add(new Step(STR_Publications, currentApplication.PublicationsComplete, false, true));
+            ApplicationSteps.Add(new Step(STR_Publications, currentApplication.PublicationsComplete, false, isFileTypeRequested(STR_FileType_Publication)));
             //ApplicationSteps.Add(new Step(STR_Dissertation, hasDissertation, false, true));
 
             //Add the confidential survey

@@ -47,6 +47,7 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
 
     public interface IApplicationDao : IDao<Application, int> {
         List<Application> GetApplicationsByApplicant(Profile applicantProfile);
+        List<Application> GetApplicationsByApplicant(Profile applicantProfile, bool submitted);
         List<Application> GetApplicationsByPosition(Position position);
     }
 
