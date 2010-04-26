@@ -261,7 +261,7 @@ namespace CAESDO.Recruitment.Web
             }
             else
             {
-                ///TODO: Error Message
+                lblInvalidFileType.Text = " *Job Description Must Be a PDF File";
             }
         }
         
@@ -293,7 +293,7 @@ namespace CAESDO.Recruitment.Web
             }
             else
             {
-                ///TODO: Error Message
+                lblInvalidSearchPlanFileType.Text = " *Job Description Must Be a PDF File";
             }
         }
 
