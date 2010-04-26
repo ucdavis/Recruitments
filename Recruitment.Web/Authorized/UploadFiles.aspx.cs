@@ -254,7 +254,7 @@ namespace CAESDO.Recruitment.Web
                     }
                     else
                     {
-                        eReport.ReportError(new ApplicationException("File Not Valid " + ValidateBO<File>.GetValidationResultsAsString(file)), "UploadPublications");
+                        eReport.ReportError(new ApplicationException("File Not Valid " + ValidateBO<File>.GetValidationResultsAsString(publication)), "UploadPublications");
                         Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.VALIDATION));
                     }
                 }
