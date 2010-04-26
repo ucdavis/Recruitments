@@ -2,9 +2,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
 
     <asp:Label ID="lblInfo" runat="server"></asp:Label><br /><br />
-    
+    Please upload your file as a PDF Document. Maximum file size allowed is 10 MB.<br /><br />
     <asp:FileUpload ID="fileUploadReference" runat="server" />
-    <asp:RequiredFieldValidator id="reqValUploaDReference" ControlToValidate="fileUploadReference" ErrorMessage="*" runat="server"/>
+    <asp:RequiredFieldValidator id="reqValUploaDReference" ControlToValidate="fileUploadReference" ErrorMessage="* File Required" runat="server"/>
     
     <br /><br />
     

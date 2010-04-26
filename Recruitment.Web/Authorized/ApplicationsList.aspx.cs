@@ -58,7 +58,7 @@ namespace CAESDO.Recruitment.Web
             else
             {
                 btnUpdateList.Visible = false;
-                btnUpdateList.Visible = false;
+                btnEmailReferences.Visible = false;
             }
         }
 

@@ -54,7 +54,6 @@ namespace CAESDO.Recruitment.Web
         /// <summary>
         /// Page_Init checks to ensure that the query string is valid, the logged in user is an admin or equivalent, the given application is valid
         /// </summary>
-        /// <remarks>TODO: Currently any user can view any application for testing</remarks>
         protected void Page_Init(object sender, EventArgs e)
         {
             try
@@ -67,7 +66,12 @@ namespace CAESDO.Recruitment.Web
                 Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.UNKNOWN));
             }
 
-            //TODO: Check User Permissions
+            //Check User Permissions
+            if (daoFactory.GetPositionDao().VerifyPositionAccess(currentApplication.AppliedPosition) == false)
+            {
+                //If the user does not have position access, redirect to the not authorized page
+                Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.AUTH));
+            }
 
             Trace.Write("Valid user and application " + currentApplication.ID.ToString() + Environment.NewLine);
         }

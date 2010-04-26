@@ -170,9 +170,10 @@ namespace CAESDO.Recruitment.Web
                     }
                     else
                     {
-                        //TODO: Handle non-validating file
+                        eReport.ReportError(new ApplicationException("File Not Valid " + ValidateBO<File>.GetValidationResultsAsString(file)), "UploadReferences");
+                        Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.VALIDATION));
                     }
-                }//TODO: Handle if content not PDF
+                }
             }
         }
         
@@ -213,9 +214,10 @@ namespace CAESDO.Recruitment.Web
                     }
                     else
                     {
-                        //TODO: Handle non-validating file
+                        eReport.ReportError(new ApplicationException("File Not Valid " + ValidateBO<File>.GetValidationResultsAsString(file)), "UploadFiles");
+                        Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.VALIDATION));
                     }
-                }//TODO: Handle if content not PDF
+                }
             }
         }
 
@@ -252,7 +254,8 @@ namespace CAESDO.Recruitment.Web
                     }
                     else
                     {
-                        //TODO: Handle non-validating file
+                        eReport.ReportError(new ApplicationException("File Not Valid " + ValidateBO<File>.GetValidationResultsAsString(file)), "UploadPublications");
+                        Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.VALIDATION));
                     }
                 }
             }

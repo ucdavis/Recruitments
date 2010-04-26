@@ -38,18 +38,17 @@
     
     <br /><br />
     
-    <span class="boxTitle">Add Member</span>
-    <div style="width: 500px;" class="box">
-    <br />
     <asp:Panel ID="pnlAddMember" runat="server" Visible="false">
-
-        Login (Kerberos): <asp:TextBox ID="txtLoginID" runat="server"></asp:TextBox>
-                            <asp:RequiredFieldValidator id="reqValLoginID" ControlToValidate="txtLoginID" ErrorMessage="*" runat="server"/><br /><br />
-        First Name: <asp:TextBox ID="txtFName" runat="server"></asp:TextBox><br /><br />
-        Last Name: <asp:TextBox ID="txtLName" runat="server"></asp:TextBox><br />
-        <br />
-        <asp:Button ID="btnAddMember" runat="server" Text="Add Member" OnClick="btnAddMember_Click" />   
+        <span class="boxTitle">Add Member</span>
+        <div style="width: 500px;" class="box">
+        <br />        
+            Login (Kerberos): <asp:TextBox ID="txtLoginID" runat="server"></asp:TextBox>
+                                <asp:RequiredFieldValidator id="reqValLoginID" ControlToValidate="txtLoginID" ErrorMessage="* Kerberos Login Required" runat="server"/><br /><br />
+            First Name: <asp:TextBox ID="txtFName" runat="server"></asp:TextBox><br /><br />
+            Last Name: <asp:TextBox ID="txtLName" runat="server"></asp:TextBox><br />
+            <br />
+            <asp:Button ID="btnAddMember" runat="server" Text="Add Member" OnClick="btnAddMember_Click" />   
+        </div>    
     </asp:Panel>
-    </div>    
 </asp:Content>
 

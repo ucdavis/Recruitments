@@ -84,7 +84,8 @@ namespace CAESDO.Recruitment.Web
             }
             else
             {
-                //TODO: Add error handling
+                eReport.ReportError(new ApplicationException("DepartmentMember not valid " + ValidateBO<DepartmentMember>.GetValidationResultsAsString(member)), "btnAddMember_Click");
+                Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.VALIDATION));
             }
 
             //Now we have a new member, so rebind the grid

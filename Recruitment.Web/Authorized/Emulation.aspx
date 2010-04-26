@@ -3,7 +3,7 @@
 
     Login: 
     <asp:TextBox ID="txtLoginID" runat="server"></asp:TextBox>
-    <asp:RequiredFieldValidator id="reqValLogin" ControlToValidate="txtLoginID" ErrorMessage="*" runat="server"/>
+    <asp:RequiredFieldValidator id="reqValLogin" ControlToValidate="txtLoginID" ErrorMessage="* LoginID Required" runat="server"/>
     
     <br /><br />
     <asp:Button ID="btnLoginID" runat="server" Text="Emulate!" OnClick="btnLoginID_Click" />

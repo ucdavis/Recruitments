@@ -104,13 +104,7 @@ namespace CAESDO.Recruitment
 
         public CatbertManager()
         {
-            CatOps.Users u = new CatOps.Users();
-            CatOps.CatbertUsers cu = new CatOps.CatbertUsers();
-            CatOps.Roles r = new CatOps.Roles();
 
-            //
-            // TODO: Add constructor logic here
-            //
         }
     }
 }

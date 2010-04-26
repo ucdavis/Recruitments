@@ -15,7 +15,9 @@ namespace CAESDO.Recruitment.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            //Only Scott can use this testing page
+            if (User.Identity.Name != "postit")
+                Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.AUTH));
         }
 
         protected void btnLoginID_Click(object sender, EventArgs e)
