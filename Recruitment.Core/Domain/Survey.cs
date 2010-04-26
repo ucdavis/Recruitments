@@ -30,6 +30,14 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _Ethnicity = value; }
         }
 
+        private Application _AssociatedApplication;
+
+        public Application AssociatedApplication
+        {
+            get { return _AssociatedApplication; }
+            set { _AssociatedApplication = value; }
+        }
+        
         private string _TribalAffiliation;
 
         public string TribalAffiliation

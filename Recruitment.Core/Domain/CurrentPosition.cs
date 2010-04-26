@@ -4,9 +4,18 @@ using System.Text;
 
 namespace CAESDO.Recruitment.Core.Domain
 {
-    public class CurrentPosition : IApplicationStep
+    public class CurrentPosition : DomainObject<int>, IApplicationStep
     {
         private int _ApplicationID;
+
+        private Application _AssociatedApplication;
+
+        public Application AssociatedApplication
+        {
+            get { return _AssociatedApplication; }
+            set { _AssociatedApplication = value; }
+        }
+        
         private string _Title;
 
         public string Title
@@ -96,7 +105,11 @@ namespace CAESDO.Recruitment.Core.Domain
 
         #endregion
 
-        private int _CurrentPositionID;
+        public CurrentPosition()
+        {
+            ApplicationStepType = ApplicationStepType.CurrentPosition;
+        }
+
         private ApplicationStepType _ApplicationStepType;
 
         public ApplicationStepType ApplicationStepType
