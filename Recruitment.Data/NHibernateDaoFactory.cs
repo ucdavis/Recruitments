@@ -103,11 +103,6 @@ namespace CAESDO.Recruitment.Data
             return new ChangeTypeDao();
         }
 
-        public IReferSourceDao GetReferSourceDao()
-        {
-            return new ReferSourceDao();
-        }
-
         public IThemeDao GetThemeDao()
         {
             return new ThemeDao();
@@ -242,8 +237,6 @@ namespace CAESDO.Recruitment.Data
         public class ChangeTrackingDao : AbstractNHibernateDao<ChangeTracking, int>, IChangeTrackingDao { }
 
         public class ChangeTypeDao : AbstractNHibernateDao<ChangeType, int>, IChangeTypeDao { }
-
-        public class ReferSourceDao : AbstractNHibernateDao<ReferSource, int>, IReferSourceDao { }
 
         public class ThemeDao : AbstractNHibernateDao<Theme, int>, IThemeDao { }
 

@@ -11,7 +11,6 @@
     <property name="SubmitDate" column="SubmitDate" />
     <property name="LastUpdated" column="LastUpdated" />
     <property name="Email" column="Email" />
-    <property name="ReferSourceOther" column="ReferSourceOther" />
     <property name="PublicationsComplete" column="PublicationsComplete" />
     
     <many-to-one name="AppliedPosition" column="PositionID"
@@ -20,11 +19,6 @@
     <many-to-one name="AssociatedProfile" column="ProfileID"
       class="CAESDO.Recruitment.Core.Domain.Profile, CAESDO.Recruitment.Core" not-null="true" />
 
-    <bag name="ReferSources" table="ApplicationReferSources">
-      <key column="ApplicationID" />
-      <many-to-many column="ReferSourceID" class="CAESDO.Recruitment.Core.Domain.ReferSource, CAESDO.Recruitment.Core" />
-    </bag>
-    
     <bag name="Surveys" table="Survey" inverse="true">
       <key column="ApplicationID" />
       <one-to-many class="CAESDO.Recruitment.Core.Domain.Survey, CAESDO.Recruitment.Core" />

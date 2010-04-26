@@ -24,25 +24,6 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _AppliedPosition; }
             set { _AppliedPosition = value; }
         }
-
-        private IList<ReferSource> _ReferSources;
-
-        [IgnoreNulls]
-        public virtual IList<ReferSource> ReferSources
-        {
-            get { return _ReferSources; }
-            set { _ReferSources = value; }
-        }
-
-        private string _ReferSourceOther;
-
-        [IgnoreNulls]
-        [StringLengthValidator(50)]
-        public virtual string ReferSourceOther
-        {
-            get { return _ReferSourceOther; }
-            set { _ReferSourceOther = value; }
-        }
                 
         private bool _Submitted;
 

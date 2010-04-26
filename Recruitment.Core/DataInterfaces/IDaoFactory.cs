@@ -26,7 +26,6 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
         IMemberTypeDao GetMemberTypeDao();
         IChangeTrackingDao GetChangeTrackingDao();
         IChangeTypeDao GetChangeTypeDao();
-        IReferSourceDao GetReferSourceDao();
         IThemeDao GetThemeDao();
         IUnitDao GetUnitDao();
     }
@@ -82,8 +81,6 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
           
     public interface IChangeTypeDao : IDao<ChangeType, int> { }
           
-    public interface IReferSourceDao : IDao<ReferSource, int> { }
-    
     public interface IThemeDao : IDao<Theme, int> { }
 
     public interface IUnitDao : IDao<Unit, string> { }  

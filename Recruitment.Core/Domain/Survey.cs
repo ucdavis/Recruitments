@@ -14,13 +14,21 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _Gender = value; }
         }
 
-        private RecruitmentSrc _RecruitmentSrc;
+        private IList<SurveyXRecruitmentSrc> _RecruitmentSources;
 
-        public virtual RecruitmentSrc RecruitmentSrc
+        public virtual IList<SurveyXRecruitmentSrc> RecruitmentSources
         {
-            get { return _RecruitmentSrc; }
-            set { _RecruitmentSrc = value; }
+            get { return _RecruitmentSources; }
+            set { _RecruitmentSources = value; }
         }
+        
+        //private RecruitmentSrc _RecruitmentSrc;
+
+        //public virtual RecruitmentSrc RecruitmentSrc
+        //{
+        //    get { return _RecruitmentSrc; }
+        //    set { _RecruitmentSrc = value; }
+        //}
 
         private Ethnicity _Ethnicity;
 

@@ -215,26 +215,38 @@ namespace CAESDO.Recruitment.Core.Domain
         FacultyMember               = 3
     }
 
-    public class ReferSource : DomainObject<int>
+    public class SurveyXRecruitmentSrc : DomainObject<int>
     {
-        private string _Source;
+        private Survey _AssociatedSurvey;
 
-        public virtual string Source
+        public virtual Survey AssociatedSurvey
         {
-            get { return _Source; }
-            set { _Source = value; }
-        }
-	
-        public ReferSource()
-        {
+            get { return _AssociatedSurvey; }
+            set { _AssociatedSurvey = value; }
         }
 
-        public ReferSource(string source)
+        private RecruitmentSrc _RecruitmentSrc;
+
+        public virtual RecruitmentSrc RecruitmentSrc
         {
-            this.Source = source;
+            get { return _RecruitmentSrc; }
+            set { _RecruitmentSrc = value; }
+        }
+
+        private string _RecruitmentSrcOther;
+
+        public virtual string RecruitmentSrcOther
+        {
+            get { return _RecruitmentSrcOther; }
+            set { _RecruitmentSrcOther = value; }
+        }
+
+        public SurveyXRecruitmentSrc()
+        {
+
         }
     }
-
+    
     public class ReferenceTemplate : DomainObject<int>
     {
         private string _TemplateText;

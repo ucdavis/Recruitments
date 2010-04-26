@@ -108,16 +108,21 @@
   </class>
 
   <class
-    name="CAESDO.Recruitment.Core.Domain.ReferSource, CAESDO.Recruitment.Core"
-    table="ReferSources" >
-    <id name="id" access="field" column="ReferSourceID" unsaved-value="0">
+  name="CAESDO.Recruitment.Core.Domain.SurveyXRecruitmentSrc, CAESDO.Recruitment.Core"
+  table="SurveyXRecruitmentSrc" >
+    <id name="id" access="field" column="SurveyXRecruitmentSrcID" unsaved-value="0">
       <generator class="identity" />
     </id>
 
-    <property name="Source" column="ReferSource" />
+    <property name="RecruitmentSrcOther" column="RecruitmentSrcOther" />
+    
+    <many-to-one name="AssociatedSurvey" column="SurveyID"
+      class="CAESDO.Recruitment.Core.Domain.Survey, CAESDO.Recruitment.Core" not-null="true" />
+
+    <many-to-one name="RecruitmentSrc" column="RecruitmentSrcID"
+      class="CAESDO.Recruitment.Core.Domain.RecruitmentSrc, CAESDO.Recruitment.Core" not-null="true" />
 
   </class>
-
 
   <class
     name="CAESDO.Recruitment.Core.Domain.ReferenceTemplate, CAESDO.Recruitment.Core"
