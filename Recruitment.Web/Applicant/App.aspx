@@ -455,7 +455,7 @@
                         </td>
                         <td align="right"  >
                             <br />
-                            <asp:CheckBox ID="chkPublicationsFinalize" runat="server" EnableViewState="false" TextAlign="Left" Text="Done Uploading Publications" />
+                            <asp:CheckBox ID="chkPublicationsFinalize" runat="server" AutoPostBack="true" TextAlign="Left" Text="Done Uploading Publications" OnCheckedChanged="chkPublicationsFinalize_CheckedChanged" />
                             <%--<asp:Button ID="btnPublicationsUpdateStatus" runat="server" Text="Update" />--%>
                         </td>
                     </tr>

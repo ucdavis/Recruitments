@@ -566,6 +566,16 @@ namespace CAESDO.Recruitment.Web
             DataBindPublications();
         }
 
+        protected void chkPublicationsFinalize_CheckedChanged(object sender, EventArgs e)
+        {
+            using (new NHibernateTransaction())
+            {
+                currentApplication.PublicationsComplete = chkPublicationsFinalize.Checked;
+            }
+
+            ReloadStepListAndSelectHome();
+        }
+
         #endregion
 
         #region PrivateFunctions
@@ -675,7 +685,7 @@ namespace CAESDO.Recruitment.Web
             ApplicationSteps.Add(new Step("Cover Letter", hasCoverLetter, false, true));
             ApplicationSteps.Add(new Step("Research Interests", hasResearchInterest, false, true));
             ApplicationSteps.Add(new Step("Transcripts", hasTranscript, false, true));
-            ApplicationSteps.Add(new Step("Publications", hasPublication, false, true));
+            ApplicationSteps.Add(new Step("Publications", currentApplication.PublicationsComplete, false, true));
             ApplicationSteps.Add(new Step("Dissertation", hasDissertation, false, true));
 
             //Add the confidential survey
@@ -930,7 +940,10 @@ namespace CAESDO.Recruitment.Web
         {
             //Set the number of required publications
             litPublicationsNum.Text = currentApplication.AppliedPosition.NumPublications.ToString();
-                        
+            
+            //Set the publications complete check box
+            chkPublicationsFinalize.Checked = currentApplication.PublicationsComplete;
+
             //Bind the publications grid with existing files
             rptPublications.DataSource = GetFilesOfType("Publication");
             rptPublications.DataBind();
