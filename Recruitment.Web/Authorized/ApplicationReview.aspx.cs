@@ -11,6 +11,8 @@ using System.Web.UI.HtmlControls;
 using CAESDO.Recruitment.Core.Domain;
 using CAESDO.Recruitment.Data;
 using System.Collections.Generic;
+using iTextSharp.text.pdf;
+using iTextSharp.text;
 
 namespace CAESDO.Recruitment.Web
 {
@@ -20,7 +22,7 @@ namespace CAESDO.Recruitment.Web
         private const string STR_FileType_Transcript = "Transcript";
         private const string STR_FileType_CoverLetter = "CoverLetter";
         private const string STR_FileType_ResearchInterests = "ResearchInterests";
-        private const string STR_FileType_Publication = "Publication"; 
+        private const string STR_FileType_Publication = "Publication";
 
         public int currentApplicationID
         {
@@ -64,9 +66,9 @@ namespace CAESDO.Recruitment.Web
                 //if the current application does not have a database association, redirect to an error page
                 Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.UNKNOWN));
             }
-            
+
             //TODO: Check User Permissions
-                        
+
             Trace.Write("Valid user and application " + currentApplication.ID.ToString() + Environment.NewLine);
         }
 
@@ -150,7 +152,7 @@ namespace CAESDO.Recruitment.Web
             //Now show the popup control
             mpopupReferencesEntry.Show();
         }
-        
+
         /// <summary>
         /// Check to ensure that they querystring "ApplicationID" is not null or empty
         /// </summary>
@@ -232,7 +234,7 @@ namespace CAESDO.Recruitment.Web
 
             for (int i = 0; i < CamelString.Length; i++)
             {
-                if (CamelString.Substring(i, 1) == 
+                if (CamelString.Substring(i, 1) ==
                     CamelString.Substring(i, 1).ToLower())
                 {
                     output += CamelString.Substring(i, 1);
@@ -360,6 +362,126 @@ namespace CAESDO.Recruitment.Web
         }
 
         #endregion
+
+        protected void btnDownloadAll_Click(object sender, EventArgs e)
+        {
+            string destination = FilePath + "tester.pdf";
+
+            if (currentApplication.Files.Count == 0)
+                return;
+
+            int f = 0;
+
+            PdfReader reader = new PdfReader(FilePath + currentApplication.Files[f].ID.ToString());
+
+            int n = reader.NumberOfPages;
+
+            Response.Write(string.Format("There are {0} pages in the original docuemnt", n));
+
+            Document document = new Document(reader.GetPageSizeWithRotation(1));
+
+            PdfWriter writer = PdfWriter.GetInstance(document, new System.IO.FileStream(destination, System.IO.FileMode.Create));
+
+            document.Open();
+
+            PdfContentByte cb = writer.DirectContent;
+            PdfImportedPage page;
+            int rotation;
+
+            while (f < currentApplication.Files.Count)
+            {
+                int i = 0;
+                while (i < n)
+                {
+                    i++;
+                    document.SetPageSize(reader.GetPageSizeWithRotation(1));
+                    document.NewPage();
+                    page = writer.GetImportedPage(reader, i);
+                    rotation = reader.GetPageRotation(i);
+
+                    if (rotation == 90 || rotation == 270)
+                        cb.AddTemplate(page, 0, -1f, 1f, 0, 0, reader.GetPageSizeWithRotation(i).Height);
+                    else
+                        cb.AddTemplate(page, 1f, 0, 0, 1f, 0, 0);
+                }
+                f++;
+
+                if (f < currentApplication.Files.Count)
+                {
+                    reader = new PdfReader(FilePath + currentApplication.Files[f].ID.ToString());
+
+                    n = reader.NumberOfPages;
+                }
+            }
+
+            document.Close();
+        }
+
+        /*
+        public static void MergeFiles(string destinationFile, string[] sourceFiles)
+        {
+            try
+            {
+                int f = 0;
+                // we create a reader for a certain document
+                PdfReader reader = new PdfReader(sourceFiles[f]);
+                // we retrieve the total number of pages
+                int n = reader.NumberOfPages;
+                Response.WriteLine("There are " + n + " pages in the original file.");
+                // step 1: creation of a document-object
+                Document document = new Document(reader.GetPageSizeWithRotation(1));
+                // step 2: we create a writer that listens to the document
+                PdfWriter writer = PdfWriter.GetInstance(document, new FileStream(destinationFile, FileMode.Create));
+                // step 3: we open the document
+                document.Open();
+                PdfContentByte cb = writer.DirectContent;
+                PdfImportedPage page;
+                int rotation;
+
+                // step 4: we add content
+                while (f < sourceFiles.Length)
+                {
+                    int i = 0;
+                    while (i < n)
+                    {
+                        i++;
+                        document.SetPageSize(reader.GetPageSizeWithRotation(i));
+                        document.NewPage();
+                        page = writer.GetImportedPage(reader, i);
+                        rotation = reader.GetPageRotation(i);
+                        
+                        if (rotation == 90 || rotation == 270)
+                        {
+                            cb.AddTemplate(page, 0, -1f, 1f, 0, 0, reader.GetPageSizeWithRotation(i).Height);
+                        }
+                        else
+                        {
+                            cb.AddTemplate(page, 1f, 0, 0, 1f, 0, 0);
+                        }
+                        Response.WriteLine("Processed page " + i);
+                    }
+                    f++;
+
+                    if (f < sourceFiles.Length)
+                    {
+                        reader = new PdfReader(sourceFiles[f]);
+                        // we retrieve the total number of pages
+                        n = reader.NumberOfPages;
+                        Response.WriteLine("There are " + n + " pages in the original file.");
+                    }
+                }
+
+                // step 5: we close the document
+
+                document.Close();
+
+            }
+            catch(Exception)
+            {
+
+            }
+        }
+        */
     }
 
     /// <summary>

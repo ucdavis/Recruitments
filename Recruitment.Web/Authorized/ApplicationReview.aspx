@@ -361,6 +361,8 @@
                         </td>
                     </tr>
                 </table>
+                
+                <asp:Button ID="btnDownloadAll" runat="server" Text="Download All Files" OnClick="btnDownloadAll_Click" />
             </asp:Panel>          
             
             <asp:Panel ID="pnlPublications" runat="server" Visible="false">
