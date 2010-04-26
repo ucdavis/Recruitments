@@ -5,9 +5,9 @@
     <span class="boxTitle"><img src="Images/profile_sm.gif" style="vertical-align:middle;" alt="" /> Position Details</span><br />
     <table class="box" style="width:550px; height: 350px;" cellpadding="5">
         <tr>
-            <td align="right">
+            <td align="right"><br />
                 Position Title:</td>
-            <td>
+            <td><br />
                 <asp:Label ID="lblPositionTitle" runat="server" Text=""></asp:Label></td>
         </tr>
         <tr>
