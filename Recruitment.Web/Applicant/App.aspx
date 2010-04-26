@@ -84,7 +84,7 @@
             </asp:View>
             
             <asp:View ID="viewContactInformation" runat="server" >
-                <span class="boxTitle">Contact Information</span><br />
+                <span class="boxTitle">Primary Contact Information</span><br />
                 <table class="box" style="width:500px;" cellpadding="5">
                     <tr>
                         <td colspan="2"><br /></td>

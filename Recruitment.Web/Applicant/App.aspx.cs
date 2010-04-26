@@ -98,6 +98,9 @@ namespace CAESDO.Recruitment.Web
             }
         }
 
+        /// <summary>
+        /// Provides HTML formatted text for the Confidential Survey Statement
+        /// </summary>
         public string ConfidentialSurveyNotificationText
         {
             get
