@@ -1,4 +1,4 @@
-<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="MasterPage" %>
+<%@ Master Language="C#" AutoEventWireup="true" CodeFile="MasterPage.master.cs" Inherits="CAESDO.Recruitment.Web.MasterPage" %>
 
 <%@ Register Assembly="System.Web.Extensions" Namespace="System.Web.UI" TagPrefix="asp" %>
 
@@ -31,21 +31,21 @@
                                 <AjaxControlToolkit:DropDownExtender ID="ddUserName" TargetControlID="pnlUserName" DropDownControlID="pnlUserNameDropOptions" runat="server" HighlightBackColor="#eeeeee">
                                 </AjaxControlToolkit:DropDownExtender>
                                 <asp:Panel ID="pnlUserNameDropOptions" runat="server" CssClass="ContextMenuPanel" Style="display:none;visibility:hidden;">
-                                    <asp:LinkButton runat="server" ID="Option1" Text="Option 1" CssClass="ContextMenuItem" />
-                                    <asp:LinkButton runat="server" ID="Option2" Text="Option 2" CssClass="ContextMenuItem" />
+                                    <asp:LinkButton runat="server" ID="lbtnSignIn" Text="Sign In (Existing Users)" CssClass="ContextMenuItem" OnClick="lbtnSignIn_Click" />
+                                    <asp:LinkButton runat="server" ID="lbtnCreate" Text="Create Account (New Applicants)" CssClass="ContextMenuItem" OnClick="lbtnCreate_Click" />
                                     <asp:LinkButton runat="server" ID="Option3" Text="Option 3 (Click Me!)" CssClass="ContextMenuItem" />
                                 </asp:Panel>
                             </AnonymousTemplate>
                             <LoggedInTemplate>
-                                <asp:Panel ID="pnlUserName" runat="server" style="display:inline;">&nbsp;&nbsp;&nbsp; Welcome: <%= p.LastName + ", " + p.FirstName %> 
+                                <asp:Panel ID="pnlUserName" runat="server" style="display:inline;">&nbsp;&nbsp;&nbsp; Welcome: <%= LoggedInUserName %> 
                                     <asp:Image ID="imgDownArrow" runat="server" AlternateText="down arrow" ImageUrl="~/Images/downarrow.gif" />
                                 </asp:Panel> 
                                 <AjaxControlToolkit:DropDownExtender ID="ddUserName" TargetControlID="pnlUserName" DropDownControlID="pnlUserNameDropOptions" runat="server" HighlightBackColor="#eeeeee">
                                 </AjaxControlToolkit:DropDownExtender>
                                 <asp:Panel ID="pnlUserNameDropOptions" runat="server" CssClass="ContextMenuPanel" Style="display:none;visibility:hidden;">
+                                    <asp:LinkButton runat="server" ID="Option2" Text="View Profile" CssClass="ContextMenuItem" />
+                                    <asp:LinkButton runat="server" ID="Option3" Text="Option 2" CssClass="ContextMenuItem" />
                                     <asp:LinkButton runat="server" ID="lbtnLogout" Text="Logout" CssClass="ContextMenuItem" OnClick="lbtnLogout_Click" />
-                                    <asp:LinkButton runat="server" ID="Option2" Text="Option 2" CssClass="ContextMenuItem" />
-                                    <asp:LinkButton runat="server" ID="Option3" Text="Option 3 (Click Me!)" CssClass="ContextMenuItem" />
                                 </asp:Panel>
                             </LoggedInTemplate>
                          </asp:LoginView>

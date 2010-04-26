@@ -12,36 +12,80 @@ using CAESDO.Recruitment.Core.Domain;
 using CAESDO.Recruitment.Data;
 using CAESDO.Recruitment.Core.DataInterfaces;
 
-public partial class MasterPage : System.Web.UI.MasterPage
+namespace CAESDO.Recruitment.Web
 {
-    private User _p;
 
-    public User p
+    public partial class MasterPage : System.Web.UI.MasterPage
     {
-        get
+        private const string STR_CurrentUserType = "currentUserType";
+        private const string STR_CreateUserURL = "~/Login/CreateUser.aspx";
+
+        #region UserProperties
+
+        private User _p;
+
+        public User p
         {
-            if (_p == null && HttpContext.Current.User.Identity.IsAuthenticated)
-                _p = daoFactory.GetUserDao().GetUserByLogin(HttpContext.Current.User.Identity.Name);
+            get
+            {
+                if (_p == null && HttpContext.Current.User.Identity.IsAuthenticated)
+                    _p = daoFactory.GetUserDao().GetUserByLogin(HttpContext.Current.User.Identity.Name);
 
-            return _p;
+                return _p;
+            }
+            set { _p = value; }
         }
-        set { _p = value; }
-    }
 
-    private IDaoFactory daoFactory
-    {
-        get { return new NHibernateDaoFactory(); }
-    }
+        private IDaoFactory daoFactory
+        {
+            get { return new NHibernateDaoFactory(); }
+        }
 
-    protected void Page_Load(object sender, EventArgs e)
-    {
+        public string LoggedInUserName
+        {
+            get
+            {
+                string userName = string.Empty;
 
-    }
+                if (HttpContext.Current.User.Identity.IsAuthenticated)
+                {
+                    if (p == null)
+                    {
+                        userName = HttpContext.Current.User.Identity.Name;
+                    }
+                    else
+                    {
+                        userName = p.FirstName + " " + p.LastName;
+                    }
+                }
 
-    protected void lbtnLogout_Click(object sender, EventArgs e)
-    {
-        FormsAuthentication.SignOut();
+                return userName;
+            }
+        }
 
-        Response.Redirect(Request.Url.AbsolutePath);
-    }
+        #endregion
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+        }
+
+        protected void lbtnLogout_Click(object sender, EventArgs e)
+        {
+            FormsAuthentication.SignOut();
+
+            Response.Redirect(Request.Url.AbsolutePath);
+        }
+
+        protected void lbtnSignIn_Click(object sender, EventArgs e)
+        {
+            //Redirect the user to sign in
+            Response.Redirect(FormsAuthentication.LoginUrl);
+        }
+
+        protected void lbtnCreate_Click(object sender, EventArgs e)
+        {
+            //Redirect the user to the create account page
+            Response.Redirect(STR_CreateUserURL);
+        }
+}
 }
