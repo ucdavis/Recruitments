@@ -50,6 +50,11 @@
       <key column="PositionID" />
       <many-to-many column="FileTypeID" class="CAESDO.Recruitment.Core.Domain.FileType, CAESDO.Recruitment.Core" />    
     </bag>
+
+    <bag name="Steps" table="PosXSteps">
+      <key column="PositionID" />
+      <element column="StepID" type="CAESDO.Recruitment.Core.Domain.ApplicationStepType, CAESDO.Recruitment.Core" />
+    </bag>
     
     <bag name="CommitteeMembers" table="CommitteeMembers" inverse="true">
       <key column="PositionID" />

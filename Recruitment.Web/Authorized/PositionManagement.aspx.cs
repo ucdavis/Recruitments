@@ -126,6 +126,8 @@ namespace CAESDO.Recruitment.Web
 
             addFileTypesToPosition(newPosition);
 
+            addStepsToPosition(newPosition);
+
             newPosition.ShortDescription = txtShortDescription.Text;
 
             if (newPosition.ReferenceTemplate == null)
@@ -248,6 +250,12 @@ namespace CAESDO.Recruitment.Web
             gviewDepartments.DataSource = DepartmentList;
             gviewDepartments.DataBind();
 
+            if (currentPosition.Steps.Contains(ApplicationStepType.CurrentPosition))
+                chkShowCurrentPosition.Checked = true;
+
+            if (currentPosition.Steps.Contains(ApplicationStepType.Education))
+                chkShowEducation.Checked = true;
+
             filePositionDescription.Visible = false;
             reqValPositionDescription.Visible = false;
 
@@ -365,6 +373,23 @@ namespace CAESDO.Recruitment.Web
                     }
                 }
             }
+        }
+
+        /// <summary>
+        /// Adds the major steps to the given position
+        /// </summary>
+        private void addStepsToPosition(Position p)
+        {
+            if (p.Steps == null)
+                p.Steps = new List<ApplicationStepType>();
+            else
+                p.Steps.Clear();
+
+            if (chkShowEducation.Checked)
+                p.Steps.Add(ApplicationStepType.Education);
+
+            if (chkShowCurrentPosition.Checked)
+                p.Steps.Add(ApplicationStepType.CurrentPosition);
         }
 
         /// <summary>

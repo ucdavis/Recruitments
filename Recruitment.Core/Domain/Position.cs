@@ -193,6 +193,14 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _FileTypes = value; }
         }
 
+        private IList<ApplicationStepType> _Steps;
+
+        public virtual IList<ApplicationStepType> Steps
+        {
+            get { return _Steps; }
+            set { _Steps = value; }
+        }
+
         private IList<Department> _Departments;
 
         public virtual IList<Department> Departments

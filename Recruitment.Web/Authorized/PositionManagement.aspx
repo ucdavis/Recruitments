@@ -163,6 +163,22 @@
             </td>
         </tr>
         <tr>
+            <td align="right">
+                Show Education:
+            </td>
+            <td>
+                <asp:CheckBox ID="chkShowEducation" runat="server" />
+            </td>
+        </tr>
+        <tr>
+            <td align="right">
+                Show Current Position:
+            </td>
+            <td>
+                <asp:CheckBox ID="chkShowCurrentPosition" runat="server" />
+            </td>
+        </tr>
+        <tr>
             <td align="right">Required File Types:</td>
             <td>
                 <asp:GridView ID="gviewFileTypes" runat="server" DataKeyNames="id" AutoGenerateColumns="False" DataSourceID="ObjectDataFileTypes">
