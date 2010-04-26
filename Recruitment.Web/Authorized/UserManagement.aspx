@@ -22,7 +22,7 @@
      <asp:Button ID="btnAddUserSearch" runat="server" OnClick="btnAddUserSearch_Click"
          Text="Search" />
      <%--<asp:Button ID="btnAddUserOK" runat="server" Text="Add User" />--%> 
-     <asp:Button ID="btnAddUserCancel" runat="server" Text="Cancel" />
+     <asp:Button ID="btnAddUserCancel" runat="server" Text="Close" />
      <br />
      <asp:Label ID="lblAddUserStatus" runat="server" ForeColor="Green" EnableViewState="False"></asp:Label><br />
      <Ajax:UpdateProgress ID="progressAddUser" runat="server" AssociatedUpdatePanelID="updateAddUser">
@@ -165,7 +165,7 @@
                 
                 <br /><br />
             <div style="text-align:right"><asp:Button ID="btnSaveUserInfo" runat="server" Text="Save" />
-            <asp:Button ID="btnCancelUserInfo" runat="server" Text="Cancel" /></div>
+            <asp:Button ID="btnCancelUserInfo" runat="server" Text="Close" /></div>
             </div>
             </asp:Panel>
             
