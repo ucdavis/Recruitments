@@ -7,7 +7,7 @@ Committee Members:
     <br />
     <ul style="list-style-type:none;">
         <li><a href="ApplicationChoice.aspx">Individual Review</a></li>
-        <li>Biographical Data Spreadsheet</li>
+        <li><a href="BiographicalSelection.aspx">Biographical Data Spreadsheet</a></li>
     </ul>
 
 <br /><br />

@@ -28,6 +28,7 @@
       </siteMapNode>
 
       <siteMapNode url="Review/Index.aspx" title="Review">
+        <siteMapNode url="Review/BiographicalSelection.aspx" title="Biographical Data Spreadsheet" />
         <siteMapNode url="Review/ApplicationChoice.aspx" title="Application Choice">
           <siteMapNode url="Review/ApplicationReview.aspx" title="Application Review" />
         </siteMapNode>
