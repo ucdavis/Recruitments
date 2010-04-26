@@ -17,6 +17,7 @@
 <li><a href="#EducationInformation">New Fields for education information</a></li>
 <li><a href="#SubmitDate">Sortable submit date</a></li>
 <li><a href="#BiographicalSpreadsheet">Biographical spreadsheet</a></li>
+<li><a href="#ImprovedApplicationsView">Improved Applications View</a></li>
 <li><a href="#AdditionalReferences">Additional references</a></li>
 <li><a href="#RecruitmentManager">Recruitment manager contact email</a></li>
 <li><a href="#ReferenceTemplate">Reference Template</a>
@@ -57,6 +58,8 @@
     Submit Date now included on the view  applications pages, and is sortable.<br /><img src="submit_date.jpg" alt="" width="485" height="324" /><h4 class="help_back_to_top"><a href="#top">Back to Top</a></h4></li>
   <li><a name="BiographicalSpreadsheet"><h3>Biographical spreadsheet<br /></h3></a>
     The biographical data  spreadsheet available to committee members has been reformatted to include new  columns and can also now be sorted from within Excel.<br /><img src="excel.jpg" /><h4 class="help_back_to_top"><a href="#top">Back to Top</a></h4></li>
+  <li><a name="ImprovedApplicationsView"><h3>Improved Applications View<br /></h3></a>
+  The applications view (for admins or committee members) now shows the current position and PhD Information for each applicant.  The PhD Information by default shows just the PhD award date and is sortable by this date.  By clicking +/- buttons you can choose to show or hide additional PhD information (like institution, field, etc.)<br /><img src="improved_app_view.jpg" /><h4 class="help_back_to_top"><a href="#top">Back to Top</a></h4>.</li>
   <li><a name="AdditionalReferences"><h3>Additional references<br /></h3></a>
     A new file type called  “Additional References” has been created which will allow you to upload any  desired information about references which were not included in the original  application.  This document will be kept  along with the application and can be viewed along with the application packet.<img src="additional_references.jpg" alt="" width="483" height="264" /><h4 class="help_back_to_top"><a href="#top">Back to Top</a></h4></li>
   <li><a name="RecruitmentManager"><h3>Recruitment manager email<br /></h3></a>
