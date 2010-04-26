@@ -81,21 +81,7 @@ namespace CAESDO.Recruitment.Test
         }
 
         [TestMethod()]
-        public void FillApplicant()
-        {
-            Applicant target = NHibernateHelper.daoFactory.GetApplicantDao().GetById(StaticProperties.ExistingApplicantID, false);
-
-            Assert.IsNotNull(target);
-
-            Assert.AreEqual<int>(target.ID, StaticProperties.ExistingApplicantID);
-            Assert.AreEqual<string>(target.Email, StaticProperties.ExistingApplicantEmail);
-
-            Assert.IsTrue(ValidateBO<Applicant>.isValid(target));
-
-        }
-
-        [TestMethod()]
-        public void FillAllApplicants()
+        public void ValidateAllTest()
         {
             List<Applicant> applicants = NHibernateHelper.daoFactory.GetApplicantDao().GetAll();
 
@@ -104,6 +90,8 @@ namespace CAESDO.Recruitment.Test
             foreach (Applicant app in applicants)
             {
                 Assert.IsTrue(ValidateBO<Applicant>.isValid(app));
+
+                this.TestContext.WriteLine("Applicant ID = {0}, Email = {1}", app.ID, app.Email); 
             }
         }
 

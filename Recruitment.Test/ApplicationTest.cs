@@ -85,19 +85,6 @@ namespace CAESDO.Recruitment.Test
         }
 
         /// <summary>
-        ///A test for AppliedPosition
-        ///</summary>
-        [TestMethod()]
-        public void AppliedPositionTest()
-        {
-            Application target = ExampleApplication;
-
-            Assert.IsFalse(target.IsTransient());
-
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
         ///A test for AssociatedProfile
         ///</summary>
         [TestMethod()]
