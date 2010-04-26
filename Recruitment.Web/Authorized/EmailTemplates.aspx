@@ -158,7 +158,7 @@
             
     </script>
 
-        <div>
+        <div id="email_word_bank">
             <strong>Template Fields:</strong><img alt="Reference Template Help" id="ReferenceTemplateHelp"
                 src="../Images/question_blue.png" /><br class="bottom_space" />
             <a href="javascript:InsertTemplateText('<%= GetGlobalResourceObject("RecruitmentResources", "ApplicantNameValue") %>');">
@@ -176,10 +176,10 @@
             </a>
         </div>
         <div style="width: 818px; height: 389px; background: url(../Images/envelope.jpg) no-repeat;
-            padding: 50px;">
+            padding: 20px;">
             <div class="blueletter">
                 <asp:TextBox ID="txtEmailTemplate" runat="server" CssClass="richTextEditor" TextMode="MultiLine"
-                    Width="100%"></asp:TextBox>
+                    Width="100%" Height="300px"></asp:TextBox>
                 <br />
             </div>
         </div>

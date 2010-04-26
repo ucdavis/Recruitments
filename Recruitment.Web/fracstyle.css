@@ -273,9 +273,7 @@ table.tablesorter thead tr .headerSortDown, table.tablesorter thead tr .headerSo
 
 .blueletter 
 {
-	background-color:#d8e6f0; 
-	width: 565px;
-	padding:30px;
+	width: 685px;
 	filter:alpha(opacity=80);
 	-moz-opacity:.80;
 	opacity:.80;
@@ -495,15 +493,22 @@ display:block; height:auto; line-height:1.5em; padding:5px 10px 4px 35px; width:
 * html .dropdownmenu ul li a:hover ul li a:hover ul li a {padding:4px 10px 4px 35px;}
 
 /** added by tyler **/
-#create_pos_word_bank 
+#create_pos_word_bank, #email_word_bank
 {
     float:right;
     position:absolute;
-    margin-left:590px;
     border:dotted 1px #7F7F7F;
     width:130px;
     padding:5px;
     background-color:#EFEFEF
+}
+#create_pos_word_bank 
+{
+    margin-left:590px;
+}
+#email_word_bank
+{
+    margin-left:650px;
 }
 .bottom_space 
 {
@@ -528,3 +533,13 @@ display:block; height:auto; line-height:1.5em; padding:5px 10px 4px 35px; width:
     margin-bottom:-10px;
     padding-bottom:0px;
 } 
+.req_txt_input
+{
+    background-color:#E3EDF7;
+}
+.req_txt_input_ex_box
+{
+    background-color:#E3EDF7;
+    border:solid 1px #000000;
+    padding:2px 4px;
+}

@@ -92,10 +92,13 @@
             </td>
         </tr>
         <tr>
+            <td colspan=2><p><strong>Fields in <span class="req_txt_input_ex_box">blue</span> are required</strong></p></td>
+        </tr>
+        <tr>
             <td   align="right" style="width: 240">
                 Position Title:</td>
             <td  >
-                <asp:TextBox ID="txtPositionTitle" runat="server" MaxLength="100" meta:resourcekey="txtPositionTitleResource1"></asp:TextBox>
+                <asp:TextBox ID="txtPositionTitle" runat="server" MaxLength="100" meta:resourcekey="txtPositionTitleResource1" CssClass="req_txt_input"></asp:TextBox>
                 <asp:RequiredFieldValidator ID="reqValPositionTitle" runat="server" ControlToValidate="txtPositionTitle" ErrorMessage="* Position Title Required" meta:resourcekey="reqValPositionTitleResource1"></asp:RequiredFieldValidator></td>
         </tr>
         <tr>
@@ -163,7 +166,7 @@
             <td   align="right" style="width: 240">
                 Recruitment Representative:</td>
             <td  >
-                <asp:TextBox ID="txtHRRep" runat="server" MaxLength="100" meta:resourcekey="txtHRRepResource1"></asp:TextBox>
+                <asp:TextBox ID="txtHRRep" runat="server" MaxLength="100" meta:resourcekey="txtHRRepResource1" CssClass="req_txt_input"></asp:TextBox>
                 <asp:RequiredFieldValidator id="reqValHRRep" ControlToValidate="txtHRRep" ErrorMessage="* Recruitment Reprenentative Required" runat="server" meta:resourcekey="reqValHRRepResource1"/>
             </td>
         </tr>
@@ -180,7 +183,7 @@
                 Recruitment Rep Email:
             </td>
             <td>
-                <asp:TextBox ID="txtHREmail" runat="server" MaxLength="100" meta:resourcekey="txtHREmailResource1"></asp:TextBox>
+                <asp:TextBox ID="txtHREmail" runat="server" MaxLength="100" meta:resourcekey="txtHREmailResource1" CssClass="req_txt_input"></asp:TextBox>
                 
                 <asp:RequiredFieldValidator id="reqValHREmail" ControlToValidate="txtHREmail" ErrorMessage="* Email Required" runat="server" Display="Dynamic" meta:resourcekey="reqValHREmailResource1"/>                
                 <asp:RegularExpressionValidator ID="regValHREmail" runat="server" ErrorMessage="* Email Format Not Valid" ControlToValidate="txtHREmail" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" Display="Dynamic" meta:resourcekey="regValHREmailResource1"></asp:RegularExpressionValidator>
@@ -191,7 +194,7 @@
                 Search Plan (PDF):
             </td>
             <td  >
-                <asp:LinkButton ID="lbtnDownloadSearchPlan" runat="server" Text="Download Existing Search Plan" Visible="False" OnClick="lbtnDownloadSearchPlan_Click"></asp:LinkButton>
+                <asp:LinkButton ID="lbtnDownloadSearchPlan" runat="server" Text="Download Existing Search Plan" Visible="False" OnClick="lbtnDownloadSearchPlan_Click"  CssClass="req_txt_input"></asp:LinkButton>
                 <asp:ImageButton ID="ibtnReplaceSearchPlan" runat="server" ImageUrl="~/Images/delete.gif" AlternateText="[Replace]" Visible="False" />
                 <asp:Literal ID="litDownloadSearchPlan" runat="server" Visible="False" Text="<br /><br />"></asp:Literal>
                 <asp:FileUpload ID="fileSearchPlan" runat="server" />
