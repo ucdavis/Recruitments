@@ -174,7 +174,10 @@ namespace CAESDO.Recruitment.Web
             Trace.Write("Valid user and application " + currentApplication.ID.ToString() + Environment.NewLine);
 
             if (currentApplication.AssociatedProfile.AssociatedApplicant.Email != loggedInUser.Email)
+            {
                 Trace.Write("User trying to access incorrect application");
+                Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.AUTH));
+            }
         }
 
         protected void Page_Load(object sender, EventArgs e)

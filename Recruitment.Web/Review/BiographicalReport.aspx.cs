@@ -95,7 +95,6 @@ namespace CAESDO.Recruitment.Web
 
             if (!allowedAccess)
             {
-                //Response.Write("Not Allowed Access");
                 Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.AUTH));
             }
         }

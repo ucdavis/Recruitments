@@ -176,7 +176,6 @@ namespace CAESDO.Recruitment.Web
             }
             else
             {
-                //Response.Write(ValidateBO<Position>.GetValidationResultsAsString(newPosition));
                 eReport.ReportError(new ApplicationException("Position Not Valid: " + ValidateBO<Position>.GetValidationResultsAsString(newPosition)), "btnModifyPosition_Click");
                 Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.VALIDATION));
             }

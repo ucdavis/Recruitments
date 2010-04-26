@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true"  CodeFile="Default.aspx.cs" Inherits="CAESDO.Recruitment.Web._Default" Trace="true" MasterPageFile="~/MasterPage.master" Title="Recruitments" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true"  CodeFile="Default.aspx.cs" Inherits="CAESDO.Recruitment.Web._Default" Trace="false" MasterPageFile="~/MasterPage.master" Title="Recruitments" %>
 
 <asp:Content ContentPlaceHolderID="contentPlaceHolder1" runat="server">
 <div style="text-align:center;">
