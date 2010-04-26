@@ -95,6 +95,11 @@
                         <td colspan="2"><br /></td>
                     </tr>
                     <tr>
+                        <td colspan="2">
+                            Enter the information of where you would like to be contacted regarding this position
+                        </td>
+                    </tr>
+                    <tr>
                         <td   align="right">
                             First Name:</td>
                         <td  >
