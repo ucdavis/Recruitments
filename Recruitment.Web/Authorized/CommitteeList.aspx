@@ -49,6 +49,18 @@
     function FailedCallback(error)
     {
     }
+
+    $(document).ready(function() {
+        //Sort table
+        $("#tblCommitteeList").tablesorter({
+            sortList: [[2, 0]],
+            cssAsc: 'headerSortUp',
+            cssDesc: 'headerSortDown',
+            cssHeader: 'header',
+            headers: { 3: { sorter: false } },
+            widgets: ['zebra']
+        });
+    });
     
     </script>
    
@@ -57,7 +69,52 @@
         <asp:ListItem Value="0">Select A Department</asp:ListItem>
     </asp:DropDownList><br /><br />
     
-    <asp:GridView ID="gviewCommitteeList" SkinID="gridViewShortList" runat="server" DataKeyNames="id" EmptyDataText="No Members Found" AutoGenerateColumns="False" DataSourceID="ObjectDepartmentMembers" OnRowDeleting="gviewCommitteeList_RowDeleting" CellPadding="0" GridLines="None">
+        <asp:ListView ID="lviewApplications" runat="server" DataSourceID="ObjectDepartmentMembers">
+        <LayoutTemplate>
+        <table id="tblCommitteeList" class="tablesorter">
+            <thead>
+                <tr>
+                    <th>
+                        LoginID
+                    </th>
+                    <th>
+                        FirstName
+                    </th>
+                    <th>
+                        LastName
+                    </th>
+                    <th>
+                        &nbsp;
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr id="itemPlaceholder" runat="server"></tr>
+            </tbody>
+        </table>
+        </LayoutTemplate>
+        <ItemTemplate>
+                <tr>
+                    <td>
+                        <%# Eval("LoginID") %>
+                    </td>
+                    <td>
+                        <%# Eval("FirstName") %>
+                    </td>
+                    <td>
+                        <%# Eval("LastName") %>
+                    </td>
+                    <td>
+                        <asp:LinkButton ID="btnRemove" runat="server" Text="Remove" CommandArgument='<%# Eval("id") %>' OnClick="btnRemove_Click" CausesValidation="false"></asp:LinkButton>
+                    </td>
+                </tr>
+        </ItemTemplate>
+        <EmptyDataTemplate>
+            No Members Found
+        </EmptyDataTemplate>
+    </asp:ListView>
+    
+<%--    <asp:GridView ID="gviewCommitteeList" SkinID="gridViewShortList" runat="server" DataKeyNames="id" EmptyDataText="No Members Found" AutoGenerateColumns="False" DataSourceID="ObjectDepartmentMembers" OnRowDeleting="gviewCommitteeList_RowDeleting" CellPadding="0" GridLines="None">
         <Columns>
             <asp:BoundField DataField="LoginID" HeaderText="LoginID" SortExpression="LoginID" >
                 <ItemStyle CssClass="paddingLeft" />
@@ -68,7 +125,7 @@
             <asp:CommandField DeleteText="Remove" ShowDeleteButton="True" />
         </Columns>    
         <HeaderStyle HorizontalAlign="Left" />
-    </asp:GridView>
+    </asp:GridView>--%>
     
     <asp:ObjectDataSource ID="ObjectDepartmentMembers" runat="server" SelectMethod="GetMembersByDepartment" 
         TypeName="CAESDO.Recruitment.BLL.DepartmentMemberBLL" OldValuesParameterFormatString="original_{0}">

@@ -69,9 +69,27 @@ namespace CAESDO.Recruitment.Web
             }
 
             //Now we have a new member, so rebind the grid
-            gviewCommitteeList.DataBind();
+            lviewApplications.DataBind();
         }
 
+        protected void btnRemove_Click(object sender, EventArgs e)
+        {
+            LinkButton lbtn = (LinkButton)sender;
+
+            int departmentMemberID = int.Parse(lbtn.CommandArgument);
+            DepartmentMember member = DepartmentMemberBLL.GetByID(departmentMemberID);
+
+            using (new TransactionScope())
+            {
+                member.Inactive = true; //Mark the member as inactive
+
+                DepartmentMemberBLL.EnsurePersistent(ref member);
+            }
+
+            lviewApplications.DataBind();
+        }
+
+        /*
         protected void gviewCommitteeList_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
             int departmentMemberID = (int)gviewCommitteeList.DataKeys[e.RowIndex]["id"];
@@ -88,10 +106,11 @@ namespace CAESDO.Recruitment.Web
 
             gviewCommitteeList.DataBind();
         }
+         */
 
         protected void dlistType_SelectedIndexChanged(object sender, EventArgs e)
         {
-            gviewCommitteeList.DataBind();
+            lviewApplications.DataBind();
             //ObjectDepartmentMembers.DataBind();
         }
 }
