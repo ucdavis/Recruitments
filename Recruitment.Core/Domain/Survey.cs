@@ -83,7 +83,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         public virtual bool isComplete()
         {
-            throw new Exception("The method or operation is not implemented.");
+            return Complete;
         }
 
         #endregion

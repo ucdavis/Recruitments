@@ -35,6 +35,10 @@ namespace CAESDO.Recruitment.Web
             }
         }
 
+        /// <summary>
+        /// The current application just uses the daoFactory to get the application out by ID -- no Session storage used because
+        /// the Dao factory manages a cache per session (might want to update that later if performance is not acceptable).e
+        /// </summary>
         public Application currentApplication
         {
             get
@@ -75,6 +79,11 @@ namespace CAESDO.Recruitment.Web
             }
         }
 
+        /// <summary>
+        /// Page_Init checks to ensure that the query string is valid, the logged in user is an applicant, the given application is valid
+        /// and the logged-in user is the owner of this application
+        /// </summary>
+        /// <remarks>Currently any membership user can view any application for testing</remarks>
         protected void Page_Init(object sender, EventArgs e)
         {
             Applicant loggedInUser = daoFactory.GetApplicantDao().GetApplicantByEmail(HttpContext.Current.User.Identity.Name);
@@ -116,6 +125,32 @@ namespace CAESDO.Recruitment.Web
         }
 
         /// <summary>
+        /// Called whenever a tab is clicked -- it will take the user to that tab's content, and change the tab's style to
+        /// selected (and all others to unselected)
+        /// </summary>
+        /// <remarks>The lbtnStep has a command argument which represents the selected step name</remarks>
+        protected void lbtnStep_Click(object sender, EventArgs e)
+        {
+            //Grab the link button's command argument (the step name)
+            string stepName = ((LinkButton)sender).CommandArgument;
+
+            foreach (Step step in ApplicationSteps)
+            {
+                if (step.StepName == stepName)
+                {
+                    step.setSelectionStatus(true);
+                }
+                else
+                {
+                    step.setSelectionStatus(false);
+                }
+            }
+
+            rptSteps.DataSource = ApplicationSteps;
+            rptSteps.DataBind();
+        }
+
+        /// <summary>
         /// Loads up all application steps, along with state, into a List for the sidebar
         /// </summary>
         /// <remarks>
@@ -133,26 +168,58 @@ namespace CAESDO.Recruitment.Web
             //Now add the contact information (so far no way to tell if complete)
             ApplicationSteps.Add(new Step("Contact Information", false, false, true));
 
-            NHibernate.ISession session = (NHibernate.ISession)HttpContext.Current.Items["CONTEXT_SESSION"];
-
-            Trace.Write(session.IsOpen.ToString());
-
             //Add education
             ApplicationSteps.Add(new Step("Education Information", currentApplication.isComplete(ApplicationStepType.Education), false, true));
 
             //Add references
             ApplicationSteps.Add(new Step("References", currentApplication.isComplete(ApplicationStepType.References), false, true));
-            
-            //Add resume
-            
-            ApplicationSteps.Add(new Step("Resume", false, false, true));
 
-            ApplicationSteps.Add(new Step("Home", true, false, true));
-            ApplicationSteps.Add(new Step("Contact Information", false, false, true));
-            ApplicationSteps.Add(new Step("Education Information", true, false, true));
-            ApplicationSteps.Add(new Step("Home", true, false, true));
-            ApplicationSteps.Add(new Step("Contact Information", false, false, true));
-            ApplicationSteps.Add(new Step("Education Information", true, false, true));
+            //Add current position
+            ApplicationSteps.Add(new Step("Current Position", currentApplication.isComplete(ApplicationStepType.CurrentPosition), false, true));
+
+            //Add files 
+            bool hasResume = false;
+            bool hasCoverLetter = false;
+            bool hasCV = false;
+            bool hasTranscript = false; 
+            bool hasResearchInterest = false;
+
+
+            //Go through each file in the currentApplication and find out if each filetype is available
+            foreach (File file in currentApplication.Files)
+            {
+                switch (file.FileType.FileTypeName)
+                {
+                    case "Resume":
+                        hasResume = true;
+                        break;
+                    case "CoverLetter":
+                        hasCoverLetter = true;
+                        break;
+                    case "CV":
+                        hasCV = true;
+                        break;
+                    case "Transcript":
+                        hasTranscript = true;
+                        break;
+                    case "ResearchInterest":
+                        hasResearchInterest = true;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            //Now add each type of file, hiding if necessary
+            ApplicationSteps.Add(new Step("Resume", hasResume, false, true));
+            ApplicationSteps.Add(new Step("Cover Letter", hasCoverLetter, false, true));
+            ApplicationSteps.Add(new Step("Research Interests", hasResearchInterest, false, true));
+            ApplicationSteps.Add(new Step("Transcripts", hasTranscript, false, true));
+            
+            //Add the confidential survey
+            ApplicationSteps.Add(new Step("Confidential Survey", currentApplication.isComplete(ApplicationStepType.Survey), false, true));
+
+            //ApplicationSteps.Add(new Step("Education Information", true, false, true));
 
             Trace.Write("End Step Load");
         }
@@ -214,19 +281,29 @@ namespace CAESDO.Recruitment.Web
 
         }
 
-        public Step(string stepName, bool completed, bool selected, bool stepVisible )
+        public void setSelectionStatus(bool selected)
         {
-            this.StepName = stepName;
-
-            if (completed)
-                this.ImgURL = STR_AppCheckedImage;
-            else
-                this.ImgURL = STR_AppUncheckedImage;
-
             if (selected)
                 this.CSSClass = STR_Selected;
             else
                 this.CSSClass = STR_Unselected;
+        }
+
+        public void setCompletionStatus(bool completed)
+        {
+            if (completed)
+                this.ImgURL = STR_AppCheckedImage;
+            else
+                this.ImgURL = STR_AppUncheckedImage;
+        }
+
+        public Step(string stepName, bool completed, bool selected, bool stepVisible )
+        {
+            this.StepName = stepName;
+
+            this.setCompletionStatus(completed);
+
+            this.setSelectionStatus(selected);            
 
             this.StepVisible = stepVisible;
         }

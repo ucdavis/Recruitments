@@ -11,7 +11,8 @@
 </head>
 <body>
     <form id="form1" runat="server">
-    <asp:scriptmanager ID="Scriptmanager1" runat="server"></asp:scriptmanager>
+<%--    <asp:scriptmanager ID="Scriptmanager1" runat="server"></asp:scriptmanager>--%>
+    <AjaxControlToolkit:ToolkitScriptManager ID="toolkitScript" runat="server"></AjaxControlToolkit:ToolkitScriptManager>
     <div id="wrapper">
     <div id="header" style="height:62px;">
         <asp:Image ID="imgRecruitmentLogo" runat="server" ImageUrl="~/Images/logo.gif" style="float:left;" /><asp:Image ID="imgRecruitmentDavisLogo" runat="server" ImageUrl="~/Images/logo_ucdavis.gif" AlternateText="UC Davis, College of Agricultural and Environmental Sciences" style="float:right" />
@@ -40,8 +41,8 @@
                                 <asp:Panel ID="pnlUserName" runat="server" style="display:inline;">&nbsp;&nbsp;&nbsp; Welcome: <%= LoggedInUserName %> 
                                     <asp:Image ID="imgDownArrow" runat="server" AlternateText="down arrow" ImageUrl="~/Images/downarrow.gif" />
                                 </asp:Panel> 
-                                <AjaxControlToolkit:DropDownExtender ID="ddUserName" TargetControlID="pnlUserName" DropDownControlID="pnlUserNameDropOptions" runat="server" HighlightBackColor="#eeeeee">
-                                </AjaxControlToolkit:DropDownExtender>
+                                <%--<AjaxControlToolkit:DropDownExtender ID="ddUserName" TargetControlID="pnlUserName" DropDownControlID="pnlUserNameDropOptions" runat="server" HighlightBackColor="#eeeeee">
+                                </AjaxControlToolkit:DropDownExtender>--%>
                                 <asp:Panel ID="pnlUserNameDropOptions" runat="server" CssClass="ContextMenuPanel" Style="display:none;visibility:hidden;">
                                     <asp:LinkButton runat="server" ID="Option2" Text="View Profile" CssClass="ContextMenuItem" />
                                     <asp:LinkButton runat="server" ID="Option3" Text="Option 2" CssClass="ContextMenuItem" />
