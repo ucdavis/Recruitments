@@ -21,12 +21,18 @@ namespace CAESDO.Recruitment.Web
         private const string STR_Applicationpdf = "application/pdf";
         private const string STR_Publication = "Publication";
         private const string STR_LetterOfRec = "LetterOfRec";
-        private const string REFERENCE_VALUE = "0";
+        private const string STR_References = "References";
+        private const string STR_Publications = "Publications";
 
         public Application selectedApplication 
         {
             get {
-                return daoFactory.GetApplicationDao().GetById(int.Parse(dlistApplications.SelectedValue), false);
+                int appID = 0;
+                
+                if ( int.TryParse(dlistApplications.SelectedValue, out appID ) )
+                    return daoFactory.GetApplicationDao().GetById(appID, false);
+                else
+                    return null;
             }
         }
 
@@ -38,6 +44,56 @@ namespace CAESDO.Recruitment.Web
         protected void rlistUploadType_SelectedIndexChanged(object sender, EventArgs e)
         {
             mViewFileType.ActiveViewIndex = int.Parse(rlistUploadType.SelectedValue);
+
+            if (rlistUploadType.SelectedItem.Text == STR_Publications)
+            {
+                rptPublications.DataSource = GetFilesOfType(STR_Publication);
+                rptPublications.DataBind();
+            }
+            else
+            {
+                rptPublications.Visible = false;
+            }
+        }
+
+        protected void dlistApplications_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (rlistUploadType.SelectedItem.Text == STR_Publications)
+            {
+                //If the publications rbtn is checked, then bind the publications grid
+                rptPublications.Visible = true;
+                rptPublications.DataSource = GetFilesOfType(STR_Publication);
+                rptPublications.DataBind();
+            }
+        }
+
+        protected void ibtnPublicationsRemoveFile_Click(object sender, EventArgs e)
+        {
+            int FileID = 0;
+            bool success = false;
+
+            success = int.TryParse(((ImageButton)sender).CommandArgument, out FileID);
+
+            if (success)
+            {
+                File fileToDelete = daoFactory.GetFileDao().GetById(FileID, false);
+
+                using (new NHibernateTransaction())
+                {
+                    selectedApplication.Files.Remove(fileToDelete);
+                    daoFactory.GetFileDao().Delete(fileToDelete);
+
+                    //Delete the file from the file system
+                    System.IO.FileInfo file = new System.IO.FileInfo(FilePath + fileToDelete.ID.ToString());
+                    file.Delete();
+
+                    //Update the current application
+                    daoFactory.GetApplicationDao().SaveOrUpdate(selectedApplication);
+                }
+            }
+
+            rptPublications.DataSource = GetFilesOfType(STR_Publication);
+            rptPublications.DataBind();
         }
 
         /// <summary>
@@ -45,9 +101,13 @@ namespace CAESDO.Recruitment.Web
         /// </summary>
         protected void btnfileUpload_Click(object sender, EventArgs e)
         {
-            if (rlistUploadType.SelectedValue == REFERENCE_VALUE)
+            if (rlistUploadType.SelectedItem.Text == STR_References )
             {
                 UploadReferences();
+            }
+            else if (rlistUploadType.SelectedItem.Text == STR_Publications)
+            {
+                UploadPublications();
             }
             else
             {
@@ -159,6 +219,48 @@ namespace CAESDO.Recruitment.Web
             }
         }
 
+        private void UploadPublications()
+        {
+            FileType publicationsFileType = daoFactory.GetFileTypeDao().GetFileTypeByName(STR_Publication);
+
+            if (fileUpload.HasFile)
+            {
+                if (fileUpload.PostedFile.ContentType == STR_Applicationpdf)
+                {
+                    File publication = new File();
+
+                    publication.FileName = fileUpload.FileName;
+                    publication.FileType = publicationsFileType;
+
+                    using (new NHibernateTransaction())
+                    {
+                        publication = daoFactory.GetFileDao().Save(publication);
+                    }
+
+                    if (ValidateBO<File>.isValid(publication))
+                    {
+                        fileUpload.SaveAs(FilePath + publication.ID.ToString());
+
+                        selectedApplication.Files.Add(publication);
+
+                        using (new NHibernateTransaction())
+                        {
+                            daoFactory.GetApplicationDao().SaveOrUpdate(selectedApplication);
+                        }
+
+                        lblStatus.Text = "File Uploaded Successfully";
+                    }
+                    else
+                    {
+                        //TODO: Handle non-validating file
+                    }
+                }
+            }
+
+            rptPublications.DataSource = GetFilesOfType(STR_Publication);
+            rptPublications.DataBind();
+        }
+
         private void SaveReferenceWithWatermark(FileUpload uploadedFile, string fileName)
         {
             PdfReader reader = new PdfReader(uploadedFile.FileContent);
@@ -204,7 +306,6 @@ namespace CAESDO.Recruitment.Web
             document.Close();
         }
         
-
         /// <summary>
         /// Removes all files of the given type from the current applicaiton.  This removes the files themselves,
         /// the file info entry and the application files link
@@ -239,6 +340,9 @@ namespace CAESDO.Recruitment.Web
         /// <returns>Just the currentApplication files of the given type</returns>
         private List<File> GetFilesOfType(string fileTypeName)
         {
+            if (selectedApplication == null)
+                return new List<File>();
+
             List<File> correctTypeFiles = new List<File>();
 
             foreach (File f in selectedApplication.Files)
@@ -249,6 +353,24 @@ namespace CAESDO.Recruitment.Web
 
             return correctTypeFiles;
         }
-    }
+
+        /// <summary>
+        /// Returns a string that specifies the number of publications requested remaining
+        /// </summary>
+        /// <returns></returns>
+        public string NumPublicationsRemainingText()
+        {
+            if (selectedApplication == null)
+                return string.Empty;
+
+            //Warn the user if they don't have enough publications
+            int numPublicationsRemaining = selectedApplication.AppliedPosition.NumPublications - GetFilesOfType(STR_Publication).Count;
+
+            if (numPublicationsRemaining > 0)
+                return string.Format("[{0} More Publication{1} Requested]", numPublicationsRemaining, numPublicationsRemaining == 1 ? string.Empty : "s");
+            else
+                return string.Empty;
+        }
+}
 
 }

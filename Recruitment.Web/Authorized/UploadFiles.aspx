@@ -5,13 +5,14 @@
     <div class="box" style="width: 600px;"><br />
     <asp:RadioButtonList ID="rlistUploadType" runat="server" AutoPostBack="True" OnSelectedIndexChanged="rlistUploadType_SelectedIndexChanged">
         <asp:ListItem Selected="True" Value="0">References</asp:ListItem>
-        <asp:ListItem Value="1">Other Files</asp:ListItem>
+        <asp:ListItem Value="1">Publications</asp:ListItem>
+        <asp:ListItem Value="2">Other Files</asp:ListItem>
     </asp:RadioButtonList><br />
 
     Position: <asp:DropDownList ID="dlistPositions" runat="server"></asp:DropDownList>
         <br />
     <br />
-    Application: <asp:DropDownList ID="dlistApplications" runat="server"></asp:DropDownList>
+    Application: <asp:DropDownList ID="dlistApplications" runat="server" AutoPostBack="true" OnSelectedIndexChanged="dlistApplications_SelectedIndexChanged"></asp:DropDownList>
     <br />
 
     <AjaxControlToolkit:CascadingDropDown ID="cascadePositions" runat="server" TargetControlID="dlistPositions" 
@@ -40,6 +41,10 @@
             
         </asp:View>
         
+        <asp:View ID="viewPublication" runat="server">
+            
+        </asp:View>
+        
         <asp:View ID="viewGeneric" runat="server">
         
             File Type: <asp:DropDownList ID="dlistFileTypes" runat="server"></asp:DropDownList>
@@ -49,10 +54,11 @@
                         
             <AjaxControlToolkit:CascadingDropDown ID="cascadeFileTypes" runat="server" TargetControlID="dlistFileTypes"
                                                      Category="FileTypes" PromptText="Select a File Type" ServicePath="RecruitmentService.asmx"
-                                                     ParentControlID="dlistApplications" ServiceMethod="GetFileTypesNoLettersOfRec">
+                                                     ParentControlID="dlistApplications" ServiceMethod="GetApplicationFileTypesNoPublications">
             </AjaxControlToolkit:CascadingDropDown>
         
         </asp:View>
+        
     </asp:MultiView>
 
     <table style="width:540px; background-color:#fff; border: 1px solid #a7a7a7; margin-left: 10px; padding-left: 20px; padding-right: 20px;" cellpadding="5">
@@ -74,8 +80,24 @@
                     <td   align="right">
                     </td>
                     <td align="right"  >
-                        <br />
-                        <asp:Button ID="btnfileUpload" runat="server" Text="Upload" OnClick="btnfileUpload_Click" /><br /><br /></td>
+                        <asp:Button ID="btnfileUpload" runat="server" Text="Upload" OnClick="btnfileUpload_Click" /><br /></td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <asp:Repeater ID="rptPublications" runat="server" Visible="False">
+                            <HeaderTemplate>
+                                Existing Publication Files <asp:Label ID="lblPublicationsRemaining" runat="server" Text='<%# NumPublicationsRemainingText() %>' ForeColor="Brown" EnableViewState="false"></asp:Label>: <br />
+                            </HeaderTemplate>
+                            <ItemTemplate>
+                                &nbsp;&nbsp;<asp:LinkButton ID="lbtnPublicationFile" runat="server" Text='<%# Eval("FileName") %>' CommandArgument='<%# Eval("ID") %>' Enabled="false" ></asp:LinkButton>
+                                <asp:ImageButton ID="ibtnPublicationsRemoveFile" runat="server" CommandArgument='<%# Eval("ID") %>' OnClick="ibtnPublicationsRemoveFile_Click" AlternateText="Remove File" ImageUrl="~/Images/delete.gif" ToolTip="Remove File" />
+                            </ItemTemplate>
+                            <SeparatorTemplate>
+                                <br />
+                            </SeparatorTemplate>
+                        </asp:Repeater>
+                        <br /><br />
+                    </td>
                 </tr>
     </table>
     <br /><br />    

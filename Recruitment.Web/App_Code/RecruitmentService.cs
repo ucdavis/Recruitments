@@ -74,16 +74,16 @@ public class RecruitmentService : System.Web.Services.WebService
     }
 
     [WebMethod]
-    public CascadingDropDownNameValue[] GetFileTypesNoLettersOfRec(string knownCategoryValues, string category)
+    public CascadingDropDownNameValue[] GetApplicationFileTypesNoPublications(string knownCategoryValues, string category)
     {
         List<CascadingDropDownNameValue> values = new List<CascadingDropDownNameValue>();
 
-        List<FileType> fileTypes = daoFactory.GetFileTypeDao().GetAll();
+        List<FileType> fileTypes = daoFactory.GetFileTypeDao().GetAllByApplicationFileType(true, "FileTypeName", true);
 
         foreach (FileType t in fileTypes)
         {
-            if (t.FileTypeName != "LetterOfRec")
-                values.Add(new CascadingDropDownNameValue(BreakCamelCase(t.FileTypeName), t.ID.ToString()));
+            if ( t.FileTypeName != "Publication" )
+            values.Add(new CascadingDropDownNameValue(BreakCamelCase(t.FileTypeName), t.ID.ToString()));
         }
 
         return values.ToArray();
