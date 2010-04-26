@@ -317,8 +317,8 @@
                                 
                 <asp:Panel ID="pnlReferencesEntry" runat="server" CssClass="modalPopup" style="display:none;">
                     <span class="modalTitle">Add/Update Reference</span>
-                    <div style="height:450px; overflow:auto;">
-                    <table cellpadding="5" style="width:500px;">
+                    <div style="height:450px; width: 460px; overflow:auto;">
+                    <table cellpadding="5">
                         <tr>
                             <td align="right">
                                 Title:</td>
@@ -441,7 +441,7 @@
                         <tr>
                             <td   align="right">
                             </td>
-                            <td align="right"  >
+                            <td>
                                 <br />
                                 <asp:Button ID="btnReferencesAddUpdate" runat="server" CommandArgument="0" Text="Add Reference" ValidationGroup="References" OnClick="btnReferencesAddUpdate_Click" />
                                 <asp:Button ID="btnReferencesCancel" runat="server" Text="Cancel" CausesValidation="false" OnClick="btnReferencesCancel_Click" />
