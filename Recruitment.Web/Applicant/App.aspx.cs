@@ -249,6 +249,8 @@ namespace CAESDO.Recruitment.Web
             currentProfile.Address1 = txtContactAddress1.Text;
             currentProfile.Address2 = txtContactAddress2.Text;
             currentProfile.City = txtContactCity.Text;
+            currentProfile.Zip = txtContactZip.Text;
+            currentProfile.Country = txtContactCountry.Text;
             currentProfile.State = txtContactState.Text;
             currentProfile.Phone = txtContactPhone.Text;
 
@@ -258,12 +260,17 @@ namespace CAESDO.Recruitment.Web
             //Update the LastUpdated property (this is how we know a profile has been updated/completed)
             currentProfile.LastUpdated = DateTime.Now;
 
+            //Update the email of the current application
+            currentApplication.LastUpdated = DateTime.Now;
+            currentApplication.Email = txtContactEmail.Text;
+
             //Ensure the unsaved profile is valid before saving
             if (ValidateBO<Profile>.isValid(currentProfile))
             {
                 using (new NHibernateTransaction())
                 {
                     daoFactory.GetProfileDao().SaveOrUpdate(currentProfile);
+                    daoFactory.GetApplicationDao().SaveOrUpdate(currentApplication);
                 }
             }
             else

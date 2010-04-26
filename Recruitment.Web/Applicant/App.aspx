@@ -149,6 +149,22 @@
                         </td>
                     </tr>
                     <tr>
+                        <td align="right">
+                            Zip
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtContactZip" runat="server" MaxLength="20"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                            Country
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtContactCountry" runat="server" MaxLength="50"></asp:TextBox>
+                        </td>
+                    </tr>
+                    <tr>
                         <td   align="right">
                             Phone Number:</td>
                         <td  >
@@ -156,6 +172,16 @@
                             <%--<AjaxControlToolkit:MaskedEditExtender ID="maskHRPhone" runat="server" TargetControlID="txtHRPhone" MaskType="Number" Mask="(999) 999-9999" ClearMaskOnLostFocus="false" Filtered="" AutoComplete="false"></AjaxControlToolkit:MaskedEditExtender>
                             --%>
                             <asp:RegularExpressionValidator ID="regValContacPhone" runat="server" ControlToValidate="txtContactPhone" ErrorMessage="*" ValidationExpression="((\(\d{3}\) ?)|(\d{3}-))?\d{3}-\d{4}"></asp:RegularExpressionValidator>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                            Email
+                        </td>
+                        <td>
+                            <asp:TextBox ID="txtContactEmail" runat="server" MaxLength="50"></asp:TextBox>
+                            <asp:RequiredFieldValidator id="reqValContactEmail" runat="server" ControlToValidate="txtContactEmail" ErrorMessage="*"></asp:RequiredFieldValidator>
+                            <asp:RegularExpressionValidator ID="regValContactEmail" runat="server" ControlToValidate="txtContactEmail" ErrorMessage="*" ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*"></asp:RegularExpressionValidator>
                         </td>
                     </tr>
                     <tr>
