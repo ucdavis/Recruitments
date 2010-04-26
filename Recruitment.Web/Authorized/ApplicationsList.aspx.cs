@@ -202,6 +202,7 @@ namespace CAESDO.Recruitment.Web
             using (new NHibernateTransaction())
             {
                 reference.SentEmail = true;
+                reference.EmailDate = DateTime.Now;
 
                 daoFactory.GetReferenceDao().SaveOrUpdate(reference);
             }

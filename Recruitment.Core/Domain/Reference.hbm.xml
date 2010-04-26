@@ -28,6 +28,7 @@
     <property name="Email" column="Email" />
 
     <property name="SentEmail" column="SentEmail" />
+    <property name="EmailDate" column="EmailDate" />
     <property name="UploadID" column="UploadID" />
     <property name="Complete" column="Complete" />
 

@@ -173,6 +173,14 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _SentEmail = value; }
         }
 
+        private DateTime? _EmailDate;
+
+        public virtual DateTime? EmailDate
+        {
+            get { return _EmailDate; }
+            set { _EmailDate = value; }
+        }
+        
         private string _UploadID;
 
         [StringLengthValidator(50)]

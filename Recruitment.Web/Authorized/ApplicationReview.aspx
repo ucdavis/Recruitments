@@ -208,6 +208,11 @@
                                 </asp:TemplateField>
                                 <asp:BoundField HeaderText="Phone" DataField="Phone" Visible="False" />
                                 <asp:BoundField HeaderText="Email:" DataField="Email" />
+                                <asp:TemplateField HeaderText="Notified">
+                                    <ItemTemplate>
+                                        <%# Eval("EmailDate") == null ? "Not Notified" : ((DateTime)Eval("EmailDate")).ToShortDateString() %>
+                                    </ItemTemplate>
+                                </asp:TemplateField>
                                 <asp:TemplateField HeaderText="File">
                                     <ItemTemplate>
                                         <asp:LinkButton ID="lbtnReferenceFile" runat="server" Text="Download File" CommandArgument='<%# Eval("ReferenceFile.id") %>' Visible='<%# GetRefernceFileStatusString((int)Eval("id")) %>' 
