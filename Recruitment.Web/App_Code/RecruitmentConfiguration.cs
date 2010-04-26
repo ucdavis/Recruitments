@@ -72,7 +72,7 @@ namespace CAESDO.Recruitment.Web
         /// <summary>
         /// Name of the error page (could be read from the web.config in a future version)
         /// </summary>
-        private static string ErrorPageName = "Error.aspx";
+        private static string ErrorPageName = "~/Error.aspx";
 
         //Const vars which hold the cell indexes for certain types of data.  Change here if the column orders are
         //ever changed, or if columns are added/deleted
