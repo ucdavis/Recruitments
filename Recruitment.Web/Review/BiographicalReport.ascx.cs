@@ -138,6 +138,10 @@ namespace CAESDO.Recruitment.Web
             //Place all of the errors into this error string, and mark isComplete false if we fail a step
             List<string> incompleteSteps = new List<string>();
 
+            //Make sure they updated their profile at some point
+            if (currentApplication.AssociatedProfile.LastUpdated == null)
+                incompleteSteps.Add(STR_ContactInformation);
+
             //Loop through each required step and make sure it is completed
             foreach (ApplicationStepType step in currentApplication.AppliedPosition.Steps)
             {
