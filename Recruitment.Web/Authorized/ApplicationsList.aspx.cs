@@ -49,9 +49,9 @@ namespace CAESDO.Recruitment.Web
 
         protected void dlistPositions_SelectedIndexChanged(object sender, EventArgs e)
         {
-            gviewApplications.DataBind();
+            lviewApplications.DataBind();
 
-            if (gviewApplications.Rows.Count > 0)
+            if (lviewApplications.Items.Count > 0)
             {
                 btnUpdateList.Visible = true;
                 btnEmailReferences.Visible = true;
@@ -67,11 +67,9 @@ namespace CAESDO.Recruitment.Web
         {
             using (new TransactionScope())
             {
-                foreach (GridViewRow row in gviewApplications.Rows)
+                foreach (var row in lviewApplications.Items)
                 {
-                    if (row.RowType == DataControlRowType.DataRow)
-                    {
-                        int applicationID = (int)gviewApplications.DataKeys[row.RowIndex]["id"];
+                        int applicationID = (int)lviewApplications.DataKeys[row.DataItemIndex]["id"];
                         Application app = ApplicationBLL.GetByID(applicationID);
 
                         app.InterviewList = ((CheckBox)row.FindControl("chkShortList")).Checked;
@@ -79,7 +77,6 @@ namespace CAESDO.Recruitment.Web
                         app.NoConsideration = ((CheckBox)row.FindControl("chkNoConsideration")).Checked;
 
                         ApplicationBLL.EnsurePersistent(ref app);
-                    }
                 }
             }
 
