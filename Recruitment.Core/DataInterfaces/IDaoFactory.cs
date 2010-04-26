@@ -42,6 +42,7 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
 
     public interface IPositionDao : IDao<Position, int> {
         List<Position> GetAllPositionsByStatus(bool Closed, bool AdminAccepted);
+        bool VerifyPositionAccess(Position position);
     }
 
     public interface IApplicationDao : IDao<Application, int> {

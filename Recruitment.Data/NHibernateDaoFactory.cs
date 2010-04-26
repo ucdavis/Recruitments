@@ -174,6 +174,33 @@ namespace CAESDO.Recruitment.Data
                 }
                 return criteria.List<Position>() as List<Position>;
             }
+
+            public bool VerifyPositionAccess(Position position)
+            {
+                User currentUser = new UserDao().GetUserByLogin(HttpContext.Current.User.Identity.Name);
+
+                if (currentUser == null)
+                    return false;
+                else
+                {
+                    List<string> deptFIS = new List<string>();
+
+                    foreach (Unit u in currentUser.Units)
+                    {
+                        deptFIS.Add(u.FISCode);
+                    }
+
+                    ICriteria criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof(Position))
+                        .Add(Expression.IdEq(position.ID))
+                        .CreateCriteria("Departments")
+                        .Add(Expression.In("DepartmentFIS", deptFIS.ToArray()));
+
+                    if (criteria.List<Position>().Count == 0)
+                        return false;
+                    else
+                        return true;
+                }
+            }
         }
 
         [DataObject]

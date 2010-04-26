@@ -291,6 +291,9 @@ namespace CAESDO.Recruitment.Web
                 Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.UNKNOWN));
             }
 
+            if (daoFactory.GetPositionDao().VerifyPositionAccess(currentPosition) == false)
+                Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.AUTH));
+
             //If we do, databind all of the fields on the form
             //Set the posted date to now
             txtDeadline.Text = currentPosition.Deadline.ToShortDateString();
