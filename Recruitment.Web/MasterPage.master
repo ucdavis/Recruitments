@@ -232,6 +232,7 @@
     </div>
     <div id="shadowBottom">
     </div>
+    <asp:ContentPlaceHolder ID="cphFooter" runat="server">
     <div id="footer" style="text-align: center">
         <div>
             <p>
@@ -244,6 +245,7 @@
             </p>
         </div>
     </div>
+    </asp:ContentPlaceHolder>
     <br />
     <br />
     </form>

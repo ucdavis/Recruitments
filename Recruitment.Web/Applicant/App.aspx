@@ -87,11 +87,15 @@
                             You are applying to the <asp:Label ID="lblApplicationPositionTitle" runat="server" meta:resourcekey="lblApplicationPositionTitleResource1"></asp:Label> position.
                             <asp:Literal ID="litFullConsideration" runat="server" Text="For full consideration, please have your application finalized by" meta:resourcekey="litFullConsiderationResource1"></asp:Literal> 
                             <asp:Label ID="lblApplicationDeadline" runat="server" meta:resourcekey="lblApplicationDeadlineResource1"></asp:Label>.
-                            <br />
                         </td>
                     </tr>
                     <tr>
-                        <td colspan="2"><br />
+                        <td colspan="2">
+                            Contact <a href='mailto:<%= currentApplication.AppliedPosition.HREmail %>'><%= currentApplication.AppliedPosition.HREmail %></a> if you have any questions.
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
                             <asp:Literal ID="litCompleteTabs" runat="server" Text="Please complete all tabs on the left hand side of this page." meta:resourcekey="litCompleteTabsResource1"></asp:Literal> <br /><br />
                             
                             <asp:Literal ID="litFinalize" runat="server" Text="When you are done with all sections, click on the finalize button to complete your application.
@@ -962,3 +966,15 @@
     
   </asp:Content>
 
+<asp:Content ContentPlaceHolderID="cphFooter" runat="server" ID="cphAppFooter">
+
+<div id="footer" style="text-align: center">
+    <div>
+            <p>
+                CAESDO Recruitments Version: <%= System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.ToString() %>
+                <br />
+                Developed By The College Of Agricultural And Environmental Science Dean's Office
+            </p>
+        </div>
+    </div>
+</asp:Content>

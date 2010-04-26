@@ -73,10 +73,10 @@ namespace CAESDO.Recruitment.Web
             if (!IsPostBack)
             {
                 //Populate the questions email and assembly version
+                if (litAssemblyVersion != null) litAssemblyVersion.Text = AssemblyVersion;
 
-                litAssemblyVersion.Text = AssemblyVersion;
-
-                hlinkEmail.NavigateUrl = "mailto:" + WebConfigurationManager.AppSettings["AppMailTo"] + "?subject=[" + WebConfigurationManager.AppSettings["AppName"] + "] " + AssemblyVersion + " <your question or comment>";
+                if (hlinkEmail != null)
+                    hlinkEmail.NavigateUrl = "mailto:" + WebConfigurationManager.AppSettings["AppMailTo"] + "?subject=[" + WebConfigurationManager.AppSettings["AppName"] + "] " + AssemblyVersion + " <your question or comment>";
             }
         }
 
