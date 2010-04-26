@@ -64,6 +64,12 @@
                 },
             widgets: ['zebra']
         });
+
+        $("#CommitteeHelp").bt('Committee Members Can Review All Applications Throughout The Entire Application Process (Including In Progress/Un-Finalized Applications)');
+
+        $("#FacultyHelp").bt('Faculty Members Can Review All Applications After "Allow Faculty Review" Is Selected For A Position');
+
+        $('#ReviewerHelp').bt('A Reviewer Can View The Same Applications As Faculty, Except They Can Not See Confidential Reference Files');
     });
     </script>
 
@@ -89,12 +95,15 @@
                     <tr>
                         <th>
                             Committee
+                            <img id="CommitteeHelp" src="../Images/question_blue.png" />
                         </th>
                         <th>
                             Faculty
+                            <img id="FacultyHelp" src="../Images/question_blue.png" />
                         </th>
                         <th>
                             Reviewer
+                            <img id="ReviewerHelp" src="../Images/question_blue.png" />
                         </th>
                         <th>
                             LoginID
