@@ -138,7 +138,8 @@ namespace CAESDO.Recruitment.Web
                 newPosition.ReferenceTemplate = new Template();
 
             newPosition.ReferenceTemplate.TemplateType = ReferenceTemplateType;
-            newPosition.ReferenceTemplate.TemplateText = ftxtReferenceTemplate.Text;
+
+            newPosition.ReferenceTemplate.TemplateText = txtReferenceTemplate.Text;
 
             newPosition.NumPublications = int.Parse(txtPublications.Text);
             newPosition.NumReferences = int.Parse(txtReferences.Text);
@@ -302,7 +303,7 @@ namespace CAESDO.Recruitment.Web
             txtShortDescription.Text = currentPosition.ShortDescription;
 
             if (currentPosition.ReferenceTemplate != null)
-                ftxtReferenceTemplate.Text = currentPosition.ReferenceTemplate.TemplateText;
+                txtReferenceTemplate.Text = currentPosition.ReferenceTemplate.TemplateText;
 
             txtPublications.Text = currentPosition.NumPublications.ToString();
             txtReferences.Text = currentPosition.NumReferences.ToString();

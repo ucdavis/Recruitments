@@ -3,28 +3,31 @@
 <%@ Register Assembly="FreeTextBox" Namespace="FreeTextBoxControls" TagPrefix="FTB" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolder1" Runat="Server">
     
-    <script type="text/javascript" language="javascript">
-        
-        function InsertText(txtID, text)
-        {
-            var parent = FTB_API[txtID].GetParentElement();
+    <script src="../JS/tiny_mce/tiny_mce.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        var refTemplateEditor = null;
+
+        tinyMCE.init({
+            mode: "specific_textareas",
+            editor_selector: "richTextEditor", //Just use textareas with the richTextEditor class applied
+            theme: "advanced",
+            skin: "o2k7",
+            plugins: "paste",
+
+            theme_advanced_buttons2: "cut,copy,pastetext,pasteword,|,bullist,numlist,|,undo,redo,|,link,unlink,anchor,image,cleanup,|,forecolor,backcolor",
+            theme_advanced_toolbar_location: "top",
             
-            if ( parent.tagName == 'HTML' )
-            {                
-                var currentHTML = FTB_API[txtID].GetHtml();
-                
-                FTB_API[txtID].SetHtml(currentHTML + text);                
+            setup: function(ed) {
+                refTemplateEditor = ed;
             }
-            else if ( parent.tagName == "BR" )
-            {
-                return; //Don't do anything with BR's, they aren't formatted correctly
-            }
-            else            
-            {
-                FTB_API[txtID].InsertHtml(text);
-            }
+        });
+
+        function InsertTemplateText(text) {
+            refTemplateEditor.focus();
+            refTemplateEditor.selection.setContent(text);
         }
 
+        //Help balloons
         $(document).ready(function() {
             $("input[id$=txtPositionTitle]").bt('Examples: <br/>*Asst. Prof of Climate Control, LAWR<br/>*Professor of Brewing', {
                 trigger: ['focus', 'blur'],
@@ -35,7 +38,7 @@
                 trigger: ['focus', 'blur'],
                 positions: ['right']
             });
-            $('#FreeTextBox_help').bt('When creating a form letter you can click the fields bellow and the information will auto populate the reference template', {
+            $('#ReferenceTemplateHelp').bt('When creating a form letter you can click the fields bellow and the information will auto populate the reference template', {
                 trigger: 'click',
                 positions: 'top'
             });
@@ -150,26 +153,35 @@
                     Width="532px" meta:resourcekey="txtShortDescriptionResource1" ></asp:TextBox></td>
         </tr>
         <tr>
-            <td align="right" valign="top" style="width: 240">
-                Reference Template:
+            <td align="right" valign="top" style="width:240">
+                Reference Template v2:
             </td>
             <td>
-                    <div id="create_pos_word_bank">
-                <strong>Template Fields:</strong><img id="FreeTextBox_help" src="../Images/question_blue.png" /><br class="bottom_space" />
-                    <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '<%= GetLocalResourceObject("ReferenceTitle.Value") %>');" ><%= GetLocalResourceObject("ReferenceTitle.Text")%><br /></a>
-                    <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '<%= GetLocalResourceObject("ReferenceLastName.Value") %>');" ><%= GetLocalResourceObject("ReferenceLastName.Text") %><br /></a>
-                    <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '<%= GetLocalResourceObject("ApplicantName.Value") %>');" ><%= GetLocalResourceObject("ApplicantName.Text") %><br /></a>
-                    <a style="display:none;" href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '<%= GetLocalResourceObject("Deadline.Value") %>');" ><%= GetLocalResourceObject("Deadline.Text") %>,<br /></a>
-                    <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '<%= GetLocalResourceObject("PositionTitle.Value") %>');" ><%= GetLocalResourceObject("PositionTitle.Text") %><br /></a>
-                    <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '<%= GetLocalResourceObject("RecruitmentAdminName.Value") %>');" ><%= GetLocalResourceObject("RecruitmentAdminName.Text") %><br /></a>
-                    <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '<%= GetLocalResourceObject("PrimaryDepartment.Value") %>');" ><%= GetLocalResourceObject("PrimaryDepartment.Text") %><br /></a>
-                    <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '<%= GetLocalResourceObject("ConfidentialityStatement.Value") %>');" ><%= GetLocalResourceObject("ConfidentialityStatement.Text") %><br /></a>
-                    <a href="javascript:InsertText('<%= ftxtReferenceTemplate.ClientID %>', '<%= GetLocalResourceObject("UploadLink.Value") %>');" ><%= GetLocalResourceObject("UploadLink.Text")%></a>
-                    </div>
-                    
-                <FTB:FreeTextBox ID="ftxtReferenceTemplate" runat="server" Width="530px" Height="300px" EnableHtmlMode="False" AllowHtmlMode="False" AssemblyResourceHandlerPath="" AutoConfigure="" AutoGenerateToolbarsFromString="True" AutoHideToolbar="True" AutoParseStyles="True" BackColor="158, 190, 245" BaseUrl="" BreakMode="Paragraph" ButtonDownImage="False" ButtonFileExtention="gif" ButtonFolder="Images" ButtonHeight="20" ButtonImagesLocation="InternalResource" ButtonOverImage="False" ButtonPath="" ButtonSet="Office2003" ButtonWidth="21" ClientSideTextChanged="" ConvertHtmlSymbolsToHtmlCodes="False" DesignModeBodyTagCssClass="" DesignModeCss="" DisableIEBackButton="False" DownLevelCols="50" DownLevelMessage="" DownLevelMode="TextArea" DownLevelRows="10" EditorBorderColorDark="128, 128, 128" EditorBorderColorLight="128, 128, 128" EnableSsl="False" EnableToolbars="True" Focus="False" FormatHtmlTagsToXhtml="True" GutterBackColor="129, 169, 226" GutterBorderColorDark="128, 128, 128" GutterBorderColorLight="255, 255, 255" HelperFilesParameters="" HelperFilesPath="" HtmlModeCss="" HtmlModeDefaultsToMonoSpaceFont="True" ImageGalleryPath="~/images/" ImageGalleryUrl="ftb.imagegallery.aspx?rif={0}&cif={0}" InstallationErrorMessage="InlineMessage" JavaScriptLocation="InternalResource" Language="en-US" PasteMode="Default" ReadOnly="False" RemoveScriptNameFromBookmarks="True" RemoveServerNameFromUrls="True" RenderMode="NotSet" ScriptMode="External" ShowTagPath="False" SslUrl="/." StartMode="DesignMode" StripAllScripting="False" SupportFolder="/aspnet_client/FreeTextBox/" TabIndex="-1" TabMode="InsertSpaces" Text="" TextDirection="LeftToRight" ToolbarBackColor="Transparent" ToolbarBackgroundImage="True" ToolbarImagesLocation="InternalResource" ToolbarLayout="ParagraphMenu,FontFacesMenu,FontSizesMenu,FontForeColorsMenu|Bold,Italic,Underline,Strikethrough;Superscript,Subscript,RemoveFormat|JustifyLeft,JustifyRight,JustifyCenter,JustifyFull;BulletedList,NumberedList,Indent,Outdent;CreateLink,Unlink,InsertImage,InsertRule|Cut,Copy,Paste;Undo,Redo,Print" ToolbarStyleConfiguration="NotSet" UpdateToolbar="True" UseToolbarBackGroundImage="True">
-                </FTB:FreeTextBox>
-                <asp:RequiredFieldValidator id="reqValReferenceTemplate" ControlToValidate="ftxtReferenceTemplate" ErrorMessage="* Reference Template Required" runat="server" meta:resourcekey="reqValReferenceTemplateResource1"/>
+                <div id="create_pos_word_bank">
+                    <strong>Template Fields:</strong><img id="ReferenceTemplateHelp" src="../Images/question_blue.png" /><br
+                        class="bottom_space" />
+                    <a href="javascript:InsertTemplateText('<%= GetLocalResourceObject("ReferenceTitle.Value") %>');">
+                        <%= GetLocalResourceObject("ReferenceTitle.Text")%><br />
+                    </a><a href="javascript:InsertTemplateText('<%= GetLocalResourceObject("ReferenceLastName.Value") %>');">
+                        <%= GetLocalResourceObject("ReferenceLastName.Text") %><br />
+                    </a><a href="javascript:InsertTemplateText('<%= GetLocalResourceObject("ApplicantName.Value") %>');">
+                        <%= GetLocalResourceObject("ApplicantName.Text") %><br />
+                    </a><a href="javascript:InsertTemplateText('<%= GetLocalResourceObject("PositionTitle.Value") %>');">
+                        <%= GetLocalResourceObject("PositionTitle.Text") %><br />
+                    </a><a href="javascript:InsertTemplateText('<%= GetLocalResourceObject("RecruitmentAdminName.Value") %>');">
+                        <%= GetLocalResourceObject("RecruitmentAdminName.Text") %><br />
+                    </a><a href="javascript:InsertTemplateText('<%= GetLocalResourceObject("PrimaryDepartment.Value") %>');">
+                        <%= GetLocalResourceObject("PrimaryDepartment.Text") %><br />
+                    </a><a href="javascript:InsertTemplateText('<hr/><%= GetLocalResourceObject("ConfidentialityStatement.Value") %>');">
+                        <%= GetLocalResourceObject("ConfidentialityStatement.Text") %><br />
+                    </a><a href="javascript:InsertTemplateText('<%= GetLocalResourceObject("UploadLink.Value") %>');">
+                        <%= GetLocalResourceObject("UploadLink.Text")%></a>
+                </div>
+                <asp:TextBox ID="txtReferenceTemplate" TextMode="MultiLine" CssClass="richTextEditor"
+                    runat="server" Width="530px" Height="300px"></asp:TextBox>
+                <asp:RequiredFieldValidator ID="reqValReferenceTemplate2" ControlToValidate="txtReferenceTemplate"
+                    ErrorMessage="* Reference Template Required" runat="server" meta:resourcekey="reqValReferenceTemplateResource1">
+                </asp:RequiredFieldValidator>
                 <br />
                 <asp:Literal ID="litReferenceTemplateHelp" runat="server" meta:resourcekey="litReferenceTemplateHelp"></asp:Literal>
             </td>
