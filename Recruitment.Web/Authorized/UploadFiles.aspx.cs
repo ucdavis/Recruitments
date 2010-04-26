@@ -93,7 +93,7 @@ namespace CAESDO.Recruitment.Web
 
                     application.Files.Remove(fileToDelete);
 
-                    daoFactory.GetApplicationDao().SaveOrUpdate(application);
+                    ApplicationBLL.EnsurePersistent(application);
 
                     ts.CommitTransaction();
                 }

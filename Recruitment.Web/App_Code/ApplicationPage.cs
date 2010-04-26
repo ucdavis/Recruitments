@@ -1,22 +1,6 @@
 using System;
-using System.Data;
-using System.Configuration;
 using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
-// added
-using System.Security.Principal;
-using System.Data.SqlClient;
-using System.Collections;
-using System.Collections.Specialized;
-using System.Threading;
-using System.Web.SessionState;
-using System.Web.Caching;
-using System.Text;
-using CAESDO.Recruitment.Core.DataInterfaces;
+using CAESDO.Recruitment.BLL;
 using CAESDO.Recruitment.Data;
 using System.Web.Configuration;
 using CAESDO.Recruitment.Core.Domain;
@@ -40,16 +24,11 @@ namespace CAESDO.Recruitment.Web
         {
             get {
                 if (_p == null && HttpContext.Current.User.Identity.IsAuthenticated)
-                    _p = daoFactory.GetUserDao().GetUserByLogin(HttpContext.Current.User.Identity.Name);
+                    _p = UserBLL.GetByLogin(HttpContext.Current.User.Identity.Name);
 
                 return _p; 
             }
             set { _p = value; }
-        }
-        
-        public IDaoFactory daoFactory
-        {
-            get { return new NHibernateDaoFactory(); }
         }
 
         public string FilePath
@@ -63,10 +42,6 @@ namespace CAESDO.Recruitment.Web
         public ErrorReporting eReport = new ErrorReporting(WebConfigurationManager.AppSettings["AppName"],
                                                         WebConfigurationManager.AppSettings["ErrorFromEmail"],
                                                         WebConfigurationManager.AppSettings["ErrorAdminEmail"]);
-
-        public ApplicationPage()
-        {
-        }
 
         protected override void OnError(EventArgs e)
         {
@@ -100,19 +75,6 @@ namespace CAESDO.Recruitment.Web
 
             base.OnError(e); //won't get called
         }
-
-        //#region Events
-        ///// <summary>
-        ///// Automatically invoked before the page is displayed
-        ///// </summary>
-        ///// <param name="e">Event Arguments</param>
-        //protected override void OnLoad(EventArgs e)
-        //{
-        //    // Instantiate a new UserSession object
-        //    userSession = new UserSession(this.Session);
-        //    base.OnLoad(e);
-        //}
-        //#endregion
 
     }
 

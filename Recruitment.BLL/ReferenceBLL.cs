@@ -7,5 +7,9 @@ namespace CAESDO.Recruitment.BLL
 {
     public class ReferenceBLL : GenericBLL<Reference, int>
     {
+        public static Reference GetByUploadID(string uploadId)
+        {
+            return daoFactory.GetReferenceDao().GetReferenceByUploadID(uploadId);
+        }
     }
 }

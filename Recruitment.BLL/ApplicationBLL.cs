@@ -26,5 +26,10 @@ namespace CAESDO.Recruitment.BLL
         {
             return daoFactory.GetApplicationDao().GetApplicationsByApplicant(applicantProfile, submitted);
         }
+
+        public static Applicant GetByEmail(string email)
+        {
+            return daoFactory.GetApplicantDao().GetApplicantByEmail(email);
+        }
     }
 }

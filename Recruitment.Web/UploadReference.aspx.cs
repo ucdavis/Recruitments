@@ -26,7 +26,7 @@ namespace CAESDO.Recruitment.Web
         {
             get
             {
-                return daoFactory.GetReferenceDao().GetReferenceByUploadID(Request.QueryString["ID"]);
+                return ReferenceBLL.GetByUploadID(Request.QueryString["ID"]);
             }
         }
 
@@ -51,7 +51,7 @@ namespace CAESDO.Recruitment.Web
 
         private void UploadReferences()
         {
-            FileType referenceFileType = daoFactory.GetFileTypeDao().GetFileTypeByName(STR_LetterOfRec);
+            FileType referenceFileType = FileTypeBLL.GetByName(STR_LetterOfRec);
                         
             if (fileUploadReference.HasFile)
             {
@@ -64,7 +64,7 @@ namespace CAESDO.Recruitment.Web
 
                     using (var ts = new TransactionScope())
                     {
-                        file = daoFactory.GetFileDao().Save(file);
+                        FileBLL.EnsurePersistent(file, true);
 
                         ts.CommitTransaction();
                     }
@@ -77,7 +77,7 @@ namespace CAESDO.Recruitment.Web
 
                         using (var ts = new TransactionScope())
                         {
-                            daoFactory.GetReferenceDao().SaveOrUpdate(currentReference);
+                            ReferenceBLL.EnsurePersistent(currentReference);
 
                             ts.CommitTransaction();
                         }

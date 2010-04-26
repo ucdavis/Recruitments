@@ -1,5 +1,6 @@
 using System;
 using System.Web.UI.WebControls;
+using CAESDO.Recruitment.BLL;
 using CAESDO.Recruitment.Core.Domain;
 
 namespace CAESDO.Recruitment.Web
@@ -17,7 +18,7 @@ namespace CAESDO.Recruitment.Web
             string selectedLoginID = btn.CommandArgument;
 
             //Now get the selected user's corresponding object
-            User selectedUser = daoFactory.GetUserDao().GetUserByLogin(selectedLoginID);
+            User selectedUser = UserBLL.GetByLogin(selectedLoginID);
 
             //Fill in all User Info fields
             lblUserInfoName.Text = string.Format("{0} {1}", selectedUser.FirstName, selectedUser.LastName);
@@ -44,7 +45,7 @@ namespace CAESDO.Recruitment.Web
             string selectedLoginID = gview.SelectedDataKey["Login"].ToString();
 
             //Now get the selected user's corresponding object
-            User selectedUser = daoFactory.GetUserDao().GetUserByLogin(selectedLoginID);
+            User selectedUser = UserBLL.GetByLogin(selectedLoginID);
 
             //Fill in all User Info fields
             lblUserInfoName.Text = string.Format("{0} {1}", selectedUser.FirstName, selectedUser.LastName);
@@ -72,7 +73,7 @@ namespace CAESDO.Recruitment.Web
             bool success = CatbertManager.RemoveUserFromUnit(lblUserInfoLoginID.Text, (int)gv.DataKeys[e.RowIndex].Value);
             
             //update the grid
-            User selectedUser = daoFactory.GetUserDao().GetUserByLogin(lblUserInfoLoginID.Text);
+            User selectedUser = UserBLL.GetByLogin(lblUserInfoLoginID.Text);
 
             gViewUserUnits.DataSource = selectedUser.Units;
             gViewUserUnits.DataBind();
@@ -86,7 +87,7 @@ namespace CAESDO.Recruitment.Web
             //Add the user to the desired unit
             bool success = CatbertManager.AddUserToUnit(lblUserInfoLoginID.Text, int.Parse(dlistUnits.SelectedValue));
             //update the grid
-            User selectedUser = daoFactory.GetUserDao().GetUserByLogin(lblUserInfoLoginID.Text);
+            User selectedUser = UserBLL.GetByLogin(lblUserInfoLoginID.Text);
 
             gViewUserUnits.DataSource = selectedUser.Units;
             gViewUserUnits.DataBind();

@@ -46,7 +46,7 @@ namespace CAESDO.Recruitment.Web
         {
             get
             {
-                return daoFactory.GetThemeDao().GetById(STR_DEFAULT_DEPARTMENT, false);
+                return ThemeBLL.GetByID(STR_DEFAULT_DEPARTMENT); // daoFactory.GetThemeDao().GetById(STR_DEFAULT_DEPARTMENT, false);
             }
         }
 

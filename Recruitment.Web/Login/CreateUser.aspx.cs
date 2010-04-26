@@ -10,6 +10,7 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.Data.SqlClient;
 using CAESDO.Recruitment.Core.Domain;
+using CAESDO.Recruitment.BLL;
 
 namespace CAESDO.Recruitment.Web
 {
@@ -56,7 +57,7 @@ namespace CAESDO.Recruitment.Web
 
         private void createProfileForUser(string email)
         {
-            Applicant newUser = daoFactory.GetApplicantDao().GetApplicantByEmail(email);
+            Applicant newUser = ApplicationBLL.GetByEmail(email);
 
             if (newUser == null)
             {
@@ -76,7 +77,12 @@ namespace CAESDO.Recruitment.Web
             
             blankProfile.LastUpdated = null;
 
-            daoFactory.GetProfileDao().Save(blankProfile);
+            using (var ts = new TransactionScope())
+            {
+                ProfileBLL.EnsurePersistent(blankProfile);
+   
+                ts.CommitTransaction();
+            }
         }
 }
 

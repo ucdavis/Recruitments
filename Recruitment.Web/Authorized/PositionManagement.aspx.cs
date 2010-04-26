@@ -266,7 +266,7 @@ namespace CAESDO.Recruitment.Web
             if ( currentPosition == null )
                 Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.UNKNOWN));
 
-            if (Roles.IsUserInRole("Admin") == false && daoFactory.GetPositionDao().VerifyPositionAccess(currentPosition) == false)
+            if (Roles.IsUserInRole("Admin") == false && PositionBLL.VerifyPositionAccess(currentPosition) == false)
                 Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.AUTH));
 
             //If we do, databind all of the fields on the form
