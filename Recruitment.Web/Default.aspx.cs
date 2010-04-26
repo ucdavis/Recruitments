@@ -103,6 +103,25 @@ namespace CAESDO.Recruitment.Web
                 }
 
                 Response.Write(app11.LastUpdated.ToShortDateString());
+
+                
+                Education edu = new Education();
+                edu.Complete = true;
+                edu.Date = DateTime.Now;
+                edu.Discipline = "TESTER";
+                edu.Institution = "TESTER";
+                edu.AssociatedApplication = app11;
+
+                using (new NHibernateTransaction())
+                {
+                    edu = daoFactory.GetEducationDao().SaveOrUpdate(edu);
+                }
+
+                using (new NHibernateTransaction())
+                {
+                    daoFactory.GetEducationDao().Delete(edu);
+                }
+
             }
 
             //Response.Write(app.ID.ToString() + "  " + app.SubmitDate.ToShortDateString() + "<br/>");

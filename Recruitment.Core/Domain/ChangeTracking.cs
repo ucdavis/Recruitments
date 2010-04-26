@@ -28,7 +28,7 @@ namespace CAESDO.Recruitment.Core.Domain
 
         private string _ObjectChangedID;
 
-        [NotNullValidator]
+        [IgnoreNulls] //Change Id is null if this is a new instance
         public virtual string ObjectChangedID
         {
             get { return _ObjectChangedID; }
@@ -78,6 +78,9 @@ namespace CAESDO.Recruitment.Core.Domain
 
         public virtual void AppendProperties(List<ChangedProperty> propList, ChangeTracking assocaitedTracker)
         {
+            if (propList == null)
+                return;
+
             if (this.ChangedProperties == null)
                 this.ChangedProperties = new List<ChangedProperty>();
 

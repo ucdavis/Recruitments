@@ -49,7 +49,7 @@ namespace CAESDO.Recruitment.Data
 
         public void OnDelete(object entity, object id, object[] state, string[] propertyNames, NHibernate.Type.IType[] types)
         {
-            //throw new Exception("The method or operation is not implemented.");
+            TrackChanges(null, entity, id, ChangeTypes.Delete);
         }
 
         public bool OnFlushDirty(object entity, object id, object[] currentState, object[] previousState, string[] propertyNames, NHibernate.Type.IType[] types)
@@ -66,7 +66,7 @@ namespace CAESDO.Recruitment.Data
                 {
                     if (currentState[i].Equals(previousState[i]) == false)
                     {
-                        dirtyProperties.Add(new ChangedProperty(currentState[i].ToString(), propertyNames[i], null));
+                        dirtyProperties.Add(new ChangedProperty(currentState[i] == null ? null : currentState[i].ToString(), propertyNames[i], null));
                         //dirtyProperties.Add(propertyNames[i], previousState[i].ToString());
                     }
                 }
@@ -75,8 +75,6 @@ namespace CAESDO.Recruitment.Data
             TrackChanges(dirtyProperties, entity, id, ChangeTypes.Update);
 
             return false; //false means that the object wasn't modified
-
-            //throw new Exception("The method or operation is not implemented.");
         }
 
         public bool OnLoad(object entity, object id, object[] state, string[] propertyNames, NHibernate.Type.IType[] types)
@@ -88,8 +86,24 @@ namespace CAESDO.Recruitment.Data
 
         public bool OnSave(object entity, object id, object[] state, string[] propertyNames, NHibernate.Type.IType[] types)
         {
+            if (entity.GetType() == typeof(ChangeTracking) || entity.GetType() == typeof(ChangedProperty))
+                return false;
+
+            List<ChangedProperty> dirtyProperties = new List<ChangedProperty>();
+
+            //For each property, check to see if it is dirty (only look at non collections)
+            for (int i = 0; i < state.Length; i++)
+            {
+                if (types[i].IsCollectionType == false)
+                {
+                    //Add all properties as dirty
+                    dirtyProperties.Add(new ChangedProperty(state[i] == null ? null : state[i].ToString(), propertyNames[i], null));
+                }
+            }
+
+            TrackChanges(dirtyProperties, entity, id, ChangeTypes.Save);
+
             return false;
-            //throw new Exception("The method or operation is not implemented.");
         }
 
         public void PostFlush(System.Collections.ICollection entities)
@@ -114,7 +128,7 @@ namespace CAESDO.Recruitment.Data
             trackChange.ChangeType = new NHibernateDaoFactory().GetChangeTypeDao().GetById((int)changeType, false);
 
             trackChange.ObjectChanged = target.GetType().Name;
-            trackChange.ObjectChangedID = id.ToString();
+            trackChange.ObjectChangedID = id == null ? null : id.ToString();
 
             //Now we have a tracking object with the changed properties added to its change list
             //Make sure it is valid
@@ -142,19 +156,4 @@ namespace CAESDO.Recruitment.Data
         #endregion
     }
 
-    //public class ChangedProperty
-    //{
-    //    public string OldValue;
-    //    public string NewValue;
-    //    public string PropertyName;
-    //    public NHibernate.Type.IType type;
-
-    //    public ChangedProperty(string OldValue, string NewValue, string PropertyName, NHibernate.Type.IType type)
-    //    {
-    //        this.OldValue = OldValue;
-    //        this.NewValue = NewValue;
-    //        this.PropertyName = PropertyName;
-    //        this.type = type;
-    //    }
-    //}
 }
