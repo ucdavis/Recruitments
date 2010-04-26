@@ -144,6 +144,14 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _AssociatedApplications = value; }
         }
 
+        private IList<CommitteeMember> _CommitteeMembers;
+
+        public IList<CommitteeMember> CommitteeMembers
+        {
+            get { return _CommitteeMembers; }
+            set { _CommitteeMembers = value; }
+        }
+        
         public Position()
         {
             //throw new System.NotImplementedException();

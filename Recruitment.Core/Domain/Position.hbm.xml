@@ -36,6 +36,10 @@
       <one-to-many class="CAESDO.Recruitment.Core.Domain.Department, CAESDO.Recruitment.Core" />
     </bag>
 
+    <bag name="CommitteeMembers" table="CommitteeMembers" inverse="true">
+      <key column="PositionID" />
+      <one-to-many class="CAESDO.Recruitment.Core.Domain.CommitteeMember, CAESDO.Recruitment.Core" />
+    </bag>
 
   </class>
 </hibernate-mapping>

@@ -91,4 +91,20 @@ namespace CAESDO.Recruitment.Core.Domain
 
         }
     }
+
+    public class MemberType : DomainObject<int>
+    {
+        private string _Type;
+
+        public string Type
+        {
+            get { return _Type; }
+            set { _Type = value; }
+        }
+
+        public MemberType()
+        {
+
+        }
+    }
 }
