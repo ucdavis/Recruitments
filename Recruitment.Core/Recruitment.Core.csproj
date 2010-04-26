@@ -58,21 +58,7 @@
     <Compile Include="Domain\User.cs" />
     <Compile Include="Domain\Lookups.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Utils\ApplicantTest.cs" />
-    <Compile Include="Utils\ApplicationTest.cs" />
-    <Compile Include="Utils\CommitteeMemberTest.cs" />
-    <Compile Include="Utils\CurrentPositionTest.cs" />
     <Compile Include="Utils\DesignByContract.cs" />
-    <Compile Include="Utils\DomainObjectTest.cs" />
-    <Compile Include="Utils\EducationTest.cs" />
-    <Compile Include="Utils\FacultyReviewGroupTest.cs" />
-    <Compile Include="Utils\FileTest.cs" />
-    <Compile Include="Utils\LookupsTest.cs" />
-    <Compile Include="Utils\PositionTest.cs" />
-    <Compile Include="Utils\ProfileTest.cs" />
-    <Compile Include="Utils\ReferenceTest.cs" />
-    <Compile Include="Utils\SurveyTest.cs" />
-    <Compile Include="Utils\UserTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Domain\Application.hbm.xml" />
@@ -109,9 +95,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Domain\CommitteeMember.hbm.xml" />
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="Utils\AuthoringTests.txt" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
