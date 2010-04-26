@@ -4,10 +4,17 @@ using System.Text;
 
 namespace CAESDO.Recruitment.Core.Domain
 {
-    public class Education : IApplicationStep
+    public class Education : DomainObject<int>, IApplicationStep
     {
-        private int _ApplicationID;
-        private int _EducationID;
+
+        private Application _AssociatedApplication;
+
+        public Application AssociatedApplication
+        {
+            get { return _AssociatedApplication; }
+            set { _AssociatedApplication = value; }
+        }
+
         private DateTime _Date;
 
         public DateTime Date
@@ -30,18 +37,25 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _Discipline = value; }
         }
 
-        public int ApplicationID
+        private bool _Complete;
+
+        public bool Complete
         {
-            get { return _ApplicationID; }
-            set { _ApplicationID = value; }
+            get { return _Complete; }
+            set { _Complete = value; }
         }
 
+        public Education()
+        {
+            ApplicationStepType = ApplicationStepType.Education;
+        }
+        
         #region IApplicationStep Members
 
 
         public bool isComplete()
         {
-            throw new Exception("The method or operation is not implemented.");
+            return Complete;
         }
 
         public void Fill()
