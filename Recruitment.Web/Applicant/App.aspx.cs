@@ -119,7 +119,7 @@ namespace CAESDO.Recruitment.Web
                 //Load the application steps in first page visit
                 LoadSteps();
             }
-
+            
             rptSteps.DataSource = ApplicationSteps;
             rptSteps.DataBind();
         }
