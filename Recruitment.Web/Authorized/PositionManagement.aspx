@@ -86,7 +86,10 @@
     <span class="boxTitle"><asp:Image ID="imgProfile" runat="server" EnableViewState="False" ImageUrl="~/Images/profile_sm.gif" style="vertical-align:middle;" meta:resourcekey="imgProfileResource1" /><asp:Literal ID="litPositionState" runat="server" Text="Create Position" EnableViewState="False" meta:resourcekey="litPositionStateResource1"></asp:Literal></span><br />
     <table class="box" style="width:690px;" cellpadding="5">
         <tr>
-            <td colspan="2"><br /></td>
+            <td align="right" style="width:240"></td>
+            <td align="right">
+                <asp:ValidationSummary ID="valPositionSummaryHeader" runat="server" HeaderText="Please correct the following errors:" />
+            </td>
         </tr>
         <tr>
             <td   align="right" style="width: 240">
@@ -365,6 +368,12 @@
             <td align="right"  >
                 <br />
                 <asp:Button ID="btnModifyPosition" runat="server" Text="Create!" OnClick="btnModifyPosition_Click" meta:resourcekey="btnModifyPositionResource1" /></td>
+        </tr>
+        <tr>
+            <td align="right" style="width:240"></td>
+            <td align="right">
+                <asp:ValidationSummary ID="valPositionSummaryFooter" runat="server" HeaderText="Please correct the following errors:" />
+            </td>
         </tr>
     </table>
  
