@@ -33,7 +33,9 @@
     
     <br /><br />
     
-    <asp:ListView ID="lviewApplications" runat="server" DataSourceID="ObjectDataApplications" DataKeyNames="id">
+    <asp:ListView ID="lviewApplications" runat="server" 
+        DataSourceID="ObjectDataApplications" DataKeyNames="id" 
+        ondatabound="lviewApplications_DataBound">
         <LayoutTemplate>
         <table id="tblApplications" class="tablesorter">
             <thead>

@@ -88,9 +88,20 @@ namespace CAESDO.Recruitment.Web
             }
         }
 
+        /// <summary>
+        /// After databound, find out if we should show the send emails button
+        /// </summary>
+        protected void lviewApplications_DataBound(object sender, EventArgs e)
+        {
+            if (lviewApplications.Items.Count > 0)
+                btnSendEmail.Visible = true;
+            else
+                btnSendEmail.Visible = false;
+        }
+
         public string GetNullSafeFullName(string fullName)
         {
             return ApplicantBLL.GetNullSafeFullName(fullName);
         }
-    }
+}
 }
