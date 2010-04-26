@@ -144,7 +144,8 @@
     
     Template Type: 
     <asp:DropDownList ID="dlistEmailTemplates" runat="server" 
-            DataSourceID="odsTemplateTypes" DataTextField="Type" DataValueField="ID">
+            DataSourceID="odsTemplateTypes" DataTextField="Type" DataValueField="Type" AppendDataBoundItems="true">
+            <asp:ListItem Text="-- Select A Template --"></asp:ListItem>
     </asp:DropDownList>
     
     <asp:ObjectDataSource ID="odsTemplateTypes" runat="server" 
@@ -184,46 +185,21 @@
 
         function TemplateSectionChanged() {
             EmailTemplateEditor.setProgressState(1); //Set the progress image
-
-            alert(this); //should be dlist
             
             //Now get the template text
-            RecruitmentService.GetTemplateText("Position Cancelled", TemplateSectionChangedSuccess, TemplateSectionChangedFailure);
+            RecruitmentService.GetTemplateText($(this).val(), TemplateSectionChangedSuccess, TemplateSectionChangedFailure);
         }
 
         function TemplateSectionChangedSuccess(result) {
-            alert(result);
+            EmailTemplateEditor.setProgressState(0);
+            EmailTemplateEditor.setContent(result);
         }
 
         function TemplateSectionChangedFailure() {
-            alert("failed");
+            EmailTemplateEditor.setProgressState(0);
+            EmailTemplateEditor.setContent("An Error Has Occurred While Retrieving The Template");
         }
         
-
-        //////// Letter Templates
-/*
-        function TemplateSelected(ddl) {
-            // get the editor object
-            var mce = tinyMCE.get("LetterTemplate");
-
-            if ($(ddl).val() != "-1") {
-                // show the update state               
-                mce.setProgressState(1);
-
-                // get the template text
-                ScriptService.GetTemplate($(ddl).val(), TemplateSelectedOnComplete, null, mce);
-            }
-            else {
-                // clear the text
-                mce.setContent("");
-            }
-        }
-
-        function TemplateSelectedOnComplete(result, context) {
-            context.setProgressState(0);
-            context.setContent(result);
-        }
-*/
     </script>
     
     <div class="blueletter">
