@@ -172,6 +172,30 @@
             refTemplateEditor.selection.setContent(text);
         }
 
+        //////// Letter Templates
+/*
+        function TemplateSelected(ddl) {
+            // get the editor object
+            var mce = tinyMCE.get("LetterTemplate");
+
+            if ($(ddl).val() != "-1") {
+                // show the update state               
+                mce.setProgressState(1);
+
+                // get the template text
+                ScriptService.GetTemplate($(ddl).val(), TemplateSelectedOnComplete, null, mce);
+            }
+            else {
+                // clear the text
+                mce.setContent("");
+            }
+        }
+
+        function TemplateSelectedOnComplete(result, context) {
+            context.setProgressState(0);
+            context.setContent(result);
+        }
+*/
     </script>
     
     <div class="blueletter">
