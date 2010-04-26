@@ -148,10 +148,10 @@
                 <asp:Panel ID="pnlPositionDescription" runat="server" CssClass="modalPopup" style="display:none;">
                     Replace Existing Position Description: <br /><br />
                     <asp:FileUpload ID="filePositionDescriptionReplace" runat="server" Visible="true" />
-                    <asp:RequiredFieldValidator ID="reqValPositionDescriptionReplace" runat="server" ControlToValidate="filePositionDescriptionReplace" ErrorMessage="*" Visible="true"></asp:RequiredFieldValidator>
+                    <asp:RequiredFieldValidator ID="reqValPositionDescriptionReplace" runat="server" ControlToValidate="filePositionDescriptionReplace" ErrorMessage="*" ValidationGroup="Replace" Visible="true"></asp:RequiredFieldValidator>
                     <br /><br />
-                    <asp:Button ID="btnPositionDescriptionReplace" runat="server" Text="Upload" OnClick="btnPositionDescriptionReplace_Click" />
-                    <asp:Button ID="btnPositionDescriptionReplaceCancel" runat="server" Text="Cancel" />
+                    <asp:Button ID="btnPositionDescriptionReplace" runat="server" Text="Upload" ValidationGroup="Replace" OnClick="btnPositionDescriptionReplace_Click" />
+                    <asp:Button ID="btnPositionDescriptionReplaceCancel" runat="server" CausesValidation="false" Text="Cancel" />
                 </asp:Panel>
                                 
                 <AjaxControlToolkit:ModalPopupExtender ID="mpopupPositionDescriptionReplacement" runat="server" TargetControlID="ibtnReplacePositionDescription"
