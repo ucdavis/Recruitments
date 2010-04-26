@@ -230,6 +230,29 @@ namespace CAESDO.Recruitment.Web
                 }
             }
         }
+        
+        protected void lbtnDownloadPositionDescription_Click(object sender, EventArgs e)
+        {
+            //Download the position description
+            System.IO.FileInfo file = new System.IO.FileInfo(FilePath + currentPosition.DescriptionFile.ID.ToString());
+
+            if (file.Exists)
+            {
+                Response.Clear();
+
+                //Control the name that they see
+                Response.ContentType = "application/octet-stream";
+                Response.AddHeader("Content-Disposition", "attachment;filename=" + HttpUtility.UrlEncode(currentPosition.DescriptionFile.FileName));
+                Response.AddHeader("Content-Length", file.Length.ToString());
+                //Response.TransmitFile(path + FileID.ToString());
+                Response.TransmitFile(file.FullName);
+                Response.End();
+            }
+            else
+            {
+                //TODO: Error message
+            }
+        }
 
         protected void cboxPrimary_CheckedChanged(object sender, EventArgs e)
         {

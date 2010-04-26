@@ -139,7 +139,7 @@
             <td align="right" style="width: 240">
                 Full job description (PDF):</td>
             <td  >
-                <asp:LinkButton ID="lbtnDownloadPositionDescription" runat="server" Text="Download Existing File" Visible="false"></asp:LinkButton>
+                <asp:LinkButton ID="lbtnDownloadPositionDescription" runat="server" Text="Download Existing File" Visible="false" OnClick="lbtnDownloadPositionDescription_Click"></asp:LinkButton>
                 <asp:ImageButton ID="ibtnReplacePositionDescription" runat="server" ImageUrl="~/Images/delete.gif" AlternateText="[Replace]" Visible="false" />
                 <asp:Literal ID="litDownloadPositionDescription" runat="server" Visible="false"><br /><br /></asp:Literal>
                 <asp:FileUpload ID="filePositionDescription" runat="server" Visible="true" />                
