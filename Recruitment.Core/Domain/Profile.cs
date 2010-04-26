@@ -9,7 +9,7 @@ namespace CAESDO.Recruitment.Core.Domain
     {
         private string _FirstName;
 
-        [StringLengthValidator(0,50)]
+        [StringLengthValidator(1,50)]
         public virtual string FirstName
         {
             get { return _FirstName; }
@@ -17,7 +17,7 @@ namespace CAESDO.Recruitment.Core.Domain
         }
         private string _MiddleName;
 
-        [StringLengthValidator(0,50)]
+        [StringLengthValidator(1,50)]
         public virtual string MiddleName
         {
             get { return _MiddleName; }

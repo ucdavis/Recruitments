@@ -89,6 +89,9 @@ namespace CAESDO.Recruitment.Test
 
             Assert.AreEqual<int>(target.ID, StaticProperties.ExistingApplicantID);
             Assert.AreEqual<string>(target.Email, StaticProperties.ExistingApplicantEmail);
+
+            Assert.IsTrue(ValidateBO<Applicant>.isValid(target));
+
         }
 
         [TestMethod()]
@@ -97,6 +100,11 @@ namespace CAESDO.Recruitment.Test
             List<Applicant> applicants = NHibernateHelper.daoFactory.GetApplicantDao().GetAll();
 
             Assert.IsFalse(applicants.Count == 0);
+
+            foreach (Applicant app in applicants)
+            {
+                Assert.IsTrue(ValidateBO<Applicant>.isValid(app));
+            }
         }
 
         [TestMethod()]

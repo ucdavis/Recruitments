@@ -92,7 +92,7 @@ namespace CAESDO.Recruitment.Test
 
             Assert.AreEqual<int>(profile.ID, StaticProperties.ExistingProfileID);
 
-            Assert.IsTrue(ValidateBO<Profile>.isValid(profile)); //Make sure you get back a valid profile
+            Assert.IsTrue(ValidateBO<Profile>.isValid(profile));
 
         }
 
@@ -102,7 +102,7 @@ namespace CAESDO.Recruitment.Test
             Profile target = NHibernateHelper.daoFactory.GetProfileDao().GetById(StaticProperties.ExistingProfileID, false);
             Applicant applicant = NHibernateHelper.daoFactory.GetApplicantDao().GetById(StaticProperties.ExistingApplicantID, false);
 
-            Assert.AreEqual<Applicant>(target.AssociatedApplicant, applicant);            
+            Assert.AreEqual<Applicant>(target.AssociatedApplicant, applicant);         
         }
 
         [TestMethod()]
