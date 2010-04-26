@@ -24,14 +24,14 @@ Application: <asp:DropDownList ID="dlistApplications" runat="server" AutoPostBac
             <ItemTemplate>
                 <asp:Button ID="sendEmail" runat="server" Text="Send Letter" CommandArgument='<%# Eval("id") %>' OnClick="sendEmail_Click" />
             </ItemTemplate>
-            <HeaderStyle HorizontalAlign="Left" CssClass="paddingLeft" />
+            <HeaderStyle HorizontalAlign="Left" CssClass="paddingLeft" Width="90px" />
         </asp:TemplateField>
         <asp:TemplateField HeaderText="Unsolicited">
             <ItemTemplate>
                 <asp:CheckBox ID="chkUnsolicited" runat="server" Checked='<%# Eval("UnsolicitedReference") %>' />
             </ItemTemplate>
             <ItemStyle HorizontalAlign="Center" />
-            <HeaderStyle HorizontalAlign="Left" />
+            <HeaderStyle HorizontalAlign="Center" />
         </asp:TemplateField>
         <asp:BoundField HeaderText="Reference Name" DataField="FullName"><HeaderStyle HorizontalAlign="Left" /></asp:BoundField>
         <asp:BoundField HeaderText="Email" DataField="Email"><HeaderStyle HorizontalAlign="Left" /></asp:BoundField>
@@ -46,7 +46,7 @@ Application: <asp:DropDownList ID="dlistApplications" runat="server" AutoPostBac
                 <%# Eval("ReferenceFile") == null ? false : true %>
             </ItemTemplate>
             <ItemStyle HorizontalAlign="Center" />
-            <HeaderStyle HorizontalAlign="Left" />
+            <HeaderStyle HorizontalAlign="Center" />
         </asp:TemplateField>
     </Columns>    
 </asp:GridView>
