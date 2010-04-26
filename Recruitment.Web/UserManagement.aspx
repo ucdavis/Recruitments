@@ -2,17 +2,71 @@
 
 <asp:Content ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
 
+<Ajax:UpdatePanel ID="updateAddUser" runat="server" UpdateMode="Conditional">
+<ContentTemplate>
  <asp:Button ID="btnAddUser" runat="server" Text="Add A User" />
  
  <asp:Panel ID="pnlAddUser" runat="server" CssClass="modalPopup" style="display:none;">
     Add A User Here
-    <br /><br />
-    <asp:Button ID="btnAddUserOK" runat="server" Text="Add User" />
-    <asp:Button ID="btnAddUserCancel" runat="server" Text="Cancel" />
+    <br />
+     <br />
+     Search For New User:<br />
+     <br />
+     EmployeeID:
+     <asp:TextBox ID="txtAddUserEmployeeID" runat="server"></asp:TextBox><br />
+     First Name:
+     <asp:TextBox ID="txtAddUserFirstName" runat="server"></asp:TextBox><br />
+     Last Name:
+     <asp:TextBox ID="txtAddUserLastName" runat="server"></asp:TextBox><br />
+     Login ID:
+     <asp:TextBox ID="txtAddUserLoginID" runat="server"></asp:TextBox><br />
+     <br />
+     <asp:Button ID="btnAddUserSearch" runat="server" OnClick="btnAddUserSearch_Click"
+         Text="Search" />
+     <%--<asp:Button ID="btnAddUserOK" runat="server" Text="Add User" />--%> 
+     <asp:Button ID="btnAddUserCancel" runat="server" Text="Cancel" />
+     <br />
+     <br />
+     <asp:GridView ID="gViewAddUserSearch" runat="server" CellPadding="4" DataSourceID="ObjectDataUserSearch" EmptyDataText="No Matching Users Found" ForeColor="#333333" GridLines="None" Visible="False" AutoGenerateColumns="False">
+         <FooterStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+         <RowStyle BackColor="#F7F6F3" ForeColor="#333333" />
+         <Columns>
+             <asp:CommandField ShowSelectButton="True" SelectText="Add" />
+             <asp:BoundField DataField="Login" HeaderText="Login" />
+             <asp:BoundField DataField="LastName" HeaderText="LastName" />
+             <asp:BoundField DataField="FirstName" HeaderText="FirstName" />
+             <asp:BoundField DataField="EmployeeID" HeaderText="EmployeeID" />
+             <asp:BoundField DataField="Email" HeaderText="Email" />
+         </Columns>
+         <PagerStyle BackColor="#284775" ForeColor="White" HorizontalAlign="Center" />
+         <SelectedRowStyle BackColor="#E2DED6" Font-Bold="True" ForeColor="#333333" />
+         <HeaderStyle BackColor="#5D7B9D" Font-Bold="True" ForeColor="White" />
+         <EditRowStyle BackColor="#999999" />
+         <AlternatingRowStyle BackColor="White" ForeColor="#284775" />
+     </asp:GridView>
+     <asp:ObjectDataSource ID="ObjectDataUserSearch" runat="server" OldValuesParameterFormatString="original_{0}"
+         SelectMethod="SearchNewUsersByLogin" TypeName="CAESDO.Recruitment.CatbertManager">
+         <SelectParameters>
+             <asp:ControlParameter ControlID="txtAddUserEmployeeID" Name="EmployeeID" PropertyName="Text"
+                 Type="String" />
+             <asp:ControlParameter ControlID="txtAddUserFirstName" Name="FirstName" PropertyName="Text"
+                 Type="String" />
+             <asp:ControlParameter ControlID="txtAddUserLastName" Name="LastName" PropertyName="Text"
+                 Type="String" />
+             <asp:ControlParameter ControlID="txtAddUserLoginID" Name="LoginID" PropertyName="Text"
+                 Type="String" />
+         </SelectParameters>
+     </asp:ObjectDataSource>
+     
+     <br /><br />
  </asp:Panel>
+ 
  <AjaxControlToolkit:ModalPopupExtender ID="mpopupAddUser" runat="server" BackgroundCssClass="modalBackground" 
     PopupControlID="pnlAddUser" TargetControlID="btnAddUser" CancelControlID="btnAddUserCancel" >
  </AjaxControlToolkit:ModalPopupExtender>
+</ContentTemplate>
+</Ajax:UpdatePanel>
+
  
         <br />
         <br />

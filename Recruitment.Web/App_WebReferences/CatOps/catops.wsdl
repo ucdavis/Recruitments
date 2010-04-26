@@ -134,6 +134,22 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="DeleteUnit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="unitID" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="hashKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DeleteUnitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="DeleteUnitResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetEmailTypes">
         <s:complexType>
           <s:sequence>
@@ -235,6 +251,22 @@
           <s:element minOccurs="0" maxOccurs="1" name="Role" type="s:string" />
         </s:sequence>
       </s:complexType>
+      <s:element name="GetRolesByUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="application" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="login" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="hashKey" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetRolesByUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetRolesByUserResult" type="tns:ArrayOfRoles" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="GetUsersByApplications">
         <s:complexType>
           <s:sequence>
@@ -357,6 +389,12 @@
   <wsdl:message name="AddUnitSoapOut">
     <wsdl:part name="parameters" element="tns:AddUnitResponse" />
   </wsdl:message>
+  <wsdl:message name="DeleteUnitSoapIn">
+    <wsdl:part name="parameters" element="tns:DeleteUnit" />
+  </wsdl:message>
+  <wsdl:message name="DeleteUnitSoapOut">
+    <wsdl:part name="parameters" element="tns:DeleteUnitResponse" />
+  </wsdl:message>
   <wsdl:message name="GetEmailTypesSoapIn">
     <wsdl:part name="parameters" element="tns:GetEmailTypes" />
   </wsdl:message>
@@ -380,6 +418,12 @@
   </wsdl:message>
   <wsdl:message name="GetRolesSoapOut">
     <wsdl:part name="parameters" element="tns:GetRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetRolesByUserSoapIn">
+    <wsdl:part name="parameters" element="tns:GetRolesByUser" />
+  </wsdl:message>
+  <wsdl:message name="GetRolesByUserSoapOut">
+    <wsdl:part name="parameters" element="tns:GetRolesByUserResponse" />
   </wsdl:message>
   <wsdl:message name="GetUsersByApplicationsSoapIn">
     <wsdl:part name="parameters" element="tns:GetUsersByApplications" />
@@ -434,6 +478,10 @@
       <wsdl:input message="tns:AddUnitSoapIn" />
       <wsdl:output message="tns:AddUnitSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="DeleteUnit">
+      <wsdl:input message="tns:DeleteUnitSoapIn" />
+      <wsdl:output message="tns:DeleteUnitSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="GetEmailTypes">
       <wsdl:input message="tns:GetEmailTypesSoapIn" />
       <wsdl:output message="tns:GetEmailTypesSoapOut" />
@@ -449,6 +497,10 @@
     <wsdl:operation name="GetRoles">
       <wsdl:input message="tns:GetRolesSoapIn" />
       <wsdl:output message="tns:GetRolesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRolesByUser">
+      <wsdl:input message="tns:GetRolesByUserSoapIn" />
+      <wsdl:output message="tns:GetRolesByUserSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="GetUsersByApplications">
       <wsdl:input message="tns:GetUsersByApplicationsSoapIn" />
@@ -532,6 +584,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="DeleteUnit">
+      <soap:operation soapAction="CAESDO.WebServices/DeleteUnit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetEmailTypes">
       <soap:operation soapAction="CAESDO.WebServices/GetEmailTypes" style="document" />
       <wsdl:input>
@@ -561,6 +622,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetRoles">
       <soap:operation soapAction="CAESDO.WebServices/GetRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRolesByUser">
+      <soap:operation soapAction="CAESDO.WebServices/GetRolesByUser" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -670,6 +740,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="DeleteUnit">
+      <soap12:operation soapAction="CAESDO.WebServices/DeleteUnit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="GetEmailTypes">
       <soap12:operation soapAction="CAESDO.WebServices/GetEmailTypes" style="document" />
       <wsdl:input>
@@ -699,6 +778,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetRoles">
       <soap12:operation soapAction="CAESDO.WebServices/GetRoles" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetRolesByUser">
+      <soap12:operation soapAction="CAESDO.WebServices/GetRolesByUser" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

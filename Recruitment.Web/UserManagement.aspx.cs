@@ -16,7 +16,6 @@ namespace CAESDO.Recruitment.Web
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            //Roles.GetRolesForUser("postit");
         }
 
         protected void GViewUsers_SelectedIndexChanged(object sender, EventArgs e)
@@ -35,14 +34,6 @@ namespace CAESDO.Recruitment.Web
             lblUserInfoLoginID.Text = selectedLoginID;
             lblUserInfoEmployeeID.Text = selectedUser.EmployeeID;
 
-            //foreach (string s in Roles.GetRolesForUser(selectedLoginID))
-            //{
-            //    lblUserInfoEmployeeID.Text += s;
-            //}
-            
-            //gViewUserRoles.DataSource = Roles.GetRolesForUser(selectedLoginID);
-            //gViewUserRoles.DataBind();
-
             gViewUserUnits.DataSource = selectedUser.Units;
             gViewUserUnits.DataBind();
 
@@ -53,9 +44,12 @@ namespace CAESDO.Recruitment.Web
 
         protected void gViewUserUnits_RowDeleting(object sender, GridViewDeleteEventArgs e)
         {
-            //Remove the user from the desired role
-            //CatbertManager.RemoveUserFromRole((int)e.Keys["ID"], lblUserInfoLoginID.Text);
+            GridView gv = (GridView)sender;
 
+            //lblUserInfoEmployeeID.Text = gv.DataKeys[e.RowIndex].Value;
+            //Remove the user from the desired unit
+            bool success = CatbertManager.RemoveUserFromUnit(lblUserInfoLoginID.Text, (int)gv.DataKeys[e.RowIndex].Value);
+            
             //update the grid
             User selectedUser = daoFactory.GetUserDao().GetUserByLogin(lblUserInfoLoginID.Text);
 
@@ -78,6 +72,12 @@ namespace CAESDO.Recruitment.Web
 
             updateUserInfo.Update();
             mpopupUserInfo.Show();
+        }
+
+        protected void btnAddUserSearch_Click(object sender, EventArgs e)
+        {
+            gViewAddUserSearch.Visible = true;
+            mpopupAddUser.Show();
         }
 }
 }
