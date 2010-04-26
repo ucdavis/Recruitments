@@ -5,7 +5,6 @@ using System;
 using System.Text;
 using System.Collections.Generic;
 using CAESDO.Recruitment.Core.Domain;
-
 namespace CAESDO.Recruitment.Test
 {
     /// <summary>
@@ -35,7 +34,8 @@ namespace CAESDO.Recruitment.Test
             }
         }
 
-        public static int ExisitingApplicantID = 4;
+        static int ExistingApplicantID = 4;
+        static string ExistingApplicantEmail = "srkirkland@ucdavis.edu";
 
         #region Additional test attributes
         // 
@@ -75,51 +75,31 @@ namespace CAESDO.Recruitment.Test
         /// <summary>
         ///A test for Applicant ()
         ///</summary>
+        [TestMethod()]
         public void ConstructorTest()
         {
             Applicant target = new Applicant();
 
-            target = NHibernateHelper.daoFactory.GetApplicantDao().GetById(ExisitingApplicantID, false);
+            // TODO: Implement code to verify target
+            //Assert.Inconclusive("TODO: Implement code to verify target");
+            Assert.IsNotNull(target);
+        }
+
+        [TestMethod()]
+        public void FillApplicant()
+        {
+            Applicant target = NHibernateHelper.daoFactory.GetApplicantDao().GetById(ExistingApplicantID, false);
 
             Assert.IsNotNull(target);
-            Assert.AreEqual(target.ID, ExisitingApplicantID);
-        }
 
-        /// <summary>
-        ///A test for CreatedBy
-        ///</summary>
-        public void CreatedByTest()
-        {
-            Applicant target = new Applicant();
-
-            string val = null; // TODO: Assign to an appropriate value for the property
-
-            target.CreatedBy = val;
-
-
-            Assert.AreEqual(val, target.CreatedBy, "CAESDO.Recruitment.Core.Domain.Applicant.CreatedBy was not set correctly.");
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
-        ///A test for Email
-        ///</summary>
-        public void EmailTest()
-        {
-            Applicant target = new Applicant();
-
-            string val = null; // TODO: Assign to an appropriate value for the property
-
-            target.Email = val;
-
-
-            Assert.AreEqual(val, target.Email, "CAESDO.Recruitment.Core.Domain.Applicant.Email was not set correctly.");
-            Assert.Inconclusive("Verify the correctness of this test method.");
+            Assert.AreEqual<int>(target.ID, ExistingApplicantID);
+            Assert.AreEqual<string>(target.Email, ExistingApplicantEmail);
         }
 
         /// <summary>
         ///A test for Fill (int, bool)
         ///</summary>
+        [TestMethod()]
         public void FillTest()
         {
             Applicant target = new Applicant();
@@ -131,52 +111,6 @@ namespace CAESDO.Recruitment.Test
             target.Fill(AccountID, LoadProfile);
 
             Assert.Inconclusive("A method that does not return a value cannot be verified.");
-        }
-
-        /// <summary>
-        ///A test for IsActive
-        ///</summary>
-        public void IsActiveTest()
-        {
-            Applicant target = new Applicant();
-
-            bool val = false; // TODO: Assign to an appropriate value for the property
-
-            target.IsActive = val;
-
-
-            Assert.AreEqual(val, target.IsActive, "CAESDO.Recruitment.Core.Domain.Applicant.IsActive was not set correctly.");
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
-        ///A test for MainProfile
-        ///</summary>
-        public void MainProfileTest()
-        {
-            Applicant target = new Applicant();
-
-            Profile val = null; // TODO: Assign to an appropriate value for the property
-
-
-            Assert.AreEqual(val, target.MainProfile, "CAESDO.Recruitment.Core.Domain.Applicant.MainProfile was not set correctly.");
-            Assert.Inconclusive("Verify the correctness of this test method.");
-        }
-
-        /// <summary>
-        ///A test for Profiles
-        ///</summary>
-        public void ProfilesTest()
-        {
-            Applicant target = new Applicant();
-
-            System.Collections.Generic.IList<CAESDO.Recruitment.Core.Domain.Profile> val = null; // TODO: Assign to an appropriate value for the property
-
-            target.Profiles = val;
-
-
-            Assert.AreEqual(val, target.Profiles, "CAESDO.Recruitment.Core.Domain.Applicant.Profiles was not set correctly.");
-            Assert.Inconclusive("Verify the correctness of this test method.");
         }
 
     }

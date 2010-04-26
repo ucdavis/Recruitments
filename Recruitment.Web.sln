@@ -50,6 +50,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	EndProjectSection
 	ProjectSection(SolutionItems) = preProject
 		localtestrun.testrunconfig = localtestrun.testrunconfig
+		Recruitment.Web4.vsmdi = Recruitment.Web4.vsmdi
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recruitment.Test", "Z:\Recruitment\Recruitment.Test\Recruitment.Test.csproj", "{576B683A-020C-4FBB-993E-AEE545D5B3F1}"
@@ -81,6 +82,9 @@ Global
 		SccProjectUniqueName5 = Z:\\Recruitment\\Recruitment.Test\\Recruitment.Test.csproj
 		SccProjectName5 = Recruitment.Test
 		SccLocalPath5 = Z:\\Recruitment\\Recruitment.Test
+	EndGlobalSection
+	GlobalSection(TestCaseManagementSettings) = postSolution
+		CategoryFile = Recruitment.Web4.vsmdi
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|.NET = Debug|.NET
