@@ -21,6 +21,8 @@ namespace CAESDO.Recruitment.Web
     public partial class UploadReference : ApplicationPage
     {
         private const string STR_LetterOfRec = "LetterOfRec";
+        private const string UploadReferenceErrorURL = "UploadReferenceError.aspx";
+        private const string UploadReferenceSuccessURL = "UploadReferenceSuccess.aspx";
 
         public Reference currentReference
         {
@@ -35,7 +37,7 @@ namespace CAESDO.Recruitment.Web
             //make sure the current reference exists and doesn't have a file already
             if (currentReference == null || currentReference.ReferenceFile != null)
             {
-                Response.Redirect(FormsAuthentication.DefaultUrl);
+                Response.Redirect(UploadReferenceErrorURL);
             }
 
             if (!IsPostBack)
@@ -102,7 +104,7 @@ namespace CAESDO.Recruitment.Web
                         }
                         catch (Exception) { } //Continue on failure
 
-                        Response.Redirect(FormsAuthentication.DefaultUrl);
+                        Response.Redirect(UploadReferenceSuccessURL);
                     }
                     else
                     {

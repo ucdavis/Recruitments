@@ -9,6 +9,8 @@
       </siteMapNode>
 
       <siteMapNode url="UploadReference.aspx" title="Upload Reference" />
+      <siteMapNode url="UploadReferenceError.aspx" title="Upload Reference Error" />
+      <siteMapNode url="UploadReferenceSuccess.aspx" title="Upload Reference Success" />
 
       <siteMapNode url="Authorized/AdminIndex.aspx" title="Administration">
         <siteMapNode url="Authorized/viewPositionsPending.aspx" title="View Pending Positions" />
