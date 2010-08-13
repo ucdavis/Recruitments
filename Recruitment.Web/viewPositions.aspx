@@ -11,7 +11,8 @@
         <Columns>
             <asp:TemplateField HeaderText="Position/Department" SortExpression="PositionTitle">
                 <ItemTemplate>
-                    <asp:LinkButton ID="lbtnPositionTitle" runat="server" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("PositionTitle") %>' OnClick="lbtnPositionTitle_Click"></asp:LinkButton>
+                    <a href="PositionDetails.aspx?PositionID=<%# Eval("ID") %>&Title=<%# Eval("PositionTitle") %>"><%# Eval("PositionTitle") %></a>
+                    <%--<asp:LinkButton ID="lbtnPositionTitle" runat="server" CommandArgument='<%# Eval("ID") %>' Text='<%# Eval("PositionTitle") %>' OnClick="lbtnPositionTitle_Click"></asp:LinkButton>--%>
                     <br />
                     <asp:Label ID="lblDepartmentList" runat="server" Text='<%# Eval("DepartmentList") %>'></asp:Label>
                 </ItemTemplate>

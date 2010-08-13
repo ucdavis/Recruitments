@@ -70,6 +70,8 @@ namespace CAESDO.Recruitment.Web
             }
 
             //Now we have a valid Position, so fill in the corresponding fields
+            Title = string.Format("Position Details: {0}", currentPosition.PositionTitle);
+
             lblPositionTitle.Text = currentPosition.PositionTitle;
             lblPositionNumber.Text = currentPosition.PositionNumber;
 
