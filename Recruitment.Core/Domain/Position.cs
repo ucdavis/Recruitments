@@ -17,6 +17,12 @@ namespace CAESDO.Recruitment.Core.Domain
             get { return _PositionTitle; }
             set { _PositionTitle = value; }
         }
+
+        public virtual string Slug
+        {
+            get { return _PositionTitle.Trim().Replace(" ", "-"); }
+        }
+
         private string _PositionNumber;
 
         [IgnoreNulls()]
