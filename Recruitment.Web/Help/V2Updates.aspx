@@ -40,7 +40,7 @@
   <li><a name="TextEditor"><h3>Improved Email Text Editor<br /></h3></a>
     You can now preview  letters with example data and insert text from Microsoft Word (see example):<br /><img src="external_editor.jpg" alt="" width="663" height="278" /><h4 class="help_back_to_top"><a href="#top">Back to Top</a></h4></li>
   <li><a name="FilterList"><h3>Filter Positions List<br /></h3></a>
-    You can filter the list  of all positions by either department or school.  If you would like to just list the positions  in Human &amp; Community Development, you can append ‘?DepartmentFIS=AHCD’ to  the view positions Url. Example: https://secure.caes.ucdavis.edu/Recruitment/viewPositions.aspx?DepartmentFIS=AHCD <br /><img src="filter_positions_list.jpg" alt="" width="690" height="311" /><h4 class="help_back_to_top"><a href="#top">Back to Top</a></h4></li>
+    You can filter the list  of all positions by either department or school.  If you would like to just list the positions  in Human &amp; Community Development, you can append ‘?DepartmentFIS=AHCD’ to  the view positions Url. Example: https://recruitments.ucdavis.edu/Recruitment/viewPositions.aspx?DepartmentFIS=AHCD <br /><img src="filter_positions_list.jpg" alt="" width="690" height="311" /><h4 class="help_back_to_top"><a href="#top">Back to Top</a></h4></li>
   <li><a name="RSS"><h3>RSS Feeds<br /></h3></a>
     The main view positions page can now  be consumed as an RSS feed in any feed reader (like iGoogle/Google reader) or on  any page that can consume feeds (like a department homepage).  The feed can be filtered by unit or school.
     <ul>
