@@ -31,6 +31,9 @@
 	padding-top: 150px; 
 	overflow:hidden;
 }
+
+/* ------------- Not used:  CAES ABE default to CAES logo -------------- */
+/*
 .ABAEstyle
 {
 	background: url(Images/cl_ABAE.gif) no-repeat top right;
@@ -38,6 +41,7 @@
 	padding-top: 150px; 
 	overflow:hidden;
 }
+*/
 
 .ABMLstyle
 {
