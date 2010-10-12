@@ -90,6 +90,9 @@
                         <th>
                             Submitted
                         </th>
+                        <th>
+                            Submit Date
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -119,6 +122,9 @@
                 </td>
                 <td class="submittedHeader">
                     <%# Eval("Submitted") %>
+                </td>
+                <td>
+                    <%# (bool)Eval("Submitted") ? ((DateTime)Eval("SubmitDate")).ToShortDateString() : "N/A" %>
                 </td>
             </tr>
         </ItemTemplate>
