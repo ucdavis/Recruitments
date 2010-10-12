@@ -5,6 +5,7 @@
     Report Type: <asp:DropDownList ID="dlistType" runat="server">
         <asp:ListItem Selected="True" Value="Interim">Interim Recruitment</asp:ListItem>
         <asp:ListItem Value="Survey">Survey Results</asp:ListItem>
+        <asp:ListItem Value="Bio">Biographical Spreadsheet</asp:ListItem>
     </asp:DropDownList>
     
     <br /><br />
@@ -24,7 +25,7 @@
     </asp:ObjectDataSource>
     
     <br /><br />
-    <asp:CheckBox ID="chkOutputFile" runat="server" Checked="true" Text="Output to Word: " TextAlign="Left" />
+    <asp:CheckBox ID="chkOutputFile" runat="server" Checked="true" Text="Output to Word/Excel: " TextAlign="Left" />
     <br /><br />
     <asp:Button ID="btnGenerateReport" runat="server" Text="Generate Report!" OnClick="btnGenerateReport_Click" />
     <br /><asp:Label ID="lblReportStatus" runat="server" EnableViewState="false" ForeColor="red"></asp:Label>

@@ -91,6 +91,28 @@ namespace CAESDO.Recruitment.Web
                 }
             }
 
+            if (!allowedAccess) //if they don't have committee access, check admin access
+            {
+                if (Roles.IsUserInRole("Admin"))
+                {
+                    allowedAccess = true;
+                }
+                else
+                {
+                    User u = daoFactory.GetUserDao().GetUserByLogin(HttpContext.Current.User.Identity.Name);
+                    
+                    foreach (Department d in currentPosition.Departments)
+                    {
+                        //Check if the current unit is in the user's units
+                        if (u.Units.Contains(d.Unit))
+                        {
+                            allowedAccess = true;
+                            break;
+                        }
+                    }
+                }
+            }
+
             if (!allowedAccess)
             {
                 Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.AUTH));

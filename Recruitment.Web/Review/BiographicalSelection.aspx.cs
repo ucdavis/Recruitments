@@ -22,7 +22,7 @@ namespace CAESDO.Recruitment.Web
         {
             get
             {
-                return "BiographicalReport.ascx";
+                return "../Shared/BiographicalReport.ascx";
             }
         }
 
