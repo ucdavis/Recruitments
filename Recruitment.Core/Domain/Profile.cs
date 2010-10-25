@@ -35,7 +35,7 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _LastName = value; }
         }
 
-        public virtual string FullNameLastFirst
+        public virtual string FullName
         {
             get
             {
@@ -50,7 +50,7 @@ namespace CAESDO.Recruitment.Core.Domain
             }
         }
 
-        public virtual string FullName
+        public virtual string FullNameFirstLast
         {
             get
             {

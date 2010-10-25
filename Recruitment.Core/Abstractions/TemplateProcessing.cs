@@ -106,10 +106,10 @@ namespace CAESDO.Recruitment.Core.Abstractions
                 case "ReferenceTitle":
                     return _reference.Title;
                 case "ApplicantName":
-                    if (string.IsNullOrEmpty(_application.AssociatedProfile.FullName.Trim()))
+                    if (string.IsNullOrEmpty(_application.AssociatedProfile.FullNameFirstLast.Trim()))
                         return "Name Not Given";
                     else
-                        return _application.AssociatedProfile.FullName;
+                        return _application.AssociatedProfile.FullNameFirstLast;
 
                     //if (this._application.AssociatedProfile.MiddleName.ToString() != "") // If the field is null, the ToString() will make it a blank string.
                     //return this._application.AssociatedProfile.FirstName + " " + this._application.AssociatedProfile.MiddleName + " " + this._application.AssociatedProfile.LastName;
