@@ -17,6 +17,7 @@
         <siteMapNode url="Authorized/viewPositionsClosed.aspx" title="View Closed Positions" />
         <siteMapNode url="Authorized/PositionManagement.aspx" title="Add/Modify Position" />
         <siteMapNode url="Authorized/UserManagement.aspx" title="User Management" />
+        <siteMapNode url="Authorized/ManageUsers.aspx" title="User Management" />
         <siteMapNode url="Authorized/CommitteeManagement.aspx" title="Committee Management" />
         <siteMapNode url="Authorized/EmailTemplates.aspx" title="Email Templates" />
         <siteMapNode url="Authorized/ApplicationReview.aspx" title="Application Review" />
