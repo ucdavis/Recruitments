@@ -6,6 +6,7 @@
         <asp:ListItem Selected="True" Value="Interim">Interim Recruitment</asp:ListItem>
         <asp:ListItem Value="Survey">Survey Results</asp:ListItem>
         <asp:ListItem Value="Bio">Biographical Spreadsheet</asp:ListItem>
+        <asp:ListItem Value="Applicant">Applicant Report</asp:ListItem>
     </asp:DropDownList>
     
     <br /><br />

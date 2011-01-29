@@ -12,6 +12,7 @@ namespace CAESDO.Recruitment.Web
         private const string STR_Survey = "Survey";
         private const string STR_PositionID = "PositionID";
         private const string STR_Bio = "Bio";
+        private const string STR_Applicant = "Applicant";
 
         public string InterimPage
         {
@@ -28,23 +29,33 @@ namespace CAESDO.Recruitment.Web
             get { return "../Shared/BiographicalReport.ascx"; }
         }
 
+        public string ApplicantPage
+        {
+            get { return "../Shared/ApplicantReport.ascx"; }
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
         }
 
         protected void btnGenerateReport_Click(object sender, EventArgs e)
         {
-            if (dlistType.SelectedValue == STR_Interim)
+            switch (dlistType.SelectedValue)
             {
-                this.OutputPage(InterimPage, chkOutputFile.Checked ? ReportOutputType.Word : ReportOutputType.Screen);
-            }
-            else if (dlistType.SelectedValue == STR_Bio)
-            {
-                this.OutputPage(BioPage, chkOutputFile.Checked ? ReportOutputType.Excel : ReportOutputType.Screen);
-            }
-            else if (dlistType.SelectedValue == STR_Survey)
-            {
-                this.OutputPage(SurveyPage, chkOutputFile.Checked ? ReportOutputType.Word : ReportOutputType.Screen);
+                case STR_Interim:
+                    this.OutputPage(InterimPage, chkOutputFile.Checked ? ReportOutputType.Word : ReportOutputType.Screen);
+                    break;
+                case STR_Bio:
+                    this.OutputPage(BioPage, chkOutputFile.Checked ? ReportOutputType.Excel : ReportOutputType.Screen);
+                    break;
+                case STR_Survey:
+                    this.OutputPage(SurveyPage, chkOutputFile.Checked ? ReportOutputType.Word : ReportOutputType.Screen);
+                    break;
+                case STR_Applicant:
+                    this.OutputPage(ApplicantPage, chkOutputFile.Checked ? ReportOutputType.Excel : ReportOutputType.Screen);
+                    break;
+                default:
+                    throw new ArgumentException("Report Type Not Found");
             }
         }
 
