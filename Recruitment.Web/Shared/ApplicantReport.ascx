@@ -11,7 +11,6 @@
     <div>
         <asp:GridView ID="gviewApplications" runat="server" AutoGenerateColumns="false" DataKeyNames="id">
             <Columns>
-            //select FirstName, MiddleName, LastName, Email, Address1, Address2, City, State, Zip, Country, CountryCode, Phone
                 <asp:TemplateField HeaderText="First Name">
                     <ItemTemplate>
                         <%# Eval("AssociatedProfile.FirstName")%>
@@ -34,42 +33,42 @@
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Address1">
                     <ItemTemplate>
-                        <%# Eval("Email") %>
+                        <%# Eval("AssociatedProfile.Address1")%>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Address2">
                     <ItemTemplate>
-                        <%# Eval("Email") %>
+                        <%# Eval("AssociatedProfile.Address2")%>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="City">
                     <ItemTemplate>
-                        <%# Eval("Email") %>
+                        <%# Eval("AssociatedProfile.City")%>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="State">
                     <ItemTemplate>
-                        <%# Eval("Email") %>
+                        <%# Eval("AssociatedProfile.State")%>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Zip">
                     <ItemTemplate>
-                        <%# Eval("Email") %>
+                        <%# Eval("AssociatedProfile.Zip")%>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Country">
                     <ItemTemplate>
-                        <%# Eval("Email") %>
+                        <%# Eval("AssociatedProfile.Country")%>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="CountryCode">
                     <ItemTemplate>
-                        <%# Eval("Email") %>
+                        <%# Eval("AssociatedProfile.CountryCode")%>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Phone">
                     <ItemTemplate>
-                        <%# Eval("Email") %>
+                        <%# Eval("AssociatedProfile.Phone")%>
                     </ItemTemplate>
                 </asp:TemplateField>
                 <asp:TemplateField HeaderText="Status">
