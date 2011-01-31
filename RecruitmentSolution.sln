@@ -65,11 +65,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recruitment.BLL", "Recruitm
 EndProject
 Project("{2CFEAB61-6A3B-4EB8-B523-560B4BEEF521}") = "Recruitment.Deployment", "Recruitment.Deployment\Recruitment.Deployment.wdproj", "{44635FA6-C614-44D4-9D34-1728B2B1542D}"
 EndProject
+Project("{4F174C21-8C12-11D0-8340-0000F80270F8}") = "Recruitment.Sql", "Recruitment.Sql\Recruitment.Sql.dbp", "{4003ADA3-95B1-4659-9613-C547FEC92279}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 12
+		SccNumberOfProjects = 13
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = http://1x:8080/
+		SccTeamFoundationServer = https://tfs.caes.ucdavis.edu:8088/tfs
 		SccLocalPath0 = .
 		SccProjectUniqueName1 = Recruitment.Core\\Recruitment.Core.csproj
 		SccProjectName1 = Recruitment.Core
@@ -106,6 +108,9 @@ Global
 		SccProjectUniqueName11 = Recruitment.Test\\Recruitment.Test.csproj
 		SccProjectName11 = Recruitment.Test
 		SccLocalPath11 = Recruitment.Test
+		SccProjectUniqueName12 = Recruitment.Sql\\Recruitment.Sql.dbp
+		SccProjectName12 = Recruitment.Sql
+		SccLocalPath12 = Recruitment.Sql
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|.NET = Debug|.NET

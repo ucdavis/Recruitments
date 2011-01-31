@@ -6,7 +6,7 @@
     <asp:ImageButton ID="ibPendingpos" runat="server" ImageUrl="~/Images/def_pendingpos_admin.jpg" PostBackUrl="ViewPositionsPending.aspx" AlternateText="Pending Positions" />
     <asp:ImageButton ID="ibClosedPos" runat="server" ImageUrl="~/Images/def_closedposition_admin.jpg" PostBackUrl="~/Authorized/viewPositionsClosed.aspx" AlternateText="Closed Positions" />
     <asp:ImageButton ID="ibCreatepos" runat="server" ImageUrl="~/Images/def_createpositions.jpg" PostBackUrl="PositionManagement.aspx" AlternateText="Create Positions" />
-    <asp:ImageButton ID="ibManageusers" runat="server" ImageUrl="~/Images/def_manageusers_admin.jpg" PostBackUrl="UserManagement.aspx" AlternateText="Manage Users" />
+    <asp:ImageButton ID="ibManageusers" runat="server" ImageUrl="~/Images/def_manageusers_admin.jpg" PostBackUrl="ManageUsers.aspx" AlternateText="Manage Users" />
     <asp:ImageButton ID="ibEmailtemplates" runat="server" ImageUrl="~/Images/def_emailtemplates.jpg" PostBackUrl="EmailTemplates.aspx" AlternateText="Reminder Emails" />
     <asp:ImageButton ID="ibUnsolicited" runat="server" ImageUrl="~/Images/def_unsolicited.jpg" PostBackUrl="~/Authorized/UnsolicitedReferences.aspx" AlternateText="Unsolicited References" />    
     <asp:ImageButton ID="ibApplicationsList" runat="server" ImageUrl="~/Images/def_applist.jpg" PostBackUrl="~/Authorized/ApplicationsList.aspx" AlternateText="Application List" />

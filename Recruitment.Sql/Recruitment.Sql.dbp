@@ -1,0 +1,25 @@
+# Microsoft Developer Studio Project File - Database Project
+Begin DataProject = "Recruitment.Sql"
+   MSDTVersion = "80"
+   DefDBRef = "vogel.Recruitment.dbo"
+   SccProjectName = "SAK"
+   SccLocalPath = "SAK"
+   SccAuxPath = "SAK"
+   SccProvider = "SAK"
+   Begin Folder = "Catbert"
+      Script = "AllCatbertViews.sql"
+      Script = "CatbertViews.sql"
+   End
+   Begin Folder = "Change Scripts"
+   End
+   Begin Folder = "Create Scripts"
+      Script = "CreateScheema.sql"
+   End
+   Begin DBRefFolder = "Database References"
+      Begin DBRefNode = "vogel.Recruitment.dbo"
+         ConnectStr = "Data Source=vogel;Initial Catalog=Recruitment;Integrated Security=True"
+         Provider = "{91510608-8809-4020-8897-FBA057E22D54}"
+         Colorizer = 6
+      End
+   End
+End

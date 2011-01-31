@@ -7,6 +7,12 @@ namespace CAESDO.Recruitment.Web
 {
     public partial class UserManagement : ApplicationPage
     {
+        protected void Pre_Init(object sender, EventArgs e)
+        {
+            //Now we are using the Manage Users page to manage users
+            Response.Redirect("ManageUsers");
+        }
+
         protected void Page_Load(object sender, EventArgs e)
         {
         }
