@@ -56,7 +56,7 @@ namespace CAESDO.Recruitment.Test.BusinessTests
             
             var setup = gateway.Setup(
                 d =>
-                d.SendMessage(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()));
+                d.SendMessage(It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>(), It.IsAny<string>()));
 
             if (succeed == false) setup.Throws(new Exception());
 
