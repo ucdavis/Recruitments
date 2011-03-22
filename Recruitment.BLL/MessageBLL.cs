@@ -9,16 +9,25 @@ namespace CAESDO.Recruitment.BLL
     {
         public static IMessageGateway MessageGateway = new MessageGateway();
         public static IPrincipal UserContext = new UserContext();
-
+        
         /// <summary>
         /// Sends a message according to the given criteria
         /// </summary>
         /// <returns>true on success</returns>
         public static bool SendMessage(string from, string to, string subject, string body)
         {
+            return SendMessage(from, to, null, subject, body);
+        }
+
+        /// <summary>
+        /// Sends a message according to the given criteria
+        /// </summary>
+        /// <returns>true on success</returns>
+        public static bool SendMessage(string from, string to, string bcc, string subject, string body)
+        {
             try
             {
-                MessageGateway.SendMessage(from, to, subject, body);
+                MessageGateway.SendMessage(from, to, bcc, subject, body);
             }
             catch
             {
@@ -43,7 +52,7 @@ namespace CAESDO.Recruitment.BLL
             }
 
             return true; //Success
- 
+
         }
     }
 }

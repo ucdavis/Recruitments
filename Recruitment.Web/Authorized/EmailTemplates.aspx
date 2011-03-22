@@ -118,6 +118,15 @@
     
     <br />
     <asp:Panel ID="pnlApplicationsExist" runat="server" Visible="false">
+    <asp:Label ID="lblBccOptional" runat="server" Text="Bcc Address (optional): "></asp:Label>
+    <asp:TextBox ID="txtBccAddress" runat="server" Columns="25"></asp:TextBox>
+    <asp:RegularExpressionValidator ID="regValBccAddress" runat="server" ControlToValidate="txtBccAddress" 
+        ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" 
+        ValidationGroup="EmailTemplate" 
+        ErrorMessage="* Not a valid email address">
+    </asp:RegularExpressionValidator>
+    <br />
+    <br />
     <asp:Button ID="btnSendTemplate" runat="server" Text="Send Template Emails" 
             CausesValidation="true" ValidationGroup="EmailTemplate" 
             onclick="btnSendTemplate_Click" /><br />
@@ -155,8 +164,6 @@
     
     <script src="../JS/tiny_mce/tiny_mce.js" type="text/javascript"></script>
     <script src="../JS/EmailTemplates.js" type="text/javascript"></script>
-            
-    </script>
 
         <div id="email_word_bank">
             <strong>Template Fields:</strong><img alt="Reference Template Help" id="ReferenceTemplateHelp"

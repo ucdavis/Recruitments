@@ -20,7 +20,14 @@ namespace CAESDO.Recruitment.Web
         /// </summary>
         protected void lviewApplications_DataBound(object sender, EventArgs e)
         {
-            pnlApplicationsExist.Visible = lviewApplications.Items.Count > 0;
+            bool applicationsExist = lviewApplications.Items.Count > 0;
+
+            pnlApplicationsExist.Visible = applicationsExist;
+
+            if (applicationsExist)
+            {
+                txtBccAddress.Text = PositionBLL.GetByID(int.Parse(dlistApplicants.SelectedValue)).HREmail;
+            }
         }
 
         public string GetNullSafeFullName(string fullName)
@@ -34,6 +41,8 @@ namespace CAESDO.Recruitment.Web
         protected void btnSendTemplate_Click(object sender, EventArgs e)
         {
             StringBuilder errorEmails = new StringBuilder();
+
+            var bccAddress = txtBccAddress.Text;
 
             //Go through each of the applications
             foreach (var row in lviewApplications.Items)
@@ -51,7 +60,8 @@ namespace CAESDO.Recruitment.Web
                                                                                     false);
 
                     bool success = MessageBLL.SendMessage(WebConfigurationManager.AppSettings["emailFromEmail"],
-                                                            selectedApplication.Email,
+                                                            selectedApplication.Email, 
+                                                            bccAddress,
                                                             "UC Davis Recruitment Message",
                                                             bodyFromTemplate);
 
