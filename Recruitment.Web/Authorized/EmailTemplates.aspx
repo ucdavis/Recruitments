@@ -120,6 +120,8 @@
     <asp:Panel ID="pnlApplicationsExist" runat="server" Visible="false">
     <asp:Label ID="lblBccOptional" runat="server" Text="Bcc Address (optional): "></asp:Label>
     <asp:TextBox ID="txtBccAddress" runat="server" Columns="25"></asp:TextBox>
+    <img alt="Bcc Address Help" id="BccAddressHelp"
+                src="../Images/question_blue.png" />
     <asp:RegularExpressionValidator ID="regValBccAddress" runat="server" ControlToValidate="txtBccAddress" 
         ValidationExpression="\w+([-+.']\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*" 
         ValidationGroup="EmailTemplate" 

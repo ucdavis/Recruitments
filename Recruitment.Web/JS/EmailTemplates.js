@@ -50,6 +50,11 @@ $(document).ready(function() {
         trigger: 'click',
         positions: 'top'
     });
+
+    $('#BccAddressHelp').bt('Optionally include an email address to be blind carbon copied on all emails sent from this page', {
+        trigger: 'click',
+        positions: 'top'
+    });
 });
 
 function TemplateSectionChanged() {
