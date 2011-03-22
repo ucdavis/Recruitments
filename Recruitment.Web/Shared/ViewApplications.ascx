@@ -15,12 +15,23 @@
             trigger: 'hover',
             positions: 'top'
         });
-        
+
         $.tablesorter.addParser({
             id: 'phdInfo',
             is: function(s) { return false; },
             format: function(s, table, cell) {
                 var date = $(".ApplicantViewListDate", cell).html(); //Grab the text inside the applicant view list date class
+
+                return $.tablesorter.formatFloat(new Date(date).getTime());
+            },
+            type: 'numeric'
+        });
+
+        $.tablesorter.addParser({
+            id: 'dateWithNA', //A new parser is required to deal with the N/A cells
+            is: function(s) { return false; },
+            format: function(s, table, cell) {
+                var date = $(cell).html(); //Grab the text inside the applicant view list date class
 
                 return $.tablesorter.formatFloat(new Date(date).getTime());
             },
@@ -34,7 +45,7 @@
             cssAsc: 'headerSortUp',
             cssDesc: 'headerSortDown',
             cssHeader: 'header',
-            headers: { 0: { sorter: 'link' }, 3: { sorter: 'phdInfo'} },
+            headers: { 0: { sorter: 'link' }, 3: { sorter: 'phdInfo' }, 5: { sorter: 'dateWithNA'} },
             widgets: ['zebra']
         });
 
