@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 10.00
-# Visual Studio 2008
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{AC44A94D-0EE1-498F-BCAF-F4023E22BC47}"
 	ProjectSection(SolutionItems) = preProject
 		Bin\Castle.Core.dll = Bin\Castle.Core.dll
@@ -42,7 +42,7 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Recruitment.Web", "Recruitm
 		SccAuxPath = ""
 		SccLocalPath = ""
 		SccProvider = ""
-		TargetFramework = "3.5"
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
 		ProjectReferences = "{5F40A7DB-8142-4564-BB05-0F9C2DD3EF75}|CAESDO.Recruitment.Core.dll;{BFA5EBED-0F4D-481F-9C91-EBE45B481F83}|CAESDO.Recruitment.Data.dll;{B48CCC6E-ED4B-4589-86F4-3486FD187453}|CAESDO.Recruitment.Providers.dll;{B7E438A4-E39B-4D9B-BFAE-D55F78769115}|CAESDO.Recruitment.BLL.dll;"
 		Debug.AspNetCompiler.VirtualPath = "/Recruitment.Web"
 		Debug.AspNetCompiler.PhysicalPath = "Recruitment.Web\"
@@ -65,7 +65,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recruitment.BLL", "Recruitm
 EndProject
 Project("{2CFEAB61-6A3B-4EB8-B523-560B4BEEF521}") = "Recruitment.Deployment", "Recruitment.Deployment\Recruitment.Deployment.wdproj", "{44635FA6-C614-44D4-9D34-1728B2B1542D}"
 EndProject
-Project("{4F174C21-8C12-11D0-8340-0000F80270F8}") = "Recruitment.Sql", "Recruitment.Sql\Recruitment.Sql.dbp", "{4003ADA3-95B1-4659-9613-C547FEC92279}"
+Project("{C8D11400-126E-41CD-887F-60BD40844F9E}") = "Recruitment.Sql", "Recruitment.Sql\Recruitment.Sql.dbproj", "{67CBC824-A49E-4E9B-A947-360F3DFE65C3}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -304,6 +304,18 @@ Global
 		{44635FA6-C614-44D4-9D34-1728B2B1542D}.Release|Any CPU.Build.0 = Release|Any CPU
 		{44635FA6-C614-44D4-9D34-1728B2B1542D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{44635FA6-C614-44D4-9D34-1728B2B1542D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.DebugLocal|.NET.ActiveCfg = Debug|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.DebugLocal|Any CPU.ActiveCfg = Debug|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.DebugLocal|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Production|.NET.ActiveCfg = Debug|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Production|Any CPU.ActiveCfg = Debug|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Production|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|.NET.ActiveCfg = Release|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
