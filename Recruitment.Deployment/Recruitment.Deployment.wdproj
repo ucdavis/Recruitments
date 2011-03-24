@@ -36,7 +36,7 @@
     <EnableUpdateable>true</EnableUpdateable>
     <UseMerge>true</UseMerge>
     <SingleAssemblyName>Recruitment.Deployment</SingleAssemblyName>
-    <UseWebConfigReplacement>true</UseWebConfigReplacement>
+    <UseWebConfigReplacement>false</UseWebConfigReplacement>
   </PropertyGroup>
   <ItemGroup>
   </ItemGroup>
