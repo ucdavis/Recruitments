@@ -29,4 +29,5 @@ obj/
 _ReSharper*/
 [Tt]est[Rr]esult*
 !Bin/
+Recruitment.Web/Bin/*
 *CAESDO.Recruitment.*.dll

@@ -12,10 +12,14 @@
     <SourceWebPhysicalPath>..\Recruitment.Web</SourceWebPhysicalPath>
     <SourceWebProject>{54A50826-9DFD-40B6-ADEC-4480BE72A324}|C:\Projects\RecruitmentBranch\Recruitment.Web</SourceWebProject>
     <SourceWebVirtualPath>/Recruitment.Web</SourceWebVirtualPath>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
