@@ -1,5 +1,7 @@
-#ignote sql dbmdl files
+#ignore sql dbmdl files
 *.dbmdl
+#ignore AppSettings.config file
+AppSettings.config
 #ignore thumbnails created by windows
 Thumbs.db
 #Ignore files build by Visual Studio
