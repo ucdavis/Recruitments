@@ -515,6 +515,21 @@ namespace CAESDO.Recruitment.Data
 
                 return criteria.UniqueResult<Reference>();
             }
+
+            public List<Reference> GetReferencesToBeNotified(int positionId)
+            {
+                //Get the reference which have not been sent emails and aren't unsolicited for each applicant who is marked "GetReferences"
+                var criteria = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof (Reference))
+                    .CreateAlias("AssociatedApplication", "AssociatedApplication")
+                    .CreateAlias("AssociatedApplication.AppliedPosition", "AppliedPosition")
+                    .Add(Restrictions.Eq("AssociatedApplication.GetReferences", true))
+                    .Add(Restrictions.Eq("UnsolicitedReference", false))
+                    .Add(Restrictions.Eq("SentEmail", false))
+                    .Add(Restrictions.Eq("AppliedPosition.ID", positionId))
+                    .SetFetchMode("AssociatedApplication", FetchMode.Join);
+
+                return criteria.List<Reference>() as List<Reference>;
+            }
         }
 
         public class TemplateTypeDao : AbstractNHibernateDao<TemplateType, int>, ITemplateTypeDao { }

@@ -11,5 +11,10 @@ namespace CAESDO.Recruitment.BLL
         {
             return daoFactory.GetReferenceDao().GetReferenceByUploadID(uploadId);
         }
+
+        public static List<Reference> GetReferencesToBeNotified(Position position)
+        {
+            return daoFactory.GetReferenceDao().GetReferencesToBeNotified(position.ID);
+        }
     }
 }

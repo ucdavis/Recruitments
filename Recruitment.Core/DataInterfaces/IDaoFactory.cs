@@ -107,6 +107,7 @@ namespace CAESDO.Recruitment.Core.DataInterfaces
 
     public interface IReferenceDao : IDao<Reference, int> {
         Reference GetReferenceByUploadID(string UniqueID);
+        List<Reference> GetReferencesToBeNotified(int positionId);
     }
 
     public interface ITemplateTypeDao : IDao<TemplateType, int> { }

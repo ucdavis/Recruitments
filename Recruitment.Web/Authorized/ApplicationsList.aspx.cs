@@ -48,6 +48,11 @@ namespace CAESDO.Recruitment.Web
             e.InputParameters["position"] = currentPosition;
         }
 
+        protected void odsReferencesToNotify_Selecting(object sender, ObjectDataSourceSelectingEventArgs e)
+        {
+            e.InputParameters["position"] = currentPosition;
+        }
+
         protected void dlistPositions_SelectedIndexChanged(object sender, EventArgs e)
         {
             lviewApplications.DataBind();
@@ -57,6 +62,9 @@ namespace CAESDO.Recruitment.Web
                 pnlPositionSelected.Visible = true;
 
                 litReferenceTemplate.Text = currentPosition.ReferenceTemplate.TemplateText;
+
+                lviewReferencesToBeNotified.DataBind();
+                //var allReferences = ReferenceBLL.GetReferencesToBeNotified(currentPosition);
                 //btnUpdateList.Visible = true;
                 //btnEmailReferences.Visible = true;
             }
@@ -88,6 +96,7 @@ namespace CAESDO.Recruitment.Web
             }
 
             lblResult.Text = "Application List Updated";
+            lviewReferencesToBeNotified.DataBind();
         }
 
         protected void lbtnViewApplication_Click(object sender, EventArgs e)

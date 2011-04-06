@@ -25,6 +25,15 @@
                 widgets: ['zebra']
             });
 
+            $("#tblReferences").tablesorter(
+            {
+                sortList: [[2, 0], [0, 0]],
+                cssAsc: 'headerSortUp',
+                cssDesc: 'headerSortDown',
+                cssHeader: 'header',
+                widgets: ['zebra']
+            });
+
             $("input.qs_input").keydown(function() {
                 //When searching, automatically clear out the submitted application filter
                 $("#chkShowUnsubmitted").removeAttr("checked");
@@ -188,8 +197,71 @@
             ConfirmText="You are about to email all references for the Short Listed applicants"
             TargetControlID="btnEmailReferences">
         </AjaxControlToolkit:ConfirmButtonExtender>
-        
-       
+    
+        <br />
+        <asp:Panel ID="pnlReferencesToBeNotifiedHolder" runat="server" meta:resourcekey="pnlReferencesToBeNotifiedHolderResource1">
+            <span style="font-weight: bold;"> + See References To Be Emailed</span>                               
+            <br />
+            <asp:ImageButton ID="CSNImage" runat="server" ImageUrl="~/Images/show_details.jpg" AlternateText="Show Details" meta:resourcekey="CSNImageResource1" />
+        </asp:Panel>
+                                                        
+        <asp:Panel ID="pnlReferencesToBeNotified" runat="server" BorderStyle="Solid" BorderWidth="1px" BorderColor="#AEAEAE">
+                <em>Note:</em> If you have made any unsaved changes to the "Get References" column since loading this page, please click "Update Applications List" to ensure this section is up to date.
+                <br />
+                <strong>The following references will be emailed when you click "Email References"</strong>
+                <br />
+
+                <asp:ListView ID="lviewReferencesToBeNotified" runat="server" DataSourceID="odsReferencesToNotify" DataKeyNames="id">
+                <LayoutTemplate>
+                    <table id="tblReferences" class="tablesorter">
+                        <thead>
+                            <tr>
+                                <th>
+                                    Reference Name
+                                </th>
+                                <th>
+                                    Reference Email
+                                </th>
+                                <th>
+                                    Applicant Name
+                                </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr id="itemPlaceholder" runat="server">
+                            </tr>
+                        </tbody>
+                    </table>
+                </LayoutTemplate>
+                <ItemTemplate>
+                    <tr>
+                        <td>
+                            <%# Eval("FullName") %>
+                        </td>
+                        <td>
+                            <%# Eval("Email") %>
+                        </td>
+                        <td>
+                            <%# GetNullSafeFullName((string)Eval("AssociatedApplication.AssociatedProfile.FullName"))%>
+                        </td>
+                    </tr>
+                </ItemTemplate>
+                <EmptyDataTemplate>
+                    No References Need To Be Notified
+                </EmptyDataTemplate>
+                </asp:ListView>
+
+                <asp:ObjectDataSource ID="odsReferencesToNotify" runat="server" SelectMethod="GetReferencesToBeNotified"
+                    TypeName="CAESDO.Recruitment.BLL.ReferenceBLL" OnSelecting="odsReferencesToNotify_Selecting">
+                    <SelectParameters>
+                        <asp:Parameter Name="position" Type="Object" />
+                    </SelectParameters>
+                </asp:ObjectDataSource>
+        </asp:Panel>
+                                
+       <AjaxControlToolkit:CollapsiblePanelExtender ID="collapseReferencesToBeNotified" runat="server" TargetControlID="pnlReferencesToBeNotified"
+                                                                         Collapsed="True" CollapseControlID="pnlReferencesToBeNotifiedHolder" ExpandControlID="pnlReferencesToBeNotifiedHolder"
+                                                                           ImageControlID="CSNImage" ExpandedImage="../Images/hidedetails.jpg" CollapsedImage="../Images/show_details.jpg" SuppressPostBack="True" Enabled="True"></AjaxControlToolkit:CollapsiblePanelExtender>
          
         <div id="referenceEmail" style="display:none;">
             <asp:Literal ID="litReferenceTemplate" runat="server"></asp:Literal>
