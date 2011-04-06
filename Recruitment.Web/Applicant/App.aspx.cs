@@ -895,7 +895,7 @@ namespace CAESDO.Recruitment.Web
             else
             {
                 lblApplicationStepStatus.ForeColor = System.Drawing.Color.Red;
-                lblApplicationStepStatus.Text = string.Format("Error occurred saving {0}.  Please return to the {0} tab and try again. If the problem persists, please contact support", fromStepName);
+                lblApplicationStepStatus.Text = string.Format("Error occurred saving {0}.  Please return to the {0} tab and try again.  If you were uploading a file, please ensure it is a PDF document.  If the problem persists, please contact support", fromStepName);
             }
 
             //Reload the steps list
