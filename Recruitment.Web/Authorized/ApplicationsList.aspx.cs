@@ -118,27 +118,18 @@ namespace CAESDO.Recruitment.Web
 
             List<string> errorReferences = new List<string>();
 
-            //Get each application listed
-            foreach (Application app in currentPosition.AssociatedApplications)
+            var referencesToNotify = ReferenceBLL.GetReferencesToBeNotified(currentPosition);
+
+            foreach (var reference in referencesToNotify)
             {
-                if (app.GetReferences == true) //We only want to email the short listed applicants
-                {
-                    foreach (Reference reference in app.References)
-                    {
-                        //Only email references who haven't been emailed yet and have not sent an unsolicited reference letter
-                        if (reference.SentEmail == false && reference.UnsolicitedReference == false)   
-                        {
-                            //Before sending the email, make sure we have a uid
-                            this.ensureUniqueID(reference);
+                //Before sending the email, make sure we have a uid
+                this.ensureUniqueID(reference);
 
-                            string result = sendReferenceEmail(currentPosition, app, reference);
+                string result = sendReferenceEmail(currentPosition, reference.AssociatedApplication, reference);
 
-                            //If a result was returned, then add it to the error emails
-                            if (!string.IsNullOrEmpty(result))
-                                errorReferences.Add(result);
-                        }
-                    }
-                }
+                //If a result was returned, then add it to the error emails
+                if (!string.IsNullOrEmpty(result))
+                    errorReferences.Add(result);
             }
 
             if (errorReferences.Count == 0)
