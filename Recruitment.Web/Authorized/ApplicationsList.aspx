@@ -21,7 +21,6 @@
                             , 1: { sorter: 'checkbox' }
                             , 2: { sorter: 'checkbox' }
                             , 3: { sorter: 'link' }
-                            , 5: { sorter: 'checkbox' }
                 },
                 widgets: ['zebra']
             });
