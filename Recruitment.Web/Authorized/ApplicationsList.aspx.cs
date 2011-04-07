@@ -152,6 +152,8 @@ namespace CAESDO.Recruitment.Web
                 lblResult.ForeColor = System.Drawing.Color.Red;
                 lblResult.Text = "The Following References Were Not Sent Emails: " + delimitedReferenceErrorList.ToString();
             }
+
+            lviewReferencesToBeNotified.DataBind();
         }
 
         /// <summary>
