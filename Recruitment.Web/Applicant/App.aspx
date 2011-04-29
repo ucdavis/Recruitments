@@ -295,7 +295,9 @@
                         <td colspan="2"><br /></td>
                     </tr>
                     <tr>
-                        <td colspan="2">Extramural reviewers should be people from outside UC Davis.</td>
+                        <td colspan="2">Extramural reviewers should be people from outside UC Davis.
+                        Letters will be requested from the references you have provided at a later date in the process.
+                        </td>
                     </tr>
                     <tr>
                         <td colspan="2">
