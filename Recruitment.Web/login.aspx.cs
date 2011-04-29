@@ -9,6 +9,8 @@ using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using System.IO;
 using System.Net;
+using CAESDO.Recruitment.BLL;
+using App_Code;
 
 namespace CAESDO
 {
@@ -136,6 +138,19 @@ namespace CAESDO
 
                         // set forms authentication ticket
                         FormsAuthentication.SetAuthCookie(kerberos, false);
+
+                        // pull out the user info and save in a session object
+                        var user = UserBLL.GetByLogin(kerberos);
+
+                        if (user != null)
+                        {
+                            Session["userdetails"] = new UserDetails
+                                                         {
+                                                             Login = kerberos,
+                                                             Name = string.Format("{0} {1}", user.FirstName, user.LastName),
+                                                             Email = user.Email
+                                                         };
+                        }
 
                         // redirect to original url
                         string returnURL = context.Request.QueryString[STR_ReturnURL];

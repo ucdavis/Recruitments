@@ -28,14 +28,13 @@ namespace App_Code
     {
         public static string CreateWithCurrentUser()
         {
-            if (HttpContext.Current.User.Identity.IsAuthenticated == false || string.IsNullOrWhiteSpace(HttpContext.Current.User.Identity.Name))
+            var userDetails = HttpContext.Current.Session["userdetails"] as UserDetails;
+            if (HttpContext.Current.User.Identity.IsAuthenticated == false || userDetails == null)
             {
                 return string.Empty; //Just return no string if the user isn't found correctly
             }
 
-            var userkerb = HttpContext.Current.User.Identity.Name;
-
-            return Create(userkerb, WebConfigurationManager.AppSettings[""], userkerb);
+            return Create(userDetails.Name, userDetails.Email, userDetails.Login);
         }
 
         public static string Create(string displayName, string email, string guid, int minutesUntilExpiration = (60*24))

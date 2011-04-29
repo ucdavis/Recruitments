@@ -83,6 +83,7 @@ namespace CAESDO.Recruitment.Web
         protected void lbtnLogout_Click(object sender, EventArgs e)
         {
             FormsAuthentication.SignOut();
+            Session["userdetails"] = null;
 
             Response.Redirect(FormsAuthentication.DefaultUrl);
         }
