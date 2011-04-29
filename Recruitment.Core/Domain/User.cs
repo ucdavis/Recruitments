@@ -38,6 +38,8 @@ namespace CAESDO.Recruitment.Core.Domain
             set { _LastName = value; }
         }
 
+        public virtual string Email { get; set; }
+
         private string _EmployeeID;
 
         public virtual string EmployeeID
