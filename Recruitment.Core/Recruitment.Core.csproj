@@ -139,7 +139,9 @@
     <EmbeddedResource Include="Domain\CommitteeMember.hbm.xml" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Domain\User.hbm.xml" />
+    <EmbeddedResource Include="Domain\User.hbm.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Domain\ChangeTracking.hbm.xml" />
