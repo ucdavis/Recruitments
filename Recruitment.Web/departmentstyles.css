@@ -276,3 +276,10 @@
 	padding-top: 150px; 
 	overflow:hidden;
 }
+
+.BIOSstyle {
+    background: url(Images/cl_BIOS.gif) no-repeat;
+	float:right;
+	padding-top: 150px; 
+	overflow:hidden;    
+}
