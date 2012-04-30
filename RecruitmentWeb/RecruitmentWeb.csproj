@@ -920,7 +920,6 @@
   <ItemGroup>
     <Content Include="Applicant\Web.config" />
     <Content Include="App_Themes\MainTheme\SkinFile.skin" />
-    <Content Include="AppSettings.config" />
     <Content Include="Authorized\Web.config" />
     <Content Include="MasterPage.master" />
     <Content Include="ProdConnectionStrings.config" />
