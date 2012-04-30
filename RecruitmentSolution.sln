@@ -67,6 +67,8 @@ Project("{2CFEAB61-6A3B-4EB8-B523-560B4BEEF521}") = "Recruitment.Deployment", "R
 EndProject
 Project("{C8D11400-126E-41CD-887F-60BD40844F9E}") = "Recruitment.Sql", "Recruitment.Sql\Recruitment.Sql.dbproj", "{67CBC824-A49E-4E9B-A947-360F3DFE65C3}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecruitmentWeb", "RecruitmentWeb\RecruitmentWeb.csproj", "{5731A942-A937-4F2E-B078-1DB085246F5F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|.NET = Debug|.NET
@@ -245,6 +247,21 @@ Global
 		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Test|Mixed Platforms.ActiveCfg = Test|Any CPU
 		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Test|Mixed Platforms.Build.0 = Test|Any CPU
 		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Test|Mixed Platforms.Deploy.0 = Test|Any CPU
+		{5731A942-A937-4F2E-B078-1DB085246F5F}.Debug|.NET.ActiveCfg = Debug|Any CPU
+		{5731A942-A937-4F2E-B078-1DB085246F5F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5731A942-A937-4F2E-B078-1DB085246F5F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5731A942-A937-4F2E-B078-1DB085246F5F}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{5731A942-A937-4F2E-B078-1DB085246F5F}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{5731A942-A937-4F2E-B078-1DB085246F5F}.Release|.NET.ActiveCfg = Release|Any CPU
+		{5731A942-A937-4F2E-B078-1DB085246F5F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5731A942-A937-4F2E-B078-1DB085246F5F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5731A942-A937-4F2E-B078-1DB085246F5F}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5731A942-A937-4F2E-B078-1DB085246F5F}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{5731A942-A937-4F2E-B078-1DB085246F5F}.Test|.NET.ActiveCfg = Release|Any CPU
+		{5731A942-A937-4F2E-B078-1DB085246F5F}.Test|Any CPU.ActiveCfg = Release|Any CPU
+		{5731A942-A937-4F2E-B078-1DB085246F5F}.Test|Any CPU.Build.0 = Release|Any CPU
+		{5731A942-A937-4F2E-B078-1DB085246F5F}.Test|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{5731A942-A937-4F2E-B078-1DB085246F5F}.Test|Mixed Platforms.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
