@@ -78,9 +78,6 @@
     <Reference Include="NHibernate.ProxyGenerators.CastleDynamicProxy">
       <HintPath>..\Bin\NHibernate.ProxyGenerators.CastleDynamicProxy.dll</HintPath>
     </Reference>
-    <Reference Include="System.Data.SQLite">
-      <HintPath>..\Bin\System.Data.SQLite.DLL</HintPath>
-    </Reference>
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
