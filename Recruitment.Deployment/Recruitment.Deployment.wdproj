@@ -38,6 +38,14 @@
     <SingleAssemblyName>Recruitment.Deployment</SingleAssemblyName>
     <UseWebConfigReplacement>false</UseWebConfigReplacement>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUpdateable>true</EnableUpdateable>
+    <UseMerge>true</UseMerge>
+    <UseWebConfigReplacement>false</UseWebConfigReplacement>
+    <SingleAssemblyName>Recruitment.Deployment</SingleAssemblyName>
+    <OutputPath>.\Test</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
   </ItemGroup>
   <ItemGroup>

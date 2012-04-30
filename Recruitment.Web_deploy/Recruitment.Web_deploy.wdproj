@@ -1,11 +1,13 @@
-﻿<!-- 
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!-- 
   Microsoft Visual Studio 2005 Web Deployment Project 
   http://go.microsoft.com/fwlink/?LinkId=55111
---><Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+-->
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.21022</ProductVersion>
+    <ProductVersion>10.0.30319</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{D16592C4-BD7E-4D4F-94CD-6AF212F54D83}</ProjectGuid>
     <SourceWebPhysicalPath>Z:\Recruitment\Recruitment.Web</SourceWebPhysicalPath>
@@ -35,6 +37,14 @@
     <UseMerge>true</UseMerge>
     <SingleAssemblyName>Recruitment.Web_deploy</SingleAssemblyName>
     <UseWebConfigReplacement>false</UseWebConfigReplacement>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <EnableUpdateable>true</EnableUpdateable>
+    <UseMerge>true</UseMerge>
+    <UseWebConfigReplacement>false</UseWebConfigReplacement>
+    <SingleAssemblyName>Recruitment.Web_deploy</SingleAssemblyName>
+    <OutputPath>.\Test</OutputPath>
   </PropertyGroup>
   <ItemGroup>
   </ItemGroup>
@@ -74,7 +84,15 @@
       <Name>Recruitment.Providers</Name>
     </ProjectReference>
   </ItemGroup>
-  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WebDeployment\v10.0\Microsoft.WebDeployment.targets"/>
+  <ItemGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <WebConfigReplacementFiles Include="ProdAppSettings.config">
+      <Section>appSettings</Section>
+    </WebConfigReplacementFiles>
+    <WebConfigReplacementFiles Include="ProdConnectionStrings.config">
+      <Section>connectionStrings</Section>
+    </WebConfigReplacementFiles>
+  </ItemGroup>
+  <Import Project="$(MSBuildExtensionsPath)\Microsoft\WebDeployment\v10.0\Microsoft.WebDeployment.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.WebDeployment.targets.
   <Target Name="BeforeBuild">
