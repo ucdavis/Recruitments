@@ -31,6 +31,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <OutputPath>bin\</OutputPath>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="AjaxControlToolkit">
       <HintPath>..\Bin\AjaxControlToolkit.dll</HintPath>
@@ -44,7 +47,7 @@
     <Reference Include="Elmah">
       <HintPath>..\Bin\Elmah.dll</HintPath>
     </Reference>
-    <Reference Include="FreeTextBox">
+    <Reference Include="FreeTextBox, Version=3.1.6.34851, Culture=neutral, PublicKeyToken=5962a4e684a48b87, processorArchitecture=MSIL">
       <HintPath>..\Bin\FreeTextBox.dll</HintPath>
     </Reference>
     <Reference Include="Iesi.Collections">
@@ -943,6 +946,15 @@
       <Project>{BFA5EBED-0F4D-481F-9C91-EBE45B481F83}</Project>
       <Name>Recruitment.Data</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Recruitment.Providers\Recruitment.Providers.csproj">
+      <Project>{B48CCC6E-ED4B-4589-86F4-3486FD187453}</Project>
+      <Name>Recruitment.Providers</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Web.Test.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
