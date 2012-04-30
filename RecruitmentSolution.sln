@@ -27,43 +27,9 @@ Project("{F14B399A-7131-4C87-9E4B-1186C45EF12D}") = "Recruitment.Reporting", "Re
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recruitment.DB", "Recruitment.DB\Recruitment.DB.csproj", "{426073DF-AC37-4C4B-B95A-D4761E393E76}"
 EndProject
-Project("{2CFEAB61-6A3B-4EB8-B523-560B4BEEF521}") = "Recruitment.Web_deploy", "Recruitment.Web_deploy\Recruitment.Web_deploy.wdproj", "{D16592C4-BD7E-4D4F-94CD-6AF212F54D83}"
-EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Recruitment.Setup", "Recruitment.Setup\Recruitment.Setup.vdproj", "{DE13CDD4-EFBF-467C-8312-79C6206CED44}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recruitment.Test", "Recruitment.Test\Recruitment.Test.csproj", "{576B683A-020C-4FBB-993E-AEE545D5B3F1}"
-	ProjectSection(ProjectDependencies) = postProject
-		{54A50826-9DFD-40B6-ADEC-4480BE72A324} = {54A50826-9DFD-40B6-ADEC-4480BE72A324}
-	EndProjectSection
-EndProject
-Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "Recruitment.Web", "Recruitment.Web\", "{54A50826-9DFD-40B6-ADEC-4480BE72A324}"
-	ProjectSection(WebsiteProperties) = preProject
-		SccProjectName = ""
-		SccAuxPath = ""
-		SccLocalPath = ""
-		SccProvider = ""
-		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
-		ProjectReferences = "{5F40A7DB-8142-4564-BB05-0F9C2DD3EF75}|CAESDO.Recruitment.Core.dll;{BFA5EBED-0F4D-481F-9C91-EBE45B481F83}|CAESDO.Recruitment.Data.dll;{B48CCC6E-ED4B-4589-86F4-3486FD187453}|CAESDO.Recruitment.Providers.dll;{B7E438A4-E39B-4D9B-BFAE-D55F78769115}|CAESDO.Recruitment.BLL.dll;"
-		Debug.AspNetCompiler.VirtualPath = "/Recruitment.Web"
-		Debug.AspNetCompiler.PhysicalPath = "Recruitment.Web\"
-		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\Recruitment.Web\"
-		Debug.AspNetCompiler.Updateable = "true"
-		Debug.AspNetCompiler.ForceOverwrite = "true"
-		Debug.AspNetCompiler.FixedNames = "false"
-		Debug.AspNetCompiler.Debug = "True"
-		Release.AspNetCompiler.VirtualPath = "/Recruitment.Web"
-		Release.AspNetCompiler.PhysicalPath = "Recruitment.Web\"
-		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\Recruitment.Web\"
-		Release.AspNetCompiler.Updateable = "true"
-		Release.AspNetCompiler.ForceOverwrite = "true"
-		Release.AspNetCompiler.FixedNames = "false"
-		Release.AspNetCompiler.Debug = "False"
-		VWDPort = "60025"
-	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Recruitment.BLL", "Recruitment.BLL\Recruitment.BLL.csproj", "{B7E438A4-E39B-4D9B-BFAE-D55F78769115}"
-EndProject
-Project("{2CFEAB61-6A3B-4EB8-B523-560B4BEEF521}") = "Recruitment.Deployment", "Recruitment.Deployment\Recruitment.Deployment.wdproj", "{44635FA6-C614-44D4-9D34-1728B2B1542D}"
 EndProject
 Project("{C8D11400-126E-41CD-887F-60BD40844F9E}") = "Recruitment.Sql", "Recruitment.Sql\Recruitment.Sql.dbproj", "{67CBC824-A49E-4E9B-A947-360F3DFE65C3}"
 EndProject
@@ -169,30 +135,6 @@ Global
 		{426073DF-AC37-4C4B-B95A-D4761E393E76}.Test|Mixed Platforms.ActiveCfg = Test|Any CPU
 		{426073DF-AC37-4C4B-B95A-D4761E393E76}.Test|Mixed Platforms.Build.0 = Test|Any CPU
 		{426073DF-AC37-4C4B-B95A-D4761E393E76}.Test|Mixed Platforms.Deploy.0 = Test|Any CPU
-		{D16592C4-BD7E-4D4F-94CD-6AF212F54D83}.Debug|.NET.ActiveCfg = Debug|Any CPU
-		{D16592C4-BD7E-4D4F-94CD-6AF212F54D83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D16592C4-BD7E-4D4F-94CD-6AF212F54D83}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D16592C4-BD7E-4D4F-94CD-6AF212F54D83}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{D16592C4-BD7E-4D4F-94CD-6AF212F54D83}.Release|.NET.ActiveCfg = Release|Any CPU
-		{D16592C4-BD7E-4D4F-94CD-6AF212F54D83}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D16592C4-BD7E-4D4F-94CD-6AF212F54D83}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D16592C4-BD7E-4D4F-94CD-6AF212F54D83}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{D16592C4-BD7E-4D4F-94CD-6AF212F54D83}.Test|.NET.ActiveCfg = Test|Any CPU
-		{D16592C4-BD7E-4D4F-94CD-6AF212F54D83}.Test|Any CPU.ActiveCfg = Test|Any CPU
-		{D16592C4-BD7E-4D4F-94CD-6AF212F54D83}.Test|Any CPU.Build.0 = Test|Any CPU
-		{D16592C4-BD7E-4D4F-94CD-6AF212F54D83}.Test|Mixed Platforms.ActiveCfg = Test|Any CPU
-		{D16592C4-BD7E-4D4F-94CD-6AF212F54D83}.Test|Mixed Platforms.Build.0 = Test|Any CPU
-		{DE13CDD4-EFBF-467C-8312-79C6206CED44}.Debug|.NET.ActiveCfg = Debug
-		{DE13CDD4-EFBF-467C-8312-79C6206CED44}.Debug|Any CPU.ActiveCfg = Debug
-		{DE13CDD4-EFBF-467C-8312-79C6206CED44}.Debug|Mixed Platforms.ActiveCfg = Debug
-		{DE13CDD4-EFBF-467C-8312-79C6206CED44}.Release|.NET.ActiveCfg = Release
-		{DE13CDD4-EFBF-467C-8312-79C6206CED44}.Release|Any CPU.ActiveCfg = Release
-		{DE13CDD4-EFBF-467C-8312-79C6206CED44}.Release|Mixed Platforms.ActiveCfg = Release
-		{DE13CDD4-EFBF-467C-8312-79C6206CED44}.Test|.NET.ActiveCfg = Test
-		{DE13CDD4-EFBF-467C-8312-79C6206CED44}.Test|Any CPU.ActiveCfg = Test
-		{DE13CDD4-EFBF-467C-8312-79C6206CED44}.Test|Any CPU.Build.0 = Test
-		{DE13CDD4-EFBF-467C-8312-79C6206CED44}.Test|Mixed Platforms.ActiveCfg = Test
-		{DE13CDD4-EFBF-467C-8312-79C6206CED44}.Test|Mixed Platforms.Build.0 = Test
 		{576B683A-020C-4FBB-993E-AEE545D5B3F1}.Debug|.NET.ActiveCfg = Debug|Any CPU
 		{576B683A-020C-4FBB-993E-AEE545D5B3F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{576B683A-020C-4FBB-993E-AEE545D5B3F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
@@ -208,18 +150,6 @@ Global
 		{576B683A-020C-4FBB-993E-AEE545D5B3F1}.Test|Any CPU.Build.0 = Test|Any CPU
 		{576B683A-020C-4FBB-993E-AEE545D5B3F1}.Test|Mixed Platforms.ActiveCfg = Test|Any CPU
 		{576B683A-020C-4FBB-993E-AEE545D5B3F1}.Test|Mixed Platforms.Build.0 = Test|Any CPU
-		{54A50826-9DFD-40B6-ADEC-4480BE72A324}.Debug|.NET.ActiveCfg = Debug|.NET
-		{54A50826-9DFD-40B6-ADEC-4480BE72A324}.Debug|Any CPU.ActiveCfg = Debug|.NET
-		{54A50826-9DFD-40B6-ADEC-4480BE72A324}.Debug|Mixed Platforms.ActiveCfg = Debug|.NET
-		{54A50826-9DFD-40B6-ADEC-4480BE72A324}.Debug|Mixed Platforms.Build.0 = Debug|.NET
-		{54A50826-9DFD-40B6-ADEC-4480BE72A324}.Release|.NET.ActiveCfg = Debug|.NET
-		{54A50826-9DFD-40B6-ADEC-4480BE72A324}.Release|Any CPU.ActiveCfg = Debug|.NET
-		{54A50826-9DFD-40B6-ADEC-4480BE72A324}.Release|Mixed Platforms.ActiveCfg = Debug|.NET
-		{54A50826-9DFD-40B6-ADEC-4480BE72A324}.Release|Mixed Platforms.Build.0 = Debug|.NET
-		{54A50826-9DFD-40B6-ADEC-4480BE72A324}.Test|.NET.ActiveCfg = Debug|Any CPU
-		{54A50826-9DFD-40B6-ADEC-4480BE72A324}.Test|Any CPU.ActiveCfg = Debug|.NET
-		{54A50826-9DFD-40B6-ADEC-4480BE72A324}.Test|Mixed Platforms.ActiveCfg = Debug|.NET
-		{54A50826-9DFD-40B6-ADEC-4480BE72A324}.Test|Mixed Platforms.Build.0 = Debug|.NET
 		{B7E438A4-E39B-4D9B-BFAE-D55F78769115}.Debug|.NET.ActiveCfg = Debug|Any CPU
 		{B7E438A4-E39B-4D9B-BFAE-D55F78769115}.Debug|.NET.Build.0 = Debug|Any CPU
 		{B7E438A4-E39B-4D9B-BFAE-D55F78769115}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -238,20 +168,6 @@ Global
 		{B7E438A4-E39B-4D9B-BFAE-D55F78769115}.Test|Any CPU.Build.0 = Test|Any CPU
 		{B7E438A4-E39B-4D9B-BFAE-D55F78769115}.Test|Mixed Platforms.ActiveCfg = Test|Any CPU
 		{B7E438A4-E39B-4D9B-BFAE-D55F78769115}.Test|Mixed Platforms.Build.0 = Test|Any CPU
-		{44635FA6-C614-44D4-9D34-1728B2B1542D}.Debug|.NET.ActiveCfg = Debug|Any CPU
-		{44635FA6-C614-44D4-9D34-1728B2B1542D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{44635FA6-C614-44D4-9D34-1728B2B1542D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{44635FA6-C614-44D4-9D34-1728B2B1542D}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{44635FA6-C614-44D4-9D34-1728B2B1542D}.Release|.NET.ActiveCfg = Release|Any CPU
-		{44635FA6-C614-44D4-9D34-1728B2B1542D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{44635FA6-C614-44D4-9D34-1728B2B1542D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{44635FA6-C614-44D4-9D34-1728B2B1542D}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{44635FA6-C614-44D4-9D34-1728B2B1542D}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{44635FA6-C614-44D4-9D34-1728B2B1542D}.Test|.NET.ActiveCfg = Test|Any CPU
-		{44635FA6-C614-44D4-9D34-1728B2B1542D}.Test|Any CPU.ActiveCfg = Test|Any CPU
-		{44635FA6-C614-44D4-9D34-1728B2B1542D}.Test|Any CPU.Build.0 = Test|Any CPU
-		{44635FA6-C614-44D4-9D34-1728B2B1542D}.Test|Mixed Platforms.ActiveCfg = Test|Any CPU
-		{44635FA6-C614-44D4-9D34-1728B2B1542D}.Test|Mixed Platforms.Build.0 = Test|Any CPU
 		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|.NET.ActiveCfg = Debug|Any CPU
 		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{67CBC824-A49E-4E9B-A947-360F3DFE65C3}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
