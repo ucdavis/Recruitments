@@ -22,6 +22,7 @@ namespace CAESDO.Recruitment.Web
     {
         private const string STR_LetterOfRec = "LetterOfRec";
         private const string UploadReferenceErrorURL = "UploadReferenceError.aspx";
+        private const string UploadReferenceFileExistsErrorURL = "UploadReferenceFileExistsError.aspx";
         private const string UploadReferenceSuccessURL = "UploadReferenceSuccess.aspx";
 
         public Reference currentReference
@@ -35,9 +36,13 @@ namespace CAESDO.Recruitment.Web
         protected void Page_Load(object sender, EventArgs e)
         {
             //make sure the current reference exists and doesn't have a file already
-            if (currentReference == null || currentReference.ReferenceFile != null)
+            if (currentReference == null)
             {
                 Response.Redirect(UploadReferenceErrorURL);
+            }
+            else if (currentReference.ReferenceFile != null)
+            {
+                Response.Redirect(UploadReferenceFileExistsErrorURL);
             }
 
             if (!IsPostBack)
