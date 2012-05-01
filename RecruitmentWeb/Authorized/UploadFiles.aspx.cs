@@ -145,7 +145,7 @@ namespace CAESDO.Recruitment.Web
             {
                 using (var ts = new TransactionScope())
                 {
-                    File file = FileBLL.SavePDFWithWatermark(fileUpload, referenceFileType);
+                    File file = FileBLL.SavePDF(fileUpload, referenceFileType); //FileBLL.SavePDFWithWatermark(fileUpload, referenceFileType);
 
                     if (file != null)
                     {
