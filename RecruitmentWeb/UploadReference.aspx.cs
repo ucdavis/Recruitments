@@ -1,17 +1,5 @@
 using System;
-using System.Data;
-using System.Configuration;
-using System.Collections;
-using System.Web;
-using System.Web.Security;
-using System.Web.UI;
-using System.Web.UI.WebControls;
-using System.Web.UI.WebControls.WebParts;
-using System.Web.UI.HtmlControls;
 using CAESDO.Recruitment.Core.Domain;
-using CAESDO.Recruitment.Data;
-using iTextSharp.text.pdf;
-using iTextSharp.text;
 using CAESDO.Recruitment.BLL;
 using System.Text;
 using System.Net.Mail;
@@ -59,28 +47,16 @@ namespace CAESDO.Recruitment.Web
         private void UploadReferences()
         {
             FileType referenceFileType = FileTypeBLL.GetByName(STR_LetterOfRec);
-                        
+
             if (fileUploadReference.HasFile)
             {
                 if (FileBLL.IsPostedFilePDF(fileUploadReference.PostedFile))
                 {
-                    File file = new File();
+                    var referenceFile = FileBLL.SavePDF(fileUploadReference, referenceFileType); //FileBLL.SavePDFWithWatermark(fileUploadReference, referenceFileType);
 
-                    file.FileName = fileUploadReference.FileName;
-                    file.FileType = referenceFileType;
-
-                    using (var ts = new TransactionScope())
+                    if (ValidateBO<File>.isValid(referenceFile))
                     {
-                        FileBLL.EnsurePersistent(file, true);
-
-                        ts.CommitTransaction();
-                    }
-
-                    if (ValidateBO<File>.isValid(file))
-                    {
-                        SaveReferenceWithWatermark(fileUploadReference, file.ID.ToString());
-
-                        currentReference.ReferenceFile = file;
+                        currentReference.ReferenceFile = referenceFile;
 
                         using (var ts = new TransactionScope())
                         {
@@ -88,11 +64,11 @@ namespace CAESDO.Recruitment.Web
 
                             ts.CommitTransaction();
                         }
-
+                    
                         //Send confirmation email after success -- if there are errors, ignore
                         try
                         {
-                            System.Net.Mail.SmtpClient mail = new System.Net.Mail.SmtpClient();
+                            var mail = new SmtpClient();
 
                             string subject = "Reference Upload Confirmation";
                             
@@ -107,7 +83,7 @@ namespace CAESDO.Recruitment.Web
                             mail.Send(message); //Send the message
 
                         }
-                        catch (Exception) { } //Continue on failure
+                        catch { } //Continue on failure
 
                         Response.Redirect(UploadReferenceSuccessURL);
                     }
@@ -121,49 +97,6 @@ namespace CAESDO.Recruitment.Web
                     lblUploadStatus.Text = "Please upload a file in PDF format";
                 }
             }
-        }
-
-        private void SaveReferenceWithWatermark(FileUpload uploadedFile, string fileName)
-        {
-            PdfReader reader = new PdfReader(uploadedFile.FileContent);
-
-            int n = reader.NumberOfPages;
-
-            Document document = new Document(reader.GetPageSizeWithRotation(1));
-
-            PdfWriter writer = PdfWriter.GetInstance(document, new System.IO.FileStream(FilePath + fileName, System.IO.FileMode.Create));
-
-            document.Open();
-
-            PdfContentByte cb = writer.DirectContent;
-            PdfImportedPage page;
-            int rotation;
-
-            for (int i = 1; i <= n; i++)
-            {
-                document.SetPageSize(reader.GetPageSizeWithRotation(i));
-                document.NewPage();
-
-                page = writer.GetImportedPage(reader, i);
-
-                rotation = reader.GetPageRotation(i);
-
-                if (rotation == 90 || rotation == 270)
-                    cb.AddTemplate(page, 0, -1f, 1f, 0, 0, reader.GetPageSizeWithRotation(i).Height);
-                else
-                    cb.AddTemplate(page, 1f, 0, 0, 1f, 0, 0);
-
-                BaseFont bf = BaseFont.CreateFont(BaseFont.COURIER, BaseFont.CP1252, BaseFont.NOT_EMBEDDED);
-                cb.BeginText();
-                cb.SetFontAndSize(bf, 26f);
-                cb.SetColorFill(Color.RED);
-                cb.ShowTextAligned(PdfContentByte.ALIGN_CENTER, "CONFIDENTIAL", reader.GetPageSizeWithRotation(i).Width / 2f, reader.GetPageSizeWithRotation(i).Height - 26f, 0);
-                //cb.ShowText(currentApplication.Files[f].FileType.FileTypeName);
-                cb.EndText();
-
-            }
-
-            document.Close();
         }
     } 
 }
