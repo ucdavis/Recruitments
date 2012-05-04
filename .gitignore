@@ -32,4 +32,6 @@ _ReSharper*/
 [Tt]est[Rr]esult*
 !Bin/
 Recruitment.Web/Bin/*
+RecruitmentWeb/Bin/*
 *CAESDO.Recruitment.*.dll
+ignore.txt
