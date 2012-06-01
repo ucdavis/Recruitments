@@ -16,7 +16,7 @@ namespace CAESDO.Recruitment.BLL
             return departmentMembers;
         }
 
-        public static DepartmentMember Search(string loginID)
+        public static DepartmentMember Search(string query)
         {
             DepartmentMember member = new DepartmentMember();
 
@@ -30,7 +30,7 @@ namespace CAESDO.Recruitment.BLL
             //Configure the Search Request to Query the UCD OpenLDAP Server's People Search Base for a Specific User ID or Mail ID and Return the Requested Attributes 
             string[] attributesToReturn = new string[] { "uid", "mail", "displayName", "cn", "sn", "givenName", "telephoneNumber", "ou", "departmentNumber" };
 
-            string strSearchFilter = "(&(uid=" + loginID + "))";
+            string strSearchFilter = string.Format("(|(uid={0})(mail={0}))", query);
             string strSearchBase = "ou=People,dc=ucdavis,dc=edu";
 
             SearchRequest sRequest = new SearchRequest(strSearchBase, strSearchFilter, SearchScope.Subtree, attributesToReturn);
