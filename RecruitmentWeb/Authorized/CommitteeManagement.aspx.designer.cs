@@ -112,13 +112,13 @@ namespace CAESDO.Recruitment.Web {
         protected global::System.Web.UI.WebControls.Panel pnlAddMember;
         
         /// <summary>
-        /// txtLoginID control.
+        /// txtSearchQuery control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtLoginID;
+        protected global::System.Web.UI.WebControls.TextBox txtSearchQuery;
         
         /// <summary>
         /// reqValLoginID control.
@@ -128,6 +128,15 @@ namespace CAESDO.Recruitment.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqValLoginID;
+        
+        /// <summary>
+        /// txtLoginID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtLoginID;
         
         /// <summary>
         /// txtFName control.
@@ -146,15 +155,6 @@ namespace CAESDO.Recruitment.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtLName;
-        
-        /// <summary>
-        /// txtEmail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox txtEmail;
         
         /// <summary>
         /// txtDepartment control.

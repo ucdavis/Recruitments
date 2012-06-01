@@ -10,13 +10,13 @@
     
     function LookupKerberosUser()
     {
-        var loginID = $get('<%= txtLoginID.ClientID %>').value;
+        var query = $get('<%= txtSearchQuery.ClientID %>').value;
         var progressImage = $get('imgMemberLoginProgress');
                 
-        //Only lookup the kerberos info if the loginID is not empty
-        if ( loginID.length > 0 )
+        //Only lookup the person info if the search query is not empty
+        if ( query.length > 0 )
         {
-            RecruitmentService.LookupKerberosUser(loginID, SucceededCallback, FailedCallback);
+            RecruitmentService.LookupKerberosUser(query, SucceededCallback, FailedCallback);
             progressImage.style.visibility = 'visible';
         }
     }
@@ -24,23 +24,41 @@
     // This is the callback function invoked if the Web service
     // succeeded.
     // It accepts the result object as a parameter.
-    function SucceededCallback(result, eventArgs)
-    {
+    function SucceededCallback(result, eventArgs) {
+        var search = $get('<%= txtSearchQuery.ClientID %>');
+        var login = $get('<%= txtLoginID.ClientID %>');
         var firstName = $get('<%= txtFName.ClientID %>');
         var lastName = $get('<%= txtLName.ClientID %>');
         var department = $get('<%= txtDepartment.ClientID %>');
-        
-        if ( result != null )
-        {
+        var membertype = $get('<%= dlistMemberType.ClientID %>');
+        var addMember = $get('<%= btnAddMember.ClientID %>');
+
+        if (result != null) {
+            login.value = result.LoginID;
             firstName.value = result.FirstName;
             lastName.value = result.LastName;
-            department.value = result.OtherDepartmentName;        
+            department.value = result.OtherDepartmentName;
+
+            $(department).removeAttr("disabled");
+            $(membertype).removeAttr("disabled");
+            $(addMember).removeAttr("disabled");
+        } else {
+            login.value = "";
+            firstName.value = "";
+            lastName.value = "";
+            department.value = "";
+
+            $(department).attr("disabled", "disabled");
+            $(membertype).attr("disabled", "disabled");
+            $(addMember).attr("disabled", "disabled");
+
+            var query = search.value;
+            alert("No user found with the email or kerberos login: " + query);
         }
-        
+
         //No matter what, hide the image progress icon
         var progressImage = $get('imgMemberLoginProgress');
-        progressImage.style.visibility = 'hidden';        
-        
+        progressImage.style.visibility = 'hidden';
     }
 
     // This is the callback function invoked if the Web service
@@ -232,14 +250,14 @@
         <br />
         <asp:Panel ID="pnlAddMember" runat="server">
 
-            Email or Kerberos Login: <asp:TextBox ID="txtLoginID" runat="server" MaxLength="50" onblur="LookupKerberosUser()" ></asp:TextBox>
-            <input type="button" id="btnLookupUser" onclick="LoogupKerberosUser()" value="Lookup Person"/>
+            Email or Kerberos Login: <asp:TextBox ID="txtSearchQuery" runat="server" MaxLength="50" ></asp:TextBox>
+            <input type="button" id="btnLookupUser" onclick="LookupKerberosUser()" value="Lookup Person"/>
                 <img id="imgMemberLoginProgress" alt="Progress" src="../Images/progress.gif" style="visibility:hidden" />
-                <asp:RequiredFieldValidator id="reqValLoginID" ControlToValidate="txtLoginID" ErrorMessage="* LoginID Required" runat="server" ValidationGroup="ExternalMember" Display="Dynamic" />
+                <asp:RequiredFieldValidator id="reqValLoginID" ControlToValidate="txtSearchQuery" ErrorMessage="* Email or Login Required" runat="server" ValidationGroup="ExternalMember" Display="Dynamic" />
             <br /><br />
+            LoginID: <asp:TextBox ID="txtLoginID" runat="server" MaxLength="50" Enabled="False"></asp:TextBox><br /><br />
             First Name: <asp:TextBox ID="txtFName" runat="server" MaxLength="50" Enabled="False"></asp:TextBox><br /><br />
             Last Name: <asp:TextBox ID="txtLName" runat="server" MaxLength="50" Enabled="False"></asp:TextBox><br /><br />
-            Email: <asp:TextBox runat="server" ID="txtEmail" Enabled="False"></asp:TextBox><br/><br/>
             Department: <asp:TextBox ID="txtDepartment" runat="server" MaxLength="50" Enabled="False"></asp:TextBox><br /><br />
             Member Type: <asp:DropDownList ID="dlistMemberType" Enabled="False" runat="server">
                             <asp:ListItem Text="Committee" Selected="true"></asp:ListItem>
