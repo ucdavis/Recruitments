@@ -130,6 +130,33 @@ namespace CAESDO.Recruitment.Web {
         protected global::System.Web.UI.WebControls.RequiredFieldValidator reqValLoginID;
         
         /// <summary>
+        /// hLoginID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hLoginID;
+        
+        /// <summary>
+        /// hFirstName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hFirstName;
+        
+        /// <summary>
+        /// hLastName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hLastName;
+        
+        /// <summary>
         /// txtLoginID control.
         /// </summary>
         /// <remarks>

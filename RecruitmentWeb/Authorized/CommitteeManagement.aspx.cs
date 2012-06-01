@@ -201,10 +201,10 @@ namespace CAESDO.Recruitment.Web
             DepartmentMember member = new DepartmentMember();
 
             member.DepartmentFIS = STR_FRAC;
-            member.FirstName = txtFName.Text;
-            member.LastName = txtLName.Text;
+            member.FirstName = hFirstName.Value;
+            member.LastName = hLastName.Value;
             member.OtherDepartmentName = string.IsNullOrEmpty(txtDepartment.Text) ? "Other" : txtDepartment.Text;
-            member.LoginID = txtLoginID.Text.ToLower().Trim();
+            member.LoginID = hLoginID.Value.ToLower().Trim();
 
             //Create the membership object
             CommitteeMember committeeAccess = new CommitteeMember();

@@ -50,6 +50,7 @@ namespace CAESDO.Recruitment.BLL
                             member.LoginID = attr[0].ToString();
                             break;
                         case "givenName":
+                            member.FirstName = attr[0].ToString();
                             break;
                         case "sn":
                             member.LastName = attr[0].ToString();

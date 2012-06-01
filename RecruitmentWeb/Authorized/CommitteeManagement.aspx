@@ -27,16 +27,23 @@
     function SucceededCallback(result, eventArgs) {
         var search = $get('<%= txtSearchQuery.ClientID %>');
         var login = $get('<%= txtLoginID.ClientID %>');
+        var hLogin = $get('<%= hLoginID.ClientID %>');
         var firstName = $get('<%= txtFName.ClientID %>');
+        var hFirstName = $get('<%= hFirstName.ClientID %>');
         var lastName = $get('<%= txtLName.ClientID %>');
+        var hLastName = $get('<%= hLastName.ClientID %>');
+        
         var department = $get('<%= txtDepartment.ClientID %>');
         var membertype = $get('<%= dlistMemberType.ClientID %>');
         var addMember = $get('<%= btnAddMember.ClientID %>');
 
         if (result != null) {
             login.value = result.LoginID;
+            hLogin.value = result.LoginID;
             firstName.value = result.FirstName;
+            hFirstName.value = result.FirstName;
             lastName.value = result.LastName;
+            hLastName.value = result.LastName;
             department.value = result.OtherDepartmentName;
 
             $(department).removeAttr("disabled");
@@ -44,8 +51,11 @@
             $(addMember).removeAttr("disabled");
         } else {
             login.value = "";
+            hLogin.value = "";
             firstName.value = "";
+            hFirstName.value = "";
             lastName.value = "";
+            hLastName.value = "";
             department.value = "";
 
             $(department).attr("disabled", "disabled");
@@ -255,6 +265,7 @@
                 <img id="imgMemberLoginProgress" alt="Progress" src="../Images/progress.gif" style="visibility:hidden" />
                 <asp:RequiredFieldValidator id="reqValLoginID" ControlToValidate="txtSearchQuery" ErrorMessage="* Email or Login Required" runat="server" ValidationGroup="ExternalMember" Display="Dynamic" />
             <br /><br />
+            <asp:HiddenField runat="server" ID="hLoginID"/><asp:HiddenField runat="server" ID="hFirstName"/><asp:HiddenField runat="server" ID="hLastName"/>
             LoginID: <asp:TextBox ID="txtLoginID" runat="server" MaxLength="50" Enabled="False"></asp:TextBox><br /><br />
             First Name: <asp:TextBox ID="txtFName" runat="server" MaxLength="50" Enabled="False"></asp:TextBox><br /><br />
             Last Name: <asp:TextBox ID="txtLName" runat="server" MaxLength="50" Enabled="False"></asp:TextBox><br /><br />
