@@ -80,6 +80,8 @@
             headers: { 3: { sorter: false } },
             widgets: ['zebra']
         });
+
+        $('#AddMemberHelp').bt('Enter either the email address or kerberos login of the person you wish to add, then click "lookup person". If the person is found, choose the memeber type and click "add member".');
     });
     
     </script>
@@ -158,7 +160,7 @@
     <br /><br />
     
     <asp:Panel ID="pnlAddMember" runat="server" Visible="false">
-        <span class="boxTitle">Add Member</span>
+        <span class="boxTitle">Add Member &nbsp;<img id="AddMemberHelp" src="../Images/question_blue.png" /></span>
         <div style="width: 500px;" class="box">
         <br />        
             Email or Kerberos Login: <asp:TextBox ID="txtSearchQuery" runat="server" MaxLength="50" ></asp:TextBox>
