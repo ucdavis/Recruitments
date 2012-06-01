@@ -10,38 +10,57 @@
     </Ajax:ScriptManagerProxy>
 
     <script type="text/javascript" language="javascript">
-    
-    function LookupKerberosUser()
-    {
-        var loginID = $get('<%= txtLoginID.ClientID %>').value;
+
+    function LookupKerberosUser() {
+        var query = $get('<%= txtSearchQuery.ClientID %>').value;
         var progressImage = $get('imgMemberLoginProgress');
-                
-        //Only lookup the kerberos info if the loginID is not empty
-        if ( loginID.length > 0 )
-        {
-            RecruitmentService.LookupKerberosUser(loginID, SucceededCallback, FailedCallback);
+
+        //Only lookup the person info if the search query is not empty
+        if (query.length > 0) {
+            RecruitmentService.LookupKerberosUser(query, SucceededCallback, FailedCallback);
             progressImage.style.visibility = 'visible';
         }
     }
-    
+
     // This is the callback function invoked if the Web service
     // succeeded.
     // It accepts the result object as a parameter.
-    function SucceededCallback(result, eventArgs)
-    {
+    function SucceededCallback(result, eventArgs) {
+        var search = $get('<%= txtSearchQuery.ClientID %>');
+        var login = $get('<%= txtLoginID.ClientID %>');
+        var hLogin = $get('<%= hLoginID.ClientID %>');
         var firstName = $get('<%= txtFName.ClientID %>');
+        var hFirstName = $get('<%= hFirstName.ClientID %>');
         var lastName = $get('<%= txtLName.ClientID %>');
-        
-        if ( result != null )
-        {
+        var hLastName = $get('<%= hLastName.ClientID %>');
+
+        var addMember = $get('<%= btnAddMember.ClientID %>');
+
+        if (result != null) {
+            login.value = result.LoginID;
+            hLogin.value = result.LoginID;
             firstName.value = result.FirstName;
-            lastName.value = result.LastName; 
+            hFirstName.value = result.FirstName;
+            lastName.value = result.LastName;
+            hLastName.value = result.LastName;
+            
+            $(addMember).removeAttr("disabled");
+        } else {
+            login.value = "";
+            hLogin.value = "";
+            firstName.value = "";
+            hFirstName.value = "";
+            lastName.value = "";
+            hLastName.value = "";
+            $(addMember).attr("disabled", "disabled");
+
+            var query = search.value;
+            alert("No user found with the email or kerberos login: " + query);
         }
-        
+
         //No matter what, hide the image progress icon
         var progressImage = $get('imgMemberLoginProgress');
-        progressImage.style.visibility = 'hidden';        
-        
+        progressImage.style.visibility = 'hidden';
     }
 
     // This is the callback function invoked if the Web service
@@ -142,13 +161,17 @@
         <span class="boxTitle">Add Member</span>
         <div style="width: 500px;" class="box">
         <br />        
-            Login (Kerberos): <asp:TextBox ID="txtLoginID" runat="server" onblur="LookupKerberosUser()" ></asp:TextBox>
-                                <img id="imgMemberLoginProgress" alt="Progress" src="../Images/progress.gif" style="visibility:hidden" />
-                                <asp:RequiredFieldValidator id="reqValLoginID" ControlToValidate="txtLoginID" ErrorMessage="* Kerberos Login Required" runat="server"/><br /><br />
-            First Name: <asp:TextBox ID="txtFName" runat="server"></asp:TextBox><br /><br />
-            Last Name: <asp:TextBox ID="txtLName" runat="server"></asp:TextBox><br />
+            Email or Kerberos Login: <asp:TextBox ID="txtSearchQuery" runat="server" MaxLength="50" ></asp:TextBox>
+            <input type="button" id="btnLookupUser" onclick="LookupKerberosUser()" value="Lookup Person" />
+                <img id="imgMemberLoginProgress" alt="Progress" src="../Images/progress.gif" style="visibility:hidden" />
+                <asp:RequiredFieldValidator id="reqValLoginID" ControlToValidate="txtSearchQuery" ErrorMessage="* Email or Login Required" runat="server" ValidationGroup="ExternalMember" Display="Dynamic" />
+            <br /><br />
+            <asp:HiddenField runat="server" ID="hLoginID"/><asp:HiddenField runat="server" ID="hFirstName"/><asp:HiddenField runat="server" ID="hLastName"/>
+            LoginID: <asp:TextBox ID="txtLoginID" runat="server" MaxLength="50" Enabled="False"></asp:TextBox><br /><br />
+            First Name: <asp:TextBox ID="txtFName" runat="server" MaxLength="50" Enabled="False"></asp:TextBox><br /><br />
+            Last Name: <asp:TextBox ID="txtLName" runat="server" MaxLength="50" Enabled="False"></asp:TextBox><br /><br />
             <br />
-            <asp:Button ID="btnAddMember" runat="server" Text="Add Member" OnClick="btnAddMember_Click" />   
+            <asp:Button ID="btnAddMember" runat="server" Text="Add Member" OnClick="btnAddMember_Click" Enabled="False" />   
         </div>    
     </asp:Panel>
 </asp:Content>

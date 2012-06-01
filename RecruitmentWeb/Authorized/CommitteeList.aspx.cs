@@ -57,9 +57,9 @@ namespace CAESDO.Recruitment.Web
         {
             DepartmentMember member = new DepartmentMember();
 
-            member.LoginID = txtLoginID.Text.ToLower().Trim();
-            member.FirstName = txtFName.Text;
-            member.LastName = txtLName.Text;
+            member.LoginID = hLoginID.Value.ToLower().Trim();
+            member.FirstName = hFirstName.Value;
+            member.LastName = hLastName.Value;
                         
             member.DepartmentFIS = dlistDepartment.SelectedValue;
 
