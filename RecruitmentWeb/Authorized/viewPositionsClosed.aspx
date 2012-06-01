@@ -14,6 +14,11 @@
                 <HeaderStyle HorizontalAlign="Left" CssClass="paddingLeft" />
             </asp:TemplateField>
             
+            <asp:BoundField DataField="DatePosted" DataFormatString="{0:d}" HeaderText="Posted"
+                HtmlEncode="False" SortExpression="DatePosted"  >
+                <HeaderStyle HorizontalAlign="Left" Width="100px" />
+            </asp:BoundField>
+            
             <asp:BoundField DataField="Deadline" DataFormatString="{0:d}" HeaderText="Review Date"
                 HtmlEncode="False" SortExpression="Deadline"  >
                 <HeaderStyle HorizontalAlign="Left" Width="100px" />
