@@ -112,10 +112,10 @@
     <value>2.0</value>
   </resheader>
   <resheader name="reader">
-    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <resheader name="writer">
-    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <data name="BoundFieldResource1.AccessibleHeaderText" xml:space="preserve">
     <value />
@@ -316,7 +316,7 @@
     <value>Update</value>
   </data>
   <data name="comValEducationPHDDateResource1.ErrorMessage" xml:space="preserve">
-    <value>* PH.D. Date Must Be In mm/dd/yyyy Format</value>
+    <value>* Terminal Degree Date Must Be In mm/dd/yyyy Format</value>
   </data>
   <data name="comValEducationPHDDateResource1.Text" xml:space="preserve">
     <value />
@@ -488,7 +488,7 @@
     <comment>PDF String used in multiple locations when a PDF upload is  happening.</comment>
   </data>
   <data name="PhDFutureMessage" xml:space="preserve">
-    <value>Only set a Ph.D. date in the future if you have not yet received your Ph.D. and are indicating your expected Ph.D. date</value>
+    <value>Only set a terminal degree date in the future if you have not yet received your terminal degree and are indicating your expected terminal degree date</value>
     <comment>JavaScript popup message when the PhD date is in the future</comment>
   </data>
   <data name="pnlConfidentialSurveyHolderResource1.GroupingText" xml:space="preserve">
@@ -699,7 +699,7 @@
     <value />
   </data>
   <data name="reqValEducationPHDDateResource1.ErrorMessage" xml:space="preserve">
-    <value>* PH.D. Date Required</value>
+    <value>* Terminal Degree Date Required</value>
   </data>
   <data name="reqValEducationPHDDateResource1.Text" xml:space="preserve">
     <value />
