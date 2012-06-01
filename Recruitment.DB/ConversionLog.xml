@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type='text/xsl' href='_ConversionReport_Files/ConversionReport.xslt'?>
+<UpgradeLog>
+  <Properties>
+    <Property Name="Project" Value="Recruitment.DB" />
+    <Property Name="Project File" Value="C:\Projects\Recruitments\Recruitment.DB\Recruitment.DB.csproj" />
+    <Property Name="Date" Value="Friday, June 01, 2012" />
+    <Property Name="Time" Value="9:18 AM" />
+  </Properties>
+  <Event ErrorLevel="0" Project="C:\Projects\Recruitments\Recruitment.DB\Recruitment.DB.csproj" Source="..\Recruitment.DB.csproj" Description="Project was successfully converted: 'C:\Projects\Recruitments\Recruitment.DB\Recruitment.DB.csproj' to 'C:\Projects\Recruitments\Recruitment.DB\Recruitment.DB.sqlproj'" />
+  <Event ErrorLevel="3" Project="C:\Projects\Recruitments\Recruitment.DB\Recruitment.DB.csproj" Source="..\Recruitment.DB.csproj" Description="Converted" />
+  <Event ErrorLevel="0" Project="C:\Projects\Recruitments\Recruitment.Sql\Recruitment.Sql.dbproj" Source="..\..\Recruitment.Sql\Recruitment.Sql.dbproj" Description="The permissions file 'C:\Projects\Recruitments\Recruitment.Sql\Properties\Database.sqlpermissions' was converted to Transact-SQL in the file 'C:\Projects\Recruitments\Recruitment.Sql\Permissions.sql'." />
+  <Event ErrorLevel="0" Project="C:\Projects\Recruitments\Recruitment.Sql\Recruitment.Sql.dbproj" Source="..\..\Recruitment.Sql\Recruitment.Sql.dbproj" Description="Project was successfully converted: 'C:\Projects\Recruitments\Recruitment.Sql\Recruitment.Sql.dbproj' to 'C:\Projects\Recruitments\Recruitment.Sql\Recruitment.Sql.sqlproj'" />
+  <Event ErrorLevel="3" Project="C:\Projects\Recruitments\Recruitment.Sql\Recruitment.Sql.dbproj" Source="..\..\Recruitment.Sql\Recruitment.Sql.dbproj" Description="Converted" />
+</UpgradeLog>
