@@ -98,6 +98,8 @@
         $("#FacultyHelp").bt('Faculty Members Can Review All Applications After "Allow Faculty Review" Is Selected For A Position');
 
         $('#ReviewerHelp').bt('A Reviewer Can View The Same Applications As Faculty, Except They Can Not See Confidential Reference Files');
+        
+        $('#AddMemberHelp').bt('Enter either the email address or kerberos login of the person you wish to add, then click "lookup person". If the person is found, choose the memeber type and click "add member".');
     });
     </script>
 
@@ -255,13 +257,13 @@
         </asp:Panel>
             
         <br />
-        <span class="boxTitle">Add Additional Member</span>
+        <span class="boxTitle">Add Additional Member &nbsp;<img id="AddMemberHelp" src="../Images/question_blue.png" /></span>
         <div style="width: 500px;" class="box">
         <br />
         <asp:Panel ID="pnlAddMember" runat="server">
 
             Email or Kerberos Login: <asp:TextBox ID="txtSearchQuery" runat="server" MaxLength="50" ></asp:TextBox>
-            <input type="button" id="btnLookupUser" onclick="LookupKerberosUser()" value="Lookup Person"/>
+            <input type="button" id="btnLookupUser" onclick="LookupKerberosUser()" value="Lookup Person" />
                 <img id="imgMemberLoginProgress" alt="Progress" src="../Images/progress.gif" style="visibility:hidden" />
                 <asp:RequiredFieldValidator id="reqValLoginID" ControlToValidate="txtSearchQuery" ErrorMessage="* Email or Login Required" runat="server" ValidationGroup="ExternalMember" Display="Dynamic" />
             <br /><br />
