@@ -232,21 +232,22 @@
         <br />
         <asp:Panel ID="pnlAddMember" runat="server">
 
-            Login (Kerberos): <asp:TextBox ID="txtLoginID" runat="server" MaxLength="50" onblur="LookupKerberosUser()" ></asp:TextBox>
+            Email or Kerberos Login: <asp:TextBox ID="txtLoginID" runat="server" MaxLength="50" onblur="LookupKerberosUser()" ></asp:TextBox>
+            <input type="button" id="btnLookupUser" onclick="LoogupKerberosUser()" value="Lookup Person"/>
                 <img id="imgMemberLoginProgress" alt="Progress" src="../Images/progress.gif" style="visibility:hidden" />
-                <asp:RequiredFieldValidator id="reqValLoginID" ControlToValidate="txtLoginID" ErrorMessage="* LoginID Required" runat="server" ValidationGroup="ExternalMember" />
-                                                
+                <asp:RequiredFieldValidator id="reqValLoginID" ControlToValidate="txtLoginID" ErrorMessage="* LoginID Required" runat="server" ValidationGroup="ExternalMember" Display="Dynamic" />
             <br /><br />
-            First Name: <asp:TextBox ID="txtFName" runat="server" MaxLength="50"></asp:TextBox><br /><br />
-            Last Name: <asp:TextBox ID="txtLName" runat="server" MaxLength="50"></asp:TextBox><br /><br />
-            Department: <asp:TextBox ID="txtDepartment" runat="server" MaxLength="50"></asp:TextBox><br /><br />
-            Member Type: <asp:DropDownList ID="dlistMemberType" runat="server">
+            First Name: <asp:TextBox ID="txtFName" runat="server" MaxLength="50" Enabled="False"></asp:TextBox><br /><br />
+            Last Name: <asp:TextBox ID="txtLName" runat="server" MaxLength="50" Enabled="False"></asp:TextBox><br /><br />
+            Email: <asp:TextBox runat="server" ID="txtEmail" Enabled="False"></asp:TextBox><br/><br/>
+            Department: <asp:TextBox ID="txtDepartment" runat="server" MaxLength="50" Enabled="False"></asp:TextBox><br /><br />
+            Member Type: <asp:DropDownList ID="dlistMemberType" Enabled="False" runat="server">
                             <asp:ListItem Text="Committee" Selected="true"></asp:ListItem>
                             <asp:ListItem Text="Faculty"></asp:ListItem>
                             <asp:ListItem Text="Review"></asp:ListItem>
                         </asp:DropDownList><br /><br />
             
-            <asp:Button ID="btnAddMember" runat="server" Text="Add Member" OnClick="btnAddMember_Click" ValidationGroup="ExternalMember" />   
+            <asp:Button ID="btnAddMember" runat="server" Text="Add Member" OnClick="btnAddMember_Click" ValidationGroup="ExternalMember" Enabled="False" />   
         </asp:Panel>
         </div>    
     </asp:Panel>
