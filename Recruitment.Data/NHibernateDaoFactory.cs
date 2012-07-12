@@ -214,7 +214,7 @@ namespace CAESDO.Recruitment.Data
                 //Get the positions eager joined with the departments
                 var posList = NHibernateSessionManager.Instance.GetSession().CreateCriteria(typeof (Position))
                     .Add(Subqueries.PropertyIn("id", projectIds))
-                    .AddOrder(Order.Asc("Deadline"))
+                    .AddOrder(Order.Desc("DatePosted"))
                     .SetFetchMode("Departments", FetchMode.Eager)
                     .List<Position>();
 
