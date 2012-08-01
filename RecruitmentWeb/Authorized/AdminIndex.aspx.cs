@@ -23,7 +23,6 @@ public partial class Authorized_AdminIndex : System.Web.UI.Page
             
             ibPendingpos.Visible = false; //View Pending Positions
             ibManageusers.Visible = false; //Manage Users
-            ibClosedPos.Visible = false; //View closed positions
         }
     }
 }
