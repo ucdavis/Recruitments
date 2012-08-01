@@ -4,7 +4,7 @@
 <div style="text-align:center;">
     <asp:ImageButton ID="ibViewpositions" runat="server" ImageUrl="~/Images/def_viewpositions.jpg" PostBackUrl="viewPositionsAdmin.aspx" AlternateText="View Positions" />
     <asp:ImageButton ID="ibPendingpos" runat="server" ImageUrl="~/Images/def_pendingpos_admin.jpg" PostBackUrl="ViewPositionsPending.aspx" AlternateText="Pending Positions" />
-    <asp:ImageButton ID="ibClosedPos" runat="server" ImageUrl="~/Images/def_closedposition_admin.jpg" PostBackUrl="~/Authorized/viewPositionsClosed.aspx" AlternateText="Closed Positions" />
+    <asp:ImageButton ID="ibClosedPos" runat="server" ImageUrl="~/Images/def_closedposition.jpg" PostBackUrl="~/Authorized/viewPositionsClosed.aspx" AlternateText="Closed Positions" />
     <asp:ImageButton ID="ibCreatepos" runat="server" ImageUrl="~/Images/def_createpositions.jpg" PostBackUrl="PositionManagement.aspx" AlternateText="Create Positions" />
     <asp:ImageButton ID="ibManageusers" runat="server" ImageUrl="~/Images/def_manageusers_admin.jpg" PostBackUrl="ManageUsers.aspx" AlternateText="Manage Users" />
     <asp:ImageButton ID="ibEmailtemplates" runat="server" ImageUrl="~/Images/def_emailtemplates.jpg" PostBackUrl="EmailTemplates.aspx" AlternateText="Reminder Emails" />

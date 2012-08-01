@@ -16,14 +16,6 @@ namespace CAESDO.Recruitment.Web
         private const string STR_PositionDetailsURL = "PositionManagement.aspx";
         private const string STR_ViewApplicationsURL = "viewApplications.aspx";
 
-        protected void Page_Init(object sender, EventArgs e)
-        {
-            if (!Roles.IsUserInRole("Admin"))
-            {
-                Response.Redirect(RecruitmentConfiguration.ErrorPage(RecruitmentConfiguration.ErrorType.AUTH));
-            }
-        }
-
         protected void Page_Load(object sender, EventArgs e)
         {
 
