@@ -37,16 +37,16 @@ namespace CAESDO.Recruitment.Web
         private const string STR_CurrentPosition = "Current Position";
         private const string STR_Resume = "Resume";
         private const string STR_CoverLetter = "Statement of Purpose";
-        private const string STR_ResearchInterests = "Research Interests";
-        private const string STR_Transcripts = "Transcripts";
-        private const string STR_Publications = "Publications";
+        private const string STR_ResearchInterests = "Research Proposal";
+        private const string STR_Transcripts = "Application Form"; //transcript becomes application form
+        private const string STR_Publications = "Testimonials";
         private const string STR_Dissertation = "Dissertation";
-        private const string STR_FileType_Transcript = "Transcript";
-        private const string STR_FileType_CoverLetter = "CoverLetter";
-        private const string STR_FileType_ResearchInterests = "ResearchInterests";
+        private const string STR_FileType_Transcript = "ApplicationForm";
+        private const string STR_FileType_CoverLetter = "StatementOfPurpose"; //Cover letter becomes StatementOfPurpose
+        private const string STR_FileType_ResearchInterests = "ResearchProposal"; //Research interests becomes research proposal
         private const string STR_FileType_ExtensionInterests = "ExtensionInterests";
         private const string STR_FileType_TeachingInterests = "TeachingInterests";
-        private const string STR_FileType_Publication = "Publication";
+        private const string STR_FileType_Publication = "EducationalTestimonials";
         private const string STR_CV = "CV";
         private const string STR_URL_ApplicationSubmitted = "ApplicationSubmitted.aspx";
         
@@ -986,13 +986,13 @@ namespace CAESDO.Recruitment.Web
             }
 
             //Now add each type of file, hiding if necessary
+            ApplicationSteps.Add(new Step(STR_Transcripts, hasTranscript, false, isFileTypeRequested(STR_FileType_Transcript)));
             ApplicationSteps.Add(new Step(STR_CV, hasCV, false, isFileTypeRequested(STR_CV)));
             ApplicationSteps.Add(new Step(STR_Resume, hasResume, false, isFileTypeRequested(STR_Resume)));
             ApplicationSteps.Add(new Step(STR_CoverLetter, hasCoverLetter || currentApplication.CoverLetterComplete, false, isFileTypeRequested(STR_FileType_CoverLetter)));
             ApplicationSteps.Add(new Step(STR_ResearchInterests, hasResearchInterest, false, isFileTypeRequested(STR_FileType_ResearchInterests)));
             ApplicationSteps.Add(new Step(STR_ExtensionInterests, hasExtensionInterests, false, isFileTypeRequested(STR_FileType_ExtensionInterests)));
             ApplicationSteps.Add(new Step(STR_TeachingInterests, hasTeachingInterests, false, isFileTypeRequested(STR_FileType_TeachingInterests)));
-            ApplicationSteps.Add(new Step(STR_Transcripts, hasTranscript, false, isFileTypeRequested(STR_FileType_Transcript)));
             ApplicationSteps.Add(new Step(STR_Publications, currentApplication.PublicationsComplete, false, isFileTypeRequested(STR_FileType_Publication)));
             //ApplicationSteps.Add(new Step(STR_Dissertation, hasDissertation, false, true));
 
@@ -1071,7 +1071,7 @@ namespace CAESDO.Recruitment.Web
             int numPublicationsRemaining = currentApplication.AppliedPosition.NumPublications - GetFilesOfType(STR_FileType_Publication).Count;
 
             if (numPublicationsRemaining > 0)
-                return string.Format("[{0} More Publication{1} Requested]", numPublicationsRemaining, numPublicationsRemaining == 1 ? string.Empty : "s");
+                return string.Format("[{0} More Testimonal{1} Requested]", numPublicationsRemaining, numPublicationsRemaining == 1 ? string.Empty : "s");
             else
                 return string.Empty;
         }

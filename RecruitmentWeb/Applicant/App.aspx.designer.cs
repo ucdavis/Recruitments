@@ -346,6 +346,42 @@ namespace CAESDO.Recruitment.Web {
         protected global::System.Web.UI.WebControls.Button btnContactSave;
         
         /// <summary>
+        /// viewApplicationForm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.View viewApplicationForm;
+        
+        /// <summary>
+        /// litTranscriptsPDF control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Literal litTranscriptsPDF;
+        
+        /// <summary>
+        /// fileTranscripts control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fileTranscripts;
+        
+        /// <summary>
+        /// btnTranscriptsUpload control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnTranscriptsUpload;
+        
+        /// <summary>
         /// viewEducationInformation control.
         /// </summary>
         /// <remarks>
@@ -1021,13 +1057,13 @@ namespace CAESDO.Recruitment.Web {
         protected global::System.Web.UI.WebControls.Button btnCoverLetterUpload;
         
         /// <summary>
-        /// viewResearchInterests control.
+        /// viewResearchProposal control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View viewResearchInterests;
+        protected global::System.Web.UI.WebControls.View viewResearchProposal;
         
         /// <summary>
         /// litResearchPDF control.
@@ -1127,42 +1163,6 @@ namespace CAESDO.Recruitment.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnTeachingInterestsUpload;
-        
-        /// <summary>
-        /// viewTranscripts control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.View viewTranscripts;
-        
-        /// <summary>
-        /// litTranscriptsPDF control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litTranscriptsPDF;
-        
-        /// <summary>
-        /// fileTranscripts control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.FileUpload fileTranscripts;
-        
-        /// <summary>
-        /// btnTranscriptsUpload control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnTranscriptsUpload;
         
         /// <summary>
         /// viewConfidentialSurvey control.
@@ -1372,22 +1372,13 @@ namespace CAESDO.Recruitment.Web {
         protected global::System.Web.UI.WebControls.Button btnConfidentialSurveyAccept;
         
         /// <summary>
-        /// viewPublications control.
+        /// viewTestimonials control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View viewPublications;
-        
-        /// <summary>
-        /// litPublicationRequest control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litPublicationRequest;
+        protected global::System.Web.UI.WebControls.View viewTestimonials;
         
         /// <summary>
         /// litPublicationsNum control.
@@ -1397,15 +1388,6 @@ namespace CAESDO.Recruitment.Web {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Literal litPublicationsNum;
-        
-        /// <summary>
-        /// litPublicationsRequestSubmit control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Literal litPublicationsRequestSubmit;
         
         /// <summary>
         /// litPublicationsPDF control.

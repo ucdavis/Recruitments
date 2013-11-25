@@ -227,6 +227,32 @@
                     </tr>
                 </table>
             </asp:View>
+
+            <asp:View ID="viewApplicationForm" runat="server">
+                <span class="boxTitle">Application Form</span><br />
+                <table class="box" style="width:500px;" cellpadding="5">
+                    <tr>
+                        <td colspan="2"><br />Please download the application from <a href="#">this link (app.pdf)</a> and fill it out, sign it, and then upload it here when complete.</td>
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <asp:Literal ID="litTranscriptsPDF" runat="server" Text="<%$ Resources:PDFWarning %>"></asp:Literal> 
+                        </td>                       
+                    </tr>
+                    <tr>
+                        <td colspan="2">
+                            <asp:FileUpload ID="fileTranscripts" runat="server" meta:resourcekey="fileTranscriptsResource1" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td   align="right">
+                        </td>
+                        <td align="right"  >
+                            <br />
+                            <asp:Button ID="btnTranscriptsUpload" runat="server" Text="Upload" OnClick="btnTranscriptsUpload_Click" meta:resourcekey="btnTranscriptsUploadResource1" /></td>
+                    </tr>
+                </table>
+            </asp:View>
             
             <asp:View ID="viewEducationInformation" runat="server">
                 <span class="boxTitle">Terminal Degree Information</span><br />
@@ -665,8 +691,8 @@
                 </table>
             </asp:View>
         
-            <asp:View ID="viewResearchInterests" runat="server">
-                <span class="boxTitle">Research Interests</span><br />
+            <asp:View ID="viewResearchProposal" runat="server">
+                <span class="boxTitle">Research Proposal</span><br />
                 <table class="box" style="width:500px; " cellpadding="5">
                     <tr>
                         <td colspan="2"><br /></td>
@@ -739,32 +765,6 @@
                         <td align="right"  >
                             <br />
                             <asp:Button ID="btnTeachingInterestsUpload" runat="server" Text="Upload" OnClick="btnTeachingInterestsUpload_Click" meta:resourcekey="btnTeachingInterestsUploadResource1" /></td>
-                    </tr>
-                </table>
-            </asp:View>
-            
-            <asp:View ID="viewTranscripts" runat="server">
-                <span class="boxTitle">Transcripts</span><br />
-                <table class="box" style="width:500px;" cellpadding="5">
-                    <tr>
-                        <td colspan="2"><br /></td>
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <asp:Literal ID="litTranscriptsPDF" runat="server" Text="<%$ Resources:PDFWarning %>"></asp:Literal> 
-                        </td>                       
-                    </tr>
-                    <tr>
-                        <td colspan="2">
-                            <asp:FileUpload ID="fileTranscripts" runat="server" meta:resourcekey="fileTranscriptsResource1" />
-                        </td>
-                    </tr>
-                    <tr>
-                        <td   align="right">
-                        </td>
-                        <td align="right"  >
-                            <br />
-                            <asp:Button ID="btnTranscriptsUpload" runat="server" Text="Upload" OnClick="btnTranscriptsUpload_Click" meta:resourcekey="btnTranscriptsUploadResource1" /></td>
                     </tr>
                 </table>
             </asp:View>
@@ -891,16 +891,16 @@
                 </table>
             </asp:View>
             
-            <asp:View ID="viewPublications" runat="server">
-                <span class="boxTitle">Publications</span><br />
+            <asp:View ID="viewTestimonials" runat="server">
+                <span class="boxTitle">Eduational Testimonials</span><br />
                 <table class="box" style="width:500px; height: 350px;" cellpadding="5">
                     
                     <tr>
                         <td colspan="2">
                             <br />
-                            <asp:Literal ID="litPublicationRequest" runat="server" Text="This position description requests" meta:resourcekey="litPublicationRequestResource1"></asp:Literal>
+                            This position requests
                             <asp:Literal ID="litPublicationsNum" runat="server" EnableViewState="False" meta:resourcekey="litPublicationsNumResource1"></asp:Literal>
-                            <asp:Literal ID="litPublicationsRequestSubmit" runat="server" Text="publications, although recent graduates may not have that many. Please submit as many as you have, indicating below when complete. You can return to this page to change or enter more publications later." meta:resourcekey="litPublicationsRequestSubmitResource1"></asp:Literal>
+                            educational testimonials. Please submit as many as you have, indicating below when complete. You can return to this page to change or enter more testimonials later.
                         </td>
                     </tr>
                     <tr>
@@ -926,7 +926,7 @@
                         <td colspan="2">
                             <asp:Repeater ID="rptPublications" runat="server">
                                 <HeaderTemplate>
-                                    Existing Publication Files <asp:Label ID="lblPublicationsRemaining" runat="server" Text='<%# NumPublicationsRemainingText() %>' ForeColor="Brown" EnableViewState="False" meta:resourcekey="lblPublicationsRemainingResource1"></asp:Label>: <br />
+                                    Existing Testimonials <asp:Label ID="lblPublicationsRemaining" runat="server" Text='<%# NumPublicationsRemainingText() %>' ForeColor="Brown" EnableViewState="False" meta:resourcekey="lblPublicationsRemainingResource1"></asp:Label>: <br />
                                 </HeaderTemplate>
                                 <ItemTemplate>
                                     &nbsp;&nbsp;<asp:LinkButton ID="lbtnPublicationFile" runat="server" Text='<%# Eval("FileName") %>' CommandArgument='<%# Eval("ID") %>' OnClick="lbtnPublicationFile_Click" meta:resourcekey="lbtnPublicationFileResource1"></asp:LinkButton>
@@ -943,7 +943,7 @@
                         </td>
                         <td align="right"  >
                             <br />
-                            <asp:CheckBox ID="chkPublicationsFinalize" runat="server" AutoPostBack="True" TextAlign="Left" Text="Done Uploading Publications" OnCheckedChanged="chkPublicationsFinalize_CheckedChanged" meta:resourcekey="chkPublicationsFinalizeResource1" />
+                            <asp:CheckBox ID="chkPublicationsFinalize" runat="server" AutoPostBack="True" TextAlign="Left" Text="Done Uploading Testimonials" OnCheckedChanged="chkPublicationsFinalize_CheckedChanged" meta:resourcekey="chkPublicationsFinalizeResource1" />
                         </td>
                     </tr>
                 </table>
