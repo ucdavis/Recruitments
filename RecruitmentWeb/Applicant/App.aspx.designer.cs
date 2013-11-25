@@ -976,13 +976,13 @@ namespace CAESDO.Recruitment.Web {
         protected global::System.Web.UI.WebControls.Button btnCVUpload;
         
         /// <summary>
-        /// viewCoverLetter control.
+        /// viewStatementOfPurpose control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View viewCoverLetter;
+        protected global::System.Web.UI.WebControls.View viewStatementOfPurpose;
         
         /// <summary>
         /// chkCoverLetterOption control.

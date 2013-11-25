@@ -36,7 +36,7 @@ namespace CAESDO.Recruitment.Web
         private const string STR_References = "References";
         private const string STR_CurrentPosition = "Current Position";
         private const string STR_Resume = "Resume";
-        private const string STR_CoverLetter = "Cover Letter";
+        private const string STR_CoverLetter = "Statement of Purpose";
         private const string STR_ResearchInterests = "Research Interests";
         private const string STR_Transcripts = "Transcripts";
         private const string STR_Publications = "Publications";
@@ -282,9 +282,9 @@ namespace CAESDO.Recruitment.Web
                 }
             }
 
-            //Always check references and the confidential survey
-            if (!currentApplication.isComplete(ApplicationStepType.Survey))
-                incompleteSteps.Add(STR_ConfidentialSurvey);
+            ////Always check references and the confidential survey
+            //if (!currentApplication.isComplete(ApplicationStepType.Survey))
+            //    incompleteSteps.Add(STR_ConfidentialSurvey);
 
             if (!currentApplication.ReferencesComplete)
                 incompleteSteps.Add(STR_References);  
@@ -997,7 +997,7 @@ namespace CAESDO.Recruitment.Web
             //ApplicationSteps.Add(new Step(STR_Dissertation, hasDissertation, false, true));
 
             //Add the confidential survey
-            ApplicationSteps.Add(new Step(STR_ConfidentialSurvey, currentApplication.isComplete(ApplicationStepType.Survey), false, true));
+            //ApplicationSteps.Add(new Step(STR_ConfidentialSurvey, currentApplication.isComplete(ApplicationStepType.Survey), false, false));
 
             //ApplicationSteps.Add(new Step("Education Information", true, false, true));
 

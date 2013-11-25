@@ -633,17 +633,18 @@
                 </table>
             </asp:View>
         
-            <asp:View ID="viewCoverLetter" runat="server">
-                <span class="boxTitle">Cover Letter</span><br />
+            <asp:View ID="viewStatementOfPurpose" runat="server">
+                <span class="boxTitle">Statement of Purpose</span><br />
                 <table class="box" style="width:500px;" cellpadding="5">
                     <tr>
                         <td colspan="2"><br /></td>
                     </tr>
-                    <tr>
+<%--                    <tr>
                         <td colspan="2" align="left">
                             <asp:CheckBox ID="chkCoverLetterOption" runat="server" Text=" I do not wish to upload a cover letter." AutoPostBack="True" OnCheckedChanged="chkCoverLetterOption_CheckedChanged" Font-Bold="True" meta:resourcekey="chkCoverLetterOptionResource1" />
                         </td>
-                    </tr>
+                    </tr>--%>
+                    <asp:CheckBox runat="server" ID="chkCoverLetterOption" Checked="false" Visible="false"/>
                     <tr>
                         <td colspan="2">
                             <asp:Literal ID="litCoverLetterPDF" runat="server" Text="<%$ Resources:PDFWarning %>"></asp:Literal>
