@@ -281,14 +281,14 @@
         </tr>
         <tr>
             <td   align="right" style="width: 40">
-                Number of Required Publications:</td>
+                Number of Required Educational Testimonials:</td>
             <td  >
                 <asp:TextBox ID="txtPublications" runat="server" meta:resourcekey="txtPublicationsResource1"></asp:TextBox>
                 <AjaxControlToolkit:NumericUpDownExtender ID="numPublications" runat="server" Width="146" TargetControlID="txtPublications" Enabled="True" Maximum="1.7976931348623157E+308" Minimum="-1.7976931348623157E+308" RefValues="" ServiceDownMethod="" ServiceDownPath="" ServiceUpMethod="" Tag="" TargetButtonDownID="" TargetButtonUpID=""></AjaxControlToolkit:NumericUpDownExtender>
                 
                 
-                <asp:CompareValidator ID="comValPublications" runat="server" ErrorMessage="* Number of Publications Can Not Be Negative" ControlToValidate="txtPublications" ValueToCompare="0" Type="Integer" Operator="GreaterThanEqual" Display="Dynamic" meta:resourcekey="comValPublicationsResource1"></asp:CompareValidator>
-                <asp:RequiredFieldValidator ID="reqValPublications" runat="server" ErrorMessage="* Publications Required" ControlToValidate="txtPublications" Display="Dynamic" meta:resourcekey="reqValPublicationsResource1"></asp:RequiredFieldValidator>    
+                <asp:CompareValidator ID="comValPublications" runat="server" ErrorMessage="* Number of Educational Testimonials Can Not Be Negative" ControlToValidate="txtPublications" ValueToCompare="0" Type="Integer" Operator="GreaterThanEqual" Display="Dynamic" meta:resourcekey="comValPublicationsResource1"></asp:CompareValidator>
+                <asp:RequiredFieldValidator ID="reqValPublications" runat="server" ErrorMessage="* Educational Testimonials" ControlToValidate="txtPublications" Display="Dynamic" meta:resourcekey="reqValPublicationsResource1"></asp:RequiredFieldValidator>    
             </td>
         </tr>
         <tr>
