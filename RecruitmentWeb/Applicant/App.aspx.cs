@@ -40,7 +40,7 @@ namespace CAESDO.Recruitment.Web
         private const string STR_ResearchInterests = "Research Proposal";
         private const string STR_Transcripts = "Application Form"; //transcript becomes application form
         private const string STR_CV = "CV Resume";
-        private const string STR_Publications = "Testimonials";
+        private const string STR_Publications = "Education";
         private const string STR_Dissertation = "Dissertation";
         private const string STR_FileType_Transcript = "ApplicationForm";
         private const string STR_FileType_CoverLetter = "StatementOfPurpose"; //Cover letter becomes StatementOfPurpose

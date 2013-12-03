@@ -663,7 +663,9 @@
                 <span class="boxTitle">Statement of Purpose</span><br />
                 <table class="box" style="width:500px;" cellpadding="5">
                     <tr>
-                        <td colspan="2"><br /></td>
+                        <td colspan="2"><br />
+                            Explain in one page why you want to pursue a graduate degree (PhD or MS) through this program.
+                        </td>
                     </tr>
 <%--                    <tr>
                         <td colspan="2" align="left">
@@ -695,7 +697,9 @@
                 <span class="boxTitle">Research Proposal</span><br />
                 <table class="box" style="width:500px; " cellpadding="5">
                     <tr>
-                        <td colspan="2"><br /></td>
+                        <td colspan="2"><br />
+                        Describe a research project, in one page, that you would like to pursue as part of your graduate training.  Title, Introduction, Objectives, Possible outcomes.
+                        </td>
                     </tr>
                     <tr>
                         <td colspan="2">
@@ -891,16 +895,22 @@
                 </table>
             </asp:View>
             
-            <asp:View ID="viewTestimonials" runat="server">
-                <span class="boxTitle">Eduational Testimonials</span><br />
+            <asp:View ID="viewEducation" runat="server">
+                <span class="boxTitle">Eduational Background</span><br />
                 <table class="box" style="width:500px; height: 350px;" cellpadding="5">
-                    
+                    <tr>
+                        <td colspan="2"><br/>
+                        Official academic records from each college-level institution you have attended are required.
+Mark Certificates for each annual exam taken during university level studies, showing date of the exam, subjects taken, marks awarded in each, maximum possible marks, and level of pass. Three-year first degrees do not qualify for graduate admission.  Note that if you are selected for a scholarship that you will then be required to apply for admission to the identified Land Grant University and for that step actual certified hard copies of academic records may be required.
+
+</td>
+                    </tr>
                     <tr>
                         <td colspan="2">
                             <br />
                             This position requests
                             <asp:Literal ID="litPublicationsNum" runat="server" EnableViewState="False" meta:resourcekey="litPublicationsNumResource1"></asp:Literal>
-                            educational testimonials. Please submit as many as you have, indicating below when complete. You can return to this page to change or enter more testimonials later.
+                            educational background documents. Please submit as many as you have, indicating below when complete. You can return to this page to change or enter more later.
                         </td>
                     </tr>
                     <tr>
@@ -926,7 +936,7 @@
                         <td colspan="2">
                             <asp:Repeater ID="rptPublications" runat="server">
                                 <HeaderTemplate>
-                                    Existing Testimonials <asp:Label ID="lblPublicationsRemaining" runat="server" Text='<%# NumPublicationsRemainingText() %>' ForeColor="Brown" EnableViewState="False" meta:resourcekey="lblPublicationsRemainingResource1"></asp:Label>: <br />
+                                    Existing Education Files <asp:Label ID="lblPublicationsRemaining" runat="server" Text='<%# NumPublicationsRemainingText() %>' ForeColor="Brown" EnableViewState="False" meta:resourcekey="lblPublicationsRemainingResource1"></asp:Label>: <br />
                                 </HeaderTemplate>
                                 <ItemTemplate>
                                     &nbsp;&nbsp;<asp:LinkButton ID="lbtnPublicationFile" runat="server" Text='<%# Eval("FileName") %>' CommandArgument='<%# Eval("ID") %>' OnClick="lbtnPublicationFile_Click" meta:resourcekey="lbtnPublicationFileResource1"></asp:LinkButton>
