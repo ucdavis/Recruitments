@@ -976,13 +976,13 @@ namespace CAESDO.Recruitment.Web {
         protected global::System.Web.UI.WebControls.Button btnResumeUpload;
         
         /// <summary>
-        /// viewCV control.
+        /// viewCVResume control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.View viewCV;
+        protected global::System.Web.UI.WebControls.View viewCVResume;
         
         /// <summary>
         /// litCVPDF control.

@@ -633,8 +633,8 @@
                 </table>
             </asp:View>
             
-            <asp:View ID="viewCV" runat="server">
-                 <span class="boxTitle">CV</span><br />
+            <asp:View ID="viewCVResume" runat="server">
+                 <span class="boxTitle">CV / Resume</span><br />
                 <table class="box" style="width:500px;" cellpadding="5">
                     <tr>
                         <td colspan="2"><br /></td>

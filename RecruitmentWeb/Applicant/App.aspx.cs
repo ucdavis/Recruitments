@@ -39,6 +39,7 @@ namespace CAESDO.Recruitment.Web
         private const string STR_CoverLetter = "Statement of Purpose";
         private const string STR_ResearchInterests = "Research Proposal";
         private const string STR_Transcripts = "Application Form"; //transcript becomes application form
+        private const string STR_CV = "CV Resume";
         private const string STR_Publications = "Testimonials";
         private const string STR_Dissertation = "Dissertation";
         private const string STR_FileType_Transcript = "ApplicationForm";
@@ -47,7 +48,7 @@ namespace CAESDO.Recruitment.Web
         private const string STR_FileType_ExtensionInterests = "ExtensionInterests";
         private const string STR_FileType_TeachingInterests = "TeachingInterests";
         private const string STR_FileType_Publication = "EducationalTestimonials";
-        private const string STR_CV = "CV";
+        private const string STR_FileType_CV = "CVResume";
         private const string STR_URL_ApplicationSubmitted = "ApplicationSubmitted.aspx";
         
         #endregion
@@ -470,7 +471,7 @@ namespace CAESDO.Recruitment.Web
 
         protected void btnCVUpload_Click(object sender, EventArgs e)
         {
-            ReloadStepListAndSelectHome(STR_CV, AddUniqueFileToApplication(fileCV, STR_CV));
+            ReloadStepListAndSelectHome(STR_CV, AddUniqueFileToApplication(fileCV, STR_FileType_CV));
         }
 
         protected void btnCoverLetterUpload_Click(object sender, EventArgs e)
@@ -987,7 +988,7 @@ namespace CAESDO.Recruitment.Web
 
             //Now add each type of file, hiding if necessary
             ApplicationSteps.Add(new Step(STR_Transcripts, hasTranscript, false, isFileTypeRequested(STR_FileType_Transcript)));
-            ApplicationSteps.Add(new Step(STR_CV, hasCV, false, isFileTypeRequested(STR_CV)));
+            ApplicationSteps.Add(new Step(STR_CV, hasCV, false, isFileTypeRequested(STR_FileType_CV)));
             ApplicationSteps.Add(new Step(STR_Resume, hasResume, false, isFileTypeRequested(STR_Resume)));
             ApplicationSteps.Add(new Step(STR_CoverLetter, hasCoverLetter || currentApplication.CoverLetterComplete, false, isFileTypeRequested(STR_FileType_CoverLetter)));
             ApplicationSteps.Add(new Step(STR_ResearchInterests, hasResearchInterest, false, isFileTypeRequested(STR_FileType_ResearchInterests)));
