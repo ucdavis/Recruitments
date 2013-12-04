@@ -232,7 +232,7 @@
                 <span class="boxTitle">Application Form</span><br />
                 <table class="box" style="width:500px;" cellpadding="5">
                     <tr>
-                        <td colspan="2"><br />Please download the application from <a href="#">this link (app.pdf)</a> and fill it out, sign it, and then upload it here when complete.</td>
+                        <td colspan="2"><br />Please download the <a href='AIPForm.pdf'>AIP-HRD application form</a>, fill in the blanks, add a photograph and signature, then save the document and insert it back into your application file.</td>
                     </tr>
                     <tr>
                         <td colspan="2">
