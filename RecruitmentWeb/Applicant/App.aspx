@@ -91,15 +91,15 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            Contact <a href='mailto:<%= currentApplication.AppliedPosition.HREmail %>'><%= currentApplication.AppliedPosition.HREmail %></a> if you have any questions.
+                            Please contact Professor Emeritus Thomas L. Rost (<a href='mailto:tlrost@ucdavis.edu'>tlrost@ucdavis.edu</a>)' or Mr. Sarfarz Rizwan (<a href="mailto:pd.scd@uaf.edu.pk">pd.scd@uaf.edu.pk</a>) if you have questions.
                         </td>
                     </tr>
                     <tr>
                         <td colspan="2">
                             <asp:Literal ID="litCompleteTabs" runat="server" Text="Please complete all tabs on the left hand side of this page." meta:resourcekey="litCompleteTabsResource1"></asp:Literal> <br /><br />
                             
-                            <asp:Literal ID="litFinalize" runat="server" Text="When you are done with all sections, click on the finalize button to complete your application.
-                            You will not be able to modify your application after you finalize." meta:resourcekey="litFinalizeResource1"></asp:Literal>
+                            When you have completed all sections of the application you will then come back to the Home page and click on the Finalize Application button.  
+                            <strong>NOTE: You will not be able to change your application once you have clicked that button, so please check everything carefully before you finalize your application.</strong>
                             <br /><br />
                             <asp:Literal ID="litFinalizedEmail" runat="server" Text="After finalizing your application, you will receive an email confirming that your application has been completed and received."></asp:Literal>
                         </td>
@@ -127,7 +127,7 @@
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <asp:Literal ID="litContactInfo" runat="server" Text="Enter the information of where you would like to be contacted regarding this position" meta:resourcekey="litContactInfoResource1"></asp:Literal>
+                            <asp:Literal ID="litContactInfo" runat="server" Text=" Enter information below on where you would like to be contacted regarding this application." meta:resourcekey="litContactInfoResource1"></asp:Literal>
                         </td>
                     </tr>
                     <tr>
@@ -178,7 +178,7 @@
                     </tr>
                     <tr>
                         <td   align="right">
-                            State:</td>
+                            State/Province:</td>
                         <td   >
                             <asp:TextBox ID="txtContactState" runat="server" MaxLength="50" meta:resourcekey="txtContactStateResource1"></asp:TextBox>
                             <asp:RequiredFieldValidator id="reqValContactState" ControlToValidate="txtContactState" ErrorMessage="* State Required" runat="server" meta:resourcekey="reqValContactStateResource1"/>
@@ -186,7 +186,7 @@
                     </tr>
                     <tr>
                         <td align="right">
-                            Zip
+                            Zip/Postal Code:
                         </td>
                         <td>
                             <asp:TextBox ID="txtContactZip" runat="server" MaxLength="20" meta:resourcekey="txtContactZipResource1"></asp:TextBox>
@@ -194,7 +194,7 @@
                     </tr>
                     <tr>
                         <td align="right">
-                            Country
+                            Country:
                         </td>
                         <td>
                             <asp:TextBox ID="txtContactCountry" runat="server" MaxLength="50" meta:resourcekey="txtContactCountryResource1"></asp:TextBox>

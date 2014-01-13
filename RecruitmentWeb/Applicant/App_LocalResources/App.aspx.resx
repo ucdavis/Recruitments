@@ -452,7 +452,7 @@
     <value>Please complete all tabs on the left hand side of this page.</value>
   </data>
   <data name="litContactInfoResource1.Text" xml:space="preserve">
-    <value>Enter the information of where you would like to be contacted regarding this position</value>
+    <value>Enter information below on where you would like to be contacted regarding this application.</value>
     <comment>Text on the top of the Contact info tab</comment>
   </data>
   <data name="litEndSpecifyResource1.Text" xml:space="preserve">
