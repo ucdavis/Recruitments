@@ -966,7 +966,9 @@
     <Content Include="AppSettings.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Applicant\AIPForm.pdf" />
+    <Content Include="Applicant\AIPForm.pdf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" />
