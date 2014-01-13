@@ -232,7 +232,7 @@
                 <span class="boxTitle">Application Form</span><br />
                 <table class="box" style="width:500px;" cellpadding="5">
                     <tr>
-                        <td colspan="2"><br />Please download the <a href='AIPForm.pdf'>AIP-HRD application form</a>, fill in the blanks, add a photograph and signature, then save the document and insert it back into your application file.</td>
+                        <td colspan="2"><br />Please download the <a href='AIPForm.pdf'>AIP-HRD application form</a> into your computer then fill in the blanks on all pages including your educational record information.  Next, print the document, add a photograph, sign the second page, then scan the document, save it as a *.pdf and upload back into your application.</td>
                     </tr>
                     <tr>
                         <td colspan="2">
@@ -299,7 +299,7 @@
                     </tr>
                     <tr>
                         <td   align="right">
-                            Advisor:</td>
+                            Advisor/Supervisor:</td>
                         <td  >
                             <asp:TextBox ID="txtEducationAdvisor" runat="server" MaxLength="50"></asp:TextBox>
                         </td>
@@ -321,8 +321,8 @@
                         <td colspan="2"><br /></td>
                     </tr>
                     <tr>
-                        <td colspan="2">Extramural reviewers should be people from outside UC Davis.
-                        Letters will be requested from the references you have provided at a later date in the process.
+                        <td colspan="2">You will need to provide contact information for three references who can attest to your character, your academic record, and potential to be a successful graduate student in the USA.  
+                        These references cannot be family members and will be contacted only if you are a semi-finalist for a scholarship.
                         </td>
                     </tr>
                     <tr>
@@ -473,7 +473,7 @@
                         </tr>
                         <tr>
                             <td   align="right">
-                                State:</td>
+                                State/Province:</td>
                             <td  >
                                 <asp:TextBox ID="txtReferencesState" runat="server" MaxLength="50" EnableViewState="False" meta:resourcekey="txtReferencesStateResource1"></asp:TextBox>
                                 <asp:RequiredFieldValidator id="reqValReferencesState" ControlToValidate="txtReferencesState" ValidationGroup="References" ErrorMessage="* State Required" runat="server" meta:resourcekey="reqValReferencesStateResource1"/>
@@ -481,7 +481,7 @@
                         </tr>
                         <tr>
                             <td   align="right">
-                                Zip:</td>
+                                Zip/Postal Code:</td>
                             <td  >
                                 <asp:TextBox ID="txtReferencesZip" runat="server" MaxLength="20" EnableViewState="False" meta:resourcekey="txtReferencesZipResource1"></asp:TextBox>
                                 <asp:RequiredFieldValidator id="reqValReferencesZip" ControlToValidate="txtReferencesZip" ValidationGroup="References" ErrorMessage="* Zip Required" runat="server" meta:resourcekey="reqValReferencesZipResource1"/>
@@ -578,14 +578,14 @@
                     </tr>
                     <tr>
                         <td   align="right">
-                            State:</td>
+                            State/Province:</td>
                         <td  >
                             <asp:TextBox ID="txtCurrentPositionState" runat="server" MaxLength="50" meta:resourcekey="txtCurrentPositionStateResource1"></asp:TextBox>
                         </td>
                     </tr>
                     <tr>
                         <td   align="right">
-                            Zip:</td>
+                            Zip/Postal Code:</td>
                         <td  >
                             <asp:TextBox ID="txtCurrentPositionZip" runat="server" MaxLength="20" meta:resourcekey="txtCurrentPositionZipResource1"></asp:TextBox>
                         </td>
@@ -698,7 +698,8 @@
                 <table class="box" style="width:500px; " cellpadding="5">
                     <tr>
                         <td colspan="2"><br />
-                        Describe a research project, in one page, that you would like to pursue as part of your graduate training.  Title, Introduction, Objectives, Possible outcomes.
+                        Describe a research project, in one page, that you would like to pursue as part of your graduate training.  Title, Introduction, Objectives, Possible outcomes.  
+                        Note that your project must relate directly to one of these topics – Livestock, Vegetables, Wheat, Maize, Rice, or Tree crops 
                         </td>
                     </tr>
                     <tr>
