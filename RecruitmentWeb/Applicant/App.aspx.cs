@@ -960,7 +960,7 @@ namespace CAESDO.Recruitment.Web
                     case STR_FileType_CoverLetter:
                         hasCoverLetter = true;
                         break;
-                    case STR_CV:
+                    case STR_FileType_CV:
                         hasCV = true;
                         break;
                     case STR_FileType_Transcript:
