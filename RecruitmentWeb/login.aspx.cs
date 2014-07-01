@@ -17,7 +17,7 @@ namespace CAESDO
     public partial class login : System.Web.UI.Page
     {
         private const string STR_ReturnURL = "ReturnURL";
-        private const string STR_CAS_URL = "https://cas.ucdavis.edu:8443/cas/";
+        private const string STR_CAS_URL = "https://cas.ucdavis.edu/cas/";
         private const string STR_KERBEROS_URL = "https://secureweb.ucdavis.edu/form-auth/sendback?";
         private const string STR_Ticket = "ticket";
 
